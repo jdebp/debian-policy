@@ -14,9 +14,9 @@
 ## $Id$
 ###############################################################################
 
-ifdef ARCH
-  ha:=-a$(ARCH)
-endif
+# ifdef ARCH
+#   ha:=-a$(ARCH)
+# endif
 
 # set the dpkg-architecture vars; but we don't use them, so we'll comment out
 # export DEB_BUILD_ARCH      := $(shell dpkg-architecture $(ha) -qDEB_BUILD_ARCH)
@@ -29,30 +29,12 @@ endif
 # export DEB_HOST_GNU_TYPE   := $(shell dpkg-architecture $(ha) -qDEB_HOST_GNU_TYPE)
 
 
-
 # The name of the package (for example, `emacs').
 package := $(shell grep Source debian/control | sed 's/^Source: //')
-arch	:= $(shell dpkg --print-installation-architecture)
+# arch	:= $(shell dpkg --print-installation-architecture)
 date	:= $(shell date +"%Y-%m-%d")
 version := $(shell LC_ALL=C dpkg-parsechangelog | \
 		   grep ^Version: | sed 's/^Version: *//')
-
-FILES_TO_CLEAN  = debian/files debian/buildinfo  debian/substvars \
-		  debian/postinst debian/prerm \
-		  version.ent  policy.lout policy.lout.ld lout.li \
-		  upgrading-checklist.txt policy.txt.gz \
-		  menu-policy.txt.gz menu-policy.pdf.gz \
-		  perl-policy.txt.gz perl-policy.pdf.gz \
-		  policy-process.txt.gz policy-process.pdf.gz \
-		  mime-policy.txt.gz mime-policy.pdf.gz \
-                  debconf_spec/debconf_specification.html \
-                  debconf_spec/debconf_specification.txt.gz \
-
-STAMPS_TO_CLEAN = stamp-policy stamp-build stamp-configure
-DIRS_TO_CLEAN   = debian/tmp policy.html fhs \
-		  menu-policy.html mime-policy.html \
-		  policy-process.html perl-policy.html
-SGML_FILES      = policy menu-policy mime-policy policy-process perl-policy
 
 # Location of the source dir
 SRCTOP	  := $(shell if [ "$$PWD" != "" ]; then echo $$PWD; else pwd; fi;)
@@ -60,6 +42,10 @@ TMPTOP	  := $(SRCTOP)/debian/tmp
 DOCDIR	  := $(TMPTOP)/usr/share/doc/$(package)
 LIBDIR	  := $(TMPTOP)/usr/share/doc-base
 
+
+SGML_FILES      = policy menu-policy mime-policy policy-process perl-policy
+DESC_FILES      = debian-policy debian-menu-policy debian-perl-policy \
+                  debian-mime-policy debian-policy-process debconf-spec
 
 # While we have two versions of the FHS installed in the source package,
 # we need to modify this to handle it.  This is the easiest way to do it.
@@ -71,20 +57,27 @@ FHS_HTML     =fhs-2.1.html.tar.gz
 FHS_FILES    =fhs/fhs.ps fhs/fhs.txt fhs/fhs.pdf
 FHS_BYHAND   =fhs-2.1.html.tar.gz fhs/fhs.txt
 # FSSTND_FILES =FSSTND-FAQ fsstnd-1.2.dvi.gz fsstnd-1.2.ps.gz fsstnd-1.2.txt.gz
-POLICY_FILES =policy.txt.gz policy.sgml virtual-package-names-list.txt \
-	      upgrading-checklist.txt libc6-migration.txt version.ent \
-	      menu-policy.sgml menu-policy.txt.gz \
-	      perl-policy.sgml perl-policy.txt.gz \
-	      mime-policy.sgml mime-policy.txt.gz \
-              policy-process.txt.gz policy-process.sgml \
-              debconf_spec/debconf_specification.html \
-              debconf_spec/debconf_specification.txt.gz
-BYHAND_FILES =policy.txt.gz libc6-migration.txt \
-	      virtual-package-names-list.txt menu-policy.txt.gz \
-	      mime-policy.txt.gz policy.ps.gz policy.pdf.gz \
-              policy.html.tar.gz perl-policy.txt.gz \
-	      debconf_spec/debconf_specification.txt.gz \
-	      $(FHS_BYHAND)
+POLICY_FILES = $(SGML_FILES:=.sgml) $(SGML_FILES:=.txt.gz) \
+	       virtual-package-names-list.txt \
+	       upgrading-checklist.txt libc6-migration.txt version.ent \
+               debconf_spec/debconf_specification.html \
+               debconf_spec/debconf_specification.txt.gz
+BYHAND_FILES = $(SGML_FILES:=.txt.gz) $(SGML_FILES:=.html.tar.gz) \
+	       debconf_spec/debconf_specification.txt.gz \
+	       debconf_spec/debconf_specification.html \
+	       libc6-migration.txt virtual-package-names-list.txt \
+	       policy.ps.gz policy.pdf.gz \
+	       $(FHS_BYHAND)
+
+FILES_TO_CLEAN  = debian/files debian/buildinfo  debian/substvars \
+		  debian/postinst debian/prerm \
+		  version.ent upgrading-checklist.txt \
+		  $(SGML_FILES:=.txt.gz) $(SGML_FILES:=.html.tar.gz) \
+		  policy.pdf.gz policy.ps.gz \
+		  debconf_specification.xml.tar.gz
+
+STAMPS_TO_CLEAN = stamp-policy stamp-build stamp-configure
+DIRS_TO_CLEAN   = debian/tmp fhs $(SGML_FILES:=.html)
 
 
 install_file   = /usr/bin/install -p	-o root -g root	 -m  644
@@ -98,14 +91,17 @@ all build: stamp-build
 stamp-build:
 	$(checkdir)
 	-test -f stamp-configure || $(MAKE) -f debian/rules configure
+	set -e; \
 	for file in $(SGML_FILES); do \
 	  nsgmls -gues $$file.sgml; \
 	  debiandoc2html $$file.sgml; \
 	  debiandoc2text $$file.sgml; \
 	  if [ -f $$file.text ]; then mv $$file.text $$file.txt; fi; \
-	  gzip -9f $$file.txt; \
+	  gzip -9 $$file.txt; \
+	  tar -cf $$file.html.tar $$file.html; \
+	  gzip -9 $$file.html.tar; \
 	done
-	tar zfx $(FHS_ARCHIVE)
+	tar -zxf $(FHS_ARCHIVE)
 	# Need to use a patched tmac.m macro file if we're using a pre-1.16
 	# groff; version 1.16 is apparently fixed
 	if dpkg --compare-versions $(GROFF_VERSION) lt 1.16; then \
@@ -132,6 +128,7 @@ stamp-configure:
 clean:
 # Undoes the effect of `make -f debian/rules build'.
 	$(checkdir)
+	$(MAKE) -C debconf_spec clean
 	rm -f  $(FILES_TO_CLEAN) $(STAMPS_TO_CLEAN)
 	rm -rf $(DIRS_TO_CLEAN)
 	rm -f core `find . \( -name '*.orig' -o -name '*.rej' -o \
@@ -170,29 +167,33 @@ stamp-policy:  build
 	$(install_file)	    $(FHS_FILES)	     $(DOCDIR)/fhs/
 	$(install_file)	    debian/changelog	     $(DOCDIR)/
 	# Be more specific with file compression
-	-gzip -q9	    $(DOCDIR)/*.txt $(DOCDIR)/*.sgml \
+	-gzip -9	    $(DOCDIR)/*.txt $(DOCDIR)/*.sgml \
 				$(DOCDIR)/fhs/* $(DOCDIR)/changelog
 	$(install_file)	    debian/copyright	     $(DOCDIR)/
-	$(install_file)	    debian-policy.desc	     $(LIBDIR)/debian-policy
-	(tar cf -	    policy.html) |	     (cd $(DOCDIR) && tar xf -)
-	(tar cf -	    menu-policy.html) |	     (cd $(DOCDIR) && tar xf -)
-	(tar cf -	    perl-policy.html) |	     (cd $(DOCDIR) && tar xf -)
-	(tar cf -	    mime-policy.html) |	     (cd $(DOCDIR) && tar xf -)
-	(tar cf -	    policy-process.html) |   (cd $(DOCDIR) && tar xf -)
-	tar -C $(DOCDIR)/fhs -zfx $(FHS_HTML)
+	GZIP=-9 tar -C debconf_spec -zcf debconf_specification.xml.tar.gz *
+	$(install_file)	    debconf_specification.xml.tar.gz $(DOCDIR)/
+	set -e; \
+	 for file in $(DESC_FILES); do \
+	  $(install_file) $$file.desc $(LIBDIR)/$$file; \
+	done
+	set -e; \
+	for file in $(SGML_FILES); do \
+	  tar -C $(DOCDIR) -zxf $$file.html.tar.gz; \
+	done
+	tar -C $(DOCDIR)/fhs -zxf $(FHS_HTML)
 	sed -e 's/#PACKAGE#/$(package)/g' debian/postinst.in > debian/postinst
 	sed -e 's/#PACKAGE#/$(package)/g' debian/prerm.in > debian/prerm
 	$(install_program)  debian/postinst          debian/tmp/DEBIAN/
 	$(install_program)  debian/prerm             debian/tmp/DEBIAN/
 	dpkg-gencontrol	    -pdebian-policy -Pdebian/tmp -isp
-	chown		    -R root.root debian/tmp
+	chown		    -R root:root debian/tmp
 	chmod		    -R go=rX debian/tmp
 	dpkg		    --build debian/tmp ..
 	debiandoc2latexps   policy.sgml
-	gzip -9qvf          policy.ps
+	gzip -9f            policy.ps
 	debiandoc2latexpdf  policy.sgml
-	gzip -9qfv 	    policy.pdf
-	GZIP=-9v tar zcf    policy.html.tar.gz    policy.html
+	gzip -9f  	    policy.pdf
+	set -e; \
 	for i in	    $(BYHAND_FILES); do                          \
 	  $(install_file)   $$i		   ..		               ; \
 	  dpkg-distaddfile  -fdebian/files `basename $$i`     byhand - ; \
