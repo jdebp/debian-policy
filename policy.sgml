@@ -4,41 +4,11 @@
 <!entity % versiondata SYSTEM "version.ent"> %versiondata;
 ]>
 <debiandoc>
-  <!--
-  Debian GNU/Linux Policy Manual.
-  Copyright (C)1996,1997,1998 Ian Jackson and Christian Schwarz;
-  released under the terms of the GNU
-  General Public License, version 2 or (at your option) any later.
-  Initial version 1996, Ian Jackson, ijackson@gnu.ai.mit.edu
-  Revised November 27, 1996, David A. Morris, bweaver@debian.org
-  New sections March 15, 1997, Christian Schwarz, schwarz@debian.org
-  Reworked/Restructured April-July 1997, Christian Schwarz, schwarz@debian.org
-  Maintainer since 1997, Christian Schwarz, schwarz@debian.org
-  Christoph Lameter contributed the "Web Standard"
-  The debian-policy mailing list has taken responsibility for the
-  contents of this document since September 1998, with the package
-  maintainers responsible for packaging administrivia only.
-  -->
 
   <book>
     <titlepag>
       <title>Debian Policy Manual</title>
-      <author>
-	<name>Ian Jackson </name>
-	<email>ijackson@gnu.ai.mit.edu</email>
-      </author>
-      <author>
-	<name>Christian Schwarz</name>
-	<email>schwarz@debian.org</email>
-      </author>
-      <author>
-	<name>revised: David A. Morris</name>
-	<email>bweaver@debian.org</email>
-      </author>
-      <author>
-	<name>The Debian Policy mailing List</name>
-	<email>debian-policy@lists.debian.org</email>
-      </author>
+      <author><ref id="authors"></author>
       <version>version &version;, &date;</version>
 
       <abstract>
@@ -47,23 +17,12 @@
 	contents of the Debian archive and several design issues of
 	the operating system, as well as technical requirements that
 	each package must satisfy to be included in the distribution.
-	The policy package itself is maintained by a group of
-	maintainers that have no editorial powers.  The current list
-	of maintainers is:
-	<enumlist>
-	  <item>
-	    <p>Julian Gilbey <email>jdg@debian.org</email></p>
-	  </item>
-	  <item>
-	    <p>Manoj Srivastava <email>srivasta@debian.org</email></p>
-	  </item>
-	</enumlist>
       </abstract>
 
 
       <copyright>
 	<copyrightsummary>
-	  Copyright &copy;1996,1997,1998 Ian Jackson
+	  Copyright &copy; 1996,1997,1998 Ian Jackson
 	  and Christian Schwarz.
 	</copyrightsummary>
 	<p>
@@ -157,7 +116,6 @@
 	  merely informative, and are not part of Debian policy itself.
 	</p>
 
-
 	<p>
 	  In this manual, the words <em>must</em>, <em>should</em> and
 	  <em>may</em>, and the adjectives <em>required</em>,
@@ -192,6 +150,7 @@
 	  only.
 	</p>
       </sect>
+
       <sect>
 	<heading>New versions of this document</heading>
 	<p>
@@ -216,13 +175,36 @@
 	  changes between versions of this document.
         </p>
       </sect>
-      <sect>
-	<heading>Feedback</heading>
+
+      <sect id="authors">
+        <heading>Authors and Maintainers</heading>
 
 	<p>
-	  As the Debian GNU/Linux system is continuously evolving this
-	  manual does so too.
-	</p>
+          Originally called "Debian GNU/Linux Policy Manual", this
+          manual was initially written in 1996 by Ian Jackson.
+          It was revised on November 27th, 1996 by David A. Morris.
+          Christian Schwarz added new sections on March 15th, 1997,
+          and reworked/restructured it in April-July 1997.
+          Christoph Lameter contributed the "Web Standard".
+        </p>
+
+	<p>
+          Since September 1998, the responsibility for the contents of
+          this document lies on the debian-policy mailing list. Proposals
+          are discussed there and inserted into policy after a certain
+          consensus is established.
+          <!-- insert shameless policy-process plug here eventually -->
+          The actual editing is done by a group of maintainers that have
+          no editorial powers. These are the current maintainers:
+
+          <enumlist>
+            <item>Julian Gilbey</item>
+            <item>Branden Robinson</item>
+            <item>Josip Rodin</item>
+            <item>Manoj Srivastava</item>
+          </enumlist>
+        </p>
+
 	<p>
 	  While the authors of this document have tried hard to avoid
 	  typos and other errors, these do still occur. If you discover
@@ -232,6 +214,11 @@
 	  <email>debian-policy@lists.debian.org</email>, or submit a
 	  bug report against the <tt>debian-policy</tt> package.
 	</p>
+
+	<p>
+          Please do not try to reach the individual authors or maintainers
+          of the Policy Manual regarding changes to the Policy.
+        </p>
       </sect>
     </chapt>
 
