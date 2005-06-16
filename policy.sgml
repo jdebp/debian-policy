@@ -922,7 +922,7 @@
 	    doing that has been reached.</p></sect1>
 
 
-	<sect1 id="virtual_pkg_sect">
+	<sect1 id="virtual_pkg">
 	  <heading>Virtual packages</heading>
 
 	  <p>
@@ -947,13 +947,21 @@
 
 	  <p>
 	    The latest version of the authoritative list of virtual
-	    package names can be found on
-	    <ftpsite>ftp.debian.org</ftpsite> in
-	    <ftppath>/debian/doc/package-developer/virtual-package-names-list.txt</ftppath>
-	    or your local mirror. In addition, it is included in the
-	    <tt>debian-policy</tt> package. The procedure for updating
-	    the list is described at the top of the file.</p></sect1>
+	    package names can be found in the <tt>debian-policy</tt> package.
+	    It's also available from the Debian web mirrors at
+	    <tt><url name="/doc/packaging-manuals/virtual-package-names-list.txt"
+		id="http://www.debian.org/doc/packaging-manuals/virtual-package-names-list.txt"></tt>
+	    and from the Debian archive mirrors at
+	    <tt><url name="/doc/package-developer/virtual-package-names-list.txt"
+		id="http://ftp.debian.org/debian/doc/package-developer/virtual-package-names-list.txt"></tt>.
+	  </p>
 
+	  <p>
+	    The procedure for updating the list is described in the preface
+	    to the list.
+	  </p>
+
+	</sect1>
 
 	<sect1>
 	  <heading>Base system</heading>
@@ -3474,7 +3482,7 @@ Build-Depends: kernel-headers-2.2.10 [!hurd-i386],
 	  The effect is as if the package(s) which provide a
 	  particular virtual package name had been listed by name
 	  everywhere the virtual package name appears. (See also <ref
-	    id="virtual_pkg_sect">)
+	    id="virtual_pkg">)
 	</p>
 
 	<p>
@@ -5402,15 +5410,6 @@ Reloading <var>description</var> configuration...done.
 	<heading>Menus</heading>
 
 	<p>
-          Menu entries should follow the current menu policy found in
-          the <tt>menu-policy</tt> files in the <tt>debian-policy</tt>
-          package.  It may also be found on the Debian FTP site
-          <ftpsite>ftp.debian.org</ftpsite> as the file
-          <ftppath>/debian/doc/package-developer/menu-policy.txt.gz</ftppath>,
-          or in the equivalent location on your local mirror.
-	</p>
-
-	<p>
 	  The Debian <tt>menu</tt> package provides a standard
 	  interface between packages providing applications and
 	  documents, and <em>menu programs</em> (either X window
@@ -5424,7 +5423,23 @@ Reloading <var>description</var> configuration...done.
 	  operation should register a menu entry for those
 	  applications, so that users of the <tt>menu</tt> package
 	  will automatically get menu entries in their window
-	  managers, as well in shells like <tt>pdmenu</tt>.</p>
+	  managers, as well in shells like <tt>pdmenu</tt>.
+	</p>
+
+	<p>
+          Menu entries should follow the current menu policy.
+	</p>
+
+	<p>
+	  The menu policy can be found in the <tt>menu-policy</tt>
+	  files in the <tt>debian-policy</tt> package.
+	  They are also available from the Debian web mirrors at
+          <tt><url name="/doc/packaging-manuals/menu-policy/"
+		id="http://www.debian.org/doc/packaging-manuals/menu-policy/"></tt>
+	  and from the Debian archive mirrors at
+          <tt><url name="/doc/package-developer/menu-policy.txt.gz"
+		id="http://ftp.debian.org/debian/doc/package-developer/menu-policy.txt.gz"></tt>.
+	</p>
 
 	<p>
 	  Please also refer to the <em>Debian Menu System</em>
@@ -5436,17 +5451,6 @@ Reloading <var>description</var> configuration...done.
 
       <sect>
 	<heading>Multimedia handlers</heading>
-
-	<p>
-	  Packages which provide the ability to view/show/play,
-	  compose, edit or print MIME types should register themselves
-	  as such following the current MIME support policy found in
-	  the <tt>mime-policy</tt> files in the <tt>debian-policy</tt>
-	  package.  It may also be found on the Debian FTP site
-	  <ftpsite>ftp.debian.org</ftpsite> as the file
-	  <ftppath>/debian/doc/package-developer/mime-policy.txt.gz</ftppath>,
-	  or in the equivalent location on your local mirror.
-	</p>
 
 	<p>
 	  MIME (Multipurpose Internet Mail Extensions, RFCs 2045-2049)
@@ -5462,6 +5466,24 @@ Reloading <var>description</var> configuration...done.
 	  view, edit or display MIME types they don't support
 	  directly.
 	</p>
+
+	<p>
+	  Packages which provide the ability to view/show/play,
+	  compose, edit or print MIME types should register themselves
+	  as such following the current MIME support policy.
+	</p>
+
+	<p>
+	  The MIME support policy can be found in the <tt>mime-policy</tt>
+	  files in the <tt>debian-policy</tt> package.
+	  They are also available from the Debian web mirrors at
+          <tt><url name="/doc/packaging-manuals/mime-policy/"
+		id="http://www.debian.org/doc/packaging-manuals/mime-policy/"></tt>
+	  and from the Debian archive mirrors at
+          <tt><url name="/doc/package-developer/mime-policy.txt.gz"
+		id="http://ftp.debian.org/debian/doc/package-developer/mime-policy.txt.gz"></tt>.
+	</p>
+
       </sect>
 
       <sect>
@@ -7459,13 +7481,20 @@ name ["<var>syshostname</var>"]:
 
       <sect>
 	<heading>Perl programs and modules</heading>
+
 	<p>
-	  Perl programs and modules should follow the current Perl
-          policy as defined in the file found on
-	  <ftpsite>ftp.debian.org</ftpsite> in
-	  <ftppath>/debian/doc/package-developer/perl-policy.txt.gz</ftppath>
-	  or your local mirror.  In addition, it is included in the
-	  <tt>debian-policy</tt> package.
+	  Perl programs and modules should follow the current Perl policy.
+	</p>
+
+	<p>
+	  The Perl policy can be found in the <tt>perl-policy</tt>
+	  files in the <tt>debian-policy</tt> package.
+	  They are also available from the Debian web mirrors at
+          <tt><url name="/doc/packaging-manuals/perl-policy/"
+		id="http://www.debian.org/doc/packaging-manuals/perl-policy/"></tt>
+	  and from the Debian archive mirrors at
+          <tt><url name="/doc/package-developer/perl-policy.txt.gz"
+		id="http://ftp.debian.org/debian/doc/package-developer/perl-policy.txt.gz"></tt>.
 	</p>
       </sect>
 
@@ -7473,10 +7502,17 @@ name ["<var>syshostname</var>"]:
 	<heading>Emacs lisp programs</heading>
 
 	<p>
-	  Please refer to the "Debian Emacs Policy" (documented in
-	  <file>debian-emacs-policy.gz</file> of the
-	  <prgn>emacsen-common</prgn> package) for details of how to
+	  Please refer to the "Debian Emacs Policy" for details of how to
 	  package emacs lisp programs.
+	</p>
+
+	<p>
+	  The Emacs policy is available in
+	  <file>debian-emacs-policy.gz</file> of the
+	  <package>emacsen-common</package> package.
+	  It is also available from the Debian web mirrors at
+          <tt><url name="/doc/packaging-manuals/debian-emacs-policy"
+		id="http://www.debian.org/doc/packaging-manuals/debian-emacs-policy"></tt>.
 	</p>
       </sect>
 
