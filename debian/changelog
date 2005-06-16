@@ -1,6 +1,9 @@
 debian-policy (3.5.6.2) unstable; urgency=low
 
   * Fixed some broken hrefs in links
+  * No longer use local debiandoc stuff (it's been fixed upstream)
+  * Added table of contents (index.html) to policy-process.sgml, fixing
+    the new error reported to bug #137521                    closes: Bug#137521
 
  --
 
