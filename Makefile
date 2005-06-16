@@ -47,7 +47,7 @@ leavealone :=	$(FHS_HTML) $(FHS_FILES) $(FHS_ARCHIVE) \
 distclean:
 	rm -rf $(filter-out $(leavealone),$(wildcard *.html))
 	rm -f $(filter-out $(leavealone),$(wildcard *.txt *.txt.gz *.html.tar.gz *.pdf *.ps))
-	rm -f *.lout* lout.li *.sasp* *.tex *.aux *.toc *.idx *.log *.out *.dvi
+	rm -f *.lout* lout.li *.sasp* *.tex *.aux *.toc *.idx *.log *.out *.dvi *.tpt
 	rm -f `find . -name "*~" -o -name "*.bak" -o -name ".#*" -o -name core`
 	rm -f version.ent
 	rm -f *.rej *.orig
