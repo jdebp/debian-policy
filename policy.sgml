@@ -579,7 +579,7 @@
 	  <p>
 	    Every package must be accompanied by a verbatim copy of
 	    its copyright and distribution license in the file
-	    <tt>/usr/share/doc/<em>&lt;package&gt;</em>/copyright</tt>
+	    <tt>/usr/share/doc/<var>package</var>/copyright</tt>
 	    (see <ref id="copyrightfile"> for further details).
 	  </p>
 	  <p>
@@ -1027,7 +1027,7 @@
 	  </p>
 	</sect1>
 
-	<sect1>
+	<sect1 id="maintscripts">
 	  <heading>Maintainer scripts</heading>
 
 	  <p>
@@ -1054,19 +1054,20 @@
 	    belonging to another package without consulting the
 	    maintainer of that package first.
 	  </p>
+
 	  <p>
 	    All packages which supply an instance of a common command
 	    name (or, in general, filename) should generally use
 	    <prgn>update-alternatives</prgn>, so that they may be
 	    installed together.  If <prgn>update-alternatives</prgn>
 	    is not used, then each package must use
-	    <var>Conflicts</var> to ensure that other packages are
+	    <tt>Conflicts</tt> to ensure that other packages are
 	    de-installed.  (In this case, it may be appropriate to
 	    specify a conflict against earlier versions of something
 	    that previously did not use
 	    <prgn>update-alternatives</prgn>; this is an exception to
 	    the usual rule that versioned conflicts should be
-	    avoided).
+	    avoided.)
 	  </p>
 
 
@@ -1442,7 +1443,7 @@
 	  <heading>Obsolete constructs and libraries</heading>
 
 	  <p>
-	    The include file <prgn>&lt;varargs.h&gt;</prgn> is
+	    The include file <tt>&lt;varargs.h&gt;</tt> is
 	    provided to support end-users compiling very old software;
 	    the library <tt>libtermcap</tt> is provided to support the
 	    execution of software which has been linked against it
@@ -1451,7 +1452,7 @@
 
 	  <p>
 	    Debian packages should be patched to use
-	    <prgn>&lt;stdarg.h&gt;</prgn> and <tt>ncurses</tt>
+	    <tt>&lt;stdarg.h&gt;</tt> and <tt>ncurses</tt>
 	    instead.
 	  </p>
 	</sect1>
@@ -1684,7 +1685,7 @@ Package: libc6
 
       <p>
 	The version number format is:
-	&lsqb<var>epoch</var><tt>:</tt>&rsqb;<var>upstream_version</var>&lsqb;<tt>-</tt><var>debian_revision</var>&rsqb;
+	&lsqb;<var>epoch</var><tt>:</tt>&rsqb;<var>upstream_version</var>&lsqb;<tt>-</tt><var>debian_revision</var>&rsqb;
       </p>
 
       <p>
@@ -2310,13 +2311,12 @@ Package: libc6
 	  <prgn>dpkg-genchanges</prgn> and <prgn>dpkg-source</prgn>
 	  generate control files they perform variable substitutions
 	  on their output just before writing it.  Variable
-	  substitutions have the form
-	  <tt>${<var>variable-name</var>}</tt>.  The optional file
-	  <tt>debian/substvars</tt> contains variable substitutions to
-	  be used; variables can also be set directly from
-	  <tt>debian/rules</tt> using the <tt>-V</tt> option to the
-	  source packaging commands, and certain predefined variables
-	  are also available.
+	  substitutions have the form <tt>${<var>variable</var>}</tt>.
+	  The optional file <tt>debian/substvars</tt> contains
+	  variable substitutions to be used; variables can also be set
+	  directly from <tt>debian/rules</tt> using the <tt>-V</tt>
+	  option to the source packaging commands, and certain
+	  predefined variables are also available.
 	</p>
 
 	<p>
@@ -4632,14 +4632,14 @@ test -f <var>program-executed-later-in-script</var> || exit 0
 	    the burden on the system administrator, such configurable
 	    values should not be placed directly in the script.
 	    Instead, they should be placed in a file in
-	    <tt>/etc/default</tt>, which typically will have the same
+	    <tt>/etc/default</tt>, which typically will have thesame
 	    base name as the <tt>init.d</tt> script.  This extra file
 	    should be sourced by the script when the script runs.  It
 	    must contain only variable settings and comments in POSIX
 	    <prgn>sh</prgn> format.  It should not be a
 	    <tt>conffile</tt>, but a configuration file maintained by
-	    the package maintainer scripts.  See <ref id="config
-	    files"> for more details.
+	    the package maintainer scripts.  See <ref id="config files">
+	    for more details.
 	  </p>
 
 	  <p>
@@ -5351,21 +5351,22 @@ exec /usr/lib/foo/foo "$@"
     <chapt id="files">
       <heading>Files</heading>
 
-
       <sect>
 	<heading>Binaries</heading>
 
 	<p>
 	  Two different packages must not install programs with
-	  different functionality but with the same filenames. (The
+	  different functionality but with the same filenames.  (The
 	  case of two programs having the same functionality but
-	  different implementations is handled via `alternatives.')
-          If this case happens, one of the programs must be
-	  renamed. The maintainers should report this to the
-	  developers' mailing and try to find a consensus about
-	  which package will have to be renamed.  If a consensus can
-	  not be reached, <em>both</em> programs must be
-	  renamed.</p>
+	  different implementations is handled via `alternatives' or
+	  the `Conflicts' mechanism.  See <ref id="maintscripts"> and
+	  <ref id="conflicts"> respectively.)  If this case happens,
+	  one of the programs must be renamed.  The maintainers should
+	  report this to the <tt>debian-devel</tt> mailing list and
+	  try to find a consensus about which program will have to be
+	  renamed.  If a consensus cannot be reached, <em>both</em>
+	  programs must be renamed.
+	</p>
 
 	<p>
 	  Generally the following compilation parameters should be used:
@@ -5385,61 +5386,41 @@ install -s # (or use strip on the files in debian/tmp)
 	  package.</p>
 
 	<p>
-	  The <tt>-N</tt> flag should not be used.  On a.out systems
-	  it may have been useful for some very small binaries, but
-	  for ELF it has no good effect.</p>
+	  The <tt>-N</tt> flag should not be used.  On <tt>a.out</tt>
+	  systems it may have been useful for some very small
+	  binaries, but for ELF it has no good effect.</p>
 
 	<p>
 	  Debugging symbols are useful for error diagnosis,
 	  investigation of core dumps (which may be submitted by users
-	  in bug reports), or testing and developing the
-	  software. Therefore it is recommended to support building
-	  the package with debugging information through the following
-	  interface: If the environment variable
-	  <tt>DEB_BUILD_OPTIONS</tt> contains the string
-	  <tt>debug</tt>, compile the software with debugging
-	  information (usually this involves adding the <tt>-g</tt>
-	  flag to <tt>CFLAGS</tt>). This allows the generation of a
-	  build tree with debugging information. If the environment
-	  variable <tt>DEB_BUILD_OPTIONS</tt> contains the string
-	  <tt>nostrip</tt>, do not strip the files at installation
-	  time. This allows one to generate a package with debugging
-	  information included. The following makefile snippet is only
-	  an example of how one may test for either condition:
+	  in bug reports), or testing and developing the software.
+	  Therefore it is recommended to support building the package
+	  with debugging information through the following interface:
+	  If the environment variable <tt>DEB_BUILD_OPTIONS</tt>
+	  contains the string <tt>debug</tt>, compile the software
+	  with debugging information (usually this involves adding the
+	  <tt>-g</tt> flag to <tt>CFLAGS</tt>).  This allows the
+	  generation of a build tree with debugging information.  If
+	  the environment variable <tt>DEB_BUILD_OPTIONS</tt> contains
+	  the string <tt>nostrip</tt>, do not strip the files at
+	  installation time.  This allows one to generate a package
+	  with debugging information included.
 	  <footnote>
 	    <p>
-	      Rationale: Building by default with -g causes more
-	      wasted CPU cycles since the information is stripped away
-	      anyway. The package can by default build without -g if
-	      it also provides a mechanism to easily be rebuilt with
-	      debugging information. This can be done by providing a
-	      "build-debug" make target, or allowing the user to
-	      specify "DEB_BUILD_OPTIONS=debug" in the environment while
-	      compiling that package.
-	    </p>
-	    <p>Now this has several added benefits:
-	      <list compact="compact">
-		<item>
-		  <p>
-		    It is actually easier to build debugging bins and
-		    libraries this way (no more editing debian/rules
-		    or similar) since it provides a documented way of
-		    getting this type of build.</p>
-		</item>
-		<item>
-		  <p>
-		    There will be much less wasted CPU time for the
-		    autobuilders since not having debugging
-		    information (and hence also not having to strip
-		    it) will increase the speed of compiles. This
-		    skips an entire pass of the compiler.
-		  </p>
-		</item>
-	      </list>
+	      Rationale: Using <tt>-g</tt> by default causes wasted
+	      CPU cycles since the information is stripped away
+	      anyway; this can have a significant impact on the
+	      efficiency of the autobuilders.  Having a standard way
+	      to build a debugging variant also makes it easier to
+	      build debugging bins and libraries since it provides a
+	      documented way of getting this type of build; one does
+	      not have to manually edit <tt>debian/rules</tt> or
+	      <tt>Makefile</tt>s.
 	    </p>
 	  </footnote>
-
-
+	  The following makefile snippet is an example of how one may
+	  test for either condition; you will probably have to massage
+	  this example in order to make it work for your package.
 	  <example compact="compact">
 CFLAGS = -O2 -Wall
 INSTALL = install
@@ -5455,11 +5436,6 @@ ifeq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
 INSTALL_PROGRAM += -s
 endif
 	  </example>
-
-	  Please note that the above example is merely informative,
-	  and is not a policy mandate. You may have to massage this
-	  example in order to make it work for your package.
-
 	</p>
 
 	<p>
@@ -5479,11 +5455,12 @@ endif
 	<heading>Libraries</heading>
 
 	<p>
-	  All libraries must have a shared version in the lib
-	  package and a static version in the lib-dev package. The
-	  shared version must be compiled with <tt>-fPIC</tt>, and
-	  the static version must not be. In other words, each
-	  <tt>*.c</tt> file will need to be compiled twice.</p>
+	  All libraries must have a shared version in the
+	  <tt>lib*</tt> package and a static version in the
+	  <tt>lib*-dev</tt> package.  The shared version must be
+	  compiled with <tt>-fPIC</tt>, and the static version must
+	  not be.  In other words, each <tt>*.c</tt> file will need to
+	  be compiled twice.</p>
 
 	<p>
 	  You must specify the gcc option <tt>-D_REENTRANT</tt>
@@ -5494,14 +5471,24 @@ endif
 	  Note that all installed shared libraries should be
 	  stripped with
 	  <example compact="compact">
-strip --strip-unneeded &lt;your-lib&gt;
+strip --strip-unneeded <var>your-lib</var>
 	  </example>
 	  (The option <tt>--strip-unneeded</tt> makes
 	  <prgn>strip</prgn> remove only the symbols which aren't
 	  needed for relocation processing.)  Shared libraries can
 	  function perfectly well when stripped, since the symbols for
 	  dynamic linking are in a separate part of the ELF object
-	  file.</p>
+	  file.
+	  <footnote>
+	    <p>
+	      You might also want to use the options
+	      <tt>--remove-section=.comment</tt> and
+	      <tt>--remove-section=.note</tt> on both shared libraries
+	      and executables, and <tt>--strip-debug</tt> on static
+	      libraries.
+	    </p>
+	  </footnote>
+	</p>
 
 	<p>
 	  Note that under some circumstances it may be useful to
@@ -5510,38 +5497,43 @@ strip --strip-unneeded &lt;your-lib&gt;
 	</p>
 
 	<p>
-	  An ever increasing number of packages are using libtool to
-	  do their linking. The latest GNU libtools (>= 1.3a) can take
-	  advantage of the metadata in the installed libtool archive
-	  files (`*.la'). The main advantage of libtool's .la files is
-	  that it allows libtool to store and subsequently access
-	  metadata with respect to the libraries it builds.  libtool
-	  will search for those files, which contain a lot of useful
-	  information about a library (e.g. dependency libraries for
-	  static linking). Also, they're <em>essential</em> for
-	  programs using libltdl.
+	  An ever increasing number of packages are using
+	  <prgn>libtool</prgn> to do their linking.  The latest GNU
+	  libtools (>= 1.3a) can take advantage of the metadata in the
+	  installed <prgn>libtool</prgn> archive files (<tt>*.la</tt>
+	  files).  The main advantage of <prgn>libtool</prgn>'s
+	  <tt>.la</tt> files is that it allows <prgn>libtool</prgn> to
+	  store and subsequently access metadata with respect to the
+	  libraries it builds.  <prgn>libtool</prgn> will search for
+	  those files, which contain a lot of useful information about
+	  a library (such as library dependency information for static
+	  linking).  Also, they're <em>essential</em> for programs
+	  using <tt>libltdl</tt>.
+	  <footnote>
+	    <p>
+	      Although <prgn>libtool</prgn> is fully capable of
+	      linking against shared libraries which don't have
+	      <tt>.la</tt> files, as it is a mere shell script it can
+	      add considerably to the build time of a
+	      <prgn>libtool</prgn>-using package if that shell script
+	      has to derive all this information from first principles
+	      for each library every time it is linked.  With the
+	      advent of <prgn>libtool</prgn> version 1.4 (and to a
+	      lesser extent <prgn>libtool</prgn> version 1.3), the
+	      <tt>.la</tt> files will also store information about
+	      inter-library dependencies which cannot necessarily be
+	      derived after the <tt>.la</tt> file is deleted.
+	    </p>
+	  </footnote>
 	</p>
 
 	<p>
-	  Certainly libtool is fully capable of linking against shared
-	  libraries which don't have .la files, but being a mere shell
-	  script it can add considerably to the build time of a
-	  libtool using package if that shell-script has to derive all
-	  this information from first principles for each library every
-	  time it is linked. With the advent of libtool-1.4 (and to a
-	  lesser extent libtool-1.3), the .la files will also store
-	  information about inter-library dependencies which cannot
-	  necessarily be derived after the .la file is deleted.
-	</p>
-
-	<p>
-	  Packages that use libtool to create shared libraries should
-	  include the <em>.la</em> files in the <em>-dev</em>
-	  packages, with the exception that if the package relies on
-	  libtool's <em>libltdl</em> library, in which case the .la
-	  files must go in the run-time library package.  This is a
-	  good idea in general, and especially for static linking
-	  issues.
+	  Packages that use <prgn>libtool</prgn> to create shared
+	  libraries should include the <tt>.la</tt> files in the
+	  <tt>-dev</tt> package, unless the package relies on
+	  <tt>libtool</tt>'s <tt>libltdl</tt> library, in which case
+	  the <tt>.la</tt> files must go in the run-time library
+	  package.
 	</p>
 
 	<p>
@@ -5554,7 +5546,6 @@ strip --strip-unneeded &lt;your-lib&gt;
 	</p>
       </sect>
 
-
       <sect>
 	<heading>Shared libraries</heading>
 
@@ -5566,69 +5557,74 @@ strip --strip-unneeded &lt;your-lib&gt;
 	  For a straightforward library which has a development
 	  environment and a runtime kit including just shared
 	  libraries you need to create two packages:
-	  <tt><var>libraryname</var><var>soname</var></tt>
-	  (<var>soname</var> is the shared object name of the shared
-	  library: it's the thing that has to match exactly between
-	  building an executable and running it for the dynamic
-	  linker to be able run the program; usually the
-	  <var>soname</var> is the major number of the library) and
-	  <tt><var>libraryname</var><var>soname</var>-dev</tt>.</p>
+	  <tt><var>libraryname</var><var>soversion</var></tt>, where
+	  <tt><var>soversion</var></tt> is the version number in the
+	  soname of the shared library
+	  <footnote>
+	    <p>
+	      The soname is the shared object name: it's the thing
+	      that has to match exactly between building an executable
+	      and running it for the dynamic linker to be able run the
+	      program.  For example, if the soname of the library is
+	      <tt>libfoo.so.6</tt>, the library package would be
+	      called <tt>libfoo6</tt>.
+	    </p>
+	  </footnote>
+	  and <tt><var>libraryname</var><var>soversion</var>-dev</tt>.
+	</p>
 
 	<p>
 	  If you prefer only to support one development version at a
 	  time you may name the development package
-	  <tt><var>libraryname</var>-dev</tt>; otherwise you may
-	  wish to use <prgn>dpkg</prgn>'s conflicts mechanism to
-	  ensure that the user only installs one development version
-	  at a time (after all, different development versions are
-	  likely to have the same header files in them, causing a
-	  filename clash if both are installed).  Typically the
-	  development version should  also have an exact version
-	  dependency on the runtime library, to make sure that
-	  compilation and linking happens correctly.</p>
+	  <tt><var>libraryname</var>-dev</tt>; otherwise you may need
+	  to use <prgn>dpkg</prgn>'s Conflicts mechanism (see <ref
+	  id="conflicts">) to ensure that the user only installs one
+	  development version at a time (as different development
+	  versions are likely to have the same header files in them,
+	  which would cause a filename clash if both were installed).
+	  Typically the development version should also have an exact
+	  version dependency on the runtime library, to make sure that
+	  compilation and linking happens correctly.  The
+	  <tt>${Source-Version}</tt> substitution variable can be
+	  useful for this purpose.
+	</p>
 
 	<p>
 	  Packages which use the shared library should have a
 	  dependency on the name of the shared library package,
-	  <tt><var>libraryname</var><var>soname</var></tt>.  When
-	  the <var>soname</var> changes you can have both versions
-	  of the library installed while moving from the old library
-	  to the new.</p>
+	  <tt><var>libraryname</var><var>soversion</var></tt>.  When
+	  the soname changes you can have both versions of the library
+	  installed while migrating from the old library to the new.
+	</p>
 
 	<p>
-	  If your package has some run-time support programs which
-	  use the shared library you must not put them in
-	  the shared library package.  If you do that then you won't
-	  be able to install several versions of the shared library
-	  without getting filename clashes.  Instead, either create
-	  a third package for the runtime binaries (this package
-	  might typically be named
-	  <tt><var>libraryname</var>-runtime</tt>; note the absence
-	  of the <var>soname</var> in the package name) or if the
-	  development package is small include them in there.</p>
+	  If your package has some run-time support programs which use
+	  the shared library you must not put them in the shared
+	  library package.  If you do that then you won't be able to
+	  install several versions of the shared library without
+	  getting filename clashes.  Instead, either create a third
+	  package for the runtime binaries (this package might
+	  typically be named <tt><var>libraryname</var>-runtime</tt>;
+	  note the absence of the <var>soversion</var> in the package
+	  name), or if the development package is small you may
+	  include them in there.
+	</p>
 
 	<p>
 	  If you have several shared libraries built from the same
 	  source tree you may lump them all together into a single
-	  shared library package, provided that you change all their
-	  <var>soname</var>s at once (so that you don't get filename
+	  shared library package, provided that you change all of
+	  their sonames at once (so that you don't get filename
 	  clashes if you try to install different versions of the
-	  combined shared libraries package).</p>
+	  combined shared libraries package).
+	</p>
 
 	<p>
-	  You should follow the directions in the <em>Debian Packaging
-	    Manual</em> (or other documentation of the Debian
-	  packaging tools) for putting the shared library in its
-	  package, and you must include a <tt>shlibs</tt> control area
-	  file with details of the dependencies for packages which use
-	  the library.</p>
-
-	<p>
-	  Shared libraries should not be installed
-	  executable, since <prgn>ld.so</prgn> does not require this
-	  and trying to execute a shared library results in a core
-	  dump.</p></sect>
-
+	  Shared libraries should not be installed executable, since
+	  the dynamic linker does not require this and trying to
+	  execute a shared library usually results in a core dump.
+	</p>
+      </sect>
 
       <sect id="scripts">
 	<heading>Scripts</heading>
@@ -5651,56 +5647,64 @@ strip --strip-unneeded &lt;your-lib&gt;
 	  command.</p>
 
 	<p>
-	  The standard shell interpreter `<tt>/bin/sh</tt>' can be a
+	  The standard shell interpreter <tt>/bin/sh</tt> can be a
 	  symbolic link to any POSIX compatible shell, if <tt>echo
-	    -n</tt> does not generate a newline.
+	  -n</tt> does not generate a newline.
 	  <footnote>
 	    <p>
-	      Debian policy specifies POSIX behavior for /bin/sh, but
-	      echo -n has widespread use in the Linux community
-	      (including especially debian policy, the linux kernel
-	      source, many debian scripts, etc.).  This echo -n
-	      mechanism is valid but not required under POSIX, hence
-	      this explicit addition. Also, rumour has it that this
-	      shall be mandated under the LSB anyway.
+	      Debian policy specifies POSIX behavior for
+	      <tt>/bin/sh</tt>, but <tt>echo -n</tt> has widespread
+	      use in the Linux community (in particular including this
+	      policy, the Linux kernel source, many Debian scripts,
+	      etc.).  This <tt>echo -n</tt> mechanism is valid but not
+	      required under POSIX, hence this explicit addition.
+	      Also, rumour has it that this shall be mandated under
+	      the LSB anyway.
 	    </p>
 	  </footnote>
-	  Thus, shell scripts
-	  specifying `<tt>/bin/sh</tt>' as interpreter should only
-	  use POSIX features. If a script requires non-POSIX
-	  features from the shell interpreter, the appropriate shell
-	  must be specified in the first line of the script (e.g.,
-	  `<tt>#!/bin/bash</tt>') and the package must depend on the
-	  package providing the shell (unless the shell package is
-	  marked `Essential', e.g., in the case of
+	  Thus, shell scripts specifying <tt>/bin/sh</tt> as
+	  interpreter should only use POSIX features. If a script
+	  requires non-POSIX features from the shell interpreter, the
+	  appropriate shell must be specified in the first line of the
+	  script (e.g., <tt>#!/bin/bash</tt>) and the package must
+	  depend on the package providing the shell (unless the shell
+	  package is marked `Essential', as in the case of
 	  <prgn>bash</prgn>).
 	</p>
 
 	<p>
-	  You may wish to restrict your script to POSIX features when possible so
-	  that it may use <tt>/bin/sh</tt> as its interpreter. If
-	  your script works with <prgn>ash</prgn>, it's probably
-	  POSIX compliant, but if you are in doubt, use
-	  <tt>/bin/bash</tt>.</p>
+	  You may wish to restrict your script to POSIX features when
+	  possible so that it may use <tt>/bin/sh</tt> as its
+	  interpreter. If your script works with <prgn>ash</prgn>,
+	  it's probably POSIX compliant, but if you are in doubt, use
+	  <tt>/bin/bash</tt>.
+	</p>
 
 	<p>
 	  Perl scripts should check for errors when making any
 	  system calls, including <tt>open</tt>, <tt>print</tt>,
-	  <tt>close</tt>, <tt>rename</tt> and <tt>system</tt>.</p>
+	  <tt>close</tt>, <tt>rename</tt> and <tt>system</tt>.
+	</p>
 
 	<p>
-	  <prgn>csh</prgn> and <prgn>tcsh</prgn> should be avoided
-	  as scripting languages.  See <em>Csh Programming
-	    Considered Harmful</em>, one of the <tt>comp.unix.*</tt>
-	  FAQs.  It can be found on
-	  <url id="http://language.perl.com/versus/csh.whynot">, or
-	  <url id="http://www.cpan.org/doc/FMTEYEWTK/versus/csh.whynot">
-	  or even on <ftpsite>ftp.cpan.org</ftpsite>
-	  <ftppath>/pub/perl/CPAN/doc/FMTEYEWTK/versus/csh.whynot</ftppath>.
+	  <prgn>csh</prgn> and <prgn>tcsh</prgn> should be avoided as
+	  scripting languages.  See <em>Csh Programming Considered
+	  Harmful</em>, one of the <tt>comp.unix.*</tt> FAQs, which
+	  can be found at <url
+	  id="http://language.perl.com/versus/csh.whynot">.
+	  <footnote>
+	    <p>
+	      It can also be found on
+	      <url id="http://www.cpan.org/doc/FMTEYEWTK/versus/csh.whynot">
+	      or on the ftp site <ftpsite>ftp.cpan.org</ftpsite> as
+	      <ftppath>/pub/perl/CPAN/doc/FMTEYEWTK/versus/csh.whynot</ftppath>.
+	      </p>
+	  </footnote>
 	  If an upstream package comes with <prgn>csh</prgn> scripts
 	  then you must make sure that they start with
 	  <tt>#!/bin/csh</tt> and make your package depend on the
-	  <prgn>c-shell</prgn> virtual package.</p>
+	  <prgn>c-shell</prgn> virtual package.
+	</p>
 
 	<p>
 	  Any scripts which create files in world-writeable
@@ -5722,27 +5726,27 @@ strip --strip-unneeded &lt;your-lib&gt;
 	  should be relative, and symbolic links pointing from one
 	  top-level directory into another should be absolute. (A
 	  top-level directory is a sub-directory of the root
-	  directory `/'.)</p>
+	  directory <tt>/</tt>.)</p>
 
 	<p>
-	  In addition, symbolic links should be specified as short
-	  as possible, i.e., link targets like `foo/../bar' are
+	  In addition, symbolic links should be specified as short as
+	  possible, i.e., link targets like <tt>foo/../bar</tt> are
 	  deprecated.</p>
 
 	<p>
 	  Note that when creating a relative link using
 	  <prgn>ln</prgn> it is not necessary for the target of the
 	  link to exist relative to the working directory you're
-	  running <prgn>ln</prgn> from; nor is it necessary to
-	  change directory to the directory where the link is to be
-	  made.  Simply include the string that should appear as the
-	  target of the link (this will be a pathname relative to
-	  the directory in which the link resides) as the first
-	  argument to <prgn>ln</prgn>.</p>
+	  running <prgn>ln</prgn> from, nor is it necessary to change
+	  directory to the directory where the link is to be made.
+	  Simply include the string that should appear as the target
+	  of the link (this will be a pathname relative to the
+	  directory in which the link resides) as the first argument
+	  to <prgn>ln</prgn>.</p>
 
 	<p>
 	  For example, in your <prgn>Makefile</prgn> or
-	  <tt>debian/rules</tt>, do things like:
+	  <tt>debian/rules</tt>, you can do things like:
 	  <example compact="compact">
 ln -fs gcc $(prefix)/bin/cc
 ln -fs gcc debian/tmp/usr/bin/cc
@@ -5751,13 +5755,13 @@ ln -fs ../sbin/sendmail debian/tmp/usr/bin/runq
 	  </example></p>
 
 	<p>
-	  A symbolic link pointing to a compressed file should
-	  always have the same file extension as the referenced
-	  file. (For example, if a file `<tt>foo.gz</tt>' is
-	  referenced by a symbolic link, the filename of the link
-	  has to end with `<tt>.gz</tt>' too, as in
-	  `bar.gz.')</p></sect>
-
+	  A symbolic link pointing to a compressed file should always
+	  have the same file extension as the referenced file. (For
+	  example, if a file <tt>foo.gz</tt> is referenced by a
+	  symbolic link, the filename of the link has to end with
+	  `<tt>.gz</tt>' too, as in <tt>bar.gz</tt>.)
+	</p>
+      </sect>
 
       <sect>
 	<heading>Device files</heading>
@@ -5916,9 +5920,9 @@ ln -fs ../sbin/sendmail debian/tmp/usr/bin/runq
 		configuration file does not already exist. In certain
 		cases it is useful for there to be an example or template
 		file which the maintainer scripts use. Such files should
-		be in <tt>/usr/share/&lt;package&gt;</tt> or
-		<tt>/usr/lib/&lt;package&gt;</tt> with a symbolic link
-		from <tt>/usr/share/doc/&lt;package&gt;/examples</tt>
+		be in <tt>/usr/share/<var>package</var></tt> or
+		<tt>/usr/lib/<var>package</var></tt> with a symbolic link
+		from <tt>/usr/share/doc/<var>package</var>/examples</tt>
 		if they are examples, and should be
 		perfectly ordinary <prgn>dpkg</prgn>-handled files
 		(<em>not</em> <tt>conffiles</tt>).
@@ -6204,20 +6208,25 @@ endscript
 	  If a program needs to specify an <em>architecture specification
 	    string</em> in some place, the following format should be used:
 	  <example compact="compact">
-&lt;arch&gt;-&lt;os&gt;
+<var>arch</var>-<var>os</var>
 	  </example>
-	  where `&lt;arch&gt;' is one of the following: i386, alpha, arm, m68k,
-	  powerpc, sparc and `&lt;os&gt;' is one of: linux, gnu.  Use
-	  of <em>gnu</em> in this string is reserved for the GNU/Hurd
-	  operating system.</p>
-	<p>
-	  Note, that we don't want to use `&lt;arch&gt;-debian-linux'
-	  to apply to the rule `architecture-vendor-os' since this
-	  would make our programs incompatible to other Linux
-	  distributions. Also note, that we don't use
-	  `&lt;arch&gt;-unknown-linux', since the `unknown' does not
-	  look very good.</p></sect>
+	  where <tt><var>arch</var></tt> is one of the following:
+	  <tt>i386</tt>, <tt>alpha</tt>, <tt>arm</tt>, <tt>m68k</tt>,
+	  <tt>powerpc</tt>, <tt>sparc</tt> and <tt><var>os</var></tt>
+	  is one of: <tt>linux</tt>, <tt>gnu</tt>.  Use of
+	  <tt>gnu</tt> in this string is reserved for the GNU/Hurd
+	  operating system.
+	</p>
 
+	<p>
+	  Note, that we don't want to use
+	  <tt><var>arch</var>-debian-linux</tt> to apply to the rule
+	  `architecture-vendor-os' since this would make our programs
+	  incompatible with other Linux distributions.  Also note that
+	  we don't use <tt><var>arch</var>-unknown-linux</tt>, since
+	  the <tt>unknown</tt> does not look very good.
+	</p>
+      </sect>
 
       <sect>
 	<heading>Daemons</heading>
@@ -6343,11 +6352,11 @@ endscript
 	      <p>Cgi-bin executable files are installed in the
 		directory
 		<example compact="compact">
-/usr/lib/cgi-bin/&lt;cgi-bin-name&gt;
+/usr/lib/cgi-bin/<var>cgi-bin-name</var>
 		</example>
 		and should be referred to as
 		<example compact="compact">
-http://localhost/cgi-bin/&lt;cgi-bin-name&gt;
+http://localhost/cgi-bin/<var>cgi-bin-name</var>
 		</example>
 	      </p>
 	    </item>
@@ -6362,7 +6371,7 @@ http://localhost/cgi-bin/&lt;cgi-bin-name&gt;
 		    backward compatibility, see <ref id="usrdoc"></footnote>
 		and can be referred to as
 		<example compact="compact">
-http://localhost/doc/&lt;package&gt;/&lt;filename&gt;
+http://localhost/doc/<var>package</var>/<var>filename</var>
 		</example>
 	      </p>
 	    </item>
@@ -6372,9 +6381,10 @@ http://localhost/doc/&lt;package&gt;/&lt;filename&gt;
 	      <p>
 		Web Applications should try to avoid storing files in
 		the Web Document Root.  Instead they should use the
-		/usr/share/doc/&lt;package&gt; directory for documents and
-		register the Web Application via the menu package. If
-		access to the web-root is unavoidable then use
+		/usr/share/doc/<var>package</var> directory for
+		documents and register the Web Application via the
+		menu package. If access to the web-root is unavoidable
+		then use
 		<example compact="compact">
 /var/www
 		</example>
@@ -7012,8 +7022,8 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	  delete them without causing any programs to break. Any files
 	  that are referenced by programs but are also useful as
 	  standalone documentation should be installed under
-	  <tt>/usr/share/&lt;package&gt;/</tt> and symlinked in
-	  <tt>/usr/share/doc/&lt;package&gt;/</tt>.
+	  <tt>/usr/share/<var>package</var>/</tt> and symlinked in
+	  <tt>/usr/share/doc/<var>package</var>/</tt>.
 	</p>
 
       </sect>
@@ -7087,7 +7097,7 @@ fi
 	<p>
 	  Every package must be accompanied by a verbatim copy of its
 	  copyright and distribution license in the file
-	  /usr/share/doc/&lt;package&gt;/copyright. This file must
+	  /usr/share/doc/<var>package</var>/copyright. This file must
 	  neither be compressed nor be a symbolic link.</p>
 
 	<p>
@@ -7105,7 +7115,7 @@ fi
 
 
 	<p>
-	  /usr/share/doc/&lt;package&gt; may be a symbolic link to a
+	  /usr/share/doc/<var>package</var> may be a symbolic link to a
 	  directory in /usr/share/doc only if two packages both come from
 	  the same source and the first package has a "Depends"
 	  relationship on the second.  These rules are important

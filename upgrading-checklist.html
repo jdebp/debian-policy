@@ -53,6 +53,13 @@ picking your way through this list.
 <h2>The checklist</h2>
 
 <pre>
+3.5.5.0                    May 01
+
+     - [Clarified note in 3.5.3.0 upgrading checklist regarding
+        examples and templates: this refers only to those examples used
+        by scripts; see section 11.7.3 for the whole story]
+
+
 3.5.4.0                    Apr 01
 
      - The system-wide mail directory is now /var/mail, no longer
@@ -96,7 +103,7 @@ picking your way through this list.
 
      - Daemon startup scripts in /etc/init.d/ should not contain
        modifiable parameters; these should be moved to a file in
-      /etc/default/; see [10.3.2] for details
+       /etc/default/; see [10.3.2] for details
      - Files in /usr/share/doc must not be referenced by any
        program.  If such files are needed, they must be placed in
        /usr/share/&lt;package&gt;/, and symbolic links created as required
