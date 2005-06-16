@@ -3810,9 +3810,8 @@
 	    </example>
 	    in the <tt>postinst</tt> script, and
 	    <example>
-	      rmdir /usr/local/lib/emacs/site-lisp && \
-	      rmdir /usr/local/lib/emacs || \
-	      true
+	      rmdir /usr/local/lib/emacs/site-lisp || true
+	      rmdir /usr/local/lib/emacs || true
 	    </example>
 	    in the <tt>prerm</tt> script.</p>
 	  
@@ -4865,7 +4864,7 @@
 		</item>
 		<item>
 		  <p>
-		    There will be much less wasted cpu time for the
+		    There will be much less wasted CPU time for the
 		    autobuilders since not having debugging
 		    information (and hence also not having to strip
 		    it) will increase the speed of compiles. This

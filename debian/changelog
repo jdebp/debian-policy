@@ -1,3 +1,10 @@
+debian-policy (3.5.0.1) unstable; urgency=low
+
+  * Removed deprecated virtual package names (closes: #84641)
+  * Changed rmdir postrm example (suggestion on -policy list)
+
+ --
+
 debian-policy (3.5.0.0) unstable; urgency=low
 
   * There have been numerous changes since the last major change, and
