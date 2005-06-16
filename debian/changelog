@@ -1,4 +1,4 @@
-debian-policy (3.5.4.1) unstable; urgency=low
+debian-policy (3.5.5.0) unstable; urgency=low
 
   * Fixed up incorrect entries in the changelog (there was an erroneous
     3.5.0.1 revision which never happened; it has now been correctly
@@ -31,8 +31,11 @@ debian-policy (3.5.4.1) unstable; urgency=low
   * Correction to meaning of Standards-Version       closes: Bug#97072
   * Split section 12.8 (X Window System) into subsections for readability
   * Plug-ins != shared libraries (at last)           closes: Bug#66023
+  * Add packaging manual remnants to policy document as appendices, and
+    mention this in control file                     closes: Bug#95906
+  * Clarification in Perl policy                     closes: Bug#98712
 
- -- 
+ -- Julian Gilbey <jdg@debian.org>  Fri,  1 Jun 2001 10:37:52 +0100
 
 debian-policy (3.5.4.0) unstable; urgency=low
 
