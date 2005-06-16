@@ -1104,14 +1104,21 @@
 	    <heading>Prompting in maintainer scripts</heading>
 	    <p>
 	      Package maintainer scripts may prompt the user if
-	      necessary. Prompting may be accomplished by hand, or by
-	      communicating with a program, such as
-	      <prgn>debconf</prgn>, which conforms to the Debian
-	      Configuration management specification, version 2 or
-	      higher.  These are included in the
+	      necessary. Prompting may be accomplished by
+	      hand<footnote>
+		<p>From the Jasrgon file: by hand 2. By extension,
+		  writing code which does something in an explicit or
+		  low-level way for which a presupplied library
+		  (<em>debconf, in this instance</em>) routine ought
+		  to have been available.</p>
+	      </footnote> (but this is deprecated), or by
+	      communicating though a program, which conforms to the
+	      Debian Configuration management specification, version 2
+	      or higher (such as <prgn>debconf</prgn>).  Thiss
+	      specification is included in the
 	      <file>debconf_specification</file> files in the
-	      <package>debian-policy</package> package.
-	      You may also find this file on the FTP site
+	      <package>debian-policy</package> package.  You may also
+	      find this file on the FTP site
 	      <ftpsite>ftp.debian.org</ftpsite> in
 	      <ftppath>/debian/doc/package-developer/debconf_specification.txt.gz</ftppath>
 	      or on your local mirror.<footnote>

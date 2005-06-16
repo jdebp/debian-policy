@@ -12,6 +12,9 @@ debian-policy (3.5.9.1) unstable; urgency=low
     since people using the old URL were redirected to auric anyway).
                                                              closes: Bug#184518
   * Inserted the word only in the package name section.      closes: Bug#184368
+  * Amended the section about Prompting in maintainer scripts. Added a
+    footnotre (quoting from the jargon file) to explain what "by hand"
+    means in a computer context.                             closes: Bug#184507
 
  -- 
 
