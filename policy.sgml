@@ -1181,9 +1181,8 @@
       <sect>
 	<heading>Source packages</heading>
 
-	<sect1>
+	<sect1 id="standardsversion">
 	  <heading>Standards conformance</heading>
-          <sect id="standardsversion">
 
 	  <p>
 	    In the source package's <tt>Standards-Version</tt> control
@@ -2243,7 +2242,7 @@
 	      To be precise, the string should match the following
 	      Perl regular expression:
 	      <example>
-<tt>/closes:\s*(?:bug)?\#\s?\d+(?:,\s*(?:bug)?\#\s?\d+)*/i</tt>
+/closes:\s*(?:bug)?\#\s?\d+(?:,\s*(?:bug)?\#\s?\d+)*/i
 	      </example>
 	      Then all of the bug numbers listed will be closed by the
 	      archive maintenance script (<prgn>katie</prgn>), or in
@@ -2491,10 +2490,10 @@
 	</p>
 
 	<p>
-	  These scripts should be the files <tt>preinst</tt>,
+	  These scripts are the files <tt>preinst</tt>,
 	  <tt>postinst</tt>, <tt>prerm</tt> and <tt>postrm</tt> in the
 	  control area of the package.  They must be proper executable
-	  files; if they are scripts (which is recommended) they must
+	  files; if they are scripts (which is recommended), they must
 	  start with the usual <tt>#!</tt> convention.  They should be
 	  readable and executable by anyone, and not world-writable.
 	</p>
@@ -2512,21 +2511,11 @@
 	</p>
 
 	<p>
-	  It is necessary for the error recovery procedures that the
-	  scripts be idempotent: i.e., invoking the same script several
-	  times in the same situation should do no harm.  If the first
-	  call failed, or aborted half way through for some reason,
-	  the second call should merely do the things that were left
-	  undone the first time, if any, and exit with a success
-	  status.
-	</p>
-
-	<p>
 	  When a package is upgraded a combination of the scripts from
-	  the old and new packages is called in amongst the other
-	  steps of the upgrade procedure.  If your scripts are going
-	  to be at all complicated you need to be aware of this, and
-	  may need to check the arguments to your scripts.
+	  the old and new packages is called during the upgrade
+	  procedure.  If your scripts are going to be at all
+	  complicated you need to be aware of this, and may need to
+	  check the arguments to your scripts.
 	</p>
 
 	<p>
@@ -2537,39 +2526,47 @@
 	  <prgn>postrm</prgn> afterwards.
 	</p>
 
-	<p> Programs called from maintainer scripts should not
-	  normally have a path prepended to them. Before installation
-	  is started the package management system checks to see if
-	  the programs <prgn>ldconfig</prgn>,
+	<p>
+	  Programs called from maintainer scripts should not normally
+	  have a path prepended to them. Before installation is
+	  started, the package management system checks to see if the
+	  programs <prgn>ldconfig</prgn>,
 	  <prgn>start-stop-daemon</prgn>, <prgn>install-info</prgn>,
 	  and <prgn>update-rc.d</prgn> can be found via the
 	  <tt>PATH</tt> environment variable. Those programs, and any
-	  other program that one would expect to on the <tt>PATH</tt>,
-	  should thus be invoked without an absolute
+	  other program that one would expect to be on the
+	  <tt>PATH</tt>, should thus be invoked without an absolute
 	  pathname. Maintainer scripts should also not reset the
-	  <tt>PATH</tt>, though they might choose to modify it by pre-
-	  or appending package-specific directories. These
+	  <tt>PATH</tt>, though they might choose to modify it by
+	  prepending or appending package-specific directories. These
 	  considerations really apply to all shell scripts.</p>
       </sect>
+
       <sect>
 	<heading>Maintainer scripts Idempotency</heading>
 
 	<p>
-	  It is very important to make maintainer scripts
-	  idempotent.
-	  <footnote>
+	  It is necessary for the error recovery procedures that the
+	  scripts be idempotent.  This means that if it is run
+	  successfully, and then it is called again, it doesn't bomb
+	  out or cause any harm, but just ensures that everything is
+	  the way it ought to be.  If the first call failed, or
+	  aborted half way through for some reason, the second call
+	  should merely do the things that were left undone the first
+	  time, if any, and exit with a success status if everything
+	  is OK.
+	  <footnote> 
 	    <p>
-	      That means that if it runs successfully or fails
-	      and then you call it again it doesn't bomb out,
-	      but just ensures that everything is the way it
-	      ought to be.
+	      This is so that if an error occurs, the user interrupts
+	      <prgn>dpkg</prgn> or some other unforeseen circumstance
+	      happens you don't leave the user with a badly-broken
+	      package when <prgn>dpkg</prgn> attempts to repeat the
+	      action.
 	    </p>
-	  </footnote> This is so that if an error occurs, the
-	  user interrupts <prgn>dpkg</prgn> or some other
-	  unforeseen circumstance happens you don't leave the
-	  user with a badly-broken package.
+	  </footnote>
 	</p>
       </sect>
+
       <sect>
 	<heading>Controlling terminal for maintainer scripts</heading>
 
@@ -2627,7 +2624,7 @@
 	    </item>
 	    <item>
 	      <p><var>old-postinst</var> <tt>abort-upgrade</tt>
-		<var>new version</var></p>
+		<var>new-version</var></p>
 	    </item>
 	    <item>
 	      <p><var>conflictor's-postinst</var> <tt>abort-remove</tt>
@@ -2719,10 +2716,11 @@
 	  The procedure on installation/upgrade/overwrite/disappear
 	  (i.e., when running <tt>dpkg --unpack</tt>, or the unpack
 	  stage of <tt>dpkg --install</tt>) is as follows.  In each
-	  case if an error occurs the actions are, in general, run
-	  backwards - this means that the maintainer scripts are run
-	  with different arguments in reverse order.  These are the
-	  `error unwind' calls listed below.
+	  case, if a major error occurs (unless listed below) the
+	  actions are, in general, run backwards - this means that the
+	  maintainer scripts are run with different arguments in
+	  reverse order.  These are the `error unwind' calls listed
+	  below.
 
 	  <enumlist>
 	    <item>
@@ -2813,7 +2811,7 @@
 		      <example>
 			<var>new-preinst</var> install
 		      </example>
-		      Error unwind versions, respectively:
+		      Error unwind actions, respectively:
 		      <example>
 			<var>new-postrm</var> abort-upgrade <var>old-version</var>
 			<var>new-postrm</var> abort-install <var>old-version</var>
@@ -2830,19 +2828,22 @@
 		The new package's files are unpacked, overwriting any
 		that may be on the system already, for example any
 		from the old version of the same package or from
-		another package (backups of the old files are left
-		around, and if anything goes wrong the package
+		another package.  Backups of the old files are kept
+		temporarily, and if anything goes wrong the package
 		management system will attempt to put them back as
-		part of the error unwind).
+		part of the error unwind.
 	      </p>
 
 	      <p>
 		It is an error for a package to contains files which
 		are on the system in another package, unless
 		<tt>Replaces</tt> is used (see <ref id="replaces">).
-		Currently the <tt>--force-overwrite</tt> flag is
+		<!--
+		The following paragraph is not currently the case:
+		Currently the <tt>- - force-overwrite</tt> flag is
 		enabled, downgrading it to a warning, but this may not
 		always be the case.
+		-->
 	      </p>
 
 	      <p>
@@ -2857,7 +2858,7 @@
 
 	      <p>
 		Packages which overwrite each other's files produce
-		behavior which though deterministic is hard for the
+		behavior which, though deterministic, is hard for the
 		system administrator to understand.  It can easily
 		lead to `missing' programs if, for example, a package
 		is installed which overwrites a file from another
@@ -2871,7 +2872,7 @@
 	      </p>
 
 	      <p>
-		A directory will never be replaced by a symbolic links
+		A directory will never be replaced by a symbolic link
 		to a directory or vice versa; instead, the existing
 		state (symlink or not) will be left alone and
 		<prgn>dpkg</prgn> will follow the symlink if there is
@@ -2925,7 +2926,7 @@
 	      <p>Any packages all of whose files have been overwritten during the
 		installation, and which aren't required for
 		dependencies, are considered to have been removed.
-		For each such package,
+		For each such package
 		<enumlist>
 		  <item>
 		    <p><prgn>dpkg</prgn> calls:
@@ -2972,12 +2973,17 @@
 	    <item>
 	      <p>
 		The new package's status is now sane, and recorded as
-		`unpacked'.  Here is another point of no return - if
-		the conflicting package's removal fails we do not
-		unwind the rest of the installation; the conflicting
-		package is left in a half-removed limbo.
+		`unpacked'.
+	      </p>
+
+	      <p>
+		Here is another point of no return - if the
+		conflicting package's removal fails we do not unwind
+		the rest of the installation; the conflicting package
+		is left in a half-removed limbo.
 	      </p>
 	    </item>
+
 	    <item>
 	      <p>
 		If there was a conflicting package we go and do the
@@ -2997,7 +3003,7 @@
 	<p>
 	  When we configure a package (this happens with <tt>dpkg
 	    --install</tt>, or with <tt>--configure</tt>), we first
-	  update the conffiles and then call:
+	  update any <tt>conffile</tt>s and then call:
 	  <example>
 	    <var>postinst</var> configure <var>most-recently-configured-version</var>
 	  </example>
@@ -3031,7 +3037,7 @@
 	    </item>
 	    <item>
 	      <p>
-		The package's files are removed (except conffiles).
+		The package's files are removed (except <tt>conffile</tt>s).
 	      </p>
 	    </item>
 	    <item>
@@ -3040,15 +3046,17 @@
 		</example></p>
 	    </item>
 	    <item>
-	      <p>All the maintainer scripts except the postrm are removed.
+	      <p>
+		All the maintainer scripts except the <tt>postrm</tt>
+		are removed.
 	      </p>
 
 	      <p>
 		If we aren't purging the package we stop here.  Note
-		that packages which have no postrm and no conffiles
-		are automatically purged when removed, as there is no
-		difference except for the <prgn>dpkg</prgn>
-		status.</p>
+		that packages which have no <tt>postrm</tt> and no
+		<tt>conffile</tt>s are automatically purged when
+		removed, as there is no difference except for the
+		<prgn>dpkg</prgn> status.</p>
 	    </item>
 	    <item>
 	      <p>
@@ -3066,7 +3074,8 @@
 	    </item>
 	  </enumlist>
 	  No attempt is made to unwind after errors during
-	  removal.</p>
+	  removal.
+	</p>
       </sect>
     </chapt>
 
