@@ -3625,7 +3625,7 @@ Replaces: mail-transport-agent
       </heading>
 
       <p>
-	This chapter has been superseded by <ref id="config files">.
+	This chapter has been superseded by <ref id="config-files">.
       </p>
 
 
@@ -4142,7 +4142,7 @@ libbar 1 bar1 (>= 1.0-1)
 	    terms of Debian Policy. The version of this document
 	    referred here can be found in the <tt>debian-policy</tt>
 	    package or on 
-	    <url id="http://www.debian.org/doc/packaging-manuals/fhs"
+	    <url id="http://www.debian.org/doc/packaging-manuals/fhs/"
 	      name="FHS (Debian copy)"> alongside this manual. The
 	    latest version, which may be a more recent version, may
 	    be found on
@@ -4558,7 +4558,7 @@ rmdir /usr/local/share/emacs 2>/dev/null || true
 	    package, that is, in the .deb file) by marking them as
 	    <tt>conffile</tt>s, or, (if they do not exist in the .deb)
 	    by managing them correctly in the maintainer scripts (see
-	    <ref id="config files">).  This is important since we want
+	    <ref id="config-files">).  This is important since we want
 	    to give the local system administrator the chance to adapt
 	    the scripts to the local system, e.g., to disable a
 	    service without de-installing the package, or to specify
@@ -4601,7 +4601,7 @@ test -f <var>program-executed-later-in-script</var> || exit 0
 	    must contain only variable settings and comments in POSIX
 	    <prgn>sh</prgn> format.  It may either be a
 	    <tt>conffile</tt> or a configuration file maintained by
-	    the package maintainer scripts.  See <ref id="config files"> 
+	    the package maintainer scripts.  See <ref id="config-files"> 
 	    for more details. 
 	  </p>
 
@@ -5773,7 +5773,7 @@ ln -fs ../sbin/sendmail debian/tmp/usr/bin/runq
 	  <tt>/dev/ttyS*</tt>.</p>
       </sect>
 
-      <sect id="config files">
+      <sect id="config-files">
 	<heading>Configuration files</heading>
 	<sect1>
 	  <heading>Definitions</heading>
