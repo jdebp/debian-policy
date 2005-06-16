@@ -1113,23 +1113,22 @@
             get the Debian architecture and the GNU style architecture
             specification string for the build machine as well as the host
             machine. Here is a list of supported make variables:
-          </p>
-	  
-          <list compact="compact">
-            <item>
-              <p><tt>DEB_*_ARCH</tt> (the Debian architecture)</p>
-            </item>
-            <item>
-              <p><tt>DEB_*_GNU_TYPE</tt> (the GNU style architecture
-		specification string)</p> 
-            </item>
-            <item>
-              <p><tt>DEB_*_GNU_CPU</tt> (the CPU part of DEB_*_GNU_TYPE)</p>
-            </item>
-            <item>
-              <p><tt>DEB_*_GNU_SYSTEM</tt> (the System part of
-		DEB_*_GNU_TYPE)</p>
-          </list>
+	    <list compact="compact">
+	      <item>
+		<p><tt>DEB_*_ARCH</tt> (the Debian architecture)</p>
+	      </item>
+	      <item>
+		<p><tt>DEB_*_GNU_TYPE</tt> (the GNU style architecture
+		  specification string)</p> 
+	      </item>
+	      <item>
+		<p><tt>DEB_*_GNU_CPU</tt> (the CPU part of DEB_*_GNU_TYPE)</p>
+	      </item>
+	      <item>
+		<p><tt>DEB_*_GNU_SYSTEM</tt> (the System part of
+		  DEB_*_GNU_TYPE)</p>
+	    </list>
+	  </p>
  
           <p>
             where <tt>*</tt> is either <tt>BUILD</tt> for specification of
