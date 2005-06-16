@@ -9,7 +9,6 @@ Build-Depends-Indep: links, debiandoc-sgml (>= 1.1.47), sp, liburi-perl, libpape
 Package: debian-policy
 Architecture: all
 Suggests: doc-base
-Depends: fileutils (>= 4.0)
 Conflicts: dpkg-dev (<< 1.4.0.9), doc-base (<< 0.6), packaging-manual
 Replaces: packaging-manual
 Description: Debian Policy Manual and related documents

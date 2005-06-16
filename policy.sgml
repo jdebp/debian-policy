@@ -959,11 +959,10 @@
 
 
 	<sect1>
-	  <heading>Base packages</heading>
+	  <heading>Base system</heading>
 
 	  <p>
-	    The packages included in the <tt>base</tt> section have a
-	    special function. They form a minimum subset of the Debian
+	    The  <tt>base system</tt> is a minimum subset of the Debian
 	    GNU/Linux system that is installed before everything else
 	    on a new system. Thus, only very few packages are allowed
 	    to go into the <tt>base</tt> section to keep the required
@@ -974,11 +973,8 @@
 	    <tt>required</tt> or at least <tt>important</tt>, and many
 	    of them will be tagged <tt>essential</tt> (see below).</p>
 
-	  <p>
-	    You must not place any packages into the <tt>base</tt>
-	    section before this has been discussed on the
-	    <tt>debian-devel</tt> mailing list and a consensus about
-	    doing that has been reached.</p></sect1>
+	  
+	</sect1>
 
 
 	<sect1>
