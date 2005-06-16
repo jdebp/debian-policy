@@ -7058,7 +7058,7 @@ name ["<var>syshostname</var>"]:
 		<p>
 		  BDF fonts must be converted to PCF fonts with the
 		  <prgn>bdftopcf</prgn> utility (available in the
-		  <tt>xutils</tt> package, <tt>gzip</tt>ped, and
+                  <tt>xutils</tt> package, <prgn>gzip</prgn>ped, and
 		  placed in a directory that corresponds to their
 		  resolution:
 		  <list compact="compact">
@@ -7480,11 +7480,13 @@ name ["<var>syshostname</var>"]:
 	  not in general consider the lack of a manpage to be a bug,
 	  we do; if they tell you that they don't consider it a bug
 	  you should leave the bug in our bug tracking system open
-	  anyway.</p>
+	  anyway.
+        </p>
 
 	<p>
-	  Manual pages should be installed compressed using <prgn>gzip</prgn>
-	  <tt>-9</tt>.</p>
+          Manual pages should be installed compressed using <kbd>gzip
+          -9</kbd>.
+        </p>
 
 	<p>
 	  If one manpage needs to be accessible via several names it
@@ -7519,7 +7521,8 @@ name ["<var>syshostname</var>"]:
 
 	<p>
 	  Info documents should be installed in <file>/usr/share/info</file>.
-	  They should be compressed with <prgn>gzip</prgn> <tt>-9</tt>.</p>
+	  They should be compressed with <kbd>gzip -9</kbd>.
+        </p>
 
 	<p>
 	  Your package should call <prgn>install-info</prgn> to update
@@ -7564,8 +7567,8 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	  Text documentation should be installed in the directory
 	  <file>/usr/share/doc/<var>package</var></file>, where
 	  <var>package</var> is the name of the package, and
-	  compressed with <prgn>gzip</prgn> <tt>-9</tt> unless it is
-	  small.</p>
+          compressed with <kbd>gzip -9</kbd> unless it is small.
+        </p>
 
 	<p>
 	  If a package comes with large amounts of documentation which
@@ -7779,7 +7782,7 @@ install-info --quiet --remove /usr/share/info/foobar.info
 
 	<p>
 	  All of these files should be installed compressed using
-	  <tt>gzip -9</tt>, as they will become large with time even
+	  <kbd>gzip -9</kbd>, as they will become large with time even
 	  if they start out small.
 	</p>
 
@@ -9446,7 +9449,7 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	    <item>
 
 	      <p>
-		This is a compressed (with <tt>gzip -9</tt>)
+		This is a compressed (with <kbd>gzip -9</kbd>)
 		<prgn>tar</prgn> file containing the source code from
 		the upstream authors of the program.  The tarfile
 		unpacks into a directory
