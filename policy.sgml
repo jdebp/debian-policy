@@ -115,8 +115,7 @@
 	  packages, nor is it exhaustive where it comes to describing
 	  the behavior of the packaging system. Instead, this manual
 	  attempts to define the interface to the package management
-	  system that the developers have to be conversant with.
-	  <footnote>
+	  system that the developers have to be conversant with.<footnote>
 	    <p>
 	      Informally, the criteria used for inclusion is that the
 	      material meet one of the following requirements:
@@ -181,7 +180,7 @@
 	  <em>normal</em> or <em>important</em>
 	  (for <em>should</em> or <em>recommended</em> directive
 	  violations) and <em>wishlist</em> (for <em>optional</em>
-	  items). <footnote>
+	  items).<footnote>
 	    <p>Compare RFC 2119.  Note, however, that these words are
 	  used in a different way in this document.</p>
 	  </footnote>
@@ -538,8 +537,7 @@
 	      <item>
 		<p>
 		  must meet all policy requirements presented in this
-		  manual that it is possible for them to meet.
-		  <footnote>
+		  manual that it is possible for them to meet.<footnote>
 		    <p>
 		      It is possible that there are policy
 		      requirements which the package is unable to
@@ -745,8 +743,7 @@
 		expectation is that an experienced Unix person who
 		found it missing would say `What on earth is going on,
 		where is <prgn>foo</prgn>?', it must be an
-		<tt>important</tt> package.
-		<footnote>
+		<tt>important</tt> package.<footnote>
 		  <p>
 		    This is an important criterion because we are
 		    trying to produce, amongst other things, a free
@@ -862,8 +859,7 @@
 	    <email>packages@qa.debian.org</email> takes over the
 	    maintainership of the package until someone else
 	    volunteers for that task. These packages are called
-	    <em>orphaned packages</em>.
-	    <footnote>
+	    <em>orphaned packages</em>.<footnote>
 	      <p>
 		The detailed procedure for doing this gracefully can
 		be found in the Debian Developer's Reference, either
@@ -1085,8 +1081,7 @@
 	      You may also find this file on the FTP site
 	      <ftpsite>ftp.debian.org</ftpsite> in
 	      <ftppath>/debian/doc/package-developer/debconf_specification.txt.gz</ftppath>
-	      or on your local mirror.
-	      <footnote>
+	      or on your local mirror.<footnote>
 		<p>
 		  2.5% of Debian packages [see <url
 		  id="http://kitenet.net/programs/debconf/stats/"
@@ -1123,8 +1118,7 @@
 	      script, and before the package is unpacked or any of its
 	      dependancies or pre-dependancies are satisfied.
 	      Therefore it must work using only the tools present in
-	      <em>essential</em> packages.
-	      <footnote>
+	      <em>essential</em> packages.<footnote>
 		<p>
 		  <package>Debconf</package> or another tool that
 		  implements the Debian Configuration management
@@ -1191,9 +1185,10 @@
 
 	  <p>
 	    In the source package's <tt>Standards-Version</tt> control
-	    field, you must specify the most recent version number of
-	    this policy document with which your package complies.
-	    The current version number is &version;.
+            field, you should specify the most recent version number
+            of this policy document with which your package complied
+            when it was last updated.  The current version number is
+            &version;.
 	  </p>
 
 	  <p>
@@ -1219,8 +1214,7 @@
 	    Thus only the first three components of the policy version
 	    are significant in the <em>Standards-Version</em> control
 	    field, and so either these three components or the all
-	    four components may be specified.
-	    <footnote>
+	    four components may be specified.<footnote>
 	      <p>
 		In the past, people specified the full version number
 		in the Standards-Version field, for example `2.3.0.0'.
@@ -1240,8 +1234,7 @@
 	    available and update your package, if necessary. When your
 	    package complies with the new standards you should update the
 	    <tt>Standards-Version</tt> source package field and
-	    release it.
-	    <footnote>
+	    release it.<footnote>
 	      <p>
 		See the file <tt>upgrading-checklist</tt> for
 		information about policy which has changed between
@@ -1272,8 +1265,7 @@
 	    an informational list can be found in
 	    <tt>/usr/share/doc/build-essential/list</tt> (which is
 	    contained in the <tt>build-essential</tt>
-	    package).
-	    <footnote>
+	    package).<footnote>
 	      <p>Rationale:
 		<list compact="compact">
 		  <item>
@@ -1311,8 +1303,7 @@
 	    should list only those packages explicitly required by the
 	    build.  It is not necessary to list packages which are
 	    required merely because some other package in the list of
-	    build-time dependencies depends on them.
-	    <footnote>
+	    build-time dependencies depends on them.<footnote>
 	      <p>
 		The reason for this is that dependencies change, and
 		you should list all those packages, and <em>only</em>
@@ -1391,8 +1382,7 @@
 	  <p>
 	    In non-experimental packages you must use a format for
 	    <tt>debian/changelog</tt> which is supported by the most
-	    recent released version of <prgn>dpkg</prgn>.
-	    <footnote>
+	    recent released version of <prgn>dpkg</prgn>.<footnote>
 	      <p>
 		If you wish to use an alternative format, you may do
 		so as long as you include a parser for it in your
@@ -1584,8 +1574,7 @@ Package: libc6
 	    this contains the (space-separated) name(s) of the
 	    distribution(s) where this version of the package should
 	    be installed.  Valid distributions are determined by the
-	    archive maintainers.
-	    <footnote>
+	    archive maintainers.<footnote>
 		Current distribution names are:
 		<taglist compact="compact">
 		  <tag><em>stable</em></tag>
@@ -1693,7 +1682,6 @@ Package: libc6
 	<taglist>
 	  <tag><var>epoch</var></tag>
 	  <item>
-
 	    <p>
 	      This is a single (generally small) unsigned integer.  It
 	      may be omitted, in which case zero is assumed.  If it is
@@ -1706,12 +1694,10 @@ Package: libc6
 	      of older versions of a package, and also a package's
 	      previous version numbering schemes, to be left behind.
 	    </p>
-
 	  </item>
 
 	  <tag><var>upstream_version</var></tag>
 	  <item>
-
 	    <p>
 	      This is the main part of the version number.  It is
 	      usually the version number of the original (`upstream')
@@ -1732,8 +1718,7 @@ Package: libc6
 
 	    <p>
 	      The <var>upstream_version</var> may contain only
-	      alphanumerics
-	      <footnote>
+	      alphanumerics<footnote>
 		<p>Alphanumerics are <tt>A-Za-z0-9</tt> only.</p>
 	      </footnote>
 	      and the characters <tt>.</tt> <tt>+</tt> <tt>-</tt>
@@ -1746,7 +1731,6 @@ Package: libc6
 
 	  <tag><var>debian_revision</var></tag>
 	  <item>
-
 	    <p>
 	      This part of the version number specifies the version of
 	      the Debian package based on the upstream version.  It
@@ -1878,8 +1862,7 @@ Package: libc6
 	<p>
 	  Maintainers should preserve the modification times of the
 	  upstream source files in a package, as far as is reasonably
-	  possible.
-	  <footnote>
+	  possible.<footnote>
 	    <p>
 	      The rationale is that there is some information conveyed
 	      by knowing the age of the file, for example, you could
@@ -1970,8 +1953,7 @@ Package: libc6
 		<tt>touch build</tt> when the build process is
 		complete.  This will ensure that if <tt>debian/rules
 		build</tt> is run again it will not rebuild the whole
-		program.
-		<footnote>
+		program.<footnote>
 		  <p>
 		    Another common way to do this is for <prgn>build</prgn>
 		    to depend on <prgn>build-stamp</prgn> and to do
@@ -2034,8 +2016,7 @@ Package: libc6
 
 	      <p>
 		The <prgn>binary</prgn> targets must be invoked as
-		root.
-		<footnote>
+		root.<footnote>
 		  <p>
 		    The <prgn>fakeroot</prgn> package often allows one
 		    to build a package correctly even without being
@@ -2047,7 +2028,6 @@ Package: libc6
 
 	    <tag><tt>clean</tt></tag>
 	    <item>
-
 	      <p>
 		This must undo any effects that the <prgn>build</prgn>
 		and <prgn>binary</prgn> targets may have had, except
@@ -2078,7 +2058,6 @@ Package: libc6
 
 	    <tag><tt>get-orig-source</tt> (optional)</tag>
 	    <item>
-
 	      <p>
 		This target fetches the most recent version of the
 		original source package from a canonical archive site
@@ -2165,8 +2144,7 @@ Package: libc6
 
 	<p>
 	  This file records the changes to the Debian-specific parts of the
-	  package
-	  <footnote>
+	  package<footnote>
 	    <p>
 	      Though there is nothing stopping an author who is also
 	      the Debian maintainer from using it for all their
@@ -2217,8 +2195,7 @@ Package: libc6
 	  <tt><var>keyword</var>=<var>value</var></tt> settings in the
 	  <prgn>dpkg</prgn> changelog format (though there is
 	  currently only one useful <var>keyword</var>,
-	  <tt>urgency</tt>).
-	  <footnote>
+	  <tt>urgency</tt>).<footnote>
 	    <p>
 	      Usual urgency values are <tt>low</tt>, <tt>medium</tt>,
 	      <tt>high</tt> and <tt>critical</tt>.  They have an
@@ -2244,8 +2221,7 @@ Package: libc6
 	  System (BTS), they may be automatically closed on the
 	  inclusion of this package into the Debian archive by
 	  including the string: <tt>closes: Bug#<var>nnnnn</var></tt>
-	  in the change details.
-	  <footnote>
+	  in the change details.<footnote>
 	    <p>
 	      To be precise, the string should match the following
 	      Perl regular expression:
@@ -2270,8 +2246,7 @@ Package: libc6
 	</p>
 
 	<p>
-	  The <var>date</var> should be in RFC822 format
-	  <footnote>
+	  The <var>date</var> should be in RFC822 format<footnote>
 	    <p>
 	      This is generated by the <prgn>822-date</prgn>
 	      program.
@@ -2345,8 +2320,7 @@ Package: libc6
 	<p>
 	  It should not exist in a shipped source package, and so it
 	  (and any backup files or temporary files such as
-	  <tt>files.new</tt>
-	  <footnote>
+	  <tt>files.new</tt><footnote>
 	    <p>
 	      <tt>files.new</tt> is used as a temporary file by
 	      <prgn>dpkg-gencontrol</prgn> and
@@ -2383,8 +2357,7 @@ Package: libc6
 	</heading>
 
 	<p>
-	  The source package may not contain any hard links
-	  <footnote>
+	  The source package may not contain any hard links<footnote>
 	    <p>
 	      This is not currently detected when building source
 	      packages, but only when extracting
@@ -2396,8 +2369,7 @@ Package: libc6
 	      work.
 	    </p>
 	  </footnote>, device special files, sockets or setuid or
-	  setgid files.
-	  <footnote>
+	  setgid files.<footnote>
 	    <p>
 	      Setgid directories are allowed.
 	    </p>
@@ -2449,8 +2421,7 @@ Package: libc6
 	  <p>
 	    The description field needs to make sense to anyone, even
 	    people who have no idea about any of the things the
-	    package deals with.
-	    <footnote>
+	    package deals with.<footnote>
 	      <p>
 		The blurb that comes with a program in its
 		announcements and/or <prgn>README</prgn> files is
@@ -2561,8 +2532,7 @@ Package: libc6
 	  aborted half way through for some reason, the second call
 	  should merely do the things that were left undone the first
 	  time, if any, and exit with a success status if everything
-	  is OK.
-	  <footnote> 
+	  is OK.<footnote> 
 	    <p>
 	      This is so that if an error occurs, the user interrupts
 	      <prgn>dpkg</prgn> or some other unforeseen circumstance
@@ -2869,8 +2839,7 @@ Package: libc6
 		system administrator to understand.  It can easily
 		lead to `missing' programs if, for example, a package
 		is installed which overwrites a file from another
-		package, and is then removed again.
-		<footnote>
+		package, and is then removed again.<footnote>
 		  <p>
 		    Part of the problem is due to what is arguably a
 		    bug in <prgn>dpkg</prgn>.
@@ -3276,7 +3245,6 @@ Build-Depends: kernel-headers-2.2.10 [!hurd-i386],
 	  <taglist>
 	    <tag><tt>Depends</tt></tag>
 	    <item>
-
 	      <p>
 		This declares an absolute dependency.  A package will
 		not be configured unless all of the packages listed in
@@ -3313,7 +3281,6 @@ Build-Depends: kernel-headers-2.2.10 [!hurd-i386],
 
 	    <tag><tt>Suggests</tt></tag>
 	    <item>
-
 	      <p>
 		This is used to declare that one package may be more
 		useful with one or more others.  Using this field
@@ -3336,7 +3303,6 @@ Build-Depends: kernel-headers-2.2.10 [!hurd-i386],
 
 	    <tag><tt>Pre-Depends</tt></tag>
 	    <item>
-
 	      <p>
 		This field is like <tt>Depends</tt>, except that it
 		also forces <prgn>dpkg</prgn> to complete installation
@@ -3691,8 +3657,7 @@ Replaces: mail-transport-agent
 	<prgn>ld-linux.so.*</prgn>) can find the library between the
 	time that <prgn>dpkg</prgn> installs it and the time that
 	<prgn>ldconfig</prgn> is run in the <prgn>postinst</prgn>
-	script.
-	<footnote>
+	script.<footnote>
 	  <p>
 	    The package management system requires the library to be
 	    placed before the symbolic link pointing to it in the
@@ -3729,8 +3694,7 @@ Replaces: mail-transport-agent
 	Any package installing shared libraries in one of the default
 	library directories of the dynamic linker (which are currently
 	<tt>/usr/lib</tt> and <tt>/lib</tt>) or a directory that is
-	listed in <tt>/etc/ld.so.conf</tt>
-	<footnote>
+	listed in <tt>/etc/ld.so.conf</tt><footnote>
 	  <p>
 	    These are currently
 	    <list compact="compact">
@@ -3785,8 +3749,7 @@ Replaces: mail-transport-agent
 	  any shared libraries or compiled binaries, it must run
 	  <prgn>dpkg-shlibdeps</prgn> on these to determine the
 	  libraries used and hence the dependencies needed by this
-	  package.
-	  <footnote>
+	  package.<footnote>
 	    <p>
 	      In the past, the shared libraries linked to were
 	      determined by calling <prgn>ldd</prgn>, but now
@@ -3883,8 +3846,7 @@ Replaces: mail-transport-agent
 		control file area of the temporary build directory and
 		given the name <tt>shlibs</tt>.  These files give
 		details of any shared libraries included in the
-		package.
-		<footnote>
+		package.<footnote>
 		  <p>
 		    An example may help here.  Let us say that the
 		    source package <tt>foo</tt> generates two binary
@@ -3954,8 +3916,7 @@ dpkg-shlibdeps debian/tmp/usr/bin/* debian/tmp/usr/sbin/* \
   debian/tmp/usr/lib/*
 	  </example>
 	  Otherwise, you will need to explicitly list the compiled
-	  binaries and libraries.
-	  <footnote>
+	  binaries and libraries.<footnote>
 	    <p>
 	      If you are using <tt>debhelper</tt>, the
 	      <prgn>dh_shlibdeps</prgn> program will do this work for
@@ -4021,8 +3982,7 @@ dpkg-shlibdeps debian/tmp/usr/bin/* debian/tmp/usr/sbin/* \
 	  exactly match for the library to be recognized by the
 	  dynamic linker, and is usually of the form
 	  <tt><var>name</var>.so.<var>major-version</var></tt>, in our
-	  example, <tt>libz.so.1</tt>.
-	  <footnote>
+	  example, <tt>libz.so.1</tt>.<footnote>
 	    <p>
 	      This can be determined using the command
 	      <example compact="compact">
@@ -4076,8 +4036,7 @@ install -m644 debian/shlibs.<var>package</var> debian/<var>package</var>/DEBIAN/
 	  An alternative way of doing this is to create the
 	  <tt>shlibs</tt> file in the control area directly from
 	  <tt>debian/rules</tt> without using a <tt>debian/shlibs</tt>
-	  file at all,
-	  <footnote>
+	  file at all,<footnote>
 	    <p>
 	      This is what <prgn>dh_makeshlibs</prgn> in the
 	      <tt>debhelper</tt> suite does.
@@ -4221,8 +4180,7 @@ libbar 1 bar1 (>= 1.0-1)
 	    removed by the <prgn>postinst</prgn> and <prgn>prerm</prgn>
 	    maintainer scripts and not be included in the
 	    <tt>.deb</tt> archive.  These scripts must not fail if
-	    either of these operations fail.
-	    <footnote>
+	    either of these operations fail.<footnote>
 	      <p>
 		In the future, it may be possible to tell
 		<prgn>dpkg</prgn> not to unpack files matching certain
@@ -4568,9 +4526,10 @@ rmdir /usr/local/share/emacs 2>/dev/null || true
 		  reloaded without actually stopping and restarting
 		  the service,</p></item>
 
-	      <tag><tt>force-reload</tt></tag> <item><p>cause the
-		  configuration to be reloaded if the service supports
-		  this, otherwise restart the service.</p></item>
+	      <tag><tt>force-reload</tt></tag>
+	      <item><p>cause the configuration to be reloaded if the
+		  service supports this, otherwise restart the
+		  service.</p></item>
 	    </taglist>
 
 	    The <tt>start</tt>, <tt>stop</tt>, <tt>restart</tt>, and
@@ -5406,8 +5365,7 @@ install -s # (or use strip on the files in debian/tmp)
 	  the environment variable <tt>DEB_BUILD_OPTIONS</tt> contains
 	  the string <tt>nostrip</tt>, do not strip the files at
 	  installation time.  This allows one to generate a package
-	  with debugging information included.
-	  <footnote>
+	  with debugging information included.<footnote>
 	    <p>
 	      Rationale: Using <tt>-g</tt> by default causes wasted
 	      CPU cycles since the information is stripped away
@@ -5480,8 +5438,7 @@ strip --strip-unneeded <var>your-lib</var>
 	  needed for relocation processing.)  Shared libraries can
 	  function perfectly well when stripped, since the symbols for
 	  dynamic linking are in a separate part of the ELF object
-	  file.
-	  <footnote>
+	  file.<footnote>
 	    <p>
 	      You might also want to use the options
 	      <tt>--remove-section=.comment</tt> and
@@ -5510,8 +5467,7 @@ strip --strip-unneeded <var>your-lib</var>
 	  those files, which contain a lot of useful information about
 	  a library (such as library dependency information for static
 	  linking).  Also, they're <em>essential</em> for programs
-	  using <tt>libltdl</tt>.
-	  <footnote>
+	  using <tt>libltdl</tt>.<footnote>
 	    <p>
 	      Although <prgn>libtool</prgn> is fully capable of
 	      linking against shared libraries which don't have
@@ -5522,7 +5478,7 @@ strip --strip-unneeded <var>your-lib</var>
 	      for each library every time it is linked.  With the
 	      advent of <prgn>libtool</prgn> version 1.4 (and to a
 	      lesser extent <prgn>libtool</prgn> version 1.3), the
-	      <tt>.la</tt> files will also store information about
+	      <tt>.la</tt> files also store information about
 	      inter-library dependencies which cannot necessarily be
 	      derived after the <tt>.la</tt> file is deleted.
 	    </p>
@@ -5561,8 +5517,7 @@ strip --strip-unneeded <var>your-lib</var>
 	  libraries you need to create two packages:
 	  <tt><var>libraryname</var><var>soversion</var></tt>, where
 	  <tt><var>soversion</var></tt> is the version number in the
-	  soname of the shared library
-	  <footnote>
+	  soname of the shared library<footnote>
 	    <p>
 	      The soname is the shared object name: it's the thing
 	      that has to match exactly between building an executable
@@ -5651,8 +5606,7 @@ strip --strip-unneeded <var>your-lib</var>
 	<p>
 	  The standard shell interpreter <tt>/bin/sh</tt> can be a
 	  symbolic link to any POSIX compatible shell, if <tt>echo
-	  -n</tt> does not generate a newline.
-	  <footnote>
+	  -n</tt> does not generate a newline.<footnote>
 	    <p>
 	      Debian policy specifies POSIX behavior for
 	      <tt>/bin/sh</tt>, but <tt>echo -n</tt> has widespread
@@ -5693,8 +5647,7 @@ strip --strip-unneeded <var>your-lib</var>
 	  scripting languages.  See <em>Csh Programming Considered
 	  Harmful</em>, one of the <tt>comp.unix.*</tt> FAQs, which
 	  can be found at <url
-	  id="http://language.perl.com/versus/csh.whynot">.
-	  <footnote>
+	  id="http://language.perl.com/versus/csh.whynot">.<footnote>
 	    <p>
 	      It can also be found on
 	      <url id="http://www.cpan.org/doc/FMTEYEWTK/versus/csh.whynot">
@@ -5889,8 +5842,7 @@ ln -fs ../sbin/sendmail debian/tmp/usr/bin/runq
 	  <p>
 	    In order to ensure that local changes are preserved
 	    correctly, no package may contain or make hard links to
-	    conffiles.
-	    <footnote>
+	    conffiles.<footnote>
 	      <p>
 		Rationale: There are two problems with hard links.
 		The first is that some editors break the link while
@@ -6091,8 +6043,7 @@ ln -fs ../sbin/sendmail debian/tmp/usr/bin/runq
 	  grow indefinitely; the best way to do this is to drop a log
 	  rotation configuration file into the directory
 	  <tt>/etc/logrotate.d</tt> and use the facilities provided by
-	  logrotate.
-	  <footnote>
+	  logrotate.<footnote>
 	    <p>
 	      The traditional approach to log files has been to set up
 	      <em>ad hoc</em> log rotation schemes using simple shell
@@ -6191,8 +6142,7 @@ endscript
 	  reconfigure the package to correspond to their local
 	  security policy by changing the permissions on a binary:
 	  they can do this by using <prgn>dpkg-statoverride</prgn>, as
-	  described below.
-	  <footnote>
+	  described below.<footnote>
 	    <p>
 	      Ordinary files installed by <prgn>dpkg</prgn> (as
 	      opposed to <tt>conffile</tt>s and other similar objects)
@@ -6334,22 +6284,32 @@ done
 	    string</em> in some place, the following format should be used:
 	  <example compact="compact">
 <var>arch</var>-<var>os</var>
-	  </example>
-	  where <tt><var>arch</var></tt> is one of the following:
-	  <tt>i386</tt>, <tt>alpha</tt>, <tt>arm</tt>, <tt>m68k</tt>,
-	  <tt>powerpc</tt>, <tt>sparc</tt> and <tt><var>os</var></tt>
-	  is one of: <tt>linux</tt>, <tt>gnu</tt>.  Use of
-	  <tt>gnu</tt> in this string is reserved for the GNU/Hurd
-	  operating system.
+	  </example><footnote>
+	    <p>
+	      The following architectures and operating systems are
+	      currently recognised by <prgn>dpkg-archictecture</prgn>.
+	      The architecture, <tt><var>arch</var></tt>, is one of
+	      the following: <tt>alpha</tt>, <tt>arm</tt>,
+	      <tt>hppa</tt>, <tt>i386</tt>, <tt>ia64</tt>,
+	      <tt>m68k</tt>, <tt>mips</tt>, <tt>mipsel</tt>,
+	      <tt>powerpc</tt>, <tt>s390</tt>, <tt>sh</tt>,
+	      <tt>sheb</tt>, <tt>sparc</tt> and <tt>sparc64</tt>.  The
+	      operating system, <tt><var>os</var></tt>, is one of:
+	      <tt>linux</tt>, <tt>gnu</tt>, <tt>freebsd</tt> and
+	      <tt>openbsd</tt>.  Use of <tt>gnu</tt> in this string is
+	      reserved for the GNU/Hurd operating system.
+	    </p>
+	  </footnote>
 	</p>
 
 	<p>
-	  Note, that we don't want to use
+	  Note that we don't want to use
 	  <tt><var>arch</var>-debian-linux</tt> to apply to the rule
-	  `architecture-vendor-os' since this would make our programs
-	  incompatible with other Linux distributions.  Also note that
-	  we don't use <tt><var>arch</var>-unknown-linux</tt>, since
-	  the <tt>unknown</tt> does not look very good.
+	  <tt><var>architecture</var>-<var>vendor</var>-<var>os</var></tt>
+	  since this would make our programs incompatible with other
+	  Linux distributions.  We also don't use something like
+	  <tt><var>arch</var>-unknown-linux</tt>, since the
+	  <tt>unknown</tt> does not look very good.
 	</p>
       </sect>
 
@@ -6359,21 +6319,25 @@ done
 	<p>
 	  The configuration files <tt>/etc/services</tt>,
 	  <tt>/etc/protocols</tt>, and <tt>/etc/rpc</tt> are managed
-	  by the <prgn>netbase</prgn> package and may not be modified
-	  by other packages.</p>
+	  by the <prgn>netbase</prgn> package and must not be modified
+	  by other packages.
+	</p>
 
 	<p>
 	  If a package requires a new entry in one of these files, the
 	  maintainer should get in contact with the
 	  <prgn>netbase</prgn> maintainer, who will add the entries
 	  and release a new version of the <prgn>netbase</prgn>
-	  package.</p>
+	  package.
+	</p>
 
 	<p>
 	  The configuration file <tt>/etc/inetd.conf</tt> must not be
 	  modified by the package's scripts except via the
 	  <prgn>update-inetd</prgn> script or the
-	  <prgn>DebianNet.pm</prgn> Perl module.</p>
+	  <tt>DebianNet.pm</tt> Perl module.  See their documentation
+	  for details on how to add entries.
+	</p>
 
 	<p>
 	  If a package wants to install an example entry into
@@ -6381,11 +6345,13 @@ done
 	  exactly one hash character (<tt>#</tt>). Such lines are
 	  treated as `commented out by user' by the
 	  <prgn>update-inetd</prgn> script and are not changed or
-	  activated during a package updates.</p></sect>
-
+	  activated during package updates.
+	</p>
+      </sect>
 
       <sect>
-        <heading>Using pseudo-ttys and modifying wtmp, utmp and lastlog</heading>
+        <heading>Using pseudo-ttys and modifying wtmp, utmp and
+        lastlog</heading>
 
 	<p>
 	  Some programs need to create pseudo-ttys. This should be done
@@ -6397,8 +6363,8 @@ done
 	<p>
 	  The files <tt>/var/run/utmp</tt>, <tt>/var/log/wtmp</tt> and
 	  <tt>/var/log/lastlog</tt> must be installed writeable by
-	  group utmp.  Programs who need to modify those files must
-	  be installed setgid utmp.
+	  group <tt>utmp</tt>.  Programs which need to modify those
+	  files must be installed setgid <tt>utmp</tt>.
 	</p>
       </sect>
 
@@ -6407,74 +6373,80 @@ done
 
 	<p>
 	  Some programs have the ability to launch an editor or pager
-	  program to edit or display a text document. Since there are
+	  program to edit or display a text document.  Since there are
 	  lots of different editors and pagers available in the Debian
 	  distribution, the system administrator and each user should
 	  have the possibility to choose his/her preferred editor and
-	  pager.</p>
+	  pager.
+	</p>
 
 	<p>
 	  In addition, every program should choose a good default
 	  editor/pager if none is selected by the user or system
-	  administrator.</p>
+	  administrator.
+	</p>
 
 	<p>
 	  Thus, every program that launches an editor or pager must
-	  use the EDITOR or PAGER environment variables to determine
-	  the editor/pager the user wants to get started. If these
+	  use the EDITOR or PAGER environment variable to determine
+	  the editor or pager the user wishes to use.  If these
 	  variables are not set, the programs <tt>/usr/bin/editor</tt>
-	  and <tt>/usr/bin/pager</tt> should be used, respectively.</p>
+	  and <tt>/usr/bin/pager</tt> should be used, respectively.
+	</p>
 
 	<p>
-	  These two files are managed through `alternatives.' That is,
-	  every package providing an editor or pager must call the
+	  These two files are managed through the <prgn>dpkg</prgn>
+	  `alternatives' mechanism.  Thus every package providing an
+	  editor or pager must call the
 	  <prgn>update-alternatives</prgn> script to register these
-	  programs.</p>
+	  programs.
+	</p>
 
 	<p>
-	  If it is very hard to adapt a program to make us of the
-	  EDITOR and PAGER variables, that program may be configured
-	  to use <tt>/usr/bin/sensible-editor</tt> and
-	  <tt>/usr/bin/sensible-pager</tt> as editor or pager program,
-	  respectively. These are two scripts provided in the Debian
-	  base system that check the EDITOR and PAGER variables and
-	  launch the appropriate program or fall back to
-	  <tt>/usr/bin/editor</tt> and <tt>/usr/bin/pager</tt>,
-	  automatically.</p>
+	  If it is very hard to adapt a program to make use of the
+	  EDITOR or PAGER variables, that program may be configured to
+	  use <tt>/usr/bin/sensible-editor</tt> and
+	  <tt>/usr/bin/sensible-pager</tt> as the editor or pager
+	  program respectively.  These are two scripts provided in the
+	  Debian base system that check the EDITOR and PAGER variables
+	  and launch the appropriate program, and fall back to
+	  <tt>/usr/bin/editor</tt> and <tt>/usr/bin/pager</tt> if the
+	  variable is not set.
+	</p>
 
 	<p>
 	  A program may also use the VISUAL environment variable to
-	  determine the user's choice of editor. If it exists, it
-	  should take precedence over EDITOR. This is in fact what
-	  <tt>/usr/bin/sensible-editor</tt> does.</p>
+	  determine the user's choice of editor.  If it exists, it
+	  should take precedence over EDITOR.  This is in fact what
+	  <tt>/usr/bin/sensible-editor</tt> does.
+	</p>
 
 	<p>
 	  It is not required for a package to depend on
-	  `editor' and `pager', nor is it required for a package to
-	  provide such virtual packages.
-	  <footnote>
+	  <tt>editor</tt> and <tt>pager</tt>, nor is it required for a
+	  package to provide such virtual packages.<footnote>
 	    <p>
-	      The Debian base system already provides an editor and
-	      a pager program,
+	      The Debian base system already provides an editor and a
+	      pager program,
 	    </p>
 	  </footnote>
 	</p>
-
       </sect>
-
 
       <sect id="web-appl">
 	<heading>Web servers and applications</heading>
 
 	<p>
 	  This section describes the locations and URLs that should
-	  be used by all web servers and web application in the Debian
-	  system.</p>
+	  be used by all web servers and web applications in the
+	  Debian system.
+	</p>
 
 	<p>
 	  <enumlist>
 	    <item>
-	      <p>Cgi-bin executable files are installed in the
+	      <p>
+		Cgi-bin executable files are installed in the
 		directory
 		<example compact="compact">
 /usr/lib/cgi-bin/<var>cgi-bin-name</var>
@@ -6486,14 +6458,18 @@ http://localhost/cgi-bin/<var>cgi-bin-name</var>
 	      </p>
 	    </item>
 
-	    <item><p>Access to html documents</p>
+	    <item><p>Access to HTML documents</p>
 
 	      <p>
-		Html documents for a package are stored in
+		HTML documents for a package are stored in
                 <tt>/usr/share/doc/<var>package</var></tt> but should
                 be accessed via symlinks as
-                <tt>/usr/doc/<var>package</var></tt><footnote> for
-		    backward compatibility, see <ref id="usrdoc"></footnote>
+                <tt>/usr/doc/<var>package</var></tt><footnote>
+		  <p>
+		    for backward compatibility; see <ref
+		      id="usrdoc">
+		  </p>
+		</footnote>
 		and can be referred to as
 		<example compact="compact">
 http://localhost/doc/<var>package</var>/<var>filename</var>
@@ -6508,14 +6484,15 @@ http://localhost/doc/<var>package</var>/<var>filename</var>
 		the Web Document Root.  Instead they should use the
 		/usr/share/doc/<var>package</var> directory for
 		documents and register the Web Application via the
-		menu package. If access to the web-root is unavoidable
-		then use
+		menu package.  If access to the web document root is
+		unavoidable then use
 		<example compact="compact">
 /var/www
 		</example>
-		as the Document Root. This might be just a
-		symbolic link to the location where the sysadmin has
-		put the real document root.</p>
+		as the Document Root.  This might be just a symbolic
+		link to the location where the system administrator
+		has put the real document root.
+	      </p>
 	    </item>
 
 	  </enumlist></p></sect>
@@ -6525,50 +6502,56 @@ http://localhost/doc/<var>package</var>/<var>filename</var>
 	<heading>Mail transport, delivery and user agents</heading>
 
 	<p>
-	  Debian packages which process electronic mail, whether
-	  mail-user-agents (MUAs) or mail-transport-agents (MTAs),
-	  must make sure that they are compatible with the
-	  configuration decisions below.  Failure to do this may
-	  result in lost mail, broken <tt>From:</tt> lines, and other
-	  serious brain damage!</p>
+	  Debian packages which process electronic mail, whether mail
+	  user agents (MUAs) or mail transport agents (MTAs), must
+	  ensure that they are compatible with the configuration
+	  decisions below.  Failure to do this may result in lost
+	  mail, broken <tt>From:</tt> lines, and other serious brain
+	  damage!
+	</p>
 
 	<p>
-	  The mail spool is <tt>/var/mail</tt> and the interface
-	  to send a mail message is <tt>/usr/sbin/sendmail</tt> (as
-	  per the FHS).  On older systems, the mail spool may be
-	  physically located in /var/spool/mail, but all access to the
-	  mail spool should be via the /var/mail symlink. The mail
-	  spool is part of the base system and not part of the MTA
-	  package.
-	</p> 
+	  The mail spool is <tt>/var/mail</tt> and the interface to
+	  send a mail message is <tt>/usr/sbin/sendmail</tt> (as per
+	  the FHS).  On older systems, the mail spool may be
+	  physically located in <tt>/var/spool/mail</tt>, but all
+	  access to the mail spool should be via the
+	  <tt>/var/mail</tt> symlink.  The mail spool is part of the
+	  base system and not part of the MTA package.
+	</p>
 
 	<p>
 	  All Debian MUAs, MTAs, MDAs and other mailbox accessing
-	  programs (like IMAP daemons) must lock the mailbox in an
+	  programs (such as IMAP daemons) must lock the mailbox in an
 	  NFS-safe way. This means that <tt>fcntl()</tt> locking must
-	  be combined with dot locking.  To avoid deadlocks, a
-	  program should use <tt>fcntl()</tt> first and dot locking
-	  after this or alternatively implement the two locking
-	  methods in a non blocking way<footnote>
+	  be combined with dot locking.  To avoid deadlocks, a program
+	  should use <tt>fcntl()</tt> first and dot locking after
+	  this, or alternatively implement the two locking methods in
+	  a non blocking way<footnote>
 	    <p>
 	      If it is not possible to establish both locks, the
 	      system shouldn't wait for the second lock to be
 	      established, but remove the first lock, wait a (random)
-	      time, and start over locking again.</p>
+	      time, and start over locking again.
+	    </p>
 	  </footnote>. Using the functions <tt>maillock</tt> and
 	  <tt>mailunlock</tt> provided by the
 	  <tt>liblockfile*</tt><footnote>
 	    <p>
-	      <tt>liblockfile</tt> version &gt;&gt;1.01</p>
+	      You will need to depend on <tt>liblockfile1
+		(&gt;&gt;1.01)</tt> to use these functions.
+	    </p>
 	  </footnote> packages is the recommended way to realize this.
 	</p>
 
 	<p>
-	  Mailboxes are generally 660 <tt><var>user</var>.mail</tt>
-	  unless the user has chosen otherwise.  A MUA may remove a
+	  Mailboxes are generally mode 660
+	  <tt><var>user</var>.mail</tt> unless the system
+	  administrator has chosen otherwise.  A MUA may remove a
 	  mailbox (unless it has nonstandard permissions) in which
 	  case the MTA or another MUA must recreate it if needed.
-	  Mailboxes must be writable by group mail.</p>
+	  Mailboxes must be writable by group mail.
+	</p>
 
 	<p>
 	  The mail spool is 2775 <tt>root.mail</tt>, and MUAs should
@@ -6579,13 +6562,17 @@ http://localhost/doc/<var>package</var>/<var>filename</var>
 	<p>
 	  <tt>/etc/aliases</tt> is the source file for the system mail
 	  aliases (e.g., postmaster, usenet, etc.), it is the one
-	  which the sysadmin and <prgn>postinst</prgn> scripts may edit.
-	  After <tt>/etc/aliases</tt> is edited the program or human
-	  editing it must call <prgn>newaliases</prgn>.  All MTA
+	  which the sysadmin and <prgn>postinst</prgn> scripts may
+	  edit.  After <tt>/etc/aliases</tt> is edited the program or
+	  human editing it must call <prgn>newaliases</prgn>.  All MTA
 	  packages must come with a <prgn>newaliases</prgn> program,
-	  even if it does nothing, but older MTA packages do not do
+	  even if it does nothing, but older MTA packages did not do
 	  this so programs should not fail if <prgn>newaliases</prgn>
-	  cannot be found.</p>
+	  cannot be found.  Note that because of this, all MTA
+	  packages must have <tt>Provides</tt>, <tt>Conflicts</tt> and
+	  <tt>Replaces: mail-transport-agent</tt> control file
+	  fields.
+	</p>
 
 	<p>
 	  The convention of writing <tt>forward to
@@ -6600,23 +6587,26 @@ http://localhost/doc/<var>package</var>/<var>filename</var>
 	  is supported.</p>
 
 	<p>
-	  If you need to know what name to use (for example) on
-	  outgoing news and mail messages which are generated locally,
-	  you should use the file <tt>/etc/mailname</tt>.  It will
-	  contain the portion after the username and <tt>@</tt> (at)
-	  sign for email addresses of users on the machine (followed
-	  by a newline).</p>
+	  If your package needs to know what hostname to use on (for
+	  example) outgoing news and mail messages which are generated
+	  locally, you should use the file <tt>/etc/mailname</tt>.  It
+	  will contain the portion after the username and <tt>@</tt>
+	  (at) sign for email addresses of users on the machine
+	  (followed by a newline).
+	</p>
 
 	<p>
-	  A package should check for the existence of this file.  If
-	  it exists it should use it without comment. (An MTA's
-	  prompting configuration script may wish to prompt the user
-	  even if it finds this file exists.) If it does not exist it
-	  should prompt the user for the value and store it in
-	  <tt>/etc/mailname</tt> as well as using it in the package's
-	  configuration.  The prompt should make it clear that the
-	  name will not just be used by that package.  For example, in
-	  this situation the INN package says:
+	  Such package should check for the existence of this file
+	  when it is being configured.  If it exists, it should be
+	  used without comment, although an MTA's configuration script
+	  may wish to prompt the user even if it finds that this file
+	  exists.  If the file does not exist, the package should
+	  prompt the user for the value (preferably using
+	  <prgn>debconf</prgn>) and store it in <tt>/etc/mailname</tt>
+	  as well as using it in the package's configuration.  The
+	  prompt should make it clear that the name will not just be
+	  used by that package.  For example, in this situation the
+	  <tt>inn</tt> package could say something like:
 	  <example compact="compact">
 Please enter the `mail name' of your system.  This is the
 hostname portion of the address to be shown on outgoing
@@ -6643,12 +6633,12 @@ name [`<var>syshostname</var>']:
 	  are:
 
 	  <taglist>
-	    <tag>/etc/news/organization</tag>
+	    <tag><tt>/etc/news/organization</tt></tag>
 	    <item><p>A string which should appear as the
 		organization header for all messages posted
 		by NNTP clients on the machine</p></item>
 
-	    <tag>/etc/news/server</tag>
+	    <tag><tt>/etc/news/server</tt></tag>
 	    <item><p>Contains the FQDN of the upstream NNTP
 		server, or localhost if the local machine is
 		an NNTP server.</p></item>
@@ -6661,241 +6651,420 @@ name [`<var>syshostname</var>']:
       <sect>
 	<heading>Programs for the X Window System</heading>
 
-	<p>
-	  <em>Programs that may be configured with support for the X Window
-	    System</em> must be configured to do so and must declare any
-	  package dependencies necessary to satisfy their runtime
-	  requirements when using the X Window System, unless the package
-	  in question is of standard or higher priority, in which case
-	  X-specific binaries may be split into a separate package, or
-	  alternative versions of the package with X support may be
-	  provided.
-	</p>
+	<sect1>
+	  <heading>Providing X support and package priorities</heading>
 
+	  <p>
+	    Programs that can be configured with support for the X
+	    Window System must be configured to do so and must declare
+	    any package dependencies necessary to satisfy their
+	    runtime requirements when using the X Window System.  If
+	    such a package is of higher priority than the X packages
+	    on which it depends, it is required that either the
+	    X-specific components be split into a separate package, or
+	    that an alternative version of the package, which includes
+	    X support, be provided, or that the package's priority be
+	    lowered.
+	  </p>
+	</sect1>
 
-	<p>
-	  <em>Packages which provide an X server</em> that, directly or
-	  indirectly, communicates with real input and display hardware
-	  should declare in their control data that they provide the
-	  virtual package <tt>xserver</tt>.
-	  <footnote>
-	    <p>
-	      This implements current practice, and provides an actual
-	      policy for usage of the "xserver" virtual package which
-	      appears in the virtual packages list.  In a nutshell, X
-	      servers that interface directly with the display and input
-	      hardware or via another subsystem (e.g., GGI) should provide
-	      xserver.  Things like Xvfb, Xnest, and Xprt should not.
-	    </p>
-	  </footnote>
-	</p>
+	<sect1>
+	  <heading>Packages providing an X server</heading>
 
-	<p>
-	  <em>Packages that provide a terminal emulator</em> for the X
-	  Window System which support a terminal type with a terminfo
-	  description provided in the <tt>ncurses-base</tt> package
-	  should declare in their control data that they provide the
-	  virtual package <tt>x-terminal-emulator</tt>.  They should
-	  also register themselves as an alternative for
-	  <tt>/usr/bin/x-terminal-emulator</tt>, with a priority of
-	  20.
-	</p>
+	  <p>
+	    Packages that provide an X server that, directly or
+	    indirectly, communicates with real input and display
+	    hardware should declare in their control data that they
+	    provide the virtual package <tt>xserver</tt>.<footnote>
+	      <p>
+		This implements current practice, and provides an
+		actual policy for usage of the <tt>xserver</tt>
+		virtual package which appears in the virtual packages
+		list.  In a nutshell, X servers that interface
+		directly with the display and input hardware or via
+		another subsystem (e.g., GGI) should provide
+		<tt>xserver</tt>.  Things like <tt>Xvfb</tt>,
+		<tt>Xnest</tt>, and <tt>Xprt</tt> should not.
+	      </p>
+	    </footnote>
+	  </p>
+	</sect1>
 
-        <p>
-	  <em>Packages that provide window managers</em> should declare in
-	  their control data that they provide the virtual package
-	  <tt>x-window-manager</tt>.  They should also register themselves as an
-	  alternative for <tt>/usr/bin/x-window-manager</tt>, with a priority
-	  calculated as follows:
-	  <list compact="compact">
-	    <item>Start with a priority of 20.</item>
-	    <item>If the window manager supports the Debian menu system,
-		add 20 points if this support is available in the
-		package's default configuration (i.e., no
-		configuration files belonging to the system or user
-		have to be edited to activate the feature); if
-		configuration files must be modified, add only 10
-		points.</item>
-	    <item>If the window manager permits the X session to be
-		restarted using a <em>different</em> window manager
-		(without killing the X server) in its default
-		configuration, add 10 points; otherwise add
-		none.</item>
-	  </list>
-	</p>
+	<sect1>
+	  <heading>Packages providing a terminal emulator</heading>
 
-	<p>
-	  <em>Packages that provide fonts for the X Window System</em>
-	  must do a number of things to ensure that they are both
-	  available without modification of the X or font server
-	  configuration, and that they do not corrupt files used by
-	  other font packages to register information about themselves.
-	  <enumlist>
-	    <item>
-		Fonts of any type supported by the X Window System
-		should be be in a separate binary package from any
-		executables, libraries, or documentation (except that
-		specific to the fonts shipped); if a program or
-		library is <em>unusable</em> without one or more
-		specific fonts, the package containing the program or
-		library should declare a dependency on the package(s)
-		containing the font(s) it requires.
-	    </item>
-	    <item>
-		BDF fonts should be converted to PCF fonts with the
-		<tt>bdftopcf</tt> utility (available in the
-		<tt>xutils</tt> package), <tt>gzip</tt>ped, and
-		placed in a directory that corresponds to their
-		resolution:
-		<list compact="compact">
-		  <item>
-		      100 dpi fonts should be placed in
-		      <tt>/usr/X11R6/lib/X11/fonts/100dpi/</tt>.
-		  </item>
-		  <item>
-		      75 dpi fonts should be placed in
-		      <tt>/usr/X11R6/lib/X11/fonts/75dpi/</tt>.
-		  </item>
-		  <item>
-		      Character-cell fonts, cursor fonts, and other
-		      low-resolution fonts should be placed in
-		      <tt>/usr/X11R6/lib/X11/fonts/misc/</tt>.
-		  </item>
-		</list>
-	    </item>
-	    <item>
-		Speedo fonts should be placed in
-		<tt>/usr/X11R6/lib/X11/fonts/Speedo/</tt>.
-	    </item>
-	    <item>
-		Type 1 fonts should be placed in
-		<tt>/usr/X11R6/lib/X11/fonts/Type1/</tt>.  If font
-		metric files are available, they may be placed here as
-		well.
-	    </item>
-	    <item>
-		Subdirectories of <tt>/usr/X11R6/lib/X11/fonts/</tt>
-		other than those listed above should be neither created nor
-		used.  (The <tt>PEX</tt> and <tt>cyrillic</tt> directories are
-		excepted for historical reasons, but installation of files into
-		these directories remains discouraged.)
-	    </item>
-	    <item>
-		Font packages may, instead of placing files directly in
-		the X font directories listed above, provide symbolic links in
-		the font directory which point to the files' actual location
-		in the filesystem.  Such a location should comply with the
-		FHS.
-	    </item>
-	    <item>
-		Font packages should not contain both 75dpi and 100dpi
-		versions of a font.  If both are available, they should be
-		provided in separate binary packages with "-75dpi" or "-100dpi"
-		appended to the names of the packages containing the
-		corresponding fonts.
-	    </item>
-	    <item>
-		Fonts destined for the <tt>misc</tt> subdirectory should
-		not be included in the same package as 75dpi or 100dpi fonts;
-		instead, they should be provided in a separate package with
-		"-misc" appended to its name.
-	    </item>
-	    <item>
-		Font packages <em>must not</em> provide the files
-		<tt>fonts.dir</tt>, <tt>fonts.alias</tt>, or
-		<tt>fonts.scale</tt> in a font directory.
-		<list compact="compact">
-		  <item>
-		      <tt>fonts.dir</tt> files must not be provided at
-		      all.
-		  </item>
-		  <item>
-		      <tt>fonts.alias</tt> and <tt>fonts.scale</tt>
-		      files, if needed, should be provided in the
-		      directory
-		      <tt>/etc/X11/fonts/<em>fontdir</em>/<em>package</em>.<em>extension</em></tt>,
-		      where <em>fontdir</em> is the name of the
-		      subdirectory of
-		      <tt>/usr/X11R6/lib/X11/fonts/</tt> where the
-		      package's corresponding fonts are stored (e.g.,
-		      <tt>75dpi</tt> or <tt>misc</tt>),
-		      <em>package</em> is the name of the package that
-		      provides these fonts, and <em>extension</em> is
-		      either <tt>scale</tt> or <tt>alias</tt>,
-		      whichever corresponds to the file
-		      contents.
-		  </item>
-		</list>
-	    </item>
-	    <item>
-		Font packages must declare a dependency on
-		<tt>xutils</tt> and, in the package
-		post-installation and post-removal scripts, invoke the
-		<tt>mkfontdir</tt> command on each directory into
-		which they installed fonts.
-	    </item>
-	    <item>
-		Font packages that provide one or more
-		<tt>fonts.scale</tt> files as described above must declare a
-		versioned dependency on <tt>xutils (&gt;=
-		  4.0.2)</tt> and invoke <tt>update-fonts-scale</tt> on each
-		directory into which they installed fonts
-		<em>before</em> invoking <tt>mkfontdir</tt> on that
-		directory.  This invocation must occur in both the
-		post-installation and post-removal scripts.
-	    </item>
-	    <item>
-		Font packages that provide one or more
-		<tt>fonts.alias</tt> files as described above must
-		declare a versioned dependency on <tt>xutils
-		  (&gt;= 4.0.2)</tt> and, in the package
-		post-installation and post-removal scripts, invoke
-		<tt>update-fonts-alias</tt> on each directory into
-		which they installed fonts.
-	    </item>
-	    <item>
-		Font packages must not provide alias names for the
-		fonts they include which collide with alias names already in
-		use by fonts already packaged.
-	    </item>
-	    <item>
-		Font packages must not provide fonts with the same XLFD
-		registry name as another font already packaged.
-	    </item>
-	  </enumlist>
-	</p>
+	  <p>
+	    Packages that provide a terminal emulator for the X Window
+	    System which meet the criteria listed below should declare
+	    in their control data that they provide the virtual
+	    package <tt>x-terminal-emulator</tt>.  They should also
+	    register themselves as an alternative for
+	    <tt>/usr/bin/x-terminal-emulator</tt>, with a priority of
+	    20.
+	  </p>
 
-	<p>
-	  <em>Application defaults</em> files must be installed in the
-	  directory <tt>/etc/X11/app-defaults/</tt> (use of a
-	  localized subdirectory of <tt>/etc/X11/</tt> as described in
-	  the <em>X Toolkit Intrinsics - C Language Interface</em>
-	  manual is also permitted).  They must be registered as
-	  <em>conffile</em>s or handled as configuration files.  For
-	  programs that are not linked against the X Toolkit (Xt)
-	  library, customization of programs' X resources may also be
-	  supported with the provision of a file with the same name as
-	  that of the package placed in the
-	  <tt>/etc/X11/Xresources/</tt> directory, which must
-	  registered as a <em>conffile</em> or handled as a
-	  configuration file.  <em>Important:</em> packages that
-	  install files into the <tt>/etc/X11/Xresources/</tt>
-	  directory <em>must</em> declare a conflict with <tt>xbase
-	  (&lt;&lt; 3.3.2.3a-2)</tt>; if this is not done it is
-	  possible for the installing package to destroy a
-	  previously-existing <tt>/etc/X11/Xresources</tt> file which
-	  had been customized by the system administrator.
-	</p>
+	  <p>
+	    To be an <tt>x-terminal-emulator</tt>, a program must:
+	    <list compact="compact">
+	      <item><p>
+		  Be able to emulate a DEC VT100 terminal, or a
+		  compatible terminal.
+		</p></item>
 
-	<p>
-	  <em>Packages using the X Window System should abide by the
-	    FHS standard whenever possible</em>; they should install
-	    binaries, libraries, manual pages, and other files in
-	    FHS-mandated locations wherever possible.  This means that
-	    files must not be installed into <tt>/usr/X11R6/bin/</tt>,
-	    <tt>/usr/X11R6/lib/</tt>, or <tt>/usr/X11R6/man/</tt>
-	    unless this is necessary for the package to operate
-	    properly.  Configuration files for window managers and
+	      <item><p>
+		  Support the command-line option <tt>-e
+		    <var>command</var></tt>, which creates a new
+		  terminal window<footnote>
+		    <p>
+		      "New terminal window" does not necessarily mean
+		      a new top-level X window directly parented by
+		      the window manager; it could, if the terminal
+		      emulator application were so coded, be a new
+		      "view" in a multiple-document interface (MDI).
+		    </p>
+		  </footnote>
+		  and runs the specified <var>command</var>.
+		</p></item>
+
+	      <item><p>
+		  Support the command-line option <tt>-T
+		    <var>title</var></tt>, which creates a new terminal
+		  window with the window title <var>title</var>.
+		</p></item>
+	    </list>
+	  </p>
+	</sect1>
+
+	<sect1>
+	  <heading>Packages providing a window manager</heading>
+
+	  <p>
+	    Packages that provide a window manager should declare in
+	    their control data that they provide the virtual package
+	    <tt>x-window-manager</tt>.  They should also register
+	    themselves as an alternative for
+	    <tt>/usr/bin/x-window-manager</tt>, with a priority
+	    calculated as follows:
+	    <list compact="compact">
+	      <item><p>Start with a priority of 20.</p></item>
+
+	      <item>
+		<p>
+		  If the window manager supports the Debian menu
+		  system, add 20 points if this support is available
+		  in the package's default configuration (i.e., no
+		  configuration files belonging to the system or user
+		  have to be edited to activate the feature); if
+		  configuration files must be modified, add only 10
+		  points.
+		</p>
+	      </item>
+
+	      <item>
+		<p>
+		  If the window manager permits the X session to be
+		  restarted using a <em>different</em> window manager
+		  (without killing the X server) in its default
+		  configuration, add 10 points; otherwise add none.
+		</p>
+	      </item>
+	    </list>
+	  </p>
+	</sect1>
+
+	<sect1>
+	  <heading>Packages providing fonts</heading>
+
+	  <p>
+	    Packages that provide fonts for the X Window
+	    System<footnote>
+	      <p>
+		For the purposes of Debian Policy, a "font for the X
+		Window System" is one which is accessed via X protocol
+		requests.  Fonts for the Linux console, for PostScript
+		renderers, or any other purpose, do not fit this
+		definition.  Any tool which makes such fonts available
+		to the X Window System, however, must abide by this
+		font policy.
+	      </p>
+	    </footnote>
+	    must do a number of things to ensure that they are both
+	    available without modification of the X or font server
+	    configuration, and that they do not corrupt files used by
+	    other font packages to register information about
+	    themselves.
+	    <enumlist>
+	      <item>
+		<p>
+		  Fonts of any type supported by the X Window System
+		  must be be in a separate binary package from any
+		  executables, libraries, or documentation (except
+		  that specific to the fonts shipped, such as their
+		  license information).  If one or more of the fonts
+		  so packaged are necessary for proper operation of
+		  the package with which they are associated the font
+		  package may be Recommended; if the fonts merely
+		  provide an enhancement, a Suggests relationship may
+		  be used.  Packages must not Depend on font
+		  packages.<footnote>
+		    <p>
+		      This is because the X server may retrieve fonts
+		      from the local filesystem or over the network
+		      from an X font server; the Debian package system
+		      is empowered to deal only with the local
+		      filesystem.
+		    </p>
+		  </footnote>
+		</p>
+	      </item>
+
+	      <item>
+		<p>
+		  BDF fonts must be converted to PCF fonts with the
+		  <prgn>bdftopcf</prgn> utility (available in the
+		  <tt>xutils</tt> package, <tt>gzip</tt>ped, and
+		  placed in a directory that corresponds to their
+		  resolution:
+		  <list compact="compact">
+		    <item><p>
+			100 dpi fonts must be placed in
+			<tt>/usr/X11R6/lib/X11/fonts/100dpi/</tt>.
+		      </p></item>
+
+		    <item><p>
+			75 dpi fonts must be placed in
+			<tt>/usr/X11R6/lib/X11/fonts/75dpi/</tt>.
+		      </p></item>
+
+		    <item><p>
+			Character-cell fonts, cursor fonts, and other
+			low-resolution fonts must be placed in
+			<tt>/usr/X11R6/lib/X11/fonts/misc/</tt>.
+		      </p></item>
+		  </list>
+		</p>
+	      </item>
+
+	      <item><p>
+		  Speedo fonts must be placed in
+		  <tt>/usr/X11R6/lib/X11/fonts/Speedo/</tt>.
+		</p></item>
+
+	      <item><p>
+		  Type 1 fonts must be placed in
+		  <tt>/usr/X11R6/lib/X11/fonts/Type1/</tt>.  If font
+		  metric files are available, they must be placed here
+		  as well.
+		</p></item>
+
+	      <item>
+		<p>
+		  Subdirectories of <tt>/usr/X11R6/lib/X11/fonts/</tt>
+		  other than those listed above must be neither
+		  created nor used.  (The <tt>PEX</tt>, <tt>CID</tt>,
+		  and <tt>cyrillic</tt> directories are excepted for
+		  historical reasons, but installation of files into
+		  these directories remains discouraged.)
+		</p>
+	      </item>
+
+	      <item>
+		<p>
+		  Font packages may, instead of placing files directly
+		  in the X font directories listed above, provide
+		  symbolic links in the font directory which point to
+		  the files' actual location in the filesystem.  Such
+		  a location must comply with the FHS.
+		</p>
+	      </item>
+
+	      <item>
+		<p>
+		  Font packages should not contain both 75dpi and
+		  100dpi versions of a font.  If both are available,
+		  they should be provided in separate binary packages
+		  with <tt>-75dpi</tt> or <tt>-100dpi</tt> appended to
+		  the names of the packages containing the
+		  corresponding fonts.
+		</p>
+	      </item>
+
+	      <item>
+		<p>
+		  Fonts destined for the <tt>misc</tt> subdirectory
+		  should not be included in the same package as 75dpi
+		  or 100dpi fonts; instead, they should be provided in
+		  a separate package with <tt>-misc</tt> appended to
+		  its name.
+		</p>
+	      </item>
+
+	      <item>
+		<p>
+		  Font packages must not provide the files
+		  <tt>fonts.dir</tt>, <tt>fonts.alias</tt>, or
+		  <tt>fonts.scale</tt> in a font directory:
+		  <list>
+		    <item><p>
+			<tt>fonts.dir</tt> files must not be provided at all.
+		      </p></item>
+
+		    <item>
+		      <p>
+			<tt>fonts.alias</tt> and <tt>fonts.scale</tt>
+			files, if needed, should be provided in the
+			directory
+			<tt>/etc/X11/fonts/<var>fontdir</var>/<var>package</var>.<var>extension</var></tt>,
+			where <var>fontdir</var> is the name of the
+			subdirectory of
+			<tt>/usr/X11R6/lib/X11/fonts/</tt> where the
+			package's corresponding fonts are stored
+			(e.g., <tt>75dpi</tt> or <tt>misc</tt>),
+			<var>package</var> is the name of the package
+			that provides these fonts, and
+			<var>extension</var> is either <tt>scale</tt>
+			or <tt>alias</tt>, whichever corresponds to
+			the file contents.
+		      </p>
+		    </item>
+		  </list>
+		</p>
+	      </item>
+
+	      <item>
+		<p>
+		  Font packages must declare a dependency on
+		  <tt>xutils (&gt;&gt; 4.0.3)</tt> in their control
+		  data.
+		</p>
+	      </item>
+
+	      <item>
+		<p>
+		  Font packages that provide one or more
+		  <tt>fonts.scale</tt> files as described above must
+		  invoke <prgn>update-fonts-scale</prgn> on each
+		  directory into which they installed fonts
+		  <em>before</em> invoking
+		  <prgn>update-fonts-dir</prgn> on that directory.
+		  This invocation must occur in both the
+		  <prgn>postinst</prgn> (for all arguments) and
+		  <prgn>postrm</prgn> (for all arguments except
+		  <tt>upgrade</tt>) scripts.
+		</p>
+	      </item>
+
+	      <item>
+		<p>
+		  Font packages that provide one or more
+		  <tt>fonts.alias</tt> files as described above must
+		  invoke <prgn>update-fonts-alias</prgn> on each
+		  directory into which they installed fonts.  This
+		  invocation must occur in both the
+		  <prgn>postinst</prgn> (for all arguments) and
+		  <prgn>postrm</prgn> (for all arguments except
+		  <tt>upgrade</tt>) scripts.
+		</p>
+	      </item>
+
+	      <item>
+		<p>
+		  Font packages must invoke
+		  <prgn>update-fonts-dir</prgn> on each directory into
+		  which they installed fonts.  This invocation must
+		  occur in both the <prgn>postinst</prgn> (for all
+		  arguments) and <prgn>postrm</prgn> (for all
+		  arguments except <tt>upgrade</tt>) scripts.
+		</p>
+	      </item>
+
+	      <item>
+		<p>
+		  Font packages must not provide alias names for the
+		  fonts they include which collide with alias names
+		  already in use by fonts already packaged.
+		</p>
+	      </item>
+
+	      <item>
+		<p>
+		  Font packages must not provide fonts with the same
+		  XLFD registry name as another font already packaged.
+		</p>
+	      </item>
+	    </enumlist>
+	  </p>
+	</sect1>
+
+	<sect1>
+	  <heading>Application defaults files</heading>
+
+	  <p>
+	    Application defaults files must be installed in the
+	    directory <tt>/etc/X11/app-defaults/</tt> (use of a
+	    localized subdirectory of <tt>/etc/X11/</tt> as described
+	    in the <em>X Toolkit Intrinsics - C Language
+	    Interface</em> manual is also permitted).  They must be
+	    registered as <tt>conffile</tt>s or handled as
+	    configuration files.  Packages must not provide the
+	    directory <tt>/usr/X11R6/lib/X11/app-defaults/</tt>.
+	  </p>
+
+	  <p>
+	    Customization of programs' X resources may also be
+	    supported with the provision of a file with the same name
+	    as that of the package placed in the
+	    <tt>/etc/X11/Xresources/</tt> directory, which must
+	    registered as a <tt>conffile</tt> or handled as a
+	    configuration file.<footnote>
+	      <p>
+		Note that this mechanism is not the same as using
+		app-defaults; app-defaults are tied to the client
+		binary on the local filesystem, whereas X resources
+		are stored in the X server and affect all connecting
+		clients.
+	      </p>
+	    </footnote>
+	    <em>Important:</em> packages that install files into the
+	    <tt>/etc/X11/Xresources/</tt> directory must conflict with
+	    <tt>xbase (&lt;&lt; 3.3.2.3a-2)</tt>; if this is not done
+	    it is possible for the installing package to destroy a
+	    previously-existing <tt>/etc/X11/Xresources</tt> file
+	    which had been customized by the system administrator.
+	  </p>
+	</sect1>
+
+	<sect1>
+	  <heading>Installation directory issues</heading>
+
+	  <p>
+	    Packages using the X Window System should not be
+	    configured to install files under the <tt>/usr/X11R6/</tt>
+	    directory unless they use <prgn>imake</prgn>. The
+	    <tt>/usr/X11R6/</tt> directory hierarchy should be
+	    regarded as deprecated for all packages except the X
+	    Window System itself, and those which use the
+	    <prgn>imake</prgn> program it provides, in which case the
+	    packages may transition out of the <tt>/usr/X11R6/</tt>
+	    directory at the maintainer's discretion.<footnote>
+	      <p>
+		<prgn>Imake</prgn>-using programs are exempt because,
+		as long as they are written correctly, the pathnames
+		they use to locate resources and install themselves
+		are derived wholly from the X Window System
+		configuration.  Thus, in the event that the X Window
+		System moves to <tt>/usr/X11R7/</tt>,
+		<tt>/usr/X12/</tt>, or just plain <tt>/usr/</tt>, all
+		that is required for these programs is a recompile
+		against the corresponding X Window System library
+		development packages.
+	      </p>
+	    </footnote>
+	    Programs that use GNU <prgn>autoconf</prgn> and
+	    <prgn>automake</prgn> are usually easily configured at
+	    compile time to use <tt>/usr/</tt> instead of
+	    <tt>/usr/X11R6/</tt>, and this should be done whenever
+	    possible.  Configuration files for window managers and
 	    display managers should be placed in a subdirectory of
 	    <tt>/etc/X11/</tt> corresponding to the package name due
 	    to these programs' tight integration with the mechanisms
@@ -6906,43 +7075,54 @@ name [`<var>syshostname</var>']:
 	    <tt>/usr/X11R6/lib/X11/</tt> is permitted but discouraged;
 	    package maintainers should determine if subdirectories of
 	    <tt>/usr/lib/</tt> and <tt>/usr/share/</tt> can be used
-	    instead (symlinks from the X11R6 directories to
-	    FHS-compliant locations is encouraged if the program is
-	    not easily configured to look elsewhere for its files).
-	    Packages must not provide or install files into the
-	    directories <tt>/usr/bin/X11/</tt>,
-	    <tt>/usr/include/X11/</tt>, or <tt>/usr/lib/X11/</tt>.
-	    Files within a package should, however, make reference to
-	    these directories, rather than their X11R6-named
-	    counterparts <tt>/usr/X11R6/bin/</tt>,
-	    <tt>/usr/X11R6/include/X11/</tt>, and
-	    <tt>/usr/X11R6/lib/X11/</tt>, if the resources being
-	    referred to have not been moved to FHS-compliant
+	    instead.  (The use of symbolic links from the
+	    <tt>X11R6</tt> directories to other FHS-compliant
+	    locations is encouraged if the program is not easily
+	    configured to look elsewhere for its files.)  Packages
+	    must not provide or install files into the directories
+	    <tt>/usr/bin/X11/</tt>, <tt>/usr/include/X11/</tt> or
+	    <tt>/usr/lib/X11/</tt>.  Files within a package should,
+	    however, make reference to these directories, rather than
+	    their <tt>X11R6</tt>-named counterparts
+	    <tt>/usr/X11R6/bin/</tt>, <tt>/usr/X11R6/include/X11/</tt>
+	    and <tt>/usr/X11R6/lib/X11/</tt>, if the resources being
+	    referred to have not been moved to other FHS-compliant
 	    locations.
-	</p>
+	  </p>
+	</sect1>
 
- 	<p>
-	  <em>Programs that require the non-DFSG-compliant OSF/Motif
-	    library</em> should be compiled against and tested with
-	  LessTif (a free re-implementation of Motif) instead.  If the
-	  maintainer judges that the program or programs do not work
-	  sufficiently well with LessTif to be distributed and
-	  supported, but do so when compiled against Motif, then two
-	  versions of the package should be created; one linked
-	  statically against Motif and with <tt>-smotif</tt> appended
-	  to the package name, and one linked dynamically against
-	  Motif and with <tt>-dmotif</tt> appended to the package
-	  name.  Both Motif-linked versions are dependent upon
-	  non-DFSG-compliant software and thus cannot be uploaded to
-	  the main distribution; if the software is itself
-	  DFSG-compliant it may be uploaded to the contrib
-	  distribution.  While known existing versions of OSF/Motif
-	  permit unlimited redistribution of binaries linked against
-	  the library (whether statically or dynamically), it is the
-	  package maintainer's responsibility to determine whether
-	  this is permitted by the license of the copy of OSF/Motif in
-	  his or her possession.
-	</p>
+	<sect1>
+	  <heading>The OSF/Motif and OpenMotif libraries</heading>
+
+	  <p>
+	    <em>Programs that require the non-DFSG-compliant OSF/Motif or
+	      OpenMotif libraries</em><footnote>
+	      <p>
+		OSF/Motif and OpenMotif are collectively referred to as
+		"Motif" in this policy document.
+	      </p>
+	    </footnote>
+	    should be compiled against and tested with LessTif (a free
+	    re-implementation of Motif) instead.  If the maintainer
+	    judges that the program or programs do not work
+	    sufficiently well with LessTif to be distributed and
+	    supported, but do so when compiled against Motif, then two
+	    versions of the package should be created; one linked
+	    statically against Motif and with <tt>-smotif</tt>
+	    appended to the package name, and one linked dynamically
+	    against Motif and with <tt>-dmotif</tt> appended to the
+	    package name.  Both Motif-linked versions are dependent
+	    upon non-DFSG-compliant software and thus cannot be
+	    uploaded to the <em>main</em> distribution; if the
+	    software is itself DFSG-compliant it may be uploaded to
+	    the <em>contrib</em> distribution.  While known existing
+	    versions of Motif permit unlimited redistribution of
+	    binaries linked against the library (whether statically or
+	    dynamically), it is the package maintainer's
+	    responsibility to determine whether this is permitted by
+	    the license of the copy of Motif in his or her possession.
+	  </p>
+	</sect1>
       </sect>
 
       <sect>
@@ -6964,16 +7144,18 @@ name [`<var>syshostname</var>']:
 	  Please refer to the `Debian Emacs Policy' (documented in
 	  <tt>debian-emacs-policy.gz</tt> of the
 	  <prgn>emacsen-common</prgn> package) for details of how to
-	  package emacs lisp programs.</p></sect>
-
+	  package emacs lisp programs.
+	</p>
+      </sect>
 
       <sect>
 	<heading>Games</heading>
 
 	<p>
-	  The permissions on /var/games are 755
-	  <tt>root.root</tt>.</p>
-
+	  The permissions on <tt>/var/games</tt> are mode 755, owner
+	  <tt>root</tt> and group <tt>root</tt>.
+	</p>
+	  
 	<p>
 	  Each game decides on its own security policy.</p>
 
@@ -7068,13 +7250,28 @@ debian/tmp/usr/share/man/man[1-9]/the_requested_manpage.[1-9].gz
 	  is better to use a symbolic link than the <tt>.so</tt>
 	  feature, but there is no need to fiddle with the relevant
 	  parts of the upstream source to change from <tt>.so</tt> to
-	  symlinks: don't do it unless it's easy.  You should not create hard
-	  links in the manual page directories, nor put
+	  symlinks: don't do it unless it's easy.  You should not
+	  create hard links in the manual page directories, nor put
 	  absolute filenames in <tt>.so</tt> directives.  The filename
 	  in a <tt>.so</tt> in a manpage should be relative to the
 	  base of the manpage tree (usually
-	  <tt>/usr/share/man</tt>).</p></sect>
-
+	  <tt>/usr/share/man</tt>). If you do not create any links
+	  (whether symlinks, hard links, or <tt>.so</tt> directives)
+	  in the filesystem to the alternate names of the manpage,
+	  then you should not rely on <prgn>man</prgn> finding your
+	  manpage under those names based solely on the information in
+	  the manpage's header.<footnote>
+	    <p>
+	      Supporting this in <prgn>man</prgn> often requires
+	      unreasonable processing time to find a manual page or to
+	      report that none exists, and moves knowledge into man's
+	      database that would be better left in the filesystem.
+	      This support is therefore deprecated and will cease to
+	      be present in the future.
+	    </p>
+ 	  </footnote>
+ 	</p>
+      </sect>
 
       <sect>
 	<heading>Info documents</heading>
@@ -7086,7 +7283,7 @@ debian/tmp/usr/share/man/man[1-9]/the_requested_manpage.[1-9].gz
 	<p>
 	  Your package should call <prgn>install-info</prgn> to update the Info
 	  <tt>dir</tt>
-	  file, in its post-installation script:
+	  file, in its <prgn>postinst</prgn> script:
 	  <example compact="compact">
 install-info --quiet --section Development Development \
 /usr/share/info/foobar.info
@@ -7104,7 +7301,7 @@ install-info --quiet --section Development Development \
 	  the second is used when creating a new one.</p>
 
 	<p>
-	  You should remove the entries in the pre-removal script:
+	  You should remove the entries in the <prgn>prerm</prgn> script:
 	  <example compact="compact">
 install-info --quiet --remove /usr/share/info/foobar.info
 	  </example></p>
@@ -7203,8 +7400,7 @@ fi
 	  you should if possible ship HTML versions in a binary
 	  package, in the directory
 	  <tt>/usr/share/doc/<var>appropriate package</var></tt> or its
-	  subdirectories.
-	  <footnote>
+	  subdirectories.<footnote>
 	    <p>The rationale: The important thing here is that HTML
 	      docs should be available in <em>some</em> package, not
 	      necessarily in the main binary package, though. </p>
@@ -7253,8 +7449,7 @@ fi
 	  files /usr/share/common-licenses/BSD,
 	  /usr/share/common-licenses/Artistic,
 	  /usr/share/common-licenses/GPL, and
-	  /usr/share/common-licenses/LGPL.
-	  <footnote>
+	  /usr/share/common-licenses/LGPL.<footnote>
 	    <p>
 	      Why "licenses" and not "copyright"? Because
 	      <tt>/usr/doc/copyright</tt> used to contain all the
@@ -7317,8 +7512,7 @@ fi
 	  <tt>lynx -dump -nolist</tt>. If the upstream changelog files
 	  do not already conform to this naming convention, then this
 	  may be achieved either by renaming the files, or adding a
-	  symbolic link, at the maintainer's discretion.
-	  <footnote>
+	  symbolic link, at the maintainer's discretion.<footnote>
 	    <p>
 	      Rationale: People should not have to look into two
 	      places for upstream changelogs merely because they are
