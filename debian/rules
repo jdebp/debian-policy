@@ -67,7 +67,7 @@ BYHAND_FILES = $(SGML_FILES:=.txt.gz) $(SGML_FILES:=.html.tar.gz) \
 	       debconf_spec/debconf_specification.txt.gz \
 	       debconf_spec/debconf_specification.html \
 	       libc6-migration.txt virtual-package-names-list.txt \
-	       policy.ps.gz policy.pdf.gz \
+	       policy.ps.gz policy.pdf.gz upgrading-checklist.txt \
 	       $(FHS_BYHAND)
 
 FILES_TO_CLEAN  = debian/files debian/buildinfo  debian/substvars \
@@ -92,11 +92,12 @@ all build: stamp-build
 stamp-build:
 	$(checkdir)
 	-test -f stamp-configure || $(MAKE) -f debian/rules configure
+	# Set PERL5LIB to use our version of DebianDoc_SGML::Format::Text
 	set -e; \
 	for file in $(SGML_FILES); do \
 	  nsgmls -gues $$file.sgml; \
 	  debiandoc2html $$file.sgml; \
-	  debiandoc2text $$file.sgml; \
+	  env PERL5LIB=. debiandoc2text $$file.sgml; \
 	  if [ -f $$file.text ]; then mv $$file.text $$file.txt; fi; \
 	  gzip -9 $$file.txt; \
 	  tar -cf $$file.html.tar $$file.html; \
@@ -191,9 +192,10 @@ stamp-policy:  build
 	chown		    -R root:root debian/tmp
 	chmod		    -R go=rX debian/tmp
 	dpkg		    --build debian/tmp ..
-	debiandoc2latexps   policy.sgml
+	# Set PERL5LIB to use our version of DebianDoc_SGML::Format::LaTeX
+	env PERL5LIB=. debiandoc2latexps   policy.sgml
 	gzip -9f            policy.ps
-	debiandoc2latexpdf  policy.sgml
+	env PERL5LIB=. debiandoc2latexpdf  policy.sgml
 	gzip -9f  	    policy.pdf
 	set -e; \
 	for i in	    $(BYHAND_FILES); do                          \
