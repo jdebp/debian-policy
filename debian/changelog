@@ -30,6 +30,8 @@ debian-policy (3.5.9.0) unstable; urgency=low
   * Rearranged the shared library information properly, closes: #109166.
     This change also centralizes the info on how to ship static libraries
     in one place (hopefully not too ambiguous), closes: #93975.
+  * Allow examples to be placed in /usr/share/doc/package/ in packages
+    that are meant to provide examples, closes: #69864.
 
  -- 
 
