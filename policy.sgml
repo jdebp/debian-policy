@@ -2469,31 +2469,54 @@ Package: libc6
 	  <heading><tt>Architecture</tt></heading>
 
 	  <p>
-	    This is the architecture string; it is a single word for
-	    the Debian architecture. The special value <tt>all</tt>
-	    indicates that the package is architecture-independent.
+	    Depending on context and the control file used, the
+	    <tt>Architecture</tt> field can include the following sets of
+	    values:
+	    <list>
+		<item>A unique single word identifying a Debian machine
+		      architecture, see <ref id="arch-spec">.
+		<item><tt>all</tt>, which indicates an
+		      architecture-independent package.
+		<item><tt>any</tt>, which indicates a package available
+		      for building on any architecture.
+		<item><tt>source</tt>, which indicates a source package.
+	    </list>
 	  </p>
 
 	  <p>
 	    In the main <file>debian/control</file> file in the source
 	    package, or in the source package control file
-	    <file>.dsc</file>, a list of architectures (separated by
-	    spaces) is also allowed, as is the special value
-	    <tt>any</tt>.  A list indicates that the source will build
-	    an architecture-dependent package, and will only work
-	    correctly on the listed architectures.  <tt>any</tt>
-	    indicates that though the source package isn't dependent
-	    on any particular architecture and should compile fine on
-	    any one, the binary package(s) produced are not
-	    architecture-independent but will instead be specific to
-	    whatever the current build architecture is.
+	    <file>.dsc</file>, one may specify a list of architectures
+	    separated by spaces, or the special values <tt>any</tt> or
+	    <tt>all</tt>.
 	  </p>
 
 	  <p>
-	    In a <file>.changes</file> file the <tt>Architecture</tt>
+	    Specifying <tt>any</tt> indicates that the source package
+	    isn't dependent on any particular architecture and should
+	    compile fine on any one. The produced binary package(s)
+	    will be specific to whatever the current build architecture
+	    is.<footnote>
+		This is the most often used setting, and is recommended
+		for new packages that aren't <tt>Architecture: all</tt>.
+	    </footnote>
+	  </p>
+
+	  <p>
+	    Specifying a list of architectures indicates that the source
+	    will build an architecture-dependent package, and will only
+	    work correctly on the listed architectures.<footnote>
+		This is a setting used for a minority of cases where the
+		program is not portable. Generally, it should not be used
+		for new packages.
+	    </footnote>
+	  </p>
+
+	  <p>
+	    In a <file>.changes</file> file, the <tt>Architecture</tt>
 	    field lists the architecture(s) of the package(s)
 	    currently being uploaded.  This will be a list; if the
-	    source for the package is being uploaded too the special
+	    source for the package is also being uploaded, the special
 	    entry <tt>source</tt> is also present.
 	  </p>
 
