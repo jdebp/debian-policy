@@ -1,3 +1,9 @@
+debian-policy (3.5.2.0) unstable; urgency=low
+
+  * Add XFree86 app-defaults ammendment             closes: Bug#83069
+
+ -- Julian Gilbey <jdg@debian.org>  Sun, 18 Feb 2001 14:11:49 +0000
+
 debian-policy (3.5.1.0) unstable; urgency=low
 
   * Removed deprecated virtual package names        closes: Bug#84641
