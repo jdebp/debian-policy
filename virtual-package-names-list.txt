@@ -80,7 +80,7 @@ System
                          other applications
  time-daemon             anything that serves as a time daemon
  ups-monitor             anything that is capable of controlling an UPS
- cron-daemon             anything that is capable of executing scheduled commands
+
 
 Documentation
 -------------
