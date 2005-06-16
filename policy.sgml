@@ -6153,7 +6153,7 @@
 	  <em>Application defaults</em> files must be installed in the
 	  directory <tt>/etc/X11/app-defaults/</tt> (use of a
 	  localized subdirectory of <tt>/etc/X11/</tt> as described in
-	  the <emph>X Toolkit Intrinsics - C Language Interface</emph>
+	  the <em>X Toolkit Intrinsics - C Language Interface</em>
 	  manual is also permitted).  They must be registered as
 	  <em>conffile</em>s or handled as configuration files.  For
 	  programs that are not linked against the X Toolkit (Xt)
