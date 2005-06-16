@@ -1,3 +1,10 @@
+debian-policy (3.5.5.1) unstable; urgency=low
+
+  * Change footnote about urgency values to the now-current list: low,
+    medium, high, emergency.
+
+ --
+
 debian-policy (3.5.5.0) unstable; urgency=low
 
   * Fixed up incorrect entries in the changelog (there was an erroneous
