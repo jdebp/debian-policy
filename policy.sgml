@@ -2108,7 +2108,7 @@
 
 	<p>
 	  The architectures we build on and build for are determined
-	  by <prgn>make</prgn> variables using
+	  by <prgn>make</prgn> variables using the utility
 	  <prgn>dpkg-architecture</prgn>.  You can determine the
 	  Debian architecture and the GNU style architecture
 	  specification string for the build machine (the machine type
@@ -2240,10 +2240,17 @@
 	  <footnote>
 	    <p>
 	      To be precise, the string should match the following
-	      Perl regular expression:
+	      Perl regular expression (where $pound=<tt>#</tt>;):
 	      <example>
-/closes:\s*(?:bug)?\#?\s?\d+(?:,\s*(?:bug)?\#?\s?\d+)*/i
+/closes:\s*(?:bug)?${pound}?\s?\d+(?:,\s*(?:bug)?\${pound}?\s?\d+)*/i
 	      </example>
+	      <footnote>
+		<p>We had to introduce the $pound variable in the
+		  regexp above because otherwise the utilities
+		  rendering the policy documents gor confused by a
+		  backslashed "#" symbol.
+		</p>
+	      </footnote>
 	      Then all of the bug numbers listed will be closed by the
 	      archive maintenance script (<prgn>katie</prgn>), or in
 	      the case of an NMU, marked as fixed.
