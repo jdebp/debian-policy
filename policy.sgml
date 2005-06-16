@@ -7812,7 +7812,7 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	</p>
 
 	<p>
-	  If the purpose of a package to provide examples, then the
+	  If the purpose of a package is to provide examples, then the
 	  example files may be installed into
 	  <file>/usr/share/doc/<var>package</var></file>.
 	</p>
