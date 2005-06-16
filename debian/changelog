@@ -6,8 +6,9 @@ debian-policy (3.5.4.1) unstable; urgency=low
   * Add section numbers to upgrading-checklist for all revisions from
     3.0.0 onwards
   * Complete rewrite (and renumbering) of sections 9.1 and 9,2
+  * This time *really* include the HTML version of the FHS
 
- --
+ -- 
 
 debian-policy (3.5.4.0) unstable; urgency=low
 

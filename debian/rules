@@ -18,15 +18,15 @@ ifdef ARCH
   ha:=-a$(ARCH)
 endif
 
-# set the dpkg-architecture vars
-export DEB_BUILD_ARCH      := $(shell dpkg-architecture $(ha) -qDEB_BUILD_ARCH)
-export DEB_BUILD_GNU_CPU   := $(shell dpkg-architecture $(ha) -qDEB_BUILD_GNU_CPU)
-export DEB_BUILD_GNU_SYSTEM:= $(shell dpkg-architecture $(ha) -qDEB_BUILD_GNU_SYSTEM)
-export DEB_BUILD_GNU_TYPE  := $(shell dpkg-architecture $(ha) -qDEB_BUILD_GNU_TYPE)
-export DEB_HOST_ARCH       := $(shell dpkg-architecture $(ha) -qDEB_HOST_ARCH)
-export DEB_HOST_GNU_CPU    := $(shell dpkg-architecture $(ha) -qDEB_HOST_GNU_CPU)
-export DEB_HOST_GNU_SYSTEM := $(shell dpkg-architecture $(ha) -qDEB_HOST_GNU_SYSTEM)
-export DEB_HOST_GNU_TYPE   := $(shell dpkg-architecture $(ha) -qDEB_HOST_GNU_TYPE)
+# set the dpkg-architecture vars; but we don't use them, so we'll comment out
+# export DEB_BUILD_ARCH      := $(shell dpkg-architecture $(ha) -qDEB_BUILD_ARCH)
+# export DEB_BUILD_GNU_CPU   := $(shell dpkg-architecture $(ha) -qDEB_BUILD_GNU_CPU)
+# export DEB_BUILD_GNU_SYSTEM:= $(shell dpkg-architecture $(ha) -qDEB_BUILD_GNU_SYSTEM)
+# export DEB_BUILD_GNU_TYPE  := $(shell dpkg-architecture $(ha) -qDEB_BUILD_GNU_TYPE)
+# export DEB_HOST_ARCH       := $(shell dpkg-architecture $(ha) -qDEB_HOST_ARCH)
+# export DEB_HOST_GNU_CPU    := $(shell dpkg-architecture $(ha) -qDEB_HOST_GNU_CPU)
+# export DEB_HOST_GNU_SYSTEM := $(shell dpkg-architecture $(ha) -qDEB_HOST_GNU_SYSTEM)
+# export DEB_HOST_GNU_TYPE   := $(shell dpkg-architecture $(ha) -qDEB_HOST_GNU_TYPE)
 
 
 
@@ -116,7 +116,6 @@ stamp-build:
 	GROFF_TMAC_PATH=. cd fhs && $(MAKE) fhs.ps fhs.pdf fhs.txt
 	links -dump fhs-changes-2.1.html | perl -pe 's/[\r\0]//g' > \
                     fhs/fhs-changes-2.1.txt
-	cd fhs && tar zfx ../$(FHS_HTML)
 	links -dump upgrading-checklist.html | perl -pe 's/[\r\0]//g' > \
                     upgrading-checklist.txt
 	$(MAKE) -C debconf_spec all
@@ -153,7 +152,8 @@ stamp-policy:  build
 	@test $$(id | sed -e 's/(.*$$//' -e 's/^uid=//') || \
 		(echo need root priviledges; exit 1)
 	$(checkdir)
-	test -f stamp-build	|| $(MAKE) -f	     debian/rules build
+#	This is unnecessary; commenting out
+#	test -f stamp-build	|| $(MAKE) -f	     debian/rules build
 	-rm -rf			$(TMPTOP)
 	$(make_directory)	$(TMPTOP)/DEBIAN
 #	$(make_directory)	$(DOCDIR)/fsstnd
@@ -169,15 +169,17 @@ stamp-policy:  build
 #	$(install_file)	    $(FSSTND_FILES)	     $(DOCDIR)/fsstnd/
 	$(install_file)	    $(FHS_FILES)	     $(DOCDIR)/fhs/
 	$(install_file)	    debian/changelog	     $(DOCDIR)/
-	-gzip -fqr9	    $(DOCDIR)
-	-gunzip		    $(DOCDIR)/version.ent
+	# Be more specific with file compression
+	-gzip -q9	    $(DOCDIR)/*.txt $(DOCDIR)/*.sgml \
+				$(DOCDIR)/fhs/* $(DOCDIR)/changelog
 	$(install_file)	    debian/copyright	     $(DOCDIR)/
 	$(install_file)	    debian-policy.desc	     $(LIBDIR)/debian-policy
-	(tar cf -	    policy.html) |	     (cd $(DOCDIR);   tar xf -)
-	(tar cf -	    menu-policy.html) |	     (cd $(DOCDIR);   tar xf -)
-	(tar cf -	    perl-policy.html) |	     (cd $(DOCDIR);   tar xf -)
-	(tar cf -	    mime-policy.html) |	     (cd $(DOCDIR);   tar xf -)
-	(tar cf -	    policy-process.html) |   (cd $(DOCDIR);   tar xf -)
+	(tar cf -	    policy.html) |	     (cd $(DOCDIR) && tar xf -)
+	(tar cf -	    menu-policy.html) |	     (cd $(DOCDIR) && tar xf -)
+	(tar cf -	    perl-policy.html) |	     (cd $(DOCDIR) && tar xf -)
+	(tar cf -	    mime-policy.html) |	     (cd $(DOCDIR) && tar xf -)
+	(tar cf -	    policy-process.html) |   (cd $(DOCDIR) && tar xf -)
+	tar -C $(DOCDIR)/fhs -zfx $(FHS_HTML)
 	sed -e 's/#PACKAGE#/$(package)/g' debian/postinst.in > debian/postinst
 	sed -e 's/#PACKAGE#/$(package)/g' debian/prerm.in > debian/prerm
 	$(install_program)  debian/postinst          debian/tmp/DEBIAN/
