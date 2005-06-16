@@ -7071,7 +7071,10 @@ name ["<var>syshostname</var>"]:
 		      "view" in a multiple-document interface (MDI).
 		    </p>
 		  </footnote>
-		  and runs the specified <var>command</var>.
+		  and runs the specified <var>command</var>,
+		  interpreting the entirity of the rest of the command
+		  line as a command to pass straight to exec, in the 
+		  manner that <tt>xterm</tt> does.
 		</p></item>
 
 	      <item><p>

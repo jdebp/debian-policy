@@ -1,7 +1,10 @@
 debian-policy (3.5.9.1) unstable; urgency=low
-
+  Josip:
   * Fixed date, typos and added indentation in the virtual packages list,
     closes: #182792.
+  Manoj
+  * Clarify x-terminal-emulator virtual package eligibility, in an
+    extention to an informative footnote.                    closes: Bug#165063
 
  -- 
 
