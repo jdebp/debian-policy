@@ -1,8 +1,30 @@
 debian-policy (3.5.6.1) unstable; urgency=low
 
-  * 
+  * Set the cotact information for the FHS contact, and add mention of the
+    FHS mailing list.                                        closes: Bug#137172
+  * ftp://ftp.debian.org/debian/doc/package-developer/ certainly seems to
+    exist, and does contain the menu policy.     closes: Bug#110711, Bug#121977
+  * Added java related virtual packages                      closes: Bug#110713
+  * Fixed confusion in appar4ently contradictory wording about /etc/init.d
+    scripts: clarified to emphasize that the init.d files _are_
+    configuration files, and they _must_ have local changes preserved,
+    either (if they are present in the .deb) by marking them as conffiles
+    or, if they do not exist in the .deb file, by any other means. This
+    does not change any requirements, and should have no affect on any
+    conformant packages.                                     closes: Bug#132621
+  * Fixed error in doc-base file                             closes: Bug#137521
+  * fixed typo in virtual packages list                      closes: Bug#110446
+  * Fixed typo in upgrading checklist.                       closes: Bug#110705
+  * Fixed typo (dependencies) in the policy                  closes: Bug#122931
+  * Fixed grammar errors in the policy                       closes: Bug#126131
+  * While I am cleaning out bugs, these are old and the reporter no longer
+    wnats to pursue them, and there was never a consensus reached. If
+    there is interest, new bugs can be filed.      closes: Bug#51411, Bug#51412
+  * Added the virtual package dict-client                    closes: Bug#122996
+  * Added the virtual package foomatic-data                  closes: Bug#123570
+  * Added the virtual packages {x-}audio-mixer               closes: Bug#131781
 
- --
+ -- Manoj Srivastava <srivasta@debian.org>  Thu, 14 Mar 2002 12:16:53 -0600
 
 debian-policy (3.5.6.0) unstable; urgency=low
 

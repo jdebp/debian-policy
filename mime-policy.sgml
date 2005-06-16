@@ -84,7 +84,7 @@
       <p>
 	The latest copy of this document can be found on
 	<ftpsite>ftp.debian.org</ftpsite> at
-	<ftppath>/debian/doc/package-developer/mime_policy.txt</ftppath> 
+	<ftppath>/debian/doc/package-developer/mime_policy.txt.gz</ftppath> 
       </p>
     </chapt>
     <chapt>

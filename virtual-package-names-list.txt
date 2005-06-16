@@ -65,8 +65,10 @@ c-compiler              Anything providing a C compiler
 c-shell                 Anything providing a suitable /bin/csh (*)
 dotfile-module          Anything that provides a module for the
                         Dotfile Generator
+dict-client             Any package providing clients for the Dictionary Server
 emacsen                 Anything providing the GNU emacs or a
                         compatible editor
+foomatic-data           Any package providing PPD printer description files
 fortran77-compiler      Anything providing a Fortran77 compiler
 ftp-server              Any ftp server
 httpd                   Any HTTP server
@@ -78,7 +80,7 @@ kernel-headers          Kernel header files (<linux/*.h>, <asm/*.h>)
 kernel-image            Kernel image (vmlinuz, System.map, modules)
 kernel-source           Kernel source code
 linux-kernel-log-daemon A daemon to facilitate logging for the Linux kernel
-lambdamoo-core          A lambdamoo-compatible datebase package
+lambdamoo-core          A lambdamoo-compatible database package  
 lambdamoo-server        Anything running a moo using a lambdamoo-core
 libc-dev                Anything that provides header and object files
                         of `libc'
@@ -116,6 +118,19 @@ Graphics and MultiMedia
 -----------------------
 mp3-encoder             Any MP3 encoder package
 mp3-decoder             Any MP3 decoder package
+audio-mixer:            Utility to control the input and output levels
+                        of a sound card, with a tty interface
+x-audio-mixer:          Utility to control the input and output levels
+                        of a sound card, X Window system interface
+
+Java and virtual machines
+-------------------------
+java-compiler           Any java compiler, for Java version 1
+java2-compiler,         Any java compiler, for Java version 2
+java-virtual-machine    Any JAVA virtual machine
+java1-runtime           Any Java runtime environment, Java version 1
+java2-runtime.          Any Java runtime environment, Java version 2
+
 
 Old and obsolete virtual package names
 --------------------------------------
@@ -192,3 +207,11 @@ Manoj Srivastava
 Julian Gilbey
   13 Feb 2001 Removed libc.4.so
               Removed xcompat virtual package names
+
+Manoj Srivastava
+  14 Mar 2002 Added java-compiler, java2-compiler
+              Added java-virtual-machine
+              Added java1-runtime and java2-runtime
+	      Added dict-client
+	      Added foomatic-data
+	      Added audio-mixer and x-audio-mixer
