@@ -1252,8 +1252,7 @@
 		  <package>debconf</package> to prompt the user at
 		  install time, and this number is growing daily. The
 		  benefits of using debconf are briefly explained at
-		  <url
-		  id="http://kitenet.net/doc/debconf-doc/introduction.html"
+		  <url id="http://www.debian.org/doc/packaging-manuals/debconf_specification.html"
 		  name="Debconf introduction">; they include
 		  preconfiguration, (mostly) noninteractive
 		  installation, elimination of redundant prompting,
