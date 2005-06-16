@@ -52,7 +52,7 @@
       </copyright>
     </titlepag>
 
-    <toc detail="sect">
+    <toc detail="sect1">
 
     <chapt id="scope">
       <heading>About this manual</heading>
