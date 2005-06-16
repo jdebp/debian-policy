@@ -3,6 +3,9 @@ debian-policy (3.6.2.1) unstable; urgency=low
   Manoj:
   * Bug fix: "policy 11.5.3 refers to using the menu package to register
     docs", thanks to Joey Hess                             (Closes: #222553).
+  * Bug fix: "[PROPOSAL] Document Uploaders: field in policy", thanks to
+    Andrew Pollock. Andreas Metzler provided the wording, though it was
+    modified during inclusion.                              (Closes: #203145).
 
  --
 
