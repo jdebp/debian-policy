@@ -4323,9 +4323,8 @@ Replaces: mail-transport-agent
                 The <tt>Build-Depends-Indep</tt> and
 		<tt>Build-Conflicts-Indep</tt> fields must be
 		satisfied when any of the following targets is
-		invoked: <tt>build</tt>, <tt>clean</tt>,
-		<tt>build-indep</tt>, <tt>binary</tt> and
-		<tt>binary-indep</tt>.
+		invoked: <tt>build</tt>, <tt>build-indep</tt>,
+		<tt>binary</tt> and <tt>binary-indep</tt>.
 	    </item>
 	  </taglist>
 	</p>
