@@ -2240,17 +2240,8 @@
 	  <footnote>
 	    <p>
 	      To be precise, the string should match the following
-	      Perl regular expression (where $pound=<tt>#</tt>;):
-	      <example>
-/closes:\s*(?:bug)?${pound}?\s?\d+(?:,\s*(?:bug)?\${pound}?\s?\d+)*/i
-	      </example>
-	      <footnote>
-		<p>We had to introduce the $pound variable in the
-		  regexp above because otherwise the utilities
-		  rendering the policy documents gor confused by a
-		  backslashed "#" symbol.
-		</p>
-	      </footnote>
+	      Perl regular expression:
+	      <tt>/closes:\s*(?:bug)?\#?\s?\d+(?:,\s*(?:bug)?\#?\s?\d+)*/i</tt>
 	      Then all of the bug numbers listed will be closed by the
 	      archive maintenance script (<prgn>katie</prgn>), or in
 	      the case of an NMU, marked as fixed.
@@ -3222,17 +3213,22 @@
 	</p>
 
 	<p>
-	  All but <tt>Pre-Depends</tt> and <tt>Conflicts</tt>
-	  (discussed below) take effect <em>only</em> when a package
-	  is to be configured.  They do not prevent a package being on
-	  the system in an unconfigured state while its dependencies
-	  are unsatisfied, and it is possible to replace a package
-	  whose dependencies are satisfied and which is properly
-	  installed with a different version whose dependencies are
-	  not and cannot be satisfied; when this is done the depending
-	  package will be left unconfigured (since attempts to
-	  configure it will give errors) and will not function
-	  properly.
+	  A <tt>Depends</tt> field takes effect <em>only</em> when a
+	  package is to be configured.  It does not prevent a package
+	  being on the system in an unconfigured state while its
+	  dependencies are unsatisfied, and it is possible to replace
+	  a package whose dependencies are satisfied and which is
+	  properly installed with a different version whose
+	  dependencies are not and cannot be satisfied; when this is
+	  done the depending package will be left unconfigured (since
+	  attempts to configure it will give errors) and will not
+	  function properly.  If it is necessary, a
+	  <tt>Pre-Depends</tt> field can be used, which has a partial
+	  effect even when a package is being unpacked, as explained
+	  in detail below.  (The other three dependency fields,
+	  <tt>Recommends</tt>, <tt>Suggests</tt> and
+	  <tt>Enhances</tt>, are only used by the various front-ends
+	  to <prgn>dpkg</prgn> such as <prgn>dselect</prgn>.)
 	</p>
 
 	<p>
@@ -3244,20 +3240,37 @@
 	</p>
 
 	<p>
-	  Thus <tt>Depends</tt> allows package maintainers to impose
-	  an order in which packages should be configured.
+	  The <tt>Depends</tt> field thus allows package maintainers
+	  to impose an order in which packages should be configured.
+	</p>
+
+	<p>
+	  The meaning of the five dependency fields is as follows:
 	  <taglist>
 	    <tag><tt>Depends</tt></tag>
 	    <item>
 
-	      <p>This declares an absolute dependency.
+	      <p>
+		This declares an absolute dependency.  A package will
+		not be configured unless all of the packages listed in
+		its <tt>Depends</tt> field have been correctly
+		configured.
 	      </p>
 
 	      <p>
 		The <tt>Depends</tt> field should be used if the
 		depended-on package is required for the depending
 		package to provide a significant amount of
-		functionality.</p>
+		functionality.
+	      </p>
+	      <p>
+		The <tt>Depends</tt> field should also be used if the
+		<prgn>postinst</prgn>, <prgn>prerm</prgn> or
+		<prgn>postrm</prgn> scripts require the package to be
+		present in order to run.  Note, however, that the
+		<prgn>postrm</prgn> cannot rely on any non-essential
+		packages to be present during the <tt>purge</tt>
+		phase.
 	    </item>
 
 	    <tag><tt>Recommends</tt></tag>
@@ -3302,7 +3315,29 @@
 		also forces <prgn>dpkg</prgn> to complete installation
 		of the packages named before even starting the
 		installation of the package which declares the
-		Pre-dependency.
+		pre-dependency, as follows:
+	      </p>
+
+	      <p>
+		When a package declaring a pre-dependency is about to
+		be <em>unpacked</em> the pre-dependency can be
+		satisfied if the depended-on package is either fully
+		configured, <em>or even if</em> the depended-on
+		package(s) are only unpacked or half-configured,
+		provided that they have been configured correctly at
+		some point in the past (and not removed or partially
+		removed since).  In this case, both the
+		previously-configured and currently unpacked or
+		half-configured versions must satisfy any version
+		clause in the <tt>Pre-Depends</tt> field.
+	      </p>
+
+	      <p>
+		When the package declaring a pre-dependency is about
+		to be <em>configured</em>, the pre-dependency will be
+		treated as a normal <tt>Depends</tt>, that is, it will
+		be considered satisfied only if the depended-on
+		package has been correctly configured.
 	      </p>
 
 	      <p>
@@ -3313,24 +3348,10 @@
 	      </p>
 
 	      <p>
-		When the package declaring it is being configured, a
-		<tt>Pre-Dependency</tt> will be considered satisfied
-		only if the depending package has been correctly
-		configured, just as if an ordinary <tt>Depends</tt>
-		had been used.
-	      </p>
-
-	      <p>
-		However, when a package declaring a Pre-dependency is
-		being unpacked the predependency can be satisfied even
-		if the depended-on package(s) are only unpacked or
-		half-configured, provided that they have been
-		configured correctly at some point in the past (and
-		not removed or partially removed since).  In this case
-		both the previously-configured and currently unpacked
-		or half-configured versions must satisfy any version
-		clause in the <tt>Pre-Depends</tt> field.
-	      </p>
+		<tt>Pre-Depends</tt> are also required if the
+		<prgn>preinst</prgn> script depends on the named
+		package.  It is best to avoid this situation if
+		possible.
 	    </item>
 	  </taglist>
 	</p>
@@ -3348,29 +3369,29 @@
 	</p>
 
 
-      <sect id="conflicts"><heading>Alternative binary packages -
-	  <tt>Conflicts</tt> and <tt>Replaces</tt>
-	</heading>
+      <sect id="conflicts"><heading>Conflicting binary packages -
+	   <tt>Conflicts</tt></heading>
 
 	<p>
           When one binary package declares a conflict with another
-	  <prgn>dpkg</prgn> will refuse to allow them to be installed
-	  on the system at the same time.
+	  using a <tt>Conflicts</tt> field, <prgn>dpkg</prgn> will
+	  refuse to allow them to be installed on the system at the
+	  same time.
 	</p>
 
 	<p>
 	  If one package is to be installed, the other must be removed
 	  first - if the package being installed is marked as
-	  replacing (<ref id="replaces">) the one on the system, or
-	  the one on the system is marked as deselected, or both
+	  replacing (see <ref id="replaces">) the one on the system,
+	  or the one on the system is marked as deselected, or both
 	  packages are marked <tt>Essential</tt>, then
 	  <prgn>dpkg</prgn> will automatically remove the package
 	  which is causing the conflict, otherwise it will halt the
-	  installation of the new package with an error. This
-	  mechanism specifically doesn't work when the installed
-	  package is <tt>Essential</tt>, but the new package is not.
+	  installation of the new package with an error.  This
+	  mechanism is specifically designed to produce an error when
+	  the installed package is <tt>Essential</tt>, but the new
+	  package is not.
 	</p>
-
 
 	<p>
 	  A package will not cause a conflict merely because its
@@ -3385,7 +3406,7 @@
 	  prevent their installation, and allows a package to conflict
 	  with others providing a replacement for it.  You use this
 	  feature when you want the package in question to be the only
-	  package providing something.
+	  package providing some feature.
 	</p>
 
 	<p>
@@ -3403,14 +3424,15 @@
         <p>
 	  As well as the names of actual (`concrete') packages, the
 	  package relationship fields <tt>Depends</tt>,
+	  <tt>Recommends</tt>, <tt>Suggests</tt>, <tt>Enhances</tt>,
+	  <tt>Pre-Depends</tt>, <tt>Conflicts</tt>,
 	  <tt>Build-Depends</tt>, <tt>Build-Depends-Indep</tt>,
-	  <tt>Recommends</tt>, <tt>Suggests</tt>, <tt>Conflicts</tt>,
-	  <tt>Build-Conflicts</tt> and <tt>Build-Conflicts-Indep</tt> may
-	  mention virtual packages.
+	  <tt>Build-Conflicts</tt> and <tt>Build-Conflicts-Indep</tt>
+	  may mention `virtual packages'.
 	</p>
 
 	<p>
-	  A virtual package is one which appears in the
+	  A <em>virtual package</em> is one which appears in the
 	  <tt>Provides</tt> control file field of another package.
 	  The effect is as if the package(s) which provide a
 	  particular virtual package name had been listed by name
@@ -3424,16 +3446,18 @@
 	  packages which provide it.  This is so that, for example,
 	  supposing we have
 	  <example>
-	    Package: vm
-	    Depends: emacs
+	    Package: foo
+	    Depends: bar
 	  </example>
-	  and someone else releases an xemacs package they can say
+	  and someone else releases an enhanced version of the
+	  <tt>bar</tt> package (for example, a non-US variant), they
+	  can say:
 	  <example>
-	    Package: xemacs
-	    Provides: emacs
-	  </example> and all will work in the interim (until a purely
-	  virtual package name is decided on and the <tt>emacs</tt>
-	  and <tt>vm</tt> packages are changed to use it).
+	    Package: bar-plus
+	    Provides: bar
+	  </example>
+	  and the <tt>bar-plus</tt> package will now also satisfy the
+	  dependency for the <tt>foo</tt> package.
 	</p>
 
 	<p>
@@ -3458,87 +3482,101 @@
 	</p>
 
 	<p>
-	  If you want to specify which of a set of real packages should be the
-	  default to satisfy a particular dependency on a virtual package, you
-	  should list the real package as an alternative before the virtual.
+	  If you want to specify which of a set of real packages
+	  should be the default to satisfy a particular dependency on
+	  a virtual package, you should list the real package as an
+	  alternative before the virtual one.
 	</p>
       </sect>
 
 
-      <sect id="replaces"><heading><tt>Replaces</tt> - overwriting
-	  files and replacing packages
-	</heading>
+      <sect id="replaces"><heading>Overwriting files and replacing
+	  packages - <tt>Replaces</tt></heading>
 
 	<p>
-	  The <tt>Replaces</tt> control file field has two purposes,
-	  which come into play in different situations.
+	  The <tt>Replaces</tt> control file field has two distinct
+	  purposes, which come into play in different situations.
 	</p>
 
-	<p>
-	  Virtual packages (<ref id="virtual">) are not considered
-	  when looking at a <tt>Replaces</tt> field - the packages
-	  declared as being replaced must be mentioned by their real
-	  names.
-	</p>
-
-	<sect1><heading>Overwriting files in other packages
-	  </heading>
+	<sect1><heading>Overwriting files in other packages</heading>
 
 	  <p>
 	    Firstly, as mentioned before, it is usually an error for a
 	    package to contain files which are on the system in
-	    another package, though currently the
-	    <tt>--force-overwrite</tt> flag is enabled by default,
-	    downgrading the error to a warning,
+	    another package.
 	  </p>
 
 	  <p>
-	    If the overwriting package declares that it replaces the
-	    one containing the file being overwritten then
-	    <prgn>dpkg</prgn> will proceed, and replace the file from
-	    the old package with that from the new.  The file will no
-	    longer be listed as `owned' by the old package.
+	    However, if the overwriting package declares that it
+	    <tt>Replaces</tt> the one containing the file being
+	    overwritten, then <prgn>dpkg</prgn> will replace the file
+	    from the old package with that from the new.  The file
+	    will no longer be listed as `owned' by the old package.
 	  </p>
 
 	  <p>
 	    If a package is completely replaced in this way, so that
 	    <prgn>dpkg</prgn> does not know of any files it still
-	    contains, it is considered to have disappeared.  It will
+	    contains, it is considered to have `disappeared'.  It will
 	    be marked as not wanted on the system (selected for
-	    removal) and not installed.  Any conffiles details noted
-	    in the package will be ignored, as they will have been
-	    taken over by the replacing package(s).  The package's
-	    <prgn>postrm</prgn> script will be run to allow the
-	    package to do any final cleanup required.  See <ref
-								id="mscriptsinstact">.
+	    removal) and not installed.  Any <tt>conffile</tt>s
+	    details noted for the package will be ignored, as they
+	    will have been taken over by the overwriting package.  The
+	    package's <prgn>postrm</prgn> script will be run with a
+	    special argument to allow the package to do any final
+	    cleanup required.  See <ref id="mscriptsinstact">.
 	  </p>
 
 	  <p>
-	    In the future <prgn>dpkg</prgn> will discard files which
-	    would overwrite those from an already installed package
-	    which declares that it replaces the package being
-	    installed.  This is so that you can install an older
-	    version of a package without problems.
+	    If an installed package, <tt>foo</tt> say, declares that
+	    it replaces another, <tt>bar</tt>, and an attempt is made
+	    to install <tt>bar</tt>, <prgn>dpkg</prgn> will discard
+	    files in the <tt>bar</tt> package which would overwrite
+	    those already present in <tt>foo</tt>.  This is so that
+	    you can install an older version of a package without
+	    problems.
 	  </p>
 
 	  <p>
-	    This usage of <tt>Replaces</tt> only takes effect when
-	    both packages are at least partially on the system at
-	    once, so that it can only happen if they do not conflict
-	    or if the conflict has been overridden.</p>
+	    For this usage of <tt>Replaces</tt>, virtual packages (see
+	    <ref id="virtual">) are not considered when looking at a
+	    <tt>Replaces</tt> field - the packages declared as being
+	    replaced must be mentioned by their real names.
+	  </p>
+
+	  <p>
+	    Furthermore, this usage of <tt>Replaces</tt> only takes
+	    effect when both packages are at least partially on the
+	    system at once, so that it can only happen if they do not
+	    conflict or if the conflict has been overridden.
+	  </p>
+
 	</sect1>
 
 	<sect1><heading>Replacing whole packages, forcing their
-	    removal
-	  </heading>
+	    removal</heading>
 
 	  <p>
 	    Secondly, <tt>Replaces</tt> allows the packaging system to
 	    resolve which package should be removed when there is a
 	    conflict - see <ref id="conflicts">.  This usage only
 	    takes effect when the two packages <em>do</em> conflict,
-	    so that the two effects do not interfere with each other.
+	    so that the two usages of this field do not interfere with
+	    each other.
 	  </p>
+
+	  <p>
+	    In this situation, the package declared as being replaced
+	    can be a virtual package, so for example, all mail
+	    transport agents (MTAs) would have the following fields in
+	    their control files:
+	    <example>
+Provides: mail-transport-agent
+Conflicts: mail-transport-agent
+Replaces: mail-transport-agent
+	    </example>
+	    ensuring that only one MTA can be installed at any one
+	    time.
 	</sect1>
       </sect>
 
@@ -3549,21 +3587,22 @@
 
         <p>
           A source package may declare a dependency or a conflict on a
-          binary package.  This is done with the control file fields
-          <tt>Build-Depends</tt>, <tt>Build-Depends-Indep</tt>,
-          <tt>Build-Conflicts</tt>, and
-          <tt>Build-Conflicts-Indep</tt>.  Their semantics are that
-          the dependencies and conflicts they define must be satisfied
-          (as defined earlier for binary packages), when one of the
-          targets in <tt>debian/rules</tt> that the particular field
-          applies to is invoked.
+          binary package, indicating which packages are required to be
+          present on the system in order to build the binary packages
+          from the source package.  This is done with the control file
+          fields <tt>Build-Depends</tt>, <tt>Build-Depends-Indep</tt>,
+          <tt>Build-Conflicts</tt> and <tt>Build-Conflicts-Indep</tt>.
+          The dependencies and conflicts they define must be satisfied
+          (as defined earlier for binary packages) in order to invoke
+          the targets in <tt>debian/rules</tt>, as follows:
 
 	  <taglist>
 	    <tag><tt>Build-Depends</tt>, <tt>Build-Conflicts</tt></tag>
 	    <item>
 	      <p>
                 The <tt>Build-Depends</tt> and
-		<tt>Build-Conflicts</tt> fields apply to the targets
+		<tt>Build-Conflicts</tt> fields must be satisfied when
+		any of the following targets is invoked:
 		<tt>build</tt>, <tt>binary</tt>, <tt>binary-arch</tt>
 		and <tt>binary-indep</tt>.
 	      </p>
@@ -3572,8 +3611,9 @@
 	    <item>
 	      <p>
                 The <tt>Build-Depends-Indep</tt> and
-		<tt>Build-Conflicts-Indep</tt> fields apply to the
-		targets <tt>binary</tt> and <tt>binary-indep</tt>.
+		<tt>Build-Conflicts-Indep</tt> fields must be
+		satisfied when any of the following targets is
+		invoked: <tt>binary</tt> and <tt>binary-indep</tt>.
 	      </p>
 	    </item>
 	  </taglist>
@@ -3588,32 +3628,7 @@
       </heading>
 
       <p>
-	<prgn>dpkg</prgn> can do a certain amount of automatic
-	handling of package configuration files.
-      </p>
-
-      <p>
-	Whether this mechanism is appropriate depends on a number of
-	factors, but basically there are two approaches to any
-	particular configuration file.
-      </p>
-
-      <p>
-	The easy method is to ship a best-effort configuration in the
-	package, and use <prgn>dpkg</prgn>'s conffile mechanism to
-	handle updates.  If the user is unlikely to want to edit the
-	file, but you need them to be able to without losing their
-	changes, and a new package with a changed version of the file
-	is only released infrequently, this is a good approach.
-      </p>
-
-      <p>
-	The hard method is to build the configuration file from
-	scratch in the <prgn>postinst</prgn> script, and to take the
-	responsibility for fixing any mistakes made in earlier
-	versions of the package automatically.  This will be
-	appropriate if the file is likely to need to be different on
-	each system.
+	This chapter has been superseded by <ref id="config files">.
       </p>
 
 
