@@ -32,8 +32,8 @@ The procedure for updating the list is as follows:
 3. Mail the maintainer of the virtual package name list (which is the
    Debian Policy list <debian-policy@lists.debian.org>) notifying them
    of the consensus reached (or your suggestions if noone objected).
-   Please update the bug report at the same time (possibly retitling the
-   bug to [ACCEPTED] ....
+   Please update the bug report at the same time (retitling the bug to
+   [ACCEPTED] ....
 
    Please include a proposed brief description of the new virtual name(s)
    for the list.  The list maintainer will then post the new list to
@@ -80,6 +80,7 @@ libc-dev                Anything that provides header and object files
                         of `libc'
 emacsen                 Anything providing the GNU emacs or a compatible
                         editor
+ftp-server              Any ftp server
 
 News and Mail
 -------------
@@ -140,3 +141,7 @@ Christian Schwarz
               lambdamoo-server
   29 Jan 1998 Added libc-dev, emacsen
   14 Apr 1998 Removed obsolete virtual package `emacs'
+
+Manoj Srivastava
+  23 Jun 1999 Added pop3-server
+  13 Jul 1999 Added ftp-server

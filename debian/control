@@ -12,6 +12,7 @@ Description: Debian Policy Manual and related documents
  This package contains:
     - Debian Policy Manual
     - Linux Filesystem Structure (FSSTND)
+    - Linux Filesystem Hierarchy Standard (FHS)
     - Authoritative list of virtual package names
     - Paper about libc6 migration
     - Policy checklist for upgrading your packages
