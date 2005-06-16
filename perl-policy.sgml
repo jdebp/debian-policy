@@ -6,11 +6,13 @@
       <title>Debian Perl Policy</title>
       <author>
 	<name>Rapha&euml;l Hertzog</name>
-	<email>hertzog@debian.org</email>
       </author>
       <author>
 	<name>Brendan O'Dea</name>
-	<email>bod@debian.org</email>
+      </author>
+      <author>
+	<name>The Debian Policy mailing list</name>
+	<email>debian-policy@lists.debian.org</email>
       </author>
       <version>version 1.20</version>
 
