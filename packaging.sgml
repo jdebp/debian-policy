@@ -3687,7 +3687,7 @@
 		This is used to declare that one package may be more
 		useful with one or more others.  Using this field
 		tells the packaging system and the user that the
-		listed packages are be related to this one and can
+		listed packages are related to this one and can
 		perhaps enhance its usefulness, but that installing
 		this one without them is perfectly reasonable.
 	      </p>

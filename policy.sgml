@@ -3005,7 +3005,7 @@
 	<p>
 	  As described in the FHS, binaries of games should be
 	  installed in the directory <tt>/usr/games</tt>. This also
-	  applies to games that use the X Window system. Manual pages
+	  applies to games that use the X Window System. Manual pages
 	  for games (X and non-X games) should be installed in
 	  <tt>/usr/share/man/man6</tt>.</p>
       </sect>
