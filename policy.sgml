@@ -4350,10 +4350,21 @@ Replaces: mail-transport-agent
 	<heading>Run-time shared libraries</heading>
 
       <p>
-	The run-time shared library needs to be placed in a package called
-	<package><var>libraryname</var><var>soversion</var></package>, where
-	<file><var>soversion</var></file> is the version number in the
-	soname of the shared library<footnote>
+	The run-time shared library needs to be placed in a package
+        whose name changes whenever the shared object version
+        changes.<footnote>
+            <p>
+              Since it is common place to install several versions of a
+              package that just provides shared libraries, it is a
+              good idea that that the library package should not
+              contain any extraneous non-versioned files, unless they
+              happen to be in versioned directories.</p>
+          </footnote>
+          The most common mechanism is to place it in a package
+        called
+        <package><var>libraryname</var><var>soversion</var></package>,
+        where <file><var>soversion</var></file> is the version number
+        in the soname of the shared library<footnote>
 	      The soname is the shared object name: it's the thing
 	      that has to match exactly between building an executable
 	      and running it for the dynamic linker to be able run the
@@ -4368,7 +4379,6 @@ Replaces: mail-transport-agent
 	<package><var>libraryname</var>-<var>soversion</var>-dev</package>
 	instead.
       </p>
-
       <p>
 	If you have several shared libraries built from the same
 	source tree you may lump them all together into a single
