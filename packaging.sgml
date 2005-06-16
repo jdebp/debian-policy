@@ -44,7 +44,26 @@
 	between <prgn>dselect</prgn> and its access method scripts.
 	It does not deal with the Debian Project policy requirements,
 	and it assumes familiarity with <prgn>dpkg</prgn>'s functions
-	from the system administrator's perspective.
+	from the system administrator's perspective.  This
+        package itself is maintained by a group of maintainers
+        that have no editorial powers. At the moment, the list of
+        maintainers is:
+        <enumlist>
+          <item>
+            <p>Michael Alan Dorman <email>mdorman@debian.org</email></p>
+          </item>
+          <item>
+            <p>Richard Braakman <email>dark@xs4all.nl</email></p>
+          </item>
+          <item>
+            <p>Philip Hands <email>phil@hands.com</email></p>
+          </item>
+          <item>
+            <p>Manoj Srivastava <email>srivasta@debian.org</email></p>
+          </item>
+        </enumlist>
+      </abstract>
+
 
       <copyright>
 	<copyrightsummary>Copyright &copy;1996 Ian Jackson.</copyrightsummary>
@@ -118,7 +137,7 @@
 	This manual describes the technical aspects of creating Debian
 	binary packages (<tt>.deb</tt> files).  It documents the
 	behaviour of the package management programs
-	<prgn>dpkg</prgn>, <prgn>dselect</prgn> et al. and and the way
+	<prgn>dpkg</prgn>, <prgn>dselect</prgn> et al. and the way
 	they interact with packages.</p>
 
       <p>
@@ -853,6 +872,18 @@
 	    information in it to standard output.
 	  </p>
 	</sect1>
+ 
+        <sect1 id="dpkgarch"><heading><prgn>dpkg-architecture</prgn> -
+	    information about the build and host system 
+          </heading>
+ 
+          <p>
+            This program can be used manually, but is also invoked by
+            <tt>dpkg-buildpackage</tt> or <tt>debian/rules</tt> to set
+            to set environment or make variables which specify the build and
+            host architecture for the package building process.
+          </p>
+        </sect1>
       </sect>
 	
       <sect id="sourcetree"><heading>The Debianised source tree
@@ -875,7 +906,7 @@
 	  tree.  They are described below.
 	</p>
 	  
-	<sect1><heading><tt>debian/rules</tt> - the main building
+	<sect1 id="debianrules"><heading><tt>debian/rules</tt> - the main building
 	script
 	  </heading>
 
@@ -1075,6 +1106,51 @@
 	    either as published or undocumented interfaces or for the
 	    package's internal use.
 	  </p>
+ 
+          <p>
+            The architecture we build on and build for is determined by make
+            variables via dpkg-architecture (see <ref id="dpkgarch">). You can
+            get the Debian architecture and the GNU style architecture
+            specification string for the build machine as well as the host
+            machine. Here is a list of supported make variables:
+          </p>
+	  
+          <list compact="compact">
+            <item>
+              <p><tt>DEB_*_ARCH</tt> (the Debian architecture)</p>
+            </item>
+            <item>
+              <p><tt>DEB_*_GNU_TYPE</tt> (the GNU style architecture
+		specification string)</p> 
+            </item>
+            <item>
+              <p><tt>DEB_*_GNU_CPU</tt> (the CPU part of DEB_*_GNU_TYPE)</p>
+            </item>
+            <item>
+              <p><tt>DEB_*_GNU_SYSTEM</tt> (the System part of
+		DEB_*_GNU_TYPE)</p>
+          </list>
+ 
+          <p>
+            where <tt>*</tt> is either <tt>BUILD</tt> for specification of
+            the build machine or <tt>HOST</tt> for specification of the machine
+            we build for.
+          </p>
+	  
+          <p>
+            Backward compatibility can be provided in the rules file
+            by setting the needed variables to suitable default
+            values, please refer to the documentation of
+            dpkg-architecture for details.
+          </p>
+ 
+          <p>
+            It is important to understand that the <tt>DEB_*_ARCH</tt>
+            string does only determine which Debian architecture we
+            build on resp. for. It should not be used to get the CPU
+            or System information, the GNU style variables should be
+            used for that.
+          </p>
 	</sect1>
 	  
 	  
@@ -1905,7 +1981,7 @@
 
 	  <p>	    
 	    This is the architecture string; it is a single word for
-	    the CPU architecture.
+	    the Debian architecture.
 	  </p>
 
 	  <p>	    
@@ -1943,30 +2019,9 @@
 	  </p>
 
 	  <p>	    
-	    The current build architecture can be determined using <tt>dpkg
-	      --print-architecture</tt>.
-	    <footnote>
-	      <p>
-		This actually invokes
-		<example>
-  gcc --print-libgcc-file-name
-		</example> and parses and decomposes the output and
-		looks the CPU type from the GCC configuration in a
-		table in <prgn>dpkg</prgn>.  This is so that it will
-		work if you're cross-compiling.
-	      </p>
-	    </footnote> This value is automatically used by
-	    <prgn>dpkg-gencontrol</prgn> when building the control
-	    file for a binary package for which the source control
-	    information doesn't specify architecture <tt>all</tt>.
+	    See <ref id="debianrules"> for information how to get the
+	    architecture for the build process. 
 	  </p>
-
-	  <p>	    
-	    There is a separate option,
-	    <tt>--print-installation-architecture</tt>, for finding
-	    out what architecture <prgn>dpkg</prgn> is willing to
-	    install.  This information is also in the output of
-	    <tt>dpkg --version</tt>.</p>
 	</sect1>
 	  
 	<sect1 id="f-Maintainer"><heading><tt>Maintainer</tt>
@@ -2711,7 +2766,7 @@
 	</heading>
 
 	<p>	  
-	  It is possible supply scripts as part of a package which
+	  It is possible to supply scripts as part of a package which
 	  <prgn>dpkg</prgn> will run for you when your package is
 	  installed, upgraded or removed.
 	</p>
@@ -3527,7 +3582,7 @@
       </sect>
 
       <sect><heading>Dependencies - <tt>Depends</tt>, <tt>Recommends</tt>,
-	  <tt>tt>Sugge</tt>tt>, <tt>Pre-Depends</tt>
+	  <tt>Suggests</tt>, <tt>Pre-Depends</tt>
 	</heading>
 
 	<p>	  
@@ -3765,7 +3820,7 @@
       </sect1>
 
       <sect id="conflicts"><heading>Alternative packages -
-	  <tt>tt>Confli</tt>tt> and <tt>Replaces</tt>
+	  <tt>Conflicts</tt> and <tt>Replaces</tt>
 	</heading>
 
 	<p>	  
@@ -3840,7 +3895,7 @@
 	  <tt>Provides</tt> control file field of another package.
 	  The effect is as if the package(s) which provide a
 	  particular virtual package name had been listed by name
-	  everywhere were the virtual package name appears.
+	  everywhere the virtual package name appears.
 	</p>
 
 	<p>	  
@@ -3886,7 +3941,7 @@
 	<p>	  
 	  If you want to specify which of a set of real packages should be the
 	  default to satisfy a particular dependency on a virtual package, you
-	  should list the real package as alternative before the virtual.
+	  should list the real package as an alternative before the virtual.
 	</p>
       </sect>
 	
@@ -3960,7 +4015,7 @@
 	  <p>	    
 	    Secondly, <tt>Replaces</tt> allows <prgn>dpkg</prgn> and
 	    <prgn>dselect</prgn> to resolve which package should be
-	    removed when a conflict - see <ref id="conflicts">.  This
+	    removed when there is a conflict - see <ref id="conflicts">.  This
 	    usage only takes effect when the two packages <em>do</em>
 	    conflict, so that the two effects do not interfere with
 	    each other.
@@ -4092,7 +4147,7 @@
 	<p>	  
 	  If neither the user nor the package maintainer has changed
 	  the file, it is left alone.  If one or the other has changed
-	  their version, then the changed version is preferred - ie,
+	  their version, then the changed version is preferred - i.e.,
 	  if the user edits their file, but the package maintainer
 	  doesn't ship a different version, the user's changes will
 	  stay, silently, but if the maintainer ships a new version
