@@ -3718,9 +3718,50 @@ Replaces: mail-transport-agent
       </p>
 
       <p>
-	Firstly, the package should install the shared libraries under
-	their normal names.  For example, the <tt>libgdbmg1</tt>
-	package should install <tt>libgdbm.so.1.7.3</tt> as
+	Packages involving shared libraries should be split up into
+	several binary packages. This section mostly deals with how
+	this separation is to be accomplished; rules for files within
+	the shared library packages are in <ref id="libraries"> instead.
+      </p>
+
+      <sect id="sharedlibs-runtime">
+	<heading>Run-time shared libraries</heading>
+
+      <p>
+	The run-time shared library needs to be placed in a package called
+	<package><var>libraryname</var><var>soversion</var></package>, where
+	<file><var>soversion</var></file> is the version number in the
+	soname of the shared library<footnote>
+	    <p>
+	      The soname is the shared object name: it's the thing
+	      that has to match exactly between building an executable
+	      and running it for the dynamic linker to be able run the
+	      program.  For example, if the soname of the library is
+	      <file>libfoo.so.6</file>, the library package would be
+	      called <file>libfoo6</file>.
+	    </p>
+	  </footnote>.
+	Alternatively, if it would be confusing to directly append
+	<var>soversion</var> to <var>libraryname</var> (e.g. because
+	<var>libraryname</var> itself ends in a number), you may use
+	<package><var>libraryname</var>-<var>soversion</var></package> and
+	<package><var>libraryname</var>-<var>soversion</var>-dev</package>
+	instead.
+      </p>
+
+      <p>
+	If you have several shared libraries built from the same
+	source tree you may lump them all together into a single
+	shared library package, provided that you change all of
+	their sonames at once (so that you don't get filename
+	clashes if you try to install different versions of the
+	combined shared libraries package).
+      </p>
+
+      <p>
+	The package should install the shared libraries under
+	their normal names.  For example, the <package>libgdbmg1</package>
+	package should install <file>libgdbm.so.1.7.3</file> as
 	<file>/usr/lib/libgdbm.so.1.7.3</file>.  The files should not be
 	renamed or re-linked by any <prgn>prerm</prgn> or
 	<prgn>postrm</prgn> scripts; <prgn>dpkg</prgn> will take care
@@ -3730,9 +3771,15 @@ Replaces: mail-transport-agent
       </p>
 
       <p>
-	Secondly, the package should include the symbolic link that
+	Shared libraries should not be installed executable, since
+	the dynamic linker does not require this and trying to
+	execute a shared library usually results in a core dump.
+      </p>
+
+      <p>
+	The run-time library package should include the symbolic link that
 	<prgn>ldconfig</prgn> would create for the shared libraries.
-	For example, the <prgn>libgdbmg1</prgn> package should include
+	For example, the <package>libgdbmg1</package> package should include
 	a symbolic link from <file>/usr/lib/libgdbm.so.1</file> to
 	<file>libgdbm.so.1.7.3</file>.  This is needed so that the dynamic
 	linker (for example <prgn>ld.so</prgn> or
@@ -3754,23 +3801,16 @@ Replaces: mail-transport-agent
 	    <file>.deb</file> depended on the behavior of the underlying
 	    file system.  Some file systems (such as reiserfs) reorder
 	    the files so that the order of creation is forgotten.
-	    Starting with release <tt>1.7.0</tt>, <prgn>dpkg</prgn>
-	    will reorder the files itself as necessary when building a
+	    Since version 1.7.0, <prgn>dpkg</prgn>
+	    reorders the files itself as necessary when building a
 	    package.  Thus it is no longer important to concern
 	    oneself with the order of file creation.
 	  </p>
 	</footnote>
       </p>
 
-      <p>
-	Thirdly, the associated development package should contain a
-	symlink for the shared library without a version number.  For
-	example, the <tt>libgdbmg1-dev</tt> package should include a
-	symlink from <tt>/usr/lib/libgdbm.so</tt> to
-	<file>libgdbm.so.1.7.3</file>.  This symlink is needed by the
-	linker (<prgn>ld</prgn>) when compiling packages, as it will
-	only look for <file>libgdbm.so</file> when compiling dynamically.
-      </p>
+      <sect1 id="ldconfig">
+	<heading><tt>ldconfig</tt></heading>
 
       <p>
 	Any package installing shared libraries in one of the default
@@ -3789,7 +3829,11 @@ Replaces: mail-transport-agent
 	  </p>
 	</footnote>
 	must use <prgn>ldconfig</prgn> to update the shared library
-	system.  The package must call <prgn>ldconfig</prgn> in the
+	system.
+      </p>
+
+      <p>
+	The package must call <prgn>ldconfig</prgn> in the
 	<prgn>postinst</prgn> script if the first argument is
 	<tt>configure</tt>; the <prgn>postinst</prgn> script may
 	optionally invoke <prgn>ldconfig</prgn> at other times.  The
@@ -3837,10 +3881,109 @@ Replaces: mail-transport-agent
 	  </p>
 	</footnote>
       </p>
+      </sect1>
 
-      <sect>
-	<heading>Handling shared library dependencies - the
-	  <tt>shlibs</tt> system</heading>
+      </sect>
+
+      <sect id="sharedlibs-runtime-progs">
+	<heading>Run-time support programs</heading>
+
+      <p>
+	If your package has some run-time support programs which use
+	the shared library you must not put them in the shared
+	library package.  If you do that then you won't be able to
+	install several versions of the shared library without
+	getting filename clashes.
+      </p>
+
+      <p>
+	Instead, either create another package for the runtime binaries
+	(this package might typically be named
+	<package><var>libraryname</var>-runtime</package>; note the absence
+	of the <var>soversion</var> in the package name), or if the
+	development package is small, include them in there.
+      </p>
+      </sect>
+
+      <sect id="sharedlibs-static">
+	<heading>Static libraries</heading>
+
+      <p>
+	The static library (<file><var>libraryname.a</var></file>)
+	is usually provided in addition to the shared version.
+	It is placed into the development package (see below).
+      </p>
+
+      <p>
+	In some cases, it is acceptable for a library to be
+	available in static form only; these cases include:
+	<list>
+	  <item>libraries for languages whose shared library support
+		is immature or unstable</item>
+	  <item>libraries whose interfaces are in flux or under
+		development (commonly the case when the library's
+		major version number is zero, or where the ABI breaks
+		across patchlevels)</item>
+	  <item>libraries which are explicitly intended to be
+		available only in static form by their upstream
+		author(s)</item>
+	</list>
+      </p>
+
+      <sect id="sharedlibs-dev">
+	<heading>Development files</heading>
+
+      <p>
+	The development files associated to a shared library need to be
+	placed in a package called
+	<package><var>libraryname</var><var>soversion</var>-dev</package>,
+	or if you prefer only to support one development version at a
+	time, <package><var>libraryname</var>-dev</package>.
+      </p>
+
+      <p>
+	In case several development versions of a library exist, you may
+	need to use <prgn>dpkg</prgn>'s Conflicts mechanism (see
+	<ref id="conflicts">) to ensure that the user only installs one
+	development version at a time (as different development versions are
+	likely to have the same header files in them, which would cause a
+	filename clash if both were installed).
+      </p>
+
+      <p>
+	The development package should contain a symlink for the associated
+	shared library without a version number. For example, the
+	<package>libgdbmg1-dev</package> package should include a symlink
+	from <file>/usr/lib/libgdbm.so</file> to
+	<file>libgdbm.so.1.7.3</file>.  This symlink is needed by the linker
+	(<prgn>ld</prgn>) when compiling packages, as it will only look for
+	<file>libgdbm.so</file> when compiling dynamically.
+      </p>
+      </sect>
+
+      <sect id="sharedlibs-intradeps">
+	<heading>Dependencies between the packages of the same library</heading>
+
+	<p>
+	  Typically the development version should also have an exact
+	  version dependency on the runtime library, to make sure that
+	  compilation and linking happens correctly.  The
+	  <tt>${Source-Version}</tt> substitution variable can be
+	  useful for this purpose.
+	</p>
+
+	<p>
+	  Packages which use the shared library should have a
+	  dependency on the name of the shared library package,
+	  <file><var>libraryname</var><var>soversion</var></file>.  When
+	  the soname changes you can have both versions of the library
+	  installed while migrating from the old library to the new.
+	</p>
+      </sect>
+
+      <sect id="sharedlibs-shlibdeps">
+	<heading>Dependencies between the library and other packages -
+	the <tt>shlibs</tt> system</heading>
 
 	<p>
 	  If a package contains a binary or library which links to a
@@ -3922,10 +4065,9 @@ Replaces: mail-transport-agent
 	  <tt>shlibs</tt> file format and how to create them if your
 	  package contains a shared library.
 	</p>
-      </sect>
 
-      <sect><heading>The <tt>shlibs</tt> files present on the system
-	</heading>
+      <sect1>
+	<heading>The <tt>shlibs</tt> files present on the system</heading>
 
 	<p>
 	  There are several places where <tt>shlibs</tt> files are
@@ -4015,9 +4157,9 @@ Replaces: mail-transport-agent
 	    </item>
 	  </list>
 	</p>
-      </sect>
+      </sect1>
 
-      <sect>
+      <sect1>
 	<heading>How to use <prgn>dpkg-shlibdeps</prgn> and the
 	    <file>shlibs</file> files</heading>
 
@@ -4065,10 +4207,10 @@ dpkg-shlibdeps debian/tmp/usr/bin/* debian/tmp/usr/sbin/* \
 	  For more details on this and other options, see <manref
 	  name="dpkg-shlibdeps" section="1">.
 	</p>
-      </sect>
+      </sect1>
 
-      <sect id="shlibs"><heading>The <file>shlibs</file> File Format
-	</heading>
+      <sect1 id="shlibs">
+	<heading>The <file>shlibs</file> File Format</heading>
 
 	<p>
 	  Each <file>shlibs</file> file has the same format.  Lines
@@ -4129,9 +4271,9 @@ libz 1 zlib1g (>= 1:1.1.3)
 	  the dynamic linker about using older shared libraries with
 	  newer binaries.
 	</p>
-      </sect>
+      </sect1>
 
-      <sect>
+      <sect1>
 	<heading>Providing a <file>shlibs</file> file</heading>
 
 	<p>
@@ -4169,9 +4311,9 @@ install -m644 debian/shlibs.<var>package</var> debian/<var>package</var>/DEBIAN/
 	  <prgn>dpkg-shlibdeps</prgn> is called on any of the binary
 	  packages.
 	</p>
-      </sect>
+      </sect1>
 
-      <sect id="shlibslocal">
+      <sect1 id="shlibslocal">
 	<heading>Writing the <file>debian/shlibs.local</file> file</heading>
 
 	<p>
@@ -4234,7 +4376,10 @@ libbar 1 bar1 (>= 1.0-1)
 	  on <tt>bar1</tt> to help ensure that others do not have the
 	  same problem building your package.)
 	</p>
+      </sect1>
+
       </sect>
+
     </chapt>
 
     <chapt id="opersys"><heading>The Operating System</heading>
@@ -5625,45 +5770,16 @@ endif
       </sect>
 
 
-      <sect>
+      <sect id="libraries">
 	<heading>Libraries</heading>
 
 	<p>
-	  In general, libraries must have a shared version in the
-	  library package (<package>lib*</package>) and a static
-          version in the development package (<package>lib*-dev</package>).
-          The shared version must be compiled with <tt>-fPIC</tt>,
-          and the static version must not be. In other words, each source
-	  unit (<tt>*.c</tt>, for example, for C files) will need to be
-	  compiled twice.
+	  The shared version of a library must be compiled with
+          <tt>-fPIC</tt>, and the static version must not be. In other
+          words, each source unit (<tt>*.c</tt>, for example, for C files)
+          will need to be compiled twice.
 	</p>
 
-	<p>
-	  In some cases, it is acceptable for a library to be
-	  available in static form only; these cases include:
-	  <list>
-	    <item>
-	      <p>libraries for languages whose shared library support
-		is immature or unstable</p>
-	    </item>
-	    <item>
-	      <p>
-		libraries whose interfaces are in flux or under
-		development (commonly the case when the library's
-		major version number is zero, or where the ABI breaks
-		across patchlevels)
-	      </p>
-	    </item>
-	    <item>
-	      <p>
-		libraries which are explicitly intended to be
-		available only in static form by their upstream
-		author(s)</p>
-	    </item>
-	  </list>
-	  If a library is available only in static form, then it must follow
-	  the conventions for a development package.
-	</p>
 
 	<p>
 	  You must specify the gcc option <tt>-D_REENTRANT</tt>
@@ -5672,8 +5788,7 @@ endif
 	</p>
 
 	<p>
-	  Note that all installed shared libraries should be
-	  stripped with
+	  All installed shared libraries should be stripped with
 	  <example compact="compact">
 strip --strip-unneeded <var>your-lib</var>
 	  </example>
@@ -5776,90 +5891,14 @@ strip --strip-unneeded <var>your-lib</var>
 	</p>
       </sect>
 
+
       <sect>
 	<heading>Shared libraries</heading>
-
 	<p>
-	  Packages involving shared libraries should be split up
-	  into several binary packages.</p>
-
-	<p>
-	  For a straightforward library which has a development
-	  environment and a runtime kit including just shared
-	  libraries you need to create two packages:
-	  <file><var>libraryname</var><var>soversion</var></file>, where
-	  <file><var>soversion</var></file> is the version number in the
-	  soname of the shared library<footnote>
-	    <p>
-	      The soname is the shared object name: it's the thing
-	      that has to match exactly between building an executable
-	      and running it for the dynamic linker to be able run the
-	      program.  For example, if the soname of the library is
-	      <file>libfoo.so.6</file>, the library package would be
-	      called <file>libfoo6</file>.
-	    </p>
-	  </footnote>
-	  and <tt><var>libraryname</var><var>soversion</var>-dev</tt>.
-          Alternatively, if it would be confusing to directly append
-          <var>soversion</var> to <var>libraryname</var> (e.g. because
-          <var>libraryname</var> itself ends in a number), you may use
-          <tt><var>libraryname</var>-<var>soversion</var></tt> and
-          <tt><var>libraryname</var>-<var>soversion</var>-dev</tt>
-          instead.
- 	</p>
-
-	<p>
-	  If you prefer only to support one development version at a
-	  time you may name the development package
-	  <file><var>libraryname</var>-dev</file>; otherwise you may need
-	  to use <prgn>dpkg</prgn>'s Conflicts mechanism (see <ref
-	  id="conflicts">) to ensure that the user only installs one
-	  development version at a time (as different development
-	  versions are likely to have the same header files in them,
-	  which would cause a filename clash if both were installed).
-	  Typically the development version should also have an exact
-	  version dependency on the runtime library, to make sure that
-	  compilation and linking happens correctly.  The
-	  <tt>${Source-Version}</tt> substitution variable can be
-	  useful for this purpose.
-	</p>
-
-	<p>
-	  Packages which use the shared library should have a
-	  dependency on the name of the shared library package,
-	  <file><var>libraryname</var><var>soversion</var></file>.  When
-	  the soname changes you can have both versions of the library
-	  installed while migrating from the old library to the new.
-	</p>
-
-	<p>
-	  If your package has some run-time support programs which use
-	  the shared library you must not put them in the shared
-	  library package.  If you do that then you won't be able to
-	  install several versions of the shared library without
-	  getting filename clashes.  Instead, either create a third
-	  package for the runtime binaries (this package might
-	  typically be named <tt><var>libraryname</var>-runtime</tt>;
-	  note the absence of the <var>soversion</var> in the package
-	  name), or if the development package is small you may
-	  include them in there.
-	</p>
-
-	<p>
-	  If you have several shared libraries built from the same
-	  source tree you may lump them all together into a single
-	  shared library package, provided that you change all of
-	  their sonames at once (so that you don't get filename
-	  clashes if you try to install different versions of the
-	  combined shared libraries package).
-	</p>
-
-	<p>
-	  Shared libraries should not be installed executable, since
-	  the dynamic linker does not require this and trying to
-	  execute a shared library usually results in a core dump.
+	  This section has moved to <ref id="sharedlibs">.
 	</p>
       </sect>
+
 
       <sect id="scripts">
 	<heading>Scripts</heading>
