@@ -22,8 +22,14 @@ mime-policy.sgml: version.ent
 %.ps: %.sgml
 	debiandoc2latexps $<
 
+%.ps.gz: %.ps
+	gzip -cf9 $< > $@
+
 %.pdf: %.sgml
 	debiandoc2latexpdf $<
+
+%.pdf.gz: %.pdf
+	gzip -cf9 $< > $@
 
 # convenience aliases :)
 html: policy.html/index.html
