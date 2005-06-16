@@ -1,0 +1,19 @@
+Document: packaging-manual
+Title: Debian Packaging Manual
+Author: Ian Jackson
+Abstract: This manual describes the technical aspects of creating Debian binary
+ and source packages.  It also documents the interface between
+ dselect and its access method scripts.  It does not deal with
+ the Debian Project policy requirements, and it assumes familiarity
+ with dpkg's functions from the system administrator's perspective.
+Section: Apps/Programming
+
+Format: debiandoc-sgml
+Files: /usr/doc/packaging-manual/packaging.sgml.gz
+
+Format: text
+Files: /usr/doc/packaging-manual/packaging.text.gz
+
+Format: HTML
+Index: /usr/doc/packaging-manual/packaging.html/index.html
+Files: /usr/doc/packaging-manual/packaging.html/*.html

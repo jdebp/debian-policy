@@ -1,0 +1,466 @@
+debian-policy (2.4.1.4) unstable; urgency=low
+
+  * New Maintainer <debian-policy@lists.debian.org>
+
+ -- Philip Hands <phil@hands.com>  Sat,  5 Sep 1998 02:41:35 +0100
+
+debian-policy (2.4.1.3) unstable; urgency=low
+
+  * New maintainer (with changes from Adam P. Harris' proposed NMU)
+  * policy.sgml:    some awkward phrasings fixed (closes Bug#22006)
+  * policy.sgml:    s/depreciated/deprecated (closes Bug#21831)
+  * debian/control: added conflict doc-base (<< 0.6), which I still am not
+    sure why we need this but hey (closes Bug#21554)
+  * policy.sgml: use new <url> tag where appropriate
+  * policy.sgml, debian/control: always dynamically self reference the
+    current version of policy, that is, do not hard code policy revision
+    or date anywhere
+  * debian/rules: use dpkg-gencontrol -isp
+  * bugs fixed in some unknown previous version (closes Bug#23177)
+
+ -- Philip Hands <phil@hands.com>  Tue, 11 Aug 1998 09:54:17 +0100
+
+debian-policy (2.4.1.2) frozen unstable; urgency=low
+
+  * non-maintainer release
+  * rebuild package to fix truncated Chapter 3 (Bug#23408, not marked as
+    important but should be, since a gaping hole in policy is very
+    annoying.)
+  * bumped version of policy, within the document, to this version number,
+    but not the date, indicating nothing really changed since then
+  * no content changes
+  * debian/rules: clean is a little cleaner
+
+ -- Adam P. Harris <aph@debian.org>  Tue, 16 Jun 1998 03:15:22 -0400
+
+debian-policy (2.4.1.1) frozen unstable; urgency=low
+
+  * Orphaned package
+
+ -- Christian Schwarz <schwarz@debian.org>  Thu, 14 May 1998 21:54:50 +0200
+
+debian-policy (2.4.1.0) frozen unstable; urgency=low
+
+  * Changes to the Debian Policy Manual:
+
+    - Updated section 3.1.2 Site-specific programs
+          and section 3.8 Keyboard configuration:
+      + improved wording (fixes:bug#20129)
+  
+    - Updated section 2.1.7 Subsections:
+      + fixed typos (fixes:bug#18145)
+  
+    - Updated section 3.3.5 Symbolic links:
+      + symbolic links within a toplevel directory should be relative,
+        symbolic links between toplevel directories should be absolute
+        (cf., Policy Weekly Issue#6, topic 2)
+
+    - Updated section 3.4 System run levels:
+      + Intro: mention /etc/rcS.d (links to boot time scripts)
+      + Notes: include rationale why /etc/init.d scripts have to be tagged
+        as conffiles (fixes:bug#16199)
+      + Example: changed example init.d script to handle force-reload
+        and restart options and to comply with the console message
+        standard (fixes:bug#19216)
+
+    - Updated section 4.8 Emacs lisp programs:
+      + Replaced old section about lisp programs with a reference to
+        the file debian-emacs-policy.gz, installed by the emacsen-common
+        package.
+  
+    - Updated section 4.9 Games:
+      + manpages for games should be installed in /usr/man/man6
+        (cf., Policy Weekly Issue#6, topic 3)
+  
+    - Removed one example reference to the current standards version
+    - Include manual's date as plain text in the .sgml source so that
+      a recompiled manual uses the same release date
+
+  * Changes to the authoritative list of virtual package names:
+    - Removed obsolete virtual package `emacs'
+
+  * New version numbering scheme:
+  
+    - The version numbers are independent of dpkg now, but all policy
+      manuals (the Debian Policy Manual, the Debian Packaging Manual, and
+      the Debian Developer's Reference) share the same version numbering
+      scheme.
+    
+    - The first three digits of the version number specify the
+      `Standards-Version.' This number is incremented with each policy
+      change. The fourth digit represents the `patch-level,' which may
+      differ between the manuals. 
+  
+      If only the patch-level digit is incremented, no changes in policy
+      have been made, except bug fixes and clarifications. Packages only
+      have to specify the first three digits of the version number in the
+      `Standards-Version' field of their source packages.
+  
+  * Packaging changes:
+  
+    - Uploaded to frozen and unstable. This is a documentation-only
+      package and the changes to the manual are relevant for hamm.
+
+    - Fixed FSF's address in copyright file (detected by Lintian)
+  
+ -- Christian Schwarz <schwarz@debian.org>  Tue, 14 Apr 1998 10:08:09 +0200
+
+debian-policy (2.4.0.0) unstable; urgency=low
+
+  * Changes to the Debian Policy Manual:
+
+    - Updated section 3.3.4 Scripts:
+      + /bin/sh may be any POSIX compatible shell
+      + scripts including bashisms have to specify /bin/bash as
+        interpreter
+      + scripts which create files in world-writable directories
+        (e.g., in /tmp) should use tempfile or mktemp for creating
+        the directory
+
+    - Updated section 3.3.5 Symbolic Links:
+      + symbolic links referencing compressed files must have the same
+        file extension as the referenced file
+
+    - Updated section 3.3.6 Device files:
+      + /dev/tty* serial devices should be used instead of /dev/cu*
+
+    - Updated section 3.4.2 Writing the scripts [in /etc/init.d]:
+      + all /etc/init.d scripts have to provide the following options:
+        start, stop, restart, force-reload
+      + the reload option is optional and must never stop and restart
+        the service
+
+    - Updated section 3.5 Cron jobs:
+      + cron jobs that need to be executed more often than daily should
+        be installed into /etc/cron.d
+
+    - Updated section 3.7 Menus:
+      + removed section about how to register HTML docs to `menu'
+        (the corresponding section in 4.4, Web servers and applications,
+        has been removed in policy 2.2.0.0 already, so this one was
+        obsolete)
+
+    - New section 3.8 Keyboard configuration:
+      + details about how the backspace and delete keys should be
+        handled
+
+    - New section 3.9 Environment variables:
+      + no program must depend on environment variables to get a
+        reasonable default configuration
+
+    - New section 4.6 News system configuration:
+      + /etc/news/organization and /etc/news/server should be supported
+        by all news servers and clients
+
+    - Updated section 4.7 Programs for the X Windows system:
+      + programs requiring a non-free Motif library should be provided
+        as foo-smotif and foo-dmotif package
+      + if lesstif works reliably for such program, it should be linked
+        against lesstif and not against a non-free Motif library
+
+    - Updated section 4.9 Games:
+      + games for X Windows have to be installed in /usr/games, just as
+        non-X games
+
+    - Lots of typos fixed (thanks to Ray Dassen for the patch!)
+
+  * Changes to the authoritative list of virtual package names:
+    - added `libc-dev' and `emacsen'
+
+  * Merged `/usr/doc/debian-policy/changelog-policy.gz' into this
+    changelog file
+
+  * Included `Policy checklist for upgrading your packages' from the 
+    Policy Home Page as /usr/doc/debian-policy/upgrading-checklist.text.gz
+
+  * Added support for doc-base to register the Policy Manual to the
+    online documentation systems dwww and dhelp (fixes:#15710)
+
+  * Upgraded to standards version 2.4.0.0 (no changes)
+  
+ -- Christian Schwarz <schwarz@debian.org>  Fri, 30 Jan 1998 21:58:25 +0100
+
+debian-policy (2.3.0.1) unstable; urgency=low
+
+  * Changes in the Debian Policy Manual:
+    - X library package is now called xlib6g
+  * Changes in the authoritative list of virtual package names:
+    - Added emacs, c-compiler, fortran77-compiler, lambdamoo-core,
+      lambdamoo-server
+  * Conflict with old dpkg-dev version that included policy manual
+    (fixes #13790)
+  * Removed `tentative-opt-draft' from package since people considered
+    the draft official policy (which is not the case)
+  * Don't use debstd anymore
+  
+ -- Christian Schwarz <schwarz@debian.org>  Tue, 21 Oct 1997 23:03:52 +0200
+
+debian-policy (2.3.0.0) unstable; urgency=low
+
+  * Changes in the Debian Policy Manual:
+    - reworked chapter `The Debian Archive' to cover new
+      contrib/non-free policy
+    - call "contrib" and "non-free" a `section' (not `distribution')
+    - refer to license files (GPL, LGPL, etc.) as uncompressed files
+    - changed `/etc/news/server' into `/etc/nntpserver' in example of
+      maintainer scripts (fixes #11517)
+    - new section about `Daemons' 
+    - updated section about `Configuration files' 
+    - MUAs and MTAs have to use liblockfile 
+    - fixed typos and grammatical errors
+  * Changes in the authoritative list of virtual package names:
+    - renamed tcl/tk virtual package names to `tclsh' and `wish'
+  * Paper about libc6 migration:
+    - fixed typos (fixes #11641), thanks to James Troup for the patch! 
+  * SGML source code included in package
+  * don't use `2-up' style for PostScript version (fixes #11095)
+  
+ -- Christian Schwarz <schwarz@debian.org>  Mon,  2 Sep 1997 00:54:31 +0200
+
+debian-policy (2.2.0.0) unstable; urgency=low
+
+  * Changes in the Debian Policy Manual:
+    - completely reworked structure 
+    - moved sections about new maintainers, upload procedure, interim
+      releases, and mailing lists into the Developers Reference Manual 
+    - moved a few (small) sections into the Debian Packaging Manual
+    - removed all those ugly footnotes 
+    - new example for "reload" in section about console messages 
+    - mention Artistic License (fixes #9793) 
+    - don't mention dpkg's version number in Policy Manual 
+    - rewrote abstract and section introductions 
+    - mention "orphaned packages" 
+    - maintainer is responsible for a package license to comply with the
+      distributions' policy 
+    - putting a package into base section requires discussion on debian-devel 
+    - rewrote sections about "pre-depends", "essential" and, "base" packages 
+    - added note that non-us' maintainers have to live outside the US 
+    - added crypto-hook statement (fixes #7257) 
+    - added section about arch spec strings 
+    - rewrote section about "Site specific programs" (/usr/local) 
+    - included Ian's suggestions for user IDs 
+    - added section about "menus" 
+    - removed section about "web menus" since this will be superseded with
+      the new documentation policy soon 
+    - incorporated "Debian Free Software Guidelines" (fixes #9024) 
+    - removed note that linking with -g produces large a.out binary (fixes
+      #11008)  
+    - added section about editors and pagers 
+    - added note about Package priorities and dependencies 
+    - added section about cron jobs (fixes #8814) 
+    - added section about device files 
+    - don't install shared libraries as executable (fixes #7129) 
+    - app-defaults files may not be conffiles (cf. #2717) 
+    - lots of minor changes not worth mentioning here (typos, formulations,
+      etc.)
+  * Changes in the authoritative list of virtual package names
+    - Removed obsolete virtual packages: xR6shlib, xlibraries,
+      compress, emacs, sgmls, inews, gs_x, gs_svga, gs_both, xpmR6
+    - Added new section about obsolete names
+  * Added Helmut Geyer's paper about libc5-libc6 migration
+  * Fixed package's description
+ 
+ -- Christian Schwarz <schwarz@debian.org>  Sun, 13 Jul 1997 13:25:51 +0200
+
+debian-policy (2.1.3.3) frozen unstable; urgency=low
+
+  * Mention Artistic License in section 2.5 (bug #9755)
+
+ -- Christian Schwarz <schwarz@debian.org>  Wed, 14 May 1997 16:53:15 +0200
+
+debian-policy (2.1.3.2) frozen unstable; urgency=low
+
+  * Fixed an email address, an URL, and several typos in chapter 6 (#9358)
+  * Added new virtual package "wordlist" to list (requested by Joey Hess)
+  * Changed wording in section about "non-free" packages as suggested
+    by Kai Henningsen (#7076)
+
+ -- Christian Schwarz <schwarz@debian.org>  Mon, 5 May 1997 20:05:39 +0200
+
+debian-policy (2.1.3.1) frozen unstable; urgency=low
+
+  * Fixed bug in chapter 7: `-ur' should read `-us' (#8874)
+  * Fixed bug in chapter 7: `-rwhatever' also needed for rebuild (#8874)
+  * Create a PS and HTML version of the Policy Manual and upload it
+    "byhand".
+  * Install virtual-package-names-list.text in /usr/doc/debian-policy
+    and upload it "byhand" too.
+
+ -- Christian Schwarz <schwarz@debian.org>  Tue, 29 Apr 1997 18:02:14 +0200
+
+debian-policy (2.1.3.0) unstable; urgency=low
+
+  * Initial Release.
+  * New Policy Manager: Christian Schwarz <schwarz@debian.org>
+  * Added section 2.4 about the "non-us" distribution.
+  * Added section 3.1.1 about the "Package" field in the control file.
+  * Added section 3.2.1 about "Binaries": two programs with different
+    functionality must not have the same name.
+  * Changed headline of section 3.2.6 into "Debian changelog and upstream
+    changelog" as suggested by Santiago Vila Doncel <sanvila@unex.es>.
+  * Added log-rotating example to section 3.2.9 that tests with `-sf',
+    as suggested by Boris D. Beletsky <borik@isracom.co.il>.
+  * Added section 3.13: "Webstandard 3.0" by Christoph Lameter.
+  * Added section 3.14: "Standard for Console Messages" by Christian Schwarz.
+  * Split section 4.1 into 4.1.1 (Options for binaries) and 4.1.2 (Options
+    for libraries)
+  * Added note to 4.1.2: Libraries should be compiled with `-D_REENTRANT'
+    to make them compatible with LinuxThreads, by Rob Browning
+    <osiris@cs.utexas.edu>.
+  * Added note to 4.1.2: Libraries should be stripped with
+    "strip --strip-unneeded", by Guy Maor <maor@ece.utexas.edu>.
+  * Section 5.2: Policy changelog is now
+    "/usr/doc/debian-policy/changelog-policy.gz". This fixes bug #6130.
+  * Section 6.2 renamed to "Uploading your first Debian package". This
+    fixes bug #6130.
+
+ -- Christian Schwarz <schwarz@debian.org>  Sat, 15 Mar 1997 18:08:56 +0100
+
+debian-manuals (2.1.2.2) frozen unstable;
+
+  * Fixed even more typographical and grammatical errors in Policy and 
+  Programmer's manual
+  * Corrected the contact email addresses again.
+  * Added a paragraph to Policy 6.3 on taking over an old package (Guy Maor)
+  * Added a paragraph to Programmer 4.2.14 on listing distributions to load
+  a package into. (Guy Maor)
+  * Further clarification of use of absolute pathnames in scripts in 
+  Programmer 6.1. 
+
+ -- David Morris <bweaver@worf.netins.net>  Tue, 3 Dec 1996 23:28:04 -0600
+
+debian-manuals (2.1.2.1) frozen unstable;
+  
+  * Many editorial and formatting revisions with suggestions from Ian Jackson,
+  Guy Maor and others	
+  * correction of chiark address in Policy 6.2
+  * footnote in Programmers chapter 2 pointing to deb(5) manpage for 
+  description of deb file format.
+  * addition of more dpkg examples in Programmer chapter 2 
+  * Replace paragraph in Policy 4.1 outlining compiling parameters for 
+  shared libraries.
+  * Added paragraph in Programmer 6.1 on paths in maintainer scripts
+  (Bug #2481)
+  * Cleaned up language and formatting of Programmer's 12.2, shlibs
+  * Corrected contact addresses for listmaster and override-change
+
+ -- David Morris <bweaver@worf.netins.net>  Wed, 27 Nov 1996 08:17:16 -0600
+
+debian-manuals (2.1.2.0) frozen unstable;
+
+  * Mostly editorial changes in Policy Manual.
+  * Added summary of distribution criteria to Introduction
+  * Added section headings for copyright criteria
+  * Fixed typos (Bugs #4485, #4622)
+  * Added paragraph in Compilation Options related to use of shared and 
+    static libraries. (Bug #5299)
+  * Paragraph added about where to find PGP and other export restricted 
+    packages in section on Procedure
+  * Change in List administrator and in the contact address for becoming 
+    a package maintainer
+  * A paragraph added related to who to contact for package maintainer changes.
+  * Changed where to send upload announcements: uploads destined for unstable,
+    frozen, or experimental go to debian-devel-changes.
+
+  * Made some mostly editorial changes to Programmers Manual.
+  * Added a recommendation to debmake in Introduction.
+  * A further interpretation of the various Distributions is added with
+    the intent of helping people decide which one to choose. (section 4.2.14)
+  * Section 12 on Shared Libraries expanded with further technical information
+    on various shlib files
+  * Section in 2.2 on format of shlib file moved to new subsection within 12.
+  * Paragraph on adding a symlink without version number added to Shared 
+    Library Section (Guy Maor, Bug #5299)
+
+ -- David Morris <bweaver@worf.netins.net>  Fri, 22 Nov 1996 23:41:39 -0600
+
+debian-manuals (2.1.1.0) unstable;
+
+  * Hard links are forbidden in source packages (they didn't work anyway,
+    and can't easily be made to work reliably).
+  * Do not use dpkg-divert or update-alternatives without consultation.
+
+  * Do not need to declare dependencies on Essential packages.
+  * Restrictions on Pre-Depends stated in policy manual.
+  * debian/substvars file is now almost always auto-generated.
+  * Shared libraries must be installed stripped.
+  * Essential and Pre-Depends put together in policy manual.
+
+  * Explained component-wise (file-wise) vs. package-wise dependencies.
+
+ -- Ian Jackson <ian@chiark.greenend.org.uk>  Thu, 12 Sep 1996 01:00:41 +0100
+
+debian-manuals (2.1.0.0) unstable;
+
+  * Upstream changelog must be installed too (was just recommended).
+
+  * Modification to use dpkg-shlibdeps added to conversion instructions.
+  * Packages which are buggy and orphaned but which are preserved for
+    compatibility go in contrib.
+
+  * Programmers' manual source package section refers to conversion
+    instructions in policy manual.
+  * Make it clear that recommending a non-free or contrib package puts a
+    package in contrib.
+
+ -- Ian Jackson <ian@chiark.chu.cam.ac.uk>  Sun, 1 Sep 1996 17:47:18 +0100
+
+debian-manuals (2.0.1.0) unstable;
+
+  * varargs.h and libtermcap are obsolete - use stdarg.h and ncurses.
+  * Shared library link/library ordering corrected (aargh).
+  * When to byte-compile Elisp files.
+  * Missing final newlines not represented by dpkg-source.
+
+  * Must post upload announcements to debian-changes.
+  * Moved some sections into new `configuring and building' chapter.
+  * Typo fixes.
+
+ -- Ian Jackson <ian@chiark.chu.cam.ac.uk>  Sat, 31 Aug 1996 20:07:22 +0100
+
+debian-manuals (2.0.0.0) unstable;
+
+  * Footnote added OK'ing copyrights which require name changes.
+  * More detail about changelog format names.
+
+  * Problematic licence restrictions are formatted as lists.
+  * Mentioned 822-date utility as way to generate RFC822 format dates.
+  * Typos corrected.
+  * Released.
+
+ -- Ian Jackson <ian@chiark.chu.cam.ac.uk>  Mon, 26 Aug 1996 14:27:34 +0100
+
+debian-manuals (0.2.1.1) unstable;
+
+  * Can't overwrite directories in one package with files in another.
+
+ -- Ian Jackson <ian@chiark.chu.cam.ac.uk>  Sat, 24 Aug 1996 18:44:54 +0100
+
+debian-manuals (0.2.1.0) unstable;
+
+  * Policy says when and how to include original source in upload.
+
+  * Need -sa on dpkg-genchanges/dpkg-buildpackage when converting.
+
+  * Use minor patchlevel for meaning changes which don't affect packages.
+  * More verbosity about netiquette.
+  * Reorganised participation and upload policy: merged with mailing lists.
+
+ -- Ian Jackson <ian@chiark.chu.cam.ac.uk>  Fri, 23 Aug 1996 12:48:09 +0100
+
+debian-manuals (0.2.0.1) experimental;
+
+  * Said that system administrators' manual does not exist.
+
+ -- Ian Jackson <ian@chiark.chu.cam.ac.uk>  Fri, 23 Aug 1996 04:05:36 +0100
+
+debian-manuals (0.2.0.0) experimental;
+
+  * Draft releases.
+
+ -- Ian Jackson <ian@chiark.chu.cam.ac.uk>  Wed, 21 Aug 1996 15:07:53 +0100
+
+Local variables:
+mode: debian-changelog
+add-log-mailing-address: "phil@hands.com"
+End:

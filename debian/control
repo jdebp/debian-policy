@@ -1,0 +1,17 @@
+Source: debian-policy
+Section: doc
+Priority: extra
+Maintainer: Debian Policy List <debian-policy@lists.debian.org>
+Standards-Version: ${debian-policy:Version}
+
+Package: debian-policy
+Architecture: all
+Suggests: doc-base
+Conflicts: dpkg-dev (<< 1.4.0.9), doc-base (<< 0.6)
+Description: Debian Policy Manual and related documents
+ This package contains:
+    - Debian Policy Manual
+    - Linux Filesystem Structure (FSSTND)
+    - Authoritative list of virtual package names
+    - Paper about libc6 migration
+    - Policy checklist for upgrading your packages

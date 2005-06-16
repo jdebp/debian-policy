@@ -1,0 +1,164 @@
+<html><head><title>Policy checklist for upgrading your packages</title></head>
+<body>
+
+<h1>Policy checklist for upgrading your packages</h1>
+
+<h2>About the checklist</h2>
+
+The checklist below has been created to simplify the upgrading process
+of old packages. Note, that this list is not `official.' If you have
+doubts about a certain topic, if you need more details, or if you
+think some other package does not comply with policy, please refer to
+the Policy Manual.
+<p>
+
+Here is how the check list works: Check out which policy version your
+packages complies with currently. Than move upwards until the top and
+check which of the items on the list might concern your package. If an
+item does not give you enough details, please check out the Policy
+Manual.
+<p>
+
+<h2>The checklist</h2>
+
+<pre>
+
+2.4.1.0                         Apr 98
+
+  Policy Manual:
+    - Updated section 3.3.5 Symbolic links:
+      + symbolic links within a toplevel directory should be relative,
+        symbolic links between toplevel directories should be absolute
+        (cf., Policy Weekly Issue#6, topic 2)
+
+    - Updated section 4.9 Games:
+      + manpages for games should be installed in /usr/man/man6
+        (cf., Policy Weekly Issue#6, topic 3)
+
+  Packaging Manual:
+    - Updated prefix of chapter 12, Shared Libraries:
+      ldconfig must be called in the postinst script if the package
+      installs shared libraries
+      (cf., Policy Weekly Issue #6, fixes:bug#20515)
+  
+2.4.0.0                         Jan 98
+
+    - Updated section 3.3.4 Scripts:
+      + /bin/sh may be any POSIX compatible shell
+      + scripts including bashisms have to specify /bin/bash as
+        interpreter
+      + scripts which create files in world-writable directories
+        (e.g., in /tmp) should use tempfile or mktemp for creating
+        the directory
+
+    - Updated section 3.3.5 Symbolic Links:
+      + symbolic links referencing compressed files must have the same
+        file extension as the referenced file
+
+    - Updated section 3.3.6 Device files:
+      + /dev/tty* serial devices should be used instead of /dev/cu*
+
+    - Updated section 3.4.2 Writing the scripts [in /etc/init.d]:
+      + all /etc/init.d scripts have to provide the following options:
+        start, stop, restart, force-reload
+      + the reload option is optional and must never stop and restart
+        the service
+
+    - Updated section 3.5 Cron jobs:
+      + cron jobs that need to be executed more often than daily should
+        be installed into /etc/cron.d
+
+    - Updated section 3.7 Menus:
+      + removed section about how to register HTML docs to `menu'
+        (the corresponding section in 4.4, Web servers and applications,
+        has been removed in policy 2.2.0.0 already, so this one was
+        obsolete)
+
+    - New section 3.8 Keyboard configuration:
+      + details about how the backspace and delete keys should be
+        handled
+
+    - New section 3.9 Environment variables:
+      + no program must depend on environment variables to get a
+        reasonable default configuration
+
+    - New section 4.6 News system configuration:
+      + /etc/news/organization and /etc/news/server should be supported
+        by all news servers and clients
+
+    - Updated section 4.7 Programs for the X Windows system:
+      + programs requiring a non-free Motif library should be provided
+        as foo-smotif and foo-dmotif package
+      + if lesstif works reliably for such program, it should be linked
+        against lesstif and not against a non-free Motif library
+
+    - Updated section 4.9 Games:
+      + games for X Windows have to be installed in /usr/games, just as
+        non-X games
+
+2.3.0.1, 2.3.0.0		Sep 97
+
+	* new section `4.2 Daemons' including rules for
+	  /etc/services, /etc/protocols, /etc/rpc, and /etc/inetd.conf
+
+	* updated section about `Configuration files':
+	  packages may not touch other packages' configuration files  
+
+	* MUAs and MTAs have to use liblockfile
+
+2.2.0.0				Jul 97
+
+	* added section 4.1 `Architecture specification strings':
+          use
+	       &lt;arch&gt;-linux 
+          where &lt;arch&gt; is one of the following:
+               i386, alpha, arm, m68k, powerpc, sparc.
+
+	* detailed rules for /usr/local
+
+	* user ID's
+
+	* editor/pager policy
+
+	* cron jobs
+
+	* device files
+
+	* don't install shared libraries as executable
+
+	* app-defaults files may not be conffiles
+
+2.1.3.2, 2.1.3.1, 2.1.3.0	Mar 97
+
+	* two programs with different functionality must not have the
+	  same name
+
+	* "Webstandard 3.0"
+
+	* "Standard for Console Messages"
+
+	* Libraries should be compiled with `-D_REENTRANT'
+
+	* Libraries should be stripped with "strip --strip-unneeded"
+
+2.1.2.2, 2.1.2.1, 2.1.2.0	Nov 96
+
+	* Some changes WRT shared libraries
+
+2.1.1.0				Sep 96
+
+	* No hard links in source packages
+	
+	* Do not use dpkg-divert or update-alternatives without consultation
+
+	* Shared libraries must be installed stripped
+
+2.1.0.0				Aug 96
+
+	* Upstream changelog must be installed too
+</pre>
+
+<p>
+<hr>
+
+</body></html>
