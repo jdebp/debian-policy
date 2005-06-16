@@ -98,14 +98,14 @@ stamp-build:
 	  debiandoc2html $$file.sgml; \
 	  debiandoc2text $$file.sgml; \
 	  if [ -f $$file.text ]; then mv $$file.text $$file.txt; fi; \
-	  gzip -9 $$file.txt; \
+	  gzip -f9 $$file.txt; \
 	  tar -cf $$file.html.tar $$file.html; \
-	  gzip -9 $$file.html.tar; \
+	  gzip -f9 $$file.html.tar; \
 	done
 	tar -zxf $(FHS_ARCHIVE)
 	# Need to use a patched tmac.m macro file if we're using a pre-1.16
 	# groff; version 1.16 is apparently fixed
-	if dpkg --compare-versions $(GROFF_VERSION) lt 1.16; then \
+	if dpkg --compare-versions "$(GROFF_VERSION)" lt 1.16; then \
 	    cp /usr/share/groff/tmac/tmac.m fhs && \
 	    cd fhs && patch -p1 < ../mm1.32-patch; \
 	fi
@@ -168,7 +168,7 @@ stamp-policy:  build
 	$(install_file)	    $(FHS_FILES)	     $(DOCDIR)/fhs/
 	$(install_file)	    debian/changelog	     $(DOCDIR)/
 	# Be more specific with file compression
-	-gzip -9	    $(DOCDIR)/*.txt $(DOCDIR)/*.sgml \
+	gzip -f9	    $(DOCDIR)/*.txt $(DOCDIR)/*.sgml \
 				$(DOCDIR)/fhs/* $(DOCDIR)/changelog
 	$(install_file)	    debian/copyright	     $(DOCDIR)/
 	GZIP=-9 cd debconf_spec && \
