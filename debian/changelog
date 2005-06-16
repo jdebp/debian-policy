@@ -1,3 +1,18 @@
+debian-policy (3.5.4.0) unstable; urgency=low
+
+  * [ACCEPTED 2/4/01] /var/mail and /var/spool/mail  closes: Bug#42052
+  * [AMENDMENT 26/04/2001] include Perl Policy       closes: Bug#83977
+  * Also incorporates all the improvements that Julian has made to to the
+    grammar and flow of the policy manual. The following are mostly
+    Julian's fixes:
+  * Fixed the confusing self referential language.   closes: Bug#85503
+  * Correct ambiguous kanguage about declaring build dependencies.
+                                                     closes: Bug#86436
+  * Improved the woding of the footnote about shlibdeps.
+                                                     closes: Bug#87233
+
+ -- Manoj Srivastava <srivasta@debian.org>  Sat, 28 Apr 2001 13:30:21 -0500
+
 debian-policy (3.5.3.0) unstable; urgency=low
 
   * Removed recommendation on packaging-manual

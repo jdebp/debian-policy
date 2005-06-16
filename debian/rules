@@ -42,6 +42,7 @@ FILES_TO_CLEAN  = debian/files debian/buildinfo  debian/substvars \
 		  version.ent  policy.lout policy.lout.ld lout.li \
 		  upgrading-checklist.txt policy.txt.gz \
 		  menu-policy.txt.gz menu-policy.pdf.gz \
+		  perl-policy.txt.gz perl-policy.pdf.gz \
 		  policy-process.txt.gz policy-process.pdf.gz \
 		  mime-policy.txt.gz mime-policy.pdf.gz \
                   debconf_spec/debconf_specification.html \
@@ -50,8 +51,8 @@ FILES_TO_CLEAN  = debian/files debian/buildinfo  debian/substvars \
 STAMPS_TO_CLEAN = stamp-policy stamp-build stamp-configure
 DIRS_TO_CLEAN   = debian/tmp policy.html fhs \
 		  menu-policy.html mime-policy.html \
-		  policy-process.html
-SGML_FILES      = policy menu-policy mime-policy policy-process
+		  policy-process.html perl-policy.html
+SGML_FILES      = policy menu-policy mime-policy policy-process perl-policy
 
 # Location of the source dir
 SRCTOP	  := $(shell if [ "$$PWD" != "" ]; then echo $$PWD; else pwd; fi;)
@@ -73,6 +74,7 @@ FHS_BYHAND   =fhs-2.1.html.tar.gz fhs/fhs.txt
 POLICY_FILES =policy.txt.gz policy.sgml virtual-package-names-list.txt \
 	      upgrading-checklist.txt libc6-migration.txt version.ent \
 	      menu-policy.sgml menu-policy.txt.gz \
+	      perl-policy.sgml perl-policy.txt.gz \
 	      mime-policy.sgml mime-policy.txt.gz \
               policy-process.txt.gz policy-process.sgml \
               debconf_spec/debconf_specification.html \
@@ -80,7 +82,7 @@ POLICY_FILES =policy.txt.gz policy.sgml virtual-package-names-list.txt \
 BYHAND_FILES =policy.txt.gz libc6-migration.txt \
 	      virtual-package-names-list.txt menu-policy.txt.gz \
 	      mime-policy.txt.gz policy.ps.gz policy.pdf.gz \
-              policy.html.tar.gz \
+              policy.html.tar.gz perl-policy.txt.gz \
 	      debconf_spec/debconf_specification.txt.gz \
 	      $(FHS_BYHAND)
 
@@ -173,6 +175,7 @@ stamp-policy:  build
 	$(install_file)	    debian-policy.desc	     $(LIBDIR)/debian-policy
 	(tar cf -	    policy.html) |	     (cd $(DOCDIR);   tar xf -)
 	(tar cf -	    menu-policy.html) |	     (cd $(DOCDIR);   tar xf -)
+	(tar cf -	    perl-policy.html) |	     (cd $(DOCDIR);   tar xf -)
 	(tar cf -	    mime-policy.html) |	     (cd $(DOCDIR);   tar xf -)
 	(tar cf -	    policy-process.html) |   (cd $(DOCDIR);   tar xf -)
 	sed -e 's/#PACKAGE#/$(package)/g' debian/postinst.in > debian/postinst
