@@ -14,6 +14,8 @@ debian-policy (3.5.4.1) unstable; urgency=low
     patches are incorporated upstream
   * Versioned Build-Depend on debiandoc-sgml for fixed Text.pm
   * Improved mkdir example in 10.1.2                 closes: Bug#92744
+  * Made the "where examples live" entry in the upgrading-checklist
+    clearer (add "for use by scripts")
 
  -- 
 
