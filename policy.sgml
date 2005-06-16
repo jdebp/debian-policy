@@ -7584,7 +7584,7 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	<p>
 	  Packages must not require the existance of any files in
 	  <file>/usr/share/doc/</file> in order to function
-	  <footnote id="rationale">
+	  <footnote>
 	    <p>
 	      The system administrator should be able to
 	      delete files in <file>/usr/share/doc/</file> without causing
