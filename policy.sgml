@@ -3790,19 +3790,22 @@ Replaces: mail-transport-agent
 	    forbidden by current policy to call "ldconfig" at this
 	    time.  When a package is installed or upgraded, "postinst
 	    configure" runs after the new files are safely on-disk.
-	    The postinst can also be called to recover from a failed
-	    upgrade.  This happens before any new files are unpacked,
-	    so there is no reason to call "ldconfig" at this point.
-	    For a package that is being removed, prerm is called with
-	    all the files intact, so calling ldconfig is useless.  The
-	    other calls to "prerm" happen in the case of upgrade at a
-	    time when all the files of the old package are on-disk, so
-	    again calling "ldconfig" is pointless. If An installed
-	    shared lib has been removed from the system just before
-	    "postrm remove" is run.  This is the proper time to call
-	    "ldconfig" to notify the system of that fact.  The postrm
-	    can be called at several other times.  At the time of
-	    "postrm purge", "postrm abort-install", or "postrm
+	    Since it is perfectly safe to invoke ldconfig
+	    unconditionally in a postinst, it is OK for a package to
+	    simply put ldconfig in its postinst without checking the
+	    argument.  The postinst can also be called to recover from
+	    a failed upgrade.  This happens before any new files are
+	    unpacked, so there is no reason to call "ldconfig" at this
+	    point.  For a package that is being removed, prerm is
+	    called with all the files intact, so calling ldconfig is
+	    useless.  The other calls to "prerm" happen in the case of
+	    upgrade at a time when all the files of the old package
+	    are on-disk, so again calling "ldconfig" is pointless. If
+	    An installed shared lib has been removed from the system
+	    just before "postrm remove" is run.  This is the proper
+	    time to call "ldconfig" to notify the system of that fact.
+	    The postrm can be called at several other times.  At the
+	    time of "postrm purge", "postrm abort-install", or "postrm
 	    abort-upgrade", calling "ldconfig" is useless because the
 	    shared lib files are not on-disk.  However, when "postrm"
 	    is invoked with arguments "upgrade", "failed-upgrade", or
