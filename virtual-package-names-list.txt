@@ -63,6 +63,8 @@ others may do so as well.]
 awk                     Anything providing suitable /usr/bin/{awk,nawk} (*)
 c-compiler              Anything providing a C compiler
 c-shell                 Anything providing a suitable /bin/csh (*)
+debconf-2.0             Any package that provides the debconf protocol
+dhcp-client             Any package providing a DHCP client                 
 dotfile-module          Anything that provides a module for the
                         Dotfile Generator
 dict-client             Any package providing clients for the Dictionary Server
@@ -74,8 +76,8 @@ ftp-server              Any ftp server
 httpd                   Any HTTP server
 ident-server            Anything providing an identd daemon
 info-browser            Something that can browse GNU Info files
-ispell-dictionary       Anything providing a dictionary for the
-                        ispell system
+aspell-dictionary       Anything providing a dictionary for the aspell system
+ispell-dictionary       Anything providing a dictionary for the ispell system
 kernel-headers          Kernel header files (<linux/*.h>, <asm/*.h>)
 kernel-image            Kernel image (vmlinuz, System.map, modules)
 kernel-source           Kernel source code
@@ -89,6 +91,7 @@ pdf-preview             Any preprocessor that creates PDF output
 pdf-viewer              Anything that can display PDF files
 postscript-preview      Any preprocessor that creates Postscript output
 postscript-viewer       Anything that can display Postscript files
+radius-server           Any package that provides a RADIUS server for acct/auth
 rsh-client              Any package that provides an rsh client
 rsh-server              Any package that provides an rsh server
 system-log-daemon       A daemon that provides a logging facility for
@@ -215,3 +218,8 @@ Manoj Srivastava
 	      Added dict-client
 	      Added foomatic-data
 	      Added audio-mixer and x-audio-mixer
+Manoj Srivastava
+  30 Aug 2002 Added debconf-2.0
+              Added dhcp-client
+              Added aspell-dictionary
+              Added radius-server
