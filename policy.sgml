@@ -718,13 +718,15 @@
 	    <tag><tt>required</tt></tag>
 	    <item>
 		Packages which are necessary for the proper
-		functioning of the system.  You must not remove these
-		packages or your system may become totally broken and
-		you may not even be able to use <prgn>dpkg</prgn> to
-		put things back.  Systems with only the
-		<tt>required</tt> packages are probably unusable, but
-		they do have enough functionality to allow the
-		sysadmin to boot and install more software.
+		functioning of the system (usually, this means that
+		dpkg functionality depends on these packages).
+		Removing an <tt>required</tt> package may cause your
+		system to become totally broken and you may not even
+		be able to use <prgn>dpkg</prgn> to put things back,
+		so only do so if you know what you are doing.  Systems
+		with only the <tt>required</tt> packages are probably
+		unusable, but they do have enough functionality to
+		allow the sysadmin to boot and install more software.
 	    </item>
 	    <tag><tt>important</tt></tag>
 	    <item>
