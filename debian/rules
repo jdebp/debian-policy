@@ -110,7 +110,7 @@ stamp-build:
 	    cp /usr/share/groff/tmac/tmac.m fhs && \
 	    cd fhs && patch -p1 < ../mm1.32-patch; \
 	fi
-	# The extra '.' in the tmac path doesn't matter if
+	# The extra '.' in the tmac path won't harm if unnecessary
 	GROFF_TMAC_PATH=. cd fhs && $(MAKE) fhs.ps fhs.pdf fhs.txt
 	links -dump fhs-changes-2.1.html | perl -pe 's/[\r\0]//g' > \
                     fhs/fhs-changes-2.1.txt
