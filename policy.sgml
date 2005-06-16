@@ -1359,10 +1359,10 @@
 
 	  <p>	    
 	    They must be at least two characters long and must start
-	    with an alphanumeric character.  The use lowercase package
-	    names is strongly recommended unless the package you're
-	    building (or referring to, in other fields) is already
-	    using uppercase.</p>
+	    with an alphanumeric character.  The use of lowercase
+	    package names is strongly recommended unless the package
+	    you're building (or referring to, in other fields) is
+	    already using uppercase.</p>
 	</sect1>
 	
 	<sect1 id="f-Version"><heading><tt>Version</tt>
@@ -1379,11 +1379,11 @@
 	       id="f-Standards-Version"><heading><tt>Standards-Version</tt>
 	  </heading>
 
-	  <p>	    
-	    The most recent version of the standards (the packaging
-	    and policy manuals and associated texts) with which the
-	    package complies.  This is updated manually when editing
-	    the source package to conform to newer standards; it can
+	  <p>
+            The most recent version of the standards (the policy
+	    manual and associated texts) with which the package
+	    complies.  This is updated manually when editing the
+	    source package to conform to newer standards; it can
 	    sometimes be used to tell when a package needs attention.
 	  </p>
 
@@ -1543,8 +1543,8 @@
 	  <item>
 	    
 	    <p>
-	      This is the main part of the version.  It is usually
-	      version number of the original (`upstream') package of
+	      This is the main part of the version.  It is usually the
+	      version number of the original (`upstream') package from
 	      which the <tt>.deb</tt> file has been made, if this is
 	      applicable.  Usually this will be in the same format as
 	      that specified by the upstream author(s); however, it
@@ -1741,9 +1741,10 @@
 	  package, all <strong>required targets</strong> MUST be
 	  non-interactive. At a minimum, required targets are the
 	  ones called by <prgn>dpkg-buildpackage</prgn>, namely,
-	  <em>clean</em>, <em>binary</em>, <em>binary-arch</em>, and
-	  <em>build</em>. It also follows that any target that these
-	  targets depend on must also be non-interactive.
+	  <em>clean</em>, <em>binary</em>, <em>binary-arch</em>,
+	  <em>binary-indep</em>, and <em>build</em>. It also follows
+	  that any target that these targets depend on must also be
+	  non-interactive.
 	</p>
 	
 	<p>	    
@@ -1952,9 +1953,9 @@
 	
 	<p>
 	  It is important to understand that the <tt>DEB_*_ARCH</tt>
-	  string does only determine which Debian architecture we
-	  build on resp. for. It should not be used to get the CPU
-	  or System information, the GNU style variables should be
+	  string only determines which Debian architecture we are
+	  building on or for. It should not be used to get the CPU
+	  or system information; the GNU style variables should be
 	  used for that.
 	</p>
       </sect>
@@ -2271,11 +2272,11 @@
 	  control area of the package.  They must be proper executable
 	  files; if they are scripts (which is recommended) they must
 	  start with the usual <tt>#!</tt> convention.  They should be
-	  readable and executable to anyone, and not world-writable.
+	  readable and executable by anyone, and not world-writable.
 	</p>
 
 	<p>	  
-	  the package management system looks at the exit status from
+	  The package management system looks at the exit status from
 	  these scripts.  It is important that they exit with a
 	  non-zero status if there is an error, so that the package
 	  management system can stop its processing.  For shell
@@ -2496,18 +2497,18 @@
 	<p>	  
 	  The procedure on installation/upgrade/overwrite/disappear
 	  (i.e., when running <tt>dpkg --unpack</tt>, or the unpack
-	  stage of <tt>dpkg
-	    --install</tt>) is as follows.  In each case if an error occurs the
-	  actions in are general run backwards - this means that the maintainer
-	  scripts are run with different arguments in reverse order.  These are
-	  the `error unwind' calls listed below.
+	  stage of <tt>dpkg --install</tt>) is as follows.  In each
+	  case if an error occurs the actions are, in general, run
+	  backwards - this means that the maintainer scripts are run
+	  with different arguments in reverse order.  These are the
+	  `error unwind' calls listed below.
 	  
 	  <enumlist>
 	    <item>
 	      <p>
 		<enumlist>
 		  <item>
-		    <p>If a version the package is already
+		    <p>If a version of the package is already
 		      installed, call
 		      <example>
 			<var>old-prerm</var> upgrade <var>new-version</var>
