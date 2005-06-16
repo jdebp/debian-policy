@@ -85,12 +85,13 @@
 	  warranty of merchantability or fitness for a particular
 	  purpose.  See the GNU General Public License for more
 	  details.
-	  </p>
+	</p>
+
 	<p>
 	  A copy of the GNU General Public License is available as
 	  <tt>/usr/share/common-licences/GPL</tt> in the Debian GNU/Linux
 	  distribution or on the World Wide Web at 
-	  <url id="http://www.gnu.org/copyleft/gpl.html"
+	  <url id="http://www.gnu.org/copyleft/gpl.html" 
 	  name="&urlname">. You can also obtain it by writing to the
 	  Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 	  Boston, MA 02111-1307, USA.
@@ -134,16 +135,15 @@
 	<heading>New versions of this document</heading>
 	<p>
 	  The current version of this document is always accessible from the
-	  Debian FTP server at
-	  <url
-	  id="ftp://ftp.debian.org/debian/doc/manuals/debian-policy.html.tar.gz" name="&urlname">
+	  Debian FTP server <ftpsite>ftp.debian.org</ftpsite> at
+	  <ftppath>/debian/doc/manuals/debian-policy.html.tar.gz</ftppath>
 	  or from the Debian WWW server at
 	  <url id="http://www.debian.org/doc/debian-policy/"
-	  name="&urlname"></p>
+	  name="&urlname">.</p>
 
 	<p>
 	  In addition, this manual is distributed via the Debian package
-	  <tt>debian-policy</tt>
+	  <tt>debian-policy</tt>.
 	</p>
       </sect>
       <sect>
@@ -380,18 +380,6 @@
 		non-free programs,
 	      </p>
 	    </item>
-	    <item>
-	      <p>
-		packages which we don't want to support because they are too
-		buggy, and 
-		</p>
-	    </item>
-	    <item>
-	      <p>
-		packages which fail to meet some other policy requirements in
-		a serious way.
-	      </p>
-	    </item>
 	  </list>
 	</p>
       </sect1>
@@ -587,10 +575,11 @@
 	    </item>
 	    <tag><tt>extra</tt></tag>
 	    <item>
-	      <p>		
-		This contains packages that conflict with others with
-		higher priorities, or are only likely to be useful if
-		you already know what they are or have specialized
+	      <p>
+		This contains all packages that conflict with others
+		with required, important, standard or optional
+		priorities, or are only likely to be useful if you
+		already know what they are or have specialised
 		requirements.
 	      </p>
 	    </item>
@@ -598,8 +587,8 @@
 	  
 	<p>
 	  Packages may not depend on packages with lower priority
-	  values.  If this does happen, one of the priority values
-	  will have to be adapted.
+	  values (excluding build-time dependencies).  If this does
+	  happen, one of the priority values will have to be adapted.
 	</p>
       </sect>
 	  
@@ -868,7 +857,7 @@
 	    De-installation of other packages supplying it which do not
 	    (yet) use <prgn>update-alternatives</prgn>.  It may in
 	    this case be appropriate to specify a conflict on earlier
-	    versions on something--this is an exception to the usual
+	    versions of something--this is an exception to the usual
 	    rule that this is not allowed.</p>
 	</sect1>
       </sect>
@@ -932,6 +921,53 @@
 	    release it.</p></sect1>
 	    
 	    
+         <sect1>
+           <heading>Package relationships</heading>
+ 
+           <p>
+             Source packages must specify which binary packages they
+             require to be installed or not to be installed in order to
+             build correctly.  For example, if building a package
+             requires a certain compiler, then the compiler must be
+             specified as a build-time dependency.
+           </p>
+ 
+           <p>
+             It will not be necessary to explicitly specify build-time
+	     relationships on a minimal set of packages that are always
+	     needed to compile, link and put in a Debian package a
+	     standard "Hello World!" program written in C or C++.  The
+	     required packages are called <em>build-essential</em>, and
+	     an informational list can be found in
+	     <tt>/usr/share/doc/build-essential/list</tt> (which is
+	     contained in the <tt>build-essential</tt> package).
+
+           </p>
+ 
+           <p>
+             When specifying the set of build-time dependencies, one
+             should list only those packages explicitly required by the
+             build.  It is not necessary to list packages which are
+             required merely because some other package in the list of
+             build-time dependencies depends on them.  The reason is
+             that dependencies change, and you should list only those
+             <em>you</em> need.  What others need is their business.
+           </p>
+ 
+           <p>
+             It is a bug if, after unpacking a source package on a
+             system with the build-essential packages installed and
+             satisfying the build-time relationships (including the
+             implied relationships), one cannot build the package and
+             produce a working binary package suitable for installation
+             into the binary distribution corresponding to the source
+             distribution which contained the source package.  This
+             means in particular that version clauses should be used
+             rigorously in build-time relationships so that one cannot
+             produce bad or inconsistently configured packages when the
+             relationships are properly satisfied.
+           </p>
+ 
 	<sect1>
 	  <heading>Changes to the upstream sources</heading>
 	    
@@ -1050,22 +1086,15 @@
 	    
 	  <p>
 	    The location of all installed files and directories must
-	    comply (with some exceptions
-	    <footnote>
-	      <p>In an as yet unreleased version of the standard, the
-		location of the mail spool and state information
-		directories has changed; and we propose to follow the
-		latter, since that would mean that we do not have to
-		move things around again when the new version of the
-		FHS comes around). The changes are, amongst others,
-		s%/var/mail%/var/spool/mail% and
-		s%/var/state%/var/lib%</p>
-	    </footnote>
-	    ) with the Linux File system Hierarchy Standard
+	    comply  with the Linux File system Hierarchy Standard
 	    (FHS).  The latest version of this document can be found
 	    alongside this manual or on
-	    <ftpsite>tsx-11.mit.edu</ftpsite> in
-	    <ftppath>/pub/linux/docs/linux-standards/fsstnd/</ftppath>.
+	    <url id="http://www.pathname.com/fhs/">.<footnote>
+	      <p>The Debian distribution currently distributes a draft
+		version of FHS 2.1 because several significant details
+		have changed between the currently released 2.0
+		version and the to-be-released 2.1 version.</p>
+	    </footnote>
 	    Specific questions about following the standard may be
 	    asked on <prgn>debian-devel</prgn>, or referred to Daniel
 	    Quinlan, the FHS coordinator, at
@@ -1127,11 +1156,18 @@
 	    local additions to a package, you must ensure that
 	    settings in <tt>/usr/local</tt> take precedence over the
 	    equivalents in <tt>/usr</tt>.</p>
-	    
+
 	  <p>
-	    The <tt>/usr/local</tt> directory itself and all the subdirectories
-	    created by the package should have permissions 2775 (group-writable
-	    and set-group-id) and be owned by <tt>root.staff</tt>.</p>
+	    However, because '/usr/local' and its contents are for
+	    exclusive use of the local administrator, a package must
+	    not rely on the presence or absence of files or
+	    directories in '/usr/local' for normal operation.</p>
+    
+	  <p>
+	    The <tt>/usr/local</tt> directory itself and all the
+	    subdirectories created by the package should have
+	    permissions 2775 (group-writable and set-group-id) and be
+	    owned by <tt>root.staff</tt>.</p>
 	</sect1>
       </sect>
 	
@@ -1254,30 +1290,45 @@
 	<heading>System run levels</heading>
 	  
 	
-	<sect1>
+	<sect1 id="/etc/init.d">
 	  <heading>Introduction</heading>
 	    
 	  <p>
 	    The <tt>/etc/init.d</tt> directory contains the scripts
 	    executed by <prgn>init</prgn> at boot time and when init
 	    state (or `runlevel') is changed (see <manref name="init"
-	    section="8">).</p> <p>
-	    
-	    These scripts are being referenced by symbolic links in
+	    section="8">).</p>
+
+          <p>
+            There are at least two different, yet functionally
+            equivalent, ways of handling these scripts.  For the sake
+            of simplicity, this document describes only the symbolic
+            link method. However, it may not be assumed that this
+            method is being used, and any manipulation of the various
+            runlevel behaviours must be performed using
+            <prgn>update-rc.d</prgn> as described below and not by
+            manually installing symlinks.  For information on the
+            implementation details of the other method, implemented in
+            the <tt>file-rc</tt> package, please refer to the
+            documentation of that package.</p>
+
+          <p>
+            These scripts are referenced by symbolic links in
 	    the <tt>/etc/rc<var>n</var>.d</tt> directories.  When
 	    changing runlevels, <prgn>init</prgn> looks in the
 	    directory <tt>/etc/rc<var>n</var>.d</tt> for the scripts
 	    it should execute, where <var>n</var> is the runlevel that
 	    is being changed to, or `S' for the boot-up scripts.</p>
-	    <p>
 	    
+          <p>
 	    The names of the links all have the form
 	    <tt>S<var>mm</var><var>script</var></tt> or
 	    <tt>K<var>mm</var><var>script</var></tt> where
 	    <var>mm</var> is a two-digit number and <var>script</var>
 	    is the name of the script (this should be the same as the
-	    name of the actual script in <tt>/etc/init.d</tt>.
+	    name of the actual script in <tt>/etc/init.d</tt>.</p>
 	    
+          <p>
 	    When <prgn>init</prgn> changes runlevel first the targets
 	    of the links whose names starting with a <tt>K</tt> are
 	    executed, each with the single argument <tt>stop</tt>,
@@ -1368,31 +1419,40 @@
 	  <p>
 	    These scripts should not fail obscurely when the
 	    configuration files remain but the package has been
-	    removed, as the default in <prgn>dpkg</prgn> is to leave
-	    configuration files on the system after the package has
-	    been removed.  Only when it is executed with the
-	    <tt>--purge</tt> option will dpkg remove configuration
-	    files.  Therefore, you should include a <tt>test</tt>
-	    statement at the top of the script, like this:
+	    removed, as configuration files remain on the system after
+	    the package has been removed. Only when <prgn>dpkg</prgn>
+	    is executed with the <tt>--purge</tt> option will
+	    configuration files be removed. In particular, the init
+	    script itself is usually a configuration file (see
+            <ref id="init.d notes">), and will remain on the system if
+	    the package is removed but not purged. Therefore, you
+	    should include a <tt>test</tt> statement at the top of the
+	    script, like this:
 	    <example>
-	      test -f <var>program-executed-later-in-script</var> || exit 0
-	    </example></p></sect1>
+  test -f <var>program-executed-later-in-script</var> || exit 0
+	    </example></p>
+	</sect1>
 	  
 	<sect1>
 	  <heading>Managing the links</heading>
 	    
 	  <p>
-	    A program is provided, <prgn>update-rc.d</prgn>, to make
-	    it easier for package maintainers to arrange for the
+	    A program is provided, <prgn>update-rc.d</prgn>, to handle
+	    the it easier for package maintainers to arrange for the
 	    proper creation and removal of
-	    <tt>/etc/rc<var>n</var>.d</tt> symbolic links from their
+	    <tt>/etc/rc<var>n</var>.d</tt> symbolic links, or their
+	    functional equivalent if another method is being used.
+	    This may be used by maintainers in their packages'
 	    <tt>postinst</tt> and <tt>postrm</tt> scripts.</p>
 	    
 	  <p>
 	    You should use this script to make changes to
-	    <tt>/etc/rc<var>n</var>.d</tt> and <em>never</em> include
-	    any <tt>/etc/rc<var>n</var>.d</tt> symbolic links in the
-	    actual archive.</p>
+	    <tt>/etc/rc<var>n</var>.d</tt> and <em>never</em> either
+	    include any <tt>/etc/rc<var>n</var>.d</tt> symbolic links
+	    in the actual archive or manually create or remove the
+	    symbolic links in maintainer scripts.  (The latter will
+	    fail if an alternative method of maintaining runlevel
+	    information is being used.)</p>
 	    
 	  <p>
 	    By default <prgn>update-rc.d</prgn> will start services in
@@ -1400,8 +1460,11 @@
 	    and stop them in the halt runlevel (0), the single-user
 	    runlevel (1) and the reboot runlevel (6).  The system
 	    administrator will have the opportunity to customize
-	    runlevels by simply adding, moving, or removing the
-	    symbolic links in <tt>/etc/rc<var>n</var>.d</tt>.</p>
+	    runlevels by either running <prgn>update-rc.d</prgn>, by
+	    simply adding, moving, or removing the symbolic links in
+	    <tt>/etc/rc<var>n</var>.d</tt> if symbolic links are being
+	    used, or by modifying <tt>/etc/runlevel.conf</tt> if the
+	    <tt>file-rc</tt> method is being used.</p>
 	    
 	  <p>
 	    To get the default behavior for your package, put in your
@@ -1433,32 +1496,15 @@
 	<sect1>
 	  <heading>Boot-time initialization</heading>
 	    
-	  <p>
-	    There is another directory, <tt>/etc/rc.boot</tt>, which
-	    contains scripts which are run once per machine boot.
-	    This facility is provided for initialization of hardware
-	    devices, cleaning up of leftover files, and so forth.</p>
-	    
-	  <p>
-	    For example, the <prgn>kbd</prgn> package provides a
-	    script here for initializing the keyboard layout and
-	    console font and mode.</p>
-	    
-	  <p>
-	    The files in <tt>/etc/rc.boot</tt> should <em>not</em> be
-	    links into <tt>/etc/init.d</tt>--they should be the
-	    scripts themselves.</p>
-	    
-	  <p>
-	    <tt>rc.boot</tt> should <em>not</em> be used for starting
-	    general-purpose daemons and similar activities.  This
-	    should be done using the <tt>rc<var>n</var>.d</tt> scheme,
-	    above, so that the services can be started and stopped
-	    cleanly when the runlevel changes or the machine is to be
-	    shut down or rebooted.</p></sect1>
-	    
-	    
-	<sect1>
+          <p>
+            There used to be another directory, <tt>/etc/rc.boot</tt>,
+            which contained scripts which were run once per machine
+            boot. This has been deprecated in favour of links from
+            <tt>/etc/rcS.d</tt> to files in <tt>/etc/init.d</tt> as
+            described in <ref id="/etc/init.d">.  No packages may
+            place files in <tt>/etc/rc.boot</tt>.</p>
+
+	<sect1 id="init.d notes">
 	  <heading>Notes</heading>
 	    
 	  <p>
@@ -1467,19 +1513,23 @@
 	    <tt>.deb</tt> file system archive!  <em>This will cause
 	    problems!</em> You should create them with
 	    <prgn>update-rc.d</prgn>, as above.</p>
-	    
+	
 	  <p>
-	    <em>Do not</em> include the <tt>/etc/rc<var>n</var>.d/*</tt> symbolic links in
+	    <em>Do not</em> include the
+	    <tt>/etc/rc<var>n</var>.d/*</tt> symbolic links in
 	    <prgn>dpkg</prgn>'s conffiles list!  <em>This will cause
-	      problems!</em> <em>Do</em>,
-	    however, include the <tt>/etc/init.d</tt> scripts in
-	    conffiles.  (This is important since we want to give the
-	    local system administrator the chance to adapt the scripts
-	    to the local system--e.g., to disable a service without
-	    De-installing the package, or to specify some special
-	    command line options when starting a service--while making
-	    sure her changes aren't lost during the next package
-	    upgrade.)</p></sect1>
+	    problems!</em> <em>Do</em>, however, treat the
+	    <tt>/etc/init.d</tt> scripts as configuration files,
+	    either by marking them as conffiles or managing them
+	    correctly in the maintainer scripts (see
+	    <ref id="config files">). (This is important since we want
+	    to give the local system administrator the chance to adapt
+	    the scripts to the local system--e.g., to disable a
+	    service without de-installing the package, or to specify
+	    some special command line options when starting a
+	    service--while making sure her changes aren't lost during
+	    the next package upgrade.)</p>
+	</sect1>
 	    
 	<sect1>
 	  <heading>Example</heading>
@@ -1564,7 +1614,7 @@
 	<heading>Cron jobs</heading>
 	  
 	<p>
-	  Packages may not touch the configuration file
+	  Packages may not modify the configuration file
 	  <tt>/etc/crontab</tt>, nor may they modify the files in
 	  <tt>/var/spool/cron/crontabs</tt>.</p>
 	  
@@ -1577,36 +1627,37 @@
 	    /etc/cron.weekly
 	    /etc/cron.monthly
 	  </example>
-	  As these directory names say, the files within them are executed on
-	  a daily, weekly, or monthly basis, respectively.</p>
-	  
-	<p>
-	  If a certain job has to be executed more frequently than
-	  `daily,' the package should install a file
-	  <tt>/etc/cron.d/&lt;package-name&gt;</tt> tagged as
-	  configuration file. This file uses the same syntax as
-	  <tt>/etc/crontab</tt> and is processed by <prgn>cron</prgn>
-	  automatically. (Note, that scripts in the
-	  <tt>/etc/cron.d</tt> directory are not handled by
-	  <prgn>anacron</prgn>. Thus, you should only use this
-	  directory for jobs which may be skipped if the system is not
-	  running.)</p>
-	  
+	  As these directory names imply, the files within them are
+	  executed on a daily, weekly, or monthly basis,
+	  respectively. The exact times are listed in
+	  <tt>/etc/crontab</tt>.</p>
+
 	<p>
 	  All files installed in any of these directories have to be
 	  scripts (shell scripts, Perl scripts, etc.) so that they can
 	  easily be modified by the local system administrator. In
-	  addition, they have to be registered as configuration
-	  file.</p>
-	  
+	  addition, they must be treated as configuration files.</p>
+
 	<p>
-	  The scripts in these directories have to check, if all
-	  necessary programs are installed before they try to execute
-	  them. Otherwise, problems will arise when a package was
-	  removed (but not purged), since the configuration files are
-	  kept on the system in this situation.</p></sect>
-	  
-	  
+	  If a certain job has to be executed more frequently than
+	  daily, the package should install a file
+	  <tt>/etc/cron.d/<var>package-name</var></tt>. This file uses
+	  the same syntax as <tt>/etc/crontab</tt> and is processed by
+	  <prgn>cron</prgn> automatically. The file must also be
+	  treated as a configuration file. (Note, that entries in the
+	  <tt>/etc/cron.d</tt> directory are not handled by
+	  <prgn>anacron</prgn>. Thus, you should only use this
+	  directory for jobs which may be skipped if the system is not
+	  running.)</p>
+
+	<p>
+	  The scripts or crontab entries in these directories should
+	  check if all necessary programs are installed before they
+	  try to execute them. Otherwise, problems will arise when a
+	  package was removed but not purged since configuration files
+	  are kept on the system in this situation.</p>
+      </sect>
+
       <sect>
 	<heading>Console messages</heading>
 	  
@@ -1795,8 +1846,9 @@
 	<p>
           Menu entries should follow the current menu policy as
           defined in the file <ftpsite>ftp.debian.org</ftpsite> in
-          <ftppath>/debian/doc/package-developer/menu_policy.txt</ftppath>
-          or your local mirror.
+          <ftppath>/debian/doc/package-developer/menu-policy.txt</ftppath>
+          or your local mirror. In addition, it is included in the
+	  <tt>debian-policy</tt> package.
 	</p>
 
 	<p>
@@ -1818,9 +1870,38 @@
 	  Please refer to the <em>Debian Menu System</em> document
 	  that comes with the <tt>menu</tt> package for information
 	  about how to register your applications and web
-	  documents.</p></sect>
+	  documents.</p>
+      </sect>
 	  
-	  
+	
+      <sect>
+	<heading>Multimedia handlers</heading>
+	
+	<p>
+	  Packages which provide the ability to view/show/play,
+	  compose, edit or print MIME types should register themselves
+	  as such following the current MIME support policy as defined
+	  in the file found on <ftpsite>ftp.debian.org</ftpsite> in
+	  <ftppath>/debian/doc/package-developer/mime_policy.txt</ftppath>
+	  or your local mirror. In addition, it is included in the
+	  <tt>debian-policy</tt> package. 
+	</p>
+
+	<p>
+	  MIME (Multipurpose Internet Mail Extensions, RFC 1521) is a
+	  mechanism for encoding files and data streams and providing
+	  meta-information about them, in particular their type (e.g.
+	  audio or video) and format (e.g. PNG, HTML, MP3).
+	</p>
+	
+	<p>
+	  Registration of MIME type handlers allows programs like mail
+	  user agents and web browsers to to invoke these handlers to
+	  view, edit or display MIME types they don't support
+	  directly.
+	</p>
+      </sect>
+
       <sect>
 	<heading>Keyboard configuration</heading>
 	  
@@ -1927,7 +2008,7 @@
 	    <item><p>
 		Some systems (including previous Debian versions) use
 		xmodmap to arrange for both <tt>&lt;--</tt> and Delete
-		to generate KB_Delete).  We can change the behavior
+		to generate KB_Delete.  We can change the behavior
 		of their X clients via the same X resources that we
 		use to do it for our own, or have our clients be
 		configured via their resources when things are the
@@ -2079,7 +2160,7 @@
 	<p>
 	  An ever increasing number of packages are using libtool to
 	  do their linking. The latest GNU libtools (>= 1.3a) can take
-	  advantage of the nmetadata in the installed libtool archive
+	  advantage of the metadata in the installed libtool archive
 	  files (`*.la'). The main advantage of libtool's .la files is
 	  that it allows libtool to store and subsequently access
 	  metadata with respect to the libraries it builds.  libtool
@@ -2333,90 +2414,236 @@
 	    Debian uses the serial devices
 	    <tt>/dev/tty*</tt>. Programs using the old
 	    <tt>/dev/cu*</tt> devices should be changed to use
-	    <tt>/dev/tty*</tt>.</p></sect>
+	    <tt>/dev/tty*</tt>.</p>
+      </sect>
 	    
-	    
-	<sect>
+      <sect id="config files">
 	  <heading>Configuration files</heading>
-	    
+	<sect1>
+	  <heading>Definitions</heading>
+	  <p>
+	    <taglist>
+	      <tag>configuration file</tag>
+	      <item><p>
+		  A file that affects the operation of program, or
+		  provides site- or host-specific information, or
+		  otherwise customizes the behavior of program.
+		  Typically, configuration files are intended to be
+		  modified by the system administrator (if needed or
+		  desired) to conform to local policy or provide more
+		  useful site-specific behavior.</p>
+	      </item>
+
+	      <tag><tt>conffile</tt></tag>
+	      <item><p>
+		  A file listed in a package's <tt>conffiles</tt>
+		  file, and is treated specially by <prgn>dpkg</prgn>
+		  (see the <em>Debian Packaging Manual</em>).</p>
+	      </item>
+	    </taglist>
+	  </p>
+
+	  <p>
+	    The distinction between these two is important; they are
+	    not interchangeable concepts. Almost all
+	    <tt>conffiles</tt> are configuration files, but many
+	    configuration files are not <tt>conffiles</tt>.</p>
+
+	  <p>
+	    Note that a script that embeds configuration information
+	    (such as most of the files in <tt>/etc/init.d</tt> and
+	    <tt>/etc/cron.{daily,weekly,monthly}</tt>) is de-facto a
+	    configuration file and should be treated as such.</p>
+	</sect1>
+
+	<sect1>
+	  <heading>Location</heading>
 	  <p>
 	    Any configuration files created or used by your package
-	    should reside in <tt>/etc</tt>.  If there are several you
-	    should consider creating a subdirectory named after your
-	    package.</p>
-	    
+	    should reside in <tt>/etc</tt>. If there are several you
+	    should consider creating a subdirectory of <tt>/etc</tt>
+	    named after your package.</p>
+
 	  <p>
-	    It is almost certain that any file in <tt>/etc</tt> that
-	    is in your package's file system archive should be listed
-	    in <prgn>dpkg</prgn>'s <tt>conffiles</tt> control area
-	    file.  (See the <em>Debian Packaging
-            Manual</em>).</p>
-	    
+	    If your packages creates or uses configuration files
+	    outside of <tt>/etc</tt>, and it is not feasible to modify
+	    the package to use the <tt>/etc</tt>, you should still put
+	    the files in <tt>/etc</tt> and create symbolic links to
+	    those files from the location that the package
+	    requires.</p>
+	</sect1>
+
+	<sect1>
+	  <heading>Behavior</heading>
+	  <p>
+	    Configuration file handling must conform to the following
+	    behavior:
+	    <list>
+	      <item>
+		<p>local changes must be preserved during a package
+		  upgrade</p>
+	      </item>
+	      <item>
+		<p>configuration files should be preserved when the
+		  package is removed, and only deleted when the
+		  package is purged.</p>
+	      </item>
+	    </list></p>
+
+	  <p>
+	    The easy way to achieve this behavior is to make the
+	    configuration file a <tt>conffile</tt>. This is
+	    appropriate if it is possible to distribute a default
+	    version that will work for most installations, although
+	    some system administrators may choose to modify it. This
+	    implies that the default version will be part of the
+	    package distribution, and must not be modified by the
+	    maintainer scripts during installation (or at any other
+	    time).</p>
+
+	  <p>
+	    The other way to do it is to via the maintainer scripts.
+	    In this case, the configuration file must not be listed as
+	    a <tt>conffile</tt> and must not be part of the package
+	    distribution. If the existence of a file is required for
+	    the package to be sensibly configured it is the
+	    responsibility of the package maintainer to write scripts
+	    which correctly create, update, maintain and
+	    remove-on-purge the file. These scripts must be idempotent
+	    (i.e. must work correctly if <prgn>dpkg</prgn> needs to
+	    re-run them due to errors during installation or removal),
+	    must cope with all the variety of ways <prgn>dpkg</prgn>
+	    can call maintainer scripts, must not overwrite or
+	    otherwise mangle the user's configuration without asking,
+	    must not ask unnecessary questions (particularly during
+	    upgrades), and otherwise be good citizens.</p>
+
+	  <p>
+	    The scripts need not configure every possible option for
+	    the package, but only those necessary to get the package
+	    running on a given system. Ideally the sysadmin should not
+	    have to do any configuration other than that done
+	    (semi-)automatically by the <tt>postinst</tt> script.</p>
+
+	  <p>
+	    A common practice is to create a script called
+	    <tt><var>package</var>-configure</tt> and have the
+	    package's <tt>postinst</tt> call it if and only if the
+	    configuration file does not already exist. In certain
+	    cases it is useful for there to be an example or template
+	    file which the maintainer scripts use. Such files should
+	    be in <tt>/usr/share/doc</tt> if they are examples or
+	    <tt>/usr/lib</tt> if they are templates, and should be
+	    perfectly ordinary <prgn>dpkg</prgn>-handled files
+	    (<em>not</em> <tt>conffiles</tt>).</p>
+
+	  <p>
+	    These two styles of configuration file handling <em>must
+	    not be mixed</em>, for that way lies madness:
+	    <prgn>dpkg</prgn> will ask about overwriting the file
+	    every time the package is upgraded.</p>
+	</sect1>
+
+	<sect1>
+	  <heading>Sharing configuration files</heading>
 	  <p>
 	    Only packages that are tagged <em>conflicting</em> with
 	    each other may specify the same file as
-	    <tt>conffile</tt>. A package may not modify a
-	    configuration file of another package.</p>
-	    
+	    <tt>conffile</tt>.</p>
+
 	  <p>
-	    If two or more packages use the same configuration file,
-	    one of these packages has to be defined as <em>owner</em>
-	    of the configuration file, i.e., it has to list the file
-	    as <tt>conffile</tt> and has to provide a program that
-	    modifies the configuration file.</p>
-	    
+	    The maintainer scripts should not alter the conffile of
+	    <em>any</em> package, including the one the scripts belong
+	    to.</p>
+
 	  <p>
-	    The other packages have to depend on the <em>owner</em>
-	    package and use that program to update the configuration
-	    file.</p>
-	    
+	    If two or more packages use the same configuration file
+	    and it is reasonable for both to be installed at the same
+	    time, one of these packages must be defined as
+	    <em>owner</em> of the configuration file, i.e. it will be
+	    the package to list that distributes the file and lists it
+	    as a <tt>conffile</tt>. Other packages that use the
+	    configuration file should depend on the owning package if
+	    they require the configuration file to operate. If the
+	    other package will use the configuration file if present,
+	    but is capable of operating without it, no dependency need
+	    be declared.</p>
+
 	  <p>
-	    Sometimes it's appropriate to build a new package, which
-	    just provides the basic <em>infrastructure</em> for the
-	    other packages and which manages the shared configuration
-	    files. (Check out the <prgn>sgml-base</prgn> package as an
-	    example.)</p>
-	    
+	    If it is desirable for two or more related packages to
+	    share a configuration file <em>and</em> for all of the
+	    related packages to be able to modify that configuration
+	    file, then the following should done:
+	    <enumlist>
+	      <item>
+		<p>
+		  have one of the related packages (the "core"
+		  package) manage the configuration file with
+		  maintainer scripts as described in the previous
+		  section.</p>
+	      </item>
+	      <item><p>
+		  the core package should also provide a program that
+		  the other packages may use to modify the
+		  configuration file.</p>
+	      </item>
+	      <item>
+		<p>
+		  the related packages must use the provided program
+		  to make any modifications to the configuration file.
+		  They should either depend on the core package to
+		  guarantee that the configuration modifier program is
+		  available or accept gracefully that they cannot
+		  modify the configuration file if it is not.</p>
+	      </item>
+	    </enumlist></p>
+
+	  <p>
+	    Sometimes it's appropriate to create a new package which
+	    provides the basic infrastructure for the other packages
+	    and which manages the shared configuration files. (Check
+	    out the <tt>sgml-base</tt> package as an example.)</p>
+	</sect1>
+
+	<sect1>
+	  <heading>User configuration files ("dotfiles")</heading>
+
 	  <p>
 	    Files in <tt>/etc/skel</tt> will automatically be copied
-	    into new user accounts by <prgn>adduser</prgn>.  They
+	    into new user accounts by <prgn>adduser</prgn>. They
 	    should not be referenced there by any program.</p>
-	    
+
 	  <p>
 	    Therefore, if a program needs a dotfile to exist in
 	    advance in <tt>$HOME</tt> to work sensibly that dotfile
 	    should be installed in <tt>/etc/skel</tt> (and listed in
 	    conffiles, if it is not generated and modified dynamically
 	    by the package's installation scripts).</p>
-	    
+
 	  <p>
 	    However, programs that require dotfiles in order to
 	    operate sensibly (dotfiles that they do not create
 	    themselves automatically, that is) are a bad thing, and
 	    programs should be configured by the Debian default
 	    installation as close to normal as possible.</p>
-	    
+
 	  <p>
 	    Therefore, if a program in a Debian package needs to be
 	    configured in some way in order to operate sensibly that
 	    configuration should be done in a site-wide global
-	    configuration file elsewhere in <tt>/etc</tt>.  Only if
-	    the program doesn't support a site-wide default
-	    configuration and the package maintainer doesn't have time
-	    to add it should a default per-user file be placed in
+	    configuration file elsewhere in <tt>/etc</tt>. Only if the
+	    program doesn't support a site-wide default configuration
+	    and the package maintainer doesn't have time to add it
+	    should a default per-user file be placed in
 	    <tt>/etc/skel</tt>.</p>
-	    
+
 	  <p>
 	    <tt>/etc/skel</tt> should be as empty as we can make it.
 	    This is particularly true because there is no easy
 	    mechanism for ensuring that the appropriate dotfiles are
 	    copied into the accounts of existing users when a package
 	    is installed.</p>
-	    
-	<p>
-	  Ideally the sysadmin should not have to do any
-	  configuration other than that done (semi-)automatically by
-	  the <tt>postinst</tt> script.</p>
+	</sect1>
       </sect>
       
       <sect>
@@ -2434,8 +2661,8 @@
 	<p>
 	  A better scheme is to use logrotate, a GPL'd program
 	  developed by Red Hat, which centralizes log management. It
-	  has both a config file (<tt>/etc/logrotate.conf</tt>) and a
-	  directory where packages can drop logrotation info
+	  has both a configuration file (<tt>/etc/logrotate.conf</tt>)
+	  and a directory where packages can drop logrotation info
 	  (<tt>/etc/logrotate.d</tt>). 
 	</p>
 
@@ -2627,10 +2854,10 @@
 	<p>
 	  If a package wants to install an example entry into
 	  <tt>/etc/inetd.conf</tt>, the entry has to be preceded with
-	  exactly one hash character (#). Such lines are treated as
-	  `commented out by user' by the <prgn>update-inetd</prgn>
-	  script and are not changed or activated during a package
-	  updates.</p></sect>
+	  exactly one hash character (<tt>#</tt>). Such lines are
+	  treated as `commented out by user' by the
+	  <prgn>update-inetd</prgn> script and are not changed or
+	  activated during a package updates.</p></sect>
 	  
 	  
       <sect>
@@ -2671,24 +2898,32 @@
 	  Thus, every program that launches an editor or pager has to
 	  use the EDITOR or PAGER environment variables to determine
 	  the editor/pager the user wants to get started. If these
-	  variables are not set, the programs `/usr/bin/editor' and
-	  `/usr/bin/pager' have to be used, respectively.</p>
+	  variables are not set, the programs <tt>/usr/bin/editor</tt>
+	  and <tt>/usr/bin/pager</tt> have to be used, respectively.</p>
 	  
 	<p>
 	  These two files are managed through `alternatives.' That is,
 	  every package providing an editor or pager has to call the
-	  `update-alternatives' script to register these programs.</p>
+	  <prgn>update-alternatives</prgn> script to register these
+	  programs.</p>
 	  
 	<p>
 	  If it is very hard to adapt a program to make us of the
 	  EDITOR and PAGER variable, that program should be configured
-	  to use `/usr/bin/sensible-editor' and
-	  `/usr/bin/sensible-pager' as editor or pager program,
+	  to use <tt>/usr/bin/sensible-editor</tt> and
+	  <tt>/usr/bin/sensible-pager</tt> as editor or pager program,
 	  respectively. These are two scripts provided in the Debian
 	  base system that check the EDITOR and PAGER variables and
 	  launches the appropriate program or falls back to
-	  `/usr/bin/editor' and `/usr/bin/pager', automatically.</p>
+	  <tt>/usr/bin/editor</tt> and <tt>/usr/bin/pager</tt>,
+	  automatically.</p>
 	  
+	<p>
+	  A program may also use the VISUAL environment variable to
+	  determine the user's choice of editor. If it exists, it
+	  should take precedence over EDITOR. This is in fact what
+	  <tt>/usr/bin/sensible-editor</tt> does.</p>
+
 	<p>
 	  Since the Debian base system already provides an editor and
 	  a pager program, there is no need for a package to depend on
@@ -2722,7 +2957,11 @@
 		
 	      <p>
 		Html documents for a package are stored in
-		/usr/share/doc/<var>package</var> and can be referred to as
+                <tt>/usr/share/doc/<var>package</var></tt> but should
+                be accessed via symlinks as
+                <tt>/usr/doc/<var>package</var></tt><footnote> for
+                backward compatibility, see <ref id="usrdoc"></footnote>
+		and can be referred to as
 		<example>
 		  http://localhost/doc/&lt;package&gt;/&lt;filename&gt;
 		</example></p></item>
@@ -2765,14 +3004,26 @@
 	  and not part of the MTA package.</p>
 	  
 	<p>
-	  All Debian MUAs and MTAs have to use the <tt>maillock</tt>
-	  and <tt>mailunlock</tt> functions provided by the
-	  <tt>liblockfile</tt> packages to lock and unlock mail
-	  boxes. These functions implement a NFS-safe locking
-	  mechanism. (It is ok if MUAs and MTAs don't link against
-	  liblockfile but use a <em>compatible</em> mechanism. Please
-	  compare the mechanisms very carefully!)</p>
-	  
+	  All Debian MUAs, MTAs, MDAs and other mailbox accessing
+	  programs (like IMAP daemons) have to lock the mailbox in a
+	  NFS-safe way. This means that <tt>fcntl()</tt> locking has
+	  to be combined with dot locking.  To avoid dead locks, a
+	  program has to use <tt>fcntl()</tt> first and dot locking
+	  after this or alternatively implement the two locking
+	  methods in a non blocking way<footnote>
+	    <p>
+	      If it is not possible to establish both locks, the
+	      system shouldn't wait for the second lock to be
+	      established, but remove the first lock, wait a (random)
+	      time, and start over locking again.</p>
+	  </footnote>. Using the functions <tt>maillock</tt> and
+	  <tt>mailunlock</tt> provided by the
+	  <tt>liblockfile*</tt><footnote>
+	    <p>
+	      <tt>liblockfile</tt> version &gt;&gt;1.01</p>
+	  </footnote> packages is the recommended way to realize this.
+	</p>
+  
 	<p>
 	  Mailboxes are generally 660 <tt><var>user</var>.mail</tt>
 	  unless the user has chosen otherwise.  A MUA may remove a
@@ -2893,7 +3144,8 @@
 	  the directory <tt>/usr/X11R6/lib/X11/app-defaults/</tt>.
 	  They are considered as part of the program code.  Thus, they
 	  should not be modified and should not be tagged as
-	  <em>conffile</em>s.  If the local system administrator wants
+	  <em>conffile</em>s nor otherwise treated as configuration
+	  files.  If the local system administrator wants
 	  to customize X applications globally, a file with the same
 	  name as that of the package should be placed in the
 	  <tt>/etc/X11/Xresources/</tt> directory instead.
@@ -2906,7 +3158,7 @@
 	  
 	<p>
 	  No package should ever install files into the directories
-	  <tt>/usr/bin/X11/</tt>, <tt>/usr/doc/X11/</tt>,
+	  <tt>/usr/bin/X11/</tt>, <tt>/usr/share/doc/X11/</tt>,
 	  <tt>/usr/include/X11/</tt>, or <tt>/usr/lib/X11/</tt>; these
 	  directories are actually symbolic links, which <tt>dpkg</tt>
 	  does not follow when unpacking a package.  Instead, use
@@ -2968,7 +3220,7 @@
 	<heading>Games</heading>
 	  
 	<p>
-	  The permissions on /var/lib/games are 755
+	  The permissions on /var/games are 755
 	  <tt>root.root</tt>.</p>
 	  
 	<p>
@@ -3131,7 +3383,44 @@
 	  the instructions for building and installing the package, of
 	  course!</p>
       </sect>
-      
+ 
+      <sect id="usrdoc">
+      <heading>Accessing the documentation</heading>
+
+       <p>
+         Former Debian releases placed all additional documentation
+         in <tt>/usr/doc/<var>package</var></tt>.  To realize a
+         smooth migration to
+         <tt>/usr/share/doc/<var>package</var></tt>, each package
+         must maintain a symlink <tt>/usr/doc/<var>package</var></tt>
+         that points to the new location of its documentation in
+         <tt>/usr/share/doc/<var>package</var></tt><footnote>These
+         symlinks will be removed in the future, but they have to be
+         there for compatibility reasons until all packages have
+         moved and the policy is changed accordingly.</footnote>.
+         The symlink must be created when the package is installed;
+         it cannot be contained in the package itself due to problems
+         with <prgn>dpkg</prgn>. One reasonable way to accomplish
+         this is to put the following in the package's
+         <prgn>postinst</prgn>:
+          <example>
+  if [ "$1" = "configure" ]; then
+        if [ -d /usr/doc -a ! -e /usr/doc/#PACKAGE# \
+            -a -d /usr/share/doc/#PACKAGE# ]; then
+                ln -sf ../share/doc/#PACKAGE# /usr/doc/#PACKAGE#
+        fi
+  fi
+          </example>
+          And the following in the package's <prgn>prerm</prgn>:
+          <example>
+  if [ \( "$1" = "upgrade" -o "$1" = "remove" \) \
+       -a -L /usr/doc/#PACKAGE# ]; then
+        rm -f /usr/doc/#PACKAGE#
+  fi
+          </example>
+	</p>
+      </sect>
+     
       <sect>
 	<heading>Preferred documentation formats</heading>
 	
@@ -3225,10 +3514,15 @@
 	<p>
 	  Any examples (configurations, source files, whatever),
 	  should be installed in a directory
-	  <tt>/usr/share/doc/<var>package</var>/examples</tt>.  These files
-	  should not be referenced by any program--they're there for
-	  the benefit of the system administrator and users, as
-	  documentation only.</p>
+	  <tt>/usr/share/doc/<var>package</var>/examples</tt>.  These
+	  files should not be referenced by any program--they're there
+	  for the benefit of the system administrator and users, as
+	  documentation only. Architecture-specific example files
+	  should be installed in a directory
+	  <tt>/usr/lib/<var>package</var>/examples</tt>, and files in
+	  <tt>/usr/share/doc/<var>package</var>/examples</tt> symlink
+	  to files in it. Or the latter directory may be a symlink to
+	  the former.</p>
       </sect>
       
       <sect id="instchangelog">
@@ -3246,10 +3540,13 @@
 	  the upstream changelog file is HTML formatted, it must be
 	  accessible as
 	  <tt>/usr/share/doc/<var>package</var>/changelog.html.gz</tt>.
-	  If the upstream changelog files do not already conform to
-	  this naming convention, then this may be achieved by either
-	  renaming the files or adding a symbolic link at the
-	  packaging developer's discretion.  </p>
+	  A plain text version of the changelog must be accessible as
+	  <tt>/usr/doc/<var>package</var>/changelog.gz</tt> (this can
+	  be created by <tt>lynx -dump -nolist</tt>). If the upstream
+	  changelog files do not already conform to this naming
+	  convention, then this may be achieved by either renaming the
+	  files or adding a symbolic link at the packaging developer's
+	  discretion.  </p>
 	
 	<p>
 	  Both should be installed compressed using <tt>gzip -9</tt>,

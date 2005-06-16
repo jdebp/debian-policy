@@ -1,7 +1,7 @@
 
               AUTHORITATIVE LIST OF VIRTUAL PACKAGE NAMES
 
-	                     Apr 1998, 14
+                            October 1999
 
 
 Below is an authoritative list of virtual package names currently
@@ -27,7 +27,7 @@ The procedure for updating the list is as follows:
 
 2. Wait a few days for comment (some of the comments may be on the
    debian-policy list, if you are not subscribed, ask for mail to be CC'd
-   to you.
+   to you).
 
 3. Mail the maintainer of the virtual package name list (which is the
    Debian Policy list <debian-policy@lists.debian.org>) notifying them
@@ -41,8 +41,8 @@ The procedure for updating the list is as follows:
 
 4. Go and use the new or changed names.
 
-Chris.
-(based on earlier version by Warwick and Ian Jackson)
+Manoj
+(based on earlier versions by Warwick and Ian Jackson and Chris Schwarz)
 
 
 Now, the list:
@@ -53,45 +53,51 @@ xserver                 Any X server (used by other X packages)
 
 Miscellaneous
 -------------
-libc.so.4               An a.out shared C library, version 4.x.x.
-info-browser            Something that can browser GNU Info files
-kernel-source           Kernel source code
-kernel-headers          Kernel header files (<linux/*.h>, <asm/*.h>)
-kernel-image            Kernel image (vmlinuz, System.map, modules)
-httpd                   Any HTTP server
-postscript-viewer       Anything that can display Postscript files
-postscript-preview      Any preprocessor that creates Postscript output
-www-browser             Something that can browse html files
-awk                     Anything providing suitable /usr/bin/{awk,nawk}
-c-shell                 Anything providing a suitable /usr/bin/csh
-pdf-viewer              Anything that can display PDF files
-pdf-preview             Any preprocessor that creates PDF output
-wordlist                Anything that provides /usr/dict/words
+[Those marked with a (*) are handled using the alternatives mechanism;
+others may do so as well.]
+awk                     Anything providing suitable /usr/bin/{awk,nawk} (*)
+c-compiler              Anything providing a C compiler
+c-shell                 Anything providing a suitable /bin/csh (*)
 dotfile-module          Anything that provides a module for the
                         Dotfile Generator
-ups-monitor             Anything that is capable of controlling an UPS
-tclsh                   Anything that provides /usr/bin/tclsh
-wish                    Anything that provides /usr/bin/wish
-c-compiler              Anything providing a C compiler
+emacsen                 Anything providing the GNU emacs or a
+                        compatible editor
 fortran77-compiler      Anything providing a Fortran77 compiler
+ftp-server              Any ftp server
+httpd                   Any HTTP server
+ident-server            Anything providing an identd daemon
+info-browser            Something that can browse GNU Info files
+ispell-dictionary       Anything providing a dictionary for the
+                        ispell system
+kernel-headers          Kernel header files (<linux/*.h>, <asm/*.h>)
+kernel-image            Kernel image (vmlinuz, System.map, modules)
+kernel-source           Kernel source code
 lambdamoo-core          A lambdamoo-compatible datebase package
 lambdamoo-server        Anything running a moo using a lambdamoo-core
 libc-dev                Anything that provides header and object files
                         of `libc'
-emacsen                 Anything providing the GNU emacs or a compatible
-                        editor
-ftp-server              Any ftp server
+libc.so.4               An a.out shared C library, version 4.x.x.
+man-browser             Anything that can read man pages
+pdf-preview             Any preprocessor that creates PDF output
+pdf-viewer              Anything that can display PDF files
+postscript-preview      Any preprocessor that creates Postscript output
+postscript-viewer       Anything that can display Postscript files
+tclsh                   Anything that provides /usr/bin/tclsh (*)
+ups-monitor             Anything that is capable of controlling an UPS
+wish                    Anything that provides /usr/bin/wish (*)
+wordlist                Anything that provides /usr/share/dict/words (*)
+www-browser             Something that can browse html files
 
 News and Mail
 -------------
-mail-transport-agent    Mail transport agents (Smail, Sendmail, &c)
-mail-reader             Mail user agents (Pine, Elm, mailx, &c)
-news-transport-system   Local news system (INN, C News or B News)
-news-reader             Any news reader (trn, tin, &c)
-pgp                     A version of PGP (International or US)
 imap-client             Any mail reader capable of accessing remote mail
                         folders using the IMAP protocol (e.g. Pine)
 imap-server             Any IMAP mail server
+mail-reader             Mail user agents (Pine, Elm, mailx, &c)
+mail-transport-agent    Mail transport agents (Smail, Sendmail, &c)
+news-reader             Any news reader (trn, tin, &c)
+news-transport-system   Local news system (INN, C News or B News)
+pgp                     A version of PGP (International or US)
 pop3-server             Any POP3 Server
 
 Old and obsolete virtual package names
@@ -100,9 +106,9 @@ Note, that no other package then the ones listed here should use
 these virtual package names.
 
 X11R5                   provided by xcompat for compatibility reasons
+X11R6                   do.
 xr5shlib                do.
 aout-x11r6lib           do.
-X11R6                   do.
 
 
 Changelog
@@ -145,3 +151,9 @@ Christian Schwarz
 Manoj Srivastava
   23 Jun 1999 Added pop3-server
   13 Jul 1999 Added ftp-server
+
+Julian Gilbey
+  26 Oct 1999 Added ispell-dictionary
+              Added man-browser
+              Added ident-server
+              Alphabeticised lists

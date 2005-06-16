@@ -1191,6 +1191,12 @@
 		  (classification, mandatory)
 		</p>
 	      </item>
+               <item>
+                 <p>
+                   <qref id="relationships"><tt>Build-Depends</tt> et
+                     al.</qref> (source package interrelationships)
+                 </p>
+               </item>
 	      <item>
 		<p>
 		  <qref id="f-Standards-Version"><tt>Standards-Version</tt></qref>
@@ -1223,7 +1229,7 @@
 	      <item>
 		<p>
 		  <qref id="relationships"><tt>Depends</tt> et
-		  al.</qref> (package interrelationships)
+                  al.</qref> (binary package interrelationships)
 		</p>
 	      </item>
 	    </list>
@@ -1661,6 +1667,12 @@
 		  <item>
 		    <p><qref id="f-Architecture"><tt>Architecture</tt></qref></p>
 		  </item>
+                  <item>
+                     <p>
+                       <qref id="relationships"><tt>Build-Depends</tt> et
+                         al.</qref> (source package interrelationships)
+                     </p>
+                  </item>
 		  <item>
 		    <p>
 		      <qref id="f-Standards-Version"><tt>Standards-Version</tt></qref></p>
@@ -1916,7 +1928,7 @@
 
 	<p>	  
 	  Field names are not case-sensitive, but it is usual to
-	  capitalise the fields using mixed case as shown below.
+	  capitalise the field names using mixed case as shown below.
 	</p>
 
 	<p>	  
@@ -1948,7 +1960,7 @@
 	    <footnote>
 	      <p>
 		The characters <tt>@</tt> <tt>:</tt> <tt>=</tt>
-		<tt>t</tt>t> <tt>_</tt> (at, colon, equals, percent
+		<tt>%</tt> <tt>_</tt> (at, colon, equals, percent
 		and underscore) used to be legal and are still
 		accepted when found in a package file, but may not be
 		used in new packages
@@ -2339,8 +2351,8 @@
 		been <em>frozen</em> for a month of testing.  Once the
 		distribution is <em>stable</em> only major bug fixes
 		are allowed. When changes are made to this
-		distribution, the minor version number is increased
-		(for example: 1.2 becomes 1.2.1 then 1.2.2, etc).
+		distribution, the release number is increased
+		(for example: 1.2r1 becomes 1.2r2 then 1.2r3, etc).
 	      </p>
 	    </item>
 		
@@ -2647,7 +2659,7 @@
 
 	    <p>	      
 	      The <var>upstream-version</var> may contain only
-	      alphanumerics and the characters <tt>+</tt> <tt>.</tt>
+	      alphanumerics and the characters <tt>.</tt> <tt>+</tt>
 	      <tt>-</tt> <tt>:</tt> (full stop, plus, hyphen, colon)
 	      and should start with a digit.  If there is no
 	      <var>debian-revision</var> then hyphens are not allowed;
@@ -2755,6 +2767,37 @@
 	<tt>dpkg --compare-versions ...</tt>. Type <tt>dpkg
 	--help</tt> --> --for details on arguments.
       </p>
+
+      <sect>
+	<heading>Version numbers based on dates</heading>
+	<p>
+	  In general, Debian packages should use the same version
+	  numbers as the upstream sources.</p>
+
+	<p>
+	  However, in some cases where the upstream version number is
+	  based on a date (e.g., a development `snapshot' release)
+	  dpkg cannot handle these version numbers currently, without
+	  epochs. For example, dpkg will consider `96May01' to be
+	  greater than `96Dec24'.</p>
+
+	<p>
+	  To prevent having to use epochs for every new upstream
+	  version, the version number should be changed to the
+	  following format in such cases: `19960501', `19961224'. It
+	  is up to the maintainer whether he/she wants to bother the
+	  upstream maintainer to change the version numbers upstream,
+	  too.</p>
+
+	<p>
+	  Note, that other version formats based on dates which are
+	  parsed correctly by dpkg should <em>not</em> be changed.</p>
+
+	<p>
+	  Native Debian packages (i.e., packages which have been
+	  written especially for Debian) whose version numbers include
+	  dates should always use the `YYYYMMDD' format.</p>
+      </sect>
     </chapt>
       
     <chapt id="maintainerscripts"><heading>Package maintainer scripts
@@ -2943,8 +2986,8 @@
 	    <item>
 	      <p>
 		<var>disappearer's-postrm</var> <tt>disappear</tt>
-		<var>r>overwrit</var>r>
-		<var>new-version</var></p></item>
+		<var>overwriter</var>
+		<var>overwriter-version</var></p></item>
 	  </list>
 	</p>
 	
@@ -3521,6 +3564,18 @@
 	<tt>Replaces</tt> control file fields.
       </p>
 
+      <p>
+        Source packages may declare relationships to binary packages,
+        saying that they require certain binary packages being
+        installed or absent at the time of building the package.
+      </p>
+        
+      <p>
+        This is done using the <tt>Build-Depends</tt>,
+        <tt>Build-Depends-Indep</tt>, <tt>Build-Conflicts</tt>, and
+        <tt>Build-Conflicts-Indep</tt> control file fields.
+      </p>
+
       <sect id="depsyntax"><heading>Syntax of relationship fields
 	</heading>
 
@@ -3529,13 +3584,14 @@
 	  package names separated by commas.
 	</p>
 
-	<p>	  
-	  In <tt>Depends</tt>, <tt>Recommends</tt>, <tt>Suggests</tt>
-	  and <tt>Pre-Depends</tt> (the fields which declare
-	  dependencies of the package in which they occur on other
-	  packages) these package names may also be lists of
-	  alternative package names, separated by vertical bar symbols
-	  <tt>|</tt> (pipe symbols).
+        <p>
+          In <tt>Depends</tt>, <tt>Recommends</tt>, <tt>Suggests</tt>,
+          <tt>Pre-Depends</tt>, <tt>Build-Depends</tt> and
+          <tt>Build-Depends-Indep</tt>(the fields which declare
+          dependencies of the package in which they occur on other
+          packages) these package names may also be lists of
+          alternative package names, separated by vertical bar symbols
+          <tt>|</tt> (pipe symbols).
 	</p>
 
 	<p>	  
@@ -3578,10 +3634,37 @@
   Depends: libc5 (>= 5.2.18-4), mime-support, csh | tcsh
 	  </example>
 	</p>
+ 
+        <p>
+          All fields that specify build-time relationships
+	  (<tt>Build-Depends</tt>, <tt>Build-Depends-Indep</tt>,
+	  <tt>Build-Conflicts</tt> and <tt>Build-Conflicts-Indep</tt>)
+	  may be restricted to a certain set of architectures.  This
+	  is done in brackets after each individual package name and
+	  the optional version specification.  The brackets enclose a
+	  list of Debian architecture names separated by whitespace.
+	  An exclamation mark may be prepended to each name. If the
+	  current Debian host architecture is not in this list and
+	  there are no exclamation marks in the list, or it is in the
+	  list with a prepended exclamation mark, the package name and
+	  the associated version specification are ignored completely
+	  for the purposes of defining the relationships.
+         </p>
+ 
+         <p>
+           For example:
+           <example>
+   Source: glibc
+   Build-Depends-Indep: texinfo
+   Build-Depends: kernel-headers-2.2.10 [!hurd-i386],
+                  hurd-dev [hurd-i386], gnumach-dev [hurd-i386]
+           </example>
+         </p> 
       </sect>
-
-      <sect><heading>Dependencies - <tt>Depends</tt>, <tt>Recommends</tt>,
-	  <tt>Suggests</tt>, <tt>Pre-Depends</tt>
+  
+      <sect>
+        <heading>Binary Dependencies - <tt>Depends</tt>,
+          <tt>Recommends</tt>, <tt>Suggests</tt>, <tt>Pre-Depends</tt>
 	</heading>
 
 	<p>	  
@@ -3818,12 +3901,12 @@
 	</p>
       </sect1>
 
-      <sect id="conflicts"><heading>Alternative packages -
+      <sect id="conflicts"><heading>Alternative binary packages -
 	  <tt>Conflicts</tt> and <tt>Replaces</tt>
 	</heading>
 
 	<p>	  
-	  When one package declares a conflict with another
+          When one binary package declares a conflict with another
 	  <prgn>dpkg</prgn> will refuse to allow them to be installed
 	  on the system at the same time.
 	</p>
@@ -3882,11 +3965,13 @@
       <sect id="virtual"><heading>Virtual packages - <tt>Provides</tt>
 	</heading>
 
-	<p>	  
-	  As well as the names of actual (`concrete') packages, the
-	  package relationship fields <tt>Depends</tt>,
-	  <tt>Recommends</tt>, <tt>Suggests</tt> and
-	  <tt>Conflicts</tt> may mention virtual packages.
+        <p> 
+           As well as the names of actual (`concrete') packages, the
+           package relationship fields <tt>Depends</tt>,
+           <tt>Build-Depends</tt>, <tt>Build-Depends-Indep</tt>,
+           <tt>Recommends</tt>, <tt>Suggests</tt>, <tt>Conflicts</tt>,
+           <tt>Build-Conflicts</tt> and <tt>Build-Conflicts-Indep</tt> may
+           mention virtual packages.
 	</p>
 
 	<p>	  
@@ -4080,8 +4165,49 @@
 	  lightweight standalone info browser.
 	</p>
       </sect>
-    </chapt>
       
+  
+      <sect><heading>Relationships between source and binary packages -
+              <tt>Build-Depends</tt>, <tt>Build-Depends-Indep</tt>,
+              <tt>Build-Conflicts</tt>, <tt>Build-Conflicts-Indep</tt>
+           </heading>
+
+        <p>
+          A source package may declare a dependency or a conflict on a
+          binary package.  This is done with the control file fields
+          <tt>Build-Depends</tt>, <tt>Build-Depends-Indep</tt>,
+          <tt>Build-Conflicts</tt>, and <tt>Build-Conflicts-Indep</tt>.  Their
+          semantics is that the dependencies and conflicts they define
+          must be satisfied (as defined earlier for binary packages),
+          when one of the targets in <tt>debian/rules</tt> that the
+          particular field applies to is invoked.
+
+        <taglist>
+          <tag><tt>Build-Depends</tt>, <tt>Build-Conflicts</tt></tag>
+          <item>
+            <p>
+              The <tt>Build-Depends</tt> and <tt>Build-Conflicts</tt> fields apply
+              to the targets
+              <tt>build</tt>, <tt>binary</tt>, <tt>binary-arch</tt>
+              and <tt>binary-indep</tt>.
+            </p>
+          </item>
+          <tag><tt>Build-Depends-Indep</tt>, <tt>Build-Conflicts-Indep</tt></tag>
+          <item>
+            <p>
+              The <tt>Build-Depends-Indep</tt> and
+              <tt>Build-Conflicts-Indep</tt> fields apply to the
+              targets <tt>binary</tt> and <tt>binary-indep</tt>.
+            </p>
+          </item>
+        </taglist>
+
+      </p>
+
+    </sect>
+
+
+   </chapt>
     <chapt id="conffiles"><heading>Configuration file handling
       </heading>
 
@@ -4389,7 +4515,8 @@
 	properly is to install the library in the appropriate
 	<tt>debian/tmp/.../lib</tt> directory before creating the
 	symlink, by putting the commands in the <tt>debian/rules</tt>
-	in the appropriate order.
+	in the appropriate order.  Whether this has been done
+	correctly can be checked by performing an <tt>ls -f</tt>.
       </p>
 
 	<!--
@@ -4615,7 +4742,7 @@
 	  <p>	    
 	    This file is intended only as a <em>temporary</em> fix if
 	    your binaries depend on a library which doesn't provide
-	    its own <tt>/var/lib/dpkg/*.shlibs</tt> file yet.
+	    its own <tt>/var/lib/dpkg/info/*.shlibs</tt> file yet.
 	  </p>
 
 	  <p>	    

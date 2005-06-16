@@ -1,3 +1,61 @@
+debian-policy (3.1.1.1) unstable; urgency=low
+
+  * Correction to typo in packaging manual, section 6.2.
+  * Correction to typo in packaging manual, section 12.2.5 (closes:
+    #50502)
+  * More corrections to packaging manual typos (closes: #50857)
+
+ -- Julian Gilbey <jdg@debian.org>  Mon, 22 Nov 1999 19:23:31 +0000
+
+debian-policy (3.1.1.0) unstable; urgency=low
+
+  * Correct description of negated architectures in Build-Depends
+    description in Packaging manual (closes: #49901)
+
+ -- Julian Gilbey <jdg@debian.org>  Tue, 16 Nov 1999 15:03:48 +0000
+
+debian-policy (3.1.0.0) unstable; urgency=low
+
+  * Add instructions on /usr/doc -> /usr/share/doc symlinks (closes:
+    #45561, #42447, #48570)
+  * Added source dependencies (closes: #41232)
+  * Deprecated /etc/rc.boot (closes: #32448, #32449)
+  * Update-rc.d now only legal way to automatically access /etc/rc?.d
+    directoried (closes: #41547)
+  * FHS compliant location of examples (closes: #42849)
+  * Added ispell-dictionary to virtual-packages.list (following new
+    suggestions: no objections => accept) (closes: #8221)
+  * Added man-browser to virtual-packages.list (closes: #24695)
+  * Added ident-server to virtual-packages.list (closes: #45307)
+  * Alphabeticised virtual packages list ;)
+  * Corrected GPL reference in proposal.sgml
+  * Clarification of "extra" priority (closes: #33076)
+  * Remove buggy and seriously problematic licenses from list of contrib
+    package criteria (closes: #45318)
+  * Move docs to /usr/share/doc with a compatibility symlink (closes:
+    #41829)
+  * Update to FHS 2.1 draft #3 (for /var/state etc. changes).
+  * Correct /var/lib/games -> /var/games (closes: #42358)
+  * Added MIME subpolicy (closes: #46516)
+  * Added support for VISUAL (closes: #41121)
+  * Clarify non-dependence on /usr/local (closes: #44922)
+  * Modified description of mail spool locking (closes: #43651)
+  * Clarified wording of conffiles and configuration files (closes:
+    #40766, #40767)
+  * Changed description of release numbers (closes: #44620)
+  * Added changelog.html -> changelog requirement (closes: $40934)
+  * packaging-manual now correctly installs its docs (closes: #44643)
+  * The packaging manual now discusses version numbers based on dates
+    (closes: #17621)
+  * Mention ls -f for testing order in which files appear on disk (closes:
+    #19179)
+  * Change order of '.' and '+' in description of version numbers (closes:
+    #41095)
+  * s/fields/field names/ in section 4.1 of packaging manual for clarity
+  * Add Build-Depends-Indep: field to control file
+
+ -- Julian Gilbey <jdg@debian.org>  Thu,  4 Nov 1999 23:50:37 +0000
+
 debian-policy (3.0.1.1) unstable; urgency=low
 
   * Typo corrected in packaging manual. closes: Bug#40180
