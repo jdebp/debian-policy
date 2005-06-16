@@ -104,7 +104,7 @@ stamp-build:
 	    cd fhs && patch -p1 < ../mm1.32-patch; \
 	fi
 	# The extra '.' in the tmac path doesn't matter if
-	GROFF_TMAC_PATH=. cd fhs && $(MAKE) all
+	GROFF_TMAC_PATH=. cd fhs && $(MAKE) fhs.ps fhs.pdf fhs.txt
 	lynx -dump fhs-changes-2.1.html > fhs/fhs-changes-2.1.text
 	lynx -dump upgrading-checklist.html > upgrading-checklist.text
 	touch stamp-build
