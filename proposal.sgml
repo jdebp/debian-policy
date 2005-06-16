@@ -7,7 +7,7 @@
 	<name>Manoj Srivastava</name>
 	<email>srivasta@debian.org</email>
       </author>
-      <version>$Revision: 1.6 $</version>
+      <version>$Revision: 1.7 $</version>
       <copyright>
 	<copyrightsummary>Copyright &#169; 1998 by Manoj Srivastava. 
 	</copyrightsummary>
@@ -33,8 +33,8 @@
 	that is the task of the Debian Policy mailing list.
       </p>
       <p>
-	It should also be pointed out that this proposal itself doess
-	not call for the modificxation of the Policy documents
+	It should also be pointed out that this proposal itself does
+	not call for the modification of the Policy documents
 	themselves. I would rather not rush into anything as serious
 	as modification of the formal policy documents themselves, and
 	I suspect that we would learn and refine this process in
@@ -48,7 +48,7 @@
 	group. Traditionally, the policy group, under the aegis of the
 	Policy editor, worked on the basis of a consensus derived in
 	the group. This proposal merely removes the need of a
-	dedicated policy editor, and passes the debian packages that
+	dedicated policy editor, and passes the Debian packages that
 	contain the policy into the hands of a few people who no
 	longer exercise editorial control, and, paying homage to our
 	growth, relaxes the requirement for a consensus.
@@ -149,6 +149,11 @@
 	  as well as create the weekly posting to
 	  <tt>debian-policy</tt> and <tt>debian-devel</tt> mailing
 	  lists. This document could also be kept under CVS then.</p>
+	<p>
+	  If possible, a separate mailing list (<tt>debian-policy-admin</tt>)
+	  maybe created which gets copies of all the CVS commit
+	  notices.
+	</p>
       </sect>
     </chapt>
     <chapt>
@@ -188,13 +193,17 @@
 	  let the  group decide which one is better.
 	</p>
 	<p>
-	  If the process gets very contentous, and needs something
-	  like votes on amendments and withdrawl of proposal, then
+	  If the process gets very contentious, and needs something
+	  like votes on amendments and withdrawal of proposal, then
 	  this is not the correct forum for this, and the procedures
-	  outlied in the constitution should be followed.
+	  outlined in the constitution should be followed. Note that
+	  only non-technical issues can be resolved using the general
+	  resolution protocol; technical issues would hopefully be
+	  resolved in the group itself, or the technical committee can
+	  be called upon to render a decision.
 	</p>
 	<p>
-	  This document is not suppoed to supplant the processes
+	  This document is not supposed to supplant the processes
 	  outlined in the constitution, nor is it an end run around
 	  them.
 	</p>
@@ -242,7 +251,10 @@
 	    of a week would resolve the issues better, a one-time
 	    extension could be granted. Care should be taken in
 	    exercising this option, since abusing this would merely
-	    postpone closures. </p>
+	    postpone closures. Anything that is still not resolved is
+	    too contentious not to be sent to the full set of
+	    developers in a general resolution proposal.
+	  </p>
 	</sect1>
       </sect>
       <sect>
@@ -256,16 +268,6 @@
 	  resolution, and we need to recognize that on non-technical
 	  issues a small minority should not always hold up deployment
 	  of policy.</p>
-	<p>
-	  If the issue raised is especially contentous, or is deemed
-	  to be suitable for review by the full set of developers,
-	  then four or more developers can call for a hold on the
-	  proposal, and move to send the proposal to the larger
-	  developer body as a General
-	  Resolution. <strong>Note:</strong> The constitution may have
-	  additional requirements for submitting a General Resolution,
-	  for example, a minimum number of seconders, etc.
-	</p>
 	<p>
 	  If a consensus is not reached, (or if someone submits a
 	  formal objection to the proposal) and the end of the
@@ -294,6 +296,17 @@
 	    be no less than a month, typically three months being
 	    desirable, unless there are significant new
 	    developments). (Demote bug, if the BTS is being used)</p>
+	  <p>
+	    If the issue raised is especially contentious, or is
+	    deemed to be suitable for review by the full set of
+	    developers, then four or more developers can call for a
+	    hold on the proposal, and move to send the proposal to the
+	    larger developer body as a General
+	    Resolution. <strong>Note:</strong> The constitution may
+	    have additional requirements for submitting a General
+	    Resolution, for example, a minimum number of seconders,
+	    etc.
+	  </p>
 	</sect1>
       </sect>
       <sect>
@@ -303,8 +316,8 @@
 	  tracking system to track policy amendments in progress. If
 	  this is used, we may initiate discussions in the policy
 	  group by filing wish-list bugs (note: this should be open to
-	  anyone at all) This simplies how me manage and track open
-	  amendments and issues.  I think both retitling and the
+	  anyone at all) This simplifies how me manage and track open
+	  amendments and issues.  I think both re-titling and the
 	  severity of the bugs can and should be used.</p>
 	<p>
 	  <taglist>
@@ -326,7 +339,7 @@
 	    <tag>Amendment</tag>
 	    <item>
 	      <p>
-		when a propsed issue becomes a formal amendment, the
+		when a proposed issue becomes a formal amendment, the
 		bug severity is raised to "normal" and the bug is
 		retitled to "[AMENDMENT DD/MM/YYY] ...".  Actually it
 		might be better to close the proposal and reopen so
