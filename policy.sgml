@@ -3240,7 +3240,7 @@ Build-Depends: kernel-headers-2.2.10 [!hurd-i386],
         </p>
 
 	<p>
-	  These five fields are used to declare a dependency
+	  These six fields are used to declare a dependency
 	  relationship by one package on another.  Except for
 	  <tt>Enhances</tt>, they appear in the depending (binary)
 	  package's control file.  (<tt>Enhances</tt> appears in the
@@ -4780,7 +4780,7 @@ rmdir /usr/local/share/emacs 2>/dev/null || true
 
 	      <tag><tt>restart</tt></tag>
 	      <item><p>stop and restart the service if it's already
-		  already running, otherwise start the service</p></item>
+		  running, otherwise start the service</p></item>
 
 	      <tag><tt>reload</tt></tag>
 	      <item><p>cause the configuration of the service to be
