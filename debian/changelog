@@ -23,7 +23,7 @@ debian-policy (3.6.0) unstable; urgency=low
       sections about changelog files.
   Manoj:
   * Added Games/Simulation to menu subpolicy               closes: Bug#194974
-  * Added Apps/Educational to menu subpolicy               closes: Bug#194972
+  * Added Apps/Education to menu subpolicy                 closes: Bug#194972
   * [ACCEPTED]: Debian changelogs should be UTF-8 encoded. Changed the
     wording from a should to a may; since a should would make an unknown
     number of packages insta buggy. A reuest makes all these wishlist
@@ -47,8 +47,9 @@ debian-policy (3.6.0) unstable; urgency=low
   * Fixed typos, and part of the report that was deemed valid; the other
     changes suggested were incorrect, or style issues.     closes: Bug#169744
   * updated the section numbers in the upgrading checklist
+    for the restructuring
 
- --
+ -- Josip Rodin <joy-packages@debian.org>  Wed,  9 Jul 2003 18:01:35 +0200
 
 debian-policy (3.5.10.0) unstable; urgency=low
 
