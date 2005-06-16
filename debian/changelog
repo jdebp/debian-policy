@@ -4,6 +4,10 @@ debian-policy (3.5.2.1) unstable; urgency=low
   * Also now Conflicts and Replaces packaging-manual
   * Remove FSSTND from binary package, although retain it in the source
     package for the time being
+  * Get the version.ent non-compression thingy right this time!
+  * Also install FHS stuff byhand (as requested by webmasters)
+  * Corrected GPL name and location         closes: Bug#88788, #93047
+  * Correct bug severities                          closes: Bug#91276
 
  --
 
