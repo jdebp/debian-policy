@@ -5583,11 +5583,11 @@ test -f <var>program-executed-later-in-script</var> || exit 0
 	      &lt;action&gt;</example> in their <prgn>postinst</prgn>
 	      and <prgn>prerm</prgn> scripts to:
 	      <example compact="compact">
-          if [ -x /usr/sbin/invoke-rc.d ] ; then
+	if command -v invoke-rc.d >/dev/null 2>&1; then
 		invoke-rc.d <var>package</var> &lt;action&gt;
-          else
-             /etc/init.d/<var>package</var> &lt;action&gt;
-          fi
+	else
+		/etc/init.d/<var>package</var> &lt;action&gt;
+	fi
 	      </example>
 	    </p>
 
