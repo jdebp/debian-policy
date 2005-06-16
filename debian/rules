@@ -83,6 +83,8 @@ install_file   = /usr/bin/install -p	-o root -g root	 -m  644
 install_program= /usr/bin/install -p	-o root -g root	 -m  755
 make_directory = /usr/bin/install -p -d -o root -g root	 -m  755
 
+GROFF_VERSION := $(shell dpkg -s groff | sed -n -e 's/Version: //p')
+
 
 all build: stamp-build
 stamp-build:
@@ -98,8 +100,7 @@ stamp-build:
 	tar zfx $(FHS_ARCHIVE)
 	# Need to use a patched tmac.m macro file if we're using a pre-1.16
 	# groff; version 1.16 is apparently fixed
-	if [ dpkg --compare-versions \
-	    `dpkg -s groff | sed -n -e 's/Version: //p'` lt 1.16 ]; then \
+	if dpkg --compare-versions $(GROFF_VERSION) lt 1.16; then \
 	    cp /usr/share/groff/tmac/tmac.m fhs && \
 	    cd fhs && patch -p1 < ../mm1.32-patch; \
 	fi
