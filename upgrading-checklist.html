@@ -7,9 +7,9 @@
     Created On       : Thu Oct 29 20:54:48 1998
     Created On Node  : tiamat.datasync.com
     Last Modified By : Manoj Srivastava
-    Last Modified On : Thu Oct 29 22:12:16 1998
-    Last Machine Used: tiamat.datasync.com
-    Update Count     : 6
+    Last Modified On : Wed Jun 30 12:35:32 1999
+    Last Machine Used: glaurung.green-gryphon.com
+    Update Count     : 7
     Status           : Unknown, Use with caution!
     HISTORY          : 
     Description      : 
@@ -44,6 +44,30 @@ Manual.
 <h2>The checklist</h2>
 
 <pre>
+3.0.0.0                    Jun 99
+
+  Policy Manual:
+     - Debian formally moves from the FSSTND to the FHS. This is a
+       major change, and the implications of this move are probably
+       not all know.
+    - Only 3 digits of the Standards version need be included in
+      control files, though all four digits are still permitted. 
+    - The location of the GPL has changed to
+      /usr/share/common-licenses. This may require changing the
+      copyright files to point to the correct location of the GPL and
+      other major licences
+    - Packages that use libtool to create shared libraries must
+      include the .la files in the -dev packages.
+    - Use logrotate to rotate log files
+    - section 5.8 has been rewritten (Programs for the X Window
+      System) 
+    - There is now anassi=ociated menu policy, in a separate document,
+      that carries the full weight of Debian policy. 
+    - The files `/var/run/utmp', `/var/log/wtmp' and
+      `/var/log/lastlog' must be installed writeable by group
+      utmp. Programs who need to modify those files must be installed
+      install setgid utmp.
+
 
 2.5.0.0                         Oct 98
 

@@ -7,7 +7,7 @@
 	<name>Manoj Srivastava</name>
 	<email>srivasta@debian.org</email>
       </author>
-      <version>$Revision: 1.7 $</version>
+      <version>$Revision: 1.8 $</version>
       <copyright>
 	<copyrightsummary>Copyright &#169; 1998 by Manoj Srivastava. 
 	</copyrightsummary>
@@ -325,50 +325,55 @@
 	    <item>
 	      <p>
 		wishlist bug opened in BTS, with a subject of
-		"[PROPOSED] ..."
+		"[PROPOSED] ...". This is the pre discussion period,
+		when the idea is kicked around, and polished. There is
+		no preset time limit, but at some point, if it is
+		stalled, the bug should be closed. Only registered
+		Debian developers may formally create proposals. 
 	      </p>
-	    </item>
-	    <tag>Seconds</tag>
-	    <item>
 	      <p>
 		developers may second the issue by emailing "seconded"
-		to the BTS. (Issue: what if the so called seconder is
-		not a registered Debian developer?)
+		to the BTS. Only registered Debian developers may
+		second proposals. 
 	      </p>
 	    </item>
 	    <tag>Amendment</tag>
 	    <item>
 	      <p>
-		when a proposed issue becomes a formal amendment, the
+		when a proposed issue becomes a formal amendment (when
+		it has acquired the required number of seconds), the
 		bug severity is raised to "normal" and the bug is
 		retitled to "[AMENDMENT DD/MM/YYY] ...".  Actually it
 		might be better to close the proposal and reopen so
 		the bug date reflects when the clock starts ticking on
-		the bug; in which case the bug could simply be
-		retitled "[AMENDMENT] ...".
+		the bug. 
 	      </p>
+	      <p>
+		This sets up the table for a discussion period,
+		normally 10 days to a month. At the end of the
+		discussion period, a proposal is either accepted, or
+		rejected. 
 	    </item>
 	    <tag>Accepted</tag>
 	    <item>
 	      <p>
 		if the amendment is accepted, the bug is marked
-		forwarded, until it is actually integrated into Policy
-		and uploaded and moved into the archive, at which time
-		the bug is retitled "[ACCEPTED]..." and closed.
+		forwarded and retitled "[ACCEPTED DD/MM/YYY]...".
 	      </p>
 	    </item>
 	    <tag>Rejected</tag>
 	    <item>
 	      <p>
 		if the amendment is closed, it is retitled as
-		"[REJECTED] ..." and marked as closed
+		"[REJECTED  DD/MM/YYY] ..." and closed
 	      </p>
 	    </item>
-	    <tag>Deadlocked</tag>
+	    <tag>Incorporated</tag>
 	    <item>
 	      <p>
-		if the amendment is deadlocked, it is marked as 
-		"[DEADLOCKED] ...",
+		When the proposal is actually integrated into Policy
+		and uploaded and moved into the archive, the bug is
+		closed. 
 	      </p>
 	    </item>
 	  </taglist>
