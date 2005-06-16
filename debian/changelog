@@ -16,6 +16,9 @@ debian-policy (3.5.4.1) unstable; urgency=low
   * Improved mkdir example in 10.1.2                 closes: Bug#92744
   * Made the "where examples live" entry in the upgrading-checklist
     clearer (add "for use by scripts")
+  * Add a dpkg-statoverride description section      closes: Bug#89473
+  * Fix the ldconfig usage description (remove "only if")
+                                                     closes: Bug#89674
 
  -- 
 
