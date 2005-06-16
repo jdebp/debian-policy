@@ -92,7 +92,7 @@
 	  <tt>/usr/share/common-licences/GPL</tt> in the Debian GNU/Linux
 	  distribution or on the World Wide Web at 
 	  <url id="http://www.gnu.org/copyleft/gpl.html" 
-	  name="&urlname">. You can also obtain it by writing to the
+	  name="The GNU Public Licence">. You can also obtain it by writing to the
 	  Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 	  Boston, MA 02111-1307, USA.
 	</p>
@@ -141,7 +141,7 @@
 	  <ftppath>/debian/doc/manuals/debian-policy.html.tar.gz</ftppath>
 	  or from the Debian WWW server at
 	  <url id="http://www.debian.org/doc/debian-policy/"
-	  name="&urlname">.</p>
+	  name="The Debian Policy Manual">.</p>
 
 	<p>
 	  In addition, this manual is distributed via the Debian package
