@@ -2,8 +2,11 @@ debian-policy (3.5.8.0) unstable; urgency=low
 
   * Added example for why one may call ldconfig anywhere in the
     postsint.                                                closes: Bug#120585
+  * Add the modifications about base system, as opposed to the soon to be
+    obsolete base section (I assume it is)                   closes: Bug#53582
+  * Rearranged the virtual packages list.                    closes: bug#72980
 
- -- Manoj Srivastava <srivasta@debian.org>  Wed, 13 Nov 2002 00:04:50 -0600
+ --
 
 debian-policy (3.5.7.1) unstable; urgency=low
 
