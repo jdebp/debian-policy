@@ -236,7 +236,7 @@
       </sect>
     </chapt>
 
-    <chapt>
+    <chapt id="archive">
       <heading>The Debian Archive</heading>
       <p>
 	The Debian GNU/Linux system is maintained and distributed as a
@@ -1088,16 +1088,17 @@
 	      <footnote>
 		<p>
 		  2.5% of Debian packages [see <url
-		  id="http://kitenet.net/programs/debconf/stats/">]
-		  currently use <package>debconf</package> to prompt
-		  the user at install time, and this number is growing
-		  daily. The benefits of using debconf are briefly
-		  explained at <url
-		  id="http://kitenet.net/doc/debconf-doc/introduction.html">;
-		  they include preconfiguration, (mostly)
-		  noninteractive installation, elimination of
-		  redundant prompting, consistency of user interface,
-		  etc.
+		  id="http://kitenet.net/programs/debconf/stats/"
+		  name="Debconf stats">] currently use
+		  <package>debconf</package> to prompt the user at
+		  install time, and this number is growing daily. The
+		  benefits of using debconf are briefly explained at
+		  <url
+		  id="http://kitenet.net/doc/debconf-doc/introduction.html"
+		  name="Debconf introduction">; they include
+		  preconfiguration, (mostly) noninteractive
+		  installation, elimination of redundant prompting,
+		  consistency of user interface, etc.
 		</p>
 		<p>
 		  With this increasing number of packages using
@@ -1146,15 +1147,15 @@
 	    </p>
 
 	    <p>
-	    It also means that an upgrade should not ask the same
-	    questions again, unless the user has used <tt>dpkg
-	      --purge</tt> to remove the package's configuration.  The
-	    answers to configuration questions should be stored in an
-	    appropriate place in <tt>/etc</tt> so that the user can
-	    modify them, and how this has been done should be
-	    documented.</p>
+	      It also means that an upgrade should not ask the same
+	      questions again, unless the user has used <tt>dpkg
+		--purge</tt> to remove the package's configuration.  The
+	      answers to configuration questions should be stored in an
+	      appropriate place in <tt>/etc</tt> so that the user can
+	      modify them, and how this has been done should be
+	      documented.</p>
 
-	  <p>
+	    <p>
 	      If a package has a vitally important piece of
 	      information to pass to the user (such as "don't run me
 	      as I am, you must edit the following configuration files
@@ -1169,18 +1170,18 @@
 	      should be in on-line documentation, where all the users
 	      can see them).</p>
 
-	  <p>
-	    Any necessary prompting should almost always be confined
-	    to the <prgn>config</prgn> or <prgn>postinst</prgn>
-	    script. If it is done in the <prgn>postinst</prgn>, it
-	    should be protected with a conditional so that unnecessary
-	    prompting doesn't happen if a package's installation fails
-	    and the <prgn>postinst</prgn> is called with
-	    <tt>abort-upgrade</tt>, <tt>abort-remove</tt> or
-	    <tt>abort-deconfigure</tt>.</p>
-
+	    <p>
+	      Any necessary prompting should almost always be confined
+	      to the <prgn>config</prgn> or <prgn>postinst</prgn>
+	      script. If it is done in the <prgn>postinst</prgn>, it
+	      should be protected with a conditional so that
+	      unnecessary prompting doesn't happen if a package's
+	      installation fails and the <prgn>postinst</prgn> is
+	      called with <tt>abort-upgrade</tt>,
+	      <tt>abort-remove</tt> or <tt>abort-deconfigure</tt>.</p>
 	</sect1>
       </sect>
+
       <sect>
 	<heading>Source packages</heading>
 
@@ -1629,7 +1630,7 @@ Package: libc6
 		  <tag><em>frozen</em></tag>
 		  <item>
 		    <p>
-		      From time to time, the <em>frozen</em>
+		      From time to time, the <em>testing</em>
 		      distribution enters a state of `code-freeze' in
 		      anticipation of release as a <em>stable</em>
 		      version. During this period of testing only
@@ -1683,9 +1684,7 @@ Package: libc6
 
       <p>
 	The version number format is:
-	<example compact="compact">
-&lsqb<var>epoch</var><tt>:</tt>&rsqb;<var>upstream_version</var>&lsqb;<tt>-</tt><var>debian_revision</var>&rsqb;
-	</example>
+	&lsqb<var>epoch</var><tt>:</tt>&rsqb;<var>upstream_version</var>&lsqb;<tt>-</tt><var>debian_revision</var>&rsqb;
       </p>
 
       <p>
@@ -2498,8 +2497,8 @@ Package: libc6
 	</p>
 
 	<p>
-	  These scripts are the files <tt>preinst</tt>,
-	  <tt>postinst</tt>, <tt>prerm</tt> and <tt>postrm</tt> in the
+	  These scripts are the files <prgn>preinst</prgn>,
+	  <prgn>postinst</prgn>, <prgn>prerm</prgn> and <prgn>postrm</prgn> in the
 	  control area of the package.  They must be proper executable
 	  files; if they are scripts (which is recommended), they must
 	  start with the usual <tt>#!</tt> convention.  They should be
@@ -3058,13 +3057,13 @@ Package: libc6
 	    </item>
 	    <item>
 	      <p>
-		All the maintainer scripts except the <tt>postrm</tt>
+		All the maintainer scripts except the <prgn>postrm</prgn>
 		are removed.
 	      </p>
 
 	      <p>
 		If we aren't purging the package we stop here.  Note
-		that packages which have no <tt>postrm</tt> and no
+		that packages which have no <prgn>postrm</prgn> and no
 		<tt>conffile</tt>s are automatically purged when
 		removed, as there is no difference except for the
 		<prgn>dpkg</prgn> status.</p>
@@ -4151,26 +4150,29 @@ libbar 1 bar1 (>= 1.0-1)
       </sect>
     </chapt>
 
-    <chapt><heading>The Operating System</heading>
+    <chapt id="opersys"><heading>The Operating System</heading>
 
       <sect>
-	<heading>File system hierarchy</heading>
+	<heading>Filesystem hierarchy</heading>
 
 
 	<sect1>
-	  <heading>Linux File system Structure</heading>
+	  <heading>Filesystem Structure</heading>
 
 	  <p>
 	    The location of all installed files and directories must
-	    comply  with the Linux File system Hierarchy Standard
-	    (FHS).  The latest version of this document can be found
-	    alongside this manual or on
-	    <url id="http://www.pathname.com/fhs/">.
+	    comply with the Filesystem Hierarchy Standard (FHS),
+	    version 2.1.  This can be found in the
+	    <tt>debian-policy</tt> package or on <url
+	    id="http://www.debian.org/doc/packaging-manuals/fhs"
+	    name="FHS (Debian copy)"> alongside this manual or on <url
+	    id="http://www.pathname.com/fhs/" name="FHS (upstream)">.
 	    Specific questions about following the standard may be
-	    asked on <prgn>debian-devel</prgn>, or referred to Daniel
-	    Quinlan, the FHS coordinator, at
-	    <email>quinlan@pathname.com</email>.</p></sect1>
-
+	    asked on the <tt>debian-devel</tt> mailing list, or
+	    referred to Daniel Quinlan, the FHS coordinator, at
+	    <email>quinlan@pathname.com</email>.
+	  </p>
+	</sect1>
 
 	<sect1>
 	  <heading>Site-specific programs</heading>
@@ -4179,66 +4181,85 @@ libbar 1 bar1 (>= 1.0-1)
 	    As mandated by the FHS, packages must not place any
 	    files in <tt>/usr/local</tt>, either by putting them in
 	    the file system archive to be unpacked by <prgn>dpkg</prgn>
-	    or by manipulating them in their maintainer scripts.</p>
+	    or by manipulating them in their maintainer scripts.
+	  </p>
 
 	  <p>
 	    However, the package may create empty directories below
 	    <tt>/usr/local</tt> so that the system administrator knows
-	    where to place site-specific files. These directories
+	    where to place site-specific files.  These directories
 	    should be removed on package removal if they are
-	    empty.</p>
+	    empty.
+	  </p>
 
 	  <p>
 	    Note, that this applies only to directories <em>below</em>
-	    <tt>/usr/local</tt>, not <em>in</em>
-	    <tt>/usr/local</tt>. Packages must not create sub-directories
-	    in the directory <tt>/usr/local</tt> itself, except those listed in
-	    FHS, section 4.5. However, you may create directories
-	    below them as you wish. You must not remove any of the
-	    directories listed in 4.5, even if you created them.</p>
+	    <tt>/usr/local</tt>, not <em>in</em> <tt>/usr/local</tt>.
+	    Packages must not create sub-directories in the directory
+	    <tt>/usr/local</tt> itself, except those listed in FHS,
+	    section 4.5.  However, you may create directories below
+	    them as you wish. You must not remove any of the
+	    directories listed in 4.5, even if you created them.
+	  </p>
 
 	  <p>
 	    Since <tt>/usr/local</tt> can be mounted read-only from a
 	    remote server, these directories must be created and
-	    removed by the <tt>postinst</tt> and <tt>prerm</tt>
-	    maintainer scripts. These scripts must not fail if either
-	    of these operations fail. (In the future, it will be
-	    possible to tell <prgn>dpkg</prgn> not to unpack files
-	    matching certain patterns, so that the directories can be
-	    included in the <tt>.deb</tt> packages and system
-	    administrators who do not wish these directories in
-	    /usr/local do not need to have them.)</p>
+	    removed by the <prgn>postinst</prgn> and <prgn>prerm</prgn>
+	    maintainer scripts and not be included in the
+	    <tt>.deb</tt> archive.  These scripts must not fail if
+	    either of these operations fail.
+	    <footnote>
+	      <p>
+		In the future, it may be possible to tell
+		<prgn>dpkg</prgn> not to unpack files matching certain
+		patterns, so that the directories can be included in
+		the <tt>.deb</tt> packages and system administrators
+		who do not wish these directories in
+		<tt>/usr/local</tt> do not need to have them.)
+	      </p>
+	    </footnote>
+	  </p>
 
 	  <p>
-	    For example, the <prgn>emacs</prgn> package will contain
+	    For example, the <tt>emacsen-common</tt> package could
+	    contain something like
 	    <example compact="compact">
-mkdir -p /usr/local/lib/emacs/site-lisp || true
+mkdir -p /usr/local/share/emacs/site-lisp || true
 	    </example>
-	    in the <tt>postinst</tt> script, and
+	    in its <prgn>postinst</prgn> script, and
 	    <example compact="compact">
-rmdir /usr/local/lib/emacs/site-lisp || true
-rmdir /usr/local/lib/emacs || true
+rmdir /usr/local/share/emacs/site-lisp 2>/dev/null || true
+rmdir /usr/local/share/emacs 2>/dev/null || true
 	    </example>
-	    in the <tt>prerm</tt> script.</p>
+	    in the <prgn>prerm</prgn> script.  (Note that this form is
+	    used to ensure that if the script is interrupted, the
+	    directory <tt>/usr/local/share/emacs</tt> will still be
+	    removed.)
+	  </p>
 
 	  <p>
 	    If you do create a directory in <tt>/usr/local</tt> for
 	    local additions to a package, you should ensure that
 	    settings in <tt>/usr/local</tt> take precedence over the
-	    equivalents in <tt>/usr</tt>.</p>
+	    equivalents in <tt>/usr</tt>.
+	  </p>
 
 	  <p>
-	    However, because '/usr/local' and its contents are for
-	    exclusive use of the local administrator, a package must
-	    not rely on the presence or absence of files or
-	    directories in '/usr/local' for normal operation.</p>
+	    However, because <tt>/usr/local</tt> and its contents are
+	    for exclusive use of the local administrator, a package
+	    must not rely on the presence or absence of files or
+	    directories in <tt>/usr/local</tt> for normal operation.
+	  </p>
 
 	  <p>
 	    The <tt>/usr/local</tt> directory itself and all the
 	    subdirectories created by the package should (by default) have
 	    permissions 2775 (group-writable and set-group-id) and be
-	    owned by <tt>root.staff</tt>.</p>
+	    owned by <tt>root.staff</tt>.
+	  </p>
 	</sect1>
+
 	<sect1>
 	  <heading>The system-wide mail directory</heading>
 	  <p>
@@ -4255,139 +4276,159 @@ rmdir /usr/local/lib/emacs || true
 	    versions of either one of these packages.
 	  </p>
 	</sect1>
-
       </sect>
-
-
 
       <sect>
 	<heading>Users and groups</heading>
 
-	<p>
-	  The Debian system can be configured to use either plain or
-	  shadow passwords.</p>
+	<sect1>
+	  <heading>Introduction</heading>
+	  <p>
+	    The Debian system can be configured to use either plain or
+	    shadow passwords.
+	  </p>
 
-	<p>
-	  Some user ids (UIDs) and group ids (GIDs) are reserved
-	  globally for use by certain packages.  Because some packages
-	  need to include files which are owned by these users or
-	  groups, or need the ids compiled into binaries, these ids
-	  must be used on any Debian system only for the purpose for
-	  which they are allocated. This is a serious restriction, and
-	  we should avoid getting in the way of local administration
-	  policies. In particular, many sites allocate users and/or
-	  local system groups starting at 100.</p>
+	  <p>
+	    Some user ids (UIDs) and group ids (GIDs) are reserved
+	    globally for use by certain packages.  Because some
+	    packages need to include files which are owned by these
+	    users or groups, or need the ids compiled into binaries,
+	    these ids must be used on any Debian system only for the
+	    purpose for which they are allocated. This is a serious
+	    restriction, and we should avoid getting in the way of
+	    local administration policies. In particular, many sites
+	    allocate users and/or local system groups starting at 100.
+	  </p>
 
-	<p>
-	  Apart from this we should have dynamically allocated ids,
-	  which should by default be arranged in some sensible
-	  order, but the behavior should be configurable.</p>
+	  <p>
+	    Apart from this we should have dynamically allocated ids,
+	    which should by default be arranged in some sensible
+	    order, but the behavior should be configurable.
+	  </p>
 
-	<p>
-	  Packages other than <tt>base-passwd</tt> must not modify
-	  <tt>/etc/passwd</tt>, <tt>/etc/shadow</tt>,
-	  <tt>/etc/group</tt> or <tt>/etc/gshadow</tt>.</p>
+	  <p>
+	    Packages other than <tt>base-passwd</tt> must not modify
+	    <tt>/etc/passwd</tt>, <tt>/etc/shadow</tt>,
+	    <tt>/etc/group</tt> or <tt>/etc/gshadow</tt>.
+	  </p>
+	</sect1>
 
-	<p>
-	  The UID and GID ranges are as follows:
-	  <taglist>
-	    <tag>0-99:</tag>
-	    <item>
-	      <p>
-		Globally allocated by the Debian project, the
-		same on every Debian system.  These ids will appear in
-		the <tt>passwd</tt> and <tt>group</tt> files of all
-		Debian systems, new ids in this range being added
-		automatically as the <tt>base-passwd</tt> package is
-		updated.</p>
+	<sect1>
+	  <heading>UID and GID classes</heading>
+	  <p>
+	    The UID and GID numbers are divided into classes as
+	    follows:
+	    <taglist>
+	      <tag>0-99:</tag>
+	      <item>
+		<p>
+		  Globally allocated by the Debian project, the same
+		  on every Debian system.  These ids will appear in
+		  the <tt>passwd</tt> and <tt>group</tt> files of all
+		  Debian systems, new ids in this range being added
+		  automatically as the <tt>base-passwd</tt> package is
+		  updated.
+		</p>
 
-	      <p>
-		Packages which need a single statically allocated uid
-		or gid should use one of these; their maintainers
-		should ask the <tt>base-passwd</tt> maintainer for
-		ids.</p>
-	    </item>
+		<p>
+		  Packages which need a single statically allocated
+		  uid or gid should use one of these; their
+		  maintainers should ask the <tt>base-passwd</tt>
+		  maintainer for ids.
+		</p>
+	      </item>
 
-	    <tag>100-999:</tag>
-	    <item>
-	      <p>
-		Dynamically allocated system users and groups.
-		Packages which need a user or group, but can have this
-		user or group allocated dynamically and differently on
-		each system, should use `<tt>adduser --system</tt>' to
-		create the group and/or user.  <prgn>adduser</prgn>
-		will check for the existence of the user or group, and
-		if necessary choose an unused id based on the ranges
-		specified in <tt>adduser.conf</tt>.</p></item>
+	      <tag>100-999:</tag>
+	      <item>
+		<p>
+		  Dynamically allocated system users and groups.
+		  Packages which need a user or group, but can have
+		  this user or group allocated dynamically and
+		  differently on each system, should use <tt>adduser
+		  --system</tt> to create the group and/or user.
+		  <prgn>adduser</prgn> will check for the existence of
+		  the user or group, and if necessary choose an unused
+		  id based on the ranges specified in
+		  <tt>adduser.conf</tt>.
+		</p>
+	      </item>
 
+	      <tag>1000-29999:</tag>
+	      <item>
+		<p>
+		  Dynamically allocated user accounts.  By default
+		  <prgn>adduser</prgn> will choose UIDs and GIDs for
+		  user accounts in this range, though
+		  <tt>adduser.conf</tt> may be used to modify this
+		  behavior.
+		</p>
+	      </item>
 
-	    <tag>1000-29999:</tag>
-	    <item>
-	      <p>
-		Dynamically allocated user accounts.  By default
-		<prgn>adduser</prgn> will choose UIDs and GIDs for
-		user accounts in this range, though
-		<tt>adduser.conf</tt> may be used to modify this
-		behavior.</p>
-	    </item>
+	      <tag>30000-59999:</tag>
+	      <item>
+		<p>Reserved.</p>
+	      </item>
 
-	    <tag>30000-59999:</tag>
-	    <item>
-	      <p>Reserved.</p></item>
+	      <tag>60000-64999:</tag>
+	      <item>
+		<p>
+		  Globally allocated by the Debian project, but only
+		  created on demand. The ids are allocated centrally
+		  and statically, but the actual accounts are only
+		  created on users' systems on demand.
+		</p>
 
+		<p>
+		  These ids are for packages which are obscure or
+		  which require many statically-allocated ids.  These
+		  packages should check for and create the accounts in
+		  <tt>/etc/passwd</tt> or <tt>/etc/group</tt> (using
+		  <prgn>adduser</prgn> if it has this facility) if
+		  necessary.  Packages which are likely to require
+		  further allocations should have a `hole' left after
+		  them in the allocation, to give them room to
+		  grow.
+		</p>
+	      </item>
 
-	    <tag>60000-64999:</tag>
-	    <item>
-	      <p>
-		Globally allocated by the Debian project, but only
-		created on demand. The ids are allocated centrally and
-		statically, but the actual accounts are only created
-		on users' systems on demand.</p>
+	      <tag>65000-65533:</tag>
+	      <item>
+		<p>Reserved.</p>
+	      </item>
 
-	      <p>
-		These ids are for packages which are obscure or which
-		require many statically-allocated ids.  These packages
-		should check for and create the accounts in
-		<tt>/etc/passwd</tt> or <tt>/etc/group</tt> (using
-		<prgn>adduser</prgn> if it has this facility) if
-		necessary.  Packages which are likely to require
-		further allocations should have a `hole' left after
-		them in the allocation, to give them room to
-		grow.</p></item>
+	      <tag>65534:</tag>
+	      <item>
+		<p>
+		  User <tt>nobody</tt>. The corresponding gid refers
+		  to the group <tt>nogroup</tt>.
+		</p>
+	      </item>
 
-
-	    <tag>65000-65533:</tag>
-	    <item>
-	      <p>Reserved.</p></item>
-
-
-	    <tag>65534:</tag>
-	    <item>
-	      <p>User `<tt>nobody</tt>.' The corresponding gid refers
-	      to the group  `<tt>nogroup</tt>.'</p></item>
-
-
-	    <tag>65535:</tag>
-	    <item>
-	      <p>
-		<tt>(uid_t)(-1) == (gid_t)(-1)</tt>. NOT TO BE USED,
-		because it is the error return sentinel value.</p>
-	    </item>
-	  </taglist>
-	</p>
+	      <tag>65535:</tag>
+	      <item>
+		<p>
+		  <tt>(uid_t)(-1) == (gid_t)(-1)</tt> <em>must
+		  not</em> be used, because it is the error return
+		  sentinel value.
+		</p>
+	      </item>
+	    </taglist>
+	  </p>
+	</sect1>
       </sect>
-      <sect id="sysvinit">
-	<heading>System run levels</heading>
 
+      <sect id="sysvinit">
+	<heading>System run levels and <tt>init.d</tt> scripts</heading>
 
 	<sect1 id="/etc/init.d">
 	  <heading>Introduction</heading>
 
 	  <p>
 	    The <tt>/etc/init.d</tt> directory contains the scripts
-	    executed by <prgn>init</prgn> at boot time and when init
-	    state (or `runlevel') is changed (see <manref name="init"
-							  section="8">).</p>
+	    executed by <prgn>init</prgn> at boot time and when the
+	    init state (or `runlevel') is changed (see <manref
+	    name="init" section="8">).
+	  </p>
 
           <p>
             There are at least two different, yet functionally
@@ -4396,20 +4437,23 @@ rmdir /usr/local/lib/emacs || true
             link method. However, it must not be assumed by maintainer
             scripts that this method is being used, and any automated
             manipulation of the various runlevel behaviours by
-            maintainer scripts must be performed using `update-rc.d'
-            as described below and not by manually installing or
-            removing symlinks.  For  information on the
-            implementation details of the other method, implemented in
-            the <tt>file-rc</tt> package, please refer to the
-            documentation of that package.</p>
+            maintainer scripts must be performed using
+            <prgn>update-rc.d</prgn> as described below and not by
+            manually installing or removing symlinks.  For information
+            on the implementation details of the other method,
+            implemented in the <tt>file-rc</tt> package, please refer
+            to the documentation of that package.
+	  </p>
 
           <p>
-            These scripts are referenced by symbolic links in
-	    the <tt>/etc/rc<var>n</var>.d</tt> directories.  When
-	    changing runlevels, <prgn>init</prgn> looks in the
-	    directory <tt>/etc/rc<var>n</var>.d</tt> for the scripts
-	    it should execute, where <var>n</var> is the runlevel that
-	    is being changed to, or `S' for the boot-up scripts.</p>
+            These scripts are referenced by symbolic links in the
+	    <tt>/etc/rc<var>n</var>.d</tt> directories.  When changing
+	    runlevels, <prgn>init</prgn> looks in the directory
+	    <tt>/etc/rc<var>n</var>.d</tt> for the scripts it should
+	    execute, where <tt><var>n</var></tt> is the runlevel that
+	    is being changed to, or <tt>S</tt> for the boot-up
+	    scripts.
+	  </p>
 
           <p>
 	    The names of the links all have the form
@@ -4417,43 +4461,64 @@ rmdir /usr/local/lib/emacs || true
 	    <tt>K<var>mm</var><var>script</var></tt> where
 	    <var>mm</var> is a two-digit number and <var>script</var>
 	    is the name of the script (this should be the same as the
-	    name of the actual script in <tt>/etc/init.d</tt>.</p>
+	    name of the actual script in <tt>/etc/init.d</tt>).
+	  </p>
 
           <p>
 	    When <prgn>init</prgn> changes runlevel first the targets
-	    of the links whose names starting with a <tt>K</tt> are
+	    of the links whose names start with a <tt>K</tt> are
 	    executed, each with the single argument <tt>stop</tt>,
 	    followed by the scripts prefixed with an <tt>S</tt>, each
-	    with the single argument <tt>start</tt>.  The <tt>K</tt>
-	    links are responsible for killing services and the
-	    <tt>S</tt> link for starting services upon entering the
-	    runlevel.</p>
+	    with the single argument <tt>start</tt>.  (The links are
+	    those in the <tt>/etc/rc<var>n</var>.d</tt> directory
+	    corresponding to the new runlevel.)  The <tt>K</tt> links
+	    are responsible for killing services and the <tt>S</tt>
+	    link for starting services upon entering the runlevel.
+	  </p>
 
 	  <p>
 	    For example, if we are changing from runlevel 2 to
 	    runlevel 3, init will first execute all of the <tt>K</tt>
 	    prefixed scripts it finds in <tt>/etc/rc3.d</tt>, and then
-	    all of the <tt>S</tt> prefixed scripts.  The links
-	    starting with <tt>K</tt> will cause the referred-to file
-	    to be executed with an argument of <tt>stop</tt>, and the
-	    <tt>S</tt> links with an argument of <tt>start</tt>.</p>
+	    all of the <tt>S</tt> prefixed scripts in that directory.
+	    The links starting with <tt>K</tt> will cause the
+	    referred-to file to be executed with an argument of
+	    <tt>stop</tt>, and the <tt>S</tt> links with an argument
+	    of <tt>start</tt>.
+	  </p>
 
 	  <p>
-	    The two-digit number <var>mm</var> is used to decide which
-	    order to start and stop things in: low-numbered links have
-	    their scripts run first.  For example, the <tt>K20</tt>
-	    scripts will be executed before the <tt>K30</tt> scripts.
-	    This is used when a certain service must be started before
-	    another.  For example, the name server <prgn>bind</prgn>
-	    might need to be started before the news server
-	    <prgn>inn</prgn> so that <prgn>inn</prgn> can set up its
-	    access lists.  In this case, the script that starts
-	    <prgn>bind</prgn> would have a lower number than the
-	    script that starts <prgn>inn</prgn> so that it runs first:
+	    The two-digit number <var>mm</var> is used to determine
+	    the order in which to run the scripts: low-numbered links
+	    have their scripts run first.  For example, the
+	    <tt>K20</tt> scripts will be executed before the
+	    <tt>K30</tt> scripts.  This is used when a certain service
+	    must be started before another.  For example, the name
+	    server <prgn>bind</prgn> might need to be started before
+	    the news server <prgn>inn</prgn> so that <prgn>inn</prgn>
+	    can set up its access lists.  In this case, the script
+	    that starts <prgn>bind</prgn> would have a lower number
+	    than the script that starts <prgn>inn</prgn> so that it
+	    runs first:
 	    <example compact="compact">
 /etc/rc2.d/S17bind
 /etc/rc2.d/S70inn
 	    </example>
+	  </p>
+
+	  <p>
+	    The two runlevels 0 (halt) and 6 (reboot) are slightly
+	    different.  In these runlevels, the links with an
+	    <tt>S</tt> prefix are still called after those with a
+	    <tt>K</tt> prefix, but they too are called with the single
+	    argument <tt>stop</tt>.
+	  </p>
+
+	  <p>
+	    Also, if the script name ends <tt>.sh</tt>, the script
+	    will be sourced in runlevel <tt>S</tt> rather that being
+	    run in a forked subprocess, but will be explicitly run by
+	    <prgn>sh</prgn> in all other runlevels.
 	  </p>
 	</sect1>
 
@@ -4509,69 +4574,90 @@ rmdir /usr/local/lib/emacs || true
 	    successfully.</p>
 
 	  <p>
+	    The <tt>/etc/init.d</tt> scripts should be treated as
+	    configuration files, either by marking them as
+	    <tt>conffile</tt>s or managing them correctly in the
+	    maintainer scripts (see <ref id="config files">).  This is
+	    important since we want to give the local system
+	    administrator the chance to adapt the scripts to the local
+	    system, e.g., to disable a service without de-installing
+	    the package, or to specify some special command line
+	    options when starting a service, while making sure her
+	    changes aren't lost during the next package upgrade.
+	  </p>
+
+	  <p>
 	    These scripts should not fail obscurely when the
 	    configuration files remain but the package has been
 	    removed, as configuration files remain on the system after
-	    the package has been removed. Only when <prgn>dpkg</prgn>
+	    the package has been removed.  Only when <prgn>dpkg</prgn>
 	    is executed with the <tt>--purge</tt> option will
-	    configuration files be removed. In particular, the init
-	    script itself is usually a configuration file (see
-            <ref id="init.d notes">), and will remain on the system if
-	    the package is removed but not purged. Therefore, you
+	    configuration files be removed.  In particular, as the
+	    <tt>/etc/init.d/<var>package</var></tt> script itself is
+	    usually a <tt>conffile</tt>, it will remain on the system
+	    if the package is removed but not purged.  Therefore, you
 	    should include a <tt>test</tt> statement at the top of the
 	    script, like this:
 	    <example compact="compact">
 test -f <var>program-executed-later-in-script</var> || exit 0
-	    </example></p>
+	    </example>
+	  </p>
 
 	  <p>
-	    Often there are some values in the `<tt>init.d</tt>'
-	    scripts that a system administrator will frequently want
-	    to change. While the scripts are frequently conffiles,
-	    modifying them requires that the administrator merge in
-	    their changes each time the package is upgraded and the
-	    conffile changes. To ease the burden on the system
-	    administrator, such configurable values should not be
-	    placed directly in the script.  Instead, they should be
-	    placed in a file in `<tt>/etc/default</tt>', which
-	    typically will have the same base name as the
-	    `<tt>init.d</tt>' script. This extra file can be sourced
-	    by the script when the script runs. It must contain only
-	    variable settings and comments.
+	    Often there are some variables in the <tt>init.d</tt>
+	    scripts whose values control the bahaviour of the scripts,
+	    and which a system administrator is likely to want to
+	    change.  As the scripts themselves are frequently
+	    <tt>conffiles</tt>, modifying them requires that the
+	    administrator merge in their changes each time the package
+	    is upgraded and the <tt>conffile changes</tt>.  To ease
+	    the burden on the system administrator, such configurable
+	    values should not be placed directly in the script.
+	    Instead, they should be placed in a file in
+	    <tt>/etc/default</tt>, which typically will have the same
+	    base name as the <tt>init.d</tt> script.  This extra file
+	    should be sourced by the script when the script runs.  It
+	    must contain only variable settings and comments in POSIX
+	    <prgn>sh</prgn> format.  It should not be a
+	    <tt>conffile</tt>, but a configuration file maintained by
+	    the package maintainer scripts.  See <ref id="config
+	    files"> for more details.
 	  </p>
 
 	  <p>
 	    To ensure that vital configurable values are always
-	    available, the `<tt>init.d</tt>' script should set default
-	    values for each of the shell variables it uses before
-	    sourcing the <tt>/etc/default/</tt> file. Also, since the
-	    `<tt>/etc/default/</tt>' file is often a conffile, the
-	    `<tt>init.d</tt>' script must behave sensibly without
-	    failing if it is deleted.
+	    available, the <tt>init.d</tt> script should set default
+	    values for each of the shell variables it uses, either
+	    before sourcing the <tt>/etc/default/</tt> file or
+	    afterwards using something like the <tt>:
+	    ${VAR:=default}</tt> syntax.  Also, the <tt>init.d</tt>
+	    script must behave sensibly and not fail if the
+	    <tt>/etc/default</tt> file is deleted.
 	  </p>
-
 	</sect1>
 
 	<sect1>
 	  <heading>Managing the links</heading>
 
 	  <p>
-	    The program <prgn>update-rc.d</prgn> is provided to make
-	    it easier for package maintainers to arrange for the
-	    proper creation and removal of
-	    <tt>/etc/rc<var>n</var>.d</tt> symbolic links, or their
-	    functional equivalent if another method is being used.
-	    This may be used by maintainers in their packages'
-	    <tt>postinst</tt> and <tt>postrm</tt> scripts.</p>
+	    The program <prgn>update-rc.d</prgn> is provided for
+	    package maintainers to arrange for the proper creation and
+	    removal of <tt>/etc/rc<var>n</var>.d</tt> symbolic links,
+	    or their functional equivalent if another method is being
+	    used.  This may be used by maintainers in their packages'
+	    <prgn>postinst</prgn> and <prgn>postrm</prgn> scripts.</p>
 
 	  <p>
-	    You must use this script to make changes to
-	    <tt>/etc/rc<var>n</var>.d</tt> and <em>never</em> either
-	    include any <tt>/etc/rc<var>n</var>.d</tt> symbolic links
-	    in the actual archive or manually create or remove the
-	    symbolic links in maintainer scripts.  (The latter will
-	    fail if an alternative method of maintaining runlevel
-	    information is being used.)</p>
+	    You must not include any <tt>/etc/rc<var>n</var>.d</tt>
+	    symbolic links in the actual archive or manually create or
+	    remove the symbolic links in maintainer scripts; you must
+	    use the <prgn>update-rc.d</prgn> program instead.  (The
+	    former will fail if an alternative method of maintaining
+	    runlevel information is being used.)  You must not include
+	    the <tt>/etc/rc<var>n</var>.d</tt> directories themselves
+	    in the archive either.  (Only the <tt>sysvinit</tt>
+	    package may do so.)
+	  </p>
 
 	  <p>
 	    By default <prgn>update-rc.d</prgn> will start services in
@@ -4579,37 +4665,41 @@ test -f <var>program-executed-later-in-script</var> || exit 0
 	    and stop them in the halt runlevel (0), the single-user
 	    runlevel (1) and the reboot runlevel (6).  The system
 	    administrator will have the opportunity to customize
-	    runlevels by either running <prgn>update-rc.d</prgn>, by
-	    simply adding, moving, or removing the symbolic links in
-	    <tt>/etc/rc<var>n</var>.d</tt> if symbolic links are being
-	    used, or by modifying <tt>/etc/runlevel.conf</tt> if the
-	    <tt>file-rc</tt> method is being used.</p>
+	    runlevels by simply adding, moving, or removing the
+	    symbolic links in <tt>/etc/rc<var>n</var>.d</tt> if
+	    symbolic links are being used, or by modifying
+	    <tt>/etc/runlevel.conf</tt> if the <tt>file-rc</tt> method
+	    is being used.
+	  </p>
 
 	  <p>
 	    To get the default behavior for your package, put in your
-	    <tt>postinst</tt> script
+	    <prgn>postinst</prgn> script
 	    <example compact="compact">
 update-rc.d <var>package</var> defaults &gt;/dev/null
 	    </example>
-	    and in your <tt>postrm</tt>
+	    and in your <prgn>postrm</prgn>
 	    <example compact="compact">
-if [ purge = "$1" ]; then
+if [ "$1" = purge ]; then
   update-rc.d <var>package</var> remove &gt;/dev/null
 fi
 	    </example></p>
 
 	  <p>
 	    This will use a default sequence number of 20.  If it does
-	    not matter when or in which order the script is run, use
-	    this default.  If it does, then you should talk to the
-	    maintainer of the <prgn>sysvinit</prgn> package or post to
-	    <tt>debian-devel</tt>, and they will help you choose a
-	    number.</p>
+	    not matter when or in which order the <tt>init.d</tt>
+	    script is run, use this default.  If it does, then you
+	    should talk to the maintainer of the <prgn>sysvinit</prgn>
+	    package or post to <tt>debian-devel</tt>, and they will
+	    help you choose a number.
+	  </p>
 
 	  <p>
 	    For more information about using <tt>update-rc.d</tt>,
 	    please consult its manpage <manref name="update-rc.d"
-					       section="8">.</p></sect1>
+	      section="8">.
+	  </p>
+	</sect1>
 
 
 	<sect1>
@@ -4623,33 +4713,6 @@ fi
             described in <ref id="/etc/init.d">.  Packages must not
             place files in <tt>/etc/rc.boot</tt>.</p>
 
-	<sect1 id="init.d notes">
-	  <heading>Notes</heading>
-
-	  <p>
-	    <em>Do not</em> include the
-	    <tt>/etc/rc<var>n</var>.d/*</tt> symbolic links in the
-	    <tt>.deb</tt> file system archive!  <em>This will cause
-	      problems!</em> You must create them with
-	    <prgn>update-rc.d</prgn>, as above.</p>
-
-	  <p>
-	    <em>Do not</em> include the
-	    <tt>/etc/rc<var>n</var>.d/*</tt> symbolic links in
-	    <prgn>dpkg</prgn>'s conffiles list!  <em>This will cause
-	      problems!</em> You should, however, treat the
-	    <tt>/etc/init.d</tt> scripts as configuration files,
-	    either by marking them as conffiles or managing them
-	    correctly in the maintainer scripts (see
-	    <ref id="config files">). (This is important since we want
-	    to give the local system administrator the chance to adapt
-	    the scripts to the local system, e.g., to disable a
-	    service without de-installing the package, or to specify
-	    some special command line options when starting a
-	    service, while making sure her changes aren't lost during
-	    the next package upgrade.)</p>
-	</sect1>
-
 	<sect1>
 	  <heading>Example</heading>
 
@@ -4661,11 +4724,12 @@ fi
 	    appropriately <tt>bind</tt>.  As you can see, the script
 	    interprets the argument <tt>reload</tt> to send the
 	    nameserver a <tt>HUP</tt> signal (causing it to reload its
-	    configuration); this way the user can say
+	    configuration); this way the system administrator can say
 	    <tt>/etc/init.d/bind reload</tt> to reload the name
 	    server.  The script has one configurable value, which can
 	    be used to pass parameters to the named program at
-	    startup.
+	    startup; this value is read from
+	    <tt>/etc/default/bind</tt> (see below).
 	  </p>
 
 	  <p>
@@ -4722,11 +4786,12 @@ exit 0
 	  </p>
 
 	  <p>
-	    Complementing the above init script is a file
-	    '<tt>/etc/default/bind</tt>', which contains configurable
-	    parameters used by the script.
-	  </p>
-	  <p>
+	    Complementing the above init script is a configuration
+	    file <tt>/etc/default/bind</tt>, which contains
+	    configurable parameters used by the script.  This would be
+	    created by the <prgn>postinst</prgn> script if it was not
+	    already present, and removed on purge by the
+	    <prgn>postrm</prgn> script.
 	    <example compact="compact">
 # Specified parameters to pass to named. See named(8).
 # You may uncomment the following line, and edit to taste.
@@ -4735,25 +4800,234 @@ exit 0
 	  </p>
 
 	  <p>
-	    Another example on which to base your <tt>/etc/init.d</tt>
-	    scripts is in <tt>/etc/init.d/skeleton</tt>.</p>
+	    Another example on which you can base your
+	    <tt>/etc/init.d</tt> scripts is found in
+	    <tt>/etc/init.d/skeleton</tt>.
+	  </p>
 
 	  <p>
 	    If this package is happy with the default setup from
 	    <prgn>update-rc.d</prgn>, namely an ordering number of 20
 	    and having named running in all runlevels, it can say in
-	    its <tt>postinst</tt>:
+	    its <prgn>postinst</prgn>:
 	    <example compact="compact">
 update-rc.d bind defaults >/dev/null
 	    </example>
-	    And in its <tt>postrm</tt>, to remove the links when the
+	    And in its <prgn>postrm</prgn>, to remove the links when the
 	    package is purged:
 	    <example compact="compact">
-if [ purge = "$1" ]; then
+if [ "$1" = purge ]; then
   update-rc.d bind remove >/dev/null
 fi
-	    </example></p>
-	</sect1></sect>
+	    </example>
+	  </p>
+	</sect1>
+      </sect>
+
+      <sect>
+	<heading>Console messages from <tt>init.d</tt> scripts</heading>
+
+	<p>
+	  This section describes the formats to be used for messages
+	  written to standard output by the <tt>/etc/init.d</tt>
+	  scripts.  The intent is to improve the consistency of
+	  Debian's startup and shutdown look and feel.  For this
+	  reason, please look very carefully at the details.  We want
+	  the messages to have the same format in terms of wording,
+	  spaces, punctuation and case of letters.
+	</p>
+
+	<p>
+	  Here is a list of overall rules that you should use when you
+	  create output messages.  They can be useful if you have a
+	  non-standard message that is not covered specifically in the
+	  sections below.
+	</p>
+
+	<p>
+	  <list>
+	    <item>
+	      <p>
+		Every message should fit in one line (fewer than 80
+		characters), start with a capital letter and end with
+		a period (<tt>.</tt>) and line feed (<tt>"\n"</tt>).
+	      </p>
+	    </item>
+
+	    <item>
+	      <p>
+		If you want to express that the computer is working on
+		something (that is, performing a specific task, not
+		starting or stopping a program), we use an "ellipsis"
+		(three dots: <tt>...</tt>).  Note that we don't insert
+		spaces before or after the dots.  If the task has been
+		completed we write <tt>done.</tt> and a line feed.
+	      </p>
+	    </item>
+
+	    <item>
+	      <p>
+		Design your messages as if the computer is telling you
+		what he is doing (let him be polite :-), but don't
+		mention "him" directly.  For example, if you think of
+		saying
+		<example compact="compact">
+I'm starting network daemons: nfsd mountd.
+		</example>
+		just say
+		<example compact="compact">
+Starting network daemons: nfsd mountd.
+		</example>
+	      </p>
+	    </item>
+	  </list>
+	</p>
+
+	<p>
+	  There are standard message formats for the following
+	  situations.  They should be used by the <tt>init.d</tt>
+	  scripts.
+	</p>
+
+	<p>
+	  <list>
+	    <item>
+	      <p>When daemons are started</p>
+
+	      <p>
+		If your script starts one or more daemons, the output
+		should look like this (a single line, no leading
+		spaces):
+		<example compact="compact">
+Starting <var>description</var>: <var>daemon-1</var> ... <var>daemon-n</var>.
+		</example>
+		The <var>description</var> should describe the
+		subsystem the daemon or set of daemons are part of,
+		while <var>daemon-1</var> up to <var>daemon-n</var>
+		denote each daemon's name (typically the file name of
+		the program).
+	      </p>
+
+	      <p>
+		For example, the output of <tt>/etc/init.d/lpd</tt>
+		would look like:
+		<example compact="compact">
+Starting printer spooler: lpd.
+		</example>
+	      </p>
+
+	      <p>
+		This can be achieved by saying
+		<example compact="compact">
+echo -n "Starting printer spooler: lpd"
+start-stop-daemon --start --quiet --exec /usr/sbin/lpd
+echo "."
+		</example>
+		in the script. If you have more than one daemon to
+		start, you should do the following:
+		<example compact="compact">
+echo -n "Starting remote file system services:"
+echo -n " nfsd"; start-stop-daemon --start --quiet nfsd
+echo -n " mountd"; start-stop-daemon --start --quiet mountd
+echo -n " ugidd"; start-stop-daemon --start --quiet ugidd
+echo "."
+		</example>
+		This makes it possible for the user to see what takes
+		so long and when the final daemon has been started.
+		You should be careful where to put spaces: in the
+		example above the system administrator can easily
+		comment out a line if he don't wants to start a
+		specific daemon, while the displayed message still
+		looks good.
+	      </p>
+	    </item>
+
+	    <item>
+	      <p>When a system parameter is being set</p>
+
+	      <p>
+		If you have to set up different system parameters
+		during the system boot, you should use this format:
+		<example compact="compact">
+Setting <var>parameter</var> to `<var>value</var>'.
+		</example>
+	      </p>
+
+	      <p>
+		You can use a statement such as the following to get
+		the quotes right:
+		<example compact="compact">
+echo "Setting DNS domainname to \`$domainname'."
+		</example>
+	      </p>
+
+	      <p>
+		Note that the left quotation mark (<tt>`</tt>) is
+		different from the right one (<tt>'</tt>).
+	      </p>
+	    </item>
+
+	    <item>
+	      <p>When a daemon is stopped or restarted</p>
+
+	      <p>
+		When you stop or restart a daemon, you should issue a
+		message identical to the startup message, except that
+		<tt>Starting</tt> is replaced with <tt>Stopping</tt>
+		or <tt>Restarting</tt> respectively.
+	      </p>
+
+	      <p>
+		For example, stopping the printer daemon will like
+		like this:
+		<example compact="compact">
+Stopping printer spooler: lpd.
+		</example>
+	      </p>
+	    </item>
+
+	    <item>
+	      <p>When something is executed</p>
+
+	      <p>
+		There are several examples where you have to run a
+		program at system startup or shutdown to perform a
+		specific task, for example, setting the system's clock
+		using <prgn>netdate</prgn> or killing all processes
+		when the system shuts down.  Your message should look
+		like this:
+		<example compact="compact">
+Doing something very useful...done.
+		</example>
+		You should print the <tt>done.</tt> immediately after
+		the job has been completed, so that the user is
+		informed why she has to wait.  You can get this
+		behavior by saying
+		<example compact="compact">
+echo -n "Doing something very useful..."
+do_something
+echo "done."
+		</example>
+		in your script.
+	      </p>
+	    </item>
+
+	    <item>
+	      <p>When the configuration is reloaded</p>
+
+	      <p>
+		When a daemon is forced to reload its configuration
+		files you should use the following format:
+		<example compact="compact">
+Reloading <var>description</var> configuration...done.
+		</example>
+		where <var>description</var> is the same as in the
+		daemon starting message.
+	      </p>
+	    </item>
+	  </list>
+	</p>
+      </sect>
 
       <sect>
 	<heading>Cron jobs</heading>
@@ -4766,7 +5040,7 @@ fi
 	<p>
 	  If a package wants to install a job that has to be executed
 	  via cron, it should place a file with the name of the
-	  package in one of the following directories:
+	  package in one or more of the following directories:
 	  <example compact="compact">
 /etc/cron.daily
 /etc/cron.weekly
@@ -4779,17 +5053,19 @@ fi
 
 	<p>
 	  All files installed in any of these directories must be
-	  scripts (shell scripts, Perl scripts, etc.) so that they can
-	  easily be modified by the local system administrator. In
-	  addition, they should be treated as configuration files.</p>
+	  scripts (e.g., shell scripts or Perl scripts) so that they
+	  can easily be modified by the local system administrator.
+	  In addition, they should be treated as configuration
+	  files.
+	</p>
 
 	<p>
 	  If a certain job has to be executed more frequently than
 	  daily, the package should install a file
-	  <tt>/etc/cron.d/<var>package</var></tt>. This file uses
-	  the same syntax as <tt>/etc/crontab</tt> and is processed by
+	  <tt>/etc/cron.d/<var>package</var></tt>. This file uses the
+	  same syntax as <tt>/etc/crontab</tt> and is processed by
 	  <prgn>cron</prgn> automatically. The file must also be
-	  treated as a configuration file. (Note, that entries in the
+	  treated as a configuration file. (Note that entries in the
 	  <tt>/etc/cron.d</tt> directory are not handled by
 	  <prgn>anacron</prgn>. Thus, you should only use this
 	  directory for jobs which may be skipped if the system is not
@@ -4804,219 +5080,24 @@ fi
       </sect>
 
       <sect>
-	<heading>Console messages</heading>
-
-	<p>
-	  This section describes different formats for messages
-	  written to standard output by the <tt>/etc/init.d</tt>
-	  scripts. The intent is to improve the consistency of
-	  Debian's startup and shutdown look and feel.</p>
-
-	<p>
-	  Please look very careful at the details. We want to get the
-	  messages to look exactly the same way concerning spaces,
-	  punctuation, and case of letters.</p>
-
-	<p>
-	  Here is a list of overall rules that you should use when you
-	  create output messages. They can be useful if you have a
-	  non-standard message that isn't covered in the sections
-	  below.</p>
-
-	<p>
-	  <list>
-	    <item>
-	      <p>
-		Every message should cover one line, start with a
-		capital letter and end with a period `.'.</p></item>
-
-
-	    <item>
-	      <p>
-		If you want to express that the computer is working on
-		something (performing a specific task, not starting or
-		stopping a program), we use an ``ellipsis'', namely
-		three dots `...'. Note that we don't insert spaces in
-		front of or behind the dots.  If the task has been
-		completed we write `done.' and a line feed.</p></item>
-
-
-	    <item>
-	      <p>
-		Design your messages as if the computer is telling you
-		what he is doing (let him be polite :-) but don't
-		mention ``him'' directly.  For example, if you think
-		of saying
-		<example compact="compact">
-I'm starting network daemons: nfsd mountd.
-		</example>
-		just say
-		<example compact="compact">
-Starting network daemons: nfsd mountd.
-		</example>
-	      </p>
-	    </item>
-	  </list>
-	</p>
-
-	<p>
-	  The following formats should be used</p>
-
-	<p>
-	  <list>
-	    <item>
-	      <p>when daemons get started.</p>
-
-	      <p>
-		Use this format if your script starts one or more
-		daemons.  The output should look like this (a single
-		line, no leading spaces):
-		<example compact="compact">
-Starting &lt;description&gt;: &lt;daemon-1&gt; ... &lt;daemon-n&gt;.
-		</example>
-		The &lt;description&gt; should describe the subsystem
-		the daemon or set of daemons are part of, while
-		&lt;daemon-1&gt; up to &lt;daemon-n&gt; denote each
-		daemon's name (typically the file name of the
-		program).</p>
-
-	      <p>
-		For example, the output of /etc/init.d/lpd would look like:
-		<example compact="compact">
-Starting printer spooler: lpd.
-		</example></p>
-
-	      <p>
-		This can be achieved by saying
-		<example compact="compact">
-echo -n "Starting printer spooler: lpd"
-start-stop-daemon --start --quiet lpd
-echo "."
-		</example>
-		in the script. If you have more than one daemon to
-		start, you should do the following:
-		<example compact="compact">
-echo -n "Starting remote file system services:"
-echo -n " nfsd"; start-stop-daemon --start --quiet nfsd
-echo -n " mountd"; start-stop-daemon --start --quiet mountd
-echo -n " ugidd"; start-stop-daemon --start --quiet ugidd
-echo "."
-		</example>
-		This makes it possible for the user to see what takes
-		so long and when the final daemon has been
-		started. You should be careful where to put spaces: In the
-		example above the system administrator can easily
-		comment out a line if he don't wants to start a
-		specific daemon, while the displayed message still
-		looks good.
-	      </p>
-	    </item>
-
-	    <item>
-	      <p>when something needs to be configured.</p>
-
-	      <p>
-		If you have to set up different parameters of the
-		system upon boot up, you should use this format:
-		<example compact="compact">
-Setting &lt;parameter&gt; to `&lt;value&gt;'.
-		</example>
-	      </p>
-
-	      <p>
-		You can use the following echo statement to get the quotes right:
-		<example compact="compact">
-echo "Setting DNS domainname to \`"value"'."
-		</example>
-	      </p>
-
-	      <p>
-		Note that the left quotation mark (`) is different
-		from the right (').
-	      </p>
-	    </item>
-
-	    <item>
-	      <p>when a daemon is stopped.</p>
-
-	      <p>
-		When you stop a daemon you should issue a message
-		similar to the startup message, except that `Starting'
-		is replaced with `Stopping'.</p>
-
-	      <p>
-		So stopping the printer daemon will like like this:
-		<example compact="compact">
-Stopping printer spooler: lpd.
-		</example></p></item>
-
-	    <item>
-	      <p>when something is executed.</p>
-
-	      <p>
-		There are several examples where you have to run a
-		program at system startup or shutdown to perform a
-		specific task. For example, setting the system's clock
-		via `netdate' or killing all processes when the system
-		comes down. Your message should like this:
-		<example compact="compact">
-Doing something very useful...done.
-		</example>
-		You should print the `done.' right after the job has been completed,
-		so that the user gets informed why he has to wait. You can get this
-		behavior by saying
-		<example compact="compact">
-echo -n "Doing something very useful..."
-do_something
-echo "done."
-		</example>
-		in your script.
-	      </p>
-	    </item>
-
-	    <item>
-	      <p>when the configuration is reloaded.</p>
-
-	      <p>
-		When a daemon is forced to reload its configuration
-		files you should use the following format:
-		<example compact="compact">
-Reloading &lt;daemon's-name&gt; configuration...done.
-		</example>
-	      </p>
-	    </item>
-
-	    <item>
-	      <p>when none of the above rules apply.</p>
-
-	      <p>
-		If you have to print a message that doesn't fit into
-		the styles described above, you can use something
-		appropriate, but please have a look at the overall
-		rules listed above.
-	      </p>
-	    </item>
-	  </list>
-	</p>
-      </sect>
-
-      <sect>
 	<heading>Menus</heading>
 
 	<p>
-          Menu entries should follow the current menu policy as
-          defined in the file <ftpsite>ftp.debian.org</ftpsite> in
-          <ftppath>/debian/doc/package-developer/menu-policy.txt.gz</ftppath>
-          or your local mirror. In addition, it is included in the
-	  <tt>debian-policy</tt> package.
+          Menu entries should follow the current menu policy found in
+          the <tt>menu-policy</tt> files in the <tt>debian-policy</tt>
+          package.  It may also be found on the Debian FTP site
+          <ftpsite>ftp.debian.org</ftpsite> as the file
+          <ftppath>/debian/doc/package-developer/menu-policy.txt.gz</ftppath>,
+          or in the equivalent location on your local mirror.
 	</p>
 
 	<p>
-	  The Debian <tt>menu</tt> packages provides a unique
+	  The Debian <tt>menu</tt> package provides a standard
 	  interface between packages providing applications and
 	  documents, and <em>menu programs</em> (either X window
-	  managers or text-based menu programs as
-	  <prgn>pdmenu</prgn>).</p>
+	  managers or text-based menu programs such as
+	  <prgn>pdmenu</prgn>).
+	</p>
 
 	<p>
 	  All packages that provide applications that need not be
@@ -5027,12 +5108,12 @@ Reloading &lt;daemon's-name&gt; configuration...done.
 	  managers, as well in shells like <tt>pdmenu</tt>.</p>
 
 	<p>
-	  Please refer to the <em>Debian Menu System</em> document
-	  that comes with the <tt>menu</tt> package for information
-	  about how to register your applications and web
-	  documents.</p>
+	  Please also refer to the <em>Debian Menu System</em>
+	  documentation that comes with the <tt>menu</tt> package for
+	  information about how to register your applications and web
+	  documents.
+	</p>
       </sect>
-
 
       <sect>
 	<heading>Multimedia handlers</heading>
@@ -5040,18 +5121,20 @@ Reloading &lt;daemon's-name&gt; configuration...done.
 	<p>
 	  Packages which provide the ability to view/show/play,
 	  compose, edit or print MIME types should register themselves
-	  as such following the current MIME support policy as defined
-	  in the file found on <ftpsite>ftp.debian.org</ftpsite> in
-	  <ftppath>/debian/doc/package-developer/mime-policy.txt.gz</ftppath>
-	  or your local mirror. In addition, it is included in the
-	  <tt>debian-policy</tt> package.
+	  as such following the current MIME support policy found in
+	  the <tt>mime-policy</tt> files in the <tt>debian-policy</tt>
+	  package.  It may also be found on the Debian FTP site
+	  <ftpsite>ftp.debian.org</ftpsite> as the file
+	  <ftppath>/debian/doc/package-developer/mime-policy.txt.gz</ftppath>,
+	  or in the equivalent location on your local mirror.
 	</p>
 
 	<p>
-	  MIME (Multipurpose Internet Mail Extensions, RFC 1521) is a
-	  mechanism for encoding files and data streams and providing
-	  meta-information about them, in particular their type (e.g.
-	  audio or video) and format (e.g. PNG, HTML, MP3).
+	  MIME (Multipurpose Internet Mail Extensions, RFCs 2045-2049)
+	  is a mechanism for encoding files and data streams and
+	  providing meta-information about them, in particular their
+	  type (e.g.  audio or video) and format (e.g. PNG, HTML,
+	  MP3).
 	</p>
 
 	<p>
@@ -5066,13 +5149,14 @@ Reloading &lt;daemon's-name&gt; configuration...done.
 	<heading>Keyboard configuration</heading>
 
 	<p>
-	  To achieve a consistent keyboard configuration (i.e., all
-	  applications interpret a keyboard event the same way) all
+	  To achieve a consistent keyboard configuration so that all
+	  applications interpret a keyboard event the same way, all
 	  programs in the Debian distribution must be configured to
-	  comply with the following guidelines.</p>
+	  comply with the following guidelines.
+	</p>
 
 	<p>
-	  Here is a list that contains certain keys and their interpretation:
+	  The following keys must have the specified interpretations:
 
 	  <taglist>
 	    <tag><tt>&lt;--</tt></tag>
@@ -5085,117 +5169,137 @@ Reloading &lt;daemon's-name&gt; configuration...done.
 	    <item><p>emacs: the help prefix</p></item>
 	  </taglist>
 
-	  The interpretation of any keyboard events should be independent
-	  of the terminal that's used, be it a virtual console, an X
-	  terminal emulator, an rlogin/telnet session, etc.</p>
+	  The interpretation of any keyboard events should be
+	  independent of the terminal that is used, be it a virtual
+	  console, an X terminal emulator, an rlogin/telnet session,
+	  etc.
+	</p>
 
 	<p>
 	  The following list explains how the different programs
-	  should be set up to achieve this:</p>
+	  should be set up to achieve this:
+	</p>
 
 	<p>
 	  <list>
-	    <item><p>`<tt>&lt;--</tt>' generates KB_Backspace in
-		X.</p></item>
+	    <item><p><tt>&lt;--</tt> generates <tt>KB_Backspace</tt>
+		in X.</p></item>
 
-	    <item><p>`<tt>Delete</tt>' generates KB_Delete in X.</p></item>
+	    <item><p><tt>Delete</tt> generates <tt>KB_Delete</tt> in
+		X.</p></item>
 
 	    <item>
 	      <p>
-		X translations are set up to make KB_Backspace
-		generate ASCII DEL, and to make KB_Delete generate
-		<tt>ESC [ 3 ~</tt> (this is the vt220 escape code for
-		the `delete character' key).  This must be done by
-		loading the resources using xrdb on all local X
-		displays, not using the application defaults, so that
-		the translation resources used correspond to the
-		xmodmap settings.</p></item>
+		X translations are set up to make
+		<tt>KB_Backspace</tt> generate ASCII DEL, and to make
+		<tt>KB_Delete</tt> generate <tt>ESC [ 3 ~</tt> (this
+		is the vt220 escape code for the `delete character'
+		key).  This must be done by loading the X resources
+		using <prgn>xrdb</prgn> on all local X displays, not
+		using the application defaults, so that the
+		translation resources used correspond to the
+		<prgn>xmodmap</prgn> settings.</p></item>
 
 	    <item>
 	      <p>
 		The Linux console is configured to make
-		`<tt>&lt;--</tt>' generate DEL, and `Delete' generate
-		<tt>ESC [ 3 ~</tt> (this is the case at the
-		moment).</p></item>
+		<tt>&lt;--</tt> generate DEL, and <tt>Delete</tt>
+		generate <tt>ESC [ 3 ~</tt>.</p></item>
 
-	    <item><p>
-		X applications are configured so that Backspace
-		deletes left, and Delete deletes right.  Motif
+	    <item>
+	      <p>
+		X applications are configured so that <tt>&lt;</tt>
+		deletes left, and <tt>Delete</tt> deletes right.  Motif
 		applications already work like this.</p></item>
 
-	    <item><p>stty erase <tt>^?</tt> .</p></item>
+	    <item><p>Terminals should have <tt>stty erase ^?</tt> .</p></item>
 
-	    <item><p>
-		The `xterm' terminfo entry should have <tt>ESC [ 3
-		  ~</tt> for kdch1, just like TERM=linux and
-		TERM=vt220.</p></item>
+	    <item>
+	      <p>
+		The <tt>xterm</tt> terminfo entry should have <tt>ESC
+		[ 3 ~</tt> for <tt>kdch1</tt>, just as for
+		<tt>TERM=linux</tt> and <tt>TERM=vt220</tt>.</p></item>
 
-	    <item><p>
-		Emacs is programmed to map KB_Backspace or the `stty
-		erase' character to delete-backward-char, and
-		KB_Delete or kdch1 to delete-forward-char, and
-		<tt>^H</tt> to help as always.</p></item>
+	    <item>
+	      <p>
+		Emacs is programmed to map <tt>KB_Backspace</tt> or
+		the <tt>stty erase</tt> character to
+		<tt>delete-backward-char</tt>, and <tt>KB_Delete</tt>
+		or <tt>kdch1</tt> to <tt>delete-forward-char</tt>, and
+		<tt>^H</tt> to <tt>help</tt> as always.</p></item>
 
-	    <item><p>
-		Other applications use the `stty erase' character and
-		kdch1 for the two delete keys, with ASCII DEL being
-		`delete previous character' and kdch1 being `delete
-		character under cursor'.</p></item>
-	  </list></p>
+	    <item>
+	      <p>
+		Other applications use the <tt>stty erase</tt>
+		character and <tt>kdch1</tt> for the two delete keys,
+		with ASCII DEL being `delete previous character' and
+		<tt>kdch1</tt> being `delete character under
+		cursor'.</p></item>
+
+	  </list>
+	</p>
 
 	<p>
-	  This will solve the problem except for:</p>
+	  This will solve the problem except for the following
+	  cases:
+	</p>
 
 	<p>
 	  <list>
-	    <item><p>
+	    <item>
+	      <p>
 		Some terminals have a <tt>&lt;--</tt> key that cannot
 		be made to produce anything except <tt>^H</tt>.  On
 		these terminals Emacs help will be unavailable on
-		<tt>^H</tt> (assuming that the `stty erase' character
-		takes precedence in Emacs, and has been set
-		correctly).  M-x help or F1 (if available) can be used
-		instead.</p></item>
+		<tt>^H</tt> (assuming that the <tt>stty erase</tt>
+		character takes precedence in Emacs, and has been set
+		correctly).  <tt>M-x help</tt> or <tt>F1</tt> (if
+		available) can be used instead.</p></item>
 
-	    <item><p>
-		Some operating systems use <tt>^H</tt> for stty erase.
-		However, modern telnet versions and all rlogin
-		versions propagate stty settings, and almost all UNIX
-		versions honour stty erase.  Where the stty settings
-		are not propagated correctly things can be made to
-		work by using stty manually.</p></item>
+	    <item>
+	      <p>
+		Some operating systems use <tt>^H</tt> for <tt>stty
+		erase</tt>.  However, modern telnet versions and all
+		rlogin versions propagate <tt>stty</tt> settings, and
+		almost all UNIX versions honour <tt>stty erase</tt>.
+		Where the <tt>stty</tt> settings are not propagated
+		correctly, things can be made to work by using
+		<tt>stty</tt> manually.</p></item>
 
-	    <item><p>
+	    <item>
+	      <p>
 		Some systems (including previous Debian versions) use
-		xmodmap to arrange for both <tt>&lt;--</tt> and Delete
-		to generate KB_Delete.  We can change the behavior
-		of their X clients via the same X resources that we
-		use to do it for our own, or have our clients be
-		configured via their resources when things are the
-		other way around.  On displays configured like this
-		Delete will not work, but <tt>&lt;--</tt>
+		<prgn>xmodmap</prgn> to arrange for both
+		<tt>&lt;--</tt> and <tt>Delete</tt> to generate
+		<tt>KB_Delete</tt>.  We can change the behavior of
+		their X clients using the same X resources that we use
+		to do it for our own clients, or configure our clients
+		using their resources when things are the other way
+		around.  On displays configured like this
+		<tt>Delete</tt> will not work, but <tt>&lt;--</tt>
 		will.</p></item>
 
-	    <item><p>
-		Some operating systems have different kdch1 settings
-		in their terminfo for xterm and others.  On these
-		systems the Delete key will not work correctly when
-		you log in from a system conforming to our policy, but
+	    <item>
+	      <p>
+		Some operating systems have different <tt>kdch1</tt>
+		settings in their <tt>terminfo</tt> database for
+		<tt>xterm</tt> and others.  On these systems the
+		<tt>Delete</tt> key will not work correctly when you
+		log in from a system conforming to our policy, but
 		<tt>&lt;--</tt> will.</p></item>
 	  </list>
 	</p>
       </sect>
-
 
       <sect>
 	<heading>Environment variables</heading>
 
 	<p>
 	  A program must not depend on environment variables to get
-	  reasonable defaults. (That's because these environment
+	  reasonable defaults.  (That's because these environment
 	  variables would have to be set in a system-wide
-	  configuration file like /etc/profile, which is not supported
-	  by all shells.)</p>
+	  configuration file like <tt>/etc/profile</tt>, which is not
+	  supported by all shells.)</p>
 
 	<p>
 	  If a program usually depends on environment variables for its
@@ -5215,7 +5319,8 @@ Reloading &lt;daemon's-name&gt; configuration...done.
 BAR=${BAR:-/var/lib/fubar}
 export BAR
 exec /usr/lib/foo/foo "$@"
-	  </example></p>
+	  </example>
+	</p>
 
 	<p>
 	  Furthermore, as <tt>/etc/profile</tt> is a configuration
@@ -5224,7 +5329,8 @@ exec /usr/lib/foo/foo "$@"
 	  file.</p>
       </sect>
     </chapt>
-    <chapt>
+
+    <chapt id="files">
       <heading>Files</heading>
 
 
@@ -5645,12 +5751,12 @@ ln -fs ../sbin/sendmail debian/tmp/usr/bin/runq
 	<p>
 	  If a package needs any special device files that are not
 	  included in the base system, it must call
-	  <prgn>MAKEDEV</prgn> in the <tt>postinst</tt> script,
+	  <prgn>MAKEDEV</prgn> in the <prgn>postinst</prgn> script,
 	  after asking the user for permission to do so.</p>
 
 	<p>
 	  Packages must not remove any device files in the
-	  <tt>postrm</tt> or any other script. This is left to the
+	  <prgn>postrm</prgn> or any other script. This is left to the
 	  system administrator.</p>
 
 	<p>
@@ -5783,12 +5889,12 @@ ln -fs ../sbin/sendmail debian/tmp/usr/bin/runq
 	    the package, but only those necessary to get the package
 	    running on a given system. Ideally the sysadmin should not
 	    have to do any configuration other than that done
-	    (semi-)automatically by the <tt>postinst</tt> script.</p>
+	    (semi-)automatically by the <prgn>postinst</prgn> script.</p>
 
 	    <p>
 		A common practice is to create a script called
 		<tt><var>package</var>-configure</tt> and have the
-		package's <tt>postinst</tt> call it if and only if the
+		package's <prgn>postinst</prgn> call it if and only if the
 		configuration file does not already exist. In certain
 		cases it is useful for there to be an example or template
 		file which the maintainer scripts use. Such files should
@@ -5966,7 +6072,7 @@ endscript
 	<p>
 	  Log files should be removed when the package is
 	  purged (but not when it is only removed), by checking the
-	  argument to the <tt>postrm</tt> script (see the <em>Debian
+	  argument to the <prgn>postrm</prgn> script (see the <em>Debian
 	    Packaging Manual</em> for details).</p>
       </sect>
 
@@ -6320,7 +6426,7 @@ http://localhost/doc/&lt;package&gt;/&lt;filename&gt;
 	<p>
 	  <tt>/etc/aliases</tt> is the source file for the system mail
 	  aliases (e.g., postmaster, usenet, etc.), it is the one
-	  which the sysadmin and <tt>postinst</tt> scripts may edit.
+	  which the sysadmin and <prgn>postinst</prgn> scripts may edit.
 	  After <tt>/etc/aliases</tt> is edited the program or human
 	  editing it must call <prgn>newaliases</prgn>.  All MTA
 	  packages must come with a <prgn>newaliases</prgn> program,
@@ -6755,7 +6861,7 @@ name [`<var>syshostname</var>']:
       </sect>
     </chapt>
 
-    <chapt><heading>Documentation</heading>
+    <chapt id="docs"><heading>Documentation</heading>
 
 
       <sect>
