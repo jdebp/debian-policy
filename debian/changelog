@@ -1,3 +1,9 @@
+debian-policy (3.5.6.2) unstable; urgency=low
+
+  * Fixed some broken hrefs in links
+
+ --
+
 debian-policy (3.5.6.1) unstable; urgency=low
 
   * Set the cotact information for the FHS contact, and add mention of the
