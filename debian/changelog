@@ -46,8 +46,10 @@ debian-policy (3.2.0.0) unstable; urgency=low
   * Installed FHS version 2.1
   * Policy recommends packaging manual and vice versa
   * Added FHS details to copyright file
+  * Updaed the upgrade checklist. Minor changes to the ./debian/rules
+    file. 
 
- --
+ -- Manoj Srivastava <srivasta@debian.org>  Sun, 30 Jul 2000 16:36:34 -0500
 
 debian-policy (3.1.1.3) unstable; urgency=low
 
