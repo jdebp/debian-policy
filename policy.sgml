@@ -2276,6 +2276,8 @@ Package: libc6
 	</sect1>
       </sect>
 
+<!-- FIXME: section pkg-srcsubstvars is the same as srcsubstvars -->
+
       <sect id="srcsubstvars"><heading><file>debian/substvars</file>
 	  and variable substitutions	  </heading>
 
@@ -2294,9 +2296,8 @@ Package: libc6
 
 	<p>
 	  The <file>debian/substvars</file> file is usually generated and
-	  modified dynamically by <file>debian/rules</file> targets; in
-	  this case it must be removed by the <tt>clean</tt>
-	  target.
+	  modified dynamically by <file>debian/rules</file> targets, in
+	  which case it must be removed by the <tt>clean</tt> target.
 	</p>
 
 	<p>
@@ -4895,7 +4896,7 @@ test -f <var>program-executed-later-in-script</var> || exit 0
 	    interprets the argument <tt>reload</tt> to send the
 	    nameserver a <tt>HUP</tt> signal (causing it to reload its
 	    configuration); this way the system administrator can say
-	    <file>/etc/init.d/bind reload</file> to reload the name
+	    <tt>/etc/init.d/bind reload</tt> to reload the name
 	    server.  The script has one configurable value, which can
 	    be used to pass parameters to the named program at
 	    startup; this value is read from
@@ -5623,14 +5624,17 @@ endif
 
       <sect>
 	<heading>Libraries</heading>
+
 	<p>
 	  In general, libraries must have a shared version in the
-	  library package and a static version in the development
-	  package.  The shared version must be compiled with
-	  <tt>-fPIC</tt>, and the static version must not be.  In
-	  other words, each source unit ( <tt>*.c</tt>, for example,
-	  for C files) will need to be compiled twice.
+	  library package (<package>lib*</package>) and a static
+          version in the development package (<package>lib*-dev</package>).
+          The shared version must be compiled with <tt>-fPIC</tt>,
+          and the static version must not be. In other words, each source
+	  unit (<tt>*.c</tt>, for example, for C files) will need to be
+	  compiled twice.
 	</p>
+
 	<p>
 	  In some cases, it is acceptable for a library to be
 	  available in static form only; these cases include:
@@ -5657,18 +5661,12 @@ endif
 	  If a library is available only in static form, then it must follow
 	  the conventions for a development package.
 	</p>
-	<p>
-	  All libraries must have a shared version in the
-	  <tt>lib*</tt> package and a static version in the
-	  <tt>lib*-dev</tt> package.  The shared version must be
-	  compiled with <tt>-fPIC</tt>, and the static version must
-	  not be.  In other words, each <tt>*.c</tt> file will need to
-	  be compiled twice.</p>
 
 	<p>
 	  You must specify the gcc option <tt>-D_REENTRANT</tt>
 	  when building a library (either static or shared) to make
-	  the library compatible with LinuxThreads.</p>
+	  the library compatible with LinuxThreads.
+	</p>
 
 	<p>
 	  Note that all installed shared libraries should be
@@ -6285,8 +6283,11 @@ ln -fs ../sbin/sendmail debian/tmp/usr/bin/runq
 
 	  <p>
 	    However, programs that require dotfiles in order to
-	    operate sensibly (dotfiles that they do not create
-	    themselves automatically, that is) are a bad thing.
+	    operate sensibly are a bad thing, unless they do create
+	    the dotfiles themselves automatically.
+	  </p>
+
+	  <p>
 	    Furthermore, programs should be configured by the Debian
 	    default installation to behave as closely to the upstream
 	    default behaviour as possible.
@@ -9332,6 +9333,8 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	      all.</p></sect2>
 	</sect1>
 
+<!-- FIXME: section pkg-srcsubstvars is the same as srcsubstvars -->
+
 	<sect1 id="pkg-srcsubstvars"><heading><file>debian/substvars</file>
 	and variable substitutions
 	  </heading>
@@ -9351,8 +9354,8 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	  </p>
 
 	  <p>
-	    The is usually generated and modified dynamically by
-	    <file>debian/rules</file> targets; in this case it must be
+	    This file is usually generated and modified dynamically by
+	    <file>debian/rules</file> targets, in which case it must be
 	    removed by the <tt>clean</tt> target.
 	  </p>
 
@@ -10058,7 +10061,7 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	  <p>
 	    This field contains a list of files with information about
 	    each one.  The exact information and syntax varies with
-	    the context.  In all cases the the part of the field
+	    the context.  In all cases the part of the field
 	    contents on the same line as the field name is empty.  The
 	    remainder of the field is one line per file, each line
 	    being indented by one space and containing a number of
