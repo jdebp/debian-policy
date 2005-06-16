@@ -83,7 +83,7 @@
 
 	<p>
 	  A copy of the GNU General Public License is available as
-	  <tt>/usr/share/common-licenses/GPL</tt> in the Debian GNU/Linux
+	  <file>/usr/share/common-licenses/GPL</file> in the Debian GNU/Linux
 	  distribution or on the World Wide Web at
 	  <url id="http://www.gnu.org/copyleft/gpl.html"
 	       name="The GNU General Public Licence">. You can also
@@ -200,19 +200,19 @@
 	  as
 	  <ftppath>/debian/doc/package-developer/policy.txt.gz</ftppath>
 	  (also available from the same directory are several other
-	  formats: <tt>policy.html.tar.gz</tt>, <tt>policy.pdf.gz</tt>
-	  and <tt>policy.ps.gz</tt>) or from the <url
+	  formats: <file>policy.html.tar.gz</file>, <file>policy.pdf.gz</file>
+	  and <file>policy.ps.gz</file>) or from the <url
 	  id="http://www.debian.org/doc/debian-policy/" name="Debian
 	  Policy Manual"> webpage.</p>
 
 	<p>
 	  In addition, this manual is distributed via the Debian package
-	  <tt>debian-policy</tt>.
+	  <file>debian-policy</file>.
 	</p>
 
 	<p>
 	  The <tt>debian-policy</tt> package also includes the file
-	  <tt>upgrading-checklist.txt</tt> which indicates policy
+	  <file>upgrading-checklist.txt</file> which indicates policy
 	  changes between versions of this document.
         </p>
       </sect>
@@ -577,7 +577,7 @@
 	  <p>
 	    Every package must be accompanied by a verbatim copy of
 	    its copyright and distribution license in the file
-	    <tt>/usr/share/doc/<var>package</var>/copyright</tt>
+	    <file>/usr/share/doc/<var>package</var>/copyright</file>
 	    (see <ref id="copyrightfile"> for further details).
 	  </p>
 	  <p>
@@ -1043,7 +1043,7 @@
 	  </p>
 
 	  <p>
-	    You should not use <tt>dpkg-divert</tt> on a file
+	    You should not use <prgn>dpkg-divert</prgn> on a file
 	    belonging to another package without consulting the
 	    maintainer of that package first.
 	  </p>
@@ -1073,7 +1073,7 @@
 	      <prgn>debconf</prgn>, which conforms to the Debian
 	      Configuration management specification, version 2 or
 	      higher.  These are included in the
-	      <tt>debconf_specification</tt> files in the
+	      <file>debconf_specification</file> files in the
 	      <package>debian-policy</package> package.
 	      You may also find this file on the FTP site
 	      <ftpsite>ftp.debian.org</ftpsite> in
@@ -1098,7 +1098,7 @@
 		  <package>debconf</package>, plus the existance of a
 		  nascent second implementation of the Debian
 		  configuration management system
-		  (<package>cdebconf</package>), and the stabalization
+		  (<package>cdebconf</package>), and the stabilization
 		  of the protocol these things use, the time has
 		  finally come to reflect the use of these things in
 		  policy.
@@ -1131,8 +1131,8 @@
 	      they need to do, and they should ensure that the user
 	      will only ever be asked each question once.  This means
 	      that packages should try to use appropriate shared
-	      configuration files (such as <tt>/etc/papersize</tt> and
-	      <tt>/etc/news/server</tt>), and shared
+	      configuration files (such as <file>/etc/papersize</file> and
+	      <file>/etc/news/server</file>), and shared
 	      <package>debconf</package> variables rather than each
 	      prompting for their own list of required pieces of
 	      information.
@@ -1143,7 +1143,7 @@
 	      questions again, unless the user has used <tt>dpkg
 		--purge</tt> to remove the package's configuration.  The
 	      answers to configuration questions should be stored in an
-	      appropriate place in <tt>/etc</tt> so that the user can
+	      appropriate place in <file>/etc</file> so that the user can
 	      modify them, and how this has been done should be
 	      documented.</p>
 
@@ -1157,7 +1157,7 @@
 	      prompt the user to hit return to acknowledge the
 	      message.  Copyright messages do not count as vitally
 	      important (they belong in
-	      <tt>/usr/share/doc/<var>package</var>/copyright</tt>);
+	      <file>/usr/share/doc/<var>package</var>/copyright</file>);
 	      neither do instructions on how to use a program (these
 	      should be in on-line documentation, where all the users
 	      can see them).</p>
@@ -1233,7 +1233,7 @@
 	    <tt>Standards-Version</tt> source package field and
 	    release it.<footnote>
 	      <p>
-		See the file <tt>upgrading-checklist</tt> for
+		See the file <file>upgrading-checklist</file> for
 		information about policy which has changed between
 		different versions of this document.
 	      </p>
@@ -1260,7 +1260,7 @@
 	    standard "Hello World!" program written in C or C++.  The
 	    required packages are called <em>build-essential</em>, and
 	    an informational list can be found in
-	    <tt>/usr/share/doc/build-essential/list</tt> (which is
+	    <file>/usr/share/doc/build-essential/list</file> (which is
 	    contained in the <tt>build-essential</tt>
 	    package).<footnote>
 	      <p>Rationale:
@@ -1306,7 +1306,7 @@
 		you should list all those packages, and <em>only</em>
 		those packages that <em>you</em> need directly.  What
 		others need is their business.  For example, if you
-		only link against <tt>libimlib</tt>, you will need to
+		only link against <file>libimlib</file>, you will need to
 		build-depend on <package>libimlib2-dev</package> but
 		not against any <tt>libjpeg*</tt> packages, even
 		though <tt>libimlib2-dev</tt> currently depends on
@@ -1348,7 +1348,7 @@
 	    or <tt>#define</tt>) and send the patch to the upstream
 	    authors, with the default set to the way they originally
 	    had it.  You can then easily override the default in your
-	    <tt>debian/rules</tt> or wherever is appropriate.</p>
+	    <file>debian/rules</file> or wherever is appropriate.</p>
 
 	  <p>
 	    You should make sure that the <prgn>configure</prgn> utility
@@ -1358,7 +1358,7 @@
 	  <p>
 	    If you need to edit a <prgn>Makefile</prgn> where
 	    GNU-style <prgn>configure</prgn> scripts are used, you
-	    should edit the <tt>.in</tt> files rather than editing the
+	    should edit the <file>.in</file> files rather than editing the
 	    <prgn>Makefile</prgn> directly.  This allows the user to
 	    reconfigure the package if necessary.  You should
 	    <em>not</em> configure the package and edit the generated
@@ -1371,14 +1371,14 @@
 
 	  <p>
 	    You should document your changes and updates to the source
-	    package properly in the <tt>debian/changelog</tt> file. (Note
+	    package properly in the <file>debian/changelog</file> file. (Note
 	    that mistakes in changelogs are usually best rectified by
 	    making a new changelog entry rather than "rewriting history"
 	    by editing old changelog entries.)</p>
 
 	  <p>
 	    In non-experimental packages you must use a format for
-	    <tt>debian/changelog</tt> which is supported by the most
+	    <file>debian/changelog</file> which is supported by the most
 	    recent released version of <prgn>dpkg</prgn>.<footnote>
 	      <p>
 		If you wish to use an alternative format, you may do
@@ -1405,8 +1405,8 @@
 	  <p>
 	    When <prgn>make</prgn> invokes a command in a makefile
 	    (including your package's upstream makefiles and
-	    <tt>debian/rules</tt>), it does so using <tt>sh</tt>.  This
-	    means that <tt>sh</tt>'s usual bad error handling
+	    <file>debian/rules</file>), it does so using <prgn>sh</prgn>.  This
+	    means that <prgn>sh</prgn>'s usual bad error handling
 	    properties apply: if you include a miniature script as one
 	    of the commands in your makefile you'll find that if you
 	    don't do anything about it then errors are not detected
@@ -1453,7 +1453,7 @@
 	data represented in a common format, known as <em>control
 	data</em>.  The data is often stored in <em>control
 	files</em>.  Binary and source packages have control files,
-	and the <tt>.changes</tt> files which control the installation
+	and the <file>.changes</file> files which control the installation
 	of uploaded files are also in control file format.
 	<prgn>Dpkg</prgn>'s internal databases are in a similar
 	format.
@@ -1567,7 +1567,7 @@ Package: libc6
 	  </heading>
 
 	  <p>
-	    In a <tt>.changes</tt> file or parsed changelog output
+	    In a <file>.changes</file> file or parsed changelog output
 	    this contains the (space-separated) name(s) of the
 	    distribution(s) where this version of the package should
 	    be installed.  Valid distributions are determined by the
@@ -1698,7 +1698,7 @@ Package: libc6
 	    <p>
 	      This is the main part of the version number.  It is
 	      usually the version number of the original (`upstream')
-	      package from which the <tt>.deb</tt> file has been made,
+	      package from which the <file>.deb</file> file has been made,
 	      if this is applicable.  Usually this will be in the same
 	      format as that specified by the upstream author(s);
 	      however, it may need to be reformatted to fit into the
@@ -1872,7 +1872,7 @@ Package: libc6
 	</p>
       </sect>
 
-      <sect id="debianrules"><heading><tt>debian/rules</tt> - the
+      <sect id="debianrules"><heading><file>debian/rules</file> - the
 	  main building script</heading>
 
 	<p>
@@ -1888,7 +1888,7 @@ Package: libc6
 	</p>
 
 	<p>
-	  Since an interactive <tt>debian/rules</tt> script makes it
+	  Since an interactive <file>debian/rules</file> script makes it
 	  impossible to auto-compile that package and also makes it
 	  hard for other people to reproduce the same binary
 	  package, all <em>required targets</em> MUST be
@@ -1995,8 +1995,8 @@ Package: libc6
 		<tt>build-arch</tt> or <tt>build-indep</tt> target, if
 		provided, so that the package is built if it has not
 		been already.  It should then create the relevant
-		binary package(s), using <tt>dpkg-gencontrol</tt> to
-		make their control files and <tt>dpkg-deb</tt> to
+		binary package(s), using <prgn>dpkg-gencontrol</prgn> to
+		make their control files and <prgn>dpkg-deb</prgn> to
 		build them and place them in the parent of the top
 		level directory.
 	      </p>
@@ -2084,7 +2084,7 @@ Package: libc6
 
 
 	<p>
-	  Additional targets may exist in <tt>debian/rules</tt>,
+	  Additional targets may exist in <file>debian/rules</file>,
 	  either as published or undocumented interfaces or for the
 	  package's internal use.
 	</p>
@@ -2135,7 +2135,7 @@ Package: libc6
 	</p>
       </sect>
 
-      <sect id="dpkgchangelog"><heading><tt>debian/changelog</tt>
+      <sect id="dpkgchangelog"><heading><file>debian/changelog</file>
 	</heading>
 
 	<p>
@@ -2188,12 +2188,12 @@ Package: libc6
 	  <var>distribution(s)</var> lists the distributions where
 	  this version should be installed when it is uploaded - it
 	  is copied to the <tt>Distribution</tt> field in the
-	  <tt>.changes</tt> file.  See <ref id="f-Distribution">.
+	  <file>.changes</file> file.  See <ref id="f-Distribution">.
 	</p>
 
 	<p>
 	  <var>urgency</var> is the value for the <tt>Urgency</tt>
-	  field in the <tt>.changes</tt> file for the upload. It is
+	  field in the <file>.changes</file> file for the upload. It is
 	  not possible to specify an urgency containing commas; commas
 	  are used to separate
 	  <tt><var>keyword</var>=<var>value</var></tt> settings in the
@@ -2282,7 +2282,7 @@ Package: libc6
 	</sect1>
       </sect>
 
-      <sect id="srcsubstvars"><heading><tt>debian/substvars</tt>
+      <sect id="srcsubstvars"><heading><file>debian/substvars</file>
 	  and variable substitutions	  </heading>
 
 	<p>
@@ -2291,16 +2291,16 @@ Package: libc6
 	  generate control files they perform variable substitutions
 	  on their output just before writing it.  Variable
 	  substitutions have the form <tt>${<var>variable</var>}</tt>.
-	  The optional file <tt>debian/substvars</tt> contains
+	  The optional file <file>debian/substvars</file> contains
 	  variable substitutions to be used; variables can also be set
-	  directly from <tt>debian/rules</tt> using the <tt>-V</tt>
+	  directly from <file>debian/rules</file> using the <tt>-V</tt>
 	  option to the source packaging commands, and certain
 	  predefined variables are also available.
 	</p>
 
 	<p>
-	  The <tt>debian/substvars</tt> file is usually generated and
-	  modified dynamically by <tt>debian/rules</tt> targets; in
+	  The <file>debian/substvars</file> file is usually generated and
+	  modified dynamically by <file>debian/rules</file> targets; in
 	  this case it must be removed by the <tt>clean</tt>
 	  target.
 	</p>
@@ -2308,25 +2308,25 @@ Package: libc6
 	<p>
 	  See <manref name="dpkg-source" section="1"> for full
 	  details about source variable substitutions, including the
-	  format of <tt>debian/substvars</tt>.</p>
+	  format of <file>debian/substvars</file>.</p>
       </sect>
 
-      <sect id="debianfiles"><heading><tt>debian/files</tt>
+      <sect id="debianfiles"><heading><file>debian/files</file>
 	</heading>
 
 	<p>
 	  This file is not a permanent part of the source tree; it
 	  is used while building packages to record which files are
 	  being generated.  <prgn>dpkg-genchanges</prgn> uses it
-	  when it generates a <tt>.changes</tt> file.
+	  when it generates a <file>.changes</file> file.
 	</p>
 
 	<p>
 	  It should not exist in a shipped source package, and so it
 	  (and any backup files or temporary files such as
-	  <tt>files.new</tt><footnote>
+	  <file>files.new</file><footnote>
 	    <p>
-	      <tt>files.new</tt> is used as a temporary file by
+	      <file>files.new</file> is used as a temporary file by
 	      <prgn>dpkg-gencontrol</prgn> and
 	      <prgn>dpkg-distaddfile</prgn> - they write a new
 	      version of <tt>files</tt> here before renaming it,
@@ -2341,8 +2341,8 @@ Package: libc6
 
 	<p>
 	  When <prgn>dpkg-gencontrol</prgn> is run for a binary
-	  package, it adds an entry to <tt>debian/files</tt> for the
-	  <tt>.deb</tt> file that will be created when <tt>dpkg-deb
+	  package, it adds an entry to <file>debian/files</file> for the
+	  <file>.deb</file> file that will be created when <tt>dpkg-deb
 	  --build</tt> is run for that binary package.  So for most
 	  packages all that needs to be done with this file is to
 	  delete it in the <tt>clean</tt> target.
@@ -2354,7 +2354,7 @@ Package: libc6
 	  made with <prgn>dpkg-gencontrol</prgn> then they should be
 	  placed in the parent of the package's top-level directory
 	  and <prgn>dpkg-distaddfile</prgn> should be called to add
-	  the file to the list in <tt>debian/files</tt>.</p>
+	  the file to the list in <file>debian/files</file>.</p>
       </sect>
 
       <sect id="restrictions"><heading>Restrictions on objects in source packages
@@ -2556,7 +2556,7 @@ Package: libc6
 	  controlling terminal and can interact with the user.
 	  If they need to prompt for passwords, do full-screen
 	  interaction or something similar you should do these
-	  things to and from <tt>/dev/tty</tt>, since
+	  things to and from <file>/dev/tty</file>, since
 	  <prgn>dpkg</prgn> will at some point redirect scripts'
 	  standard input and output so that it can log the
 	  installation process.  Likewise, because these scripts
@@ -3643,7 +3643,7 @@ Replaces: mail-transport-agent
 	Firstly, the package should install the shared libraries under
 	their normal names.  For example, the <tt>libgdbmg1</tt>
 	package should install <tt>libgdbm.so.1.7.3</tt> as
-	<tt>/usr/lib/libgdbm.so.1.7.3</tt>.  The files should not be
+	<file>/usr/lib/libgdbm.so.1.7.3</file>.  The files should not be
 	renamed or re-linked by any <prgn>prerm</prgn> or
 	<prgn>postrm</prgn> scripts; <prgn>dpkg</prgn> will take care
 	of renaming things safely without affecting running programs,
@@ -3655,8 +3655,8 @@ Replaces: mail-transport-agent
 	Secondly, the package should include the symbolic link that
 	<prgn>ldconfig</prgn> would create for the shared libraries.
 	For example, the <prgn>libgdbmg1</prgn> package should include
-	a symbolic link from <tt>/usr/lib/libgdbm.so.1</tt> to
-	<tt>libgdbm.so.1.7.3</tt>.  This is needed so that the dynamic
+	a symbolic link from <file>/usr/lib/libgdbm.so.1</file> to
+	<file>libgdbm.so.1.7.3</file>.  This is needed so that the dynamic
 	linker (for example <prgn>ld.so</prgn> or
 	<prgn>ld-linux.so.*</prgn>) can find the library between the
 	time that <prgn>dpkg</prgn> installs it and the time that
@@ -3665,7 +3665,7 @@ Replaces: mail-transport-agent
 	  <p>
 	    The package management system requires the library to be
 	    placed before the symbolic link pointing to it in the
-	    <tt>.deb</tt> file.  This is so that when
+	    <file>.deb</file> file.  This is so that when
 	    <prgn>dpkg</prgn> comes to install the symlink
 	    (overwriting the previous symlink pointing at an older
 	    version of the library), the new shared library is already
@@ -3673,7 +3673,7 @@ Replaces: mail-transport-agent
 	    library in the temporary packaging directory before
 	    creating the symlink.  Unfortunately, this was not always
 	    effective, since the building of the tar file in the
-	    <tt>.deb</tt> depended on the behavior of the underlying
+	    <file>.deb</file> depended on the behavior of the underlying
 	    file system.  Some file systems (such as reiserfs) reorder
 	    the files so that the order of creation is forgotten.
 	    Starting with release <tt>1.7.0</tt>, <prgn>dpkg</prgn>
@@ -3689,16 +3689,16 @@ Replaces: mail-transport-agent
 	symlink for the shared library without a version number.  For
 	example, the <tt>libgdbmg1-dev</tt> package should include a
 	symlink from <tt>/usr/lib/libgdbm.so</tt> to
-	<tt>libgdbm.so.1.7.3</tt>.  This symlink is needed by the
+	<file>libgdbm.so.1.7.3</file>.  This symlink is needed by the
 	linker (<prgn>ld</prgn>) when compiling packages, as it will
-	only look for <tt>libgdbm.so</tt> when compiling dynamically.
+	only look for <file>libgdbm.so</file> when compiling dynamically.
       </p>
 
       <p>
 	Any package installing shared libraries in one of the default
 	library directories of the dynamic linker (which are currently
-	<tt>/usr/lib</tt> and <tt>/lib</tt>) or a directory that is
-	listed in <tt>/etc/ld.so.conf</tt><footnote>
+	<file>/usr/lib</file> and <file>/lib</file>) or a directory that is
+	listed in <file>/etc/ld.so.conf</file><footnote>
 	  <p>
 	    These are currently
 	    <list compact="compact">
@@ -3743,12 +3743,12 @@ Replaces: mail-transport-agent
 	  <em>uses</em> a shared library uses this information to
 	  determine the dependencies it requires.  The files which
 	  contain the mapping from shared libraries to the necessary
-	  dependency information are called <tt>shlibs</tt> files.
+	  dependency information are called <file>shlibs</file> files.
 	</p>
 
 	<p>
 	  Thus, when a package is built which contains any shared
-	  libraries, it must provide a <tt>shlibs</tt> file for other
+	  libraries, it must provide a <file>shlibs</file> file for other
 	  packages to use, and when a package is built which contains
 	  any shared libraries or compiled binaries, it must run
 	  <prgn>dpkg-shlibdeps</prgn> on these to determine the
@@ -3826,7 +3826,7 @@ Replaces: mail-transport-agent
 	<p>
 	  <list>
 	    <item>
-	      <p><tt>debian/shlibs.local</tt></p>
+	      <p><file>debian/shlibs.local</file></p>
 	      <p>
 		This lists overrides for this package.  Its use is
 		described below (see <ref id="shlibslocal">).
@@ -3834,7 +3834,7 @@ Replaces: mail-transport-agent
 	    </item>
 
 	    <item>
-	      <p><tt>/etc/dpkg/shlibs.override</tt></p>
+	      <p><file>/etc/dpkg/shlibs.override</file></p>
 	      <p>
 		This lists global overrides.  This list is normally
 		empty.  It is maintained by the local system
@@ -3843,12 +3843,12 @@ Replaces: mail-transport-agent
 	    </item>
 
 	    <item>
-	      <p><tt>DEBIAN/shlibs</tt> files in the `build directory'</p>
+	      <p><file>DEBIAN/shlibs</file> files in the `build directory'</p>
 	      <p>
 		When packages are being built, any
-		<tt>debian/shlibs</tt> files are copied into the
+		<file>debian/shlibs</file> files are copied into the
 		control file area of the temporary build directory and
-		given the name <tt>shlibs</tt>.  These files give
+		given the name <file>shlibs</file>.  These files give
 		details of any shared libraries included in the
 		package.<footnote>
 		  <p>
@@ -3857,20 +3857,20 @@ Replaces: mail-transport-agent
 		    packages, <tt>libfoo2</tt> and
 		    <tt>foo-runtime</tt>.  When building the binary
 		    packages, the two packages are created in the
-		    directories <tt>debian/libfoo2</tt> and
-		    <tt>debian/foo-runtime</tt> respectively.
-		    (<tt>debian/tmp</tt> could be used instead of one
+		    directories <file>debian/libfoo2</file> and
+		    <file>debian/foo-runtime</file> respectively.
+		    (<file>debian/tmp</file> could be used instead of one
 		    of these.)  Since <tt>libfoo2</tt> provides the
 		    <tt>libfoo</tt> shared library, it will require a
 		    <tt>shlibs</tt> file, which will be installed in
-		    <tt>debian/libfoo2/DEBIAN/shlibs</tt>, eventually
+		    <file>debian/libfoo2/DEBIAN/shlibs</file>, eventually
 		    to become
-		    <tt>/var/lib/dpkg/info/libfoo2.shlibs</tt>.  Then
+		    <file>/var/lib/dpkg/info/libfoo2.shlibs</file>.  Then
 		    when <prgn>dpkg-shlibdeps</prgn> is run on the
 		    executable
-		    <tt>debian/foo-runtime/usr/bin/foo-prog</tt>, it
+		    <file>debian/foo-runtime/usr/bin/foo-prog</file>, it
 		    will examine the
-		    <tt>debian/libfoo2/DEBIAN/shlibs</tt> file to
+		    <file>debian/libfoo2/DEBIAN/shlibs</file> file to
 		    determine whether <tt>foo-prog</tt>'s library
 		    dependencies are satisfied by any of the libraries
 		    provided by <tt>libfoo2</tt>.  For this reason,
@@ -3884,20 +3884,20 @@ Replaces: mail-transport-agent
 	    </item>
 
 	    <item>
-	      <p><tt>/var/lib/dpkg/info/*.shlibs</tt></p>
+	      <p><file>/var/lib/dpkg/info/*.shlibs</file></p>
 	      <p>
-		These are the <tt>shlibs</tt> files corresponding to
+		These are the <file>shlibs</file> files corresponding to
 		all of the packages installed on the system, and are
 		maintained by the relevant package maintainers.
 	      </p>
 	    </item>
 
 	    <item>
-	      <p><tt>/etc/dpkg/shlibs.default</tt></p>
+	      <p><file>/etc/dpkg/shlibs.default</file></p>
 	      <p>
 		This file lists any shared libraries whose packages
-		have failed to provide correct <tt>shlibs</tt> files.
-		It was used when the <tt>shlibs</tt> setup was first
+		have failed to provide correct <file>shlibs</file> files.
+		It was used when the <file>shlibs</file> setup was first
 		introduced, but it is now normally empty.  It is
 		maintained by the <tt>dpkg</tt> maintainer.
 	      </p>
@@ -3908,11 +3908,11 @@ Replaces: mail-transport-agent
 
       <sect>
 	<heading>How to use <prgn>dpkg-shlibdeps</prgn> and the
-	    <tt>shlibs</tt> files</heading>
+	    <file>shlibs</file> files</heading>
 
 	<p>
 	  Put a call to <prgn>dpkg-shlibdeps</prgn> into your
-	  <tt>debian/rules</tt> file.  If your package contains only
+	  <file>debian/rules</file> file.  If your package contains only
 	  compiled binaries and libraries (but no scripts), you can
 	  use a command such as:
 	  <example compact="compact">
@@ -3932,7 +3932,7 @@ dpkg-shlibdeps debian/tmp/usr/bin/* debian/tmp/usr/sbin/* \
 
 	<p>
 	  This command puts the dependency information into the
-	  <tt>debian/substvars</tt> file, which is then used by
+	  <file>debian/substvars</file> file, which is then used by
 	  <prgn>dpkg-gencontrol</prgn>.  You will need to place a
 	  <tt>${shlib:Depends}</tt> variable in the <tt>Depends</tt>
 	  field in the control file for this to work.
@@ -3941,7 +3941,7 @@ dpkg-shlibdeps debian/tmp/usr/bin/* debian/tmp/usr/sbin/* \
 	<p>
 	  If <prgn>dpkg-shlibdeps</prgn> doesn't complain, you're
 	  done.  If it does complain you might need to create your own
-	  <tt>debian/shlibs.local</tt> file, as explained below (see
+	  <file>debian/shlibs.local</file> file, as explained below (see
 	  <ref id="shlibslocal">).
 	</p>
 
@@ -3950,17 +3950,17 @@ dpkg-shlibdeps debian/tmp/usr/bin/* debian/tmp/usr/sbin/* \
 	  <prgn>dpkg-shlibdeps</prgn> on each one which contains
 	  compiled libraries or binaries.  In such a case, you will
 	  need to use the <tt>-T</tt> option to the <tt>dpkg</tt>
-	  utilities to specify a different <tt>substvars</tt> file.
+	  utilities to specify a different <file>substvars</file> file.
 	  For more details on this and other options, see <manref
 	  name="dpkg-shlibdeps" section="1">.
 	</p>
       </sect>
 
-      <sect id="shlibs"><heading>The <tt>shlibs</tt> File Format
+      <sect id="shlibs"><heading>The <file>shlibs</file> File Format
 	</heading>
 
 	<p>
-	  Each <tt>shlibs</tt> file has the same format.  Lines
+	  Each <file>shlibs</file> file has the same format.  Lines
 	  beginning with <tt>#</tt> are considered to be comments and
 	  are ignored.  Each line is of the form:
 	  <example compact="compact">
@@ -3971,7 +3971,7 @@ dpkg-shlibdeps debian/tmp/usr/bin/* debian/tmp/usr/sbin/* \
 	<p>
 	  We will explain this by reference to the example of the
 	  <tt>zlib1g</tt> package, which (at the time of writing)
-	  installs the shared library <tt>/usr/lib/libz.so.1.1.3</tt>.
+	  installs the shared library <file>/usr/lib/libz.so.1.1.3</file>.
 	</p>
 
 	<p>
@@ -4021,15 +4021,15 @@ libz 1 zlib1g (>= 1:1.1.3)
       </sect>
 
       <sect>
-	<heading>Providing a <tt>shlibs</tt> file</heading>
+	<heading>Providing a <file>shlibs</file> file</heading>
 
 	<p>
 	  If your package provides a shared library, you should create
-	  a <tt>shlibs</tt> file following the format described above.
-	  It is usual to call this file <tt>debian/shlibs</tt> (but if
+	  a <file>shlibs</file> file following the format described above.
+	  It is usual to call this file <file>debian/shlibs</file> (but if
 	  you have multiple binary packages, you might want to call it
-	  <tt>debian/shlibs.<var>package</var></tt> instead).  Then
-	  let <tt>debian/rules</tt> install it in the control area:
+	  <file>debian/shlibs.<var>package</var></file> instead).  Then
+	  let <file>debian/rules</file> install it in the control area:
 	  <example compact="compact">
 install -m644 debian/shlibs debian/tmp/DEBIAN
 	  </example>
@@ -4038,35 +4038,35 @@ install -m644 debian/shlibs debian/tmp/DEBIAN
 install -m644 debian/shlibs.<var>package</var> debian/<var>package</var>/DEBIAN/shlibs
 	  </example>
 	  An alternative way of doing this is to create the
-	  <tt>shlibs</tt> file in the control area directly from
-	  <tt>debian/rules</tt> without using a <tt>debian/shlibs</tt>
+	  <file>shlibs</file> file in the control area directly from
+	  <file>debian/rules</file> without using a <file>debian/shlibs</file>
 	  file at all,<footnote>
 	    <p>
 	      This is what <prgn>dh_makeshlibs</prgn> in the
 	      <tt>debhelper</tt> suite does.
 	    </p>
 	  </footnote>
-	  since the <tt>debian/shlibs</tt> file itself is ignored by
+	  since the <file>debian/shlibs</file> file itself is ignored by
 	  <prgn>dpkg-shlibdeps</prgn>.
 	</p>
 
 	<p>
 	  As <prgn>dpkg-shlibdeps</prgn> reads the
-	  <tt>DEBIAN/shlibs</tt> files in all of the binary packages
+	  <file>DEBIAN/shlibs</file> files in all of the binary packages
 	  being built from this source package, all of the
-	  <tt>DEBIAN/shlibs</tt> files should be installed before
+	  <file>DEBIAN/shlibs</file> files should be installed before
 	  <prgn>dpkg-shlibdeps</prgn> is called on any of the binary
 	  packages.
 	</p>
       </sect>
 
       <sect id="shlibslocal">
-	<heading>Writing the <tt>debian/shlibs.local</tt> file</heading>
+	<heading>Writing the <file>debian/shlibs.local</file> file</heading>
 
 	<p>
 	  This file is intended only as a <em>temporary</em> fix if
 	  your binaries or libraries depend on a library whose package
-	  does not yet provide a correct <tt>shlibs</tt> file.
+	  does not yet provide a correct <file>shlibs</file> file.
 	</p>
 
 	<p>
@@ -4094,8 +4094,8 @@ libc.so.6 => /lib/libc.so.6 (0x40032000)
 	  </example>
 	  So the <prgn>foo</prgn> binary depends on the
 	  <prgn>libbar</prgn> shared library, but no package seems to
-	  provide a <tt>*.shlibs</tt> file handling
-	  <tt>libbar.so.1</tt> in <tt>/var/lib/dpkg/info/</tt>.  Let's
+	  provide a <file>*.shlibs</file> file handling
+	  <file>libbar.so.1</file> in <file>/var/lib/dpkg/info/</file>.  Let's
 	  determine the package responsible:
 	  <example compact="compact">
 $ dpkg -S /usr/lib/libbar.so.1
@@ -4106,9 +4106,9 @@ Version: 1.0-1
 	  This tells us that the <tt>bar1</tt> package, version 1.0-1,
 	  is the one we are using.  Now we can file a bug against the
 	  <tt>bar1</tt> package and create our own
-	  <tt>debian/shlibs.local</tt> to locally fix the problem.
+	  <file>debian/shlibs.local</file> to locally fix the problem.
 	  Including the following line into your
-	  <tt>debian/shlibs.local</tt> file:
+	  <file>debian/shlibs.local</file> file:
 	  <example compact="compact">
 libbar 1 bar1 (>= 1.0-1)
 	  </example>
@@ -4117,8 +4117,8 @@ libbar 1 bar1 (>= 1.0-1)
 
 	<p>
 	  As soon as the maintainer of <tt>bar1</tt> provides a
-	  correct <tt>shlibs</tt> file, you should remove this line
-	  from your <tt>debian/shlibs.local</tt> file.  (You should
+	  correct <file>shlibs</file> file, you should remove this line
+	  from your <file>debian/shlibs.local</file> file.  (You should
 	  probably also then have a versioned <tt>Build-Depends</tt>
 	  on <tt>bar1</tt> to help ensure that others do not have the
 	  same problem building your package.)
@@ -4160,14 +4160,14 @@ libbar 1 bar1 (>= 1.0-1)
 
 	  <p>
 	    As mandated by the FHS, packages must not place any
-	    files in <tt>/usr/local</tt>, either by putting them in
+	    files in <file>/usr/local</file>, either by putting them in
 	    the file system archive to be unpacked by <prgn>dpkg</prgn>
 	    or by manipulating them in their maintainer scripts.
 	  </p>
 
 	  <p>
 	    However, the package may create empty directories below
-	    <tt>/usr/local</tt> so that the system administrator knows
+	    <file>/usr/local</file> so that the system administrator knows
 	    where to place site-specific files.  These directories
 	    should be removed on package removal if they are
 	    empty.
@@ -4175,20 +4175,20 @@ libbar 1 bar1 (>= 1.0-1)
 
 	  <p>
 	    Note, that this applies only to directories <em>below</em>
-	    <tt>/usr/local</tt>, not <em>in</em> <tt>/usr/local</tt>.
+	    <file>/usr/local</file>, not <em>in</em> <file>/usr/local</file>.
 	    Packages must not create sub-directories in the directory
-	    <tt>/usr/local</tt> itself, except those listed in FHS,
+	    <file>/usr/local</file> itself, except those listed in FHS,
 	    section 4.5.  However, you may create directories below
 	    them as you wish. You must not remove any of the
 	    directories listed in 4.5, even if you created them.
 	  </p>
 
 	  <p>
-	    Since <tt>/usr/local</tt> can be mounted read-only from a
+	    Since <file>/usr/local</file> can be mounted read-only from a
 	    remote server, these directories must be created and
 	    removed by the <prgn>postinst</prgn> and <prgn>prerm</prgn>
 	    maintainer scripts and not be included in the
-	    <tt>.deb</tt> archive.  These scripts must not fail if
+	    <file>.deb</file> archive.  These scripts must not fail if
 	    either of these operations fail.
 	  </p>
 
@@ -4212,26 +4212,26 @@ rmdir /usr/local/share/emacs 2>/dev/null || true
 	    </example>
 	    in the <prgn>prerm</prgn> script.  (Note that this form is
 	    used to ensure that if the script is interrupted, the
-	    directory <tt>/usr/local/share/emacs</tt> will still be
+	    directory <file>/usr/local/share/emacs</file> will still be
 	    removed.)
 	  </p>
 
 	  <p>
-	    If you do create a directory in <tt>/usr/local</tt> for
+	    If you do create a directory in <file>/usr/local</file> for
 	    local additions to a package, you should ensure that
-	    settings in <tt>/usr/local</tt> take precedence over the
-	    equivalents in <tt>/usr</tt>.
+	    settings in <file>/usr/local</file> take precedence over the
+	    equivalents in <file>/usr</file>.
 	  </p>
 
 	  <p>
-	    However, because <tt>/usr/local</tt> and its contents are
+	    However, because <file>/usr/local</file> and its contents are
 	    for exclusive use of the local administrator, a package
 	    must not rely on the presence or absence of files or
-	    directories in <tt>/usr/local</tt> for normal operation.
+	    directories in <file>/usr/local</file> for normal operation.
 	  </p>
 
 	  <p>
-	    The <tt>/usr/local</tt> directory itself and all the
+	    The <file>/usr/local</file> directory itself and all the
 	    subdirectories created by the package should (by default) have
 	    permissions 2775 (group-writable and set-group-id) and be
 	    owned by <tt>root.staff</tt>.
@@ -4241,14 +4241,14 @@ rmdir /usr/local/share/emacs 2>/dev/null || true
 	<sect1>
 	  <heading>The system-wide mail directory</heading>
 	  <p>
-	    The system-wide mail directory is <tt>/var/mail</tt>. This
+	    The system-wide mail directory is <file>/var/mail</file>. This
 	    directory is part of the base system and should not owned
 	    by any particular mail agents.  The use of the old
-	    location <tt>/var/spool/mail</tt> is deprecated, even
+	    location <file>/var/spool/mail</file> is deprecated, even
 	    though the spool may still be physically located there.
 	    To maintain partial upgrade compatibility for systems
-	    which have <tt>/var/spool/mail</tt> as their physical mail
-	    spool, packages using <tt>/var/mail</tt> must depend on
+	    which have <file>/var/spool/mail</file> as their physical mail
+	    spool, packages using <file>/var/mail</file> must depend on
 	    either <package>libc6</package> (&gt;= 2.1.3-13), or on
 	    <package>base-files</package> (&gt;= 2.2.0), or on later
 	    versions of either one of these packages.
@@ -4286,8 +4286,8 @@ rmdir /usr/local/share/emacs 2>/dev/null || true
 
 	  <p>
 	    Packages other than <tt>base-passwd</tt> must not modify
-	    <tt>/etc/passwd</tt>, <tt>/etc/shadow</tt>,
-	    <tt>/etc/group</tt> or <tt>/etc/gshadow</tt>.
+	    <file>/etc/passwd</file>, <file>/etc/shadow</file>,
+	    <file>/etc/group</file> or <file>/etc/gshadow</file>.
 	  </p>
 	</sect1>
 
@@ -4302,7 +4302,7 @@ rmdir /usr/local/share/emacs 2>/dev/null || true
 		<p>
 		  Globally allocated by the Debian project, the same
 		  on every Debian system.  These ids will appear in
-		  the <tt>passwd</tt> and <tt>group</tt> files of all
+		  the <file>passwd</file> and <file>group</file> files of all
 		  Debian systems, new ids in this range being added
 		  automatically as the <tt>base-passwd</tt> package is
 		  updated.
@@ -4327,7 +4327,7 @@ rmdir /usr/local/share/emacs 2>/dev/null || true
 		  <prgn>adduser</prgn> will check for the existence of
 		  the user or group, and if necessary choose an unused
 		  id based on the ranges specified in
-		  <tt>adduser.conf</tt>.
+		  <file>adduser.conf</file>.
 		</p>
 	      </item>
 
@@ -4337,7 +4337,7 @@ rmdir /usr/local/share/emacs 2>/dev/null || true
 		  Dynamically allocated user accounts.  By default
 		  <prgn>adduser</prgn> will choose UIDs and GIDs for
 		  user accounts in this range, though
-		  <tt>adduser.conf</tt> may be used to modify this
+		  <file>adduser.conf</file> may be used to modify this
 		  behavior.
 		</p>
 	      </item>
@@ -4360,7 +4360,7 @@ rmdir /usr/local/share/emacs 2>/dev/null || true
 		  These ids are for packages which are obscure or
 		  which require many statically-allocated ids.  These
 		  packages should check for and create the accounts in
-		  <tt>/etc/passwd</tt> or <tt>/etc/group</tt> (using
+		  <file>/etc/passwd</file> or <file>/etc/group</file> (using
 		  <prgn>adduser</prgn> if it has this facility) if
 		  necessary.  Packages which are likely to require
 		  further allocations should have a `hole' left after
@@ -4396,13 +4396,13 @@ rmdir /usr/local/share/emacs 2>/dev/null || true
       </sect>
 
       <sect id="sysvinit">
-	<heading>System run levels and <tt>init.d</tt> scripts</heading>
+	<heading>System run levels and <file>init.d</file> scripts</heading>
 
 	<sect1 id="/etc/init.d">
 	  <heading>Introduction</heading>
 
 	  <p>
-	    The <tt>/etc/init.d</tt> directory contains the scripts
+	    The <file>/etc/init.d</file> directory contains the scripts
 	    executed by <prgn>init</prgn> at boot time and when the
 	    init state (or `runlevel') is changed (see <manref
 	    name="init" section="8">).
@@ -4425,9 +4425,9 @@ rmdir /usr/local/share/emacs 2>/dev/null || true
 
           <p>
             These scripts are referenced by symbolic links in the
-	    <tt>/etc/rc<var>n</var>.d</tt> directories.  When changing
+	    <file>/etc/rc<var>n</var>.d</file> directories.  When changing
 	    runlevels, <prgn>init</prgn> looks in the directory
-	    <tt>/etc/rc<var>n</var>.d</tt> for the scripts it should
+	    <file>/etc/rc<var>n</var>.d</file> for the scripts it should
 	    execute, where <tt><var>n</var></tt> is the runlevel that
 	    is being changed to, or <tt>S</tt> for the boot-up
 	    scripts.
@@ -4435,11 +4435,11 @@ rmdir /usr/local/share/emacs 2>/dev/null || true
 
           <p>
 	    The names of the links all have the form
-	    <tt>S<var>mm</var><var>script</var></tt> or
-	    <tt>K<var>mm</var><var>script</var></tt> where
+	    <file>S<var>mm</var><var>script</var></file> or
+	    <file>K<var>mm</var><var>script</var></file> where
 	    <var>mm</var> is a two-digit number and <var>script</var>
 	    is the name of the script (this should be the same as the
-	    name of the actual script in <tt>/etc/init.d</tt>).
+	    name of the actual script in <file>/etc/init.d</file>).
 	  </p>
 
           <p>
@@ -4448,7 +4448,7 @@ rmdir /usr/local/share/emacs 2>/dev/null || true
 	    executed, each with the single argument <tt>stop</tt>,
 	    followed by the scripts prefixed with an <tt>S</tt>, each
 	    with the single argument <tt>start</tt>.  (The links are
-	    those in the <tt>/etc/rc<var>n</var>.d</tt> directory
+	    those in the <file>/etc/rc<var>n</var>.d</file> directory
 	    corresponding to the new runlevel.)  The <tt>K</tt> links
 	    are responsible for killing services and the <tt>S</tt>
 	    link for starting services upon entering the runlevel.
@@ -4457,7 +4457,7 @@ rmdir /usr/local/share/emacs 2>/dev/null || true
 	  <p>
 	    For example, if we are changing from runlevel 2 to
 	    runlevel 3, init will first execute all of the <tt>K</tt>
-	    prefixed scripts it finds in <tt>/etc/rc3.d</tt>, and then
+	    prefixed scripts it finds in <file>/etc/rc3.d</file>, and then
 	    all of the <tt>S</tt> prefixed scripts in that directory.
 	    The links starting with <tt>K</tt> will cause the
 	    referred-to file to be executed with an argument of
@@ -4505,10 +4505,10 @@ rmdir /usr/local/share/emacs 2>/dev/null || true
 
 	  <p>
 	    Packages that include daemons for system services should
-	    place scripts in <tt>/etc/init.d</tt> to start or stop
+	    place scripts in <file>/etc/init.d</file> to start or stop
 	    services at boot time or during a change of runlevel.
 	    These scripts should be named
-	    <tt>/etc/init.d/<var>package</var></tt>, and they should
+	    <file>/etc/init.d/<var>package</var></file>, and they should
 	    accept one argument, saying what to do:
 
 	    <taglist>
@@ -4534,11 +4534,11 @@ rmdir /usr/local/share/emacs 2>/dev/null || true
 
 	    The <tt>start</tt>, <tt>stop</tt>, <tt>restart</tt>, and
 	    <tt>force-reload</tt> options should be supported by all
-	    scripts in <tt>/etc/init.d</tt>, the <tt>reload</tt>
+	    scripts in <file>/etc/init.d</file>, the <tt>reload</tt>
 	    option is optional.</p>
 
 	  <p>
-	    The <tt>init.d</tt> scripts should ensure that they will
+	    The <file>init.d</file> scripts should ensure that they will
 	    behave sensibly if invoked with <tt>start</tt> when the
 	    service is already running, or with <tt>stop</tt> when it
 	    isn't, and that they don't kill unfortunately-named user
@@ -4548,12 +4548,12 @@ rmdir /usr/local/share/emacs 2>/dev/null || true
 	  <p>
 	    If a service reloads its configuration automatically (as
 	    in the case of <prgn>cron</prgn>, for example), the
-	    <tt>reload</tt> option of the <tt>init.d</tt> script
+	    <tt>reload</tt> option of the <file>init.d</file> script
 	    should behave as if the configuration has been reloaded
 	    successfully.</p>
 
 	  <p>
-	    The <tt>/etc/init.d</tt> scripts must be treated as
+	    The <file>/etc/init.d</file> scripts must be treated as
 	    configuration files, either (if they are present in the
 	    package, that is, in the .deb file) by marking them as
 	    <tt>conffile</tt>s, or, (if they do not exist in the .deb)
@@ -4574,7 +4574,7 @@ rmdir /usr/local/share/emacs 2>/dev/null || true
 	    the package has been removed.  Only when <prgn>dpkg</prgn>
 	    is executed with the <tt>--purge</tt> option will
 	    configuration files be removed.  In particular, as the
-	    <tt>/etc/init.d/<var>package</var></tt> script itself is
+	    <file>/etc/init.d/<var>package</var></file> script itself is
 	    usually a <tt>conffile</tt>, it will remain on the system
 	    if the package is removed but not purged.  Therefore, you
 	    should include a <tt>test</tt> statement at the top of the
@@ -4585,8 +4585,8 @@ test -f <var>program-executed-later-in-script</var> || exit 0
 	  </p>
 
 	  <p>
-	    Often there are some variables in the <tt>init.d</tt>
-	    scripts whose values control the bahaviour of the scripts,
+	    Often there are some variables in the <file>init.d</file>
+	    scripts whose values control the behaviour of the scripts,
 	    and which a system administrator is likely to want to
 	    change.  As the scripts themselves are frequently
 	    <tt>conffile</tt>s, modifying them requires that the
@@ -4595,8 +4595,8 @@ test -f <var>program-executed-later-in-script</var> || exit 0
 	    the burden on the system administrator, such configurable
 	    values should not be placed directly in the script.
 	    Instead, they should be placed in a file in
-	    <tt>/etc/default</tt>, which typically will have the same
-	    base name as the <tt>init.d</tt> script.  This extra file
+	    <file>/etc/default</file>, which typically will have the same
+	    base name as the <file>init.d</file> script.  This extra file
 	    should be sourced by the script when the script runs.  It
 	    must contain only variable settings and comments in POSIX
 	    <prgn>sh</prgn> format.  It may either be a
@@ -4607,13 +4607,13 @@ test -f <var>program-executed-later-in-script</var> || exit 0
 
 	  <p>
 	    To ensure that vital configurable values are always
-	    available, the <tt>init.d</tt> script should set default
+	    available, the <file>init.d</file> script should set default
 	    values for each of the shell variables it uses, either
-	    before sourcing the <tt>/etc/default/</tt> file or
+	    before sourcing the <file>/etc/default/</file> file or
 	    afterwards using something like the <tt>:
-	    ${VAR:=default}</tt> syntax.  Also, the <tt>init.d</tt>
+	    ${VAR:=default}</tt> syntax.  Also, the <file>init.d</file>
 	    script must behave sensibly and not fail if the
-	    <tt>/etc/default</tt> file is deleted.
+	    <file>/etc/default</file> file is deleted.
 	  </p>
 	</sect1>
 
@@ -4623,19 +4623,19 @@ test -f <var>program-executed-later-in-script</var> || exit 0
 	  <p>
 	    The program <prgn>update-rc.d</prgn> is provided for
 	    package maintainers to arrange for the proper creation and
-	    removal of <tt>/etc/rc<var>n</var>.d</tt> symbolic links,
+	    removal of <file>/etc/rc<var>n</var>.d</file> symbolic links,
 	    or their functional equivalent if another method is being
 	    used.  This may be used by maintainers in their packages'
 	    <prgn>postinst</prgn> and <prgn>postrm</prgn> scripts.</p>
 
 	  <p>
-	    You must not include any <tt>/etc/rc<var>n</var>.d</tt>
+	    You must not include any <file>/etc/rc<var>n</var>.d</file>
 	    symbolic links in the actual archive or manually create or
 	    remove the symbolic links in maintainer scripts; you must
 	    use the <prgn>update-rc.d</prgn> program instead.  (The
 	    former will fail if an alternative method of maintaining
 	    runlevel information is being used.)  You must not include
-	    the <tt>/etc/rc<var>n</var>.d</tt> directories themselves
+	    the <file>/etc/rc<var>n</var>.d</file> directories themselves
 	    in the archive either.  (Only the <tt>sysvinit</tt>
 	    package may do so.)
 	  </p>
@@ -4647,9 +4647,9 @@ test -f <var>program-executed-later-in-script</var> || exit 0
 	    runlevel (1) and the reboot runlevel (6).  The system
 	    administrator will have the opportunity to customize
 	    runlevels by simply adding, moving, or removing the
-	    symbolic links in <tt>/etc/rc<var>n</var>.d</tt> if
+	    symbolic links in <file>/etc/rc<var>n</var>.d</file> if
 	    symbolic links are being used, or by modifying
-	    <tt>/etc/runlevel.conf</tt> if the <tt>file-rc</tt> method
+	    <file>/etc/runlevel.conf</file> if the <tt>file-rc</tt> method
 	    is being used.
 	  </p>
 
@@ -4668,7 +4668,7 @@ fi
 
 	  <p>
 	    This will use a default sequence number of 20.  If it does
-	    not matter when or in which order the <tt>init.d</tt>
+	    not matter when or in which order the <file>init.d</file>
 	    script is run, use this default.  If it does, then you
 	    should talk to the maintainer of the <prgn>sysvinit</prgn>
 	    package or post to <tt>debian-devel</tt>, and they will
@@ -4687,12 +4687,12 @@ fi
 	  <heading>Boot-time initialization</heading>
 
           <p>
-            There used to be another directory, <tt>/etc/rc.boot</tt>,
+            There used to be another directory, <file>/etc/rc.boot</file>,
             which contained scripts which were run once per machine
             boot. This has been deprecated in favour of links from
-            <tt>/etc/rcS.d</tt> to files in <tt>/etc/init.d</tt> as
+            <file>/etc/rcS.d</file> to files in <file>/etc/init.d</file> as
             described in <ref id="/etc/init.d">.  Packages must not
-            place files in <tt>/etc/rc.boot</tt>.</p>
+            place files in <file>/etc/rc.boot</file>.</p>
 
 	<sect1>
 	  <heading>Example</heading>
@@ -4701,16 +4701,16 @@ fi
 	    The <prgn>bind</prgn> DNS (nameserver) package wants to
 	    make sure that the nameserver is running in multiuser
 	    runlevels, and is properly shut down with the system.  It
-	    puts a script in <tt>/etc/init.d</tt>, naming the script
+	    puts a script in <file>/etc/init.d</file>, naming the script
 	    appropriately <tt>bind</tt>.  As you can see, the script
 	    interprets the argument <tt>reload</tt> to send the
 	    nameserver a <tt>HUP</tt> signal (causing it to reload its
 	    configuration); this way the system administrator can say
-	    <tt>/etc/init.d/bind reload</tt> to reload the name
+	    <file>/etc/init.d/bind reload</file> to reload the name
 	    server.  The script has one configurable value, which can
 	    be used to pass parameters to the named program at
 	    startup; this value is read from
-	    <tt>/etc/default/bind</tt> (see below).
+	    <file>/etc/default/bind</file> (see below).
 	  </p>
 
 	  <p>
@@ -4757,7 +4757,8 @@ force-reload|reload)
   echo "."
   ;;
 *)
-  echo "Usage: /etc/init.d/bind {start|stop|restart|reload|force-reload}" >&2
+  echo "Usage: /etc/init.d/bind " \
+         " {start|stop|restart|reload|force-reload}" >&2
   exit 1
   ;;
 esac
@@ -4768,7 +4769,7 @@ exit 0
 
 	  <p>
 	    Complementing the above init script is a configuration
-	    file <tt>/etc/default/bind</tt>, which contains
+	    file <file>/etc/default/bind</file>, which contains
 	    configurable parameters used by the script.  This would be
 	    created by the <prgn>postinst</prgn> script if it was not
 	    already present, and removed on purge by the
@@ -4782,8 +4783,8 @@ exit 0
 
 	  <p>
 	    Another example on which you can base your
-	    <tt>/etc/init.d</tt> scripts is found in
-	    <tt>/etc/init.d/skeleton</tt>.
+	    <file>/etc/init.d</file> scripts is found in
+	    <file>/etc/init.d/skeleton</file>.
 	  </p>
 
 	  <p>
@@ -4806,11 +4807,11 @@ fi
       </sect>
 
       <sect>
-	<heading>Console messages from <tt>init.d</tt> scripts</heading>
+	<heading>Console messages from <file>init.d</file> scripts</heading>
 
 	<p>
 	  This section describes the formats to be used for messages
-	  written to standard output by the <tt>/etc/init.d</tt>
+	  written to standard output by the <file>/etc/init.d</file>
 	  scripts.  The intent is to improve the consistency of
 	  Debian's startup and shutdown look and feel.  For this
 	  reason, please look very carefully at the details.  We want
@@ -4890,7 +4891,7 @@ Starting <var>description</var>: <var>daemon-1</var> ... <var>daemon-n</var>.
 	      </p>
 
 	      <p>
-		For example, the output of <tt>/etc/init.d/lpd</tt>
+		For example, the output of <file>/etc/init.d/lpd</file>
 		would look like:
 		<example compact="compact">
 Starting printer spooler: lpd.
@@ -5015,8 +5016,8 @@ Reloading <var>description</var> configuration...done.
 
 	<p>
 	  Packages must not modify the configuration file
-	  <tt>/etc/crontab</tt>, and they must not modify the files in
-	  <tt>/var/spool/cron/crontabs</tt>.</p>
+	  <file>/etc/crontab</file>, and they must not modify the files in
+	  <file>/var/spool/cron/crontabs</file>.</p>
 
 	<p>
 	  If a package wants to install a job that has to be executed
@@ -5030,7 +5031,7 @@ Reloading <var>description</var> configuration...done.
 	  As these directory names imply, the files within them are
 	  executed on a daily, weekly, or monthly basis,
 	  respectively. The exact times are listed in
-	  <tt>/etc/crontab</tt>.</p>
+	  <file>/etc/crontab</file>.</p>
 
 	<p>
 	  All files installed in any of these directories must be
@@ -5043,11 +5044,11 @@ Reloading <var>description</var> configuration...done.
 	<p>
 	  If a certain job has to be executed more frequently than
 	  daily, the package should install a file
-	  <tt>/etc/cron.d/<var>package</var></tt>. This file uses the
-	  same syntax as <tt>/etc/crontab</tt> and is processed by
+	  <file>/etc/cron.d/<var>package</var></file>. This file uses the
+	  same syntax as <file>/etc/crontab</file> and is processed by
 	  <prgn>cron</prgn> automatically. The file must also be
 	  treated as a configuration file. (Note that entries in the
-	  <tt>/etc/cron.d</tt> directory are not handled by
+	  <file>/etc/cron.d</file> directory are not handled by
 	  <prgn>anacron</prgn>. Thus, you should only use this
 	  directory for jobs which may be skipped if the system is not
 	  running.)</p>
@@ -5279,7 +5280,7 @@ Reloading <var>description</var> configuration...done.
 	  A program must not depend on environment variables to get
 	  reasonable defaults.  (That's because these environment
 	  variables would have to be set in a system-wide
-	  configuration file like <tt>/etc/profile</tt>, which is not
+	  configuration file like <file>/etc/profile</file>, which is not
 	  supported by all shells.)</p>
 
 	<p>
@@ -5304,7 +5305,7 @@ exec /usr/lib/foo/foo "$@"
 	</p>
 
 	<p>
-	  Furthermore, as <tt>/etc/profile</tt> is a configuration
+	  Furthermore, as <file>/etc/profile</file> is a configuration
 	  file of the <prgn>base-files</prgn> package, other packages must not
 	  put any environment variables or other commands into that
 	  file.</p>
@@ -5345,11 +5346,11 @@ install -s # (or use strip on the files in debian/tmp)
 	  either by using the <tt>-s</tt> flag to
 	  <prgn>install</prgn>, or by calling <prgn>strip</prgn> on
 	  the binaries after they have been copied into
-	  <tt>debian/tmp</tt> but before the tree is made into a
+	  <file>debian/tmp</file> but before the tree is made into a
 	  package.</p>
 
 	<p>
-	  The <tt>-N</tt> flag should not be used.  On <tt>a.out</tt>
+	  The <tt>-N</tt> flag should not be used.  On <file>a.out</file>
 	  systems it may have been useful for some very small
 	  binaries, but for ELF it has no good effect.</p>
 
@@ -5376,8 +5377,8 @@ install -s # (or use strip on the files in debian/tmp)
 	      to build a debugging variant also makes it easier to
 	      build debugging bins and libraries since it provides a
 	      documented way of getting this type of build; one does
-	      not have to manually edit <tt>debian/rules</tt> or
-	      <tt>Makefile</tt>s.
+	      not have to manually edit <file>debian/rules</file> or
+	      <file>Makefile</file>s.
 	    </p>
 	  </footnote>
 	  The following makefile snippet is an example of how one may
@@ -5458,11 +5459,11 @@ strip --strip-unneeded <var>your-lib</var>
 	</p>
 
  	<p>
-	  Shared object files (often <tt>.so</tt> files) that are not
+	  Shared object files (often <file>.so</file> files) that are not
 	  public libraries, that is, they are not meant to be linked
 	  to by third party executables (binaries of other packages),
 	  should be installed in subdirectories of the
-	  <tt>/usr/lib</tt> directory.  Such files are exempt from the
+	  <file>/usr/lib</file> directory.  Such files are exempt from the
 	  rules that govern ordinary shared libraries, except that
 	  they must not be installed executable and should be
 	  stripped.<footnote>
@@ -5478,10 +5479,10 @@ strip --strip-unneeded <var>your-lib</var>
 	  Packages containing shared libraries that may be linked to
 	  by other packages' binaries, but which for some
 	  <em>compelling</em> reason can not be installed in
-	  <tt>/usr/lib</tt> directory, may install the shared library
-	  files in subdirectories of the <tt>/usr/lib</tt> directory,
+	  <file>/usr/lib</file> directory, may install the shared library
+	  files in subdirectories of the <file>/usr/lib</file> directory,
 	  in which case they should arrange to add that directory in
-	  <tt>/etc/ld.so.conf</tt> in the package's post-installation
+	  <file>/etc/ld.so.conf</file> in the package's post-installation
 	  script, and remove it in the package's post-removal script.
 	</p>
 
@@ -5489,9 +5490,9 @@ strip --strip-unneeded <var>your-lib</var>
 	  An ever increasing number of packages are using
 	  <prgn>libtool</prgn> to do their linking.  The latest GNU
 	  libtools (>= 1.3a) can take advantage of the metadata in the
-	  installed <prgn>libtool</prgn> archive files (<tt>*.la</tt>
+	  installed <prgn>libtool</prgn> archive files (<file>*.la</file>
 	  files).  The main advantage of <prgn>libtool</prgn>'s
-	  <tt>.la</tt> files is that it allows <prgn>libtool</prgn> to
+	  <file>.la</file> files is that it allows <prgn>libtool</prgn> to
 	  store and subsequently access metadata with respect to the
 	  libraries it builds.  <prgn>libtool</prgn> will search for
 	  those files, which contain a lot of useful information about
@@ -5508,16 +5509,16 @@ strip --strip-unneeded <var>your-lib</var>
 	      for each library every time it is linked.  With the
 	      advent of <prgn>libtool</prgn> version 1.4 (and to a
 	      lesser extent <prgn>libtool</prgn> version 1.3), the
-	      <tt>.la</tt> files also store information about
+	      <file>.la</file> files also store information about
 	      inter-library dependencies which cannot necessarily be
-	      derived after the <tt>.la</tt> file is deleted.
+	      derived after the <file>.la</file> file is deleted.
 	    </p>
 	  </footnote>
 	</p>
 
 	<p>
 	  Packages that use <prgn>libtool</prgn> to create shared
-	  libraries should include the <tt>.la</tt> files in the
+	  libraries should include the <file>.la</file> files in the
 	  <tt>-dev</tt> package, unless the package relies on
 	  <tt>libtool</tt>'s <tt>libltdl</tt> library, in which case
 	  the <tt>.la</tt> files must go in the run-time library
@@ -5545,16 +5546,16 @@ strip --strip-unneeded <var>your-lib</var>
 	  For a straightforward library which has a development
 	  environment and a runtime kit including just shared
 	  libraries you need to create two packages:
-	  <tt><var>libraryname</var><var>soversion</var></tt>, where
-	  <tt><var>soversion</var></tt> is the version number in the
+	  <file><var>libraryname</var><var>soversion</var></file>, where
+	  <file><var>soversion</var></file> is the version number in the
 	  soname of the shared library<footnote>
 	    <p>
 	      The soname is the shared object name: it's the thing
 	      that has to match exactly between building an executable
 	      and running it for the dynamic linker to be able run the
 	      program.  For example, if the soname of the library is
-	      <tt>libfoo.so.6</tt>, the library package would be
-	      called <tt>libfoo6</tt>.
+	      <file>libfoo.so.6</file>, the library package would be
+	      called <file>libfoo6</file>.
 	    </p>
 	  </footnote>
 	  and <tt><var>libraryname</var><var>soversion</var>-dev</tt>.
@@ -5563,7 +5564,7 @@ strip --strip-unneeded <var>your-lib</var>
 	<p>
 	  If you prefer only to support one development version at a
 	  time you may name the development package
-	  <tt><var>libraryname</var>-dev</tt>; otherwise you may need
+	  <file><var>libraryname</var>-dev</file>; otherwise you may need
 	  to use <prgn>dpkg</prgn>'s Conflicts mechanism (see <ref
 	  id="conflicts">) to ensure that the user only installs one
 	  development version at a time (as different development
@@ -5579,7 +5580,7 @@ strip --strip-unneeded <var>your-lib</var>
 	<p>
 	  Packages which use the shared library should have a
 	  dependency on the name of the shared library package,
-	  <tt><var>libraryname</var><var>soversion</var></tt>.  When
+	  <file><var>libraryname</var><var>soversion</var></file>.  When
 	  the soname changes you can have both versions of the library
 	  installed while migrating from the old library to the new.
 	</p>
@@ -5634,12 +5635,12 @@ strip --strip-unneeded <var>your-lib</var>
 	  command.</p>
 
 	<p>
-	  The standard shell interpreter <tt>/bin/sh</tt> can be a
+	  The standard shell interpreter <file>/bin/sh</file> can be a
 	  symbolic link to any POSIX compatible shell, if <tt>echo
 	  -n</tt> does not generate a newline.<footnote>
 	    <p>
 	      Debian policy specifies POSIX behavior for
-	      <tt>/bin/sh</tt>, but <tt>echo -n</tt> has widespread
+	      <file>/bin/sh</file>, but <tt>echo -n</tt> has widespread
 	      use in the Linux community (in particular including this
 	      policy, the Linux kernel source, many Debian scripts,
 	      etc.).  This <tt>echo -n</tt> mechanism is valid but not
@@ -5648,7 +5649,7 @@ strip --strip-unneeded <var>your-lib</var>
 	      the LSB anyway.
 	    </p>
 	  </footnote>
-	  Thus, shell scripts specifying <tt>/bin/sh</tt> as
+	  Thus, shell scripts specifying <file>/bin/sh</file> as
 	  interpreter should only use POSIX features. If a script
 	  requires non-POSIX features from the shell interpreter, the
 	  appropriate shell must be specified in the first line of the
@@ -5660,10 +5661,10 @@ strip --strip-unneeded <var>your-lib</var>
 
 	<p>
 	  You may wish to restrict your script to POSIX features when
-	  possible so that it may use <tt>/bin/sh</tt> as its
+	  possible so that it may use <file>/bin/sh</file> as its
 	  interpreter. If your script works with <prgn>ash</prgn>,
 	  it's probably POSIX compliant, but if you are in doubt, use
-	  <tt>/bin/bash</tt>.
+	  <file>/bin/bash</file>.
 	</p>
 
 	<p>
@@ -5693,7 +5694,7 @@ strip --strip-unneeded <var>your-lib</var>
 
 	<p>
 	  Any scripts which create files in world-writeable
-	  directories (e.g., in <tt>/tmp</tt>) must use a
+	  directories (e.g., in <file>/tmp</file>) must use a
 	  mechanism which will fail if a file with the same name
 	  already exists.</p>
 
@@ -5711,11 +5712,11 @@ strip --strip-unneeded <var>your-lib</var>
 	  should be relative, and symbolic links pointing from one
 	  top-level directory into another should be absolute. (A
 	  top-level directory is a sub-directory of the root
-	  directory <tt>/</tt>.)</p>
+	  directory <file>/</file>.)</p>
 
 	<p>
 	  In addition, symbolic links should be specified as short as
-	  possible, i.e., link targets like <tt>foo/../bar</tt> are
+	  possible, i.e., link targets like <file>foo/../bar</file> are
 	  deprecated.</p>
 
 	<p>
@@ -5731,7 +5732,7 @@ strip --strip-unneeded <var>your-lib</var>
 
 	<p>
 	  For example, in your <prgn>Makefile</prgn> or
-	  <tt>debian/rules</tt>, you can do things like:
+	  <file>debian/rules</file>, you can do things like:
 	  <example compact="compact">
 ln -fs gcc $(prefix)/bin/cc
 ln -fs gcc debian/tmp/usr/bin/cc
@@ -5742,9 +5743,9 @@ ln -fs ../sbin/sendmail debian/tmp/usr/bin/runq
 	<p>
 	  A symbolic link pointing to a compressed file should always
 	  have the same file extension as the referenced file. (For
-	  example, if a file <tt>foo.gz</tt> is referenced by a
+	  example, if a file <file>foo.gz</file> is referenced by a
 	  symbolic link, the filename of the link has to end with
-	  `<tt>.gz</tt>' too, as in <tt>bar.gz</tt>.)
+	  `<file>.gz</file>' too, as in <file>bar.gz</file>.)
 	</p>
       </sect>
 
@@ -5768,9 +5769,9 @@ ln -fs ../sbin/sendmail debian/tmp/usr/bin/runq
 
 	<p>
 	  Debian uses the serial devices
-	  <tt>/dev/ttyS*</tt>. Programs using the old
-	  <tt>/dev/cu*</tt> devices should be changed to use
-	  <tt>/dev/ttyS*</tt>.</p>
+	  <file>/dev/ttyS*</file>. Programs using the old
+	  <file>/dev/cu*</file> devices should be changed to use
+	  <file>/dev/ttyS*</file>.</p>
       </sect>
 
       <sect id="config-files">
@@ -5812,8 +5813,8 @@ ln -fs ../sbin/sendmail debian/tmp/usr/bin/runq
 
 	  <p>
 	    Note that a script that embeds configuration information
-	    (such as most of the files in <tt>/etc/default</tt> and
-	    <tt>/etc/cron.{daily,weekly,monthly}</tt>) is de-facto a
+	    (such as most of the files in <file>/etc/default</file> and
+	    <file>/etc/cron.{daily,weekly,monthly}</file>) is de-facto a
 	    configuration file and should be treated as such.
 	  </p>
 	</sect1>
@@ -5822,15 +5823,15 @@ ln -fs ../sbin/sendmail debian/tmp/usr/bin/runq
 	  <heading>Location</heading>
 	  <p>
 	    Any configuration files created or used by your package
-	    must reside in <tt>/etc</tt>. If there are several you
-	    should consider creating a subdirectory of <tt>/etc</tt>
+	    must reside in <file>/etc</file>. If there are several you
+	    should consider creating a subdirectory of <file>/etc</file>
 	    named after your package.</p>
 
 	  <p>
 	    If your package creates or uses configuration files
-	    outside of <tt>/etc</tt>, and it is not feasible to modify
-	    the package to use the <tt>/etc</tt>, you should still put
-	    the files in <tt>/etc</tt> and create symbolic links to
+	    outside of <file>/etc</file>, and it is not feasible to modify
+	    the package to use the <file>/etc</file>, you should still put
+	    the files in <file>/etc</file> and create symbolic links to
 	    those files from the location that the package
 	    requires.</p>
 	</sect1>
@@ -5915,16 +5916,16 @@ ln -fs ../sbin/sendmail debian/tmp/usr/bin/runq
 
 	  <p>
 	    A common practice is to create a script called
-	    <tt><var>package</var>-configure</tt> and have the
+	    <file><var>package</var>-configure</file> and have the
 	    package's <prgn>postinst</prgn> call it if and only if the
 	    configuration file does not already exist.  In certain
 	    cases it is useful for there to be an example or template
 	    file which the maintainer scripts use.  Such files should
-	    be in <tt>/usr/share/<var>package</var></tt> or
-	    <tt>/usr/lib/<var>package</var></tt> (depending on whether
+	    be in <file>/usr/share/<var>package</var></file> or
+	    <file>/usr/lib/<var>package</var></file> (depending on whether
 	    they are architecture-independent or not).  There should
 	    be symbolic links to them from
-	    <tt>/usr/share/doc/<var>package</var>/examples</tt> if
+	    <file>/usr/share/doc/<var>package</var>/examples</file> if
 	    they are examples, and should be perfectly ordinary
 	    <prgn>dpkg</prgn>-handled files (<em>not</em>
 	    configuration files).
@@ -6016,16 +6017,16 @@ ln -fs ../sbin/sendmail debian/tmp/usr/bin/runq
 	  <heading>User configuration files ("dotfiles")</heading>
 
 	  <p>
-	    The files in <tt>/etc/skel</tt> will automatically be
+	    The files in <file>/etc/skel</file> will automatically be
 	    copied into new user accounts by <prgn>adduser</prgn>.
 	    No other program should reference the files in
-	    <tt>/etc/skel</tt>.
+	    <file>/etc/skel</file>.
 	  </p>
 
 	  <p>
 	    Therefore, if a program needs a dotfile to exist in
-	    advance in <tt>$HOME</tt> to work sensibly, that dotfile
-	    should be installed in <tt>/etc/skel</tt> and treated as a
+	    advance in <file>$HOME</file> to work sensibly, that dotfile
+	    should be installed in <file>/etc/skel</file> and treated as a
 	    configuration file.
 	  </p>
 
@@ -6042,14 +6043,14 @@ ln -fs ../sbin/sendmail debian/tmp/usr/bin/runq
 	    Therefore, if a program in a Debian package needs to be
 	    configured in some way in order to operate sensibly, that
 	    should be done using a site-wide configuration file placed
-	    in <tt>/etc</tt>.  Only if the program doesn't support a
+	    in <file>/etc</file>.  Only if the program doesn't support a
 	    site-wide default configuration and the package maintainer
 	    doesn't have time to add it may a default per-user file be
-	    placed in <tt>/etc/skel</tt>.
+	    placed in <file>/etc/skel</file>.
 	  </p>
 
 	  <p>
-	    <tt>/etc/skel</tt> should be as empty as we can make it.
+	    <file>/etc/skel</file> should be as empty as we can make it.
 	    This is particularly true because there is no easy (or
 	    necessarily desirable) mechanism for ensuring that the
 	    appropriate dotfiles are copied into the accounts of
@@ -6062,11 +6063,11 @@ ln -fs ../sbin/sendmail debian/tmp/usr/bin/runq
 	<heading>Log files</heading>
 	<p>
 	  Log files should usually be named
-	  <tt>/var/log/<var>package</var>.log</tt>.  If you have many
+	  <file>/var/log/<var>package</var>.log</file>.  If you have many
 	  log files, or need a separate directory for permission
-	  reasons (<tt>/var/log</tt> is writable only by
-	  <tt>root</tt>), you should usually create a directory named
-	  <tt>/var/log/<var>package</var></tt> and place your log
+	  reasons (<file>/var/log</file> is writable only by
+	  <file>root</file>), you should usually create a directory named
+	  <file>/var/log/<var>package</var></file> and place your log
 	  files there.
 	</p>
 
@@ -6074,7 +6075,7 @@ ln -fs ../sbin/sendmail debian/tmp/usr/bin/runq
 	  Log files must be rotated occasionally so that they don't
 	  grow indefinitely; the best way to do this is to drop a log
 	  rotation configuration file into the directory
-	  <tt>/etc/logrotate.d</tt> and use the facilities provided by
+	  <file>/etc/logrotate.d</file> and use the facilities provided by
 	  logrotate.<footnote>
 	    <p>
 	      The traditional approach to log files has been to set up
@@ -6090,9 +6091,9 @@ ln -fs ../sbin/sendmail debian/tmp/usr/bin/runq
 	      The use of <prgn>logrotate</prgn>, a program developed
 	      by Red Hat, is better, as it centralizes log management.
 	      It has both a configuration file
-	      (<tt>/etc/logrotate.conf</tt>) and a directory where
+	      (<file>/etc/logrotate.conf</file>) and a directory where
 	      packages can drop their individual log rotation
-	      configurations (<tt>/etc/logrotate.d</tt>).
+	      configurations (<file>/etc/logrotate.d</file>).
 	    </p>
 	  </footnote>
 	  Here is a good example for a logrotate config
@@ -6108,7 +6109,7 @@ postrotate
 endscript
 }
 	  </example>
-	  This rotates all files under <tt>/var/log/foo</tt>, saves 12
+	  This rotates all files under <file>/var/log/foo</file>, saves 12
 	  compressed generations, and forces the daemon to reload its
 	  configuration information after the log rotation.
 	</p>
@@ -6208,7 +6209,7 @@ endscript
 	  allocated one.  Once you have been allocated one you must
 	  either make the package depend on a version of the
 	  <tt>base-passwd</tt> package with the id present in
-	  <tt>/etc/passwd</tt> or <tt>/etc/group</tt>, or arrange for
+	  <file>/etc/passwd</file> or <file>/etc/group</file>, or arrange for
 	  your package to create the user or group itself with the
 	  correct id (using <tt>adduser</tt>) in its
 	  <prgn>preinst</prgn> or <prgn>postinst</prgn>.  (Doing it in
@@ -6347,8 +6348,8 @@ done
 	<heading>Daemons</heading>
 
 	<p>
-	  The configuration files <tt>/etc/services</tt>,
-	  <tt>/etc/protocols</tt>, and <tt>/etc/rpc</tt> are managed
+	  The configuration files <file>/etc/services</file>,
+	  <file>/etc/protocols</file>, and <file>/etc/rpc</file> are managed
 	  by the <prgn>netbase</prgn> package and must not be modified
 	  by other packages.
 	</p>
@@ -6362,16 +6363,16 @@ done
 	</p>
 
 	<p>
-	  The configuration file <tt>/etc/inetd.conf</tt> must not be
+	  The configuration file <file>/etc/inetd.conf</file> must not be
 	  modified by the package's scripts except via the
 	  <prgn>update-inetd</prgn> script or the
-	  <tt>DebianNet.pm</tt> Perl module.  See their documentation
+	  <file>DebianNet.pm</file> Perl module.  See their documentation
 	  for details on how to add entries.
 	</p>
 
 	<p>
 	  If a package wants to install an example entry into
-	  <tt>/etc/inetd.conf</tt>, the entry must be preceded with
+	  <file>/etc/inetd.conf</file>, the entry must be preceded with
 	  exactly one hash character (<tt>#</tt>). Such lines are
 	  treated as `commented out by user' by the
 	  <prgn>update-inetd</prgn> script and are not changed or
@@ -6391,8 +6392,8 @@ done
 	</p>
 
 	<p>
-	  The files <tt>/var/run/utmp</tt>, <tt>/var/log/wtmp</tt> and
-	  <tt>/var/log/lastlog</tt> must be installed writeable by
+	  The files <file>/var/run/utmp</file>, <file>/var/log/wtmp</file> and
+	  <file>/var/log/lastlog</file> must be installed writeable by
 	  group <tt>utmp</tt>.  Programs which need to modify those
 	  files must be installed setgid <tt>utmp</tt>.
 	</p>
@@ -6420,8 +6421,8 @@ done
 	  Thus, every program that launches an editor or pager must
 	  use the EDITOR or PAGER environment variable to determine
 	  the editor or pager the user wishes to use.  If these
-	  variables are not set, the programs <tt>/usr/bin/editor</tt>
-	  and <tt>/usr/bin/pager</tt> should be used, respectively.
+	  variables are not set, the programs <file>/usr/bin/editor</file>
+	  and <file>/usr/bin/pager</file> should be used, respectively.
 	</p>
 
 	<p>
@@ -6435,12 +6436,12 @@ done
 	<p>
 	  If it is very hard to adapt a program to make use of the
 	  EDITOR or PAGER variables, that program may be configured to
-	  use <tt>/usr/bin/sensible-editor</tt> and
-	  <tt>/usr/bin/sensible-pager</tt> as the editor or pager
+	  use <file>/usr/bin/sensible-editor</file> and
+	  <file>/usr/bin/sensible-pager</file> as the editor or pager
 	  program respectively.  These are two scripts provided in the
 	  Debian base system that check the EDITOR and PAGER variables
 	  and launch the appropriate program, and fall back to
-	  <tt>/usr/bin/editor</tt> and <tt>/usr/bin/pager</tt> if the
+	  <file>/usr/bin/editor</file> and <file>/usr/bin/pager</file> if the
 	  variable is not set.
 	</p>
 
@@ -6448,7 +6449,7 @@ done
 	  A program may also use the VISUAL environment variable to
 	  determine the user's choice of editor.  If it exists, it
 	  should take precedence over EDITOR.  This is in fact what
-	  <tt>/usr/bin/sensible-editor</tt> does.
+	  <file>/usr/bin/sensible-editor</file> does.
 	</p>
 
 	<p>
@@ -6492,7 +6493,7 @@ http://localhost/cgi-bin/<var>cgi-bin-name</var>
 
 	      <p>
 		HTML documents for a package are stored in
-                <tt>/usr/share/doc/<var>package</var></tt>
+                <file>/usr/share/doc/<var>package</var></file>
 		and can be referred to as
 		<example compact="compact">
 http://localhost/doc/<var>package</var>/<var>filename</var>
@@ -6541,12 +6542,12 @@ http://localhost/doc/<var>package</var>/<var>filename</var>
 	</p>
 
 	<p>
-	  The mail spool is <tt>/var/mail</tt> and the interface to
-	  send a mail message is <tt>/usr/sbin/sendmail</tt> (as per
+	  The mail spool is <file>/var/mail</file> and the interface to
+	  send a mail message is <file>/usr/sbin/sendmail</file> (as per
 	  the FHS).  On older systems, the mail spool may be
-	  physically located in <tt>/var/spool/mail</tt>, but all
+	  physically located in <file>/var/spool/mail</file>, but all
 	  access to the mail spool should be via the
-	  <tt>/var/mail</tt> symlink.  The mail spool is part of the
+	  <file>/var/mail</file> symlink.  The mail spool is part of the
 	  base system and not part of the MTA package.
 	</p>
 
@@ -6590,10 +6591,10 @@ http://localhost/doc/<var>package</var>/<var>filename</var>
 	  using this privilege).</p>
 
 	<p>
-	  <tt>/etc/aliases</tt> is the source file for the system mail
+	  <file>/etc/aliases</file> is the source file for the system mail
 	  aliases (e.g., postmaster, usenet, etc.), it is the one
 	  which the sysadmin and <prgn>postinst</prgn> scripts may
-	  edit.  After <tt>/etc/aliases</tt> is edited the program or
+	  edit.  After <file>/etc/aliases</file> is edited the program or
 	  human editing it must call <prgn>newaliases</prgn>.  All MTA
 	  packages must come with a <prgn>newaliases</prgn> program,
 	  even if it does nothing, but older MTA packages did not do
@@ -6611,15 +6612,15 @@ http://localhost/doc/<var>package</var>/<var>filename</var>
 
 	<p>
 	  The <prgn>rmail</prgn> program used by UUCP
-	  for incoming mail should be  <tt>/usr/sbin/rmail</tt>.
+	  for incoming mail should be  <file>/usr/sbin/rmail</file>.
 	  Likewise, <prgn>rsmtp</prgn>, for receiving
-	  batch-SMTP-over-UUCP, should be <tt>/usr/sbin/rsmtp</tt> if it
+	  batch-SMTP-over-UUCP, should be <file>/usr/sbin/rsmtp</file> if it
 	  is supported.</p>
 
 	<p>
 	  If your package needs to know what hostname to use on (for
 	  example) outgoing news and mail messages which are generated
-	  locally, you should use the file <tt>/etc/mailname</tt>.  It
+	  locally, you should use the file <file>/etc/mailname</file>.  It
 	  will contain the portion after the username and <tt>@</tt>
 	  (at) sign for email addresses of users on the machine
 	  (followed by a newline).
@@ -6632,7 +6633,7 @@ http://localhost/doc/<var>package</var>/<var>filename</var>
 	  may wish to prompt the user even if it finds that this file
 	  exists.  If the file does not exist, the package should
 	  prompt the user for the value (preferably using
-	  <prgn>debconf</prgn>) and store it in <tt>/etc/mailname</tt>
+	  <prgn>debconf</prgn>) and store it in <file>/etc/mailname</file>
 	  as well as using it in the package's configuration.  The
 	  prompt should make it clear that the name will not just be
 	  used by that package.  For example, in this situation the
@@ -6655,7 +6656,7 @@ name [`<var>syshostname</var>']:
 	<p>
 	  All the configuration files related to the NNTP (news)
 	  servers and clients should be located under
-	  <tt>/etc/news</tt>.</p>
+	  <file>/etc/news</file>.</p>
 
 	<p>
 	  There are some configuration issues that apply to a number
@@ -6663,12 +6664,12 @@ name [`<var>syshostname</var>']:
 	  are:
 
 	  <taglist>
-	    <tag><tt>/etc/news/organization</tt></tag>
+	    <tag><file>/etc/news/organization</file></tag>
 	    <item><p>A string which should appear as the
 		organization header for all messages posted
 		by NNTP clients on the machine</p></item>
 
-	    <tag><tt>/etc/news/server</tt></tag>
+	    <tag><file>/etc/news/server</file></tag>
 	    <item><p>Contains the FQDN of the upstream NNTP
 		server, or localhost if the local machine is
 		an NNTP server.</p></item>
@@ -6729,7 +6730,7 @@ name [`<var>syshostname</var>']:
 	    in their control data that they provide the virtual
 	    package <tt>x-terminal-emulator</tt>.  They should also
 	    register themselves as an alternative for
-	    <tt>/usr/bin/x-terminal-emulator</tt>, with a priority of
+	    <file>/usr/bin/x-terminal-emulator</file>, with a priority of
 	    20.
 	  </p>
 
@@ -6773,7 +6774,7 @@ name [`<var>syshostname</var>']:
 	    their control data that they provide the virtual package
 	    <tt>x-window-manager</tt>.  They should also register
 	    themselves as an alternative for
-	    <tt>/usr/bin/x-window-manager</tt>, with a priority
+	    <file>/usr/bin/x-window-manager</file>, with a priority
 	    calculated as follows:
 	    <list compact="compact">
 	      <item><p>Start with a priority of 20.</p></item>
@@ -6858,18 +6859,18 @@ name [`<var>syshostname</var>']:
 		  <list compact="compact">
 		    <item><p>
 			100 dpi fonts must be placed in
-			<tt>/usr/X11R6/lib/X11/fonts/100dpi/</tt>.
+			<file>/usr/X11R6/lib/X11/fonts/100dpi/</file>.
 		      </p></item>
 
 		    <item><p>
 			75 dpi fonts must be placed in
-			<tt>/usr/X11R6/lib/X11/fonts/75dpi/</tt>.
+			<file>/usr/X11R6/lib/X11/fonts/75dpi/</file>.
 		      </p></item>
 
 		    <item><p>
 			Character-cell fonts, cursor fonts, and other
 			low-resolution fonts must be placed in
-			<tt>/usr/X11R6/lib/X11/fonts/misc/</tt>.
+			<file>/usr/X11R6/lib/X11/fonts/misc/</file>.
 		      </p></item>
 		  </list>
 		</p>
@@ -6877,22 +6878,22 @@ name [`<var>syshostname</var>']:
 
 	      <item><p>
 		  Speedo fonts must be placed in
-		  <tt>/usr/X11R6/lib/X11/fonts/Speedo/</tt>.
+		  <file>/usr/X11R6/lib/X11/fonts/Speedo/</file>.
 		</p></item>
 
 	      <item><p>
 		  Type 1 fonts must be placed in
-		  <tt>/usr/X11R6/lib/X11/fonts/Type1/</tt>.  If font
+		  <file>/usr/X11R6/lib/X11/fonts/Type1/</file>.  If font
 		  metric files are available, they must be placed here
 		  as well.
 		</p></item>
 
 	      <item>
 		<p>
-		  Subdirectories of <tt>/usr/X11R6/lib/X11/fonts/</tt>
+		  Subdirectories of <file>/usr/X11R6/lib/X11/fonts/</file>
 		  other than those listed above must be neither
-		  created nor used.  (The <tt>PEX</tt>, <tt>CID</tt>,
-		  and <tt>cyrillic</tt> directories are excepted for
+		  created nor used.  (The <file>PEX</file>, <file>CID</file>,
+		  and <file>cyrillic</file> directories are excepted for
 		  historical reasons, but installation of files into
 		  these directories remains discouraged.)
 		</p>
@@ -6921,7 +6922,7 @@ name [`<var>syshostname</var>']:
 
 	      <item>
 		<p>
-		  Fonts destined for the <tt>misc</tt> subdirectory
+		  Fonts destined for the <file>misc</file> subdirectory
 		  should not be included in the same package as 75dpi
 		  or 100dpi fonts; instead, they should be provided in
 		  a separate package with <tt>-misc</tt> appended to
@@ -6932,22 +6933,22 @@ name [`<var>syshostname</var>']:
 	      <item>
 		<p>
 		  Font packages must not provide the files
-		  <tt>fonts.dir</tt>, <tt>fonts.alias</tt>, or
-		  <tt>fonts.scale</tt> in a font directory:
+		  <file>fonts.dir</file>, <file>fonts.alias</file>, or
+		  <file>fonts.scale</file> in a font directory:
 		  <list>
 		    <item><p>
-			<tt>fonts.dir</tt> files must not be provided at all.
+			<file>fonts.dir</file> files must not be provided at all.
 		      </p></item>
 
 		    <item>
 		      <p>
-			<tt>fonts.alias</tt> and <tt>fonts.scale</tt>
+			<file>fonts.alias</file> and <file>fonts.scale</file>
 			files, if needed, should be provided in the
 			directory
-			<tt>/etc/X11/fonts/<var>fontdir</var>/<var>package</var>.<var>extension</var></tt>,
+			<file>/etc/X11/fonts/<var>fontdir</var>/<var>package</var>.<var>extension</var></file>,
 			where <var>fontdir</var> is the name of the
 			subdirectory of
-			<tt>/usr/X11R6/lib/X11/fonts/</tt> where the
+			<file>/usr/X11R6/lib/X11/fonts/</file> where the
 			package's corresponding fonts are stored
 			(e.g., <tt>75dpi</tt> or <tt>misc</tt>),
 			<var>package</var> is the name of the package
@@ -6972,7 +6973,7 @@ name [`<var>syshostname</var>']:
 	      <item>
 		<p>
 		  Font packages that provide one or more
-		  <tt>fonts.scale</tt> files as described above must
+		  <file>fonts.scale</file> files as described above must
 		  invoke <prgn>update-fonts-scale</prgn> on each
 		  directory into which they installed fonts
 		  <em>before</em> invoking
@@ -6987,7 +6988,7 @@ name [`<var>syshostname</var>']:
 	      <item>
 		<p>
 		  Font packages that provide one or more
-		  <tt>fonts.alias</tt> files as described above must
+		  <file>fonts.alias</file> files as described above must
 		  invoke <prgn>update-fonts-alias</prgn> on each
 		  directory into which they installed fonts.  This
 		  invocation must occur in both the
@@ -7031,20 +7032,20 @@ name [`<var>syshostname</var>']:
 
 	  <p>
 	    Application defaults files must be installed in the
-	    directory <tt>/etc/X11/app-defaults/</tt> (use of a
-	    localized subdirectory of <tt>/etc/X11/</tt> as described
+	    directory <file>/etc/X11/app-defaults/</file> (use of a
+	    localized subdirectory of <file>/etc/X11/</file> as described
 	    in the <em>X Toolkit Intrinsics - C Language
 	    Interface</em> manual is also permitted).  They must be
 	    registered as <tt>conffile</tt>s or handled as
 	    configuration files.  Packages must not provide the
-	    directory <tt>/usr/X11R6/lib/X11/app-defaults/</tt>.
+	    directory <file>/usr/X11R6/lib/X11/app-defaults/</file>.
 	  </p>
 
 	  <p>
 	    Customization of programs' X resources may also be
 	    supported with the provision of a file with the same name
 	    as that of the package placed in the
-	    <tt>/etc/X11/Xresources/</tt> directory, which must
+	    <file>/etc/X11/Xresources/</file> directory, which must
 	    registered as a <tt>conffile</tt> or handled as a
 	    configuration file.<footnote>
 	      <p>
@@ -7056,10 +7057,10 @@ name [`<var>syshostname</var>']:
 	      </p>
 	    </footnote>
 	    <em>Important:</em> packages that install files into the
-	    <tt>/etc/X11/Xresources/</tt> directory must conflict with
+	    <file>/etc/X11/Xresources/</file> directory must conflict with
 	    <tt>xbase (&lt;&lt; 3.3.2.3a-2)</tt>; if this is not done
 	    it is possible for the installing package to destroy a
-	    previously-existing <tt>/etc/X11/Xresources</tt> file
+	    previously-existing <file>/etc/X11/Xresources</file> file
 	    which had been customized by the system administrator.
 	  </p>
 	</sect1>
@@ -7069,13 +7070,13 @@ name [`<var>syshostname</var>']:
 
 	  <p>
 	    Packages using the X Window System should not be
-	    configured to install files under the <tt>/usr/X11R6/</tt>
+	    configured to install files under the <file>/usr/X11R6/</file>
 	    directory unless they use <prgn>imake</prgn>. The
-	    <tt>/usr/X11R6/</tt> directory hierarchy should be
+	    <file>/usr/X11R6/</file> directory hierarchy should be
 	    regarded as deprecated for all packages except the X
 	    Window System itself, and those which use the
 	    <prgn>imake</prgn> program it provides, in which case the
-	    packages may transition out of the <tt>/usr/X11R6/</tt>
+	    packages may transition out of the <file>/usr/X11R6/</file>
 	    directory at the maintainer's discretion.<footnote>
 	      <p>
 		<prgn>Imake</prgn>-using programs are exempt because,
@@ -7083,8 +7084,8 @@ name [`<var>syshostname</var>']:
 		they use to locate resources and install themselves
 		are derived wholly from the X Window System
 		configuration.  Thus, in the event that the X Window
-		System moves to <tt>/usr/X11R7/</tt>,
-		<tt>/usr/X12/</tt>, or just plain <tt>/usr/</tt>, all
+		System moves to <file>/usr/X11R7/</file>,
+		<file>/usr/X12/</file>, or just plain <file>/usr/</file>, all
 		that is required for these programs is a recompile
 		against the corresponding X Window System library
 		development packages.
@@ -7092,30 +7093,30 @@ name [`<var>syshostname</var>']:
 	    </footnote>
 	    Programs that use GNU <prgn>autoconf</prgn> and
 	    <prgn>automake</prgn> are usually easily configured at
-	    compile time to use <tt>/usr/</tt> instead of
-	    <tt>/usr/X11R6/</tt>, and this should be done whenever
+	    compile time to use <file>/usr/</file> instead of
+	    <file>/usr/X11R6/</file>, and this should be done whenever
 	    possible.  Configuration files for window managers and
 	    display managers should be placed in a subdirectory of
-	    <tt>/etc/X11/</tt> corresponding to the package name due
+	    <file>/etc/X11/</file> corresponding to the package name due
 	    to these programs' tight integration with the mechanisms
 	    of the X Window System.  Application-level programs should
-	    use the <tt>/etc/</tt> directory unless otherwise mandated
+	    use the <file>/etc/</file> directory unless otherwise mandated
 	    by policy.  The installation of files into subdirectories
-	    of <tt>/usr/X11R6/include/X11/</tt> and
-	    <tt>/usr/X11R6/lib/X11/</tt> is permitted but discouraged;
+	    of <file>/usr/X11R6/include/X11/</file> and
+	    <file>/usr/X11R6/lib/X11/</file> is permitted but discouraged;
 	    package maintainers should determine if subdirectories of
-	    <tt>/usr/lib/</tt> and <tt>/usr/share/</tt> can be used
+	    <file>/usr/lib/</file> and <file>/usr/share/</file> can be used
 	    instead.  (The use of symbolic links from the
-	    <tt>X11R6</tt> directories to other FHS-compliant
+	    <file>X11R6</file> directories to other FHS-compliant
 	    locations is encouraged if the program is not easily
 	    configured to look elsewhere for its files.)  Packages
 	    must not provide or install files into the directories
-	    <tt>/usr/bin/X11/</tt>, <tt>/usr/include/X11/</tt> or
-	    <tt>/usr/lib/X11/</tt>.  Files within a package should,
+	    <file>/usr/bin/X11/</file>, <file>/usr/include/X11/</file> or
+	    <file>/usr/lib/X11/</file>.  Files within a package should,
 	    however, make reference to these directories, rather than
 	    their <tt>X11R6</tt>-named counterparts
-	    <tt>/usr/X11R6/bin/</tt>, <tt>/usr/X11R6/include/X11/</tt>
-	    and <tt>/usr/X11R6/lib/X11/</tt>, if the resources being
+	    <file>/usr/X11R6/bin/</file>, <file>/usr/X11R6/include/X11/</file>
+	    and <file>/usr/X11R6/lib/X11/</file>, if the resources being
 	    referred to have not been moved to other FHS-compliant
 	    locations.
 	  </p>
@@ -7172,7 +7173,7 @@ name [`<var>syshostname</var>']:
 
 	<p>
 	  Please refer to the `Debian Emacs Policy' (documented in
-	  <tt>debian-emacs-policy.gz</tt> of the
+	  <file>debian-emacs-policy.gz</file> of the
 	  <prgn>emacsen-common</prgn> package) for details of how to
 	  package emacs lisp programs.
 	</p>
@@ -7182,7 +7183,7 @@ name [`<var>syshostname</var>']:
 	<heading>Games</heading>
 
 	<p>
-	  The permissions on <tt>/var/games</tt> are mode 755, owner
+	  The permissions on <file>/var/games</file> are mode 755, owner
 	  <tt>root</tt> and group <tt>root</tt>.
 	</p>
 	  
@@ -7211,7 +7212,7 @@ name [`<var>syshostname</var>']:
 	  data files or other static information made unreadable so
 	  that they can only be accessed through set-id programs
 	  provided.  You should not do this in a Debian package: anyone can
-	  download the <tt>.deb</tt> file and read the data from it,
+	  download the <file>.deb</file> file and read the data from it,
 	  so there is no point making the files unreadable.  Not
 	  making the files unreadable also means that you don't have
 	  to make so many programs set-id, which reduces the risk of a
@@ -7219,10 +7220,10 @@ name [`<var>syshostname</var>']:
 
 	<p>
 	  As described in the FHS, binaries of games should be
-	  installed in the directory <tt>/usr/games</tt>. This also
+	  installed in the directory <file>/usr/games</file>. This also
 	  applies to games that use the X Window System. Manual pages
 	  for games (X and non-X games) should be installed in
-	  <tt>/usr/share/man/man6</tt>.</p>
+	  <file>/usr/share/man/man6</file>.</p>
       </sect>
     </chapt>
 
@@ -7234,7 +7235,7 @@ name [`<var>syshostname</var>']:
 
 	<p>
 	  You should install manual pages in <prgn>nroff</prgn> source
-	  form, in appropriate places under <tt>/usr/share/man</tt>.  You
+	  form, in appropriate places under <file>/usr/share/man</file>.  You
 	  should only use sections 1 to 9 (see the FHS for more
 	  details).  You must not install a preformatted `cat
 	  page'.</p>
@@ -7253,7 +7254,7 @@ name [`<var>syshostname</var>']:
 	  from the requested manual page to the <manref
 	  name="undocumented" section="7"> manual page may be
 	  provided.  This symbolic link can be created from
-	  <tt>debian/rules</tt> like this:
+	  <file>debian/rules</file> like this:
 	  <example compact="compact">
 ln -s ../man7/undocumented.7.gz \
   debian/tmp/usr/share/man/man[1-9]/<var>requested_manpage</var>.[1-9].gz
@@ -7278,15 +7279,15 @@ ln -s ../man7/undocumented.7.gz \
 
 	<p>
 	  If one manpage needs to be accessible via several names it
-	  is better to use a symbolic link than the <tt>.so</tt>
+	  is better to use a symbolic link than the <file>.so</file>
 	  feature, but there is no need to fiddle with the relevant
-	  parts of the upstream source to change from <tt>.so</tt> to
+	  parts of the upstream source to change from <file>.so</file> to
 	  symlinks: don't do it unless it's easy.  You should not
 	  create hard links in the manual page directories, nor put
-	  absolute filenames in <tt>.so</tt> directives.  The filename
-	  in a <tt>.so</tt> in a manpage should be relative to the
+	  absolute filenames in <file>.so</file> directives.  The filename
+	  in a <file>.so</file> in a manpage should be relative to the
 	  base of the manpage tree (usually
-	  <tt>/usr/share/man</tt>). If you do not create any links
+	  <file>/usr/share/man</file>). If you do not create any links
 	  (whether symlinks, hard links, or <tt>.so</tt> directives)
 	  in the filesystem to the alternate names of the manpage,
 	  then you should not rely on <prgn>man</prgn> finding your
@@ -7308,12 +7309,12 @@ ln -s ../man7/undocumented.7.gz \
 	<heading>Info documents</heading>
 
 	<p>
-	  Info documents should be installed in <tt>/usr/share/info</tt>.
+	  Info documents should be installed in <file>/usr/share/info</file>.
 	  They should be compressed with <tt>gzip -9</tt>.</p>
 
 	<p>
 	  Your package should call <prgn>install-info</prgn> to update
-	  the Info <tt>dir</tt> file in its <prgn>postinst</prgn>
+	  the Info <file>dir</file> file in its <prgn>postinst</prgn>
 	  script when called with a <tt>configure</tt> argument, for
 	  example:
 	  <example compact="compact">
@@ -7325,7 +7326,7 @@ install-info --quiet --section Development Development \
 	  It is a good idea to specify a section for the location of
 	  your program; this is done with the <tt>--section</tt>
 	  switch.  To determine which section to use, you should look
-	  at <tt>/usr/share/info/dir</tt> on your system and choose the most
+	  at <file>/usr/share/info/dir</file> on your system and choose the most
 	  relevant (or create a new section if none of the current
 	  sections are relevant).  Note that the <tt>--section</tt>
 	  flag takes two arguments; the first is a regular expression
@@ -7352,7 +7353,7 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	  Any additional documentation that comes with the package may
 	  be installed at the discretion of the package maintainer.
 	  Text documentation should be installed in the directory
-	  <tt>/usr/share/doc/<var>package</var></tt>, where
+	  <file>/usr/share/doc/<var>package</var></file>, where
 	  <var>package</var> is the name of the package, and
 	  compressed with <tt>gzip -9</tt> unless it is small.</p>
 
@@ -7365,20 +7366,20 @@ install-info --quiet --remove /usr/share/info/foobar.info
 
 	<p>
 	  It is often a good idea to put text information files
-	  (<tt>README</tt>s, changelogs, and so forth) that come with
-	  the source package in <tt>/usr/share/doc/<var>package</var></tt>
+	  (<file>README</file>s, changelogs, and so forth) that come with
+	  the source package in <file>/usr/share/doc/<var>package</var></file>
 	  in the binary package.  However, you don't need to install
 	  the instructions for building and installing the package, of
 	  course!</p>
 
 	<p>
-	  Files in <tt>/usr/share/doc</tt> should not be referenced by
+	  Files in <file>/usr/share/doc</file> should not be referenced by
 	  any program, and the system administrator should be able to
 	  delete them without causing any programs to break. Any files
 	  that are referenced by programs but are also useful as
 	  standalone documentation should be installed under
-	  <tt>/usr/share/<var>package</var>/</tt> with symbolic links
-	  from <tt>/usr/share/doc/<var>package</var>/</tt>.
+	  <file>/usr/share/<var>package</var>/</file> with symbolic links
+	  from <file>/usr/share/doc/<var>package</var>/</file>.
 	</p>
 
       </sect>
@@ -7388,12 +7389,12 @@ install-info --quiet --remove /usr/share/info/foobar.info
 
 	<p>
 	  Former Debian releases placed all additional documentation
-	  in <tt>/usr/doc/<var>package</var></tt>.  To realize a
+	  in <file>/usr/doc/<var>package</var></file>.  To realize a
 	  smooth migration to
-	  <tt>/usr/share/doc/<var>package</var></tt>, each package
-	  must maintain a symlink <tt>/usr/doc/<var>package</var></tt>
+	  <file>/usr/share/doc/<var>package</var></file>, each package
+	  must maintain a symlink <file>/usr/doc/<var>package</var></file>
 	  that points to the new location of its documentation in
-	  <tt>/usr/share/doc/<var>package</var></tt><footnote>These
+	  <file>/usr/share/doc/<var>package</var></file><footnote>These
 	      symlinks will be removed in the future, but they have to be
 	      there for compatibility reasons until all packages have
 	      moved and the policy is changed accordingly.</footnote>.
@@ -7437,7 +7438,7 @@ fi
 	  markup format that can be converted to various other formats
 	  you should if possible ship HTML versions in a binary
 	  package, in the directory
-	  <tt>/usr/share/doc/<var>appropriate-package</var></tt> or
+	  <file>/usr/share/doc/<var>appropriate-package</var></file> or
 	  its subdirectories.<footnote>
 	    <p>
 	      The rationale: The important thing here is that HTML
@@ -7459,7 +7460,7 @@ fi
 	<p>
 	  Every package must be accompanied by a verbatim copy of its
 	  copyright and distribution license in the file
-	  <tt>/usr/share/doc/<var>package</var>/copyright</tt>. This
+	  <file>/usr/share/doc/<var>package</var>/copyright</file>. This
 	  file must neither be compressed nor be a symbolic link.
 	</p>
 
@@ -7473,13 +7474,13 @@ fi
 
 	<p>
 	  A copy of the file which will be installed in
-	  <tt>/usr/share/doc/<var>package</var>/copyright</tt> should
-	  be in <tt>debian/copyright</tt> in the source package.
+	  <file>/usr/share/doc/<var>package</var>/copyright</file> should
+	  be in <file>debian/copyright</file> in the source package.
 	</p>
 
 	<p>
-	  <tt>/usr/share/doc/<var>package</var></tt> may be a symbolic
-	  link to another directory in <tt>/usr/share/doc</tt> only if
+	  <file>/usr/share/doc/<var>package</var></file> may be a symbolic
+	  link to another directory in <file>/usr/share/doc</file> only if
 	  the two packages both come from the same source and the
 	  first package Depends on the second.  These rules are
 	  important because copyrights must be extractable by
@@ -7489,18 +7490,18 @@ fi
 	<p>
 	  Packages distributed under the UCB BSD license, the Artistic
 	  license, the GNU GPL, and the GNU LGPL should refer to the
-	  files <tt>/usr/share/common-licenses/BSD</tt>,
-	  <tt>/usr/share/common-licenses/Artistic</tt>,
-	  <tt>/usr/share/common-licenses/GPL</tt>, and
-	  <tt>/usr/share/common-licenses/LGPL</tt> respectively,
+	  files <file>/usr/share/common-licenses/BSD</file>,
+	  <file>/usr/share/common-licenses/Artistic</file>,
+	  <file>/usr/share/common-licenses/GPL</file>, and
+	  <file>/usr/share/common-licenses/LGPL</file> respectively,
 	  rather than quoting them in the copyright file.
 	</p>
 
 	<p>
-	  You should not use the copyright file as a general <tt>README</tt>
+	  You should not use the copyright file as a general <file>README</file>
 	  file.  If your package has such a file it should be
-	  installed in <tt>/usr/share/doc/<var>package</var>/README</tt> or
-	  <tt>README.Debian</tt> or some other appropriate place.</p>
+	  installed in <file>/usr/share/doc/<var>package</var>/README</file> or
+	  <file>README.Debian</file> or some other appropriate place.</p>
       </sect>
 
       <sect>
@@ -7509,14 +7510,14 @@ fi
 	<p>
 	  Any examples (configurations, source files, whatever),
 	  should be installed in a directory
-	  <tt>/usr/share/doc/<var>package</var>/examples</tt>.  These
+	  <file>/usr/share/doc/<var>package</var>/examples</file>.  These
 	  files should not be referenced by any program: they're there
 	  for the benefit of the system administrator and users as
 	  documentation only.  Architecture-specific example files
 	  should be installed in a directory
-	  <tt>/usr/lib/<var>package</var>/examples</tt> with symbolic
+	  <file>/usr/lib/<var>package</var>/examples</file> with symbolic
 	  links to them from
-	  <tt>/usr/share/doc/<var>package</var>/examples</tt>, or the
+	  <file>/usr/share/doc/<var>package</var>/examples</file>, or the
 	  latter directory itself may be a symbolic link to the
 	  former.
 	</p>
@@ -7527,16 +7528,16 @@ fi
 
 	<p>
 	  Packages that are not Debian-native must contain a
-	  compressed copy of the <tt>debian/changelog</tt> file from
+	  compressed copy of the <file>debian/changelog</file> file from
 	  the Debian source tree in
-	  <tt>/usr/share/doc/<var>package</var></tt> with the name
-	  <tt>changelog.Debian.gz</tt>.  If an upstream changelog is
+	  <file>/usr/share/doc/<var>package</var></file> with the name
+	  <file>changelog.Debian.gz</file>.  If an upstream changelog is
 	  available, it should be accessible as
-	  <tt>/usr/share/doc/<var>package</var>/changelog.gz</tt> in
+	  <file>/usr/share/doc/<var>package</var>/changelog.gz</file> in
 	  plain text.  If the upstream changelog is distributed in
 	  HTML, it should be made available in that form as
-	  <tt>/usr/share/doc/<var>package</var>/changelog.html.gz</tt>
-	  and a plain text <tt>changelog.gz</tt> should be generated
+	  <file>/usr/share/doc/<var>package</var>/changelog.html.gz</file>
+	  and a plain text <file>changelog.gz</file> should be generated
 	  from it using, for example, <tt>lynx -dump -nolist</tt>.  If
 	  the upstream changelog files do not already conform to this
 	  naming convention, then this may be achieved either by
@@ -7561,10 +7562,10 @@ fi
 	  the Debian changelog and the upstream one because there is
 	  no separate upstream maintainer then that changelog should
 	  usually be installed as
-	  <tt>/usr/share/doc/<var>package</var>/changelog.gz</tt>; if
+	  <file>/usr/share/doc/<var>package</var>/changelog.gz</file>; if
 	  there is a separate upstream maintainer, but no upstream
 	  changelog, then the Debian changelog should still be called
-	  <tt>changelog.Debian.gz</tt>.</p>
+	  <file>changelog.Debian.gz</file>.</p>
       </sect>
     </chapt>
 
@@ -7614,7 +7615,7 @@ fi
 
       <p>
 	This manual describes the technical aspects of creating Debian
-	binary packages (<tt>.deb</tt> files).  It documents the
+	binary packages (<file>.deb</file> files).  It documents the
 	behaviour of the package management programs
 	<prgn>dpkg</prgn>, <prgn>dselect</prgn> et al. and the way
 	they interact with packages.</p>
@@ -7686,7 +7687,7 @@ fi
 	In the future binary packages may also contain other
 	components, such as checksums and digital signatures. The
 	format for the archive is described in full in the
-	<tt>deb(5)</tt> manpage.
+	<file>deb(5)</file> manpage.
       </p>
 	
 	
@@ -7709,7 +7710,7 @@ fi
 	  directory tree which contains all the files and directories
 	  you want to have in the filesystem data part of the package.
 	  In Debian-format source packages this directory is usually
-	  <tt>debian/tmp</tt>, relative to the top of the package's
+	  <file>debian/tmp</file>, relative to the top of the package's
 	  source tree.
 	</p>
 	  
@@ -7750,7 +7751,7 @@ fi
 	  
 	<p>
 	  This will build the package in
-	  <tt><var>directory</var>.deb</tt>.  (<prgn>dpkg</prgn> knows
+	  <file><var>directory</var>.deb</file>.  (<prgn>dpkg</prgn> knows
 	  that <tt>--build</tt> is a <prgn>dpkg-deb</prgn> option, so
 	  it invokes <prgn>dpkg-deb</prgn> with the same arguments to
 	  build the package.)
@@ -7855,7 +7856,7 @@ fi
 		controlling terminal and can interact with the user.
 		If they need to prompt for passwords, do full-screen
 		interaction or something similar you should do these
-		things to and from <tt>/dev/tty</tt>, since
+		things to and from <file>/dev/tty</file>, since
 		<prgn>dpkg</prgn> will at some point redirect scripts'
 		standard input and output so that it can log the
 		installation process.  Likewise, because these scripts
@@ -7913,7 +7914,7 @@ fi
 	  The binary package control files of packages built from
 	  Debian sources are made by a special tool,
 	  <prgn>dpkg-gencontrol</prgn>, which reads
-	  <tt>debian/control</tt> and <tt>debian/changelog</tt> to
+	  <file>debian/control</file> and <file>debian/changelog</file> to
 	  find the information it needs.  See <ref id="pkg-sourcepkg"> for
 	  more details.
 	</p>
@@ -8048,12 +8049,12 @@ fi
 	  </p>
 
 	   <p>	
-	    with the <tt><var>filename</var>.tar.gz</tt> and
-	    <tt><var>filename</var>.diff.gz</tt> (if applicable) in
+	    with the <file><var>filename</var>.tar.gz</file> and
+	    <file><var>filename</var>.diff.gz</file> (if applicable) in
 	    the same directory.  It unpacks into
-	    <tt><var>package</var>-<var>version</var></tt>, and if
+	    <file><var>package</var>-<var>version</var></file>, and if
 	    applicable
-	    <tt><var>package</var>-<var>version</var>.orig</tt>, in
+	    <file><var>package</var>-<var>version</var>.orig</file>, in
 	    the current directory.
 	  </p>
 
@@ -8065,8 +8066,8 @@ fi
 	  </p>
 
 	  <p>
-	    This will create the <tt>.dsc</tt>, <tt>.tar.gz</tt> and
-	    <tt>.diff.gz</tt> (if appropriate) in the current
+	    This will create the <file>.dsc</file>, <file>.tar.gz</file> and
+	    <file>.diff.gz</file> (if appropriate) in the current
 	    directory.  <prgn>dpkg-source</prgn> does not clean the
 	    source tree first - this must be done separately if it is
 	    required.
@@ -8085,7 +8086,7 @@ fi
 
 	  <p>	    
 	    <prgn>dpkg-buildpackage</prgn> is a script which invokes
-	    <prgn>dpkg-source</prgn>, the <tt>debian/rules</tt>
+	    <prgn>dpkg-source</prgn>, the <file>debian/rules</file>
 	    targets <tt>clean</tt>, <tt>build</tt> and
 	    <tt>binary</tt>, <prgn>dpkg-genchanges</prgn> and
 	    <prgn>pgp</prgn> to build a signed source and binary
@@ -8143,7 +8144,7 @@ fi
 	  </heading>
 
 	  <p>	    
-	    This program is usually called from <tt>debian/rules</tt>
+	    This program is usually called from <file>debian/rules</file>
 	    (see <ref id="pkg-sourcetree">) in the top level of the source
 	    tree.
 	  </p>
@@ -8172,13 +8173,13 @@ fi
 	    It is also necessary for <prgn>dpkg-gencontrol</prgn> to
 	    be run after <prgn>dpkg-shlibdeps</prgn> so that the
 	    variable substitutions created by
-	    <prgn>dpkg-shlibdeps</prgn> in <tt>debian/substvars</tt>
+	    <prgn>dpkg-shlibdeps</prgn> in <file>debian/substvars</file>
 	    are available.
 	  </p>
 
 	  <p>	    
 	    For a package which generates only one binary package, and
-	    which builds it in <tt>debian/tmp</tt> relative to the top
+	    which builds it in <file>debian/tmp</file> relative to the top
 	    of the source package, it is usually sufficient to call
 	    <prgn>dpkg-gencontrol</prgn>.
 	  </p>
@@ -8196,7 +8197,7 @@ fi
 
 	  <p>	    
 	    <prgn>dpkg-gencontrol</prgn> also adds information to the
-	    list of files in <tt>debian/files</tt>, for the benefit of
+	    list of files in <file>debian/files</file>, for the benefit of
 	    (for example) a future invocation of
 	    <prgn>dpkg-genchanges</prgn>.</p>
 	</sect1>
@@ -8208,7 +8209,7 @@ fi
 	  </heading>
 
 	  <p>	    
-	    This program is usually called from <tt>debian/rules</tt>
+	    This program is usually called from <file>debian/rules</file>
 	    just before <prgn>dpkg-gencontrol</prgn> (see <ref
 	    id="pkg-sourcetree">), in the top level of the source tree.
 	  </p>
@@ -8243,7 +8244,7 @@ fi
 	  <p>	    
 	    <prgn>dpkg-shlibdeps</prgn> does not directly cause the
 	    output control file to be modified.  Instead by default it
-	    adds to the <tt>debian/substvars</tt> file variable
+	    adds to the <file>debian/substvars</file> file variable
 	    settings like <tt>shlibs:Depends</tt>.  These variable
 	    settings must be referenced in dependency fields in the
 	    appropriate per-binary-package sections of the source
@@ -8255,11 +8256,11 @@ fi
 	    kinds of binaries, simple C binaries like <prgn>ps</prgn>
 	    which require a predependency and full-screen ncurses
 	    binaries like <prgn>top</prgn> which require only a
-	    recommendation.  It can say in its <tt>debian/rules</tt>:
+	    recommendation.  It can say in its <file>debian/rules</file>:
 	    <example>
   dpkg-shlibdeps -dPre-Depends ps -dRecommends top
 	    </example>
-	    and then in its main control file <tt>debian/control</tt>:
+	    and then in its main control file <file>debian/control</file>:
 	    <example>
   <var>...</var>
   Package: procps
@@ -8287,7 +8288,7 @@ fi
 	<sect1>
 	  <heading>
 	    <prgn>dpkg-distaddfile</prgn> - adds a file to
-	    <tt>debian/files</tt>
+	    <file>debian/files</file>
 	  </heading>
 
 	  <p>	    
@@ -8297,34 +8298,34 @@ fi
 
 	  <p>	    
 	    <prgn>dpkg-distaddfile</prgn> adds a file to the
-	    <tt>debian/files</tt> file so that it will be included in
-	    the <tt>.changes</tt> file when
+	    <file>debian/files</file> file so that it will be included in
+	    the <file>.changes</file> file when
 	    <prgn>dpkg-genchanges</prgn> is run.
 	  </p>
 
 	  <p>	    
 	    It is usually invoked from the <tt>binary</tt> target of
-	    <tt>debian/rules</tt>:
+	    <file>debian/rules</file>:
 	    <example>
   dpkg-distaddfile <var>filename</var> <var>section</var> <var>priority</var>
 	    </example>
 	    The <var>filename</var> is relative to the directory where
 	    <prgn>dpkg-genchanges</prgn> will expect to find it - this
 	    is usually the directory above the top level of the source
-	    tree.  The <tt>debian/rules</tt> target should put the
+	    tree.  The <file>debian/rules</file> target should put the
 	    file there just before or just after calling
 	    <prgn>dpkg-distaddfile</prgn>.
 	  </p>
 
 	  <p>	    
 	    The <var>section</var> and <var>priority</var> are passed
-	    unchanged into the resulting <tt>.changes</tt> file.  See
+	    unchanged into the resulting <file>.changes</file> file.  See
 	    <ref id="pkg-f-classification">.
 	  </p>
 	</sect1>
 	  
 	  
-	<sect1><heading><prgn>dpkg-genchanges</prgn> - generates a <tt>.changes</tt> upload
+	<sect1><heading><prgn>dpkg-genchanges</prgn> - generates a <file>.changes</file> upload
 	    control file
 	  </heading>
 
@@ -8338,7 +8339,7 @@ fi
 	  <p>	    
 	    It is usually called in the top level of a built source
 	    tree, and when invoked with no arguments will print out a
-	    straightforward <tt>.changes</tt> file based on the
+	    straightforward <file>.changes</file> file based on the
 	    information in the source package's changelog and control
 	    file and the binary and source packages which should have
 	    been built.
@@ -8353,8 +8354,8 @@ fi
 	  <p>	    
 	    This program is used internally by
 	    <prgn>dpkg-source</prgn> et al.  It may also occasionally
-	    be useful in <tt>debian/rules</tt> and elsewhere.  It
-	    parses a changelog, <tt>debian/changelog</tt> by default,
+	    be useful in <file>debian/rules</file> and elsewhere.  It
+	    parses a changelog, <file>debian/changelog</file> by default,
 	    and prints a control-file format representation of the
 	    information in it to standard output.
 	  </p>
@@ -8366,7 +8367,7 @@ fi
  
           <p>
             This program can be used manually, but is also invoked by
-            <tt>dpkg-buildpackage</tt> or <tt>debian/rules</tt> to set
+            <tt>dpkg-buildpackage</tt> or <file>debian/rules</file> to set
             to set environment or make variables which specify the build and
             host architecture for the package building process.
           </p>
@@ -8389,11 +8390,11 @@ fi
 
 	<p>	  
 	  The extra files created for Debian are in the subdirectory
-	  <tt>debian</tt> of the top level of the Debianised source
+	  <file>debian</file> of the top level of the Debianised source
 	  tree.  They are described below.
 	</p>
 	  
-	<sect1 id="pkg-debianrules"><heading><tt>debian/rules</tt> - the main building
+	<sect1 id="pkg-debianrules"><heading><file>debian/rules</file> - the main building
 	script
 	  </heading>
 
@@ -8410,7 +8411,7 @@ fi
 	  </p>
 
 	  <p>
-	    Since an interactive <tt>debian/rules</tt> script makes it
+	    Since an interactive <file>debian/rules</file> script makes it
 	    impossible to autocompile that package and also makes it
 	    hard for other people to reproduce the same binary
 	    package, all <strong>required targets</strong> have to be
@@ -8459,7 +8460,7 @@ fi
 		<p>		  
 		  If one or both of the targets <tt>build-arch</tt> and
 		  <tt>build-indep</tt> are not provided, then invoking
-		  <tt>debian/rules</tt> with one of the not-provided
+		  <file>debian/rules</file> with one of the not-provided
 		  targets as arguments should produce a exit status code
 		  of 2.  Usually this is provided automatically by make
 		  if the target is missing.
@@ -8619,7 +8620,7 @@ fi
 	    
 
 	  <p>	    
-	    Additional targets may exist in <tt>debian/rules</tt>,
+	    Additional targets may exist in <file>debian/rules</file>,
 	    either as published or undocumented interfaces or for the
 	    package's internal use.
 	  </p>
@@ -8670,7 +8671,7 @@ fi
 	</sect1>
 	  
 	  
-	<sect1><heading><tt>debian/control</tt>
+	<sect1><heading><file>debian/control</file>
 	  </heading>
 
 	  <p>	    
@@ -8756,7 +8757,7 @@ fi
 	    generate control files for binary packages (see below), by
 	    <prgn>dpkg-genchanges</prgn> to generate the
 	    <tt>.changes</tt> file to accompany the upload, and by
-	    <prgn>dpkg-source</prgn> when it creates the <tt>.dsc</tt>
+	    <prgn>dpkg-source</prgn> when it creates the <file>.dsc</file>
 	    source control file as part of a source archive.
 	  </p>
 
@@ -8813,7 +8814,7 @@ fi
 	
 	</sect1>
 
-	<sect1 id="pkg-dpkgchangelog"><heading><tt>debian/changelog</tt>
+	<sect1 id="pkg-dpkgchangelog"><heading><file>debian/changelog</file>
 	  </heading>
 
 	  <p>	    
@@ -8863,7 +8864,7 @@ fi
 
 	  <p>	    
 	    <var>urgency</var> is the value for the <tt>Urgency</tt>
-	    field in the <tt>.changes</tt> file for the upload.  See
+	    field in the <file>.changes</file> file for the upload.  See
 	    <ref id="pkg-f-Urgency">.  It is not possible to specify an
 	    urgency containing commas; commas are used to separate
 	    <tt><var>keyword</var>=<var>value</var></tt> settings in
@@ -8886,7 +8887,7 @@ fi
 	    necessarily be those of the usual package maintainer.
 	    They should be the details of the person doing
 	    <em>this</em> version.  The information here will be
-	    copied to the <tt>.changes</tt> file, and then later used
+	    copied to the <file>.changes</file> file, and then later used
 	    to send an acknowledgement when the upload has been
 	    installed.
 	  </p>
@@ -8944,9 +8945,9 @@ fi
 	    <p>	      
 	      If such a line exists then <tt>dpkg-parsechangelog</tt>
 	      will look for the parser as
-	      <tt>/usr/lib/dpkg/parsechangelog/<var>format-name</var></tt>
+	      <file>/usr/lib/dpkg/parsechangelog/<var>format-name</var></file>
 	      or
-	      <tt>/usr/local/lib/dpkg/parsechangelog/<var>format-name</var></tt>;
+	      <file>/usr/local/lib/dpkg/parsechangelog/<var>format-name</var></file>;
 	      it is an error for it not to find it, or for it not to
 	      be an executable program.  The default changelog format
 	      is <tt>dpkg</tt>, and a parser for it is provided with
@@ -9045,7 +9046,7 @@ fi
 	      all.</p></sect2>
 	</sect1>
 	  
-	<sect1 id="pkg-srcsubstvars"><heading><tt>debian/substvars</tt>
+	<sect1 id="pkg-srcsubstvars"><heading><file>debian/substvars</file>
 	and variable substitutions
 	  </heading>
 
@@ -9056,45 +9057,45 @@ fi
 	    their output just before writing it.  Variable
 	    substitutions have the form
 	    <tt>${<var>variable-name</var>}</tt>.  The optional file
-	    <tt>debian/substvars</tt> contains variable substitutions
+	    <file>debian/substvars</file> contains variable substitutions
 	    to be used; variables can also be set directly from
-	    <tt>debian/rules</tt> using the <tt>-V</tt> option to the
+	    <file>debian/rules</file> using the <tt>-V</tt> option to the
 	    source packaging commands, and certain predefined
 	    variables are available.
 	  </p>
 
 	  <p>	    
 	    The is usually generated and modified dynamically by
-	    <tt>debian/rules</tt> targets; in this case it must be
+	    <file>debian/rules</file> targets; in this case it must be
 	    removed by the <tt>clean</tt> target.
 	  </p>
 
 	  <p>
 	    See <manref name="dpkg-source" section="1"> for full
 	    details about source variable substitutions, including the
-	    format of <tt>debian/substvars</tt>.</p>
+	    format of <file>debian/substvars</file>.</p>
 	</sect1>
 	  
-	<sect1><heading><tt>debian/files</tt>
+	<sect1><heading><file>debian/files</file>
 	  </heading>
 
 	  <p>	    
 	    This file is not a permanent part of the source tree; it
 	    is used while building packages to record which files are
 	    being generated.  <prgn>dpkg-genchanges</prgn> uses it
-	    when it generates a <tt>.changes</tt> file.
+	    when it generates a <file>.changes</file> file.
 	  </p>
 
 	  <p>	    
 	    It should not exist in a shipped source package, and so it
 	    (and any backup files or temporary files such as
-	    <tt>files.new</tt>
+	    <file>files.new</file>
 	      <footnote>
 		<p>
-		  <tt>files.new</tt> is used as a temporary file by
+		  <file>files.new</file> is used as a temporary file by
 		  <prgn>dpkg-gencontrol</prgn> and
 		  <prgn>dpkg-distaddfile</prgn> - they write a new
-		  version of <tt>files</tt> here before renaming it,
+		  version of <file>files</file> here before renaming it,
 		  to avoid leaving a corrupted copy if an error
 		  occurs
 		</p>
@@ -9106,7 +9107,7 @@ fi
 
 	  <p>	    
 	    <prgn>dpkg-gencontrol</prgn> adds an entry to this file
-	    for the <tt>.deb</tt> file that will be created by
+	    for the <file>.deb</file> file that will be created by
 	    <prgn>dpkg-deb</prgn> from the control file that it
 	    generates, so for most packages all that needs to be done
 	    with this file is to delete it in <tt>clean</tt>.
@@ -9118,16 +9119,16 @@ fi
 	    made with <prgn>dpkg-gencontrol</prgn> then they should be
 	    placed in the parent of the package's top-level directory
 	    and <prgn>dpkg-distaddfile</prgn> should be called to add
-	    the file to the list in <tt>debian/files</tt>.</p>
+	    the file to the list in <file>debian/files</file>.</p>
 	</sect1>
 	  
-	<sect1><heading><tt>debian/tmp</tt>
+	<sect1><heading><file>debian/tmp</file>
 	  </heading>
 
 	  <p>	    
 	    This is the canonical temporary location for the
 	    construction of binary packages by the <tt>binary</tt>
-	    target.  The directory <tt>tmp</tt> serves as the root of
+	    target.  The directory <file>tmp</file> serves as the root of
 	    the filesystem tree as it is being constructed (for
 	    example, by using the package's upstream makefiles install
 	    targets and redirecting the output there), and it also
@@ -9138,12 +9139,12 @@ fi
 	  <p>	    
 	    If several binary packages are generated from the same
 	    source tree it is usual to use several
-	    <tt>debian/tmp<var>something</var></tt> directories, for
-	    example <tt>tmp-a</tt> or <tt>tmp-doc</tt>.
+	    <file>debian/tmp<var>something</var></file> directories, for
+	    example <file>tmp-a</file> or <file>tmp-doc</file>.
 	  </p>
 
 	  <p>	    
-	    Whatever <tt>tmp</tt> directories are created and used by
+	    Whatever <file>tmp</file> directories are created and used by
 	    <tt>binary</tt> must of course be removed by the
 	    <tt>clean</tt> target.</p></sect1>
       </sect>
@@ -9210,9 +9211,9 @@ fi
 	      
 	    <tag>
 	      Original source archive -
-	      <tt>
+	      <file>
 		<var>package</var>_<var>upstream-version</var>.orig.tar.gz
-	      </tt>
+	      </file>
 	    </tag> 
 
 	    <item>
@@ -9222,16 +9223,16 @@ fi
 		<prgn>tar</prgn> file containing the source code from
 		the upstream authors of the program.  The tarfile
 		unpacks into a directory
-		<tt><var>package</var>-<var>upstream-version</var>.orig</tt>,
+		<file><var>package</var>-<var>upstream-version</var>.orig</file>,
 		and does not contain files anywhere other than in
 		there or in its subdirectories.</p>
 	    </item>
 	      
 	    <tag>
 	      Debianisation diff -
-	      <tt>
+	      <file>
 		<var>package</var>_<var>upstream_version-revision</var>.diff.gz
-	      </tt>
+	      </file>
 	    </tag> 
 	    <item>
 	      
@@ -9248,14 +9249,14 @@ fi
 
 	      <p>		
 		All the directories in the diff must exist, except the
-		<tt>debian</tt> subdirectory of the top of the source
+		<file>debian</file> subdirectory of the top of the source
 		tree, which will be created by
 		<prgn>dpkg-source</prgn> if necessary when unpacking.
 	      </p>
 
 	      <p>		
 		The <prgn>dpkg-source</prgn> program will
-		automatically make the <tt>debian/rules</tt> file
+		automatically make the <file>debian/rules</file> file
 		executable (see below).</p></item>
 	  </taglist>
 	    
@@ -9266,9 +9267,9 @@ fi
 	  maintainer is the same as the upstream maintainer - the
 	  format is slightly different: then there is no diff, and the
 	  tarfile is named
-	  <tt><var>package</var>_<var>version</var>.tar.gz</tt> and
+	  <file><var>package</var>_<var>version</var>.tar.gz</file> and
 	  contains a directory
-	  <tt><var>package</var>-<var>version</var></tt>.
+	  <file><var>package</var>-<var>version</var></file>.
 	</p>
       </sect>
 	
@@ -9283,16 +9284,16 @@ fi
 	<enumlist compact="compact">
 	  <item> 
 	    <p>
-	      Untar the tarfile, which will create a <tt>.orig</tt>
+	      Untar the tarfile, which will create a <file>.orig</file>
 	      directory.</p>
 	  </item>
 	  <item>
-	    <p>Rename the <tt>.orig</tt> directory to
-	      <tt><var>package</var>-<var>version</var></tt>.</p>
+	    <p>Rename the <file>.orig</file> directory to
+	      <file><var>package</var>-<var>version</var></file>.</p>
 	  </item>
 	    <item>
 	    <p>
-	      Create the subdirectory <tt>debian</tt> at the top of
+	      Create the subdirectory <file>debian</file> at the top of
 	      the source tree.</p>
 	  </item>
 	  <item><p>Apply the diff using <tt>patch -p0</tt>.</p>
@@ -9306,7 +9307,7 @@ fi
 	  It is not possible to generate a valid Debian source archive
 	  without using <prgn>dpkg-source</prgn>.  In particular,
 	  attempting to use <prgn>diff</prgn> directly to generate the
-	  <tt>.diff.gz</tt> file will not work.
+	  <file>.diff.gz</file> file will not work.
 	</p>
 	  
 	<sect1><heading>Restrictions on objects in source packages
@@ -9340,7 +9341,7 @@ fi
 	    The source packaging tools manage the changes between the
 	    original and Debianised source using <prgn>diff</prgn> and
 	    <prgn>patch</prgn>.  Turning the original source tree as
-	    included in the <tt>.orig.tar.gz</tt> into the debianised
+	    included in the <file>.orig.tar.gz</file> into the debianised
 	    source must not involve any changes which cannot be
 	    handled by these tools.  Problematic changes which cause
 	    <prgn>dpkg-source</prgn> to halt with an error when
@@ -9350,7 +9351,7 @@ fi
 	      </item>
 	      <item><p>Changing the targets of symbolic links.</p>
 	      </item>
-	      <item><p>Creating directories, other than <tt>debian</tt>.</p>
+	      <item><p>Creating directories, other than <file>debian</file>.</p>
 	      </item>
 	      <item><p>Changes to the contents of binary files.</p></item>
 	    </list> Changes which cause <prgn>dpkg-source</prgn> to
@@ -9381,16 +9382,16 @@ fi
 	    <prgn>dpkg-source</prgn>, are:
 	    <list compact="compact">
 	      <item><p>Changing the permissions of files (other than
-		  <tt>debian/rules</tt>) and directories.</p></item>
+		  <file>debian/rules</file>) and directories.</p></item>
 	    </list>
 	  </p>
 
 	  <p>	    
-	    The <tt>debian</tt> directory and <tt>debian/rules</tt>
+	    The <file>debian</file> directory and <file>debian/rules</file>
 	    are handled specially by <prgn>dpkg-source</prgn> - before
-	    applying the changes it will create the <tt>debian</tt>
+	    applying the changes it will create the <file>debian</file>
 	    directory, and afterwards it will make
-	    <tt>debian/rules</tt> world-exectuable.
+	    <file>debian/rules</file> world-exectuable.
 	  </p>
 	</sect1>
       </sect>
@@ -9403,7 +9404,7 @@ fi
       <p>	
 	Many of the tools in the <prgn>dpkg</prgn> suite manipulate
 	data in a common format, known as control files.  Binary and
-	source packages have control data as do the <tt>.changes</tt>
+	source packages have control data as do the <file>.changes</file>
 	files which control the installation of uploaded files, and
 	<prgn>dpkg</prgn>'s internal databases are in a similar
 	format.
@@ -9525,9 +9526,9 @@ fi
 	  </p>
 
 	  <p>	    
-	    In the main <tt>debian/control</tt> file in the source
+	    In the main <file>debian/control</file> file in the source
 	    package, or in the source package control file
-	    <tt>.dsc</tt>, a list of architectures (separated by
+	    <file>.dsc</file>, a list of architectures (separated by
 	    spaces) is also allowed, as is the special value
 	    <tt>any</tt>.  A list indicates that the source will build
 	    an architecture-dependent package, and will only work
@@ -9540,7 +9541,7 @@ fi
 	  </p>
 
 	  <p>	    
-	    In a <tt>.changes</tt> file the <tt>Architecture</tt>
+	    In a <file>.changes</file> file the <tt>Architecture</tt>
 	    field lists the architecture(s) of the package(s)
 	    currently being uploaded.  This will be a list; if the
 	    source for the package is being uploaded too the special
@@ -9573,7 +9574,7 @@ fi
 	  </p>
 
 	  <p>	    
-	    In a <tt>.changes</tt> file or parsed changelog data this
+	    In a <file>.changes</file> file or parsed changelog data this
 	    contains the name and email address of the person
 	    responsible for the particular version in question - this
 	    may not be the package's usual maintainer.
@@ -9594,14 +9595,14 @@ fi
 
 	  <p>	    
 	    In a main source control information or a
-	    <tt>.changes</tt> or <tt>.dsc</tt> file or parsed
+	    <file>.changes</file> or <file>.dsc</file> file or parsed
 	    changelog data this may contain only the name of the
 	    source package.
 	  </p>
 
 	  <p>	    
 	    In the control file of a binary package (or in a
-	    <tt>Packages</tt> file) it may be followed by a version
+	    <file>Packages</file> file) it may be followed by a version
 	    number in parentheses.
 	    <footnote>
 	      <p>
@@ -9640,7 +9641,7 @@ fi
 	  </p>
 
 	  <p>	    
-	    In a <tt>.changes</tt> file it contains a summary of the
+	    In a <file>.changes</file> file it contains a summary of the
 	    descriptions for the packages being uploaded.  The part of
 	    the field before the first newline is empty; thereafter
 	    each line has the name of a binary package and the summary
@@ -9654,7 +9655,7 @@ fi
 	  <p>	    
 	    This is a boolean field which may occur only in the
 	    control file of a binary package (or in the
-	    <tt>Packages</tt> file) or in a per-package fields
+	    <file>Packages</file> file) or in a per-package fields
 	    paragraph of a main source control data file.
 	  </p>
 
@@ -9679,9 +9680,9 @@ fi
 	  </p>
 
 	  <p>	    
-	    When they appear in the <tt>debian/control</tt> file these
+	    When they appear in the <file>debian/control</file> file these
 	    fields give values for the section and priority subfields
-	    of the <tt>Files</tt> field of the <tt>.changes</tt> file,
+	    of the <tt>Files</tt> field of the <file>.changes</file> file,
 	    and give defaults for the section and priority of the
 	    binary packages.
 	  </p>
@@ -9690,8 +9691,8 @@ fi
 	    The section and priority are represented, though not as
 	    separate fields, in the information for each file in the
 	    <qref id="pkg-f-Files"><tt>-File</tt></qref>field of a
-	    <tt>.changes</tt> file.  The section value in a
-	    <tt>.changes</tt> file is used to decide where to install
+	    <file>.changes</file> file.  The section value in a
+	    <file>.changes</file> file is used to decide where to install
 	    a package in the FTP archive.
 	  </p>
 
@@ -9707,10 +9708,10 @@ fi
 	  <p>	    
 	    These fields may appear in binary package control files,
 	    in which case they provide a default value in case the
-	    <tt>Packages</tt> files are missing the information.
+	    <file>Packages</file> files are missing the information.
 	    <prgn>dpkg</prgn> and <prgn>dselect</prgn> will only use
-	    the value from a <tt>.deb</tt> file if they have no other
-	    information; a value listed in a <tt>Packages</tt> file
+	    the value from a <file>.deb</file> file if they have no other
+	    information; a value listed in a <file>Packages</file> file
 	    will always take precedence.  By default
 	    <prgn>dpkg-gencontrol</prgn> does not include the section
 	    and priority in the control file of a binary package - use
@@ -9726,7 +9727,7 @@ fi
 	  </p>
 
 	  <p>	    
-	    When it appears in the <tt>.dsc</tt> file it is the list
+	    When it appears in the <file>.dsc</file> file it is the list
 	    of binary packages which a source package can produce.  It
 	    does not necessarily produce all of these binary packages
 	    for every architecture.  The source control file doesn't
@@ -9735,7 +9736,7 @@ fi
 	  </p>
 
 	  <p>	    
-	    When it appears in a <tt>.changes</tt> file it lists the
+	    When it appears in a <file>.changes</file> file it lists the
 	    names of the binary packages actually being uploaded.
 	  </p>
 
@@ -9747,7 +9748,7 @@ fi
 		A space after each comma is conventional.
 	      </p>
 	    </footnote> Currently the packages must be separated using
-	    only spaces in the <tt>.changes</tt> file.</p>
+	    only spaces in the <file>.changes</file> file.</p>
 	</sect1>
 	  
 	<sect1 id="pkg-f-Installed-Size"><heading><tt>Installed-Size</tt>
@@ -9755,7 +9756,7 @@ fi
 
 	  <p>	    
 	    This field appears in the control files of binary
-	    packages, and in the <tt>Packages</tt> files.  It gives
+	    packages, and in the <file>Packages</file> files.  It gives
 	    the total amount of disk space required to install the
 	    named package.
 	  </p>
@@ -9779,7 +9780,7 @@ fi
 	  </p>
 
 	  <p>	    
-	    In the <tt>.dsc</tt> (Debian source control) file each
+	    In the <file>.dsc</file> (Debian source control) file each
 	    line contains the MD5 checksum, size and filename of the
 	    tarfile and (if applicable) diff file which make up the
 	    remainder of the source package.
@@ -9793,7 +9794,7 @@ fi
 	  </p>
 
 	  <p>	    
-	    In the <tt>.changes</tt> file this contains one line per
+	    In the <file>.changes</file> file this contains one line per
 	    file being uploaded.  Each line contains the MD5 checksum,
 	    size, section and priority and the filename.  The section
 	    and priority are the values of the corresponding fields in
@@ -9817,12 +9818,12 @@ fi
 	    no new original source archive is being distributed the
 	    <tt>.dsc</tt> must still contain the <tt>Files</tt> field
 	    entry for the original source archive
-	    <tt><var>package</var>-<var>upstream-version</var>.orig.tar.gz</tt>,
-	    but the <tt>.changes</tt> file should leave it out.  In
+	    <file><var>package</var>-<var>upstream-version</var>.orig.tar.gz</file>,
+	    but the <file>.changes</file> file should leave it out.  In
 	    this case the original source archive on the distribution
 	    site must match exactly, byte-for-byte, the original
 	    source archive which was used to generate the
-	    <tt>.dsc</tt> file and diff which are being uploaded.</p>
+	    <file>.dsc</file> file and diff which are being uploaded.</p>
 	</sect1>
 	  
 	  
@@ -9850,7 +9851,7 @@ fi
 	  </heading>
 
 	  <p>	    
-	    In a <tt>.changes</tt> file or parsed changelog output
+	    In a <file>.changes</file> file or parsed changelog output
 	    this contains the (space-separated) name(s) of the
 	    distribution(s) where this version of the package should
 	    be or was installed.  Distribution names follow the rules
@@ -9955,7 +9956,7 @@ fi
 	  </p>
 
 	  <p>	    
-	    This field appears in the <tt>.changes</tt> file and in
+	    This field appears in the <file>.changes</file> file and in
 	    parsed changelogs; its value appears as the value of the
 	    <tt>urgency</tt> attribute in a <prgn>dpkg</prgn>-style
 	    changelog (see <ref id="pkg-dpkgchangelog">).
@@ -9977,7 +9978,7 @@ fi
 	  </heading>
 
 	  <p>	    
-	    This field occurs in <tt>.changes</tt> files, and
+	    This field occurs in <file>.changes</file> files, and
 	    specifies a format revision for the file.  The format
 	    described here is version <tt>1.5</tt>.  The syntax of the
 	    format value is the same as that of a package version
@@ -9989,7 +9990,7 @@ fi
 	  </heading>
 
 	  <p>	    
-	    In a <tt>.changes</tt> file or parsed changelog this field
+	    In a <file>.changes</file> file or parsed changelog this field
 	    contains the human-readable changes data, describing the
 	    differences between the last version and the current one.
 	  </p>
@@ -10032,7 +10033,7 @@ fi
 	  </heading>
 
 	  <p>	    
-	    These fields in <tt>Packages</tt> files give the size (in
+	    These fields in <file>Packages</file> files give the size (in
 	    bytes, expressed in decimal) and MD5 checksum of the
 	    file(s) which make(s) up a binary package in the
 	    distribution.  If the package is split into several parts
@@ -10250,8 +10251,8 @@ fi
 	<p>	  
 	  If you do go down this route it's probably a good idea to
 	  make the program that generates the configuration file(s) a
-	  separate program in <tt>/usr/sbin</tt>, by convention called
-	  <tt><var>package</var>config</tt> and then run that if
+	  separate program in <file>/usr/sbin</file>, by convention called
+	  <file><var>package</var>config</file> and then run that if
 	  appropriate from the post-installation script.  The
 	  <tt><var>package</var>config</tt> program should not
 	  unquestioningly overwrite an existing configuration - if its
@@ -10339,7 +10340,7 @@ fi
 	call <prgn>dpkg-divert</prgn> in its preinst to add the
 	diversion and rename the existing file.  For example,
 	supposing that a <prgn>smailwrapper</prgn> package wishes to
-	install a wrapper around <tt>/usr/sbin/smail</tt>:
+	install a wrapper around <file>/usr/sbin/smail</file>:
 	<example>
   if [ install = "$1" -o upgrade = "$1" ]; then
      dpkg-divert --package smailwrapper --add --rename \
@@ -10349,7 +10350,7 @@ fi
 	doesn't try to add the diversion again when
 	<prgn>smailwrapper</prgn> is upgraded.  The <tt>--package
 	smailwrapper</tt> ensures that <prgn>smailwrapper</prgn>'s
-	copy of <tt>/usr/sbin/smail</tt> can bypass the diversion and
+	copy of <file>/usr/sbin/smail</file> can bypass the diversion and
 	get installed as the true version.
       </p>
 

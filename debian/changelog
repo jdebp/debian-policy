@@ -4,6 +4,11 @@ debian-policy (3.5.6.2) unstable; urgency=low
   * No longer use local debiandoc stuff (it's been fixed upstream)
   * Added table of contents (index.html) to policy-process.sgml, fixing
     the new error reported to bug #137521                    closes: Bug#137521
+  * Fixed a couple of typos                                  closes: Bug#139832
+  * Ran through the policy docukent looking for long instances pf text in
+    the <tt> tag, and changed it to <file> where appropriate. This is
+    since the <file> tag can handle line breaking, but the <t> flag does
+    not.                                                     closes: Bug#139820
 
  --
 
