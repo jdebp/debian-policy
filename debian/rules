@@ -92,7 +92,7 @@ all build: stamp-build
 stamp-build:
 	$(checkdir)
 	-test -f stamp-configure || $(MAKE) -f debian/rules configure
-	set -e; \
+	@set -ex; \
 	for file in $(SGML_FILES); do \
 	  nsgmls -gues $$file.sgml; \
 	  debiandoc2html $$file.sgml; \
@@ -174,11 +174,11 @@ stamp-policy:  build
 	GZIP=-9 cd debconf_spec && \
 	  tar -zcf ../debconf_specification.xml.tar.gz *
 	$(install_file)	    debconf_specification.xml.tar.gz $(DOCDIR)/
-	set -e; \
+	@set -ex; \
 	for file in $(DESC_FILES); do \
 	  $(install_file) $$file.desc $(LIBDIR)/$$file; \
 	done
-	set -e; \
+	@set -ex; \
 	for file in $(SGML_FILES); do \
 	  tar -C $(DOCDIR) -zxf $$file.html.tar.gz; \
 	done
