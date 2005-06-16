@@ -3965,19 +3965,11 @@ Replaces: mail-transport-agent
 	<heading>Dependencies between the packages of the same library</heading>
 
 	<p>
-	  Typically the development version should also have an exact
+	  Typically the development version should have an exact
 	  version dependency on the runtime library, to make sure that
 	  compilation and linking happens correctly.  The
 	  <tt>${Source-Version}</tt> substitution variable can be
 	  useful for this purpose.
-	</p>
-
-	<p>
-	  Packages which use the shared library should have a
-	  dependency on the name of the shared library package,
-	  <file><var>libraryname</var><var>soversion</var></file>.  When
-	  the soname changes you can have both versions of the library
-	  installed while migrating from the old library to the new.
 	</p>
       </sect>
 
