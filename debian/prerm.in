@@ -81,7 +81,12 @@ esac
 
 
 if [ -x /usr/sbin/install-docs ]; then
-    /usr/sbin/install-docs -r $package_name
+    /usr/sbin/install-docs -r debian-policy
+    /usr/sbin/install-docs -r debian-menu-policy
+    /usr/sbin/install-docs -r debian-mime-policy
+    /usr/sbin/install-docs -r debian-perl-policy
+    /usr/sbin/install-docs -r debian-policy-process
+    /usr/sbin/install-docs -r debconf-spec
 fi
 
 exit 0

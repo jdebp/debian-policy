@@ -128,7 +128,12 @@ EOF
 
 
     if [ -x /usr/sbin/install-docs ]; then
-	/usr/sbin/install-docs -i /usr/share/doc-base/$PACKAGE
+	/usr/sbin/install-docs -i /usr/share/doc-base/debian-policy
+	/usr/sbin/install-docs -i /usr/share/doc-base/debian-menu-policy
+	/usr/sbin/install-docs -i /usr/share/doc-base/debian-mime-policy
+	/usr/sbin/install-docs -i /usr/share/doc-base/debian-perl-policy
+	/usr/sbin/install-docs -i /usr/share/doc-base/debian-policy-process
+	/usr/sbin/install-docs -i /usr/share/doc-base/debconf-spec
     fi
 
     # There are three sub-cases:

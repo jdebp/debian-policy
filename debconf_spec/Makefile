@@ -9,4 +9,4 @@ all: debconf_specification.txt debconf_specification.html
 	links -dump $< | perl -pe 's/[\r\0]//g' > $@
 
 clean:
-	rm -f *.css *.html *.txt
+	rm -f *.css *.html *.txt *.txt.gz
