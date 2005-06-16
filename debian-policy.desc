@@ -1,11 +1,12 @@
 Document: debian-policy
 Title: Debian Policy Manual
-Author: Ian Jackson and Christian Schwarz
+Author: The Debian Policy Mailing list
 Abstract: This manual describes the policy requirements for the Debian
  GNU/Linux distribution. This includes the structure and contents of
  the Debian archive, several design issues of the operating system, as
  well as technical requirements that each package must satisfy to be
- included in the distribution.
+ included in the distribution. Also included are ancilliary documents
+ and sub policy documentation.  
 Section: Apps/Programming
 
 Format: debiandoc-sgml

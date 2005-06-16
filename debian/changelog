@@ -2,6 +2,9 @@ debian-policy (2.5.1.90) unstable; urgency=low
 
   * This is a test version of the policy package, and shall not be
     officially uploaded.
+  * Merged in the packaging manual sources (we still have two separate
+    .deb packages)
+  * Multiple minor packaging tweaks.
   * [ACCEPTED 1998/05/01] Policy clarification about Standards-Version
     Added the clarifying paragraph (and the rationale in a footnote). 
     closes: Bug#21969
@@ -20,7 +23,7 @@ debian-policy (2.5.1.90) unstable; urgency=low
     Changed all references to the proper FHS versions. This was a first
     scan, so some references may still need to be changed. closes: Bug#37345
 
- -- Manoj Srivastava <srivasta@debian.org>  Tue, 27 Apr 1999 11:10:29 -0500
+ -- Manoj Srivastava <phil@hands.com>  Tue, 29 Jun 1999 14:57:47 -0500
 
 debian-policy (2.5.1.0) unstable; urgency=low
 

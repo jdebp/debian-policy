@@ -15,3 +15,15 @@ Description: Debian Policy Manual and related documents
     - Authoritative list of virtual package names
     - Paper about libc6 migration
     - Policy checklist for upgrading your packages
+
+Package: packaging-manual
+Architecture: all
+Suggests: doc-base, dpkg (>= 1.4.0.23)
+Description: Debian Packaging Manual
+ This package installs the Debian Packaging Manual. 
+ .
+ This manual describes the technical aspects of creating Debian binary
+ and source packages.  It also documents the interface between
+ dselect and its access method scripts.  It does not deal with
+ the Debian Project policy requirements, and it assumes familiarity
+ with dpkg's functions from the system administrator's perspective.
