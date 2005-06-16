@@ -1,0 +1,247 @@
+<!doctype debiandoc public "-//DebianDoc//DTD DebianDoc//EN">
+<debiandoc>
+  <book>
+    <titlepag>
+      <title>PROPOSAL: A mechanism for updating Debian Policy documents</title>
+      <author>
+	<name>Manoj Srivastava</name>
+	<email>srivasta@debian.org</email>
+      </author>
+      <version>$Id: proposal.sgml,v 1.1 1998/08/07 19:22:40 srivasta Exp $</version>
+      <copyright>
+	<copyrightsummary>
+	  This document is copyright 1998 Manoj Srivastava. Anyone is
+	  given permission to distribute this under the Freee software
+	  foundations General Public Licence, Version 2, or any later
+	  version, at your convenience.
+	</copyrightsummary>
+      </copyright>
+    </titlepag>
+    <chapt>
+      <heading>Introduction, and adminstrivia</heading>
+      <p>
+	This is a proposal for creating a process through which the
+	Debian Policy documents are to be maintained and updated, it
+	sets forth the processes, and also calls for the creation of a
+	team responsible for the task of updating policy, however,
+	this team does not act as author or editor of Policy it self,
+	that is the task of the Debian Policy mailing list.
+      </p>
+      <sect>
+	<heading>Deadline for tabling the discussion</heading>
+	<p>	  
+	  I decided to use the suggested "usual" period of two weeks
+	  for this proposal. Therefore, this proposal needs to be
+	  acted upon before August the 22nd, 1998.
+	</p>
+      </sect>
+      <sect>
+	<heading>People Seconding the proposal</heading>
+	<p>	
+	  Well, since Michael Alan Dorman and Richard Braakman have
+	  volunteered to serve on the policy maintainer team, I think
+	  they have no objection to being seconds.<enumlist>
+	    <item>
+	      <p>Michael Alan Dorman <email>mdorman@debian.org</email></p>
+	    </item>
+	    <item>
+	      <p>Richard Braakman <email>dark@xs4all.nl</email></p>
+	    </item>
+	  </enumlist>
+	</p>
+      </sect>
+    </chapt>
+    <chapt>
+      <heading>Archives and personnel</heading>
+      <sect>
+	<heading>The policy maintainers team</heading>
+	<p>
+	  I propose we select/install a group of people who have
+	  access to the CVS repository for the Policy documents;
+	  however, this set of people behave more like maintainers
+	  rather than authors/editors. This group does not create
+	  policy, not does it excersice editorial control, Policy is
+	  decided "upstream".  The group that decides on policy should
+	  be the group of developers on the Debian-policy mailing
+	  lists, which is how it was always done; so the group of
+	  policy maintainers have no real power over policy. Since
+	  they would have access to the CVS repository I guess it is
+	  desirable that the people so appointed be ``mature'',
+	  however that is determined.
+	</p>
+	<p>
+	  I think that since the policy maintainers have no special
+	  powers, there is no need to restrict their participation in
+	  the discussion. We do need to have at least 4-5 people on
+	  the job, preferably closer to 8, so that policy does not
+	  languish when any maintainer goes missing (we do need
+	  vacations, you know, once in a while), and since little
+	  creative power is vested in the maintainers, we do not need
+	  a central control. And the archives of the list can be used
+	  as a record of the action decided upon even if all
+	  maintainers are away at some time.
+	</p>
+      </sect>
+      <sect>
+	<heading>The CVS Repository</heading>
+	<p>
+	  There should be a repository set up on
+	  <tt>cvs.debian.org</tt> for this, with the people on the
+	  policy maintainer team having write access to it. 
+	</p>
+	<p>
+	  The repository should contain all the packages under the
+	  control of the team, and also should have anrea where the
+	  weekly status document is kep; once the document is under
+	  CVS, it should be a simple matter to script exporting the
+	  document out to a place where the web server can serve it,
+	  as well as create the weekly posting to
+	  <tt>debian-poilcy</tt> and <tt>debian-devel</tt> mailing
+	  lists. This document could also be kept under CVS then.</p>
+      </sect>
+    </chapt>
+    <chapt>
+      <heading>Procedures and processes</heading>
+      <sect>
+	<heading>Proposing amendments to the Policy</heading>
+	<p>
+	  Unlike before, when the policy editor gathered in issues
+	  which, in his view, were candidates for inclusion in policy,
+	  I propose that issues are brought up in the policy group,
+	  and, if the initial discussion warrants it, any developer,
+	  with at least two(?) seconds can formally propose as a
+	  policy amendment.
+	</p>
+	<p>
+	  The rationale behind the requirement for senconders is that
+	  it would<enumlist>
+	    <item>
+	      <p>
+		Encourage people to test the waters on the policy
+		mailing list, and this could help create an proposal
+		with a better chance of success</p>
+	    </item>
+	    <item>
+	      <p>
+		Prevent frivoulous or ill concieved proposals from
+		wasting peoples time (If the proposal does not even
+		convince two developers, surely this is not ready for
+		inclusion in Policy?)</p>
+	    </item>
+	  </enumlist>
+	</p>
+	<sect1>
+	  <heading>Notifications and status reports</heading>
+	  <p>
+	    Periodically, possibly weekly, a summary of current policy
+	    topics can be posted to the Developers mailing list, as
+	    well as to the policy mailing list. The list of topics
+	    should be posted on the web as well.</p>
+	  <p>
+	    If the current topic list is kept in CVS, then a simple
+	    script could handle both the tasks, and all the
+	    maintainers need do is keep the CVS repository up do
+	    date. If the Bug tracking system is used, this may be
+	    semi-automated too.</p>
+	  <p>
+	    Amendments to policy that have been accepted by the policy
+	    group shall also be part of the notification.</p>
+	</sect1>
+      </sect>
+      <sect>
+	<heading>Deadlines for tabling discussions</heading>
+	<p>
+	  It has been observed in the past that discussions on the
+	  mailing list devolve into endless arguments. In order to get
+	  away from the debating society aspect, at the time of the
+	  formal proposal,a deadline can be set (probably by the
+	  proposer, since they are likely to have an idea how
+	  contentious the discussion is likely to be) for ending
+	  discussion on the issue, which should rarely be less than 10
+	  days, and typically two weeks or so. I hope that a hard
+	  minimum period need not be set, and that the proposers would
+	  be reasonable, and not set too short or too long a time for
+	  discussion.
+	</p>
+	<p>
+	  If a consensus is reached by the policy group, then the
+	  maintianers shall enter the amendment into the Policy
+	  document, announce the inclusion in the periodic report, and
+	  release a new version.</p>
+	<sect1>
+	  <heading>Extensions to deadlines?</heading>
+	  <p>
+	    If a deadline is approaching, and the discussion s almost
+	    concluded (in other words, it has not reached an impasse),
+	    and the consensus on the policy group is that an extension
+	    of a week would resolve the issues better, a one-time
+	    extention could be granted. Care should be taken in
+	    exercising this option, since abusing this would merely
+	    postpone closures. </p>
+	</sect1>
+      </sect>
+      <sect>
+	<heading>Deadlock resolution</heading>
+	<p>
+	  Formerly, arriving at a consensus was the only way to amend
+	  Policy. That worked well when the Project was small,
+	  however, we have aparently grown out of that phase, and even
+	  the policy mailing list has grown more fractious than in the
+	  days of yore. We now need a formal process of deadlock
+	  resolution, and we need to recognize that on non-technical
+	  issues a small minority should not always hold up deployment
+	  of policy.</p>
+	<p>
+	  If a consensus is not reached, (or if someone submits a
+	  formal objection to the proposal) and the end of the
+	  discussion period is near, then one is faced with a dilemma.
+	</p>
+	<sect1>
+	  <heading>Impasse on technical issues</heading>
+	  <p>
+	    On technical issues, popularity is a bad way of arriving
+	    at conclusions. Hopefully, the policy group would arrive
+	    at a consensus on their own. If that fails to happen, or
+	    if there is a formal objection raised on the issue, and
+	    the issue is a technical one, then the technical committee
+	    may be consulted. This should be a rare occurrence. </p>
+	</sect1>
+	<sect1>
+	  <heading>Non technical and subjective disagreements</heading>
+	  <p>
+	    However, if the issue is non-technical and subjective,
+	    then a vote of the developers may be taken (USENET voting
+	    software should be available all over the place, right?);
+	    and a super-majority of 75% is needed to carry the
+	    amendment through. Failing the super-majority, the issue
+	    should be shelved. It may be re-submitted as a a fresh
+	    proposal after a suitable cooling off period (which should
+	    be no less than a month, typically three months being
+	    desirable, unless there are significant new
+	    developments). (Demote bug, if the BTS is being used)</p>
+	</sect1>
+      </sect>
+      <sect>
+	<heading>Using the bug tracking system</heading>
+	<p>
+	  A fascinating sub proposal has been that we use the bug
+	  tracking system to track policy amendments in progress. If
+	  this is used, we may intiate discussions in the policy group
+	  by filing wish-list bugs (note: this should be open to
+	  anyone at all)</p>
+	<p>
+	  Formal proposals should be treated as normal bugs, and after
+	  the discussion period are either closed (when incorporated
+	  in policy, or roundly rejected as undesirable), or are
+	  demoted to (forwarded?) wish list bugs. I like them being
+	  demoted to forwarded status, since the upstream authors (the
+	  policy mailing list) has already had a stab at them, and
+	  they have been shelved until furhter notice. </p>
+	<p>
+	  I think that the Policy is critical enough for the project
+	  that any real flaws in the policy be automatically be deemed
+	  important bugs, unless they affect release management.</p>
+      </sect>
+    </chapt>
+  </book>
+</debiandoc>
