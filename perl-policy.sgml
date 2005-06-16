@@ -358,8 +358,9 @@ $(MAKE) install PREFIX=$(CURDIR)/debian/tmp/usr
 	  <p>
 	    Packages built with <prgn>debhelper</prgn> may use <manref
 	    name="dh_perl" section=1> to generate this substitution
-	    automatically.  Additionally requires a
-	    <tt>Build-Depends</tt> on <tt>debhelper (>= 3.0.18)</tt>.
+	    automatically.  This additionally requires a versioned
+	    <tt>Build-Depends</tt> (or <tt>Build-Depends-Indep</tt>)
+	    on <tt>debhelper (>= 3.0.18)</tt>.
 	  </p>
 	</sect1>
       </sect>

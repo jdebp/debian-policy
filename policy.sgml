@@ -578,7 +578,7 @@
 	  <p>
 	    Every package must be accompanied by a verbatim copy of
 	    its copyright and distribution license in the file
-	    <tt>/usr/share/doc/<em>&lt;package-name&gt;</em>/copyright</tt>
+	    <tt>/usr/share/doc/<em>&lt;package&gt;</em>/copyright</tt>
 	    (see <ref id="copyrightfile"> for further details).
 	  </p>
 	  <p>
@@ -3632,75 +3632,87 @@ Replaces: mail-transport-agent
       </p>
 
 
-    <chapt id="sharedlibs"><heading>Shared libraries
-      </heading>
+    <chapt id="sharedlibs"><heading>Shared libraries</heading>
 
       <p>
 	Packages containing shared libraries must be constructed with
 	a little care to make sure that the shared library is always
 	available.  This is especially important for packages whose
-	shared libraries are vitally important, such as the libc.
+	shared libraries are vitally important, such as the C library
+	(currently <tt>libc6</tt>).
       </p>
 
       <p>
-	Firstly, your package should install the shared libraries
-	under their normal names.  For example, the
-	<prgn>libgdbm1</prgn> package should install
-	<tt>libgdbm.so.1.7.3</tt> as
+	Firstly, the package should install the shared libraries under
+	their normal names.  For example, the <tt>libgdbmg1</tt>
+	package should install <tt>libgdbm.so.1.7.3</tt> as
 	<tt>/usr/lib/libgdbm.so.1.7.3</tt>.  The files should not be
-	renamed or re-linked by any prerm or postrm scripts;
-	<prgn>dpkg</prgn> will take care of renaming things safely
-	without affecting running programs, and attempts to interfere
-	with this are likely to lead to problems.
+	renamed or re-linked by any <prgn>prerm</prgn> or
+	<prgn>postrm</prgn> scripts; <prgn>dpkg</prgn> will take care
+	of renaming things safely without affecting running programs,
+	and attempts to interfere with this are likely to lead to
+	problems.
       </p>
 
       <p>
-	Secondly, your package should include the symlink that
+	Secondly, the package should include the symbolic link that
 	<prgn>ldconfig</prgn> would create for the shared libraries.
-	For example, the <prgn>libgdbm1</prgn> package should include
-	a symlink from <tt>/usr/lib/libgdbm.so.1</tt> to
-	<tt>libgdbm.so.1.7.3</tt>.  This is needed so that
-	<prgn>ld.so</prgn> can find the library in between the time
-	<prgn>dpkg</prgn> installs it and <prgn>ldconfig</prgn> is run
-	in the <prgn>postinst</prgn> script.  Furthermore, older
-	versions of the package management system required the library
-	must be placed before the symlink pointing to it in the
-	<tt>.deb</tt> file.  This is so that by the time
-	<prgn>dpkg</prgn> comes to install the symlink (overwriting
-	the previous symlink pointing at an older version of the
-	library) the new shared library is already in place.
-	Unfortunately, this was not not always possible, since it
-	highly depends on the behavior of the file system. Some
-	file systems (such as reiserfs) will reorder the files so it
-	doesn't matter in what order you create them. Starting with
-	release <tt>1.7.0</tt> <prgn>dpkg</prgn> will reorder the
-	files itself when building a package.
+	For example, the <prgn>libgdbmg1</prgn> package should include
+	a symbolic link from <tt>/usr/lib/libgdbm.so.1</tt> to
+	<tt>libgdbm.so.1.7.3</tt>.  This is needed so that the dynamic
+	linker (for example <prgn>ld.so</prgn> or
+	<prgn>ld-linux.so.*</prgn>) can find the library between the
+	time that <prgn>dpkg</prgn> installs it and the time that
+	<prgn>ldconfig</prgn> is run in the <prgn>postinst</prgn>
+	script.
+	<footnote>
+	  <p>
+	    The package management system requires the library to be
+	    placed before the symbolic link pointing to it in the
+	    <tt>.deb</tt> file.  This is so that when
+	    <prgn>dpkg</prgn> comes to install the symlink
+	    (overwriting the previous symlink pointing at an older
+	    version of the library), the new shared library is already
+	    in place.  In the past, this was achieved by creating the
+	    library in the temporary packaging directory before
+	    creating the symlink.  Unfortunately, this was not always
+	    effective, since the building of the tar file in the
+	    <tt>.deb</tt> depended on the behavior of the underlying
+	    file system.  Some file systems (such as reiserfs) reorder
+	    the files so that the order of creation is forgotten.
+	    Starting with release <tt>1.7.0</tt>, <prgn>dpkg</prgn>
+	    will reorder the files itself as necessary when building a
+	    package.  Thus it is no longer important to concern
+	    oneself with the order of file creation.
+	  </p>
+	</footnote>
       </p>
 
       <p>
-	Thirdly, the development package should contain a symlink for
-	the shared library without a version number.  For example, the
-	<tt>libgdbm1-dev</tt> package should include a symlink from
-	<tt>/usr/lib/libgdm.so</tt> to <tt>libgdm.so.1.7.3</tt>.  This
-	symlink is needed by <prgn>ld</prgn> when compiling packages
-	as it will only look for <tt>libgdm.so</tt> and
-	<tt>libgdm.a</tt> when compiling dynamically or statically,
-	respectively.
+	Thirdly, the associated development package should contain a
+	symlink for the shared library without a version number.  For
+	example, the <tt>libgdbmg1-dev</tt> package should include a
+	symlink from <tt>/usr/lib/libgdbm.so</tt> to
+	<tt>libgdbm.so.1.7.3</tt>.  This symlink is needed by the
+	linker (<prgn>ld</prgn>) when compiling packages, as it will
+	only look for <tt>libgdbm.so</tt> when compiling dynamically.
       </p>
 
       <p>
-	Any package installing shared libraries in a directory that's listed
-	in <tt>/etc/ld.so.conf</tt> or in one of the default library
-	directories of <prgn>ld.so</prgn> (currently, these are <tt>/usr/lib</tt>
-	and <tt>/lib</tt>) must call <prgn>ldconfig</prgn> in its <prgn>postinst</prgn>
-	script if and only if the first argument is `configure'. However, it
-	is important not to call <prgn>ldconfig</prgn> in the postrm or preinst
-	scripts in the case where the package is being upgraded (see <ref
-									  id="unpackphase">), as <prgn>ldconfig</prgn> will see the temporary names
-	that <prgn>dpkg</prgn> uses for the files while it is
-	installing them and will make the shared library links point
-	to them, just before <prgn>dpkg</prgn> continues the
-	installation and removes the links!
+	Any package installing shared libraries in a directory that is
+	listed in <tt>/etc/ld.so.conf</tt> or in one of the default
+	library directories of the dynamic linker (currently, these
+	are <tt>/usr/lib</tt> and <tt>/lib</tt>) must call
+	<prgn>ldconfig</prgn> in its <prgn>postinst</prgn> script if
+	and only if the first argument is `configure'. However, it is
+	important not to call <prgn>ldconfig</prgn> in the postrm or
+	preinst scripts in the case where the package is being
+	upgraded (see <ref id="unpackphase">), as
+	<prgn>ldconfig</prgn> will see the temporary names that
+	<prgn>dpkg</prgn> uses for the files while it is installing
+	them and will make the shared library links point to them,
+	just before <prgn>dpkg</prgn> continues the installation and
+	removes the links!
       </p>
 
       <sect id="shlibs"><heading>The <tt>shlibs</tt> File Format
@@ -4623,7 +4635,7 @@ Replaces: mail-transport-agent
 	<p>
 	  If a certain job has to be executed more frequently than
 	  daily, the package should install a file
-	  <tt>/etc/cron.d/<var>package-name</var></tt>. This file uses
+	  <tt>/etc/cron.d/<var>package</var></tt>. This file uses
 	  the same syntax as <tt>/etc/crontab</tt> and is processed by
 	  <prgn>cron</prgn> automatically. The file must also be
 	  treated as a configuration file. (Note, that entries in the
@@ -6303,7 +6315,7 @@ Replaces: mail-transport-agent
 	    <item>
 		BDF fonts should be converted to PCF fonts with the
 		<tt>bdftopcf</tt> utility (available in the
-		<tt>xutils</tt> package, <tt>gzip</tt>ped, and
+		<tt>xutils</tt> package), <tt>gzip</tt>ped, and
 		placed in a directory that corresponds to their
 		resolution:
 		<list>
@@ -6780,7 +6792,7 @@ Replaces: mail-transport-agent
 	<p>
 	  Every package must be accompanied by a verbatim copy of its
 	  copyright and distribution license in the file
-	  /usr/share/doc/&lt;package-name&gt;/copyright. This file must
+	  /usr/share/doc/&lt;package&gt;/copyright. This file must
 	  neither be compressed nor be a symbolic link.</p>
 
 	<p>
@@ -6798,7 +6810,7 @@ Replaces: mail-transport-agent
 
 
 	<p>
-	  /usr/share/doc/&lt;package-name&gt; may be a symbolic link to a
+	  /usr/share/doc/&lt;package&gt; may be a symbolic link to a
 	  directory in /usr/share/doc only if two packages both come from
 	  the same source and the first package has a "Depends"
 	  relationship on the second.  These rules are important

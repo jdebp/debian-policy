@@ -1,3 +1,13 @@
+debian-policy (3.5.4.1) unstable; urgency=low
+
+  * Fixed up incorrect entries in the changelog (there was an erroneous
+    3.5.0.1 revision which never happened; it has now been correctly
+    merged with the 3.5.3.0 changelog entry)
+  * Add section numbers to upgrading-checklist for all revisions from
+    3.0.0 onwards
+
+ --
+
 debian-policy (3.5.4.0) unstable; urgency=low
 
   * [ACCEPTED 2/4/01] /var/mail and /var/spool/mail  closes: Bug#42052
@@ -5,6 +15,7 @@ debian-policy (3.5.4.0) unstable; urgency=low
   * Also incorporates all the improvements that Julian has made to to the
     grammar and flow of the policy manual. The following are mostly
     Julian's fixes:
+  * Removed reference to non-extant dpkg documentation
   * Fixed the confusing self referential language.   closes: Bug#85503
   * Correct ambiguous kanguage about declaring build dependencies.
                                                      closes: Bug#86436
@@ -26,7 +37,7 @@ debian-policy (3.5.3.0) unstable; urgency=low
   * Correct bug severities                          closes: Bug#91276
   * Correct typos etc. in policy-process
   * Rename all .text files as .txt
-  * Fixed the to to typo in policy.                  closes: Bug#87007
+  * Fixed the "to to" typo in policy                 closes: Bug#87007
   * Changed packaging manual ==> dpkg documentation  closes: Bug#88651
   * [ACCEPTED 14/03/2001] Deprecate confusing        closes: Bug#87828
     Build-Depends arch syntax
@@ -35,6 +46,10 @@ debian-policy (3.5.3.0) unstable; urgency=low
   * Undo all renaming to text, since the change had not been propogated to
     the rules file, which broke badly. This shall have to wait for a later
     version.
+  * Richard Braakman and Michael Dorman have expressed their resignation
+    from policy maintenance duties. 
+  * fixed the date thinko in upgrading checklist. Thanks to Sébastien
+    Montagne <sebastien.montagne@netcourrier.com>        closes: Bug#84236
 
  -- Manoj Srivastava <srivasta@debian.org>  Sun, 15 Apr 2001 13:36:19 -0500
 
@@ -69,15 +84,6 @@ debian-policy (3.5.1.0) unstable; urgency=low
 
  -- Julian Gilbey <jdg@debian.org>  Thu, 15 Feb 2001 12:13:00 +0000
 
-debian-policy (3.5.0.1) unstable; urgency=low
-
-  * Richard Braakman and Micheal Dorman have exressed their resignation
-    from policy maintenance duties. 
-  * fixed the date thinko in upgrading checklist. Thanks to Sébastien
-    Montagne <sebastien.montagne@netcourrier.com>        closes: Bug#84236
-
- -- Manoj Srivastava <srivasta@debian.org>  Sun, 15 Apr 2001 11:24:51 -0500
-
 debian-policy (3.5.0.0) unstable; urgency=low
 
   * There have been numerous changes since the last major change, and
@@ -93,8 +99,8 @@ debian-policy (3.5.0.0) unstable; urgency=low
   * [AMENDMENT 2000/12/26] allow/document use of Debian Configuration
     management system (debconf)                     closes: Bug#80347
   * Yet more typo fixes                             closes: Bug#82743
-  * document the fact that x font utilities have moved to the package
-    xutils,                                         closes: Bug#82966
+  * Document the fact that X font utilities have moved to the package
+    xutils                                          closes: Bug#82966
   * Fixed the date in the virtual package list      closes: Bug#83438
   * Cleaned up some ephemeral informative foornotes of the polic. Thanks
     to Branden Robinson <branden@debian.org>        closes: Bug#83065
@@ -915,7 +921,3 @@ debian-manuals (0.2.0.0) experimental;
   * Draft releases.
 
  -- Ian Jackson <ian@chiark.chu.cam.ac.uk>  Wed, 21 Aug 1996 15:07:53 +0100
-
-Local variables:
-mode: debian-changelog
-End:
