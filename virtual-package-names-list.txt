@@ -47,9 +47,14 @@ Manoj
 
 Now, the list:
 
-X Windows
----------
-xserver                 Any X server (used by other X packages)
+X Window System
+ ---------
+x-terminal-emulator     any X client which emulates a terminal with a
+                        terminfo description in the ncurses-base package
+x-window-manager        any X client which provides window management
+                        services
+xserver                 any X server that (directly or indirectly) manages
+                        physical input and display hardware
 
 Miscellaneous
 -------------

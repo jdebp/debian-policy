@@ -7,9 +7,9 @@
     Created On       : Thu Oct 29 20:54:48 1998
     Created On Node  : tiamat.datasync.com
     Last Modified By : Manoj Srivastava
-    Last Modified On : Wed Jun 30 12:35:32 1999
+    Last Modified On : Fri Mar 17 14:31:26 2000
     Last Machine Used: glaurung.green-gryphon.com
-    Update Count     : 7
+    Update Count     : 10
     Status           : Unknown, Use with caution!
     HISTORY          : 
     Description      : 
@@ -44,6 +44,38 @@ Manual.
 <h2>The checklist</h2>
 
 <pre>
+4.0.0.0                    Mar 00
+
+  Policy Manual:
+     - By default executables should not be built with the debugging
+       option -g. Instead, it is recommended to support building the
+       package with debugging information optionally.
+     - Policy for packages where the upstream uses html changelog
+       files has been expanded. In short, a plain text changelog file
+       should always be generated for the upstream changes.
+     - Please note that the new release of the X window system (4.x)
+       shall probably need sweeping changes in policy.
+     - Policy for packages providing an X server has been codified
+       (formalizes existing practice - use virtual package xserver)
+     - Policy for packages providing an X terminal emulator has been
+       codified (use virtual package x-terminal-emulator)
+     - Policy for packages providing an X window manager has been
+       codified (use virtual package x-window-anager, and also as an
+       alternative for /usr/bin/x-window-manager. The policy has
+       guidelines on how to calculate priority)
+     - Policy for packages providing an X fonts has been
+       codified. Please look into the manual for details; this section
+       has been written from scratch.
+     - Policy for packages using the X Window System and FHS issues
+       has been clarified. Please read the manual for details.
+     - Policy for packages providing an X application default has been
+       clarified. 
+
+  Packaging Manual:
+     - Noted that newer dpkg versions do not require extreme care in
+       always creating theshared lib before the symlink, so the unpack
+       order be correct. 
+
 3.1.1.0                    Nov 99
 
   Packaging Manual:

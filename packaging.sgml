@@ -40,14 +40,12 @@
 	
       <abstract>
 	This manual describes the technical aspects of creating Debian
-	binary and source packages.  It also documents the interface
-	between <prgn>dselect</prgn> and its access method scripts.
-	It does not deal with the Debian Project policy requirements,
-	and it assumes familiarity with <prgn>dpkg</prgn>'s functions
-	from the system administrator's perspective.  This
-        package itself is maintained by a group of maintainers
-        that have no editorial powers. At the moment, the list of
-        maintainers is:
+	binary and source packages.  It does not deal with the Debian
+	Project policy requirements, and it assumes familiarity with
+	<prgn>dpkg</prgn>'s functions from the system administrator's
+	perspective.  This package itself is maintained by a group of
+	maintainers that have no editorial powers. At the moment, the
+	list of maintainers is:
         <enumlist>
           <item>
             <p>Michael Alan Dorman <email>mdorman@debian.org</email></p>
@@ -2195,7 +2193,7 @@
 	    the value from a <tt>.deb</tt> file if they have no other
 	    information; a value listed in a <tt>Packages</tt> file
 	    will always take precedence.  By default
-	    <prgn>dpkg-genchanges</prgn> does not include the section
+	    <prgn>dpkg-gencontrol</prgn> does not include the section
 	    and priority in the control file of a binary package - use
 	    the <tt>-isp</tt>, <tt>-is</tt> or <tt>-ip</tt> options to
 	    achieve this effect.</p>
@@ -3913,14 +3911,16 @@
 	</p>
 
 	<p>	  
-	  If one package is to be installed, the other must be removed first -
-	  if the package being installed is marked as replacing (<ref
-								      id="replaces">) the one on the system, or the one on the system is
-	  marked as deselected, or both packages are marked
-	  <tt>Essential</tt>, then <prgn>dpkg</prgn> will
-	  automatically remove the package which is causing the
-	  conflict, otherwise it will halt the installation of the new
-	  package with an error.
+	  If one package is to be installed, the other must be removed
+	  first - if the package being installed is marked as
+	  replacing (<ref id="replaces">) the one on the system, or
+	  the one on the system is marked as deselected, or both
+	  packages are marked <tt>Essential</tt>, then
+	  <prgn>dpkg</prgn> will automatically remove the package
+	  which is causing the conflict, otherwise it will halt the
+	  installation of the new package with an error. This
+	  mechanism specifically doesn't work when the installed
+	  package is tt>Essential</tt>, but the new package is not.
 	</p>
 
 	<p>	  
@@ -4445,7 +4445,7 @@
 	supposing that a <prgn>smailwrapper</prgn> package wishes to
 	install a wrapper around <tt>/usr/sbin/smail</tt>:
 	<example>
-  if [ install = "$1" ]; then
+  if [ install = "$1" -o upgrade = "$1" ]; then
      dpkg-divert --package smailwrapper --add --rename \
         --divert /usr/sbin/smail.real /usr/sbin/smail
   fi
@@ -4506,18 +4506,18 @@
 	<tt>libgdbm.so.1.7.3</tt>.  This is needed so that
 	<prgn>ld.so</prgn> can find the library in between the time
 	<prgn>dpkg</prgn> installs it and <prgn>ldconfig</prgn> is run
-	in the <prgn>postinst</prgn> script.  Futhermore, and <em>this
-	is very important</em>, the library must be placed before the
-	symlink pointing to it in the <tt>.deb</tt> file.  This is so
-	that by the time <prgn>dpkg</prgn> comes to install the
-	symlink (overwriting the previous symlink pointing at an older
-	version of the library) the new shared library is already in
-	place.  Currently the way to ensure the ordering is done
-	properly is to install the library in the appropriate
-	<tt>debian/tmp/.../lib</tt> directory before creating the
-	symlink, by putting the commands in the <tt>debian/rules</tt>
-	in the appropriate order.  Whether this has been done
-	correctly can be checked by performing an <tt>ls -f</tt>.
+	in the <prgn>postinst</prgn> script.  Futhermore, older
+	versions of the package management system required the library
+	must be placed before the symlink pointing to it in the
+	<tt>.deb</tt> file.  This is so that by the time
+	<prgn>dpkg</prgn> comes to install the symlink (overwriting
+	the previous symlink pointing at an older version of the
+	library) the new shared library is already in place.
+	Unfortunately, this was not not always possible, since it
+	highly depends on the behaviour of the filesystem. Some
+	filesystems (such as reisefs) will reorder the files so it
+	doesn't matter in what order you create them. In newer
+	versions of <prgn>dpkg</prgn>, this is handled automatically. 
       </p>
 
 	<!--
