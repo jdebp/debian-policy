@@ -7810,6 +7810,12 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	  latter directory itself may be a symbolic link to the
 	  former.
 	</p>
+
+	<p>
+	  If the purpose of a package to provide examples, then the
+	  example files may be installed into
+	  <file>/usr/share/doc/<var>package</var></file>.
+	</p>
       </sect>
 
       <sect id="changelogs">
