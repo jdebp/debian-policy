@@ -10,6 +10,8 @@ debian-policy (3.5.4.1) unstable; urgency=low
   * Added doc-base support for all of the HTML files
   * Added several more files to the byhand list and rewrote chunks of
     debian/rules to do this
+  * Add patched versions of debiandoc-sgml stuff to source package until
+    patches are incorporated upstream
 
  -- 
 

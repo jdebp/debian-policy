@@ -120,7 +120,7 @@
 	    <p>
 	      Informally, the criteria used for inclusion is that the
 	      material meet one of the following requirements:
-	      <taglist>
+	      <taglist compact="compact">
 		<tag>Standard interfaces</tag>
 		<item>
 		  <p>
@@ -823,10 +823,11 @@
 	    archive.</p>
 
 	  <p>
-	    Package names must consist of lower case letters (a-z),
-	    digits (0-9), plus (+) and minus (-) signs, and periods
-	    (.).  They must be at least two characters long and must
-	    contain at least one letter.
+	    Package names must consist of lower case letters
+	    (<tt>a-z</tt>), digits (<tt>0-9</tt>), plus (<tt>+</tt>)
+	    and minus (<tt>-</tt>) signs, and periods (<tt>.</tt>).
+	    They must be at least two characters long and must contain
+	    at least one letter.
 	  </p>
 
 	  <p>
@@ -892,10 +893,11 @@
 	    to install the package. This description should not just
 	    be copied verbatim from the program's documentation.
 	    Instructions for configuring or using the package should
-	    not be included -- that is what installation scripts,
-	    manual pages, info files, etc., are for.  Copyright
+	    not be included (that is what installation scripts,
+	    manual pages, info files, etc., are for).  Copyright
 	    statements and other administrivia should not be included
-	    either -- that is what the copyright file is for.</p>
+	    either (that is what the copyright file is for).
+	  </p>
 	</sect1>
 
 
@@ -939,7 +941,7 @@
 	    more-or-less the same functionality. In this case, it's
 	    useful to define a <em>virtual package</em> whose name
 	    describes that common functionality.  (The virtual
-	    packages only exist logically, not physically--that's why
+	    packages only exist logically, not physically; that's why
 	    they are called <em>virtual</em>.) The packages with this
 	    particular function will then <em>provide</em> the virtual
 	    package. Thus, any other package requiring that function
@@ -1001,7 +1003,7 @@
 	    specify an extra <em>force option</em> to
 	    <prgn>dpkg</prgn> to do so), this flag must not be used
 	    unless absolutely necessary.  A shared library package
-	    must not be tagged <tt>essential</tt>--dependencies will
+	    must not be tagged <tt>essential</tt>; dependencies will
 	    prevent its premature removal, and we need to be able to
 	    remove it when it has been superseded.
 	  </p>
@@ -1062,7 +1064,7 @@
 	    de-installed.  (In this case, it may be appropriate to
 	    specify a conflict against earlier versions of something
 	    that previously did not use
-	    <prgn>update-alternatives</prgn> - this is an exception to
+	    <prgn>update-alternatives</prgn>; this is an exception to
 	    the usual rule that versioned conflicts should be
 	    avoided).
 	  </p>
@@ -1199,7 +1201,7 @@
 	  </p>
 
 	  <p>
-	    The version number has four components--major and minor
+	    The version number has four components: major and minor
 	    version number and major and minor patch level.  When the
 	    standards change in a way that requires every package to
 	    change the major number will be changed.  Significant
@@ -1271,7 +1273,7 @@
 	    package).
 	    <footnote>
 	      <p>Rationale:
-		<list>
+		<list compact="compact">
 		  <item>
 		    <p>This allows maintaining the list separately
 		      from the policy documents (the list does not
@@ -1488,7 +1490,7 @@
 	  tabs) may occur immediately before or after the value and is
 	  ignored there; it is conventional to put a single space
 	  after the colon.  For example, a field might be:
-	  <example>
+	  <example compact="compact">
 Package: libc6
 	  </example>
 	  the field name is <tt>Package</tt> and the field value
@@ -1583,7 +1585,7 @@ Package: libc6
 	    archive maintainers.
 	    <footnote>
 		Current distribution names are:
-		<taglist>
+		<taglist compact="compact">
 		  <tag><em>stable</em></tag>
 		  <item>
 		    <p>
@@ -1779,6 +1781,9 @@ Package: libc6
 	    </p>
 	  </item>
 	</taglist>
+      </p>
+
+      <p>
 	The <var>upstream_version</var> and <var>debian_revision</var>
 	parts are compared by the package management system using the
 	same algorithm:
@@ -2179,14 +2184,14 @@ Package: libc6
 
 	<p>
 	  That format is a series of entries like this:
-	  <example>
+	  <example compact="compact">
 <var>package</var> (<var>version</var>) <var>distribution(s)</var>; urgency=<var>urgency</var>
 
   * <var>change details</var>
     <var>more change details</var>
   * <var>even more change details</var>
 
- -- <var>maintainer name and email address</var>  <var>date</var>
+ -- <var>maintainer name</var> &lt;<var>email address</var>&gt;  <var>date</var>
 	  </example>
 	</p>
 
@@ -2242,7 +2247,9 @@ Package: libc6
 	    <p>
 	      To be precise, the string should match the following
 	      Perl regular expression:
-	      <tt>/closes:\s*(?:bug)?\#?\s?\d+(?:,\s*(?:bug)?\#?\s?\d+)*/i</tt>
+	      <example>
+/closes:\s*(?:bug)?\#?\s?\d+(?:,\s*(?:bug)?\#?\s?\d+)*/i
+	      </example>
 	      Then all of the bug numbers listed will be closed by the
 	      archive maintenance script (<prgn>katie</prgn>), or in
 	      the case of an NMU, marked as fixed.
@@ -2356,8 +2363,8 @@ Package: libc6
 	<p>
 	  When <prgn>dpkg-gencontrol</prgn> is run for a binary
 	  package, it adds an entry to <tt>debian/files</tt> for the
-	  <tt>.deb</tt> file that will be created when <prgn>dpkg-deb
-	  --build</prgn> is run for that binary package.  So for most
+	  <tt>.deb</tt> file that will be created when <tt>dpkg-deb
+	  --build</tt> is run for that binary package.  So for most
 	  packages all that needs to be done with this file is to
 	  delete it in the <prgn>clean</prgn> target.
 	</p>
@@ -2728,7 +2735,7 @@ Package: libc6
 		  <item>
 		    <p>If a version of the package is already
 		      installed, call
-		      <example>
+		      <example compact="compact">
 <var>old-prerm</var> upgrade <var>new-version</var>
 		      </example></p>
 		  </item>
@@ -2736,11 +2743,11 @@ Package: libc6
 		    <p>
 		      If the script runs but exits with a non-zero
 		      exit status, <prgn>dpkg</prgn> will attempt:
-		      <example>
+		      <example compact="compact">
 <var>new-prerm</var> failed-upgrade <var>old-version</var>
 		      </example>
 		      Error unwind, for both the above cases:
-		      <example>
+		      <example compact="compact">
 <var>old-postinst</var> abort-upgrade <var>new-version</var>
 		      </example>
 		    </p>
@@ -2756,13 +2763,13 @@ Package: libc6
 		      If any packages depended on that conflicting
 		      package and <tt>--auto-deconfigure</tt> is
 		      specified, call, for each such package:
-		      <example>
+		      <example compact="compact">
 <var>deconfigured's-prerm</var> deconfigure \
   in-favour <var>package-being-installed</var> <var>version</var> \
     removing <var>conflicting-package</var> <var>version</var>
 		      </example>
 		      Error unwind:
-		      <example>
+		      <example compact="compact">
 <var>deconfigured's-postinst</var> abort-deconfigure \
   in-favour <var>package-being-installed-but-failed</var> <var>version</var> \
     removing <var>conflicting-package</var> <var>version</var>
@@ -2774,12 +2781,12 @@ Package: libc6
 		  </item>
 		  <item>
 		    <p>To prepare for removal of the conflicting package, call:
-		      <example>
+		      <example compact="compact">
 <var>conflictor's-prerm</var> remove \
   in-favour <var>package</var> <var>new-version</var>
 		      </example>
 		      Error unwind:
-		      <example>
+		      <example compact="compact">
 <var>conflictor's-postinst</var> abort-remove \
   in-favour <var>package</var> <var>new-version</var>
 		      </example>
@@ -2793,7 +2800,7 @@ Package: libc6
 		<enumlist>
 		  <item>
 		    <p>If the package is being upgraded, call:
-		      <example>
+		      <example compact="compact">
 <var>new-preinst</var> upgrade <var>old-version</var>
 		      </example></p>
 		  </item>
@@ -2802,17 +2809,17 @@ Package: libc6
 		      Otherwise, if the package had some configuration
 		      files from a previous version installed (i.e., it
 		      is in the `configuration files only' state):
-		      <example>
+		      <example compact="compact">
 <var>new-preinst</var> install <var>old-version</var>
 		      </example></p>
 
 		  <item>
 		    <p>Otherwise (i.e., the package was completely purged):
-		      <example>
+		      <example compact="compact">
 <var>new-preinst</var> install
 		      </example>
 		      Error unwind actions, respectively:
-		      <example>
+		      <example compact="compact">
 <var>new-postrm</var> abort-upgrade <var>old-version</var>
 <var>new-postrm</var> abort-install <var>old-version</var>
 <var>new-postrm</var> abort-install
@@ -2884,17 +2891,17 @@ Package: libc6
 	      <p><enumlist>
 		  <item>
 		    <p>If the package is being upgraded, call
-		      <example>
+		      <example compact="compact">
 <var>old-postrm</var> upgrade <var>new-version</var>
 		      </example></p>
 		  </item>
 		  <item>
 		    <p>If this fails, <prgn>dpkg</prgn> will attempt:
-		      <example>
+		      <example compact="compact">
 <var>new-postrm</var> failed-upgrade <var>old-version</var>
 		      </example>
 		      Error unwind, for both cases:
-		      <example>
+		      <example compact="compact">
 <var>old-preinst</var> abort-upgrade <var>new-version</var>
 		      </example>
 		    </p>
@@ -2930,7 +2937,7 @@ Package: libc6
 		<enumlist>
 		  <item>
 		    <p><prgn>dpkg</prgn> calls:
-		      <example>
+		      <example compact="compact">
 <var>disappearer's-postrm</var> disappear \
   <var>overwriter</var> <var>overwriter-version</var>
 		      </example>
@@ -3004,7 +3011,7 @@ Package: libc6
 	  When we configure a package (this happens with <tt>dpkg
 	    --install</tt>, or with <tt>--configure</tt>), we first
 	  update any <tt>conffile</tt>s and then call:
-	  <example>
+	  <example compact="compact">
 <var>postinst</var> configure <var>most-recently-configured-version</var>
 	  </example>
 	</p>
@@ -3030,7 +3037,7 @@ Package: libc6
 	  <enumlist>
 	    <item>
 	      <p>
-		<example>
+		<example compact="compact">
 <var>prerm</var> remove
 		</example>
 	      </p>
@@ -3042,7 +3049,7 @@ Package: libc6
 	    </item>
 	    <item>
 	      <p>
-		<example>
+		<example compact="compact">
 <var>postrm</var> remove
 		</example>
 	      </p>
@@ -3068,7 +3075,7 @@ Package: libc6
 	    </item>
 	    <item>
 	      <p>
-		<example>
+		<example compact="compact">
 <var>postrm</var> purge
 		</example>
 	      </p>
@@ -3170,7 +3177,7 @@ Package: libc6
 
 	<p>
 	  For example, a list of dependencies might appear as:
-	  <example>
+	  <example compact="compact">
 Package: mutt
 Version: 1.3.17-1
 Depends: libc6 (>= 2.2.1), exim | mail-transport-agent
@@ -3197,7 +3204,7 @@ Depends: libc6 (>= 2.2.1), exim | mail-transport-agent
 
 	<p>
 	  For example:
-	  <example>
+	  <example compact="compact">
 Source: glibc
 Build-Depends-Indep: texinfo
 Build-Depends: kernel-headers-2.2.10 [!hurd-i386],
@@ -3451,14 +3458,14 @@ hurd-dev [hurd-i386], gnumach-dev [hurd-i386]
 	  caused) by either the real package or any of the virtual
 	  packages which provide it.  This is so that, for example,
 	  supposing we have
-	  <example>
+	  <example compact="compact">
 Package: foo
 Depends: bar
 	  </example>
 	  and someone else releases an enhanced version of the
 	  <tt>bar</tt> package (for example, a non-US variant), they
 	  can say:
-	  <example>
+	  <example compact="compact">
 Package: bar-plus
 Provides: bar
 	  </example>
@@ -3576,7 +3583,7 @@ Provides: bar
 	    can be a virtual package, so for example, all mail
 	    transport agents (MTAs) would have the following fields in
 	    their control files:
-	    <example>
+	    <example compact="compact">
 Provides: mail-transport-agent
 Conflicts: mail-transport-agent
 Replaces: mail-transport-agent
@@ -3712,7 +3719,7 @@ Replaces: mail-transport-agent
 	<footnote>
 	  <p>
 	    These are currently
-	    <list>
+	    <list compact="compact">
 	      <item><p>/usr/X11R6/lib/Xaw3d</p></item>
 	      <item><p>/usr/local/lib</p></item>
 	      <item><p>/usr/lib/libc5-compat</p></item>
@@ -3836,17 +3843,17 @@ Replaces: mail-transport-agent
 	</p>
 
 	<p>
-	  <taglist>
-	    <tag><tt>debian/shlibs.local</tt></tag>
+	  <list>
 	    <item>
+	      <p><tt>debian/shlibs.local</tt></p>
 	      <p>
 		This lists overrides for this package.  Its use is
 		described below (see <ref id="shlibslocal">).
 	      </p>
 	    </item>
 
-	    <tag><tt>/etc/dpkg/shlibs.override</tt></tag>
 	    <item>
+	      <p><tt>/etc/dpkg/shlibs.override</tt></p>
 	      <p>
 		This lists global overrides.  This list is normally
 		empty.  It is maintained by the local system
@@ -3854,8 +3861,8 @@ Replaces: mail-transport-agent
 	      </p>
 	    </item>
 
-	    <tag><tt>DEBIAN/shlibs</tt> files in the `build directory'</tag>
 	    <item>
+	      <p><tt>DEBIAN/shlibs</tt> files in the `build directory'</p>
 	      <p>
 		When packages are being built, any
 		<tt>debian/shlibs</tt> files are copied into the
@@ -3896,8 +3903,8 @@ Replaces: mail-transport-agent
 	      </p>
 	    </item>
 
-	    <tag><tt>/var/lib/dpkg/info/*.shlibs</tt></tag>
 	    <item>
+	      <p><tt>/var/lib/dpkg/info/*.shlibs</tt></p>
 	      <p>
 		These are the <tt>shlibs</tt> files corresponding to
 		all of the packages installed on the system, and are
@@ -3905,8 +3912,8 @@ Replaces: mail-transport-agent
 	      </p>
 	    </item>
 
-	    <tag><tt>/etc/dpkg/shlibs.default</tt></tag>
 	    <item>
+	      <p><tt>/etc/dpkg/shlibs.default</tt></p>
 	      <p>
 		This file lists any shared libraries whose packages
 		have failed to provide correct <tt>shlibs</tt> files.
@@ -3915,7 +3922,7 @@ Replaces: mail-transport-agent
 		maintained by the <tt>dpkg</tt> maintainer.
 	      </p>
 	    </item>
-	  </taglist>
+	  </list>
 	</p>
       </sect>
 
@@ -3928,7 +3935,7 @@ Replaces: mail-transport-agent
 	  <tt>debian/rules</tt> file.  If your package contains only
 	  compiled binaries and libraries (but no scripts), you can
 	  use a command such as:
-	  <example>
+	  <example compact="compact">
 dpkg-shlibdeps debian/tmp/usr/bin/* debian/tmp/usr/sbin/* \
   debian/tmp/usr/lib/*
 	  </example>
@@ -3977,7 +3984,7 @@ dpkg-shlibdeps debian/tmp/usr/bin/* debian/tmp/usr/sbin/* \
 	  Each <tt>shlibs</tt> file has the same format.  Lines
 	  beginning with <tt>#</tt> are considered to be commments and
 	  are ignored.  Each line is of the form:
-	  <example>
+	  <example compact="compact">
 <var>library-name</var> <var>soname-version-number</var> <var>dependencies ...</var>
 	  </example>
 	</p>
@@ -4004,7 +4011,7 @@ dpkg-shlibdeps debian/tmp/usr/bin/* debian/tmp/usr/sbin/* \
 	  <footnote>
 	    <p>
 	      This can be determined using the command
-	      <example>
+	      <example compact="compact">
 objdump -p /usr/lib/libz.so.1.1.3 | grep SONAME
 	      </example>
 	    </p>
@@ -4026,7 +4033,7 @@ objdump -p /usr/lib/libz.so.1.1.3 | grep SONAME
 	  package which contained a minor number of at least
 	  <tt>1.3</tt> was <var>1:1.1.3-1</var>, then the
 	  <tt>shlibs</tt> entry for this library could say:
-	  <example>
+	  <example compact="compact">
 libz 1 zlib1g (>= 1:1.1.3)
 	  </example>
 	  The version-specific dependency is to avoid warnings from
@@ -4045,11 +4052,11 @@ libz 1 zlib1g (>= 1:1.1.3)
 	  you have multiple binary packages, you might want to call it
 	  <tt>debian/shlibs.<var>package</var></tt> instead).  Then
 	  let <tt>debian/rules</tt> install it in the control area:
-	  <example>
+	  <example compact="compact">
 install -m644 debian/shlibs debian/tmp/DEBIAN
 	  </example>
 	  or, in the case of a multi-binary package:
-	  <example>
+	  <example compact="compact">
 install -m644 debian/shlibs.<var>package</var> debian/<var>package</var>/DEBIAN/shlibs
 	  </example>
 	  An alternative way of doing this is to create the
@@ -4093,7 +4100,7 @@ install -m644 debian/shlibs.<var>package</var> debian/<var>package</var>/DEBIAN/
 	  <tt>stdout</tt> instead of writing it to
 	  <tt>debian/substvars</tt>, and the lines have been wrapped
 	  for ease of reading):
-	  <example>
+	  <example compact="compact">
 $ dpkg-shlibdeps -O debian/tmp/usr/bin/foo
 dpkg-shlibdeps: warning: unable to find dependency
   information for shared library libbar (soname 1,
@@ -4102,7 +4109,7 @@ shlibs:Depends=libc6 (>= 2.2.2-2)
 	  </example>
 	  You can then run <prgn>ldd</prgn> on the binary to find the
 	  full location of the library concerned:
-	  <example>
+	  <example compact="compact">
 $ ldd foo
 libbar.so.1 => /usr/lib/libbar.so.1 (0x4001e000)
 libc.so.6 => /lib/libc.so.6 (0x40032000)
@@ -4113,7 +4120,7 @@ libc.so.6 => /lib/libc.so.6 (0x40032000)
 	  provide a <tt>*.shlibs</tt> file handling
 	  <tt>libbar.so.1</tt> in <tt>/var/lib/dpkg/info/</tt>.  Let's
 	  determine the package responsible:
-	  <example>
+	  <example compact="compact">
 $ dpkg -S /usr/lib/libbar.so.1
 bar1: /usr/lib/libbar.so.1
 $ dpkg -s bar1 | grep Version
@@ -4125,7 +4132,7 @@ Version: 1.0-1
 	  <tt>debian/shlibs.local</tt> to locally fix the problem.
 	  Including the following line into your
 	  <tt>debian/shlibs.local</tt> file:
-	  <example>
+	  <example compact="compact">
 libbar 1 bar1 (>= 1.0-1)
 	  </example>
 	  should allow the package build to work.
@@ -4202,11 +4209,11 @@ libbar 1 bar1 (>= 1.0-1)
 
 	  <p>
 	    For example, the <prgn>emacs</prgn> package will contain
-	    <example>
+	    <example compact="compact">
 mkdir -p /usr/local/lib/emacs/site-lisp || true
 	    </example>
 	    in the <tt>postinst</tt> script, and
-	    <example>
+	    <example compact="compact">
 rmdir /usr/local/lib/emacs/site-lisp || true
 rmdir /usr/local/lib/emacs || true
 	    </example>
@@ -4272,7 +4279,7 @@ rmdir /usr/local/lib/emacs || true
 	<p>
 	  Apart from this we should have dynamically allocated ids,
 	  which should by default be arranged in some sensible
-	  order--but the behavior should be configurable.</p>
+	  order, but the behavior should be configurable.</p>
 
 	<p>
 	  Packages other than <tt>base-passwd</tt> must not modify
@@ -4431,7 +4438,7 @@ rmdir /usr/local/lib/emacs || true
 
 	  <p>
 	    The two-digit number <var>mm</var> is used to decide which
-	    order to start and stop things in--low-numbered links have
+	    order to start and stop things in: low-numbered links have
 	    their scripts run first.  For example, the <tt>K20</tt>
 	    scripts will be executed before the <tt>K30</tt> scripts.
 	    This is used when a certain service must be started before
@@ -4441,7 +4448,7 @@ rmdir /usr/local/lib/emacs || true
 	    access lists.  In this case, the script that starts
 	    <prgn>bind</prgn> would have a lower number than the
 	    script that starts <prgn>inn</prgn> so that it runs first:
-	    <example>
+	    <example compact="compact">
 /etc/rc2.d/S17bind
 /etc/rc2.d/S70inn
 	    </example>
@@ -4511,7 +4518,7 @@ rmdir /usr/local/lib/emacs || true
 	    the package is removed but not purged. Therefore, you
 	    should include a <tt>test</tt> statement at the top of the
 	    script, like this:
-	    <example>
+	    <example compact="compact">
 test -f <var>program-executed-later-in-script</var> || exit 0
 	    </example></p>
 
@@ -4579,11 +4586,11 @@ test -f <var>program-executed-later-in-script</var> || exit 0
 	  <p>
 	    To get the default behavior for your package, put in your
 	    <tt>postinst</tt> script
-	    <example>
+	    <example compact="compact">
 update-rc.d <var>package</var> defaults &gt;/dev/null
 	    </example>
 	    and in your <tt>postrm</tt>
-	    <example>
+	    <example compact="compact">
 if [ purge = "$1" ]; then
   update-rc.d <var>package</var> remove &gt;/dev/null
 fi
@@ -4634,10 +4641,10 @@ fi
 	    correctly in the maintainer scripts (see
 	    <ref id="config files">). (This is important since we want
 	    to give the local system administrator the chance to adapt
-	    the scripts to the local system--e.g., to disable a
+	    the scripts to the local system, e.g., to disable a
 	    service without de-installing the package, or to specify
 	    some special command line options when starting a
-	    service--while making sure her changes aren't lost during
+	    service, while making sure her changes aren't lost during
 	    the next package upgrade.)</p>
 	</sect1>
 
@@ -4660,7 +4667,7 @@ fi
 	  </p>
 
 	  <p>
-	    <example>
+	    <example compact="compact">
 #!/bin/sh
 #
 # Original version by Robert Leslie
@@ -4718,7 +4725,7 @@ exit 0
 	    parameters used by the script.
 	  </p>
 	  <p>
-	    <example>
+	    <example compact="compact">
 # Specified parameters to pass to named. See named(8).
 # You may uncomment the following line, and edit to taste.
 #PARAMS="-u nobody"
@@ -4734,12 +4741,12 @@ exit 0
 	    <prgn>update-rc.d</prgn>, namely an ordering number of 20
 	    and having named running in all runlevels, it can say in
 	    its <tt>postinst</tt>:
-	    <example>
+	    <example compact="compact">
 update-rc.d bind defaults >/dev/null
 	    </example>
 	    And in its <tt>postrm</tt>, to remove the links when the
 	    package is purged:
-	    <example>
+	    <example compact="compact">
 if [ purge = "$1" ]; then
   update-rc.d bind remove >/dev/null
 fi
@@ -4758,7 +4765,7 @@ fi
 	  If a package wants to install a job that has to be executed
 	  via cron, it should place a file with the name of the
 	  package in one of the following directories:
-	  <example>
+	  <example compact="compact">
 /etc/cron.daily
 /etc/cron.weekly
 /etc/cron.monthly
@@ -4838,11 +4845,11 @@ fi
 		what he is doing (let him be polite :-) but don't
 		mention ``him'' directly.  For example, if you think
 		of saying
-		<example>
+		<example compact="compact">
 I'm starting network daemons: nfsd mountd.
 		</example>
 		just say
-		<example>
+		<example compact="compact">
 Starting network daemons: nfsd mountd.
 		</example>
 	      </p>
@@ -4862,8 +4869,8 @@ Starting network daemons: nfsd mountd.
 		Use this format if your script starts one or more
 		daemons.  The output should look like this (a single
 		line, no leading spaces):
-		<example>
-Starting &lt;description&gt;: &lt;daemon-1&gt; &lt;daemon-2&gt; &lt;...&gt; &lt;daemon-n&gt;.
+		<example compact="compact">
+Starting &lt;description&gt;: &lt;daemon-1&gt; ... &lt;daemon-n&gt;.
 		</example>
 		The &lt;description&gt; should describe the subsystem
 		the daemon or set of daemons are part of, while
@@ -4873,20 +4880,20 @@ Starting &lt;description&gt;: &lt;daemon-1&gt; &lt;daemon-2&gt; &lt;...&gt; &lt;
 
 	      <p>
 		For example, the output of /etc/init.d/lpd would look like:
-		<example>
+		<example compact="compact">
 Starting printer spooler: lpd.
 		</example></p>
 
 	      <p>
 		This can be achieved by saying
-		<example>
+		<example compact="compact">
 echo -n "Starting printer spooler: lpd"
 start-stop-daemon --start --quiet lpd
 echo "."
 		</example>
 		in the script. If you have more than one daemon to
 		start, you should do the following:
-		<example>
+		<example compact="compact">
 echo -n "Starting remote file system services:"
 echo -n " nfsd"; start-stop-daemon --start --quiet nfsd
 echo -n " mountd"; start-stop-daemon --start --quiet mountd
@@ -4909,14 +4916,14 @@ echo "."
 	      <p>
 		If you have to set up different parameters of the
 		system upon boot up, you should use this format:
-		<example>
+		<example compact="compact">
 Setting &lt;parameter&gt; to `&lt;value&gt;'.
 		</example>
 	      </p>
 
 	      <p>
 		You can use the following echo statement to get the quotes right:
-		<example>
+		<example compact="compact">
 echo "Setting DNS domainname to \`"value"'."
 		</example>
 	      </p>
@@ -4937,7 +4944,7 @@ echo "Setting DNS domainname to \`"value"'."
 
 	      <p>
 		So stopping the printer daemon will like like this:
-		<example>
+		<example compact="compact">
 Stopping printer spooler: lpd.
 		</example></p></item>
 
@@ -4950,13 +4957,13 @@ Stopping printer spooler: lpd.
 		specific task. For example, setting the system's clock
 		via `netdate' or killing all processes when the system
 		comes down. Your message should like this:
-		<example>
+		<example compact="compact">
 Doing something very useful...done.
 		</example>
 		You should print the `done.' right after the job has been completed,
 		so that the user gets informed why he has to wait. You can get this
 		behavior by saying
-		<example>
+		<example compact="compact">
 echo -n "Doing something very useful..."
 do_something
 echo "done."
@@ -4971,7 +4978,7 @@ echo "done."
 	      <p>
 		When a daemon is forced to reload its configuration
 		files you should use the following format:
-		<example>
+		<example compact="compact">
 Reloading &lt;daemon's-name&gt; configuration...done.
 		</example>
 	      </p>
@@ -5085,7 +5092,7 @@ Reloading &lt;daemon's-name&gt; configuration...done.
 	  should be set up to achieve this:</p>
 
 	<p>
-	  <list compact="compact">
+	  <list>
 	    <item><p>`<tt>&lt;--</tt>' generates KB_Backspace in
 		X.</p></item>
 
@@ -5138,7 +5145,7 @@ Reloading &lt;daemon's-name&gt; configuration...done.
 	  This will solve the problem except for:</p>
 
 	<p>
-	  <list compact="compact">
+	  <list>
 	    <item><p>
 		Some terminals have a <tt>&lt;--</tt> key that cannot
 		be made to produce anything except <tt>^H</tt>.  On
@@ -5201,7 +5208,7 @@ Reloading &lt;daemon's-name&gt; configuration...done.
 	<p>
 	  Here is an example of a wrapper script for this purpose:
 
-	  <example>
+	  <example compact="compact">
 #!/bin/sh
 BAR=${BAR:-/var/lib/fubar}
 export BAR
@@ -5236,7 +5243,7 @@ exec /usr/lib/foo/foo "$@"
 
 	<p>
 	  Generally the following compilation parameters should be used:
-	  <example>
+	  <example compact="compact">
 CC = gcc
 CFLAGS = -O2 -Wall # sane warning options vary between programs
 LDFLAGS = # none
@@ -5285,7 +5292,7 @@ install -s # (or use strip on the files in debian/tmp)
 	      compiling that package.
 	    </p>
 	    <p>Now this has several added benefits:
-	      <list>
+	      <list compact="compact">
 		<item>
 		  <p>
 		    It is actually easier to build debugging bins and
@@ -5307,7 +5314,7 @@ install -s # (or use strip on the files in debian/tmp)
 	  </footnote>
 
 
-	  <example>
+	  <example compact="compact">
 CFLAGS = -O2 -Wall
 INSTALL = install
 INSTALL_FILE    = $(INSTALL) -p    -o root -g root  -m  644
@@ -5338,7 +5345,7 @@ endif
 	  here.  Don't use flags for the sake of it; only use them
 	  if there is good reason to do so.  Feel free to override
 	  the upstream author's ideas about which compilation
-	  options are best--they are often inappropriate for our
+	  options are best: they are often inappropriate for our
 	  environment.</p></sect>
 
 
@@ -5360,14 +5367,15 @@ endif
 	<p>
 	  Note that all installed shared libraries should be
 	  stripped with
-	  <example>
+	  <example compact="compact">
 strip --strip-unneeded &lt;your-lib&gt;
 	  </example>
-	  (The option `--strip-unneeded' makes <tt>strip</tt> remove
-	  only the symbols which aren't needed for relocation
-	  processing.)  Shared libraries can function perfectly well
-	  when stripped, since the symbols for dynamic linking are
-	  in a separate part of the ELF object file.</p>
+	  (The option <tt>--strip-unneeded</tt> makes
+	  <prgn>strip</prgn> remove only the symbols which aren't
+	  needed for relocation processing.)  Shared libraries can
+	  function perfectly well when stripped, since the symbols for
+	  dynamic linking are in a separate part of the ELF object
+	  file.</p>
 
 	<p>
 	  Note that under some circumstances it may be useful to
@@ -5434,7 +5442,7 @@ strip --strip-unneeded &lt;your-lib&gt;
 	  libraries you need to create two packages:
 	  <tt><var>libraryname</var><var>soname</var></tt>
 	  (<var>soname</var> is the shared object name of the shared
-	  library--it's the thing that has to match exactly between
+	  library: it's the thing that has to match exactly between
 	  building an executable and running it for the dynamic
 	  linker to be able run the program; usually the
 	  <var>soname</var> is the major number of the library) and
@@ -5469,7 +5477,7 @@ strip --strip-unneeded &lt;your-lib&gt;
 	  without getting filename clashes.  Instead, either create
 	  a third package for the runtime binaries (this package
 	  might typically be named
-	  <tt><var>libraryname</var>-runtime</tt>--note the absence
+	  <tt><var>libraryname</var>-runtime</tt>; note the absence
 	  of the <var>soname</var> in the package name) or if the
 	  development package is small include them in there.</p>
 
@@ -5609,7 +5617,7 @@ strip --strip-unneeded &lt;your-lib&gt;
 	<p>
 	  For example, in your <prgn>Makefile</prgn> or
 	  <tt>debian/rules</tt>, do things like:
-	  <example>
+	  <example compact="compact">
 ln -fs gcc $(prefix)/bin/cc
 ln -fs gcc debian/tmp/usr/bin/cc
 ln -fs ../sbin/sendmail $(prefix)/bin/runq
@@ -5711,7 +5719,7 @@ ln -fs ../sbin/sendmail debian/tmp/usr/bin/runq
 	  <p>
 	    Configuration file handling must conform to the following
 	    behavior:
-	    <list>
+	    <list compact="compact">
 	      <item>
 		<p>local changes must be preserved during a package
 		  upgrade</p>
@@ -5937,7 +5945,7 @@ ln -fs ../sbin/sendmail debian/tmp/usr/bin/runq
 	  logrotate. Here is a good example for a logrotate config
 	  file (for more information see <manref name="logrotate"
 						 section="8">):
-	  <example>
+	  <example compact="compact">
 /var/log/foo/* {
 rotate 12
 weekly
@@ -5980,7 +5988,7 @@ endscript
 	<p>
 	  Directories should be mode 755 or (for group-writability)
 	  mode 2775.  The ownership of the directory should be
-	  consistent with its mode--if a directory is mode 2775, it
+	  consistent with its mode: if a directory is mode 2775, it
 	  should be owned by the group that needs write access to
 	  it.</p>
 
@@ -5990,7 +5998,7 @@ endscript
 	  They should not be made unreadable (modes like 4711 or
 	  2711 or even 4111); doing so achieves no extra security,
 	  because anyone can find the binary in the freely available
-	  Debian package--it is merely inconvenient.  For the same
+	  Debian package, it is merely inconvenient.  For the same
 	  reason you should not restrict read or execute permissions
 	  on non-set-id executables.</p>
 
@@ -6069,7 +6077,7 @@ endscript
 	<p>
 	  If a program needs to specify an <em>architecture specification
 	    string</em> in some place, the following format should be used:
-	  <example>
+	  <example compact="compact">
 &lt;arch&gt;-&lt;os&gt;
 	  </example>
 	  where `&lt;arch&gt;' is one of the following: i386, alpha, arm, m68k,
@@ -6208,11 +6216,11 @@ endscript
 	    <item>
 	      <p>Cgi-bin executable files are installed in the
 		directory
-		<example>
+		<example compact="compact">
 /usr/lib/cgi-bin/&lt;cgi-bin-name&gt;
 		</example>
 		and should be referred to as
-		<example>
+		<example compact="compact">
 http://localhost/cgi-bin/&lt;cgi-bin-name&gt;
 		</example>
 	      </p>
@@ -6227,7 +6235,7 @@ http://localhost/cgi-bin/&lt;cgi-bin-name&gt;
                 <tt>/usr/doc/<var>package</var></tt><footnote> for
 		    backward compatibility, see <ref id="usrdoc"></footnote>
 		and can be referred to as
-		<example>
+		<example compact="compact">
 http://localhost/doc/&lt;package&gt;/&lt;filename&gt;
 		</example>
 	      </p>
@@ -6241,7 +6249,7 @@ http://localhost/doc/&lt;package&gt;/&lt;filename&gt;
 		/usr/share/doc/&lt;package&gt; directory for documents and
 		register the Web Application via the menu package. If
 		access to the web-root is unavoidable then use
-		<example>
+		<example compact="compact">
 /var/www
 		</example>
 		as the Document Root. This might be just a
@@ -6309,7 +6317,7 @@ http://localhost/doc/&lt;package&gt;/&lt;filename&gt;
 
 	<p>
 	  <tt>/etc/aliases</tt> is the source file for the system mail
-	  aliases (e.g., postmaster, usenet, etc.)--it is the one
+	  aliases (e.g., postmaster, usenet, etc.), it is the one
 	  which the sysadmin and <tt>postinst</tt> scripts may edit.
 	  After <tt>/etc/aliases</tt> is edited the program or human
 	  editing it must call <prgn>newaliases</prgn>.  All MTA
@@ -6348,7 +6356,7 @@ http://localhost/doc/&lt;package&gt;/&lt;filename&gt;
 	  configuration.  The prompt should make it clear that the
 	  name will not just be used by that package.  For example, in
 	  this situation the INN package says:
-	  <example>
+	  <example compact="compact">
 Please enter the `mail name' of your system.  This is the
 hostname portion of the address to be shown on outgoing
 news and mail messages.  The default is
@@ -6438,7 +6446,7 @@ name [`<var>syshostname</var>']:
 	  <tt>x-window-manager</tt>.  They should also register themselves as an
 	  alternative for <tt>/usr/bin/x-window-manager</tt>, with a priority
 	  calculated as follows:
-	  <list>
+	  <list compact="compact">
 	    <item>Start with a priority of 20.</item>
 	    <item>If the window manager supports the Debian menu system,
 		add 20 points if this support is available in the
@@ -6478,7 +6486,7 @@ name [`<var>syshostname</var>']:
 		<tt>xutils</tt> package), <tt>gzip</tt>ped, and
 		placed in a directory that corresponds to their
 		resolution:
-		<list>
+		<list compact="compact">
 		  <item>
 		      100 dpi fonts should be placed in
 		      <tt>/usr/X11R6/lib/X11/fonts/100dpi/</tt>.
@@ -6535,7 +6543,7 @@ name [`<var>syshostname</var>']:
 		Font packages <em>must not</em> provide the files
 		<tt>fonts.dir</tt>, <tt>fonts.alias</tt>, or
 		<tt>fonts.scale</tt> in a font directory.
-		<list>
+		<list compact="compact">
 		  <item>
 		      <tt>fonts.dir</tt> files must not be provided at
 		      all.
@@ -6619,36 +6627,37 @@ name [`<var>syshostname</var>']:
 	</p>
 
 	<p>
-	  <em>Packages using the X Window System should abide by the FHS
-	    standard whenever possible</em>; they should install binaries,
-	  libraries, manual pages, and other files in FHS-mandated
-	  locations wherever possible.  This means that files must
-	  not be installed into <tt>/usr/X11R6/bin/</tt>,
-	  <tt>/usr/X11R6/lib/</tt>, or <tt>/usr/X11R6/man/</tt> unless
-	  this is necessary for the package to operate properly.
-	  Configuration files for window managers and display managers
-	  should be placed in a subdirectory of <tt>/etc/X11/</tt>
-	  corresponding to the package name due to these programs'
-	  tight integration with the mechanisms of the X Window
-	  System.  Application-level programs should use the
-	  <tt>/etc/</tt> directory unless otherwise mandated by
-	  policy.  The installation of files into subdirectories of
-	  <tt>/usr/X11R6/include/X11/</tt> and
-	  <tt>/usr/X11R6/lib/X11/</tt> is permitted but discouraged;
-	  package maintainers should determine if subdirectories of
-	  <tt>/usr/lib/</tt> and <tt>/usr/share/</tt> can be used
-	  instead (symlinks from the X11R6 directories to
-	  FHS-compliant locations is encouraged if the program is not
-	  easily configured to look elsewhere for its files).
-	  Packages must not provide -- or install files into -- the
-	  directories <tt>/usr/bin/X11/</tt>,
-	  <tt>/usr/include/X11/</tt>, or <tt>/usr/lib/X11/</tt>.
-	  Files within a package should, however, make reference to
-	  these directories, rather than their X11R6-named
-	  counterparts <tt>/usr/X11R6/bin/</tt>,
-	  <tt>/usr/X11R6/include/X11/</tt>, and
-	  <tt>/usr/X11R6/lib/X11/</tt>, if the resources being
-	  referred to have not been moved to FHS-compliant locations.
+	  <em>Packages using the X Window System should abide by the
+	    FHS standard whenever possible</em>; they should install
+	    binaries, libraries, manual pages, and other files in
+	    FHS-mandated locations wherever possible.  This means that
+	    files must not be installed into <tt>/usr/X11R6/bin/</tt>,
+	    <tt>/usr/X11R6/lib/</tt>, or <tt>/usr/X11R6/man/</tt>
+	    unless this is necessary for the package to operate
+	    properly.  Configuration files for window managers and
+	    display managers should be placed in a subdirectory of
+	    <tt>/etc/X11/</tt> corresponding to the package name due
+	    to these programs' tight integration with the mechanisms
+	    of the X Window System.  Application-level programs should
+	    use the <tt>/etc/</tt> directory unless otherwise mandated
+	    by policy.  The installation of files into subdirectories
+	    of <tt>/usr/X11R6/include/X11/</tt> and
+	    <tt>/usr/X11R6/lib/X11/</tt> is permitted but discouraged;
+	    package maintainers should determine if subdirectories of
+	    <tt>/usr/lib/</tt> and <tt>/usr/share/</tt> can be used
+	    instead (symlinks from the X11R6 directories to
+	    FHS-compliant locations is encouraged if the program is
+	    not easily configured to look elsewhere for its files).
+	    Packages must not provide or install files into the
+	    directories <tt>/usr/bin/X11/</tt>,
+	    <tt>/usr/include/X11/</tt>, or <tt>/usr/lib/X11/</tt>.
+	    Files within a package should, however, make reference to
+	    these directories, rather than their X11R6-named
+	    counterparts <tt>/usr/X11R6/bin/</tt>,
+	    <tt>/usr/X11R6/include/X11/</tt>, and
+	    <tt>/usr/X11R6/lib/X11/</tt>, if the resources being
+	    referred to have not been moved to FHS-compliant
+	    locations.
 	</p>
 
  	<p>
@@ -6771,7 +6780,7 @@ name [`<var>syshostname</var>']:
 	  to the <manref name="undocumented" section="7"> manual page
 	  may be provided.  This symbolic link can be created from
 	  <tt>debian/rules</tt> like this:
-	  <example>
+	  <example compact="compact">
 ln -s ../man7/undocumented.7.gz \
 debian/tmp/usr/share/man/man[1-9]/the_requested_manpage.[1-9].gz
 	  </example>
@@ -6785,7 +6794,7 @@ debian/tmp/usr/share/man/man[1-9]/the_requested_manpage.[1-9].gz
 	  upstream authors, and mark the bug as forwarded in the
 	  Debian bug tracking system.  Even though the GNU Project do
 	  not in general consider the lack of a manpage to be a bug,
-	  we do--if they tell you that they don't consider it a bug
+	  we do; if they tell you that they don't consider it a bug
 	  you should leave the bug in our bug tracking system open
 	  anyway.</p>
 
@@ -6798,7 +6807,7 @@ debian/tmp/usr/share/man/man[1-9]/the_requested_manpage.[1-9].gz
 	  is better to use a symbolic link than the <tt>.so</tt>
 	  feature, but there is no need to fiddle with the relevant
 	  parts of the upstream source to change from <tt>.so</tt> to
-	  symlinks--don't do it unless it's easy.  You should not create hard
+	  symlinks: don't do it unless it's easy.  You should not create hard
 	  links in the manual page directories, nor put
 	  absolute filenames in <tt>.so</tt> directives.  The filename
 	  in a <tt>.so</tt> in a manpage should be relative to the
@@ -6817,7 +6826,7 @@ debian/tmp/usr/share/man/man[1-9]/the_requested_manpage.[1-9].gz
 	  Your package should call <prgn>install-info</prgn> to update the Info
 	  <tt>dir</tt>
 	  file, in its post-installation script:
-	  <example>
+	  <example compact="compact">
 install-info --quiet --section Development Development \
 /usr/share/info/foobar.info
 	  </example></p>
@@ -6835,7 +6844,7 @@ install-info --quiet --section Development Development \
 
 	<p>
 	  You should remove the entries in the pre-removal script:
-	  <example>
+	  <example compact="compact">
 install-info --quiet --remove /usr/share/info/foobar.info
 	  </example></p>
 
@@ -6902,7 +6911,7 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	  with <prgn>dpkg</prgn>. One reasonable way to accomplish
 	  this is to put the following in the package's
 	  <prgn>postinst</prgn>:
-          <example>
+          <example compact="compact">
 if [ "$1" = "configure" ]; then
   if [ -d /usr/doc -a ! -e /usr/doc/#PACKAGE# \
        -a -d /usr/share/doc/#PACKAGE# ]; then
@@ -6911,7 +6920,7 @@ if [ "$1" = "configure" ]; then
 fi
           </example>
           And the following in the package's <prgn>prerm</prgn>:
-          <example>
+          <example compact="compact">
 if [ \( "$1" = "upgrade" -o "$1" = "remove" \) \
      -a -L /usr/doc/#PACKAGE# ]; then
   rm -f /usr/doc/#PACKAGE#
@@ -7020,7 +7029,7 @@ fi
 	  Any examples (configurations, source files, whatever),
 	  should be installed in a directory
 	  <tt>/usr/share/doc/<var>package</var>/examples</tt>.  These
-	  files should not be referenced by any program--they're there
+	  files should not be referenced by any program: they're there
 	  for the benefit of the system administrator and users, as
 	  documentation only. Architecture-specific example files
 	  should be installed in a directory
