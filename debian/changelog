@@ -5,6 +5,8 @@ debian-policy (3.5.9.1) unstable; urgency=low
   Manoj
   * Clarify x-terminal-emulator virtual package eligibility, in an
     extention to an informative footnote.                    closes: Bug#165063
+  * Add 40 points, not 20, when the window manager is compliant with "The
+    Window Manager Specification Project".                   closes: Bug#167004
 
  -- 
 
