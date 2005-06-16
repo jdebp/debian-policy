@@ -4363,9 +4363,9 @@ Replaces: mail-transport-agent
 
       <p>
 	The package should install the shared libraries under
-	their normal names.  For example, the <package>libgdbmg1</package>
-	package should install <file>libgdbm.so.1.7.3</file> as
-	<file>/usr/lib/libgdbm.so.1.7.3</file>.  The files should not be
+	their normal names.  For example, the <package>libgdbm3</package>
+	package should install <file>libgdbm.so.3.0.0</file> as
+	<file>/usr/lib/libgdbm.so.3.0.0</file>.  The files should not be
 	renamed or re-linked by any <prgn>prerm</prgn> or
 	<prgn>postrm</prgn> scripts; <prgn>dpkg</prgn> will take care
 	of renaming things safely without affecting running programs,
@@ -4382,9 +4382,9 @@ Replaces: mail-transport-agent
       <p>
 	The run-time library package should include the symbolic link that
 	<prgn>ldconfig</prgn> would create for the shared libraries.
-	For example, the <package>libgdbmg1</package> package should include
-	a symbolic link from <file>/usr/lib/libgdbm.so.1</file> to
-	<file>libgdbm.so.1.7.3</file>.  This is needed so that the dynamic
+	For example, the <package>libgdbm3</package> package should include
+	a symbolic link from <file>/usr/lib/libgdbm.so.3</file> to
+	<file>libgdbm.so.3.0.0</file>.  This is needed so that the dynamic
 	linker (for example <prgn>ld.so</prgn> or
 	<prgn>ld-linux.so.*</prgn>) can find the library between the
 	time that <prgn>dpkg</prgn> installs it and the time that
@@ -4559,9 +4559,9 @@ Replaces: mail-transport-agent
       <p>
 	The development package should contain a symlink for the associated
 	shared library without a version number. For example, the
-	<package>libgdbmg1-dev</package> package should include a symlink
+	<package>libgdbm-dev</package> package should include a symlink
 	from <file>/usr/lib/libgdbm.so</file> to
-	<file>libgdbm.so.1.7.3</file>.  This symlink is needed by the linker
+	<file>libgdbm.so.3.0.0</file>.  This symlink is needed by the linker
 	(<prgn>ld</prgn>) when compiling packages, as it will only look for
 	<file>libgdbm.so</file> when compiling dynamically.
       </p>
