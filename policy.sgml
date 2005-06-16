@@ -4596,8 +4596,8 @@ test -f <var>program-executed-later-in-script</var> || exit 0
 	    must contain only variable settings and comments in POSIX
 	    <prgn>sh</prgn> format.  It may either be a
 	    <tt>conffile</tt> or a configuration file maintained by
-	    the package maintainer scripts.  See <ref id="config
-	    files"> for more details.
+	    the package maintainer scripts.  See <ref id="config files"> 
+	    for more details. 
 	  </p>
 
 	  <p>
