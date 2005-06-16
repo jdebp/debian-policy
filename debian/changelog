@@ -32,6 +32,8 @@ debian-policy (3.5.9.0) unstable; urgency=low
     in one place (hopefully not too ambiguous), closes: #93975.
   * Allow examples to be placed in /usr/share/doc/package/ in packages
     that are meant to provide examples, closes: #69864.
+  * Removed several references to the Policy manual etc in the stuff
+    imported from old packaging manual, closes: #181923.
 
  -- 
 
