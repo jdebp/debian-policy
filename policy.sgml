@@ -7484,8 +7484,7 @@ name ["<var>syshostname</var>"]:
         </p>
 
 	<p>
-          Manual pages should be installed compressed using <josip>gzip
-          -9</josip>.
+          Manual pages should be installed compressed using <tt>gzip -9</tt>.
         </p>
 
 	<p>
@@ -7521,7 +7520,7 @@ name ["<var>syshostname</var>"]:
 
 	<p>
 	  Info documents should be installed in <file>/usr/share/info</file>.
-	  They should be compressed with <josip>gzip -9</josip>.
+	  They should be compressed with <tt>gzip -9</tt>.
         </p>
 
 	<p>
@@ -7567,7 +7566,7 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	  Text documentation should be installed in the directory
 	  <file>/usr/share/doc/<var>package</var></file>, where
 	  <var>package</var> is the name of the package, and
-          compressed with <josip>gzip -9</josip> unless it is small.
+          compressed with <tt>gzip -9</tt> unless it is small.
         </p>
 
 	<p>
@@ -7782,7 +7781,7 @@ install-info --quiet --remove /usr/share/info/foobar.info
 
 	<p>
 	  All of these files should be installed compressed using
-	  <josip>gzip -9</josip>, as they will become large with time even
+	  <tt>gzip -9</tt>, as they will become large with time even
 	  if they start out small.
 	</p>
 
@@ -9449,7 +9448,7 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	    <item>
 
 	      <p>
-		This is a compressed (with <josip>gzip -9</josip>)
+		This is a compressed (with <tt>gzip -9</tt>)
 		<prgn>tar</prgn> file containing the source code from
 		the upstream authors of the program.  The tarfile
 		unpacks into a directory
