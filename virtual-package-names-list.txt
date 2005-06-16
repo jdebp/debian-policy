@@ -1,7 +1,7 @@
 
               AUTHORITATIVE LIST OF VIRTUAL PACKAGE NAMES
 
-                            January 2001
+                            February 2001
 
 
 Below is an authoritative list of virtual package names currently
