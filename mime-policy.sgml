@@ -79,19 +79,19 @@
     </titlepag>
 
     <toc detail="sect">
+
     <chapt>
       <heading>About this document</heading>
       <p>
-	The latest copy of this document can be found at
-	<url id="http://www.debian.org/doc/packaging-manuals/mime-policy/"
-	  name="mime policy on the web.">
-	It can also be found in the package debian policy at
-	<ftpsite>ftp.debian.org</ftpsite> at
-	<ftppath>/debian/pool/main/d/debian-policy/</ftppath>, or on
-	the web at the url for the
-         <url id="http://packages.debian.org/unstable/doc/debian-policy.html" name="the debian-policy package">. 
+	This document is distributed as the <tt>mime-policy</tt> files
+	in the Debian package
+        <package><url name="debian-policy" id="http://packages.debian.org/debian-policy"></package>.
+	It is also available from the Debian web mirrors at
+	<tt><url name="/doc/packaging-manuals/mime-policy/"
+		id="http://www.debian.org/doc/packaging-manuals/mime-policy/"></tt>.
       </p>
     </chapt>
+
     <chapt>
       <heading>MIME support mechanism</heading>
       <p>

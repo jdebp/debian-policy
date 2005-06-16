@@ -55,6 +55,18 @@
 
     <toc detail="sect">
 
+    <chapt>
+      <heading>About this document</heading>
+      <p>
+	This document is distributed as the <tt>perl-policy</tt> files
+	in the Debian package
+        <package><url name="debian-policy" id="http://packages.debian.org/debian-policy"></package>.
+	It is also available from the Debian web mirrors at
+	<tt><url name="/doc/packaging-manuals/perl-policy/"
+		id="http://www.debian.org/doc/packaging-manuals/perl-policy/"></tt>.
+      </p>
+    </chapt>
+
     <chapt id="perl">
       <heading>Perl Packaging</heading>
       <sect id="versions">
