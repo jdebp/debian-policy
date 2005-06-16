@@ -7974,16 +7974,6 @@ install-info --quiet --remove /usr/share/info/foobar.info
       </p>
 
       <p>
-	It does <em>not</em> describe the policy requirements imposed
-	on Debian packages, such as the permissions on files and
-	directories, documentation requirements, upload procedure, and
-	so on.  You should see the Debian packaging policy manual for
-	these details.  (Many of them will probably turn out to be
-	helpful even if you don't plan to upload your package and make
-	it available as part of the distribution.)
-      </p>
-
-      <p>
 	It is assumed that the reader is reasonably familiar with the
 	<prgn>dpkg</prgn> System Administrators' manual.
 	Unfortunately this manual does not yet exist.
@@ -8331,12 +8321,6 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	The Debian binary packages in the distribution are generated
 	from Debian sources, which are in a special format to assist
 	the easy and automatic building of binaries.
-      </p>
-
-      <p>
-	There was a previous version of the Debian source format,
-	which is now being phased out.  Instructions for converting an
-	old-style package are given in the Debian policy manual.
       </p>
 
       <sect id="pkg-sourcetools">
@@ -9794,10 +9778,8 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	  It is important to note that there are several fields which
 	  are optional as far as <prgn>dpkg</prgn> and the related
 	  tools are concerned, but which must appear in every Debian
-	  package, or whose omission may cause problems.  When writing
-	  the control files for Debian packages you <em>must</em> read
-	  the Debian policy manual in conjuction with the details
-	  below and the list of fields for the particular file.</p>
+	  package, or whose omission may cause problems.
+	</p>
       </sect>
 
       <sect><heading>List of fields
@@ -10033,10 +10015,7 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	  <p>
 	    These fields are not used by by <prgn>dpkg</prgn> proper,
 	    but by <prgn>dselect</prgn> when it sorts packages and
-	    selects defaults.  See the Debian policy manual for the
-	    priorities in use and the criteria for selecting the
-	    priority for a Debian package, and look at the Debian FTP
-	    archive for a list of currently in-use priorities.
+	    selects defaults.
 	  </p>
 
 	  <p>
@@ -10166,9 +10145,8 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	  </heading>
 
 	  <p>
-	    The most recent version of the standards (the
-	    <prgn>dpkg</prgn> programmers' and policy manuals and
-	    associated texts) with which the package complies.  This
+	    The most recent version of the standards (the Debian Policy
+	    and associated texts) with which the package complies. This
 	    is updated manually when editing the source package to
 	    conform to newer standards; it can sometimes be used to
 	    tell when a package needs attention.
