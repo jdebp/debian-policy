@@ -1453,7 +1453,7 @@
 
       <p>	
 	The version number format is:
-	&lsqb<var>epoch</var><tt>:</tt>&rsqb;<var>upstream-version</var>&lsqb;<tt>-/<var>debian-revision</var>&rsqb;.</tt></var>
+	&lsqb<var>epoch</var><tt>:</tt>&rsqb;<var>upstream-version</var>&lsqb;<tt>-/<var>debian-revision</var>&rsqb;.</tt>
       </p>
 
       <p>	
