@@ -45,7 +45,8 @@ LIBDIR	  := $(TMPTOP)/usr/share/doc-base
 
 SGML_FILES      = policy menu-policy mime-policy policy-process perl-policy
 DESC_FILES      = debian-policy debian-menu-policy debian-perl-policy \
-                  debian-mime-policy debian-policy-process debconf-spec
+                  debian-mime-policy debian-policy-process debconf-spec \
+		  fhs
 
 # While we have two versions of the FHS installed in the source package,
 # we need to modify this to handle it.  This is the easiest way to do it.
