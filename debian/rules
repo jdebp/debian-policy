@@ -1,89 +1,129 @@
 #!/usr/bin/make -f
+############################ -*- Mode: Makefile -*- ###########################
+## rules ---
+## Author           : Manoj Srivastava ( srivasta@tiamat.datasync.com )
+## Created On       : Thu Oct 29 15:35:55 1998
+## Created On Node  : tiamat.datasync.com
+## Last Modified By : Manoj Srivastava
+## Last Modified On : Thu Oct 29 17:02:19 1998
+## Last Machine Used: tiamat.datasync.com
+## Update Count     : 21
+## Status           : Unknown, Use with caution!
+## HISTORY          :
+## Description      :
+##
+###############################################################################
+# The name of the package (for example, `emacs').
+package := $(shell grep Source debian/control | sed 's/^Source: //')
+arch    :=$(shell dpkg --print-architecture)
+date	:= $(shell date +"%Y-%m-%d")
+version := $(shell LC_ALL=C dpkg-parsechangelog | \
+                   grep ^Version: | sed 's/^Version: *//')
 
-DEB_VERSION	:= $(shell LC_ALL=C dpkg-parsechangelog | grep ^Version: | sed 's/^Version: *//')
-DATE		:= $(shell date +"%Y-%m-%d")
+FILES_TO_CLEAN = debian/files debian/buildinfo debian/substvars
+                 version.ent
+STAMPS_TO_CLEAN = stamp-binary stamp-build stamp-configure
+DIRS_TO_CLEAN  = debian/tmp policy.html policy.text* policy.lout*
+                 lout.li upgrading-checklist.text
 
-build:
+# Location of the source dir
+SRCTOP    := $(shell if [ "$$PWD" != "" ]; then echo $$PWD; else pwd; fi;)
+TMPTOP    := $(SRCTOP)/debian/tmp
+DOCDIR    := $(TMPTOP)/usr/doc/$(package)
+LIBDIR    := $(TMPTOP)/usr/share/doc-base
+
+FSSTND_FILES   =FSSTND-FAQ fsstnd-1.2.dvi.gz fsstnd-1.2.ps.gz fsstnd-1.2.txt.gz
+POLICY_FILES   =policy.text.gz policy.sgml virtual-package-names-list.text \
+                upgrading-checklist.text libc6-migration.text
+BYHAND_FILES   =policy.text.gz libc6-migration.text\
+                virtual-package-names-list.text
+
+install_file   = /usr/bin/install -p    -o root -g root  -m  644
+install_program= /usr/bin/install -p    -o root -g root  -m  755
+make_directory = /usr/bin/install -p -d -o root -g root  -m  755
+
+
+all build: stamp-build
+stamp-build:
 	$(checkdir)
-	rm -f version.ent
-	echo "<!entity version \"$(DEB_VERSION)\">" >> version.ent
-	echo "<!entity date    \"$(DATE)\">"        >> version.ent
+	-test -f stamp-configure || $(MAKE) -f debian/rules configure
 	nsgmls -gues policy.sgml	# check SGML syntax
 	debiandoc2html policy.sgml
 	debiandoc2text policy.sgml
 	lynx -dump upgrading-checklist.html > upgrading-checklist.text
 	gzip -9 policy.text
-	touch build
+	touch stamp-build
 
+configure: stamp-configure
+stamp-configure:
+	rm -f version.ent
+	echo "<!entity version \"$(version)\">" >> version.ent
+	echo "<!entity date    \"$(date)\">"        >> version.ent
+	touch stamp-configure
 clean:
-	$(checkdir)
-	-rm -f build
-	-rm -rf policy.html policy.text* policy.lout*
-	-rm -rf lout.li
-	-rm -rf upgrading-checklist.text
-	-rm -f `find . -name "*~"`
-	-rm -rf debian/tmp debian/files* core debian/substvars
-	-rm -rf version.ent
+# Undoes the effect of `make -f debian/rules build'.
+        $(checkdir)
+        rm -f  $(FILES_TO_CLEAN) $(STAMPS_TO_CLEAN)
+        rm -rf $(DIRS_TO_CLEAN)
+        rm -f core `find . \( -name '*.orig' -o -name '*.rej' -o \
+          -name '*~' -o -name '*.bak' -o -name '#*#' -o \
+          -name '.*.orig' -o -name '.*.rej' -o -name '.SUMS' -o \
+          -size 0 \) -print` TAGS
 
-binary-indep:	checkroot build
-	$(checkdir)
-	-rm -rf debian/tmp
-	install -d debian/tmp
-	cd debian/tmp && install -d `cat ../dirs`
 
-	# create a substvar to reference from debian/control so that
-	# we don't hardcode the policy compliance of the policy
-	# package.  I guess some might question this but I take it as
-	# a given that the debian-policy pkg must always comply with
-	# itself...
-	echo "debian-policy:Version=$(DEB_VERSION)" > debian/substvars
-
-	cp -a policy.html debian/tmp/usr/doc/debian-policy/
-	cp policy.text.gz debian/tmp/usr/doc/debian-policy/
-	cat policy.sgml | gzip -9 > debian/tmp/usr/doc/debian-policy/policy.sgml.gz
-	cp FSSTND-FAQ fsstnd* debian/tmp/usr/doc/debian-policy/fsstnd/
-	cp virtual-package-names-list.text debian/tmp/usr/doc/debian-policy/
-	cp upgrading-checklist.text debian/tmp/usr/doc/debian-policy/
-	cp libc6-migration.text debian/tmp/usr/doc/debian-policy/
-	gzip -9 debian/tmp/usr/doc/debian-policy/fsstnd/FSSTND-FAQ
-	cp debian/changelog debian/tmp/usr/doc/debian-policy/
-	gzip -9 debian/tmp/usr/doc/debian-policy/{changelog,libc6-migration.text,virtual-package-names-list.text,upgrading-checklist.text}
-	cp debian-policy.desc debian/tmp/usr/share/doc-base/debian-policy
-	cp debian/copyright debian/tmp/usr/doc/debian-policy/
-	mkdir debian/tmp/DEBIAN
-	cp debian/{postinst,prerm} debian/tmp/DEBIAN/
-	chmod +x debian/tmp/DEBIAN/{postinst,prerm}
-	dpkg-gencontrol -isp
-	chown -R root.root debian/tmp
-	chmod -R go=rX debian/tmp
-	dpkg --build debian/tmp ..
-	debiandoc2ps -pa4 -1 -O policy.sgml | gzip -9v > ../policy.ps.gz
-	dpkg-distaddfile -fdebian/files policy.ps.gz byhand -
-	GZIP=-9v tar zcf ../policy.html.tar.gz policy.html
-	dpkg-distaddfile -fdebian/files policy.html.tar.gz byhand -
-	cp policy.text.gz ..
-	dpkg-distaddfile -fdebian/files policy.text.gz byhand -
-	cp virtual-package-names-list.text ..
-	dpkg-distaddfile -fdebian/files virtual-package-names-list.text byhand -
-	cp libc6-migration.text ..
-	dpkg-distaddfile -fdebian/files libc6-migration.text byhand -
-
-binary-arch:	checkroot build
+binary:         binary-indep binary-arch
+binary-arch:	build
 	$(checkdir)
 # There are no architecture-dependent files to be uploaded
 # generated by this package.  If there were any they would be
 # made here.
 
+binary-indep:   stamp-binary
+stamp-binary:  build
+	@test root = "`whoami`" || (echo need root priviledges; exit 1)
+	$(checkdir)
+	test -f stamp-build     || $(MAKE) -f        debian/rules build
+	-rm -rf             	$(TMPTOP)
+	$(make_directory)   	$(TMPTOP)/DEBIAN
+	$(make_directory)   	$(DOCDIR)/fsstnd
+	$(make_directory)   	$(LIBDIR)
+	# create a substvar to reference from debian/control so that
+	# we don't hardcode the policy compliance of the policy
+	# package.  I guess some might question this but I take it as
+	# a given that the debian-policy pkg must always comply with
+	# itself...
+	echo "debian-policy:Version=$(version)"      > debian/substvars
+	$(install_file)     $(POLICY_FILES)          $(DOCDIR)/
+	$(install_file)     $(FSSTND_FILES)          $(DOCDIR)/fsstnd/
+	$(install_file)     debian/changelog         $(DOCDIR)/
+	gzip -fq9           $(DOCDIR)
+	$(install_file)     debian-policy.desc       $(LIBDIR)/
+	$(install_file)     debian/copyright         $(DOCDIR)/
+	(tar cf -           policy.html) |           (cd $(DOCDIR);   tar xf -)
+	$(install_program)  debian/{postinst,prerm}  debian/tmp/DEBIAN/
+	dpkg-gencontrol     -isp
+	chown               -R root.root debian/tmp
+	chmod               -R go=rX debian/tmp
+	dpkg                --build debian/tmp ..
+	debiandoc2ps        -pa4 -1 -O policy.sgml | gzip -9v >  ../policy.ps.gz
+	GZIP=-9v tar zcf    ../policy.html.tar.gz    policy.html
+	dpkg-distaddfile   -fdebian/files            policy.ps.gz       byhand -
+	dpkg-distaddfile    -fdebian/files           policy.html.tar.gz byhand -
+	for i in            $(BYHAND_FILES); do \
+          $(install_file)   $$i            ..                ; \
+          dpkg-distaddfile  -fdebian/files $$i       byhand - ; \
+        done
+	touch              stamp-binary
+
 define checkdir
-	test -f debian/rules
+	test -f debian/rules -a -f
 endef
 
-# Below here is fairly generic really
-
-binary:		binary-indep binary-arch
-
-checkroot:
-	$(checkdir)
-	test root = "`whoami`"
+source diff:
+	@echo >&2 'source and diff are obsolete - use dpkg-source -b'; false
 
 .PHONY: binary binary-arch binary-indep clean checkroot
+
+#Local variables:
+#mode: makefile
+#End:
