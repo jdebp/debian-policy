@@ -4761,14 +4761,18 @@ test -f <var>program-executed-later-in-script</var> || exit 0
 	      To get the default behavior for your package, put in your
 	      <prgn>postinst</prgn> script
 	      <example compact="compact">
-		update-rc.d <var>package</var> defaults &gt;/dev/null
+		update-rc.d <var>package</var> defaults 
 	      </example>
 	      and in your <prgn>postrm</prgn>
 	      <example compact="compact">
 		if [ "$1" = purge ]; then
-		update-rc.d <var>package</var> remove &gt;/dev/null
+		update-rc.d <var>package</var> remove 
 		fi
-	      </example></p>
+	      </example>. Note that is your package changes runlevels
+		  or priority, you may have to remove and recreate the
+		  links, since otherwise the old links may
+		  persist. Refer to the documentation of
+		  <prgn>update-rc.d</prgn></p>
 
 	    <p>
 	      This will use a default sequence number of 20.  If it does
