@@ -555,21 +555,20 @@
 	<sect1>
 	  <heading>The non-US sections</heading>
 	  <p>
-	    Some programs with cryptographic program code need to be
-	    stored on the <em>non-US</em> server because of United
-	    States export restrictions.  Such programs must be
-	    distributed in the appropriate <em>non-US</em> section,
-	    either <em>non-US/main</em>, <em>non-US/contrib</em> or
-	    <em>non-US/non-free</em>.
+	    Non-free programs with cryptographic program code need to
+	    be stored on the <em>non-us</em> server because of export
+	    restrictions of the U.S.
 	  </p>
 	  <p>
-	    This applies only to packages which contain cryptographic
-	    code. A package containing a program with an interface to
-	    a cryptographic program or a program that's dynamically
-	    linked against a cryptographic library should not be
-	    distributed via the <em>non-US</em> server if it is
-	    capable of running without the cryptographic library or
-	    program.
+	    Programs which use patented algorithms that have a
+	    restrictied license also need to be stored on "non-us",
+	    since that is located in a country where it is not allowed
+	    to patent algorithms.
+	  </p>
+	  <p>
+	    A package depends on another package which is distributed
+	    via the non-us server has to be stored on the non-us
+	    server as well.
 	  </p>
 	</sect1>
 	<sect1>
@@ -820,8 +819,8 @@
 	    Package names must consist of lower case letters
 	    (<tt>a-z</tt>), digits (<tt>0-9</tt>), plus (<tt>+</tt>)
 	    and minus (<tt>-</tt>) signs, and periods (<tt>.</tt>).
-	    They must be at least two characters long and must contain
-	    at least one letter.
+	    They must be at least two characters long and must start
+	    with an alphanumeric character.
 	  </p>
 
 	  <p>
@@ -926,7 +925,7 @@
 	    doing that has been reached.</p></sect1>
 
 
-	<sect1>
+	<sect1 id="virtual_pkg_sect">
 	  <heading>Virtual packages</heading>
 
 	  <p>
@@ -947,7 +946,7 @@
 	    They should not use virtual package names (except privately,
 	    amongst a cooperating group of packages) unless they have
 	    been agreed upon and appear in the list of virtual package
-	    names.</p>
+	    names. (See also <ref id="virtual">)</p>
 
 	  <p>
 	    The latest version of the authoritative list of virtual
@@ -1019,9 +1018,42 @@
 	    reached.
 	  </p>
 	</sect1>
+         <sect1>
+          <heading>Tasks</heading>
+
+          <p>
+            The Debian install process allows the user to choose from
+            a number of common tasks which a Debian system can be used to
+            perform. Selecting a task with <prgn>tasksel</prgn> causes
+            a set of packages that are useful in performing that task to be
+            installed.
+          </p>
+
+          <p>
+            This set of packages is all available packages which have the
+            name of the selected task in the <tt>Task<tt> field of their
+            control file. The format of this field is a list of tasks,
+            separated by commas.
+          </p>
+
+          <p>
+            You should not tag any packages as belonging to a task
+            before this has been discussed on the
+            <em>debian-devel</em> mailing list and a consensus about
+            doing that has been reached.
+          </p>
+
+          <p>
+            For third parties (and historical reasons), tasksel also
+            supports constructing tasks based on <em>task
+            packages</em>. These are packages whose names begin with
+            <em>task-</em>. Task packages should not be included in the
+            Debian archive.
+          </p>
+        </sect1>
 
 	<sect1 id="maintscripts">
-	  <heading>Maintainer scripts</heading>
+	  <heading>Maintainer Scripts</heading>
 
 	  <p>
 	    The package installation scripts should avoid producing
@@ -1276,10 +1308,9 @@
 		    <p>
 		      Having a separate package allows one to install
 		      the build-essential packages on a machine, as
-		      well as allowing other packages such as task
-		      packages to require installation of the
-		      build-essential packages using the depends
-		      relation.
+		      well as allowing other packages such as tasks to
+		      require installation of the build-essential
+		      packages using the depends relation.
 		    </p>
 		  </item>
 		  <item>
@@ -1525,16 +1556,17 @@ Package: libc6
 
 	  <p>
 	    The name of the binary package.  Package names consist of
-	    the alphanumerics and <tt>+</tt> <tt>-</tt> <tt>.</tt>
-	    (plus, minus and full stop).
+	    lower case letters (<tt>a-z</tt>), digits (<tt>0-9</tt>),
+	    plus (<tt>+</tt>) and minus (<tt>-</tt>) signs, and
+	    periods (<tt>.</tt>).
 	  </p>
 
 	  <p>
 	    They must be at least two characters long and must start
-	    with an alphanumeric character and not be all digits.  The
-	    use of lowercase package names is strongly recommended
-	    unless the package you're building (or referring to, in
-	    other fields) is already using uppercase.</p>
+	    with an alphanumeric character.  The use of lowercase
+	    package names is required unless the package you're
+	    building (or referring to, in other fields) is already
+	    using uppercase characters.</p>
 	</sect1>
 
 	<sect1 id="f-Version"><heading><tt>Version</tt>
@@ -2536,7 +2568,7 @@ Package: libc6
 	  aborted half way through for some reason, the second call
 	  should merely do the things that were left undone the first
 	  time, if any, and exit with a success status if everything
-	  is OK.<footnote> 
+	  is OK.<footnote>
 	    <p>
 	      This is so that if an error occurs, the user interrupts
 	      <prgn>dpkg</prgn> or some other unforeseen circumstance
@@ -3433,15 +3465,17 @@ Build-Depends: kernel-headers-2.2.10 [!hurd-i386],
 	  <tt>Provides</tt> control file field of another package.
 	  The effect is as if the package(s) which provide a
 	  particular virtual package name had been listed by name
-	  everywhere the virtual package name appears.
+	  everywhere the virtual package name appears. (See also <ref
+	    id="virtual_pkg_sect">)
 	</p>
 
 	<p>
-	  If there are both a real and a virtual package of the same
-	  name then the dependency may be satisfied (or the conflict
-	  caused) by either the real package or any of the virtual
-	  packages which provide it.  This is so that, for example,
-	  supposing we have
+	  If there are both concrete and virtual packages of the same
+	  name, then the dependency may be satisfied (or the conflict
+	  caused) by either the concrete package with the name in
+	  question or any other concrete package which provides the
+	  virtual package with the name in question.  This is so that,
+	  for example, supposing we have
 	  <example compact="compact">
 Package: foo
 Depends: bar
@@ -3591,7 +3625,31 @@ Replaces: mail-transport-agent
           <tt>Build-Conflicts</tt> and <tt>Build-Conflicts-Indep</tt>.
           The dependencies and conflicts they define must be satisfied
           (as defined earlier for binary packages) in order to invoke
-          the targets in <tt>debian/rules</tt>, as follows:
+          the targets in <tt>debian/rules</tt>, as follows:<footnote>
+	    <p>
+	      If you make "build-arch" or "binary-arch", you need
+	      Build-Depends.  If you make "build-indep" or
+	      "binary-indep", you need Build-Depends and
+	      Build-Depends-Indep.  If you make "build" or "binary",
+	      you need both.
+	    </p>
+	    <p>
+	      There is no Build-Depends-Arch; the autobuilders will
+	      only need the Build-Depends if they know how to build
+	      only build-arch and binary-arch.  Anyone building the
+	      build-indep/binary-indep targets is basically assumed to
+	      be building the whole package and so installs all build
+	      dependencies.
+	    </p>
+	    <p>
+	      The purpose of the original split, I recall, was so that
+	      the autobuilders wouldn't need to install extra packages
+	      needed only for the binary-indep targets.  But without a
+	      build-arch/build-indep split, this didn't work, since
+	      most of the work is done in the build target, not in the
+	      binary target.
+	    </p>
+	  </footnote>
 
 	  <taglist>
 	    <tag><tt>Build-Depends</tt>, <tt>Build-Conflicts</tt></tag>
@@ -3600,17 +3658,20 @@ Replaces: mail-transport-agent
                 The <tt>Build-Depends</tt> and
 		<tt>Build-Conflicts</tt> fields must be satisfied when
 		any of the following targets is invoked:
-		<tt>build</tt>, <tt>binary</tt>, <tt>binary-arch</tt>
+		<tt>build</tt>, <tt>binary</tt>, <tt>binary-arch</tt>,
+		<tt>build-arch</tt>, <tt>build-indep</tt>
 		and <tt>binary-indep</tt>.
 	      </p>
 	    </item>
-	    <tag><tt>Build-Depends-Indep</tt>, <tt>Build-Conflicts-Indep</tt></tag>
+	    <tag><tt>Build-Depends-Indep</tt>,
+	      <tt>Build-Conflicts-Indep</tt></tag>
 	    <item>
 	      <p>
                 The <tt>Build-Depends-Indep</tt> and
 		<tt>Build-Conflicts-Indep</tt> fields must be
 		satisfied when any of the following targets is
-		invoked: <tt>binary</tt> and <tt>binary-indep</tt>.
+		invoked: <tt>build</tt>, <tt>build-indep</tt>,
+		<tt>binary</tt> and <tt>binary-indep</tt>.
 	      </p>
 	    </item>
 	  </taglist>
@@ -3710,21 +3771,45 @@ Replaces: mail-transport-agent
 	    </list>
 	  </p>
 	</footnote>
-	must call <prgn>ldconfig</prgn> in its <prgn>postinst</prgn>
-	script if the first argument is <tt>configure</tt> and should
-	call it in the <prgn>postrm</prgn> script if the first
-	argument is <tt>remove</tt>.
-      </p>
-
-      <p>
-	However, <prgn>postrm</prgn> and <prgn>preinst</prgn> scripts
-	<em>must not</em> call <prgn>ldconfig</prgn> in the case where
-	the package is being upgraded (see <ref id="unpackphase"> for
-	details), as <prgn>ldconfig</prgn> will see the temporary
-	names that <prgn>dpkg</prgn> uses for the files while it is
-	installing them and will make the shared library links point
-	to them, just before <prgn>dpkg</prgn> continues the
-	installation and renames the temporary files!
+	must use <prgn>ldconfig</prgn> to update the shared library
+	system.  The package must call <prgn>ldconfig</prgn> in the
+	<prgn>postinst</prgn> script if the first argument is
+	<tt>configure</tt>; the <prgn>postinst</prgn> script may
+	optionally invoke <prgn>ldconfig</prgn> at other times.  The
+	package should call <prgn>ldconfig</prgn> in the
+	<prgn>postrm</prgn> script if the first argument is
+	<tt>remove</tt>.  The maintainer scripts must not invoke
+	<prgn>ldconfig</prgn> under any circumstances other than those
+	described in this paragraph.<footnote>
+	  <p>During install or upgrade, the preinst is called before
+	    the new files are installed, so calling "ldconfig" is
+	    pointless.  The preinst of an existing package can also be
+	    called if an upgrade fails.  However, this happens during
+	    the critical time when a shared libs may exist on-disk
+	    under a temporary name.  Thus, it is dangerous and
+	    forbidden by current policy to call "ldconfig" at this
+	    time.  When a package is installed or upgraded, "postinst
+	    configure" runs after the new files are safely on-disk.
+	    The postinst can also be called to recover from a failed
+	    upgrade.  This happens before any new files are unpacked,
+	    so there is no reason to call "ldconfig" at this point.
+	    For a package that is being removed, prerm is called with
+	    all the files intact, so calling ldconfig is useless.  The
+	    other calls to "prerm" happen in the case of upgrade at a
+	    time when all the files of the old package are on-disk, so
+	    again calling "ldconfig" is pointless. If An installed
+	    shared lib has been removed from the system just before
+	    "postrm remove" is run.  This is the proper time to call
+	    "ldconfig" to notify the system of that fact.  The postrm
+	    can be called at several other times.  At the time of
+	    "postrm purge", "postrm abort-install", or "postrm
+	    abort-upgrade", calling "ldconfig" is useless because the
+	    shared lib files are not on-disk.  However, when "postrm"
+	    is invoked with arguments "upgrade", "failed-upgrade", or
+	    "disappear", a shared lib may exist on-disk under a
+	    temporary filename.
+	  </p>
+	</footnote>
       </p>
 
       <sect>
@@ -4141,7 +4226,7 @@ libbar 1 bar1 (>= 1.0-1)
 	    version 2.1, except where doing so would violate other
 	    terms of Debian Policy. The version of this document
 	    referred here can be found in the <tt>debian-policy</tt>
-	    package or on 
+	    package or on
 	    <url id="http://www.debian.org/doc/packaging-manuals/fhs/"
 	      name="FHS (Debian copy)"> alongside this manual. The
 	    latest version, which may be a more recent version, may
@@ -4149,9 +4234,9 @@ libbar 1 bar1 (>= 1.0-1)
 	    <url id="http://www.pathname.com/fhs/" name="FHS (upstream)">.
 	    Specific questions about following the standard may be
 	    asked on the <tt>debian-devel</tt> mailing list, or
-	    referred to the FHS mailing list (see the 
+	    referred to the FHS mailing list (see the
             <url id="http://www.pathname.com/fhs/" name="FHS web site"> for
-	    more information). 
+	    more information).
 	  </p>
 	</sect1>
 
@@ -4601,8 +4686,8 @@ test -f <var>program-executed-later-in-script</var> || exit 0
 	    must contain only variable settings and comments in POSIX
 	    <prgn>sh</prgn> format.  It may either be a
 	    <tt>conffile</tt> or a configuration file maintained by
-	    the package maintainer scripts.  See <ref id="config-files"> 
-	    for more details. 
+	    the package maintainer scripts.  See <ref id="config-files">
+	    for more details.
 	  </p>
 
 	  <p>
@@ -4618,68 +4703,142 @@ test -f <var>program-executed-later-in-script</var> || exit 0
 	</sect1>
 
 	<sect1>
-	  <heading>Managing the links</heading>
+	  <heading>Interfacing with the initscript system</heading>
 
 	  <p>
-	    The program <prgn>update-rc.d</prgn> is provided for
-	    package maintainers to arrange for the proper creation and
-	    removal of <file>/etc/rc<var>n</var>.d</file> symbolic links,
-	    or their functional equivalent if another method is being
-	    used.  This may be used by maintainers in their packages'
-	    <prgn>postinst</prgn> and <prgn>postrm</prgn> scripts.</p>
-
+	    Maintainers should use the abstraction layer provided by
+	    the <prgn>update-rc.d</prgn> and <prgn>invoke-rc.d</prgn>
+	    programs to deal with initscripts in their packages'
+	    scripts such as <prgn>postinst</prgn>, <prgn>prerm</prgn>
+	    and <prgn>postrm</prgn>.
+	  </p>
 	  <p>
-	    You must not include any <file>/etc/rc<var>n</var>.d</file>
-	    symbolic links in the actual archive or manually create or
-	    remove the symbolic links in maintainer scripts; you must
-	    use the <prgn>update-rc.d</prgn> program instead.  (The
-	    former will fail if an alternative method of maintaining
-	    runlevel information is being used.)  You must not include
-	    the <file>/etc/rc<var>n</var>.d</file> directories themselves
-	    in the archive either.  (Only the <tt>sysvinit</tt>
-	    package may do so.)
+	    Directly managing the /etc/rc?.d links and directly
+	    invoking the <file>/etc/init.d/</file> initscripts should
+	    be done only by packages providing the initscript
+	    subsystem (such as <prgn>sysvinit</prgn> and
+	    <prgn>file-rc</prgn>).
+
 	  </p>
 
-	  <p>
-	    By default <prgn>update-rc.d</prgn> will start services in
-	    each of the multi-user state runlevels (2, 3, 4, and 5)
-	    and stop them in the halt runlevel (0), the single-user
-	    runlevel (1) and the reboot runlevel (6).  The system
-	    administrator will have the opportunity to customize
-	    runlevels by simply adding, moving, or removing the
-	    symbolic links in <file>/etc/rc<var>n</var>.d</file> if
-	    symbolic links are being used, or by modifying
-	    <file>/etc/runlevel.conf</file> if the <tt>file-rc</tt> method
-	    is being used.
-	  </p>
+	  <sect2>
+	    <heading>Managing the links</heading>
 
-	  <p>
-	    To get the default behavior for your package, put in your
-	    <prgn>postinst</prgn> script
-	    <example compact="compact">
-update-rc.d <var>package</var> defaults &gt;/dev/null
-	    </example>
-	    and in your <prgn>postrm</prgn>
-	    <example compact="compact">
-if [ "$1" = purge ]; then
-  update-rc.d <var>package</var> remove &gt;/dev/null
-fi
-	    </example></p>
+	    <p>
+	      The program <prgn>update-rc.d</prgn> is provided for
+	      package maintainers to arrange for the proper creation and
+	      removal of <file>/etc/rc<var>n</var>.d</file> symbolic links,
+	      or their functional equivalent if another method is being
+	      used.  This may be used by maintainers in their packages'
+	      <prgn>postinst</prgn> and <prgn>postrm</prgn> scripts.</p>
 
-	  <p>
-	    This will use a default sequence number of 20.  If it does
-	    not matter when or in which order the <file>init.d</file>
-	    script is run, use this default.  If it does, then you
-	    should talk to the maintainer of the <prgn>sysvinit</prgn>
-	    package or post to <tt>debian-devel</tt>, and they will
-	    help you choose a number.
-	  </p>
+	    <p>
+	      You must not include any <file>/etc/rc<var>n</var>.d</file>
+	      symbolic links in the actual archive or manually create or
+	      remove the symbolic links in maintainer scripts; you must
+	      use the <prgn>update-rc.d</prgn> program instead.  (The
+	      former will fail if an alternative method of maintaining
+	      runlevel information is being used.)  You must not include
+	      the <file>/etc/rc<var>n</var>.d</file> directories themselves
+	      in the archive either.  (Only the <tt>sysvinit</tt>
+	      package may do so.)
+	    </p>
 
-	  <p>
-	    For more information about using <tt>update-rc.d</tt>,
-	    please consult its manpage <manref name="update-rc.d"
-	      section="8">.
-	  </p>
+	    <p>
+	      By default <prgn>update-rc.d</prgn> will start services in
+	      each of the multi-user state runlevels (2, 3, 4, and 5)
+	      and stop them in the halt runlevel (0), the single-user
+	      runlevel (1) and the reboot runlevel (6).  The system
+	      administrator will have the opportunity to customize
+	      runlevels by simply adding, moving, or removing the
+	      symbolic links in <file>/etc/rc<var>n</var>.d</file> if
+	      symbolic links are being used, or by modifying
+	      <file>/etc/runlevel.conf</file> if the <tt>file-rc</tt> method
+	      is being used.
+	    </p>
+
+	    <p>
+	      To get the default behavior for your package, put in your
+	      <prgn>postinst</prgn> script
+	      <example compact="compact">
+		update-rc.d <var>package</var> defaults &gt;/dev/null
+	      </example>
+	      and in your <prgn>postrm</prgn>
+	      <example compact="compact">
+		if [ "$1" = purge ]; then
+		update-rc.d <var>package</var> remove &gt;/dev/null
+		fi
+	      </example></p>
+
+	    <p>
+	      This will use a default sequence number of 20.  If it does
+	      not matter when or in which order the <file>init.d</file>
+	      script is run, use this default.  If it does, then you
+	      should talk to the maintainer of the <prgn>sysvinit</prgn>
+	      package or post to <tt>debian-devel</tt>, and they will
+	      help you choose a number.
+	    </p>
+
+	    <p>
+	      For more information about using <tt>update-rc.d</tt>,
+	      please consult its manpage <manref name="update-rc.d"
+		section="8">.
+	    </p>
+	  </sect2>
+
+	  <sect2>
+	    <heading>Running initscripts</heading>
+	    <p>
+	      The program <prgn>invoke-rc.d</prgn> is provided to make
+	      it easier for package maintainers to properly invoke an
+	      initscript, obeying runlevel and other locally-defined
+	      constraints that might limit a package's right to start,
+	      stop and otherwise manage services. This program may be
+	      used by maintainers in their packages' scripts.
+	    </p>
+	    <p>
+	      The use of <prgn>invoke-rc.d</prgn> to invoke the
+	      <file>/etc/init.d/*</file> initscripts is strongly
+	      recommended<footnote>
+		<p>
+		  In the future, the use of invoke-rc.d to invoke
+		  initscripts shall be made mandatory. Maintainers are
+		  advised to switch to invoke-rc.d as soon as
+		  possible.</p>
+	      </footnote>, instead of calling them directly.
+	    </p>
+
+	    <p>
+	      By default, <prgn>invoke-rc.d</prgn> will pass any
+	      action requests (start, stop, reload, restart...) to the
+	      <file>/etc/init.d</file> script, filtering out requests
+	      to start or restart a service out of its intended
+	      runlevels.
+	    </p>
+	    <p>
+	      Most packages will simply need to change:
+	      <example compact="compact">/etc/init.d/&lt;package&gt;
+	      &lt;action&gt;</example> in their <prgn>postinst</prgn>
+	      and <prgn>prerm</prgn> scripts to:
+	      <example compact="compact">
+          if [ -x /usr/sbin/invoke-rc.d ] ; then
+		invoke-rc.d <var>package</var> &lt;action&gt;
+          else
+             /etc/init.d/<var>package</var> &lt;action&gt;
+          fi
+	      </example></p>
+	    <p>
+	      A package should register its initscript services using
+	      <prgn>update-rc.d</prgn> before it tries to invoke them
+	      using <prgn>invoke-rc.d</prgn>. Invocation of
+	      unregistered services may fail.
+	    </p>
+	    <p>
+	      For more information about using
+	      <prgn>invoke-rc.d</prgn>, please consult its manpage
+	      <manref name="invoke-rc.d" section="8">.
+	    </p>
+	  </sect2>
 	</sect1>
 
 
@@ -5333,13 +5492,21 @@ exec /usr/lib/foo/foo "$@"
 	</p>
 
 	<p>
-	  Generally the following compilation parameters should be used:
+         By default, when a package is being built, any binaries
+         created should include debugging information, as well as
+         being compiled with optimization.  You should also turn on
+         as many reasonable compilation warnings as possible; this
+         makes life easier for porters, who can then look at build
+         logs for possible problems.  For the C programming language,
+         this means the following compilation parameters should be
+         used:
 	  <example compact="compact">
 CC = gcc
-CFLAGS = -O2 -Wall # sane warning options vary between programs
+CFLAGS = -O2 -g -Wall # sane warning options vary between programs
 LDFLAGS = # none
 install -s # (or use strip on the files in debian/tmp)
-	  </example></p>
+	  </example>
+	</p>
 
 	<p>
 	  Note that by default all installed binaries should be stripped,
@@ -5350,50 +5517,56 @@ install -s # (or use strip on the files in debian/tmp)
 	  package.</p>
 
 	<p>
-	  The <tt>-N</tt> flag should not be used.  On <file>a.out</file>
-	  systems it may have been useful for some very small
-	  binaries, but for ELF it has no good effect.</p>
-
+	  Although binaries in the build tree should be compiled with
+	  debugging information by default, it can often be difficult
+	  to debug programs if they are also subjected to compiler
+	  optimization.  For this reason, it is recommended to support
+	  the standardized environment
+	  variable <tt>DEB_BUILD_OPTIONS</tt>.  This variable can
+	  contain several flags to change how a package is compiled
+	  and built.
+	</p>
 	<p>
-	  Debugging symbols are useful for error diagnosis,
-	  investigation of core dumps (which may be submitted by users
-	  in bug reports), or testing and developing the software.
-	  Therefore it is recommended to support building the package
-	  with debugging information through the following interface:
-	  If the environment variable <tt>DEB_BUILD_OPTIONS</tt>
-	  contains the string <tt>debug</tt>, compile the software
-	  with debugging information (usually this involves adding the
-	  <tt>-g</tt> flag to <tt>CFLAGS</tt>).  This allows the
-	  generation of a build tree with debugging information.  If
-	  the environment variable <tt>DEB_BUILD_OPTIONS</tt> contains
-	  the string <tt>nostrip</tt>, do not strip the files at
-	  installation time.  This allows one to generate a package
-	  with debugging information included.<footnote>
-	    <p>
-	      Rationale: Using <tt>-g</tt> by default causes wasted
-	      CPU cycles since the information is stripped away
-	      anyway; this can have a significant impact on the
-	      efficiency of the autobuilders.  Having a standard way
-	      to build a debugging variant also makes it easier to
-	      build debugging bins and libraries since it provides a
-	      documented way of getting this type of build; one does
-	      not have to manually edit <file>debian/rules</file> or
-	      <file>Makefile</file>s.
-	    </p>
-	  </footnote>
+	  <taglist>
+	    <tag>noopt</tag>
+	    <item>
+	      <p>
+		The presence of this string means that the package
+		should be complied with a minimum of optimization.
+		For C programs, it is best to add <tt>-O0</tt>
+		to <tt>CFLAGS</tt> (although this is usually the
+		default).  Some programs might fail to build or run at
+		this level of optimization; it may be necessary to
+		use <tt>-O1</tt>, for example.
+	      </p>
+	    </item>
+	    <tag>nostrip</tag>
+	    <item>
+	      <p>
+		This string means that the debugging symbols should
+		not be stripped from the binary during installation,
+		so that debugging information may be included in the           +               package.
+	      </p>
+	    </item>
+	  </taglist>
+	</p>
+	<p>
 	  The following makefile snippet is an example of how one may
-	  test for either condition; you will probably have to massage
-	  this example in order to make it work for your package.
-	  <example compact="compact">
-CFLAGS = -O2 -Wall
+          implement the build options; you will probably have to
+          massage this example in order to make it work for your
+          package.
+ 	  <example compact="compact">
+CFLAGS = -Wall -g
 INSTALL = install
 INSTALL_FILE    = $(INSTALL) -p    -o root -g root  -m  644
 INSTALL_PROGRAM = $(INSTALL) -p    -o root -g root  -m  755
 INSTALL_SCRIPT  = $(INSTALL) -p    -o root -g root  -m  755
 INSTALL_DIR     = $(INSTALL) -p -d -o root -g root  -m  755
 
-ifneq (,$(findstring debug,$(DEB_BUILD_OPTIONS)))
-CFLAGS += -g
+ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
+CFLAGS += -O0
+else
+CFLAGS += -O2
 endif
 ifeq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
 INSTALL_PROGRAM += -s
@@ -5411,12 +5584,47 @@ endif
 	  if there is good reason to do so.  Feel free to override
 	  the upstream author's ideas about which compilation
 	  options are best: they are often inappropriate for our
-	  environment.</p></sect>
+	  environment.
+	</p>
+      </sect>
 
 
       <sect>
 	<heading>Libraries</heading>
-
+	<p>
+	  In general, libraries must have a shared version in the
+	  library package and a static version in the development
+	  package.  The shared version must be compiled with
+	  <tt>-fPIC</tt>, and the static version must not be.  In
+	  other words, each source unit ( <tt>*.c</tt>, for example,
+	  for C files) will need to be compiled twice.
+	</p>
+	<p>
+	  In some cases, it is acceptable for a library to be
+	  available in static form only; these cases include:
+	  <list>
+	    <item>
+	      <p>libraries for languages whose shared library support
+		is immature or unstable</p>
+	    </item>
+	    <item>
+	      <p>
+		libraries whose interfaces are in flux or under
+		development (commonly the case when the library's
+		major version number is zero, or where the ABI breaks
+		across patchlevels)
+	      </p>
+	    </item>
+	    <item>
+	      <p>
+		libraries which are explicitly intended to be
+		available only in static form by their upstream
+		author(s)</p>
+	    </item>
+	  </list>
+	  If a library is available only in static form, then it must follow
+	  the conventions for a development package.
+	</p>
 	<p>
 	  All libraries must have a shared version in the
 	  <tt>lib*</tt> package and a static version in the
@@ -5474,7 +5682,7 @@ strip --strip-unneeded <var>your-lib</var>
 	    </p>
 	  </footnote>
 	</p>
- 									     
+
 	<p>
 	  Packages containing shared libraries that may be linked to
 	  by other packages' binaries, but which for some
@@ -5559,7 +5767,13 @@ strip --strip-unneeded <var>your-lib</var>
 	    </p>
 	  </footnote>
 	  and <tt><var>libraryname</var><var>soversion</var>-dev</tt>.
-	</p>
+          Alternatively, if it would be confusing to directly append
+          <var>soversion</var> to <var>libraryname</var> (e.g. because
+          <var>libraryname</var> itself ends in a number), you may use
+          <tt><var>libraryname</var>-<var>soversion</var></tt> and
+          <tt><var>libraryname</var>-<var>soversion</var>-dev</tt>
+          instead.
+ 	</p>
 
 	<p>
 	  If you prefer only to support one development version at a
@@ -5760,7 +5974,13 @@ ln -fs ../sbin/sendmail debian/tmp/usr/bin/runq
 	  If a package needs any special device files that are not
 	  included in the base system, it must call
 	  <prgn>MAKEDEV</prgn> in the <prgn>postinst</prgn> script,
-	  after asking the user for permission to do so.</p>
+	  after notifying the user<footnote>
+	    <p>
+	      This notification could be done via a (low-priority)
+	      debconf message, or an echo (printf) statement.
+	    </p>
+	  </footnote>
+	  .</p>
 
 	<p>
 	  Packages must not remove any device files in the
@@ -6790,6 +7010,15 @@ name [`<var>syshostname</var>']:
 		  points.
 		</p>
 	      </item>
+              <item>
+                <p>
+                  If the window manager complies with  <url
+		    id="http://www.freedesktop.org/standards/wm-spec.html"
+		    name="The Window Manager Specification Project">,
+                  written by the <url id="http://www.freedesktop.org"
+		    name="Free Desktop Group">, add 20 points.
+                </p>
+              </item>
 
 	      <item>
 		<p>
@@ -6828,7 +7057,7 @@ name [`<var>syshostname</var>']:
 	      <item>
 		<p>
 		  Fonts of any type supported by the X Window System
-		  must be be in a separate binary package from any
+		  must be in a separate binary package from any
 		  executables, libraries, or documentation (except
 		  that specific to the fonts shipped, such as their
 		  license information).  If one or more of the fonts
@@ -6903,7 +7132,7 @@ name [`<var>syshostname</var>']:
 		<p>
 		  Font packages may, instead of placing files directly
 		  in the X font directories listed above, provide
-		  symbolic links in the font directory which point to
+		  symbolic links in that font directory pointing to
 		  the files' actual location in the filesystem.  Such
 		  a location must comply with the FHS.
 		</p>
@@ -7159,12 +7388,12 @@ name [`<var>syshostname</var>']:
       <sect>
 	<heading>Perl programs and modules</heading>
 	<p>
-	  Perl programs and modules should follow the current Perl             
-          policy as defined in the file found on                               
-	  <ftpsite>ftp.debian.org</ftpsite> in                                 
-	  <ftppath>/debian/doc/package-developer/perl-policy.txt.gz</ftppath>  
-	  or your local mirror.  In addition, it is included in the            
-	  <tt>debian-policy</tt> package.                                
+	  Perl programs and modules should follow the current Perl
+          policy as defined in the file found on
+	  <ftpsite>ftp.debian.org</ftpsite> in
+	  <ftppath>/debian/doc/package-developer/perl-policy.txt.gz</ftppath>
+	  or your local mirror.  In addition, it is included in the
+	  <tt>debian-policy</tt> package.
 	</p>
       </sect>
 
@@ -7186,7 +7415,7 @@ name [`<var>syshostname</var>']:
 	  The permissions on <file>/var/games</file> are mode 755, owner
 	  <tt>root</tt> and group <tt>root</tt>.
 	</p>
-	  
+
 	<p>
 	  Each game decides on its own security policy.</p>
 
@@ -7389,40 +7618,14 @@ install-info --quiet --remove /usr/share/info/foobar.info
 
 	<p>
 	  Former Debian releases placed all additional documentation
-	  in <file>/usr/doc/<var>package</var></file>.  To realize a
-	  smooth migration to
-	  <file>/usr/share/doc/<var>package</var></file>, each package
-	  must maintain a symlink <file>/usr/doc/<var>package</var></file>
-	  that points to the new location of its documentation in
-	  <file>/usr/share/doc/<var>package</var></file><footnote>These
-	      symlinks will be removed in the future, but they have to be
-	      there for compatibility reasons until all packages have
-	      moved and the policy is changed accordingly.</footnote>.
-	  The symlink must be created when the package is installed;
-	  it cannot be contained in the package itself due to problems
-	  with <prgn>dpkg</prgn>. One reasonable way to accomplish
-	  this is to put the following in the package's
-	  <prgn>postinst</prgn><footnote>
-	    <p>
-	      The <tt>debhelper</tt> script
-	      <prgn>dh_installdocs</prgn> does this automatically.
-	    </p>
-	  </footnote>:
-          <example compact="compact">
-if [ "$1" = "configure" ]; then
-  if [ -d /usr/doc -a ! -e /usr/doc/<var>package</var> \
-       -a -d /usr/share/doc/<var>package</var> ]; then
-    ln -sf ../share/doc/<var>package</var> /usr/doc/<var>package</var>
-  fi
-fi
-          </example>
-          and the following in the package's <prgn>prerm</prgn>:
-          <example compact="compact">
-if [ \( "$1" = "upgrade" -o "$1" = "remove" \) \
-     -a -L /usr/doc/<var>package</var> ]; then
-  rm -f /usr/doc/<var>package</var>
-fi
-          </example>
+	  in <file>/usr/doc/<var>package</var></file>.  This has now
+	  changed to <file>/usr/share/doc/<var>package</var></file>,
+	  and packages must not put documentation in the directory
+	  <file>/usr/doc/<var>package</var></file>. <footnote>
+	    <p>At this phase of the transition, we no longer require a
+	    symbolic link in <file>/usr/doc/</file>. At a later point,
+	    policy shall change to make the symbolic links a bug.</p>
+	  </footnote>
 	</p>
       </sect>
 
@@ -7592,7 +7795,7 @@ fi
 	precedence.  The remaining chapters of the old Packaging
 	Manual have also not been read in detail to ensure that there
 	are not parts which have been left out.  Both of these will be
-	done in due course. 
+	done in due course.
       </p>
 
       <p>
@@ -7625,13 +7828,13 @@ fi
 	<prgn>dselect</prgn>'s core and the access method scripts it
 	uses to actually install the selected packages, and describes
 	how to create a new access method.</p>
-	
+
       <p>
 	This manual does not go into detail about the options and
 	usage of the package building and installation tools.  It
 	should therefore be read in conjuction with those programs'
 	manpages.
-      </p>	
+      </p>
 
       <p>
 	The utility programs which are provided with <prgn>dpkg</prgn>
@@ -7640,7 +7843,7 @@ fi
 	<prgn>install-info</prgn>, are not described in detail here -
 	please see their manpages.
       </p>
-	
+
       <p>
 	It does <em>not</em> describe the policy requirements imposed
 	on Debian packages, such as the permissions on files and
@@ -7650,13 +7853,13 @@ fi
 	helpful even if you don't plan to upload your package and make
 	it available as part of the distribution.)
       </p>
-	
+
       <p>
 	It is assumed that the reader is reasonably familiar with the
 	<prgn>dpkg</prgn> System Administrators' manual.
 	Unfortunately this manual does not yet exist.
       </p>
-	
+
       <p>
 	The Debian version of the FSF's GNU hello program is provided
 	as an example for people wishing to create Debian
@@ -7670,31 +7873,31 @@ fi
     <appendix id="pkg-binarypkg"><heading>Binary packages (from old
     Packaging Manual)
       </heading>
-	
+
       <p>
 	The binary package has two main sections.  The first part
 	consists of various control information files and scripts used
 	by <prgn>dpkg</prgn> when installing and removing.  See <ref
 	id="pkg-controlarea">.
       </p>
-	
+
       <p>
 	The second part is an archive containing the files and
 	directories to be installed.
       </p>
-	
+
       <p>
 	In the future binary packages may also contain other
 	components, such as checksums and digital signatures. The
 	format for the archive is described in full in the
 	<file>deb(5)</file> manpage.
       </p>
-	
-	
+
+
       <sect id="pkg-bincreating"><heading>Creating package files -
       <prgn>dpkg-deb</prgn>
 	</heading>
-	  
+
 	<p>
 	  All manipulation of binary package files is done by
 	  <prgn>dpkg-deb</prgn>; it's the only program that has
@@ -7704,7 +7907,7 @@ fi
 	  <prgn>dpkg-deb</prgn> and invoke that instead with the same
 	  arguments.)
 	</p>
-	  
+
 	<p>
 	  In order to create a binary package you must make a
 	  directory tree which contains all the files and directories
@@ -7713,21 +7916,21 @@ fi
 	  <file>debian/tmp</file>, relative to the top of the package's
 	  source tree.
 	</p>
-	  
+
 	<p>
 	  They should have the locations (relative to the root of the
 	  directory tree you're constructing) ownerships and
 	  permissions which you want them to have on the system when
 	  they are installed.
 	</p>
-	  
+
 	<p>
 	  With current versions of <prgn>dpkg</prgn> the uid/username
 	  and gid/groupname mappings for the users and groups being
 	  used should be the same on the system where the package is
 	  built and the one where it is installed.
 	</p>
-	  
+
 	<p>
 	  You need to add one special directory to the root of the
 	  miniature filesystem tree you're creating:
@@ -7735,20 +7938,20 @@ fi
 	  information files, notably the binary package control file
 	  (see <ref id="pkg-controlfile">).
 	</p>
-	  
+
 	<p>
 	  The <prgn>DEBIAN</prgn> directory will not appear in the
 	  filesystem archive of the package, and so won't be installed
 	  by <prgn>dpkg</prgn> when the package is installed.
 	</p>
-	  
+
 	<p>
 	  When you've prepared the package, you should invoke:
 	  <example>
   dpkg --build <var>directory</var>
 	  </example>
 	</p>
-	  
+
 	<p>
 	  This will build the package in
 	  <file><var>directory</var>.deb</file>.  (<prgn>dpkg</prgn> knows
@@ -7756,7 +7959,7 @@ fi
 	  it invokes <prgn>dpkg-deb</prgn> with the same arguments to
 	  build the package.)
 	</p>
-	  
+
 	<p>
 	  See the manpage <manref name="dpkg-deb" section="8"> for details of how
 	  to examine the contents of this newly-created file.  You may find the
@@ -7777,7 +7980,7 @@ fi
 	<heading>
 	  Package control information files
 	</heading>
-	  
+
 	<p>
 	  The control information portion of a binary package is a
 	  collection of files with names known to <prgn>dpkg</prgn>.
@@ -7786,23 +7989,23 @@ fi
 	  installing or removing the package; others are scripts which
 	  the package maintainer wants <prgn>dpkg</prgn> to run.
 	</p>
-	  
+
 	<p>
 	  It is possible to put other files in the package control
 	  area, but this is not generally a good idea (though they
 	  will largely be ignored).
 	</p>
-	  
+
 	<p>
 	  Here is a brief list of the control info files supported by
 	  <prgn>dpkg</prgn> and a summary of what they're used for.
 	</p>
-	  
+
 	<p>
 	  <taglist>
 	    <tag><tt>control</tt>
 	    <item>
-	      
+
 	      <p>
 		This is the key description file used by
 		<prgn>dpkg</prgn>.  It specifies the package's name
@@ -7810,7 +8013,7 @@ fi
 		states its relationships with other packages, and so
 		forth.  See <ref id="pkg-controlfile">.
 	      </p>
-		
+
 	      <p>
 		It is usually generated automatically from information
 		in the source package by the
@@ -7818,12 +8021,12 @@ fi
 		assistance from <prgn>dpkg-shlibdeps</prgn>.  See <ref
 		id="pkg-sourcetools">.</p>
 	    </item>
-	      
+
 	    <tag><tt>postinst</tt>, <tt>preinst</tt>, <tt>postrm</tt>,
 	    <tt>prerm</tt>
 	    </tag>
 	    <item>
-	      
+
 	      <p>
 		These are exectuable files (usually scripts) which
 		<prgn>dpkg</prgn> runs during installation, upgrade
@@ -7834,7 +8037,7 @@ fi
 		how they are called are in <ref
 		id="maintainerscripts">.
 	      </p>
-		
+
 	      <p>
 		It is very important to make these scripts
 		idempotent.
@@ -7850,7 +8053,7 @@ fi
 		unforeseen circumstance happens you don't leave the
 		user with a badly-broken package.
 	      </p>
-		
+
 	      <p>
 		The maintainer scripts are guaranteed to run with a
 		controlling terminal and can interact with the user.
@@ -7866,27 +8069,27 @@ fi
 		output is printed immediately rather than being
 		buffered.
 	      </p>
-		
+
 	      <p>
 		Each script should return a zero exit status for
 		success, or a nonzero one for failure.</p>
 	    </item>
-	      
+
 	    <tag><tt>conffiles</tt>
 	    </tag>
 	    <item>
-	      
+
 	      <p>
 		This file contains a list of configuration files which
 		are to be handled automatically by <prgn>dpkg</prgn>
 		(see <ref id="pkg-conffiles">).  Note that not necessarily
 		every configuration file should be listed here.</p>
 	    </item>
-	      
+
 	    <tag><tt>shlibs</tt>
 	    </tag>
 	    <item>
-	      
+
 	      <p>
 		This file contains a list of the shared libraries
 		supplied by the package, with dependency details for
@@ -7898,7 +8101,7 @@ fi
 	    </item>
 	  </taglist>
 	</p>
-	
+
       <sect id="pkg-controlfile">
 	<heading>
 	  The main control information file: <tt>control</tt>
@@ -7910,7 +8113,7 @@ fi
 	  statistics'.
 	</p>
 
-	<p>	  
+	<p>
 	  The binary package control files of packages built from
 	  Debian sources are made by a special tool,
 	  <prgn>dpkg-gencontrol</prgn>, which reads
@@ -7919,7 +8122,7 @@ fi
 	  more details.
 	</p>
 
-	<p>	  
+	<p>
 	  The fields in binary package control files are:
 	  <list compact="compact">
 	    <item>
@@ -7963,9 +8166,9 @@ fi
 	      <p>
 		<qref id="pkg-f-Installed-Size"><tt>Installed-Size</tt></qref>
 	      </p>
-	    </item> 
+	    </item>
 	  </list>
-	    
+
 	<p>
 	  A description of the syntax of control files and the purpose
 	  of these fields is available in <ref id="pkg-controlfields">.
@@ -7977,7 +8180,7 @@ fi
 	<p>
 	  Maintainers are encouraged to preserve the modification
 	  times of the upstream source files in a package, as far as
-	  is reasonably possible. 
+	  is reasonably possible.
 	  <footnote>
 	    <p>
 	      The rationale is that there is some information conveyed
@@ -7995,60 +8198,60 @@ fi
     <appendix id="pkg-sourcepkg">
       <heading>Source packages (from old Packaging Manual) </heading>
 
-      <p>	
+      <p>
 	The Debian binary packages in the distribution are generated
 	from Debian sources, which are in a special format to assist
 	the easy and automatic building of binaries.
       </p>
 
-      <p>	
+      <p>
 	There was a previous version of the Debian source format,
 	which is now being phased out.  Instructions for converting an
 	old-style package are given in the Debian policy manual.
       </p>
-	
-      <sect id="pkg-sourcetools">
-	<heading>Tools for processing source packages</heading> 
 
-	<p>	  
+      <sect id="pkg-sourcetools">
+	<heading>Tools for processing source packages</heading>
+
+	<p>
 	  Various tools are provided for manipulating source packages;
 	  they pack and unpack sources and help build of binary
 	  packages and help manage the distribution of new versions.
 	</p>
 
-	<p>	  
+	<p>
 	  They are introduced and typical uses described here; see
 	  <manref name="dpkg-source" section="1"> for full
 	  documentation about their arguments and operation.
 	</p>
 
-	<p>	  
+	<p>
 	  For examples of how to construct a Debian source package,
 	  and how to use those utilities that are used by Debian
 	  source packages, please see the <prgn>hello</prgn> example
 	  package.
 	</p>
-	  
+
 	<sect1>
 	  <heading>
 	    <prgn>dpkg-source</prgn> - packs and unpacks Debian source
 	    packages
 	  </heading>
 
-	  <p>	    
+	  <p>
 	    This program is frequently used by hand, and is also
 	    called from package-independent automated building scripts
 	    such as <prgn>dpkg-buildpackage</prgn>.
 	  </p>
 
-	  <p>	    
+	  <p>
 	    To unpack a package it is typically invoked with
 	    <example>
   dpkg-source -x <var>.../path/to/filename</var>.dsc
-	    </example> 
+	    </example>
 	  </p>
 
-	   <p>	
+	   <p>
 	    with the <file><var>filename</var>.tar.gz</file> and
 	    <file><var>filename</var>.diff.gz</file> (if applicable) in
 	    the same directory.  It unpacks into
@@ -8058,7 +8261,7 @@ fi
 	    the current directory.
 	  </p>
 
-	  <p>	    
+	  <p>
 	    To create a packed source archive it is typically invoked:
 	    <example>
   dpkg-source -b <var>package</var>-<var>version</var>
@@ -8073,18 +8276,18 @@ fi
 	    required.
 	  </p>
 
-	  <p>	    
+	  <p>
 	    See also <ref id="pkg-sourcearchives">.</p>
 	</sect1>
-	  
-	  
+
+
 	<sect1>
 	  <heading>
 	    <prgn>dpkg-buildpackage</prgn> - overall package-building
 	    control script
 	  </heading>
 
-	  <p>	    
+	  <p>
 	    <prgn>dpkg-buildpackage</prgn> is a script which invokes
 	    <prgn>dpkg-source</prgn>, the <file>debian/rules</file>
 	    targets <tt>clean</tt>, <tt>build</tt> and
@@ -8093,7 +8296,7 @@ fi
 	    package upload.
 	  </p>
 
-	  <p>	    
+	  <p>
 	    It is usually invoked by hand from the top level of the
 	    built or unbuilt source directory.  It may be invoked with
 	    no arguments; useful arguments include:
@@ -8136,20 +8339,20 @@ fi
 	    </taglist>
 	  </p>
 	</sect1>
-	  
+
 	<sect1>
 	  <heading>
 	    <prgn>dpkg-gencontrol</prgn> - generates binary package
 	    control files
 	  </heading>
 
-	  <p>	    
+	  <p>
 	    This program is usually called from <file>debian/rules</file>
 	    (see <ref id="pkg-sourcetree">) in the top level of the source
 	    tree.
 	  </p>
 
-	  <p>	    
+	  <p>
 	    This is usually done just before the files and directories in the
 	    temporary directory tree where the package is being built have their
 	    permissions and ownerships set and the package is constructed using
@@ -8162,14 +8365,14 @@ fi
 	    </footnote>.
 	  </p>
 
-	  <p>	    
+	  <p>
 	    <prgn>dpkg-gencontrol</prgn> must be called after all the
 	    files which are to go into the package have been placed in
 	    the temporary build directory, so that its calculation of
 	    the installed size of a package is correct.
 	  </p>
 
-	  <p>	    
+	  <p>
 	    It is also necessary for <prgn>dpkg-gencontrol</prgn> to
 	    be run after <prgn>dpkg-shlibdeps</prgn> so that the
 	    variable substitutions created by
@@ -8177,14 +8380,14 @@ fi
 	    are available.
 	  </p>
 
-	  <p>	    
+	  <p>
 	    For a package which generates only one binary package, and
 	    which builds it in <file>debian/tmp</file> relative to the top
 	    of the source package, it is usually sufficient to call
 	    <prgn>dpkg-gencontrol</prgn>.
 	  </p>
 
-	  <p>	    
+	  <p>
 	    Sources which build several binaries will typically need
 	    something like:
 	    <example>
@@ -8195,32 +8398,32 @@ fi
 	    tells it which package's control file should be generated.
 	  </p>
 
-	  <p>	    
+	  <p>
 	    <prgn>dpkg-gencontrol</prgn> also adds information to the
 	    list of files in <file>debian/files</file>, for the benefit of
 	    (for example) a future invocation of
 	    <prgn>dpkg-genchanges</prgn>.</p>
 	</sect1>
-	  
+
 	<sect1>
 	  <heading>
 	    <prgn>dpkg-shlibdeps</prgn> - calculates shared library
 	    dependencies
 	  </heading>
 
-	  <p>	    
+	  <p>
 	    This program is usually called from <file>debian/rules</file>
 	    just before <prgn>dpkg-gencontrol</prgn> (see <ref
 	    id="pkg-sourcetree">), in the top level of the source tree.
 	  </p>
 
-	  <p>	    
+	  <p>
 	    Its arguments are executables.
 	    <footnote>
 	      <p>
 		In a forthcoming dpkg version,
 		<prgn>dpkg-shlibdeps</prgn> would be required to be
-		called on shared libraries as well. 
+		called on shared libraries as well.
 	      </p>
 	      <p>
 		They may be specified either in the locations in the
@@ -8232,7 +8435,7 @@ fi
 	    be included in the binary package's control file.
 	  </p>
 
-	  <p>	    
+	  <p>
 	    If some of the found shared libraries should only
 	    warrant a <tt>Recommends</tt> or <tt>Suggests</tt>, or if
 	    some warrant a <tt>Pre-Depends</tt>, this can be achieved
@@ -8241,7 +8444,7 @@ fi
 	    takes effect until the next <tt>-d</tt>.)
 	  </p>
 
-	  <p>	    
+	  <p>
 	    <prgn>dpkg-shlibdeps</prgn> does not directly cause the
 	    output control file to be modified.  Instead by default it
 	    adds to the <file>debian/substvars</file> file variable
@@ -8251,7 +8454,7 @@ fi
 	    control file.
 	  </p>
 
-	  <p>	    
+	  <p>
 	    For example, the <prgn>procps</prgn> package generates two
 	    kinds of binaries, simple C binaries like <prgn>ps</prgn>
 	    which require a predependency and full-screen ncurses
@@ -8270,11 +8473,11 @@ fi
 	    </example>
 	  </p>
 
-	  <p>	    
+	  <p>
 	    Sources which produce several binary packages with
 	    different shared library dependency requirements can use
 	    the <tt>-p<var>varnameprefix</var></tt> option to override
-	    the default <tt>shlib:</tt> prefix (one invocation of
+	    the default <tt>shlibs:</tt> prefix (one invocation of
 	    <prgn>dpkg-shlibdeps</prgn> per setting of this option).
 	    They can thus produce several sets of dependency
 	    variables, each of the form
@@ -8283,27 +8486,27 @@ fi
 	    binary package control files.
 	  </p>
 	</sect1>
-	  
-	  
+
+
 	<sect1>
 	  <heading>
 	    <prgn>dpkg-distaddfile</prgn> - adds a file to
 	    <file>debian/files</file>
 	  </heading>
 
-	  <p>	    
+	  <p>
 	    Some packages' uploads need to include files other than
 	    the source and binary package files.
 	  </p>
 
-	  <p>	    
+	  <p>
 	    <prgn>dpkg-distaddfile</prgn> adds a file to the
 	    <file>debian/files</file> file so that it will be included in
 	    the <file>.changes</file> file when
 	    <prgn>dpkg-genchanges</prgn> is run.
 	  </p>
 
-	  <p>	    
+	  <p>
 	    It is usually invoked from the <tt>binary</tt> target of
 	    <file>debian/rules</file>:
 	    <example>
@@ -8317,26 +8520,26 @@ fi
 	    <prgn>dpkg-distaddfile</prgn>.
 	  </p>
 
-	  <p>	    
+	  <p>
 	    The <var>section</var> and <var>priority</var> are passed
 	    unchanged into the resulting <file>.changes</file> file.  See
 	    <ref id="pkg-f-classification">.
 	  </p>
 	</sect1>
-	  
-	  
+
+
 	<sect1><heading><prgn>dpkg-genchanges</prgn> - generates a <file>.changes</file> upload
 	    control file
 	  </heading>
 
-	  <p>	    
+	  <p>
 	    This program is usually called by package-independent
 	    automatic building scripts such as
 	    <prgn>dpkg-buildpackage</prgn>, but it may also be called
 	    by hand.
 	  </p>
 
-	  <p>	    
+	  <p>
 	    It is usually called in the top level of a built source
 	    tree, and when invoked with no arguments will print out a
 	    straightforward <file>.changes</file> file based on the
@@ -8345,13 +8548,13 @@ fi
 	    been built.
 	  </p>
 	</sect1>
-	  
-	  
+
+
 	<sect1><heading><prgn>dpkg-parsechangelog</prgn> - produces parsed representation of
 	    a changelog
 	  </heading>
 
-	  <p>	    
+	  <p>
 	    This program is used internally by
 	    <prgn>dpkg-source</prgn> et al.  It may also occasionally
 	    be useful in <file>debian/rules</file> and elsewhere.  It
@@ -8360,11 +8563,11 @@ fi
 	    information in it to standard output.
 	  </p>
 	</sect1>
- 
+
         <sect1 id="pkg-dpkgarch"><heading><prgn>dpkg-architecture</prgn> -
-	    information about the build and host system 
+	    information about the build and host system
           </heading>
- 
+
           <p>
             This program can be used manually, but is also invoked by
             <tt>dpkg-buildpackage</tt> or <file>debian/rules</file> to set
@@ -8373,11 +8576,11 @@ fi
           </p>
         </sect1>
       </sect>
-	
+
       <sect id="pkg-sourcetree"><heading>The Debianised source tree
 	</heading>
 
-	<p>	  
+	<p>
 	  The source archive scheme described later is intended to
 	  allow a Debianised source tree with some associated control
 	  information to be reproduced and transported easily.  The
@@ -8388,23 +8591,23 @@ fi
 	  scripts.
 	</p>
 
-	<p>	  
+	<p>
 	  The extra files created for Debian are in the subdirectory
 	  <file>debian</file> of the top level of the Debianised source
 	  tree.  They are described below.
 	</p>
-	  
+
 	<sect1 id="pkg-debianrules"><heading><file>debian/rules</file> - the main building
 	script
 	  </heading>
 
-	  <p>	    
+	  <p>
 	    This file is an executable makefile, and contains the
 	    package-specific recipies for compiling the package and
 	    building binary package(s) out of the source.
 	  </p>
 
-	  <p>	    
+	  <p>
 	    It must start with the line <tt>#!/usr/bin/make -f</tt>,
 	    so that it can be invoked by saying its name rather than
 	    invoking <prgn>make</prgn> explicitly.
@@ -8422,8 +8625,8 @@ fi
 	    targets depend on must also be non-interactive.
 	  </p>
 
-	  <p>	    
-	    The targets which are required to be present are:	    
+	  <p>
+	    The targets which are required to be present are:
 	    <taglist>
 	      <tag><tt>build</tt></tag>
 	      <item>
@@ -8435,7 +8638,7 @@ fi
 		  built after this has taken place, so that it can be
 		  built without rerunning the configuration.
 		</p>
-		
+
 		<p>
 		  A package may also provide both of the targets
 		  <tt>build-arch</tt> and <tt>build-indep</tt>.  The
@@ -8456,8 +8659,8 @@ fi
 		  <tt>build-indep</tt> that are provided in the rules
 		  file.
 		</p>
-		
-		<p>		  
+
+		<p>
 		  If one or both of the targets <tt>build-arch</tt> and
 		  <tt>build-indep</tt> are not provided, then invoking
 		  <file>debian/rules</file> with one of the not-provided
@@ -8465,7 +8668,7 @@ fi
 		  of 2.  Usually this is provided automatically by make
 		  if the target is missing.
 		</p>
-		
+
 		<p>
 		  For some packages, notably ones where the same
 		  source tree is compiled in different ways to produce
@@ -8480,18 +8683,18 @@ fi
 		  binary package out of each.
 		</p>
 
-		<p>		  
+		<p>
 		  The targets <tt>build</tt>, <tt>build-arch</tt>
 		  and <tt>build-indep</tt> target must not do
 		  anything that might require root privilege.
 		</p>
 
-		<p>		  
+		<p>
 		  The <tt>build</tt> target may need to run
 		  <tt>clean</tt> first - see below.
 		</p>
 
-		<p>	
+		<p>
 		  When a package has a configuration routine that takes
 		  a long time, or when the makefiles are poorly
 		  designed, or when <tt>build</tt> needs to run
@@ -8501,10 +8704,10 @@ fi
 		  again it will not rebuild the whole program.
 		</p>
 	      </item>
-		
+
 	      <tag><tt>binary</tt>, <tt>binary-arch</tt>,
 		<tt>binary-indep</tt>
-	      </tag> 
+	      </tag>
 	      <item>
 		<p>
 		  The <tt>binary</tt> target should be all that is
@@ -8517,14 +8720,14 @@ fi
 		  those which are not.
 		</p>
 
-		<p>		  
+		<p>
 		  <tt>binary</tt> should usually be a target with
 		  no commands which simply depends on
 		  <prgn>binary-arch</prgn> and
 		  <prgn>binary-indep</prgn>.
 		</p>
 
-		<p>		  
+		<p>
 		  Both <prgn>binary-*</prgn> targets should depend on
 		  the <tt>build</tt> target, above, so that the
 		  package is built if it has not been already.  It
@@ -8535,7 +8738,7 @@ fi
 		  directory.
 		</p>
 
-		<p>		  
+		<p>
 		  If one of the <prgn>binary-*</prgn> targets has
 		  nothing to do (this will be always be the case if
 		  the source generates only a single binary package,
@@ -8544,20 +8747,20 @@ fi
 		  succeed.
 		</p>
 
-		<p>		  
+		<p>
 		  <ref id="pkg-binarypkg"> describes how to construct
 		  binary packages.
 		</p>
 
-		<p>		  
+		<p>
 		  The <tt>binary</tt> targets must be invoked as
 		  root.
 		</p>
 	      </item>
-		
+
 	      <tag><tt>clean</tt></tag>
 	      <item>
-		
+
 		<p>
 		  This should undo any effects that the
 		  <tt>build</tt> and <tt>binary</tt> targets
@@ -8567,7 +8770,7 @@ fi
 		  to be non-interactive.
 		</p>
 
-		<p>		  
+		<p>
 		  If a <tt>build</tt> file is touched at the end
 		  of the <tt>build</tt> target, as suggested
 		  above, it must be removed as the first thing that
@@ -8577,7 +8780,7 @@ fi
 		  already done.
 		</p>
 
-		<p>		  
+		<p>
 		  The <tt>clean</tt> target must be invoked as
 		  root if <tt>binary</tt> has been invoked since
 		  the last <tt>clean</tt>, or if
@@ -8586,10 +8789,10 @@ fi
 		  example).
 		</p>
 	      </item>
-		
+
 	      <tag><tt>get-orig-source</tt> (optional)</tag>
 	      <item>
-		
+
 		<p>
 		  This target fetches the most recent version of the
 		  original source package from a canonical archive
@@ -8599,32 +8802,32 @@ fi
 		  in the current directory.
 		</p>
 
-		<p>		  
+		<p>
 		  This target may be invoked in any directory, and
 		  should take care to clean up any temporary files it
 		  may have left.
 		</p>
 
-		<p>		  
+		<p>
 		  This target is optional, but providing it if
 		  possible is a good idea.
 		</p>
 	      </item>
 	    </taglist>
-	      
+
 	  <p>
 	    The <tt>build</tt>, <tt>binary</tt> and
 	    <tt>clean</tt> targets must be invoked with a current
 	    directory of the package's top-level directory.
 	  </p>
-	    
 
-	  <p>	    
+
+	  <p>
 	    Additional targets may exist in <file>debian/rules</file>,
 	    either as published or undocumented interfaces or for the
 	    package's internal use.
 	  </p>
- 
+
           <p>
             The architecture we build on and build for is determined by make
             variables via dpkg-architecture (see <ref id="pkg-dpkgarch">). You can
@@ -8637,7 +8840,7 @@ fi
 	      </item>
 	      <item>
 		<p><tt>DEB_*_GNU_TYPE</tt> (the GNU style architecture
-		  specification string)</p> 
+		  specification string)</p>
 	      </item>
 	      <item>
 		<p><tt>DEB_*_GNU_CPU</tt> (the CPU part of DEB_*_GNU_TYPE)</p>
@@ -8647,20 +8850,20 @@ fi
 		  DEB_*_GNU_TYPE)</p>
 	    </list>
 	  </p>
- 
+
           <p>
             where <tt>*</tt> is either <tt>BUILD</tt> for specification of
             the build machine or <tt>HOST</tt> for specification of the machine
             we build for.
           </p>
-	  
+
           <p>
             Backward compatibility can be provided in the rules file
             by setting the needed variables to suitable default
             values, please refer to the documentation of
             dpkg-architecture for details.
           </p>
- 
+
           <p>
             It is important to understand that the <tt>DEB_*_ARCH</tt>
             string does only determine which Debian architecture we
@@ -8669,17 +8872,17 @@ fi
             used for that.
           </p>
 	</sect1>
-	  
-	  
+
+
 	<sect1><heading><file>debian/control</file>
 	  </heading>
 
-	  <p>	    
+	  <p>
 	    This file contains version-independent details about the
 	    source package and about the binary packages it creates.
 	  </p>
 
-	  <p>	    
+	  <p>
 	    It is a series of sets of control fields, each
 	    syntactically similar to a binary package control file.
 	    The sets are separated by one or more blank lines.  The
@@ -8688,12 +8891,12 @@ fi
 	    that the source tree builds.
 	  </p>
 
-	  <p>	    
+	  <p>
 	    The syntax and semantics of the fields are described below
 	    in <ref id="pkg-controlfields">.
 	  </p>
 
-	  <p>	    
+	  <p>
 	    The general (binary-package-independent) fields are:
 	    <list compact="compact">
 	      <item>
@@ -8705,7 +8908,7 @@ fi
 	      <item>
 		<p>
 		  <qref id="pkg-f-classification"><tt>Section</tt> and
-		    <tt>Priority</tt></qref> 
+		    <tt>Priority</tt></qref>
 		  (classification, mandatory)
 		</p>
 	      </item>
@@ -8719,10 +8922,10 @@ fi
 		<p>
 		  <qref id="pkg-f-Standards-Version"><tt>Standards-Version</tt></qref>
 		</p>
-	      </item> 
+	      </item>
 	    </list>
 
-	  <p>	    
+	  <p>
 	    The per-binary-package fields are:
 	    <list compact="compact">
 	      <item>
@@ -8752,7 +8955,7 @@ fi
 	      </item>
 	    </list>
 
-	  <p>	    
+	  <p>
 	    These fields are used by <prgn>dpkg-gencontrol</prgn> to
 	    generate control files for binary packages (see below), by
 	    <prgn>dpkg-genchanges</prgn> to generate the
@@ -8761,7 +8964,7 @@ fi
 	    source control file as part of a source archive.
 	  </p>
 
-	  <p>	    
+	  <p>
 	    The fields here may contain variable references - their
 	    values will be substituted by
 	    <prgn>dpkg-gencontrol</prgn>, <prgn>dpkg-genchanges</prgn>
@@ -8772,20 +8975,20 @@ fi
 	  <p> <sect2><heading>User-defined fields
 	    </heading>
 
-	    <p>	      
+	    <p>
 	      Additional user-defined fields may be added to the
 	      source package control file.  Such fields will be
 	      ignored, and not copied to (for example) binary or
 	      source package control files or upload control files.
 	    </p>
 
-	    <p>	      
+	    <p>
 	      If you wish to add additional unsupported fields to
 	      these output files you should use the mechanism
 	      described here.
 	    </p>
 
-	    <p>	      
+	    <p>
 	      Fields in the main source control information file with
 	      names starting <tt>X</tt>, followed by one or more of
 	      the letters <tt>BCS</tt> and a hyphen <tt>-</tt>, will
@@ -8798,7 +9001,7 @@ fi
 	      (<tt>.changes</tt>) files.
 	    </p>
 
-	    <p>	      
+	    <p>
 	      For example, if the main source information control file
 	      contains the field
 	      <example>
@@ -8811,13 +9014,13 @@ fi
 	      </example>
 	    </p>
 	  </sect2>
-	
+
 	</sect1>
 
 	<sect1 id="pkg-dpkgchangelog"><heading><file>debian/changelog</file>
 	  </heading>
 
-	  <p>	    
+	  <p>
 	    This file records the changes to the Debian-specific parts of the
 	    package
 	    <footnote>
@@ -8831,38 +9034,38 @@ fi
 	    </footnote>.
 	  </p>
 
-	  <p>	    
+	  <p>
 	    It has a special format which allows the package building
 	    tools to discover which version of the package is being
 	    built and find out other release-specific information.
 	  </p>
 
 	  <p>
-	    That format is a series of entries like this:	
+	    That format is a series of entries like this:
 	    <example>
   <var>package</var> (<var>version</var>) <var>distribution(s)</var>; urgency=<var>urgency</var>
 
    * <var>change details</var>
    <var>more change details</var>
    * <var>even more change details</var>
-	      
+
   -- <var>maintainer name and email address</var>  <var>date</var>
 	    </example>
 	  </p>
 
-	  <p>	    
+	  <p>
 	    <var>package</var> and <var>version</var> are the source
 	    package name and version number.
-	  </p> 
+	  </p>
 
-	  <p>	    
+	  <p>
 	    <var>distribution(s)</var> lists the distributions where
 	    this version should be installed when it is uploaded - it
 	    is copied to the <tt>Distribution</tt> field in the
 	    <tt>.changes</tt> file.  See <ref id="pkg-f-Distribution">.
 	  </p>
 
-	  <p>	    
+	  <p>
 	    <var>urgency</var> is the value for the <tt>Urgency</tt>
 	    field in the <file>.changes</file> file for the upload.  See
 	    <ref id="pkg-f-Urgency">.  It is not possible to specify an
@@ -8873,7 +9076,7 @@ fi
 	    <tt>urgency</tt>).
 	  </p>
 
-	  <p>	    
+	  <p>
 	    The change details may in fact be any series of lines
 	    starting with at least two spaces, but conventionally each
 	    change starts with an asterisk and a separating space and
@@ -8882,7 +9085,7 @@ fi
 	    used here to separate groups of changes, if desired.
 	  </p>
 
-	  <p>	    
+	  <p>
 	    The maintainer name and email address should <em>not</em>
 	    necessarily be those of the usual package maintainer.
 	    They should be the details of the person doing
@@ -8892,7 +9095,7 @@ fi
 	    installed.
 	  </p>
 
-	  <p>	    
+	  <p>
 	    The <var>date</var> should be in RFC822 format
 	    <footnote>
 	      <p>
@@ -8904,7 +9107,7 @@ fi
 	    optionally present as a comment.
 	  </p>
 
-	  <p>	    
+	  <p>
 	    The first `title' line with the package name should start
 	    at the left hand margin; the `trailer' line with the
 	    maintainer and date details should be preceded by exactly
@@ -8912,24 +9115,24 @@ fi
 	    separated by exactly two spaces.
 	  </p>
 
-	  <p>	    
+	  <p>
 	    An Emacs mode for editing this format is available: it is
 	    called <tt>debian-changelog-mode</tt>.  You can have this
 	    mode selected automatically when you edit a Debian
 	    changelog by adding a local variables clause to the end of
 	    the changelog.
 	  </p>
-	    
+
 	  <sect2><heading>Defining alternative changelog formats
 	    </heading>
 
-	    <p>	      
+	    <p>
 	      It is possible to use a different format to the standard
 	      one, by providing a parser for the format you wish to
 	      use.
 	    </p>
 
-	    <p>	      
+	    <p>
 	      In order to have <tt>dpkg-parsechangelog</tt> run your
 	      parser, you must include a line within the last 40 lines
 	      of your file matching the Perl regular expression:
@@ -8942,7 +9145,7 @@ fi
 	      Changelog format names are non-empty strings of alphanumerics.
 	    </p>
 
-	    <p>	      
+	    <p>
 	      If such a line exists then <tt>dpkg-parsechangelog</tt>
 	      will look for the parser as
 	      <file>/usr/lib/dpkg/parsechangelog/<var>format-name</var></file>
@@ -8954,7 +9157,7 @@ fi
 	      the <tt>dpkg</tt> package.
 	    </p>
 
-	    <p>	      
+	    <p>
 	      The parser will be invoked with the changelog open on
 	      standard input at the start of the file.  It should read
 	      the file (it may seek if it wishes) to determine the
@@ -8970,7 +9173,7 @@ fi
 	      changelog.
 	    </p>
 
-	    <p>	      
+	    <p>
 	      The fields are:
 	      <list compact="compact">
 		<item>
@@ -8983,7 +9186,7 @@ fi
 		  <p>
 		    <qref id="pkg-f-Distribution"><tt>Distribution</tt></qref>
 		    (mandatory)
-		  </p> 
+		  </p>
 		</item>
 		<item>
 		  <p><qref id="pkg-f-Urgency"><tt>Urgency</tt></qref> (mandatory)</p>
@@ -9005,7 +9208,7 @@ fi
 		</item>
 	      </list>
 
-	    <p>	      
+	    <p>
 	      If several versions are being returned (due to the use
 	      of <tt>-v</tt>), the urgency value should be of the
 	      highest urgency code listed at the start of any of the
@@ -9015,42 +9218,42 @@ fi
 	      date should always be from the most recent version.
 	    </p>
 
-	    <p>	      
+	    <p>
 	      For the format of the <tt>Changes</tt> field see <ref
 	      id="pkg-f-Changes">.
 	    </p>
 
-	    <p>	      
+	    <p>
 	      If the changelog format which is being parsed always or
 	      almost always leaves a blank line between individual
 	      change notes these blank lines should be stripped out,
 	      so as to make the resulting output compact.
 	    </p>
 
-	    <p>	      
+	    <p>
 	      If the changelog format does not contain date or package
 	      name information this information should be omitted from
 	      the output.  The parser should not attempt to synthesise
 	      it or find it from other sources.
 	    </p>
 
-	    <p>	      
+	    <p>
 	      If the changelog does not have the expected format the
 	      parser should exit with a nonzero exit status, rather
 	      than trying to muddle through and possibly generating
 	      incorrect output.
 	    </p>
 
-	    <p>	      
+	    <p>
 	      A changelog parser may not interact with the user at
 	      all.</p></sect2>
 	</sect1>
-	  
+
 	<sect1 id="pkg-srcsubstvars"><heading><file>debian/substvars</file>
 	and variable substitutions
 	  </heading>
 
-	  <p>	    
+	  <p>
 	    When <prgn>dpkg-gencontrol</prgn>,
 	    <prgn>dpkg-genchanges</prgn> and <prgn>dpkg-source</prgn>
 	    generate control files they do variable substitutions on
@@ -9064,7 +9267,7 @@ fi
 	    variables are available.
 	  </p>
 
-	  <p>	    
+	  <p>
 	    The is usually generated and modified dynamically by
 	    <file>debian/rules</file> targets; in this case it must be
 	    removed by the <tt>clean</tt> target.
@@ -9075,18 +9278,18 @@ fi
 	    details about source variable substitutions, including the
 	    format of <file>debian/substvars</file>.</p>
 	</sect1>
-	  
+
 	<sect1><heading><file>debian/files</file>
 	  </heading>
 
-	  <p>	    
+	  <p>
 	    This file is not a permanent part of the source tree; it
 	    is used while building packages to record which files are
 	    being generated.  <prgn>dpkg-genchanges</prgn> uses it
 	    when it generates a <file>.changes</file> file.
 	  </p>
 
-	  <p>	    
+	  <p>
 	    It should not exist in a shipped source package, and so it
 	    (and any backup files or temporary files such as
 	    <file>files.new</file>
@@ -9105,7 +9308,7 @@ fi
 	      start of the <tt>binary</tt> target.
 	  </p>
 
-	  <p>	    
+	  <p>
 	    <prgn>dpkg-gencontrol</prgn> adds an entry to this file
 	    for the <file>.deb</file> file that will be created by
 	    <prgn>dpkg-deb</prgn> from the control file that it
@@ -9113,7 +9316,7 @@ fi
 	    with this file is to delete it in <tt>clean</tt>.
 	  </p>
 
-	  <p>	    
+	  <p>
 	    If a package upload includes files besides the source
 	    package and any binary packages whose control files were
 	    made with <prgn>dpkg-gencontrol</prgn> then they should be
@@ -9121,11 +9324,11 @@ fi
 	    and <prgn>dpkg-distaddfile</prgn> should be called to add
 	    the file to the list in <file>debian/files</file>.</p>
 	</sect1>
-	  
+
 	<sect1><heading><file>debian/tmp</file>
 	  </heading>
 
-	  <p>	    
+	  <p>
 	    This is the canonical temporary location for the
 	    construction of binary packages by the <tt>binary</tt>
 	    target.  The directory <file>tmp</file> serves as the root of
@@ -9136,34 +9339,34 @@ fi
 	    id="pkg-bincreating">.
 	  </p>
 
-	  <p>	    
+	  <p>
 	    If several binary packages are generated from the same
 	    source tree it is usual to use several
 	    <file>debian/tmp<var>something</var></file> directories, for
 	    example <file>tmp-a</file> or <file>tmp-doc</file>.
 	  </p>
 
-	  <p>	    
+	  <p>
 	    Whatever <file>tmp</file> directories are created and used by
 	    <tt>binary</tt> must of course be removed by the
 	    <tt>clean</tt> target.</p></sect1>
       </sect>
-	
-	
+
+
       <sect id="pkg-sourcearchives"><heading>Source packages as archives
 	</heading>
 
-	<p>	  
+	<p>
 	  As it exists on the FTP site, a Debian source package
 	  consists of three related files.  You must have the right
 	  versions of all three to be able to use them.
 	</p>
 
-	<p>	  
+	<p>
 	  <taglist>
 	    <tag>Debian source control file - <tt>.dsc</tt></tag>
 	    <item>
-	      
+
 	      <p>
 		This file contains a series of fields, identified and
 		separated just like the fields in the control file of
@@ -9200,7 +9403,7 @@ fi
 		  </item>
 		</list>
 
-	      <p>		
+	      <p>
 		The source package control file is generated by
 		<prgn>dpkg-source</prgn> when it builds the source
 		archive, from other files in the source package,
@@ -9208,16 +9411,16 @@ fi
 		the files and directories in the other parts of the
 		source package, as described below.</p>
 	    </item>
-	      
+
 	    <tag>
 	      Original source archive -
 	      <file>
 		<var>package</var>_<var>upstream-version</var>.orig.tar.gz
 	      </file>
-	    </tag> 
+	    </tag>
 
 	    <item>
-	      
+
 	      <p>
 		This is a compressed (with <tt>gzip -9</tt>)
 		<prgn>tar</prgn> file containing the source code from
@@ -9227,15 +9430,15 @@ fi
 		and does not contain files anywhere other than in
 		there or in its subdirectories.</p>
 	    </item>
-	      
+
 	    <tag>
 	      Debianisation diff -
 	      <file>
 		<var>package</var>_<var>upstream_version-revision</var>.diff.gz
 	      </file>
-	    </tag> 
+	    </tag>
 	    <item>
-	      
+
 	      <p>
 		This is a unified context diff (<tt>diff -u</tt>)
 		giving the changes which are required to turn the
@@ -9247,21 +9450,21 @@ fi
 		or renamed.
 	      </p>
 
-	      <p>		
+	      <p>
 		All the directories in the diff must exist, except the
 		<file>debian</file> subdirectory of the top of the source
 		tree, which will be created by
 		<prgn>dpkg-source</prgn> if necessary when unpacking.
 	      </p>
 
-	      <p>		
+	      <p>
 		The <prgn>dpkg-source</prgn> program will
 		automatically make the <file>debian/rules</file> file
 		executable (see below).</p></item>
 	  </taglist>
-	    
 
-	<p>	  
+
+	<p>
 	  If there is no original source code - for example, if the
 	  package is specially prepared for Debian or the Debian
 	  maintainer is the same as the upstream maintainer - the
@@ -9272,17 +9475,17 @@ fi
 	  <file><var>package</var>-<var>version</var></file>.
 	</p>
       </sect>
-	
+
       <sect><heading>Unpacking a Debian source package without
       <prgn>dpkg-source</prgn>
 	</heading>
 
-	<p>	  
+	<p>
 	  <tt>dpkg-source -x</tt> is the recommended way to unpack a
 	  Debian source package.  However, if it is not available it
 	  is possible to unpack a Debian source archive as follows:
 	<enumlist compact="compact">
-	  <item> 
+	  <item>
 	    <p>
 	      Untar the tarfile, which will create a <file>.orig</file>
 	      directory.</p>
@@ -9302,18 +9505,18 @@ fi
 	      source code alongside the Debianised version.</p>
 	  </item>
 	</enumlist>
-	
-	<p>	  
+
+	<p>
 	  It is not possible to generate a valid Debian source archive
 	  without using <prgn>dpkg-source</prgn>.  In particular,
 	  attempting to use <prgn>diff</prgn> directly to generate the
 	  <file>.diff.gz</file> file will not work.
 	</p>
-	  
+
 	<sect1><heading>Restrictions on objects in source packages
 	  </heading>
 
-	  <p>	    
+	  <p>
 	    The source package may not contain any hard links
 	    <footnote>
 	      <p>
@@ -9337,7 +9540,7 @@ fi
 	    </footnote>
 	  </p>
 
-	  <p>	    
+	  <p>
 	    The source packaging tools manage the changes between the
 	    original and Debianised source using <prgn>diff</prgn> and
 	    <prgn>patch</prgn>.  Turning the original source tree as
@@ -9386,7 +9589,7 @@ fi
 	    </list>
 	  </p>
 
-	  <p>	    
+	  <p>
 	    The <file>debian</file> directory and <file>debian/rules</file>
 	    are handled specially by <prgn>dpkg-source</prgn> - before
 	    applying the changes it will create the <file>debian</file>
@@ -9401,7 +9604,7 @@ fi
 	fields (from old Packaging Manual)
       </heading>
 
-      <p>	
+      <p>
 	Many of the tools in the <prgn>dpkg</prgn> suite manipulate
 	data in a common format, known as control files.  Binary and
 	source packages have control data as do the <file>.changes</file>
@@ -9409,18 +9612,18 @@ fi
 	<prgn>dpkg</prgn>'s internal databases are in a similar
 	format.
       </p>
-	
+
       <sect><heading>Syntax of control files
 	</heading>
 
-	<p>	  
+	<p>
 	  A file consists of one or more paragraphs of fields.  The
 	  paragraphs are separated by blank lines.  Some control files
 	  only allow one paragraph; others allow several, in which
 	  case each paragraph often refers to a different package.
 	</p>
 
-	<p>	  
+	<p>
 	  Each paragraph is a series of fields and values; each field
 	  consists of a name, followed by a colon and the value.  It
 	  ends at the end of the line.  Horizontal whitespace (spaces
@@ -9429,14 +9632,14 @@ fi
 	  colon.
 	</p>
 
-	<p>	  
+	<p>
 	  Some fields' values may span several lines; in this case
 	  each continuation line <em>must</em> start with a space or
 	  tab.  Any trailing spaces or tabs at the end of individual
 	  lines of a field value are ignored.
 	</p>
 
-	<p>	  
+	<p>
 	  Except where otherwise stated only a single line of data is
 	  allowed and whitespace is not significant in a field body.
 	  Whitespace may never appear inside names (of packages,
@@ -9445,18 +9648,18 @@ fi
 	  relationships.
 	</p>
 
-	<p>	  
+	<p>
 	  Field names are not case-sensitive, but it is usual to
 	  capitalise the field names using mixed case as shown below.
 	</p>
 
-	<p>	  
+	<p>
 	  Blank lines, or lines consisting only of spaces and tabs,
 	  are not allowed within field values or between fields - that
 	  would mean a new paragraph.
 	</p>
 
-	<p>	  
+	<p>
 	  It is important to note that there are several fields which
 	  are optional as far as <prgn>dpkg</prgn> and the related
 	  tools are concerned, but which must appear in every Debian
@@ -9465,14 +9668,14 @@ fi
 	  the Debian policy manual in conjuction with the details
 	  below and the list of fields for the particular file.</p>
       </sect>
-	
+
       <sect><heading>List of fields
 	</heading>
-	  
+
 	<sect1 id="pkg-f-Package"><heading><tt>Package</tt>
 	  </heading>
 
-	  <p>	    
+	  <p>
 	    The name of the binary package.  Package names consist of
 	    the alphanumerics and <tt>+</tt> <tt>-</tt> <tt>.</tt>
 	    (plus, minus and full stop).
@@ -9487,7 +9690,7 @@ fi
 	    </footnote>
 	  </p>
 
-	  <p>	    
+	  <p>
 	    They must be at least two characters and must start with
 	    an alphanumeric.  In current versions of dpkg they are
 	    sort of case-sensitive<footnote><p>This is a
@@ -9495,37 +9698,37 @@ fi
 	    the package you're building (or referring to, in other
 	    fields) is already using uppercase.</p>
 	</sect1>
-	  
+
 	<sect1 id="pkg-f-Version"><heading><tt>Version</tt>
 	  </heading>
 
-	  <p>	    
+	  <p>
 	    This lists the source or binary package's version number -
 	    see <ref id="versions">.
 	  </p>
 
 	</sect1>
-	  
+
 	<sect1 id="pkg-f-Architecture"><heading><tt>Architecture</tt>
 	  </heading>
 
-	  <p>	    
+	  <p>
 	    This is the architecture string; it is a single word for
 	    the Debian architecture.
 	  </p>
 
-	  <p>	    
+	  <p>
 	    <prgn>dpkg</prgn> will check the declared architecture of
 	    a binary package against its own compiled-in value before
 	    it installs it.
 	  </p>
 
-	  <p>	    
+	  <p>
 	    The special value <tt>all</tt> indicates that the package
 	    is architecture-independent.
 	  </p>
 
-	  <p>	    
+	  <p>
 	    In the main <file>debian/control</file> file in the source
 	    package, or in the source package control file
 	    <file>.dsc</file>, a list of architectures (separated by
@@ -9540,7 +9743,7 @@ fi
 	    whatever the current build architecture is.
 	  </p>
 
-	  <p>	    
+	  <p>
 	    In a <file>.changes</file> file the <tt>Architecture</tt>
 	    field lists the architecture(s) of the package(s)
 	    currently being uploaded.  This will be a list; if the
@@ -9548,22 +9751,22 @@ fi
 	    entry <tt>source</tt> is also present.
 	  </p>
 
-	  <p>	    
+	  <p>
 	    See <ref id="pkg-debianrules"> for information how to get the
-	    architecture for the build process. 
+	    architecture for the build process.
 	  </p>
 	</sect1>
-	  
+
 	<sect1 id="pkg-f-Maintainer"><heading><tt>Maintainer</tt>
 	  </heading>
 
-	  <p>	    
+	  <p>
 	    The package maintainer's name and email address.  The name
 	    should come first, then the email address inside angle
 	    brackets <tt>&lt;&gt</tt> (in RFC822 format).
 	  </p>
 
-	  <p>	    
+	  <p>
 	    If the maintainer's name contains a full stop then the
 	    whole field will not work directly as an email address due
 	    to a misfeature in the syntax specified in RFC822; a
@@ -9573,34 +9776,34 @@ fi
 	    end, and bringing the email address forward).
 	  </p>
 
-	  <p>	    
+	  <p>
 	    In a <file>.changes</file> file or parsed changelog data this
 	    contains the name and email address of the person
 	    responsible for the particular version in question - this
 	    may not be the package's usual maintainer.
 	  </p>
 
-	  <p>	    
+	  <p>
 	    This field is usually optional in as far as the
 	    <prgn>dpkg</prgn> are concerned, but its absence when
 	    building packages usually generates a warning.</p>
 	</sect1>
-	  
+
 	<sect1 id="pkg-f-Source"><heading><tt>Source</tt>
 	  </heading>
 
-	  <p>	    
+	  <p>
 	    This field identifies the source package name.
 	  </p>
 
-	  <p>	    
+	  <p>
 	    In a main source control information or a
 	    <file>.changes</file> or <file>.dsc</file> file or parsed
 	    changelog data this may contain only the name of the
 	    source package.
 	  </p>
 
-	  <p>	    
+	  <p>
 	    In the control file of a binary package (or in a
 	    <file>Packages</file> file) it may be followed by a version
 	    number in parentheses.
@@ -9617,30 +9820,30 @@ fi
 	    name and version as the binary package.
 	  </p>
 	</sect1>
-	  
+
 	<sect1><heading>Package interrelationship fields:
 	    <tt>Depends</tt>, <tt>Pre-Depends</tt>,
 	    <tt>Recommends</tt> <tt>Suggests</tt>, <tt>Conflicts</tt>,
 	    <tt>Provides</tt>, <tt>Replaces</tt>
 	  </heading>
 
-	  <p>	    
+	  <p>
 	    These fields describe the package's relationships with
 	    other packages.  Their syntax and semantics are described
 	    in <ref id="relationships">.</p>
 	</sect1>
-	  
+
 	<sect1 id="pkg-f-Description"><heading><tt>Description</tt>
 	  </heading>
 
-	  <p>	    
+	  <p>
 	    In a binary package <tt>Packages</tt> file or main source
 	    control file this field contains a description of the
 	    binary package, in a special format.  See <ref
 	    id="descriptions"> for details.
 	  </p>
 
-	  <p>	    
+	  <p>
 	    In a <file>.changes</file> file it contains a summary of the
 	    descriptions for the packages being uploaded.  The part of
 	    the field before the first newline is empty; thereafter
@@ -9648,30 +9851,30 @@ fi
 	    description line from that binary package.  Each line is
 	    indented by one space.</p>
 	</sect1>
-	  
+
 	<sect1 id="pkg-f-Essential"><heading><tt>Essential</tt>
 	  </heading>
 
-	  <p>	    
+	  <p>
 	    This is a boolean field which may occur only in the
 	    control file of a binary package (or in the
 	    <file>Packages</file> file) or in a per-package fields
 	    paragraph of a main source control data file.
 	  </p>
 
-	  <p>	    
+	  <p>
 	    If set to <tt>yes</tt> then <prgn>dpkg</prgn> and
 	    <prgn>dselect</prgn> will refuse to remove the package
 	    (though it can be upgraded and/or replaced).  The other
 	    possible value is <tt>no</tt>, which is the same as not
 	    having the field at all.</p>
 	</sect1>
-	  
+
 	<sect1 id="pkg-f-classification"><heading><tt>Section</tt> and
 	<tt>Priority</tt>
 	  </heading>
 
-	  <p>	    
+	  <p>
 	    These two fields classify the package.  The
 	    <tt>Priority</tt> represents how important that it is that
 	    the user have it installed; the <tt>Section</tt>
@@ -9679,7 +9882,7 @@ fi
 	    been classified.
 	  </p>
 
-	  <p>	    
+	  <p>
 	    When they appear in the <file>debian/control</file> file these
 	    fields give values for the section and priority subfields
 	    of the <tt>Files</tt> field of the <file>.changes</file> file,
@@ -9687,7 +9890,7 @@ fi
 	    binary packages.
 	  </p>
 
-	  <p>	    
+	  <p>
 	    The section and priority are represented, though not as
 	    separate fields, in the information for each file in the
 	    <qref id="pkg-f-Files"><tt>-File</tt></qref>field of a
@@ -9696,7 +9899,7 @@ fi
 	    a package in the FTP archive.
 	  </p>
 
-	  <p>	    
+	  <p>
 	    These fields are not used by by <prgn>dpkg</prgn> proper,
 	    but by <prgn>dselect</prgn> when it sorts packages and
 	    selects defaults.  See the Debian policy manual for the
@@ -9705,7 +9908,7 @@ fi
 	    archive for a list of currently in-use priorities.
 	  </p>
 
-	  <p>	    
+	  <p>
 	    These fields may appear in binary package control files,
 	    in which case they provide a default value in case the
 	    <file>Packages</file> files are missing the information.
@@ -9718,15 +9921,15 @@ fi
 	    the <tt>-isp</tt>, <tt>-is</tt> or <tt>-ip</tt> options to
 	    achieve this effect.</p>
 	</sect1>
-	  
+
 	<sect1 id="pkg-f-Binary"><heading><tt>Binary</tt>
 	  </heading>
 
-	  <p>	    
+	  <p>
 	    This field is a list of binary packages.
 	  </p>
 
-	  <p>	    
+	  <p>
 	    When it appears in the <file>.dsc</file> file it is the list
 	    of binary packages which a source package can produce.  It
 	    does not necessarily produce all of these binary packages
@@ -9735,12 +9938,12 @@ fi
 	    which of the binary packages.
 	  </p>
 
-	  <p>	    
+	  <p>
 	    When it appears in a <file>.changes</file> file it lists the
 	    names of the binary packages actually being uploaded.
 	  </p>
 
-	  <p>	    
+	  <p>
 	    The syntax is a list of binary packages separated by
 	    commas.
 	    <footnote>
@@ -9750,26 +9953,26 @@ fi
 	    </footnote> Currently the packages must be separated using
 	    only spaces in the <file>.changes</file> file.</p>
 	</sect1>
-	  
+
 	<sect1 id="pkg-f-Installed-Size"><heading><tt>Installed-Size</tt>
 	  </heading>
 
-	  <p>	    
+	  <p>
 	    This field appears in the control files of binary
 	    packages, and in the <file>Packages</file> files.  It gives
 	    the total amount of disk space required to install the
 	    named package.
 	  </p>
 
-	  <p>	    
+	  <p>
 	    The disk space is represented in kilobytes as a simple
 	    decimal number.</p>
 	</sect1>
-	  
+
 	<sect1 id="pkg-f-Files"><heading><tt>Files</tt>
 	  </heading>
 
-	  <p>	    
+	  <p>
 	    This field contains a list of files with information about
 	    each one.  The exact information and syntax varies with
 	    the context.  In all cases the the part of the field
@@ -9779,7 +9982,7 @@ fi
 	    sub-fields separated by spaces.
 	  </p>
 
-	  <p>	    
+	  <p>
 	    In the <file>.dsc</file> (Debian source control) file each
 	    line contains the MD5 checksum, size and filename of the
 	    tarfile and (if applicable) diff file which make up the
@@ -9793,7 +9996,7 @@ fi
 	    in <ref id="pkg-sourcearchives">.
 	  </p>
 
-	  <p>	    
+	  <p>
 	    In the <file>.changes</file> file this contains one line per
 	    file being uploaded.  Each line contains the MD5 checksum,
 	    size, section and priority and the filename.  The section
@@ -9805,7 +10008,7 @@ fi
 	    be installed properly.
 	  </p>
 
-	  <p>	    
+	  <p>
 	    The special value <tt>byhand</tt> for the section in a
 	    <tt>.changes</tt> file indicates that the file in question
 	    is not an ordinary package file and must by installed by
@@ -9813,7 +10016,7 @@ fi
 	    <tt>byhand</tt> the priority should be <tt>-</tt>.
 	  </p>
 
-	  <p>	    
+	  <p>
 	    If a new Debian revision of a package is being shipped and
 	    no new original source archive is being distributed the
 	    <tt>.dsc</tt> must still contain the <tt>Files</tt> field
@@ -9825,13 +10028,13 @@ fi
 	    source archive which was used to generate the
 	    <file>.dsc</file> file and diff which are being uploaded.</p>
 	</sect1>
-	  
-	  
+
+
 	<sect1
 	id="pkg-f-Standards-Version"><heading><tt>Standards-Version</tt>
 	  </heading>
 
-	  <p>	    
+	  <p>
 	    The most recent version of the standards (the
 	    <prgn>dpkg</prgn> programmers' and policy manuals and
 	    associated texts) with which the package complies.  This
@@ -9840,17 +10043,17 @@ fi
 	    tell when a package needs attention.
 	  </p>
 
-	  <p>	    
+	  <p>
 	    Its format is the same as that of a version number except
 	    that no epoch or Debian revision is allowed - see <ref
 	    id="versions">.</p>
 	</sect1>
-	  
-	  
+
+
 	<sect1 id="pkg-f-Distribution"><heading><tt>Distribution</tt>
 	  </heading>
 
-	  <p>	    
+	  <p>
 	    In a <file>.changes</file> file or parsed changelog output
 	    this contains the (space-separated) name(s) of the
 	    distribution(s) where this version of the package should
@@ -9858,12 +10061,12 @@ fi
 	    for package names.  (See <ref id="pkg-f-Package">).
 	  </p>
 
-	  <p>	    
+	  <p>
 	    Current distribution values are:
 	  <taglist>
 	    <tag><em>stable</em></tag>
 	    <item>
-	      <p> 
+	      <p>
 		This is the current `released' version of Debian
 		GNU/Linux.  A new version is released approximately
 		every 3 months after the <em>development</em> code has
@@ -9874,7 +10077,7 @@ fi
 		(for example: 1.2r1 becomes 1.2r2 then 1.2r3, etc).
 	      </p>
 	    </item>
-		
+
 	    <tag><em>unstable</em></tag>
 	    <item>
 	      <p>
@@ -9885,7 +10088,7 @@ fi
 		tree. Download from this distribution at your own
 		risk.</p>
 	    </item>
-	    
+
 	    <tag><em>contrib</em></tag>
 	    <item>
 	      <p>
@@ -9899,7 +10102,7 @@ fi
 		distributions. Use your best judgement in downloading
 		from this Distribution.</p>
 	    </item>
-		
+
 	    <tag><em>non-free</em></tag>
 	    <item>
 	      <p>
@@ -9908,7 +10111,7 @@ fi
 		criteria for inclusion in the main Debian distribution
 		as defined by the Policy Manual. Again, use your best
 		judgement in downloading from this Distribution.</p>
-	      
+
 	    <tag><em>experimental</em></tag>
 	    <item>
 	      <p>
@@ -9920,7 +10123,7 @@ fi
 		of the Debian distribution tree. Download at your own
 		risk.</p>
 	    </item>
-		
+
 	    <tag><em>frozen</em></tag>
 	    <item>
 	      <p>
@@ -9939,11 +10142,11 @@ fi
 	  <em>unstable</em>. Likewise, installations into
 	  <em>frozen</em> should also go into <em>unstable</em>.</p>
 	</sect1>
-	  
+
 	<sect1 id="pkg-f-Urgency"><heading><tt>Urgency</tt>
 	  </heading>
 
-	  <p>	    
+	  <p>
 	    This is a description of how important it is to upgrade to
 	    this version from previous ones.  It consists of a single
 	    keyword usually taking one of the values <tt>LOW</tt>,
@@ -9955,29 +10158,29 @@ fi
 	    </example>
 	  </p>
 
-	  <p>	    
+	  <p>
 	    This field appears in the <file>.changes</file> file and in
 	    parsed changelogs; its value appears as the value of the
 	    <tt>urgency</tt> attribute in a <prgn>dpkg</prgn>-style
 	    changelog (see <ref id="pkg-dpkgchangelog">).
 	  </p>
 
-	  <p>	    
+	  <p>
 	    Urgency keywords are not case-sensitive.</p>
 	</sect1>
-	  
+
 	<sect1 id="pkg-f-Date"><heading><tt>Date</tt>
 	  </heading>
 
-	  <p>	    
+	  <p>
 	    In <tt>.changes</tt> files and parsed changelogs, this
 	    gives the date the package was built or last edited.</p>
 	</sect1>
-	  
+
 	<sect1 id="pkg-f-Format"><heading><tt>Format</tt>
 	  </heading>
 
-	  <p>	    
+	  <p>
 	    This field occurs in <file>.changes</file> files, and
 	    specifies a format revision for the file.  The format
 	    described here is version <tt>1.5</tt>.  The syntax of the
@@ -9985,42 +10188,42 @@ fi
 	    number except that no epoch or Debian revision is allowed
 	    - see <ref id="versions">.</p>
 	</sect1>
-	  
+
 	<sect1 id="pkg-f-Changes"><heading><tt>Changes</tt>
 	  </heading>
 
-	  <p>	    
+	  <p>
 	    In a <file>.changes</file> file or parsed changelog this field
 	    contains the human-readable changes data, describing the
 	    differences between the last version and the current one.
 	  </p>
 
-	  <p>	    
+	  <p>
 	    There should be nothing in this field before the first
 	    newline; all the subsequent lines must be indented by at
 	    least one space; blank lines must be represented by a line
 	    consiting only of a space and a full stop.
 	  </p>
 
-	  <p>	    
+	  <p>
 	    Each version's change information should be preceded by a
 	    `title' line giving at least the version, distribution(s)
 	    and urgency, in a human-readable way.
 	  </p>
 
-	  <p>	    
+	  <p>
 	    If data from several versions is being returned the entry
 	    for the most recent version should be returned first, and
 	    entries should be separated by the representation of a
 	    blank line (the `title' line may also be followed by the
 	    representation of blank line).</p>
 	</sect1>
-	  
+
 	<sect1 id="pkg-f-Filename"><heading><tt>Filename</tt> and
 	<tt>MSDOS-Filename</tt>
 	  </heading>
 
-	  <p>	    
+	  <p>
 	    These fields in <tt>Packages</tt> files give the
 	    filename(s) of (the parts of) a package in the
 	    distribution directories, relative to the root of the
@@ -10028,11 +10231,11 @@ fi
 	    several parts the parts are all listed in order, separated
 	    by spaces.</p>
 	</sect1>
-	  
+
 	<sect1 id="pkg-f-Size"><heading><tt>Size</tt> and <tt>MD5sum</tt>
 	  </heading>
 
-	  <p>	    
+	  <p>
 	    These fields in <file>Packages</file> files give the size (in
 	    bytes, expressed in decimal) and MD5 checksum of the
 	    file(s) which make(s) up a binary package in the
@@ -10040,11 +10243,11 @@ fi
 	    the values for the parts are listed in order, separated by
 	    spaces.</p>
 	</sect1>
-	  
+
 	<sect1 id="pkg-f-Status"><heading><tt>Status</tt>
 	  </heading>
 
-	  <p>	    
+	  <p>
 	    This field in <prgn>dpkg</prgn>'s status file records
 	    whether the user wants a package installed, removed or
 	    left alone, whether it is broken (requiring
@@ -10052,35 +10255,35 @@ fi
 	    system is.  Each of these pieces of information is a
 	    single word.</p>
 	</sect1>
-	  
+
 	<sect1 id="pkg-f-Config-Version"><heading><tt>Config-Version</tt>
 	  </heading>
 
-	  <p>	    
+	  <p>
 	    If a package is not installed or not configured, this
 	    field in <prgn>dpkg</prgn>'s status file records the last
 	    version of the package which was successfully
 	    configured.</p>
 	</sect1>
-	  
+
 	<sect1 id="pkg-f-Conffiles"><heading><tt>Conffiles</tt>
 	  </heading>
 
-	  <p>	    
+	  <p>
 	    This field in <prgn>dpkg</prgn>'s status file contains
 	    information about the automatically-managed configuration
 	    files held by a package.  This field should <em>not</em>
 	    appear anywhere in a package!</p>
 	</sect1>
-	  
+
 	<sect1><heading>Obsolete fields
 	  </heading>
 
-	  <p>	    
+	  <p>
 	    These are still recognised by <prgn>dpkg</prgn> but should
 	    not appear anywhere any more.
 	    <taglist compact="compact">
-	      
+
 	      <tag><tt>Revision</tt></tag>
 	      <tag><tt>Package-Revision</tt></tag>
 	      <tag><tt>Package_Revision</tt></tag>
@@ -10090,11 +10293,11 @@ fi
 		  at one point in a separate control file field.  This
 		  field went through several names.</p>
 	      </item>
-		  
+
 	      <tag><tt>Recommended</tt></tag>
 	      <item><p>Old name for <tt>Recommends</tt></p>
 	      </item>
-		
+
 	      <tag><tt>Optional</tt></tag>
 	      <item><p>Old name for <tt>Suggests</tt>.</p>
 	      </item>
@@ -10111,18 +10314,18 @@ fi
     (from old Packaging Manual)
       </heading>
 
-      <p>	
+      <p>
 	<prgn>dpkg</prgn> can do a certain amount of automatic
 	handling of package configuration files.
       </p>
 
-      <p>	
+      <p>
 	Whether this mechanism is appropriate depends on a number of
 	factors, but basically there are two approaches to any
 	particular configuration file.
       </p>
 
-      <p>	
+      <p>
 	The easy method is to ship a best-effort configuration in the
 	package, and use <prgn>dpkg</prgn>'s conffile mechanism to
 	handle updates.  If the user is unlikely to want to edit the
@@ -10131,7 +10334,7 @@ fi
 	is only released infrequently, this is a good approach.
       </p>
 
-      <p>	
+      <p>
 	The hard method is to build the configuration file from
 	scratch in the <prgn>postinst</prgn> script, and to take the
 	responsibility for fixing any mistakes made in earlier
@@ -10139,12 +10342,12 @@ fi
 	appropriate if the file is likely to need to be different on
 	each system.
       </p>
-	
+
       <sect><heading>Automatic handling of configuration files by
       <prgn>dpkg</prgn>
 	</heading>
 
-	<p>	  
+	<p>
 	  A package may contain a control area file called
 	  <tt>conffiles</tt>.  This file should be a list of filenames
 	  of configuration files needing automatic handling, separated
@@ -10153,14 +10356,14 @@ fi
 	  package.
 	</p>
 
-	<p>	  
+	<p>
 	  When a package is upgraded <prgn>dpkg</prgn> will process
 	  the configuration files during the configuration stage,
 	  shortly before it runs the package's <prgn>postinst</prgn>
 	  script,
 	</p>
 
-	<p>	  
+	<p>
 	  For each file it checks to see whether the version of the
 	  file included in the package is the same as the one that was
 	  included in the last version of the package (the one that is
@@ -10169,7 +10372,7 @@ fi
 	  version.
 	</p>
 
-	<p>	  
+	<p>
 	  If neither the user nor the package maintainer has changed
 	  the file, it is left alone.  If one or the other has changed
 	  their version, then the changed version is preferred - i.e.,
@@ -10182,20 +10385,20 @@ fi
 	  and must resolve the differences themselves.
 	</p>
 
-	<p>	  
+	<p>
 	  The comparisons are done by calculating the MD5 message
 	  digests of the files, and storing the MD5 of the file as it
 	  was included in the most recent version of the package.
 	</p>
 
-	<p>	  
+	<p>
 	  When a package is installed for the first time
 	  <prgn>dpkg</prgn> will install the file that comes with it,
 	  unless that would mean overwriting a file already on the
 	  filesystem.
 	</p>
 
-	<p>	  
+	<p>
 	  However, note that <prgn>dpkg</prgn> will <em>not</em>
 	  replace a conffile that was removed by the user (or by a
 	  script).  This is necessary because with some programs a
@@ -10204,38 +10407,38 @@ fi
 	  kept that way if the user did it.
 	</p>
 
-	<p>	  
+	<p>
 	  Note that a package should <em>not</em> modify a
 	  <prgn>dpkg</prgn>-handled conffile in its maintainer
 	  scripts.  Doing this will lead to <prgn>dpkg</prgn> giving
 	  the user confusing and possibly dangerous options for
 	  conffile update when the package is upgraded.</p>
       </sect>
-	
+
       <sect><heading>Fully-featured maintainer script configuration
       handling
 	</heading>
 
-	<p>	  
+	<p>
 	  For files which contain site-specific information such as
 	  the hostname and networking details and so forth, it is
 	  better to create the file in the package's
 	  <prgn>postinst</prgn> script.
 	</p>
 
-	<p>	  
+	<p>
 	  This will typically involve examining the state of the rest
 	  of the system to determine values and other information, and
 	  may involve prompting the user for some information which
 	  can't be obtained some other way.
 	</p>
 
-	<p>	  
+	<p>
 	  When using this method there are a couple of important
 	  issues which should be considered:
 	</p>
 
-	<p>	  
+	<p>
 	  If you discover a bug in the program which generates the
 	  configuration file, or if the format of the file changes
 	  from one version to the next, you will have to arrange for
@@ -10248,7 +10451,7 @@ fi
 	  deal with them correctly.
 	</p>
 
-	<p>	  
+	<p>
 	  If you do go down this route it's probably a good idea to
 	  make the program that generates the configuration file(s) a
 	  separate program in <file>/usr/sbin</file>, by convention called
@@ -10262,20 +10465,20 @@ fi
 	  already exists, and require a <tt>--force</tt> flag to
 	  overwrite it.</p></sect>
     </appendix>
-      
+
     <appendix id="pkg-alternatives"><heading>Alternative versions of
 	an interface - <prgn>update-alternatives</prgn> (from old
     Packaging Manual)
       </heading>
 
-      <p>	
+      <p>
 	When several packages all provide different versions of the
 	same program or file it is useful to have the system select a
 	default, but to allow the system administrator to change it
 	and have their decisions respected.
       </p>
 
-      <p>	
+      <p>
 	For example, there are several versions of the <prgn>vi</prgn>
 	editor, and there is no reason to prevent all of them from
 	being installed at once, each under their own name
@@ -10284,65 +10487,65 @@ fi
 	refer to something, at least by default.
       </p>
 
-      <p>	
+      <p>
 	If all the packages involved cooperate, this can be done with
 	<prgn>update-alternatives</prgn>.
       </p>
 
-      <p>	
+      <p>
 	Each package provides its own version under its own name, and
 	calls <prgn>update-alternatives</prgn> in its postinst to
 	register its version (and again in its prerm to deregister
 	it).
       </p>
 
-      <p>	
+      <p>
 	See the manpage <manref name="update-alternatives"
 	section="8"> for details.
       </p>
 
-      <p>	
+      <p>
 	If <prgn>update-alternatives</prgn> does not seem appropriate
 	you may wish to consider using diversions instead.</p>
     </appendix>
-      
+
     <appendix id="pkg-diversions"><heading>Diversions - overriding a
     package's version of a file (from old Packaging Manual)
       </heading>
 
-      <p>	
+      <p>
 	It is possible to have <prgn>dpkg</prgn> not overwrite a file
 	when it reinstalls the package it belongs to, and to have it
 	put the file from the package somewhere else instead.
       </p>
 
-      <p>	
+      <p>
 	This can be used locally to override a package's version of a
 	file, or by one package to override another's version (or
 	provide a wrapper for it).
       </p>
 
-      <p>	
+      <p>
 	Before deciding to use a diversion, read <ref
 	id="pkg-alternatives"> to see if you really want a diversion
 	rather than several alternative versions of a program.
       </p>
 
-      <p>	
+      <p>
 	There is a diversion list, which is read by <prgn>dpkg</prgn>,
 	and updated by a special program <prgn>dpkg-divert</prgn>.
 	Please see <manref name="dpkg-divert" section="8"> for full
 	details of its operation.
       </p>
 
-      <p>	
+      <p>
 	When a package wishes to divert a file from another, it should
 	call <prgn>dpkg-divert</prgn> in its preinst to add the
 	diversion and rename the existing file.  For example,
 	supposing that a <prgn>smailwrapper</prgn> package wishes to
 	install a wrapper around <file>/usr/sbin/smail</file>:
 	<example>
-  if [ install = "$1" -o upgrade = "$1" ]; then
+  if [ install = "$1"  ]; then
      dpkg-divert --package smailwrapper --add --rename \
         --divert /usr/sbin/smail.real /usr/sbin/smail
   fi
@@ -10354,7 +10557,7 @@ fi
 	get installed as the true version.
       </p>
 
-      <p>	
+      <p>
 	The postrm has to do the reverse:
 	<example>
   if [ remove = "$1" ]; then
@@ -10364,7 +10567,7 @@ fi
 	</example>
       </p>
 
-      <p>	
+      <p>
 	Do not attempt to divert a file which is vitally important for
 	the system's operation - when using <prgn>dpkg-divert</prgn>
 	there is a time, after it has been diverted but before

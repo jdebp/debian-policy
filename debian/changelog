@@ -1,16 +1,67 @@
-debian-policy (3.5.6.2) unstable; urgency=low
+debian-policy (3.5.7.0) unstable; urgency=low
 
   * Fixed some broken hrefs in links
   * No longer use local debiandoc stuff (it's been fixed upstream)
   * Added table of contents (index.html) to policy-process.sgml, fixing
     the new error reported to bug #137521                    closes: Bug#137521
   * Fixed a couple of typos                                  closes: Bug#139832
-  * Ran through the policy docukent looking for long instances pf text in
+  * Ran through the policy document looking for long instances of text in
     the <tt> tag, and changed it to <file> where appropriate. This is
     since the <file> tag can handle line breaking, but the <t> flag does
     not.                                                     closes: Bug#139820
+  * Change the requirement to ask permission to make devices to merely
+    requiring a notification.                                closes: Bug#106280
+  * Added a build dependson docbook utils.                   closes: Bug#154660
+  * Since this is being built with a newer version of debiandoc-sgml, this
+    should display better with lynx.                         closes: Bug#153704
+  * Add in the crypto-in-main amendment.          closes: Bug#81852, Bug#144411
+  * we no longer have task packages, instead, we define tasks using a
+    special field in the control file (and these should be added only
+    after discussion on the mailing lists)                    closes: Bug#97755
+  * Clarify wording in the section for packages providing fonts. 
+                                                             closes: Bug#109672
+  * Fix the doc base file for policy process     closes: Bug#137521, Bug#147554
+                                                             closes: Bug#146756
+  * using set -e is not dubious advice. Rejecting this.      closes: Bug#139969
+  * Make the directory one is building under ./debian/ be up to the
+    maintainer, instead of mandating ./debian/tmp/           closes: Bug#144297
+  * Add a standards version                                  closes: Bug#145067
+  * Added virtual package debconf-2.0                        closes: Bug#151328
+  * Added The Window Manager Specification Project support to the default
+    window manager selection mechanism                       closes: Bug#155680
+  * The confusion between /var/mail and /var/spool/mail seems to have been
+    disambiguated.                                           closes: Bug#114949
+  * Mention the new Build-Depend-Indep semantic and the new
+    build-indep/build-arch rules in upgrading checklist      closes: Bug#116134
+  * Made package naming rules in policy consistent. I did not eliminate
+    the duplication, since I don't want to make major changes to the flow,
+    since we are supposed to be re-writing policy anyway.    closes: Bug#131441
+  * Clarified wording about cases where we may have concrete and virtual
+    packages with the same name.                             closes: Bug#134977
+  * Fixed typo 'be be'                                       closes: Bug#138681
+  * Fixed typo in appendix G -- example of diversion         closes: Bug#140697
+  * fix typo shlib: -> shlibs:                               closes: Bug#141903
+  * Provide a link between two sections dealing with virtual packages.
+                                                             closes: Bug#143770
+  * Fixed xtifr's email address in the menu policy           closes: Bug#152965
+  * Allow shared library names to be have a hyphen between library name
+    and soversion if the library name ends in a number.      closes: Bug#100472
+  * Permit some libraries to only install static libs.       closes: Bug#100346
+  * Remove the debug option, add noopt           closes: Bug#157131, Bug#113525
+  * provide dhcp-client virtual package.                     closes: Bug#154142
+  * We do not need bits in policy that ``should not be enforced''. 
+                                                             closes: Bug#150456
+  * We are building this with the latest debianndoc-sgml.    closes: Bug#146703
+  * Finish incorporating all of the accepted changes in Bug#72335, and
+    this                                         closes: Bug#141307, Bug#156546
+  * Added virtual package aspell-dictionary                  closes: Bug#139067
+  * Added virtual package radius-server                      closes: Bug#118608
+  * Clarifying manual pages is not a policy issue.           closes: Bug#112828
+  * Corrected the ldconfig handling instructions.            closes: Bug#111025
+  * Not a policy issue.                                      closes: Bug#106826
+  * Removed the /usr/doc/ symlink clause.          closes: Bug#47298, Bug#69311
 
- --
+ -- Manoj Srivastava <srivasta@debian.org>  Sat, 31 Aug 2002 02:18:02 -0500
 
 debian-policy (3.5.6.1) unstable; urgency=low
 
