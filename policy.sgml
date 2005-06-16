@@ -2242,7 +2242,7 @@
 	      To be precise, the string should match the following
 	      Perl regular expression:
 	      <example>
-/closes:\s*(?:bug)?\#\s?\d+(?:,\s*(?:bug)?\#\s?\d+)*/i
+/closes:\s*(?:bug)?\#?\s?\d+(?:,\s*(?:bug)?\#?\s?\d+)*/i
 	      </example>
 	      Then all of the bug numbers listed will be closed by the
 	      archive maintenance script (<prgn>katie</prgn>), or in
