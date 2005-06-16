@@ -60,7 +60,8 @@ POLICY_FILES = $(SGML_FILES:=.sgml) $(SGML_FILES:=.txt.gz) \
 	       virtual-package-names-list.txt \
 	       upgrading-checklist.txt libc6-migration.txt version.ent \
                debconf_spec/debconf_specification.html \
-               debconf_spec/debconf_specification.txt.gz
+               debconf_spec/debconf_specification.txt.gz \
+               policy.ps.gz policy.pdf.gz
 
 FILES_TO_CLEAN  = debian/files debian/buildinfo  debian/substvars \
 		  debian/postinst debian/prerm \
@@ -82,7 +83,8 @@ all build: stamp-build
 stamp-build: version.ent $(sanitycheck)
 	$(MAKE) $(SGML_FILES:=.sgml.validate) \
 		$(SGML_FILES:=.html.tar.gz) \
-		$(SGML_FILES:=.txt.gz)
+		$(SGML_FILES:=.txt.gz) \
+		policy.ps.gz policy.pdf.gz
 	tar -zxf $(FHS_ARCHIVE)
 	# Need to use a patched tmac.m macro file if we're using a pre-1.16
 	# groff; version 1.16 is apparently fixed
@@ -168,10 +170,6 @@ stamp-policy:  build $(sanitycheck)
 	chown		    -R root:root debian/tmp
 	chmod		    -R go=rX debian/tmp
 	dpkg		    --build debian/tmp ..
-	debiandoc2latexps   policy.sgml
-	gzip -9f            policy.ps
-	debiandoc2latexpdf  policy.sgml
-	gzip -9f  	    policy.pdf
 	touch		    stamp-policy
 
 
