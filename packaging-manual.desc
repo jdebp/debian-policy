@@ -1,6 +1,6 @@
 Document: packaging-manual
 Title: Debian Packaging Manual
-Author: Ian Jackson
+Author: Ian Jackson and others
 Abstract: This manual describes the technical aspects of creating Debian binary
  and source packages.  It also documents the interface between
  dselect and its access method scripts.  It does not deal with
