@@ -12,7 +12,7 @@
   2 or (at your option) any later.
 
   The debian-policy mailing list has taken responsibility for the
-  contents of this document8, with the package maintainers responsible
+  contents of this document, with the package maintainers responsible
   for packagingn adminstrivia only.  
  
   -->
@@ -109,7 +109,7 @@
 	  <item>
 	    <p>
 	      Reduce the coupling between policy and
-	      implementation. If this separtion is not made, every
+	      implementation. If this separation is not made, every
 	      time we want to change menu policy, we have to arrange
 	      to get the maintainer to release a new version of the
 	      package, even if the package has not otherwise
@@ -123,9 +123,9 @@
       <heading>Menu Structure</heading>
       <p>
 	If you have a package which doesn't fit within the existing
-	menu heirarchy, please bring it up on the debian-devel mailing
+	menu hierarchy, please bring it up on the debian-devel mailing
 	list.  If you have other proposals for changing the menu
-	heirarchy, or making other changes to menu policy, please
+	hierarchy, or making other changes to menu policy, please
 	bring it up on debian-policy.
       </p>
       <sect>
@@ -284,7 +284,7 @@
 	    </item>
 	    <tag>XShells</tag>
 	    <item>
-	      <p>xterm and its brethern</p>
+	      <p>xterm and its brethren</p>
 	    </item>
 	  </taglist>
 	</p>

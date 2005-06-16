@@ -208,11 +208,15 @@
 	<em>free</em> in our sense (see Debian Free Software
 	Guidelines, below), or may be imported/exported without
 	restrictions. Thus, the archive is split into the sections
-	<em>main</em>, <em>non-us</em>, <em>non-free</em>, and
-	<em>contrib</em>.</p>
+       <em>main</em>, <em>non-free</em>, <em>contrib</em>,
+       <em>non-US/main</em>, <em>non-US/non-free</em>, and
+       <em>non-US/contrib</em>.</p>
+
       <p>
-	The <em>main</em> section forms the <em>Debian GNU/Linux
-	distribution</em>. </p>
+	The <em>main</em> and the <em>non-US/main</em> sections form
+	the <em>Debian GNU/Linux distribution</em>. 
+      </p>
+
       <p>
 	Packages in the other sections are not considered as part of
 	the Debian distribution, though we support their use, and we
@@ -417,8 +421,7 @@
 	<heading>The non-free section</heading>
 	<p>
 	  `Non-free' contains packages which are not compliant with
-	  the DFSG or which are encumbered by patents or other legal
-	  issues that make their distribution problematic.</p>
+	  the DFSG.</p>
 	<p>
 	  All packages in `non-free' must be electronically
 	  distributable across international borders.
@@ -505,11 +508,11 @@
 	  worthwhile contacting such authors diplomatically to ask
 	  them to modify their license terms. However, this is a
 	  politically difficult thing to do and you should ask for
-	  advice on <tt>debian-devel</tt> first.</p>
+	  advice on <tt>debian-legal</tt> first.</p>
 
 	<p>
 	  When in doubt, send mail to
-	  <email>debian-devel@lists.debian.org</email>.  Be prepared
+	  <email>debian-legal@lists.debian.org</email>.  Be prepared
 	  to provide us with the copyright statement.  Software
 	  covered by the GPL, public domain software and BSD-like
 	  copyrights are safe; be wary of the phrases `commercial use
@@ -802,13 +805,23 @@
 	    Since these packages can not easily be removed (you'll
 	    have to specify an extra <em>force option</em> to
 	    <prgn>dpkg</prgn>) this flag must not be used unless
-	    absolutely necessary.
+	    absolutely necessary.  A shared library package must not
+	    be tagged <tt>essential</tt>--the dependencies will
+	    prevent its premature removal, and we need to be able to
+	    remove it when it has been superseded.
+	  </p>
 	    
-	    A shared library package must not be tagged
-	    <em>essential</em>--the dependencies will prevent its
-	    premature removal, and we need to be able to remove it
-	    when it has been superseded.</p>
-	    
+	  <p>
+	    Since dpkg will not prevent upgrading of other packages
+            while an <tt>essential</tt> package is in an unconfigured
+            state, all <tt>essential</tt> packages must supply all
+            their core functionality even when unconfigured. If the
+            package cannot satisfy this requirement it must not be
+            tagged as essential, and any packages depending on this
+            package must instead have explicit dependency fields as
+            appropriate.
+	  </p>
+
 	  <p>
 	    You must not tag any packages <tt>essential</tt> before
 	    this has been discussed on the <tt>debian-devel</tt>
@@ -2094,7 +2107,7 @@
 	  
 	<p>
 	  Furthermore, as <tt>/etc/profile</tt> is a configuration
-	  file of the <prgn>bash</prgn> package, other packages must not
+	  file of the <prgn>base-files</prgn> package, other packages must not
 	  put any environment variables or other commands into that
 	  file.</p>
       </sect>
@@ -2154,9 +2167,9 @@
 	  build tree with debugging information. If the environment
 	  variable <tt>DEB_BUILD_OPTIONS</tt> contains the string
 	  <tt>nostrip</tt>, do not strip the files at installation
-	  time. This allows to generate a package with debugging
+	  time. This allows one to generate a package with debugging
 	  information included. The following makefile snippet is only
-	  an example how to test for either condition:
+	  an example of how one may test for either condition:
 	  <footnote>
 	    <p>
 	      Rationale: Building by default with -g causes more
@@ -2165,7 +2178,7 @@
 	      it also provides a mechanism to easily be rebuilt with
 	      debugging information. This can be done by providing a
 	      "build-debug" make target, or allowing the user to
-	      specify "BUILD_DEBUG=yes" in the environment while
+	      specify "DEB_BUILD_OPTIONS=debug" in the environment while
 	      compiling that package.
 	    </p>
 	    <p>Now this has several added benefits:
@@ -2183,7 +2196,7 @@
 		    autobuilders since not having debugging
 		    information (and hence also not having to strip
 		    it) will increase the speed of compiles. This
-		    skips an entire pass of the compiler,
+		    skips an entire pass of the compiler. 
 		  </p>
 		</item>
 	      </list>
@@ -2196,9 +2209,9 @@
 
              ifneq (,$(findstring debug,$(DEB_BUILD_OPTIONS)))
                CFLAGS += -g
-             ifneq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
-               INSTALL += -s
              endif
+             ifeq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
+               INSTALL += -s
              endif
            </example></p>
 
@@ -2334,87 +2347,101 @@
 	    of the library installed while moving from the old library
 	    to the new.</p>
 	    
-	  <p>
-	    If your package has some run-time support programs which
-	    use the shared library you must not put them in
-	    the shared library package.  If you do that then you won't
+	<p>
+	  If your package has some run-time support programs which
+	  use the shared library you must not put them in
+	  the shared library package.  If you do that then you won't
 	    be able to install several versions of the shared library
 	    without getting filename clashes.  Instead, either create
 	    a third package for the runtime binaries (this package
 	    might typically be named
 	    <tt><var>libraryname</var>-runtime</tt>--note the absence
-	    of the <var>soname</var> in the package name) or if the
-	    development package is small include them in there.</p>
-	    
+	  of the <var>soname</var> in the package name) or if the
+	  development package is small include them in there.</p>
+	
+	<p>
+	  If you have several shared libraries built from the same
+	  source tree you may lump them all together into a single
+	  shared library package, provided that you change all their
+	  <var>soname</var>s at once (so that you don't get filename
+	  clashes if you try to install different versions of the
+	  combined shared libraries package).</p>
+	
 	  <p>
-	    If you have several shared libraries built from the same
-	    source tree you may lump them all together into a single
-	    shared library package, provided that you change all their
-	    <var>soname</var>s at once (so that you don't get filename
-	    clashes if you try to install different versions of the
-	    combined shared libraries package).</p>
-	    
-	  <p>
-	    You should follow the directions in the <em>Debian Packaging
+	  You should follow the directions in the <em>Debian Packaging
 	    Manual</em> for putting the shared library in its package,
-	    and you must include a <tt>shlibs</tt> control area
-	    file with details of the dependencies for packages which
-	    use the library.</p>
-	    
+	  and you must include a <tt>shlibs</tt> control area
+	  file with details of the dependencies for packages which
+	  use the library.</p>
+	
 	  <p>
-	    Shared libraries should not be installed
-	    executable, since <prgn>ld.so</prgn> does not require this
-	    and trying to execute a shared library results in a core
-	    dump.</p></sect>
-	    
-	    
-	<sect id="scripts">
-	  <heading>Scripts</heading>
-	    
+	  Shared libraries should not be installed
+	  executable, since <prgn>ld.so</prgn> does not require this
+	  and trying to execute a shared library results in a core
+	  dump.</p></sect>
+      
+      
+      <sect id="scripts">
+	<heading>Scripts</heading>
+	
+	<p>
+	  All command scripts, including the package maintainer
+	  scripts inside the package and used by <prgn>dpkg</prgn>,
+	  should have a <tt>#!</tt> line naming the shell to be used
+	  to interpret them.</p>
+	
 	  <p>
-	    All command scripts, including the package maintainer
-	    scripts inside the package and used by <prgn>dpkg</prgn>,
-	    should have a <tt>#!</tt> line naming the shell to be used
-	    to interpret them.</p>
+	  In the case of Perl scripts this should be
+	  <tt>#!/usr/bin/perl</tt>.</p>
+	
+	<p>
+	  Shell scripts (<prgn>sh</prgn> and <prgn>bash</prgn>)
+	  should almost certainly start with <tt>set -e</tt> so that
+	  errors are detected.  Every script should use
+	  <tt>set -e</tt> or check the exit status of <em>every</em>
+	  command.</p>
 	    
-	  <p>
-	    In the case of Perl scripts this should be
-	    <tt>#!/usr/bin/perl</tt>.</p>
-	    
-	  <p>
-	    Shell scripts (<prgn>sh</prgn> and <prgn>bash</prgn>)
-	    should almost certainly start with <tt>set -e</tt> so that
-	    errors are detected.  Every script should use
-	    <tt>set -e</tt> or check the exit status of <em>every</em>
-	    command.</p>
-	    
-	  <p>
-	    The standard shell interpreter `<tt>/bin/sh</tt>' can be a
-	    symbolic link to any POSIX compatible shell. Thus, shell
-	    scripts specifying `<tt>/bin/sh</tt>' as interpreter should
-	    only use POSIX features. If a script requires non-POSIX
-	    features from the shell interpreter, the appropriate shell
-	    must be specified in the first line of the script (e.g.,
-	    `<tt>#!/bin/bash</tt>') and the package must depend on
-	    the package providing the shell (unless the shell package
-	    is marked `Essential', e.g., in the case of
-	    <prgn>bash</prgn>).</p>
-	    
-	  <p>
-	    You may wish to restrict your script to POSIX features when possible so
-	    that it may use <tt>/bin/sh</tt> as its interpreter. If
-	    your script works with <prgn>ash</prgn>, it's probably
-	    POSIX compliant, but if you are in doubt, use
-	    <tt>/bin/bash</tt>.</p>
-	    
-	  <p>
-	    Perl scripts should check for errors when making any
-	    system calls, including <tt>open</tt>, <tt>print</tt>,
-	    <tt>close</tt>, <tt>rename</tt> and <tt>system</tt>.</p>
-	    
-	  <p>
-	    <prgn>csh</prgn> and <prgn>tcsh</prgn> should be avoided
-	    as scripting languages.  See <em>Csh Programming
+	<p>
+	  The standard shell interpreter `<tt>/bin/sh</tt>' can be a
+	  symbolic link to any POSIX compatible shell, if <tt>echo
+	    -n</tt> does not generate a newline. 
+	  <footnote>
+	    <p>
+	      Debian policy specifies POSIX behavior for /bin/sh, but
+	      echo -n has widespread use in the Linux community
+	      (including especially debian policy, the linux kernel
+	      source, many debian scripts, etc.).  This echo -n
+	      mechanism is valid but not required under POSIX, hence
+	      this explicit addition. Also, rumour has it that this
+	      shall be mandated under the LSB anyway.
+	    </p>
+	  </footnote>
+	  Thus, shell scripts
+	  specifying `<tt>/bin/sh</tt>' as interpreter should only
+	  use POSIX features. If a script requires non-POSIX
+	  features from the shell interpreter, the appropriate shell
+	  must be specified in the first line of the script (e.g.,
+	  `<tt>#!/bin/bash</tt>') and the package must depend on the
+	  package providing the shell (unless the shell package is
+	  marked `Essential', e.g., in the case of
+	  <prgn>bash</prgn>).
+	</p>
+	
+	<p>
+	  You may wish to restrict your script to POSIX features when possible so
+	  that it may use <tt>/bin/sh</tt> as its interpreter. If
+	  your script works with <prgn>ash</prgn>, it's probably
+	  POSIX compliant, but if you are in doubt, use
+	  <tt>/bin/bash</tt>.</p>
+	
+	<p>
+	  Perl scripts should check for errors when making any
+	  system calls, including <tt>open</tt>, <tt>print</tt>,
+	  <tt>close</tt>, <tt>rename</tt> and <tt>system</tt>.</p>
+	
+	<p>
+	  <prgn>csh</prgn> and <prgn>tcsh</prgn> should be avoided
+	  as scripting languages.  See <em>Csh Programming
 	    Considered Harmful</em>, one of the <tt>comp.unix.*</tt>
 	  FAQs.  It can be found on 
 	  <url id="http://language.perl.com/versus/csh.whynot">, or
@@ -2425,19 +2452,19 @@
 	  then you must make sure that they start with
 	  <tt>#!/bin/csh</tt> and make your package depend on the
 	  <prgn>c-shell</prgn> virtual package.</p>
-	    
+	
+	<p>
+	  Any scripts which create files in world-writeable
+	  directories (e.g., in <tt>/tmp</tt>) must use a
+	  mechanism which will fail if a file with the same name
+	  already exists.</p>
+	
 	  <p>
-	    Any scripts which create files in world-writeable
-	    directories (e.g., in <tt>/tmp</tt>) must use a
-	    mechanism which will fail if a file with the same name
-	    already exists.</p>
-	    
-	  <p>
-	    The Debian base distribution provides the
-	    <prgn>tempfile</prgn> and <prgn>mktemp</prgn> utilities
-	    for use by scripts for this purpose.</p></sect>
-	    
-	    
+	  The Debian base distribution provides the
+	  <prgn>tempfile</prgn> and <prgn>mktemp</prgn> utilities
+	  for use by scripts for this purpose.</p></sect>
+      
+      
 	<sect>
 	  <heading>Symbolic links</heading>
 	    
@@ -2503,9 +2530,9 @@
 	    
 	  <p>
 	    Debian uses the serial devices
-	    <tt>/dev/tty*</tt>. Programs using the old
+	    <tt>/dev/ttyS*</tt>. Programs using the old
 	    <tt>/dev/cu*</tt> devices should be changed to use
-	    <tt>/dev/tty*</tt>.</p>
+	    <tt>/dev/ttyS*</tt>.</p>
       </sect>
 	    
       <sect id="config files">
@@ -2584,13 +2611,14 @@
 	  <p>
 	    The easy way to achieve this behavior is to make the
 	    configuration file a <tt>conffile</tt>. This is
-	    appropriate if it is possible to distribute a default
+	    appropriate only if it is possible to distribute a default
 	    version that will work for most installations, although
 	    some system administrators may choose to modify it. This
 	    implies that the default version will be part of the
 	    package distribution, and must not be modified by the
 	    maintainer scripts during installation (or at any other
-	    time).</p>
+	    time).
+	  </p>
 
 	  <p>
 	    In order to ensure that local changes are preserved
@@ -2608,7 +2636,7 @@
 	    </footnote>
 
 	  <p>
-	    The other way to do it is to via the maintainer scripts.
+	    The other way to do it is via the maintainer scripts.
 	    In this case, the configuration file must not be listed as
 	    a <tt>conffile</tt> and must not be part of the package
 	    distribution. If the existence of a file is required for
@@ -2616,7 +2644,7 @@
 	    responsibility of the package maintainer to write scripts
 	    which correctly create, update, maintain and
 	    remove-on-purge the file. These scripts must be idempotent
-	    (i.e. must work correctly if <prgn>dpkg</prgn> needs to
+	    (i.e., must work correctly if <prgn>dpkg</prgn> needs to
 	    re-run them due to errors during installation or removal),
 	    must cope with all the variety of ways <prgn>dpkg</prgn>
 	    can call maintainer scripts, must not overwrite or
@@ -2667,7 +2695,7 @@
 	    If two or more packages use the same configuration file
 	    and it is reasonable for both to be installed at the same
 	    time, one of these packages must be defined as
-	    <em>owner</em> of the configuration file, i.e. it will be
+	    <em>owner</em> of the configuration file, i.e., it will be
 	    the package to list that distributes the file and lists it
 	    as a <tt>conffile</tt>. Other packages that use the
 	    configuration file must depend on the owning package if
@@ -2722,7 +2750,7 @@
 
 	  <p>
 	    Therefore, if a program needs a dotfile to exist in
-	    advance in <tt>$HOME</tt> to work sensibly that dotfile
+	    advance in <tt>$HOME</tt> to work sensibly, that dotfile
 	    should be installed in <tt>/etc/skel</tt> (and listed in
 	    conffiles, if it is not generated and modified dynamically
 	    by the package's installation scripts).</p>
@@ -3017,7 +3045,7 @@
 	  
 	<p>
 	  If it is very hard to adapt a program to make us of the
-	  EDITOR and PAGER variable, that program may be configured
+	  EDITOR and PAGER variables, that program may be configured
 	  to use <tt>/usr/bin/sensible-editor</tt> and
 	  <tt>/usr/bin/sensible-pager</tt> as editor or pager program,
 	  respectively. These are two scripts provided in the Debian
@@ -3140,7 +3168,7 @@
 	  Mailboxes must be writable by group mail.</p>
 	  
 	<p>
-	  The mail spool is 2775 <tt>mail.mail</tt>, and MUAs should
+	  The mail spool is 2775 <tt>root.mail</tt>, and MUAs should
 	  be setgid mail to do the locking mentioned above (and
 	  must obviously avoid accessing other users' mailboxes
 	  using this privilege).</p>
@@ -3230,34 +3258,38 @@
 	<heading>Programs for the X Window System</heading>
 	  
 	<p>
-	  Some programs can be configured with or without support for the X
-	  Window System.  Typically, binaries produced with support for X
-	  will need the X shared libraries to run.<footnote>
+	  <em>Programs that may be configured with support for the X Window
+	    System</em> must be configured to do so and must declare any
+	  package dependencies necessary to satisfy their runtime
+	  requirements when using the X Window System, unless the package
+	  in question is of standard or higher priority, in which case
+	  X-specific binaries may be split into a separate package, or
+	  alternative versions of the package with X support may be
+	  provided.<footnote>
 	    <p>
 	      <strong>NOTE</strong> The forthcoming major X Window
 	      System release shall probably change this
 	      drastically.
 	    </p>
+	    <p>
+	      This seems to be more what people want.  It will enable
+	      packages like vim-tty to become legal if they are
+	      promoted to standard priority.  Also, that X client in
+	      mtools can be split into its own package and made
+	      optional.
+	    </p>
+	    <p>
+	      This paves the way for xlib6g and xfree86-common to be
+	      moved from standard to optional, <strong>if</strong> all
+	      Xlib dependent packages are moved from standard to
+	      optional priority (or if non-Xlib-linked versions are
+	      retained in standard).  That, however is up to the
+	      affected package maintainers and the archive
+	      maintainers, and is not mandated by this policy.
+	    </p>
 	  </footnote>
 	</p>
   
-	<p>
-	  Such programs should be configured <em>with</em> X support,
-	  and should declare a dependency on <tt>xlib6g</tt> (which
-	  contains X shared libraries).  Users who wish to use the
-	  program can install just the relatively small
-	  <tt>xfree86-common</tt> and <tt>xlib6g</tt> packages, and do
-	  not need to install the whole of X.
-	  <footnote>
-	    <p>Note: With the release of the new X window System
-	    version (4.X), there probably shall be a sweeping change
-	    in the X Window System Policy in the future.</p>
-	  </footnote>
-	</p>
-  
-	<p>
-	  You should not create two versions (one with X support and one
-	  without) of your package.</p>
 	  
 	<p>
          <em>Packages which provide an X server</em> that, directly or
@@ -3870,20 +3902,20 @@
 	<heading>Changelog files</heading>
 	
 	<p>
-	  Packages that are not Debian-native must contain a copy
-	  of <tt>debian/changelog</tt> file from the Debian source
-	  tree in <tt>/usr/share/doc/<var>package</var></tt>
-	  as <tt>changelog.Debian.gz</tt>. If an upstream
-	  changelog is available, it should be accessible as
-	  <tt>/usr/share/doc/<var>package</var>/changelog.gz</tt>
-	  in plain text. If the upstream changelog is distributed
-	  in HTML, it should be made available in that form as
+	  Packages that are not Debian-native must contain a copy of
+	  <tt>debian/changelog</tt> file from the Debian source tree
+	  in <tt>/usr/share/doc/<var>package</var></tt> as
+	  <tt>changelog.Debian.gz</tt>. If an upstream changelog is
+	  available, it should be accessible as
+	  <tt>/usr/share/doc/<var>package</var>/changelog.gz</tt> in
+	  plain text. If the upstream changelog is distributed in
+	  HTML, it should be made available in that form as
 	  <tt>/usr/share/doc/<var>package</var>/changelog.html.gz</tt>
 	  and the <tt>changelog.gz</tt> should be generated using, eg,
-	  lynx -dump -nolist</tt>. If the upstream changelog files do
-	  not already conform to this naming convention, then this may
-	  be achieved either by renaming the files, or adding a symbolic
-	  link, at the maintainer's discretion.</p>
+	  <tt>lynx -dump -nolist</tt>. If the upstream changelog files
+	  do not already conform to this naming convention, then this
+	  may be achieved either by renaming the files, or adding a
+	  symbolic link, at the maintainer's discretion.
 	  <footnote>
 	    <p>
 	      Rationale: People should not have to look into two
@@ -3893,11 +3925,11 @@
 	  </footnote>
 	</p>
 	
- 
-       <p>
-         All these files should be installed compressed using <tt>gzip -9</tt>,
-         as they will become large with time even if they start out
-         small.
+	
+	<p>
+	  All these files should be installed compressed using <tt>gzip -9</tt>,
+	  as they will become large with time even if they start out
+	  small.
 	</p>
 	
 	<p>
