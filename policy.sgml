@@ -132,7 +132,7 @@
 		    interfaces not changing, and the package
 		    management software authors need to ensure
 		    compatibility with these interface
-		    definitions. (Control file and and changelog file
+		    definitions. (Control file and changelog file
 		    formats are examples.)
 		  </p>
 		</item>
@@ -164,7 +164,7 @@
 	  <em>may</em>, and the adjectives <em>required</em>,
 	  <em>recommended</em> and <em>optional</em>, are used to
 	  distinguish the significance of the various guidelines in
-	  this policy document. Packages that do not conform the the
+	  this policy document. Packages that do not conform to the
 	  guidelines denoted by <em>must</em> (or <em>required</em>)
 	  will generally not be considered acceptable for the Debian
 	  distribution. Non-conformance with guidelines denoted by
@@ -764,8 +764,8 @@
 	    <item>
 	      <p>
 		These packages provide a reasonably small but not too
-		limited character-mode system.  This is what will
-		install by default if the user doesn't select anything
+		limited character-mode system.  This is what will be
+		installed by default if the user doesn't select anything
 		else.  It doesn't include many large applications, but
 		it does include Emacs (this is more of a piece of
 		infrastructure than an application) and a reasonable
