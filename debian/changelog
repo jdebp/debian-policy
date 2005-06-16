@@ -40,6 +40,8 @@ debian-policy (3.6.2.1) unstable; urgency=low
                                                               (Closes: #146023). 
   * Bug fix: "debian-policy: virtual package: flexmem", thanks to Bartosz
     Fenski aka fEnIo                                          (Closes: #239359).
+  * Bug fix: "Please clarify Section 2.5. required <-> essential",
+    thanks to Adrian Bunk. Clarified the section.             (Closes: #216104).
 
  --
 
