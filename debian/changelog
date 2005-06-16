@@ -1,19 +1,23 @@
-debian-policy (3.6.1) unstable; urgency=low
+debian-policy (3.6.1.0) unstable; urgency=low
 
   Josip:
   * Removed obsolete section on obsolete constructs and libraries,
     closes: #193748.
   Manoj:
   * Change reference to the debconf introduction from kitenet to a debian
-    hosted server.                                         closes: Bug#184518
+    hosted server.                                         closes: Bug#187297
   * Added myspell-dictionary to the virtual packages list  closes: Bug#203728
   * Fix the restart action in the init.d/bind example; it now uses
     --oknodo so that the action does not fail when the service is not
     running.                                               closes: Bug#187250
   * invoke-rc.d and update-rc.d are now in the sysv-rc package instead of
     the sysvinit package. Fixed a reference in policy.     closes: Bug#200440
+  * Note that postinst abort-remove is called if there is an error while
+    removing the package.                                  closes: Bug#188030
+  * [AMENDMENT 2003/08/03] Make Debconf the standard for prompting the
+    user                                                   closes: Bug#176506
 
- --
+ -- Manoj Srivastava <srivasta@debian.org>  Tue, 19 Aug 2003 07:28:10 -0500
 
 debian-policy (3.6.0) unstable; urgency=low
 
