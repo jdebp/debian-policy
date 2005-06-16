@@ -3317,8 +3317,9 @@
 	    </item>
 	    <item>
 		Type 1 fonts should be placed in
-		/usr/X11R6/lib/X11/fonts/Type1/</tt>.  If font metric files are
-		available, they may be placed here as well.
+		<tt>/usr/X11R6/lib/X11/fonts/Type1/</tt>.  If font
+		metric files are available, they may be placed here as
+		well.
 	    </item>
 	    <item>
 		Subdirectories of <tt>/usr/X11R6/lib/X11/fonts/</tt>

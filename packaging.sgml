@@ -3920,7 +3920,7 @@
 	  which is causing the conflict, otherwise it will halt the
 	  installation of the new package with an error. This
 	  mechanism specifically doesn't work when the installed
-	  package is tt>Essential</tt>, but the new package is not.
+	  package is <tt>Essential</tt>, but the new package is not.
 	</p>
 
 	<p>	  

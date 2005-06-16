@@ -27,7 +27,6 @@ debian-policy (3.2.0.0) unstable; urgency=low
   * Fixed the ftp location in the manuals.              closes: Bug#56407
   * Fixed missing urlname entity in the sgml docs (where 
     was it defined before anyway?)                      closes: Bug#56692
-  .
   * Fixed bugs in packaging-manual package:
   * We have had doc-base support for a while now.       closes: Bug#15709
   * packaging manual: Added additional clarification on dpkg
@@ -40,16 +39,30 @@ debian-policy (3.2.0.0) unstable; urgency=low
     versions of dpkg.                                   closes: Bug#53405
   * Fixed typo where dpkg-genchanges was used instead of
     dpkg-gencontrol.                                    closes: Bug#58771
-  . 
   * Other changes:
-  * Fixed an upgrade bug when /usr/doc happens to be a symlink, and does
-    not point to /usr/share/doc. A couple of people were bitten by this. 
   * Added policy-process to document current procedures.
+  * Added a dependency on fileutiles >=4.0, since the package would fail
+    to install with older fileutils.
   * Installed FHS version 2.1
   * Policy recommends packaging manual and vice versa
   * Added FHS details to copyright file
 
  --
+
+debian-policy (3.1.1.3) unstable; urgency=low
+
+  * Fixed an upgrade bug when /usr/doc happens to be a symlink, and does
+    not point to /usr/share/doc. A couple of people were bitten by this. 
+
+ -- Manoj Srivastava <srivasta@debian.org>  Mon, 28 Feb 2000 22:27:05 -0600
+
+debian-policy (3.1.1.2) unstable; urgency=low
+
+  * Correct missing </chapt> in packaging.sgml (closes: #51091)
+  * Correct typo in policy 2.3.5 (closes: #52225)
+
+ -- Julian Gilbey <jdg@debian.org>  Mon, 20 Dec 1999 20:39:57 +0000
+
 
 debian-policy (3.1.1.1) unstable; urgency=low
 
