@@ -7,7 +7,7 @@
 	<name>Manoj Srivastava</name>
 	<email>srivasta@debian.org</email>
       </author>
-      <version>$Revision: 1.8 $</version>
+      <version>$Revision: 1.9 $</version>
       <copyright>
 	<copyrightsummary>Copyright &#169; 1998 by Manoj Srivastava. 
 	</copyrightsummary>
@@ -19,7 +19,7 @@
 	<p>
 	  On Debian GNU/Linux systems, the complete text of the GNU
 	  General Public License can be found in
-	  `<var>/usr/doc/copyright/GPL</var>'. </p>
+	  `<var>/usr/share/common-licenses/GPL</var>'. </p>
       </copyright>
     </titlepag>
     <chapt>

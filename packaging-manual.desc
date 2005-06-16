@@ -9,11 +9,11 @@ Abstract: This manual describes the technical aspects of creating Debian binary
 Section: Apps/Programming
 
 Format: debiandoc-sgml
-Files: /usr/doc/packaging-manual/packaging.sgml.gz
+Files: /usr/share/doc/packaging-manual/packaging.sgml.gz
 
 Format: text
-Files: /usr/doc/packaging-manual/packaging.text.gz
+Files: /usr/share/doc/packaging-manual/packaging.text.gz
 
 Format: HTML
-Index: /usr/doc/packaging-manual/packaging.html/index.html
-Files: /usr/doc/packaging-manual/packaging.html/*.html
+Index: /usr/share/doc/packaging-manual/packaging.html/index.html
+Files: /usr/share/doc/packaging-manual/packaging.html/*.html

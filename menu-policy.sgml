@@ -98,7 +98,7 @@
       <p>
 	The latest copy of this document can be found at
 	<ftpsite>ftp.debian.org</ftpsite>
-	<ftppath>/debian/doc/package-developer/menu_policy.txt</ftppath> 
+	<ftppath>/debian/doc/package-developer/menu-policy.txt</ftppath> 
       </p>
       <p>
 	This document has been extracted and separated from the

@@ -10,11 +10,11 @@ Abstract: This manual describes the policy requirements for the Debian
 Section: Apps/Programming
 
 Format: debiandoc-sgml
-Files: /usr/doc/debian-policy/policy.sgml.gz
+Files: /usr/share/doc/debian-policy/policy.sgml.gz
 
 Format: text
-Files: /usr/doc/debian-policy/policy.text.gz
+Files: /usr/share/doc/debian-policy/policy.text.gz
 
 Format: HTML
-Index: /usr/doc/debian-policy/policy.html/index.html
-Files: /usr/doc/debian-policy/policy.html/*.html
+Index: /usr/share/doc/debian-policy/policy.html/index.html
+Files: /usr/share/doc/debian-policy/policy.html/*.html
