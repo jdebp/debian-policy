@@ -1,0 +1,46 @@
+Patch from Daniel Quinlan for mm-1.32 groff macros to make it work
+with FHS source
+
+diff -ur mm1.32/tmac.m tmac/tmac.m
+--- mm1.32/tmac.m	Thu Sep  2 22:37:52 1999
++++ tmac/tmac.m	Thu Jan 27 23:28:22 2000
+@@ -539,10 +539,12 @@
+ .\" Break here to avoid problems with new linesetting of the previous line.
+ .\" Hope this doesn't break anything else :-)
+ .\" Don't break if arg_4 is a '1'.
++.if \\n[D]>2 .tm PGFORM: \\$*
+ .if ''\\$4' .br
++.if \\n[D]>3 .tm PGFORM: IN l:\\n[.l] p:\\n[.p] o:\\n[.o]
+ .ie !''\\$1' \{\
+ .	ll \\$1
+-.	nr @ll \n[.l]
++.	nr @ll \\n[.l]
+ .	nr @cur-ll \\n[@ll]
+ .	lt \\n[@ll]u
+ .\}
+@@ -553,17 +555,23 @@
+ .\"
+ .ie !''\\$2' \{\
+ .	pl \\$2
+-.	nr @pl \n[.p]
++.	nr @pl \\n[.p]
+ .\}
+ .el .pl \\n[@pl]u
+ .\"
+ .ie !''\\$3' \{\
+ .	po \\$3
+-.	nr @po \n[.o]
++.	nr @po \\n[.o]
+ .\}
+ .el .po \\n[@po]u
++.if \\n[D]>3 .tm PGFORM: OUT l:\\n[.l] p:\\n[.p] o:\\n[.o]
++.if \\n[D]>2 .tm PGFORM: ll=\\n[@ll], pl=\\n[@pl], po=\\n[@po]
+ 'in 0
+ .pg@move-trap
++.if \\n[D]>2 \{\
++.	tm Traps:
++.	ptr
++.\}
+ ..
+ .\"-------------
+ .\" .MOVE y [[x] linelength]
