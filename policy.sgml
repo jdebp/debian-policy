@@ -3202,7 +3202,13 @@
 	<p>
 	  Some programs can be configured with or without support for the X
 	  Window System.  Typically, binaries produced with support for X
-	  will need the X shared libraries to run.
+	  will need the X shared libraries to run.<footnote>
+	    <p>
+	      <strong>NOTE</strong> The forthcoming major X Window
+	      System release shall probably change this
+	      drastically.
+	    </p>
+	  </footnote>
 	</p>
   
 	<p>
@@ -3236,7 +3242,9 @@
 	      In a nutshell, X servers that interface directly with
 	      the display and input hardware or via another subsystem
 	      (e.g., GGI) should provide xserver.  Things like Xvfb,
-	      Xnest, and Xprt should not.
+	      Xnest, and Xprt should not. <strong>NOTE</strong> The
+	      forthcoming major X Window System release shall probably
+	      change this drastically.
 	    </p>
 	  </footnote>
        </p>

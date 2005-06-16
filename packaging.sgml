@@ -738,8 +738,13 @@
 	  </p>
 
 	  <p>	    
-	    Its arguments are executables and libraries
+	    Its arguments are executables.
 	    <footnote>
+	      <p>
+		In a forthcoming dpkg version,
+		<prgn>dpkg-shlibdeps</prgn> would be required to be
+		called on shared libraries as well. 
+	      </p>
 	      <p>
 		They may be specified either in the locations in the
 		source tree where they are created or in the locations
@@ -4653,15 +4658,61 @@
 	work?
 	  </heading>
 	  <p>	    
-	    <prgn>dpkg-shlibdeps</prgn> calls <prgn>objdump</prgn> to
-           determine the shared libraries directly
-           <footnote> a binary <tt>foo</tt> directly use a library
-           <tt>libbar</tt> if it is linked with that library. Other
-           libraries that are needed by <tt>libbar</tt> are linked
-           indirectly to <tt>foo</tt>, and the dynamic linker will load
-           the automatically when it loads <tt>libbar</tt>.
-           </footnote> used by the compiled binaries and libraries
-           passed through its command line.
+	    <prgn>dpkg-shlibdeps</prgn> 
+	    determines the shared libraries directly
+	    <footnote> 
+	      <p>		
+		Currently, it calls <prgn>ldd</prgn>, but in a
+		forthcoming version it shall call <prgn>objdump</prgn>
+                to to this. This however changes will need a couple of
+		changes in the way that packages are build.
+	      </p>
+	      <p>
+		Suppose a binary <tt>foo</tt> directly use a library
+		<tt>libbar</tt> if it is linked with that
+		library. Other libraries that are needed by
+		<tt>libbar</tt> are linked indirectly to <tt>foo</tt>,
+		and the dynamic linker will load the automatically
+		when it loads <tt>libbar</tt>. Using <prgn>ldd</prgn>
+		lists all the libraries, used direcly and indirectly;
+		but <prgn>objdump</prgn> only lists the directly
+		linked libraries. A package only needs to depend on
+		the libraries it is directly linked to, since the
+		dependencies for those libraries should automatically
+		pull in the other libraries.</p>
+
+	      <p>
+		This change does mean a change in the way packages are
+		build though: currently dpkg-shlibdeps is only run on
+		binaries. But since we will now depend on the
+		libraries to depend on the libraries they need the
+		packages containing those libraries will need to run
+		dpkg-shlibdeps on the libraries.
+	      </p>
+	      <p>
+		A good example where this would help us is the current
+		mess with multiple version of the mesa library. With
+		the ldd-based system every package that uses mesa need
+		to add a dependency on svgalib|svgalib-dummy in order
+		to handle the glide mesa variant.  With an
+		objdump-based system this isn't necessary anymore and
+		would have saved everyone a lot of work.
+	      </p>
+	      <p>
+		Another example: we could update libimlib with a new
+		version that supports a new graphics format called
+		dgf. If we use the old ldd method every package that
+		uses libimlib would need to be recompiled so it would
+		also depend on libdgf or it wouldn't run due to
+		missing symbols. However with the new system packages
+		using libimlib can depend on libimlib itself having
+		the dependency on libgdh and wouldn't need to be
+		updated.
+	      </p>
+	    </footnote> 
+	    used by the compiled binaries (and libraries, in a version
+	    of <prgn>dpkg-shlibdeps</prgn> coming soon) passed through
+	    on its command line.
 	  </p>
 
 	  <p>	    
