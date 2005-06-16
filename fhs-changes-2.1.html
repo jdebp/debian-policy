@@ -1,0 +1,52 @@
+<HTML>
+<!-- Copyright 2000 Daniel Quinlan -->
+
+<HEAD>
+
+<TITLE>Changes from FHS 2.0 to FHS 2.1</TITLE>
+
+</HEAD>
+
+<BODY BGCOLOR="CACAAC">
+
+<BIG>Changes from FHS 2.0 to FHS 2.1</BIG>
+<P>
+Before you make any comments on these changes, please read the entire
+FHS document.  Many of these changes are interdependent or are due to
+factors outside of our control.  The rationale for all of these
+changes is located in the FHS document.
+<P>
+<UL>
+<LI>
+Major Technical Changes (i.e., most, but not all of them)
+  <UL>
+  <LI>
+  <TT>/var/lib</TT> restored (briefly, it was not reasonable to
+  relocate it to /var/state)
+  <LI>
+  <TT>/var/state</TT> removed
+  <LI>
+  Distributions may install software in <TT>/opt</TT>, but may
+  not modify or delete software locally installed without the assent
+  of the local system administrator.
+  <LI>
+  <TT>/usr/X386</TT> is no longer mentioned.
+  <LI>
+  <TT>/var/mail</TT> is still the location that applications should
+  access for the mail spool.  However, it does not have to be physically
+  located there.
+  <LI>
+  some really old symbolic links have been removed
+  <LI>
+  <TT>/var/spool/smail</TT> is no longer explicitly mentioned
+  </UL>
+<LI>
+Non-technical changes
+  <UL>
+  <LI>
+  Various formatting, grammar, and typographical fixes.
+  </UL>
+</UL>
+<P>
+Daniel Quinlan<BR>
+FHS editor
