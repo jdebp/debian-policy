@@ -1,8 +1,21 @@
 debian-policy (3.2.1.1) unstable; urgency=low
 
   * Don't compress version.ent in the doc directory (it gets bigger!)
+  * Incorporate the packaging manual. The minimal change in version number
+    i because I suspect that this version is going to be buggy. 
+                                                    closes: Bug#62943, Bug#72949
+  * Fixed typo in menu-policy.                      closes: Bug#70442
+  * Fixed typo in policy manual                     closes: Bug#70634, Bug#70643
+  * Removed extraneous > from policy                closes: Bug#77645
+  * Fixed two typos in upgrading checklist          closes: Bug#78809, Bug#78822
+  * Fixed spelling of utility                       closes: Bug#82458
+  * [ACCEPTED 2000/09/08] Free pkgs depending on non-US should go into
+    non-US/{main,contrib}                          closes: Bug#69229
+  * Added rsh-server and telnet server to the virtual packages list
+                                                   closes: Bug#77404
+  * Fixed outdated references to the FHS.          closes: Bug#77650
 
- --
+ -- Manoj Srivastava <srivasta@debian.org>  Tue, 16 Jan 2001 23:53:31 -0600
 
 debian-policy (3.2.1.0) unstable; urgency=low
 

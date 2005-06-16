@@ -89,10 +89,12 @@ pdf-viewer              Anything that can display PDF files
 postscript-preview      Any preprocessor that creates Postscript output
 postscript-viewer       Anything that can display Postscript files
 rsh-client              Any package that provides an rsh client
+rsh-server              Any package that provides an rsh server
 system-log-daemon       A daemon that provides a logging facility for
                         other applications
 tclsh                   Anything that provides /usr/bin/tclsh (*)
 telent-client           Any package that provides a telnet client
+telent-server           Any package that provides a telnet server
 time-daemon             Anything that servers as a time daemon
 ups-monitor             Anything that is capable of controlling an UPS
 wish                    Anything that provides /usr/bin/wish (*)
@@ -187,6 +189,9 @@ Manoj Srivastava
                  Added time-daemon
                  Added rsh-client
                  Added telnet-client
+Manoj Srivastava
+  16 January 1001 Added rsh server
+                  Added telnet-server
 
 
 
