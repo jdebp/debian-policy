@@ -7,7 +7,7 @@ Abstract: This manual describes the policy requirements for the Debian
  well as technical requirements that each package must satisfy to be
  included in the distribution. Also included are ancilliary documents
  and sub policy documentation.  
-Section: Apps/Programming
+Section: Debian
 
 Format: debiandoc-sgml
 Files: /usr/share/doc/debian-policy/policy.sgml.gz

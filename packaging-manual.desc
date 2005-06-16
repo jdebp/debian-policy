@@ -6,7 +6,7 @@ Abstract: This manual describes the technical aspects of creating Debian binary
  dselect and its access method scripts.  It does not deal with
  the Debian Project policy requirements, and it assumes familiarity
  with dpkg's functions from the system administrator's perspective.
-Section: Apps/Programming
+Section: Debian
 
 Format: debiandoc-sgml
 Files: /usr/share/doc/packaging-manual/packaging.sgml.gz
