@@ -14,6 +14,15 @@ debian-policy (3.5.9.0) unstable; urgency=low
     fixes the bug with potato, and even if it doesn't, I don't care :)
     closes #103459.
   * Fixed typos in the debconf spec noticed by Jay Bonci, closes: #178455.
+  * Clarified that using Build-Depends for build-dependencies is not a "may"
+    but a "should", added proper linking among various sections dealing with
+    the dependencies so that there is no confusion, closes: #87510.
+    If any one of those poor, misguided people ;) still thinks that the
+    requirement should be a "must" (in _our_ meaning, not RFC "MUST"),
+    please file a new bug, as it's quite unproductive to have to sift
+    through a 152-page bug log which mostly goes back-and-forth with
+    explanations how policy should work, occasionally sprinkled with
+    offtopic stuff, too.
 
  -- 
 

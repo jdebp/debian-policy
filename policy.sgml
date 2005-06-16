@@ -1262,7 +1262,7 @@
 	</sect1>
 
 
-	<sect1>
+	<sect1 id="pkg-relations">
 	  <heading>Package relationships</heading>
 
 	  <p>
@@ -1347,6 +1347,10 @@
 	    relationships so that one cannot produce bad or
 	    inconsistently configured packages when the relationships
 	    are properly satisfied.
+	  </p>
+
+	  <p>
+	    <ref id="relationships"> explains the technical details.
 	  </p>
 
 	<sect1>
@@ -3116,34 +3120,6 @@ Package: libc6
     <chapt id="relationships"><heading>Declaring relationships between
 	packages</heading>
 
-      <p>
-	Packages can declare in their control file that they have
-	certain relationships to other packages - for example, that
-	they may not be installed at the same time as certain other
-	packages, and/or that they depend on the presence of others,
-	or that they should overwrite files in certain other packages
-	if present.
-      </p>
-
-      <p>
-	This is done using the <tt>Depends</tt>, <tt>Pre-Depends</tt>,
-	<tt>Recommends</tt>, <tt>Suggests</tt>, <tt>Enhances</tt>,
-	<tt>Conflicts</tt>, <tt>Provides</tt> and <tt>Replaces</tt>
-	control file fields.
-      </p>
-
-      <p>
-        Source packages may declare relationships to binary packages,
-        saying that they require certain binary packages to be
-        installed or absent at the time of building the package.
-      </p>
-
-      <p>
-        This is done using the <tt>Build-Depends</tt>,
-        <tt>Build-Depends-Indep</tt>, <tt>Build-Conflicts</tt> and
-        <tt>Build-Conflicts-Indep</tt> control file fields.
-      </p>
-
       <sect id="depsyntax"><heading>Syntax of relationship fields
 	</heading>
 
@@ -3249,6 +3225,19 @@ Build-Depends: kernel-headers-2.2.10 [!hurd-i386],
           <tt>Recommends</tt>, <tt>Suggests</tt>, <tt>Enhances</tt>,
           <tt>Pre-Depends</tt>
 	</heading>
+
+        <p>
+          Packages can declare in their control file that they have
+          certain relationships to other packages - for example, that
+          they may not be installed at the same time as certain other
+          packages, and/or that they depend on the presence of others.
+        </p>
+  
+        <p>
+          This is done using the <tt>Depends</tt>, <tt>Pre-Depends</tt>,
+          <tt>Recommends</tt>, <tt>Suggests</tt>, <tt>Enhances</tt> and
+          <tt>Conflicts</tt> control file fields.
+        </p>
 
 	<p>
 	  These five fields are used to declare a dependency
@@ -3539,8 +3528,10 @@ Provides: bar
 	  packages - <tt>Replaces</tt></heading>
 
 	<p>
-	  The <tt>Replaces</tt> control file field has two distinct
-	  purposes, which come into play in different situations.
+          Packages can declare in their control file that they should
+          overwrite files in certain other packages, or completely
+          replace other packages. The <tt>Replaces</tt> control file
+          field has these two distinct purposes.
 	</p>
 
 	<sect1><heading>Overwriting files in other packages</heading>
@@ -3630,13 +3621,24 @@ Replaces: mail-transport-agent
 	  <tt>Build-Conflicts</tt>, <tt>Build-Conflicts-Indep</tt>
 	</heading>
 
+	<p>
+          Source packages that require certain binary packages to be
+          installed or absent at the time of building the package
+          can declare relationships to those binary packages.
+        </p>
+  
         <p>
-          A source package may declare a dependency or a conflict on a
-          binary package, indicating which packages are required to be
-          present on the system in order to build the binary packages
-          from the source package.  This is done with the control file
-          fields <tt>Build-Depends</tt>, <tt>Build-Depends-Indep</tt>,
-          <tt>Build-Conflicts</tt> and <tt>Build-Conflicts-Indep</tt>.
+          This is done using the <tt>Build-Depends</tt>,
+          <tt>Build-Depends-Indep</tt>, <tt>Build-Conflicts</tt> and
+          <tt>Build-Conflicts-Indep</tt> control file fields.
+        </p>
+
+        <p>
+          Build-dependencies on "build-essential" binary packages can be
+          omitted. Please see <ref id="pkg-relations"> for more information.
+	</p>
+
+	<p>
           The dependencies and conflicts they define must be satisfied
           (as defined earlier for binary packages) in order to invoke
           the targets in <tt>debian/rules</tt>, as follows:<footnote>
