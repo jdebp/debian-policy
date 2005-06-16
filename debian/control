@@ -9,6 +9,7 @@ Package: debian-policy
 Architecture: all
 Recommends: packaging-manual
 Suggests: doc-base
+Depends: fileutils (>= 4.0)
 Conflicts: dpkg-dev (<< 1.4.0.9), doc-base (<< 0.6)
 Description: Debian Policy Manual and related documents
  This package contains:
@@ -20,6 +21,7 @@ Description: Debian Policy Manual and related documents
 
 Package: packaging-manual
 Architecture: all
+Depends: fileutils (>= 4.0)
 Recommends: debian-policy
 Suggests: doc-base, dpkg (>= 1.4.0.23)
 Description: Debian Packaging Manual
