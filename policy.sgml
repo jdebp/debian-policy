@@ -5491,7 +5491,7 @@ test -f <var>program-executed-later-in-script</var> || exit 0
 	    Directly managing the /etc/rc?.d links and directly
 	    invoking the <file>/etc/init.d/</file> initscripts should
 	    be done only by packages providing the initscript
-	    subsystem (such as <prgn>sysvinit</prgn> and
+	    subsystem (such as <prgn>sysv-rct</prgn> and
 	    <prgn>file-rc</prgn>).
 	  </p>
 
