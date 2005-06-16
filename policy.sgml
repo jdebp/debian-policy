@@ -5687,7 +5687,7 @@ stop)
   ;;
 restart)
   echo -n "Restarting domain name service: named"
-  start-stop-daemon --stop --quiet  \
+  start-stop-daemon --stop --quiet --oknodo \
     --pidfile /var/run/named.pid --exec /usr/sbin/named
   start-stop-daemon --start --verbose --exec /usr/sbin/named \
                     -- $PARAMS
