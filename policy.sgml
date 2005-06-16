@@ -19,7 +19,6 @@
 	each package must satisfy to be included in the distribution.
       </abstract>
 
-
       <copyright>
 	<copyrightsummary>
 	  Copyright &copy; 1996,1997,1998 Ian Jackson
@@ -45,7 +44,7 @@
 	  <file>/usr/share/common-licenses/GPL</file> in the Debian GNU/Linux
 	  distribution or on the World Wide Web at
 	  <url id="http://www.gnu.org/copyleft/gpl.html"
-	       name="The GNU General Public Licence">. You can also
+	       name="the GNU General Public Licence">. You can also
 	  obtain it by writing to the Free Software Foundation, Inc.,
 	  59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 	</p>
@@ -280,7 +279,7 @@
 	  <heading>The Debian Free Software Guidelines</heading>
 	  <p>
 	    The Debian Free Software Guidelines (DFSG) form our
-	    definition of `free software'.  These are:
+	    definition of "free software".  These are:
 	    <taglist>
 	      <tag>Free Redistribution
 	      </tag>
@@ -317,7 +316,7 @@
 		<p>
 		  The license may restrict source-code from being
 		  distributed in modified form <em>only</em> if the
-		  license allows the distribution of ``patch files''
+		  license allows the distribution of "patch files"
 		  with the source code for the purpose of modifying the
 		  program at build time. The license must explicitly
 		  permit distribution of software built from modified
@@ -386,8 +385,8 @@
 	      </tag>
 	      <item>
 		<p>
-		  The ``GPL,'' ``BSD,'' and ``Artistic'' licenses are
-		  examples of licenses that we consider <em>free</em>.
+                  The "GPL," "BSD," and "Artistic" licenses are examples of
+                  licenses that we consider <em>free</em>.
 		</p>
 	      </item>
 	    </taglist>
@@ -635,8 +634,8 @@
 	    <email>debian-legal@lists.debian.org</email>.  Be prepared
 	    to provide us with the copyright statement.  Software
 	    covered by the GPL, public domain software and BSD-like
-	    copyrights are safe; be wary of the phrases `commercial
-	    use prohibited' and `distribution restricted'.
+	    copyrights are safe; be wary of the phrases "commercial
+	    use prohibited" and "distribution restricted".
 	  </p>
 	</sect1>
 	<sect1>
@@ -727,8 +726,8 @@
 		Important programs, including those which one would
 		expect to find on any Unix-like system.  If the
 		expectation is that an experienced Unix person who
-		found it missing would say `What on earth is going on,
-		where is <prgn>foo</prgn>?', it must be an
+		found it missing would say "What on earth is going on,
+		where is <prgn>foo</prgn>?", it must be an
 		<tt>important</tt> package.<footnote>
 		  <p>
 		    This is an important criterion because we are
@@ -1229,11 +1228,11 @@
 	    four components may be specified.<footnote>
 	      <p>
 		In the past, people specified the full version number
-		in the Standards-Version field, for example `2.3.0.0'.
-		Since minor patch-level changes don't introduce new
+		in the Standards-Version field, for example "2.3.0.0".
+		Since minor patch-level changes don"t introduce new
 		policy, it was thought it would be better to relax
 		policy and only require the first 3 components to be
-		specified, in this example `2.3.0'.  All four
+		specified, in this example "2.3.0".  All four
 		components may still be used if someone wishes to do
 		so.
 	      </p>
@@ -1443,7 +1442,7 @@
 	files</em>.  Binary and source packages have control files,
 	and the <file>.changes</file> files which control the installation
 	of uploaded files are also in control file format.
-	<prgn>Dpkg</prgn>'s internal databases are in a similar
+	<prgn>dpkg</prgn>'s internal databases are in a similar
 	format.
       </p>
 
@@ -1566,7 +1565,7 @@ Package: libc6
 		  <tag><em>stable</em></tag>
 		  <item>
 		    <p>
-		      This is the current `released' version of Debian
+		      This is the current "released" version of Debian
 		      GNU/Linux.  Once the distribution is
 		      <em>stable</em> only security fixes and other
 		      major bug fixes are allowed. When changes are
@@ -1607,7 +1606,7 @@ Package: libc6
 		  <item>
 		    <p>
 		      From time to time, the <em>testing</em>
-		      distribution enters a state of `code-freeze' in
+		      distribution enters a state of "code-freeze" in
 		      anticipation of release as a <em>stable</em>
 		      version. During this period of testing only
 		      fixes for existing or newly-discovered bugs will
@@ -1686,7 +1685,7 @@ Package: libc6
 	  <item>
 	    <p>
 	      This is the main part of the version number.  It is
-	      usually the version number of the original (`upstream')
+	      usually the version number of the original ("upstream")
 	      package from which the <file>.deb</file> file has been made,
 	      if this is applicable.  Usually this will be in the same
 	      format as that specified by the upstream author(s);
@@ -1731,7 +1730,7 @@ Package: libc6
 	      <var>upstream_version</var> may not contain a hyphen.
 	      This format represents the case where a piece of
 	      software was written specifically to be turned into a
-	      Debian package, and so there is only one `debianization'
+	      Debian package, and so there is only one "debianization"
 	      of it and therefore no revision indication is required.
 	    </p>
 
@@ -1817,15 +1816,15 @@ Package: libc6
 
 	<p>
 	  However, in some cases where the upstream version number is
-	  based on a date (e.g., a development `snapshot' release) the
+	  based on a date (e.g., a development "snapshot" release) the
 	  package management system cannot handle these version
 	  numbers without epochs. For example, dpkg will consider
-	  `96May01' to be greater than `96Dec24'.</p>
+	  "96May01" to be greater than "96Dec24".</p>
 
 	<p>
 	  To prevent having to use epochs for every new upstream
 	  version, the version number should be changed to the
-	  following format in such cases: `19960501', `19961224'. It
+	  following format in such cases: "19960501", "19961224". It
 	  is up to the maintainer whether he/she wants to bother the
 	  upstream maintainer to change the version numbers upstream,
 	  too.</p>
@@ -1838,7 +1837,7 @@ Package: libc6
 	<p>
 	  Native Debian packages (i.e., packages which have been
 	  written especially for Debian) whose version numbers include
-	  dates should always use the `YYYYMMDD' format.</p>
+	  dates should always use the "YYYYMMDD" format.</p>
       </sect>
     </chapt>
 
@@ -2250,8 +2249,8 @@ Package: libc6
 	</p>
 
 	<p>
-	  The first `title' line with the package name should start
-	  at the left hand margin; the `trailer' line with the
+	  The first "title" line with the package name should start
+	  at the left hand margin; the "trailer" line with the
 	  maintainer and date details should be preceded by exactly
 	  one space.  The maintainer details and the date must be
 	  separated by exactly two spaces.
@@ -2689,7 +2688,7 @@ Package: libc6
 	  case, if a major error occurs (unless listed below) the
 	  actions are, in general, run backwards - this means that the
 	  maintainer scripts are run with different arguments in
-	  reverse order.  These are the `error unwind' calls listed
+	  reverse order.  These are the "error unwind" calls listed
 	  below.
 
 	  <enumlist>
@@ -2720,7 +2719,7 @@ Package: libc6
 	      </p>
 	    </item>
 	    <item>
-	      <p>If a `conflicting' package is being removed at the same time:
+	      <p>If a "conflicting" package is being removed at the same time:
 		<enumlist>
 		  <item>
 		    <p>
@@ -2772,7 +2771,7 @@ Package: libc6
 		    <p>
 		      Otherwise, if the package had some configuration
 		      files from a previous version installed (i.e., it
-		      is in the `configuration files only' state):
+		      is in the "configuration files only" state):
 		      <example compact="compact">
 <var>new-preinst</var> install <var>old-version</var>
 		      </example></p>
@@ -2830,7 +2829,7 @@ Package: libc6
 		Packages which overwrite each other's files produce
 		behavior which, though deterministic, is hard for the
 		system administrator to understand.  It can easily
-		lead to `missing' programs if, for example, a package
+		lead to "missing" programs if, for example, a package
 		is installed which overwrites a file from another
 		package, and is then removed again.<footnote>
 		  <p>
@@ -2931,7 +2930,7 @@ Package: libc6
 		Any files in the package we're unpacking that are also
 		listed in the file lists of other packages are removed
 		from those lists.  (This will lobotomize the file list
-		of the `conflicting' package if there is one.)
+		of the "conflicting" package if there is one.)
 	      </p>
 	    </item>
 	    <item>
@@ -2944,7 +2943,7 @@ Package: libc6
 	    <item>
 	      <p>
 		The new package's status is now sane, and recorded as
-		`unpacked'.
+		"unpacked".
 	      </p>
 
 	      <p>
@@ -3397,7 +3396,7 @@ Build-Depends: kernel-headers-2.2.10 [!hurd-i386],
 
 	<p>
 	  A <tt>Conflicts</tt> entry should almost never have an
-	  `earlier than' version clause.  This would prevent
+	  "earlier than" version clause.  This would prevent
 	  <prgn>dpkg</prgn> from upgrading or installing the package
 	  which declared such a conflict until the upgrade or removal
 	  of the conflicted-with package had been completed.
@@ -3408,13 +3407,13 @@ Build-Depends: kernel-headers-2.2.10 [!hurd-i386],
 	</heading>
 
         <p>
-	  As well as the names of actual (`concrete') packages, the
+	  As well as the names of actual ("concrete") packages, the
 	  package relationship fields <tt>Depends</tt>,
 	  <tt>Recommends</tt>, <tt>Suggests</tt>, <tt>Enhances</tt>,
 	  <tt>Pre-Depends</tt>, <tt>Conflicts</tt>,
 	  <tt>Build-Depends</tt>, <tt>Build-Depends-Indep</tt>,
 	  <tt>Build-Conflicts</tt> and <tt>Build-Conflicts-Indep</tt>
-	  may mention `virtual packages'.
+	  may mention "virtual packages".
 	</p>
 
 	<p>
@@ -3453,7 +3452,7 @@ Provides: bar
 	  then only real packages will be considered to see whether
 	  the relationship is satisfied (or the prohibition violated,
 	  for a conflict) - it is assumed that a real package which
-	  provides the virtual package is not of the `right' version.
+	  provides the virtual package is not of the "right" version.
 	  So, a <tt>Provides</tt> field may not contain version
 	  numbers, and the version number of the concrete package
 	  which provides a particular virtual package will not be
@@ -3499,13 +3498,13 @@ Provides: bar
 	    <tt>Replaces</tt> the one containing the file being
 	    overwritten, then <prgn>dpkg</prgn> will replace the file
 	    from the old package with that from the new.  The file
-	    will no longer be listed as `owned' by the old package.
+	    will no longer be listed as "owned" by the old package.
 	  </p>
 
 	  <p>
 	    If a package is completely replaced in this way, so that
 	    <prgn>dpkg</prgn> does not know of any files it still
-	    contains, it is considered to have `disappeared'.  It will
+	    contains, it is considered to have "disappeared".  It will
 	    be marked as not wanted on the system (selected for
 	    removal) and not installed.  Any <tt>conffile</tt>s
 	    details noted for the package will be ignored, as they
@@ -3895,7 +3894,7 @@ Replaces: mail-transport-agent
 	    </item>
 
 	    <item>
-	      <p><file>DEBIAN/shlibs</file> files in the `build directory'</p>
+	      <p><file>DEBIAN/shlibs</file> files in the "build directory"</p>
 	      <p>
 		When packages are being built, any
 		<file>debian/shlibs</file> files are copied into the
@@ -4419,7 +4418,7 @@ rmdir /usr/local/share/emacs 2>/dev/null || true
 		  <file>/etc/passwd</file> or <file>/etc/group</file> (using
 		  <prgn>adduser</prgn> if it has this facility) if
 		  necessary.  Packages which are likely to require
-		  further allocations should have a `hole' left after
+		  further allocations should have a "hole" left after
 		  them in the allocation, to give them room to
 		  grow.
 		</p>
@@ -4460,7 +4459,7 @@ rmdir /usr/local/share/emacs 2>/dev/null || true
 	  <p>
 	    The <file>/etc/init.d</file> directory contains the scripts
 	    executed by <prgn>init</prgn> at boot time and when the
-	    init state (or `runlevel') is changed (see <manref
+	    init state (or "runlevel") is changed (see <manref
 	    name="init" section="8">).
 	  </p>
 
@@ -4739,11 +4738,10 @@ test -f <var>program-executed-later-in-script</var> || exit 0
 		if [ "$1" = purge ]; then
 		update-rc.d <var>package</var> remove
 		fi
-	      </example>. Note that is your package changes runlevels
-		  or priority, you may have to remove and recreate the
-		  links, since otherwise the old links may
-		  persist. Refer to the documentation of
-		  <prgn>update-rc.d</prgn></p>
+	      </example>. Note that if your package changes runlevels
+	      or priority, you may have to remove and recreate the links,
+	      since otherwise the old links may persist. Refer to the
+	      documentation of <prgn>update-rc.d</prgn></p>
 
 	    <p>
 	      This will use a default sequence number of 20.  If it does
@@ -5065,7 +5063,7 @@ echo "."
 		If you have to set up different system parameters
 		during the system boot, you should use this format:
 		<example compact="compact">
-Setting <var>parameter</var> to `<var>value</var>'.
+Setting <var>parameter</var> to "<var>value</var>".
 		</example>
 	      </p>
 
@@ -5073,13 +5071,15 @@ Setting <var>parameter</var> to `<var>value</var>'.
 		You can use a statement such as the following to get
 		the quotes right:
 		<example compact="compact">
-echo "Setting DNS domainname to \`$domainname'."
+echo "Setting DNS domainname to \"$domainname\"."
 		</example>
 	      </p>
 
 	      <p>
-		Note that the left quotation mark (<tt>`</tt>) is
-		different from the right one (<tt>'</tt>).
+                Note that the same symbol (<tt>"</tt>) is used for the left
+                and right quotation marks.  A grave accent (<tt>`</tt>) is
+                not a quote character; neither is an apostrophe
+                (<tt>'</tt>).
 	      </p>
 	    </item>
 
@@ -5309,7 +5309,7 @@ Reloading <var>description</var> configuration...done.
 		X translations are set up to make
 		<tt>KB_Backspace</tt> generate ASCII DEL, and to make
 		<tt>KB_Delete</tt> generate <tt>ESC [ 3 ~</tt> (this
-		is the vt220 escape code for the `delete character'
+		is the vt220 escape code for the "delete character"
 		key).  This must be done by loading the X resources
 		using <prgn>xrdb</prgn> on all local X displays, not
 		using the application defaults, so that the
@@ -5348,9 +5348,9 @@ Reloading <var>description</var> configuration...done.
 	      <p>
 		Other applications use the <tt>stty erase</tt>
 		character and <tt>kdch1</tt> for the two delete keys,
-		with ASCII DEL being `delete previous character' and
-		<tt>kdch1</tt> being `delete character under
-		cursor'.</p></item>
+		with ASCII DEL being "delete previous character" and
+		<tt>kdch1</tt> being "delete character under
+		cursor".</p></item>
 
 	  </list>
 	</p>
@@ -5424,7 +5424,7 @@ Reloading <var>description</var> configuration...done.
 	  variables are not present. If this cannot be done easily
 	  (e.g., if the source code of a non-free program is not
 	  available), the program must be replaced by a small
-	  `wrapper' shell script which sets the environment variables
+	  "wrapper" shell script which sets the environment variables
 	  if they are not already defined, and calls the original program.</p>
 
 	<p>
@@ -5456,8 +5456,8 @@ exec /usr/lib/foo/foo "$@"
 	  Two different packages must not install programs with
 	  different functionality but with the same filenames.  (The
 	  case of two programs having the same functionality but
-	  different implementations is handled via `alternatives' or
-	  the `Conflicts' mechanism.  See <ref id="maintscripts"> and
+	  different implementations is handled via "alternatives" or
+	  the "Conflicts" mechanism.  See <ref id="maintscripts"> and
 	  <ref id="conflicts"> respectively.)  If this case happens,
 	  one of the programs must be renamed.  The maintainers should
 	  report this to the <tt>debian-devel</tt> mailing list and
@@ -5651,7 +5651,7 @@ strip --strip-unneeded <var>your-lib</var>
 	  they must not be installed executable and should be
 	  stripped.<footnote>
 	    <p>
-	      A common example are the so-called ``plug-ins'',
+	      A common example are the so-called "plug-ins",
 	      internal shared objects that are dynamically loaded by
 	      programs using <manref name="dlopen" section="3">.
 	    </p>
@@ -5844,7 +5844,7 @@ strip --strip-unneeded <var>your-lib</var>
 	  appropriate shell must be specified in the first line of the
 	  script (e.g., <tt>#!/bin/bash</tt>) and the package must
 	  depend on the package providing the shell (unless the shell
-	  package is marked `Essential', as in the case of
+	  package is marked "Essential", as in the case of
 	  <prgn>bash</prgn>).
 	</p>
 
@@ -5935,7 +5935,7 @@ ln -fs ../sbin/sendmail debian/tmp/usr/bin/runq
 	  have the same file extension as the referenced file. (For
 	  example, if a file <file>foo.gz</file> is referenced by a
 	  symbolic link, the filename of the link has to end with
-	  `<file>.gz</file>' too, as in <file>bar.gz</file>.)
+	  "<file>.gz</file>" too, as in <file>bar.gz</file>.)
 	</p>
       </sect>
 
@@ -6570,7 +6570,7 @@ done
 	  If a package wants to install an example entry into
 	  <file>/etc/inetd.conf</file>, the entry must be preceded with
 	  exactly one hash character (<tt>#</tt>). Such lines are
-	  treated as `commented out by user' by the
+	  treated as "commented out by user" by the
 	  <prgn>update-inetd</prgn> script and are not changed or
 	  activated during package updates.
 	</p>
@@ -6623,7 +6623,7 @@ done
 
 	<p>
 	  These two files are managed through the <prgn>dpkg</prgn>
-	  `alternatives' mechanism.  Thus every package providing an
+	  "alternatives" mechanism.  Thus every package providing an
 	  editor or pager must call the
 	  <prgn>update-alternatives</prgn> script to register these
 	  programs.
@@ -6835,11 +6835,11 @@ http://localhost/doc/<var>package</var>/<var>filename</var>
 	  used by that package.  For example, in this situation the
 	  <tt>inn</tt> package could say something like:
 	  <example compact="compact">
-Please enter the `mail name' of your system.  This is the
+Please enter the "mail name" of your system.  This is the
 hostname portion of the address to be shown on outgoing
 news and mail messages.  The default is
 <var>syshostname</var>, your system's host name.  Mail
-name [`<var>syshostname</var>']:
+name ["<var>syshostname</var>"]:
 	  </example>
 	  where <var>syshostname</var> is the output of <tt>hostname
 	    --fqdn</tt>.
@@ -7377,7 +7377,7 @@ name [`<var>syshostname</var>']:
 	<heading>Emacs lisp programs</heading>
 
 	<p>
-	  Please refer to the `Debian Emacs Policy' (documented in
+	  Please refer to the "Debian Emacs Policy" (documented in
 	  <file>debian-emacs-policy.gz</file> of the
 	  <prgn>emacsen-common</prgn> package) for details of how to
 	  package emacs lisp programs.
@@ -7442,8 +7442,8 @@ name [`<var>syshostname</var>']:
 	  You should install manual pages in <prgn>nroff</prgn> source
 	  form, in appropriate places under <file>/usr/share/man</file>.  You
 	  should only use sections 1 to 9 (see the FHS for more
-	  details).  You must not install a preformatted `cat
-	  page'.</p>
+	  details).  You must not install a preformatted "cat
+	  page".</p>
 
 	<p>
 	  Each program, utility, and function should have an
@@ -7519,7 +7519,7 @@ name [`<var>syshostname</var>']:
 
 	<p>
 	  Info documents should be installed in <file>/usr/share/info</file>.
-	  They should be compressed with <tt>gzip -9</tt>.</p>
+	  They should be compressed with <prgn>gzip</prgn> <tt>-9</tt>.</p>
 
 	<p>
 	  Your package should call <prgn>install-info</prgn> to update
@@ -7564,7 +7564,8 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	  Text documentation should be installed in the directory
 	  <file>/usr/share/doc/<var>package</var></file>, where
 	  <var>package</var> is the name of the package, and
-	  compressed with <tt>gzip -9</tt> unless it is small.</p>
+	  compressed with <prgn>gzip</prgn> <tt>-9</tt> unless it is
+	  small.</p>
 
 	<p>
 	  If a package comes with large amounts of documentation which
@@ -7594,7 +7595,7 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	  Any files that are referenced by programs but are also
 	  useful as standalone documentation should be installed under
 	  <file>/usr/share/doc/</file> with symbolic links from
-	  <file>/usr/share/doc/&lt;package&gt;</file>
+	  <file>/usr/share/doc/<var>package</var></file>.
 	</p>
 
 	<p>
@@ -7734,15 +7735,16 @@ install-info --quiet --remove /usr/share/info/foobar.info
           use a format for <file>debian/changelog</file> which is supported
           by the most recent released version of <prgn>dpkg</prgn>.<footnote>
             <p>
-            If you wish to use an alternative format, you may do so as long
-            as you include a parser for it in your source package.  The
-            parser must have an API compatible with that expected by
-            <prgn>dpkg-genchanges</prgn> and <prgn>dpkg-gencontrol</prgn>.
-            If there is general interest in the new format, you should
-            contact the <package>dpkg</package> maintainer to have the
-            parser script for it included in the <prgn>dpkg</prgn> package.
-            (You will need to agree that the parser and its manpage may be
-            distributed under the GNU GPL, just as the rest of `dpkg' is.)
+              If you wish to use an alternative format, you may do so as
+              long as you include a parser for it in your source package.
+              The parser must have an API compatible with that expected by
+              <prgn>dpkg-genchanges</prgn> and <prgn>dpkg-gencontrol</prgn>.
+              If there is general interest in the new format, you should
+              contact the <package>dpkg</package> maintainer to have the
+              parser script for it included in the <prgn>dpkg</prgn>
+              package.  (You will need to agree that the parser and its
+              manpage may be distributed under the GNU GPL, just as the rest
+              of <prgn>dpkg</prgn> is.)
             </p>
           </footnote>
 	</p>
@@ -8131,8 +8133,8 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	<p>
 	  The most important control information file used by
 	  <prgn>dpkg</prgn> when it installs a package is
-	  <tt>control</tt>.  It contains all the package's `vital
-	  statistics'.
+	  <tt>control</tt>.  It contains all the package"s "vital
+	  statistics".
 	</p>
 
 	<p>
@@ -9130,8 +9132,8 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	  </p>
 
 	  <p>
-	    The first `title' line with the package name should start
-	    at the left hand margin; the `trailer' line with the
+	    The first "title" line with the package name should start
+	    at the left hand margin; the "trailer" line with the
 	    maintainer and date details should be preceded by exactly
 	    one space.  The maintainer details and the date must be
 	    separated by exactly two spaces.
@@ -10089,7 +10091,7 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	    <tag><em>stable</em></tag>
 	    <item>
 	      <p>
-		This is the current `released' version of Debian
+		This is the current "released" version of Debian
 		GNU/Linux.  A new version is released approximately
 		every 3 months after the <em>development</em> code has
 		been <em>frozen</em> for a month of testing.  Once the
@@ -10151,7 +10153,7 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	      <p>
 		From time to time, (currently, every 3 months) the
 		<em>unstable</em> distribution enters a state of
-		`code-freeze' in anticipation of release as a
+		"code-freeze" in anticipation of release as a
 		<em>stable</em> version. During this period of testing
 		(usually 4 weeks) only fixes for existing or
 		newly-discovered bugs will be allowed.
@@ -10229,7 +10231,7 @@ install-info --quiet --remove /usr/share/info/foobar.info
 
 	  <p>
 	    Each version's change information should be preceded by a
-	    `title' line giving at least the version, distribution(s)
+	    "title" line giving at least the version, distribution(s)
 	    and urgency, in a human-readable way.
 	  </p>
 
@@ -10237,7 +10239,7 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	    If data from several versions is being returned the entry
 	    for the most recent version should be returned first, and
 	    entries should be separated by the representation of a
-	    blank line (the `title' line may also be followed by the
+	    blank line (the "title" line may also be followed by the
 	    representation of blank line).</p>
 	</sect1>
 
@@ -10599,3 +10601,4 @@ install-info --quiet --remove /usr/share/info/foobar.info
 
   </book>
 </debiandoc>
+<!-- vim:set ai et sts=2 sw=2 tw=76: -->
