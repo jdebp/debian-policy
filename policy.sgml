@@ -157,24 +157,27 @@
 
       <sect>
 	<heading>New versions of this document</heading>
-	<p>
-	  The current version of this document is always accessible
-	  from the Debian FTP server <ftpsite>ftp.debian.org</ftpsite>
-	  as
-	  <ftppath>/debian/doc/package-developer/policy.txt.gz</ftppath>
-	  (also available from the same directory are several other
-	  formats: <file>policy.html.tar.gz</file>, <file>policy.pdf.gz</file>
-	  and <file>policy.ps.gz</file>) or from the <url
-	  id="http://www.debian.org/doc/debian-policy/" name="Debian
-	  Policy Manual"> webpage.</p>
 
 	<p>
-	  In addition, this manual is distributed via the Debian package
-	  <file>debian-policy</file>.
+	  This manual is distributed via the Debian package
+	  <package>debian-policy</package>.
 	</p>
 
 	<p>
-	  The <tt>debian-policy</tt> package also includes the file
+	  The current version of this document is also available from
+	  the Debian web mirrors at
+	  <tt><url name="/doc/debian-policy/"
+		id="http://www.debian.org/doc/debian-policy/"></tt>
+	  and from the Debian archive mirrors at
+	  <tt><url name="/doc/package-developer/policy.txt.gz"
+		id="http://ftp.debian.org/debian/doc/package-developer/policy.txt.gz"></tt>.
+	  Also available from the same directory are several other
+	  formats: <file>policy.html.tar.gz</file>, <file>policy.pdf.gz</file>
+	  and <file>policy.ps.gz</file>.
+	</p>
+
+	<p>
+	  The <package>debian-policy</package> package also includes the file
 	  <file>upgrading-checklist.txt</file> which indicates policy
 	  changes between versions of this document.
         </p>
@@ -6414,7 +6417,7 @@ ln -fs ../sbin/sendmail debian/tmp/usr/bin/runq
 	  file (for more information see <manref name="logrotate"
 	    section="8">):
 	  <example compact="compact">
-/var/log/foo/* {
+/var/log/foo/*.log {
 rotate 12
 weekly
 compress
