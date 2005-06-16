@@ -22,16 +22,22 @@ on your local Debian FTP site.
 The procedure for updating the list is as follows:
 
 1. Post to debian-devel saying what names you intend to use or what
-   other changes you wish to make.
+   other changes you wish to make, and file a wish list bug against the
+   package debian-policy.
 
-2. Wait a few days for comment.
+2. Wait a few days for comment (some of the comments may be on the
+   debian-policy list, if you are not subscribed, ask for mail to be CC'd
+   to you.
 
-3. Mail the maintainer of the virtual package name list (Christian
-   Schwarz <schwarz@debian.org>) notifying him of the consensus reached (or
-   your suggestions if noone objected).  Please include a proposed brief
-   description of the new virtual name(s) for the list.  The list
-   maintainer will then post the new list to debian-devel and upload it
-   to the FTP site.
+3. Mail the maintainer of the virtual package name list (which is the
+   Debian Policy list <debian-policy@lists.debian.org>) notifying them
+   of the consensus reached (or your suggestions if noone objected).
+   Please update the bug report at the same time (possibly retitling the
+   bug to [ACCEPTED] ....
+
+   Please include a proposed brief description of the new virtual name(s)
+   for the list.  The list maintainer will then post the new list to
+   debian-devel and upload it to the FTP site.
 
 4. Go and use the new or changed names.
 
