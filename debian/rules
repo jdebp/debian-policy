@@ -229,7 +229,7 @@ stamp-packaging:  build
 	  $(install_file)   $$i		   ..		     ; \
 	  dpkg-distaddfile  -fdebian/files $$i	     byhand - ; \
 	done
-	touch		   stamp-
+	touch		   stamp-packaging
 
 
 define checkdir
