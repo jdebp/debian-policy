@@ -6,10 +6,10 @@
     Author           : Manoj Srivastava ( srivasta@tiamat.datasync.com ) 
     Created On       : Thu Oct 29 20:54:48 1998
     Created On Node  : tiamat.datasync.com
-    Last Modified By : Julian Gilbey
-    Last Modified On : Mon Jun 19 20:06:50 2000
-    Last Machine Used: polya.maths.qmw.ac.uk
-    Update Count     : 11
+    Last Modified By : Manoj Srivastava
+    Last Modified On : Thu Jan 18 01:32:14 2001
+    Last Machine Used: glaurung.green-gryphon.com
+    Update Count     : 14
     Status           : Unknown, Use with caution!
     HISTORY          : 
     Description      : 
@@ -44,10 +44,24 @@ Manual.
 <h2>The checklist</h2>
 
 <pre>
+3.2.1.1                    Jan 01
+
+  Policy Manual:
+     - If your package has a daemon startup script in /etc/init.d/,
+       and that script has parameters a system administrator may need,
+       you need to modify the script to read values from a conffile
+       placed in /etc/default/ directory. This conffile maybe sourced
+       by the init.d script to determine the sonfigurable values (and
+       the conffile may contain only variable settings and comments).
+     - Files in /usr/share/doc may not be referenced by any
+       program. If such files are needed, they must be placed in
+       /usr/share/package-name/, and symbolic links created as required
+       in /usr/share/doc/package-name/
+
 3.2.1.0                    Aug 00
 
   Policy Manual:
-     - A package of priority standard or hihger may provide two
+     - A package of priority standard or higher may provide two
        binaries, one compiled with support for the X Window System,
        and the other without.
      -

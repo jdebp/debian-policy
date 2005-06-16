@@ -1,3 +1,31 @@
+debian-policy (3.2.1.2) unstable; urgency=low
+
+  * The minimal change in version number is so that people can test and
+    root out the bugs in this document before we make everyone change to
+    this version.
+  * Document the Enhances relationship
+  * Removed the restriction that one, and exactly one, person must
+    maintain a package.                            closes: Bug#51879
+  * Fixed a typo, and added the nogroup name, in uid/gid section of
+    policy.                                        closes: Bug#53496
+  * Fixed a misstatement in policy about not needing to depend on packages
+    in the base system (not true -- the Essential tag is significant) 
+                                                   closes: Bug#53700
+  * Clarified update-rc.d stuff                    closes: Bug#55048
+
+  * We have already included the material for shlibdep changes, and most
+    of this is not relevant to policy anyway.      closes: Bug#55730
+  * makedev--> MAKEDEV                             closes: Bug#57154
+  * Added restrictions on the files in /usr/share/doc/
+                                                   closes: Bug#59403
+  * Changed location of a paragraph about copyright files into the section
+    that deals with copyright files.               closes: Bug#65765
+  * init script configuration variables            closes: Bug#66912
+  * Clarifed language about packages sharing a conffile need to be marked
+    as conflicting                                 closes: Bug#76028
+
+ -- Manoj Srivastava <srivasta@debian.org>  Thu, 18 Jan 2001 01:43:58 -0600
+
 debian-policy (3.2.1.1) unstable; urgency=low
 
   * Don't compress version.ent in the doc directory (it gets bigger!)

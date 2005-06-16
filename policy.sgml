@@ -411,8 +411,8 @@
 		<p>
 		  must not require a package outside of "main" for
 		  compilation or execution (thus, the package must not
-		  declare a "Depends", "Recommends", or "Build-Depends"
-		  relationship on a non-main package),
+		  declare a "Depends", "Recommends", or
+		  "Build-Depends" relationship on a non-main package),
 		</p>
 	      </item>
 	      <item>
@@ -719,13 +719,14 @@
 	
 	<sect1>
 	  <heading>The maintainer of a package</heading>
-	  
-	  <p>
-	    Every package should have exactly one maintainer at a
-	    time. This person is responsible that the license of the
-	    package's software complies with the policy of the
-	    distribution this package is included in.</p>
-	  
+	 <p>
+	    Every package must have a maintainer (the maintainer may
+	    be one person or a group of people reachable from a common
+	    email address, such as a mailing list).  The maintainer is
+	    responsible for ensuring that the  package is placed in
+	    the appropriate distribution
+	  </p>
+
 	  <p>
 	    The maintainer must be specified in the
 	    <tt>Maintainer</tt> control field with the correct name
@@ -1150,11 +1151,6 @@
 	    that mistakes in changelogs are usually best rectified by
 	    making  a new changelog entry rather than "rewriting history"
 	    by editing old changelog entries)</p>
-	  
-	  <p>
-	    A copy of the file which will be installed in
-	    <tt>/usr/share/doc/<var>package</var>/copyright</tt> should be
-	    in <tt>debian/copyright</tt>.</p>
 	  
 	  <p>
 	    In non-experimental packages you must only use a format for
@@ -2801,8 +2797,8 @@
 
       <p>	
 	This is done using the <tt>Depends</tt>, <tt>Recommends</tt>,
-	<tt>Suggests</tt>, <tt>Conflicts</tt>, <tt>Provides</tt> and
-	<tt>Replaces</tt> control file fields.
+	<tt>Suggests</tt>, <tt>Enhances</tt>, <tt>Conflicts</tt>,
+	<tt>Provides</tt> and <tt>Replaces</tt> control file fields.
       </p>
 
       <p>
@@ -2905,13 +2901,14 @@
       
       <sect>
         <heading>Binary Dependencies - <tt>Depends</tt>,
-          <tt>Recommends</tt>, <tt>Suggests</tt>, <tt>Pre-Depends</tt>
+          <tt>Recommends</tt>, <tt>Suggests</tt>, <tt>Enhances</tt>,
+          <tt>Pre-Depends</tt>
 	</heading>
 
 	<p>	  
-	  These four fields are used to declare a dependency by one
-	  package on another.  They appear in the depending package's
-	  control file.
+	  These five fields are used to declare a dependency
+	  relationship by one package on another.  They appear in the
+	  depending package's control file.
 	</p>
 
 	<p>	  
@@ -2975,7 +2972,16 @@
 		perhaps enhance its usefulness, but that installing
 		this one without them is perfectly reasonable.
 	      </p>
+	    </item>
 
+	    <tag><tt>Enhances</tt></tag>
+	    <item>
+	      <p>
+		This field is similar to Suggests but works in the
+		opposite direction. It is used to declare that a
+		package can enhance the functionality of another
+		package.
+	      </p>
 	    </item>
 	    
 	    <tag><tt>Pre-Depends</tt></tag>
@@ -3818,7 +3824,7 @@
 		each system, should use `<tt>adduser --system</tt>' to
 		create the group and/or user.  <prgn>adduser</prgn>
 		will check for the existence of the user or group, and
-		if necessary choose an unused id based on the ranged
+		if necessary choose an unused id based on the ranges
 		specified in <tt>adduser.conf</tt>.</p></item>
 	    
 	    
@@ -3864,7 +3870,8 @@
 	    
 	    <tag>65534:</tag>
 	    <item>
-	      <p>User `<tt>nobody</tt>.'</p></item>
+	      <p>User `<tt>nobody</tt>.' The corresponding gid refers
+	      to the group  `<tt>nogroup</tt>.'</p></item>
 	    
 	    
 	    <tag>65535:</tag>
@@ -3893,11 +3900,12 @@
             There are at least two different, yet functionally
             equivalent, ways of handling these scripts.  For the sake
             of simplicity, this document describes only the symbolic
-            link method. However, it must not be assumed that this
-            method is being used, and any manipulation of the various
-            runlevel behaviours must be performed using
-            <prgn>update-rc.d</prgn> as described below and not by
-            manually installing symlinks.  For information on the
+            link method. However, it must not be assumed by maintainer
+            scripts that this method is being used, and any automated
+            manipulation of the various runlevel behaviours by
+            maintainer scripts must be performed using `update-rc.d'
+            as described below and not by manually installing or
+            removing symlinks.  For  information on the
             implementation details of the other method, implemented in
             the <tt>file-rc</tt> package, please refer to the
             documentation of that package.</p>
@@ -4022,6 +4030,33 @@
 	    <example>
 	      test -f <var>program-executed-later-in-script</var> || exit 0
 	    </example></p>
+
+	  <p>
+	    Often there are some values in the `<tt>init.d</tt>'
+	    scripts that a system administrator will frequently want
+	    to change. While the scripts are frequently conffiles,
+	    modifying them requires that the administrator merge in
+	    their changes each time the package is upgraded and the
+	    conffile changes. To ease the burden on the system
+	    administrator, such configurable values should not be
+	    placed directly in the script.  Instead, they should be
+	    placed in a file in `<tt>/etc/default</tt>', which
+	    typically will have the same base name as the
+	    `<tt>init.d</tt>' script. This extra file can be sourced
+	    by the script when the script runs. It must contain only
+	    variable settings and comments.
+	  </p>
+
+	  <p>
+	    To ensure that vital configurable values are always
+	    available, the `<tt>init.d</tt>' script should set default
+	    values for each of the shell variables it uses before
+	    sourcing the <tt>/etc/default/</tt> file. Also, since the
+	    `<tt>/etc/default/</tt>' file is often a conffile, the
+	    `<tt>init.d</tt>' script must behave sensibly without
+	    failing if it is deleted.
+	  </p>
+
 	</sect1>
 	
 	<sect1>
@@ -4135,7 +4170,10 @@
 	    nameserver a <tt>HUP</tt> signal (causing it to reload its
 	    configuration); this way the user can say
 	    <tt>/etc/init.d/bind reload</tt> to reload the name
-	    server.</p>
+	    server.  The script has one configurable value, which can
+	    be used to pass parameters to the named program at
+	    startup.
+	  </p>
 	  
 	  <p>
 	    <example>
@@ -4145,11 +4183,19 @@
 	      # &lt;rob@mars.org&gt;, edited by iwj and cs
 	      
 	      test -x /usr/sbin/named || exit 0
+
+              # Source defaults file.
+              PARAMS=''
+              if [ -f /etc/default/bind ]; then
+                . /etc/default/bind
+              fi
+      
 	      
 	      case "$1" in
 	      start)
 	      echo -n "Starting domain name service: named"
-	      start-stop-daemon --start --quiet --exec /usr/sbin/named
+	      start-stop-daemon --start --quiet --exec /usr/sbin/named \
+	                        -- $PARAMS
 	      echo "."
 	      ;;
 	      stop)
@@ -4162,7 +4208,8 @@
 	      echo -n "Restarting domain name service: named"
 	      start-stop-daemon --stop --quiet  \
 	      --pidfile /var/run/named.pid --exec /usr/sbin/named
-	      start-stop-daemon --start --verbose --exec /usr/sbin/named
+	      start-stop-daemon --start --verbose --exec /usr/sbin/named \
+	                        -- $PARAMS
 	      echo "."
 	      ;;
 	      force-reload|reload)
@@ -4178,8 +4225,22 @@
 	      esac
 	      
 	      exit 0
-	    </example></p>
-	  
+	    </example>
+	  </p>
+
+	  <p>
+	    Complementing the above init script is a file
+	    '<tt>/etc/default/bind</tt>', which contains configurable
+	    parameters used by the script.
+	  </p>
+	  <p>
+	    <example>
+	      # Specified parameters to pass to named. See named(8).
+              # You may uncomment the following line, and edit to taste.
+              #PARAMS="-u nobody"
+	    </example>
+	  </p>
+
 	  <p>
 	    Another example on which to base your <tt>/etc/init.d</tt>
 	    scripts is in <tt>/etc/init.d/skeleton</tt>.</p>
@@ -5063,7 +5124,7 @@
 	<p>
 	  If a package needs any special device files that are not
 	  included in the base system, it must call
-	  <prgn>makedev</prgn> in the <tt>postinst</tt> script,
+	  <prgn>MAKEDEV</prgn> in the <tt>postinst</tt> script,
 	  after asking the user for permission to do so.</p>
 	
 	<p>
@@ -5225,9 +5286,10 @@
 	<sect1>
 	  <heading>Sharing configuration files</heading>
 	  <p>
-	    Packages that are not tagged as <em>conflicting</em> with
-	    each other must not specify the same file as
-	    <tt>conffile</tt>.</p>
+	    Packages which specify the same file as
+	    `<tt>conffile</tt>' must be tagged as <em>conflicting</em>
+	    with each other.
+	    </p>
 
 	  <p>
 	    The maintainer scripts must not alter the conffile of
@@ -5604,10 +5666,18 @@
 	  <tt>/usr/bin/sensible-editor</tt> does.</p>
 
 	<p>
-	  Since the Debian base system already provides an editor and
-	  a pager program, it is not required for a package to depend on
+	  It is not required for a package to depend on
 	  `editor' and `pager', nor is it required for a package to
-	  provide such virtual packages.</p></sect>
+	  provide such virtual packages.
+	  <footnote>
+	    <p>
+	      The Debian base system already provides an editor and
+	      a pager program, 
+	    </p>
+	  </footnote>
+	</p>
+
+      </sect>
       
       
       <sect id="web-appl">
@@ -6298,6 +6368,17 @@
 	  in the binary package.  However, you don't need to install
 	  the instructions for building and installing the package, of
 	  course!</p>
+
+	<p>
+	  Files in <tt>/usr/share/doc</tt> should not be referenced by
+	  any program, and the system administrator should be able to
+	  delete them without causing any programs to break. Any files
+	  that are referenced by programs but are also useful as
+	  standalone documentation should be installed under
+	  <tt>/usr/share/&lt;package$gt;/</tt> and symlinked in
+	  <tt>/usr/share/doc/&lt;package$gt;/</tt>. 
+	</p>
+
       </sect>
       
       <sect id="usrdoc">
@@ -6379,6 +6460,12 @@
 	  compared to the upstream one.  It should name the original
 	  authors of the package and the Debian maintainer(s) who were
 	  involved with its creation.</p>
+
+	<p>
+	  A copy of the file which will be installed in
+	  <tt>/usr/share/doc/<var>package</var>/copyright</tt> should be
+	  in <tt>debian/copyright</tt>.</p>
+	
 	
 	<p>
 	  /usr/share/doc/&lt;package-name&gt; may be a symbolic link to a
@@ -6387,7 +6474,7 @@
 	  relationship on the second.  These rules are important
 	  because copyrights must be extractable by mechanical
 	  means.</p>
-	
+
 	<p>
 	  Packages distributed under the UCB BSD license, the Artistic
 	  license, the GNU GPL, and the GNU LGPL should refer to the
