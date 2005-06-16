@@ -1113,7 +1113,7 @@
 	      file in their control archive. The <prgn>config</prgn>
 	      script might be run before the <prgn>preinst</prgn>
 	      script, and before the package is unpacked or any of its
-	      dependancies or pre-dependancies are satisfied.
+	      dependencies or pre-dependancies are satisfied.
 	      Therefore it must work using only the tools present in
 	      <em>essential</em> packages.<footnote>
 		<p>
@@ -3773,7 +3773,7 @@ Replaces: mail-transport-agent
 	      libraries that are needed by <tt>libbar</tt> are linked
 	      <em>indirectly</em> to <tt>foo</tt>, and the dynamic
 	      linker will load them automatically when it loads
-	      <tt>libbar</tt>.  A package should needs to depend on
+	      <tt>libbar</tt>.  A package should depend on
 	      the libraries it directly uses, and the dependencies for
 	      those libraries should automatically pull in the other
 	      libraries.
@@ -4138,16 +4138,20 @@ libbar 1 bar1 (>= 1.0-1)
 	  <p>
 	    The location of all installed files and directories must
 	    comply with the Filesystem Hierarchy Standard (FHS),
-	    except where doing so would violate other terms of Debian
-	    Policy. The latest version of this document can be found
-	    in the <tt>debian-policy</tt> package or on 
+	    version 2.1, except where doing so would violate other
+	    terms of Debian Policy. The version of this document
+	    referred here can be found in the <tt>debian-policy</tt>
+	    package or on 
 	    <url id="http://www.debian.org/doc/packaging-manuals/fhs"
-	      name="FHS (Debian copy)"> alongside this manual or on 
+	      name="FHS (Debian copy)"> alongside this manual. The
+	    latest version, which may be a more recent version, may
+	    be found on
 	    <url id="http://www.pathname.com/fhs/" name="FHS (upstream)">.
 	    Specific questions about following the standard may be
 	    asked on the <tt>debian-devel</tt> mailing list, or
-	    referred to Daniel Quinlan, the FHS coordinator, at
-	    <email>quinlan@pathname.com</email>.
+	    referred to the FHS mailing list (see the 
+            <url id="http://www.pathname.com/fhs/" name="FHS web site"> for
+	    more information). 
 	  </p>
 	</sect1>
 
@@ -4549,16 +4553,18 @@ rmdir /usr/local/share/emacs 2>/dev/null || true
 	    successfully.</p>
 
 	  <p>
-	    The <tt>/etc/init.d</tt> scripts should be treated as
-	    configuration files, either by marking them as
-	    <tt>conffile</tt>s or managing them correctly in the
-	    maintainer scripts (see <ref id="config files">).  This is
-	    important since we want to give the local system
-	    administrator the chance to adapt the scripts to the local
-	    system, e.g., to disable a service without de-installing
-	    the package, or to specify some special command line
-	    options when starting a service, while making sure her
-	    changes aren't lost during the next package upgrade.
+	    The <tt>/etc/init.d</tt> scripts must be treated as
+	    configuration files, either (if they are present in the
+	    package, that is, in the .deb file) by marking them as
+	    <tt>conffile</tt>s, or, (if they do not exist in the .deb)
+	    by managing them correctly in the maintainer scripts (see
+	    <ref id="config files">).  This is important since we want
+	    to give the local system administrator the chance to adapt
+	    the scripts to the local system, e.g., to disable a
+	    service without de-installing the package, or to specify
+	    some special command line options when starting a service,
+	    while making sure her changes aren't lost during the next
+	    package upgrade.
 	  </p>
 
 	  <p>
