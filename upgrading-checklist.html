@@ -44,6 +44,15 @@ Manual.
 <h2>The checklist</h2>
 
 <pre>
+3.5.3.0                    Apr 01
+  Policy Manual:
+     - Build-Depends arch syntax has been changed to be less
+       ambiguous. This should not affect any current packages
+     - Examples and templates should now live in
+       /usr/share/&lt;package&gt; or /usr/lib/&lt;package&gt;, with
+       symbolic links from /usr/share/doc//&lt;package&gt;/examples as
+       needed. 
+      
 3.5.2.0                    Feb 01
   Policy Manual:
      - X app-defaults directory has moved from
@@ -55,7 +64,6 @@ Manual.
        run through dpkg-shlibdeps as well as executables
 
 3.5.0.0                    Jan 01
-
   Policy Manual:
      - If your package had fonts for the X Window System, and you
        converted BDF to PCF formats, the <tt>bdftopcf</tt> utility has

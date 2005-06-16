@@ -1,4 +1,4 @@
-debian-policy (3.5.2.1) unstable; urgency=low
+debian-policy (3.5.3.0) unstable; urgency=low
 
   * Removed recommendation on packaging-manual
                                     closes: Bug#86507, #93620, #93705
@@ -11,8 +11,14 @@ debian-policy (3.5.2.1) unstable; urgency=low
   * Correct bug severities                          closes: Bug#91276
   * Correct typos etc. in policy-process
   * Rename all .text files as .txt
+  * Fixed the to to typo in policy.                  closes: Bug#87007
+  * Changed packaging manual ==> dpkg documentation  closes: Bug#88651
+  * [ACCEPTED 14/03/2001] Deprecate confusing        closes: Bug#87828
+    Build-Depends arch syntax
+  * [AMENDMENT 29/03/2001] Clarification of example  closes: Bug#87711
+    configuration  files  
 
- --
+ -- Manoj Srivastava <srivasta@debian.org>  Sun, 15 Apr 2001 13:36:19 -0500
 
 debian-policy (3.5.2.0) unstable; urgency=low
 
@@ -44,6 +50,15 @@ debian-policy (3.5.1.0) unstable; urgency=low
   * Removed bashism from debian/rules
 
  -- Julian Gilbey <jdg@debian.org>  Thu, 15 Feb 2001 12:13:00 +0000
+
+debian-policy (3.5.0.1) unstable; urgency=low
+
+  * Richard Braakman and Micheal Dorman have exressed their resignation
+    from policy maintenance duties. 
+  * fixed the date thinko in upgrading checklist. Thanks to Sébastien
+    Montagne <sebastien.montagne@netcourrier.com>        closes: Bug#84236
+
+ -- Manoj Srivastava <srivasta@debian.org>  Sun, 15 Apr 2001 11:24:51 -0500
 
 debian-policy (3.5.0.0) unstable; urgency=low
 
