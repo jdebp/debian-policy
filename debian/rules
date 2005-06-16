@@ -66,6 +66,7 @@ LIBDIR	  := $(TMPTOP)/usr/share/doc-base
 # And with version 2.1, we have to build the text and dvi versions
 # ourselves :-(
 FHS_ARCHIVE  =fhs-2.1-source.tar.gz
+FHS_HTML     =fhs-2.1.html.tar.gz
 FHS_FILES    =fhs/fhs.ps fhs/fhs.txt fhs/fhs.pdf
 FSSTND_FILES =FSSTND-FAQ fsstnd-1.2.dvi.gz fsstnd-1.2.ps.gz fsstnd-1.2.txt.gz
 POLICY_FILES =policy.text.gz policy.sgml virtual-package-names-list.text \
@@ -111,6 +112,7 @@ stamp-build:
 	GROFF_TMAC_PATH=. cd fhs && $(MAKE) fhs.ps fhs.pdf fhs.txt
 	links -dump fhs-changes-2.1.html | perl -pe 's/[\r\0]//g' > \
                     fhs/fhs-changes-2.1.text
+	cd fhs && tar zfx ../$(FHS_HTML)
 	links -dump upgrading-checklist.html | perl -pe 's/[\r\0]//g' > \
                     upgrading-checklist.text
 	$(MAKE) -C debconf_spec all

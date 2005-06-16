@@ -2323,9 +2323,6 @@
 	  before (a version of) a package is removed and the
 	  <prgn>postrm</prgn> afterwards.
 	</p>
-	<!--
-	next paragraph by Guy Maor to close bug #2481
-	-->
 
 	<p> Programs called from maintainer scripts should not
 	  normally have a path prepended to them. Before installation
@@ -3433,10 +3430,6 @@
 	files itself when building a package.
       </p>
 
-      <!--
-      next Paragraph added to close Bug #5299, Guy Maor
-      -->
-
       <p>
 	Thirdly, the development package should contain a symlink for
 	the shared library without a version number.  For example, the
@@ -3447,10 +3440,6 @@
 	<tt>libgdm.a</tt> when compiling dynamically or statically,
 	respectively.
       </p>
-
-      <!--
-      next paragraph changed by Christian Schwarz (see policy weekly #6)
-      -->
 
       <p>
 	Any package installing shared libraries in a directory that's listed
@@ -3466,10 +3455,6 @@
 	to them, just before <prgn>dpkg</prgn> continues the
 	installation and removes the links!
       </p>
-
-      <!--
-      moved from section 2.2 , DMorris
-      -->
 
       <sect id="shlibs"><heading>The <tt>shlibs</tt> File Format
 	</heading>
@@ -3526,12 +3511,6 @@
 
       <sect><heading>Further Technical information on
 	  <tt>shlibs</tt></heading>
-
-
-	<!--
-	following section mostly provided by Heiko Schlittermann
-	edited by DMorris
-	-->
 
 	<sect1><heading><em>What</em> are the <tt>shlibs</tt> files?
 	  </heading>
