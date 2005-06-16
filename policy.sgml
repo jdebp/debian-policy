@@ -1467,7 +1467,7 @@
 	format.
       </p>
 
-      <sect><heading>Syntax of control files</heading>
+      <sect id="controlsyntax"><heading>Syntax of control files</heading>
 
 	<p>
 	  A control file consists of one or more paragraphs of fields.
@@ -3088,7 +3088,7 @@
 
 
     <chapt id="relationships"><heading>Declaring relationships between
-	packages      </heading>
+	packages</heading>
 
       <p>
 	Packages can declare in their control file that they have
@@ -3100,9 +3100,10 @@
       </p>
 
       <p>
-	This is done using the <tt>Depends</tt>, <tt>Recommends</tt>,
-	<tt>Suggests</tt>, <tt>Enhances</tt>, <tt>Conflicts</tt>,
-	<tt>Provides</tt> and <tt>Replaces</tt> control file fields.
+	This is done using the <tt>Depends</tt>, <tt>Pre-Depends</tt>,
+	<tt>Recommends</tt>, <tt>Suggests</tt>, <tt>Enhances</tt>,
+	<tt>Conflicts</tt>, <tt>Provides</tt> and <tt>Replaces</tt>
+	control file fields.
       </p>
 
       <p>
@@ -3113,7 +3114,7 @@
 
       <p>
         This is done using the <tt>Build-Depends</tt>,
-        <tt>Build-Depends-Indep</tt>, <tt>Build-Conflicts</tt>, and
+        <tt>Build-Depends-Indep</tt>, <tt>Build-Conflicts</tt> and
         <tt>Build-Conflicts-Indep</tt> control file fields.
       </p>
 
@@ -3132,18 +3133,17 @@
           control file fields of the package, which declare
           dependencies on other packages, the package names listed may
           also include lists of alternative package names, separated
-          by vertical bar symbols <tt>|</tt> (pipe symbols).  In such
-          a case, the presence of any one of the alternative packages
-          is installed, that part of the dependency is considered to
-          be satisfied.
+          by vertical bar (pipe) symbols <tt>|</tt>.  In such a case,
+          if any one of the alternative packages is installed, that
+          part of the dependency is considered to be satisfied.
 	</p>
 
 	<p>
-	  All the fields except <tt>Provides</tt> may restrict their
-	  applicability to particular versions of each named package.
-	  This is done in parentheses after each individual package
-	  name; the parentheses should contain a relation from the
-	  list below followed by a version number, in the format
+	  All of the fields except for <tt>Provides</tt> may restrict
+	  their applicability to particular versions of each named
+	  package.  This is done in parentheses after each individual
+	  package name; the parentheses should contain a relation from
+	  the list below followed by a version number, in the format
 	  described in <ref id="versions">.
 	</p>
 
@@ -3151,8 +3151,8 @@
 	  The relations allowed are <tt>&lt;&lt;</tt>, <tt>&lt;=</tt>,
 	  <tt>=</tt>, <tt>&gt;=</tt> and <tt>&gt;&gt;</tt> for
 	  strictly earlier, earlier or equal, exactly equal, later or
-	  equal and strictly later, respectively.  The forms
-	  <tt>&lt;</tt> and <tt>&gt;</tt> were used to mean
+	  equal and strictly later, respectively.  The deprecated
+	  forms <tt>&lt;</tt> and <tt>&gt;</tt> were used to mean
 	  earlier/later or equal, rather than strictly earlier/later,
 	  so they should not appear in new packages (though
 	  <prgn>dpkg</prgn> still supports them).
@@ -3160,22 +3160,23 @@
 
 	<p>
 	  Whitespace may appear at any point in the version
-	  specification, and must appear where it's necessary to
+	  specification subject to the rules in <ref
+	  id="controlsyntax">, and must appear where it's necessary to
 	  disambiguate; it is not otherwise significant.  For
 	  consistency and in case of future changes to
 	  <prgn>dpkg</prgn> it is recommended that a single space be
 	  used after a version relationship and before a version
-	  number; it is usual also to put a single space after each
-	  comma, on either side of each vertical bar, and before each
-	  open parenthesis.
+	  number; it is also conventional to put a single space after
+	  each comma, on either side of each vertical bar, and before
+	  each open parenthesis.
 	</p>
 
 	<p>
-	  For example:
+	  For example, a list of dependencies might appear as:
 	  <example>
-	    Package: metamail
-	    Version: 2.7-3
-	    Depends: libc5 (>= 5.2.18-4), mime-support, csh | tcsh
+	    Package: mutt
+	    Version: 1.3.17-1
+	    Depends: libc6 (>= 2.2.1), exim | mail-transport-agent
 	  </example>
 	</p>
 
@@ -3184,7 +3185,7 @@
 	  (<tt>Build-Depends</tt>, <tt>Build-Depends-Indep</tt>,
 	  <tt>Build-Conflicts</tt> and <tt>Build-Conflicts-Indep</tt>)
 	  may be restricted to a certain set of architectures.  This
-	  is done in brackets after each individual package name and
+	  is indicated in brackets after each individual package name and
 	  the optional version specification.  The brackets enclose a
 	  list of Debian architecture names separated by whitespace.
 	  Exclamation marks may be prepended to each of the names.
