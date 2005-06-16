@@ -5,9 +5,9 @@
 ## Created On       : Thu Oct 29 15:35:55 1998
 ## Created On Node  : tiamat.datasync.com
 ## Last Modified By : Manoj Srivastava
-## Last Modified On : Thu Oct 29 17:02:19 1998
+## Last Modified On : Thu Oct 29 23:52:20 1998
 ## Last Machine Used: tiamat.datasync.com
-## Update Count     : 21
+## Update Count     : 22
 ## Status           : Unknown, Use with caution!
 ## HISTORY          :
 ## Description      :
@@ -20,7 +20,7 @@ date	:= $(shell date +"%Y-%m-%d")
 version := $(shell LC_ALL=C dpkg-parsechangelog | \
                    grep ^Version: | sed 's/^Version: *//')
 
-FILES_TO_CLEAN = debian/files debian/buildinfo debian/substvars
+FILES_TO_CLEAN = debian/files debian/buildinfo debian/substvars \
                  version.ent
 STAMPS_TO_CLEAN = stamp-binary stamp-build stamp-configure
 DIRS_TO_CLEAN  = debian/tmp policy.html policy.text* policy.lout*
