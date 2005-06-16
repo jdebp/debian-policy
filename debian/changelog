@@ -3,8 +3,11 @@ debian-policy (3.6.1) unstable; urgency=low
   Josip:
   * Removed obsolete section on obsolete constructs and libraries,
     closes: #193748.
+  Manoj:
+  * Change reference to the debconf introduction from kitenet to a debian
+    hosted server.                                         closes: Bug#184518
 
- -- Josip Rodin <joy-packages@debian.org>  Mon, 21 Jul 2003 12:17:57 +0200
+ --
 
 debian-policy (3.6.0) unstable; urgency=low
 
