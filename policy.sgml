@@ -2548,7 +2548,7 @@ Package: libc6
 	  <heading>Package interrelationship fields:
 	    <tt>Depends</tt>, <tt>Pre-Depends</tt>,
 	    <tt>Recommends</tt>, <tt>Suggests</tt>, <tt>Conflicts</tt>,
-	    <tt>Provides</tt>, <tt>Replaces</tt>
+	    <tt>Provides</tt>, <tt>Replaces</tt>, <tt>Enhances</tt>
 	  </heading>
 
 	  <p>
