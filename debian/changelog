@@ -31,8 +31,11 @@ debian-policy (4.0.0.0) unstable; urgency=low
   * Moved the documents into the Debian/ section, since that is where they
     belong, really.                                     closes: Bug#54777
   * Added policy-process to document current procedures.
+  * Fixed missing urlname entity in the sgml docs (where 
+    was it defined before anyway?)                      closes: Bug#56692
+  * Fixed the ftp location in the manuals.              closes: Bug#56407
 
- -- Manoj Srivastava <srivasta@debian.org>  Fri, 17 Mar 2000 17:02:12 -0600
+ -- Manoj Srivastava <srivasta@debian.org>  Fri, 17 Mar 2000 20:29:39 -0600
 
 debian-policy (3.1.1.3) unstable; urgency=low
 

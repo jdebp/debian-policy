@@ -138,7 +138,7 @@
 	<p>
 	  The current version of this document is always accessible from the
 	  Debian FTP server <ftpsite>ftp.debian.org</ftpsite> at
-	  <ftppath>/debian/doc/manuals/debian-policy.html.tar.gz</ftppath>
+	  <ftppath>/debian/doc/package-developer/debian-policy.html.tar.gz</ftppath>
 	  or from the Debian WWW server at
 	  <url id="http://www.debian.org/doc/debian-policy/"
 	  name="The Debian Policy Manual">.</p>
