@@ -808,13 +808,11 @@
 	</p>
 
 	<p>
-	  The package name is part of the file name of the
-	  <tt>.deb</tt> file and is included in the control field
-	  information.
-	</p>
-
-	<p>
-	  Format is described in <ref id="f-Package">.
+	  The package name is included in the control field
+	  <tt>Package</tt>, the format of which is described
+	  in <ref id="f-Package">.
+	  The package name is also included as a part of the file name
+	  of the <tt>.deb</tt> file.
 	</p>
       </sect>
 
@@ -1291,10 +1289,13 @@
 	    Packages which use the Debian Configuration management
 	    specification may contain an additional
 	    <prgn>config</prgn> script and a <tt>templates</tt>
-	    file in their control archive. The <prgn>config</prgn>
-	    script might be run before the <prgn>preinst</prgn>
-	    script, and before the package is unpacked or any of its
-	    dependencies or pre-dependancies are satisfied.
+	    file in their control archive<footnote>
+		The control.tar.gz inside the .deb.
+		See <manref name="deb" section="5">.
+	    </footnote>.
+	    The <prgn>config</prgn> script might be run before the
+	    <prgn>preinst</prgn> script, and before the package is unpacked
+	    or any of its dependencies or pre-dependancies are satisfied.
 	    Therefore it must work using only the tools present in
 	    <em>essential</em> packages.<footnote>
 		  <package>Debconf</package> or another tool that
@@ -1672,14 +1673,6 @@
 	    In non-experimental packages you must use a format for
 	    <file>debian/changelog</file> which is supported by the most
 	    recent released version of <prgn>dpkg</prgn>.
-	    <footnote>
-	      If there is general interest in the new format, you should
-	      contact the <package>dpkg</package> maintainer to have the
-	      parser script for it included in the <prgn>dpkg</prgn>
-	      package.  (You will need to agree that the parser and its
-	      manpage may be distributed under the GNU GPL, just as the rest
-	      of <prgn>dpkg</prgn> is.)
-	    </footnote>
 	  </p>
 
 	  <p>
@@ -1689,6 +1682,14 @@
 	    expected by <prgn>dpkg-genchanges</prgn> and
 	    <prgn>dpkg-gencontrol</prgn>, and it must not interact with
 	    the user at all.
+	    <footnote>
+	      If there is general interest in the new format, you should
+	      contact the <package>dpkg</package> maintainer to have the
+	      parser script for it included in the <prgn>dpkg</prgn>
+	      package.  (You will need to agree that the parser and its
+	      manpage may be distributed under the GNU GPL, just as the rest
+	      of <prgn>dpkg</prgn> is.)
+	    </footnote>
 	  </p>
 	</sect1>
       </sect>
@@ -1813,9 +1814,9 @@
 	    <tag><tt>build</tt></tag>
 	    <item>
 	      <p>
-		The <tt>build</tt> target should perform all
-		non-interactive configuration and compilation of the
-		package.  If a package has an interactive pre-build
+		The <tt>build</tt> target should perform all the
+		configuration and compilation of the package.
+		If a package has an interactive pre-build
 		configuration routine, the Debianized source package
 		must either be built after this has taken place (so
 		that the binary package can be built without rerunning
@@ -1882,21 +1883,21 @@
 		A package may also provide both of the targets
 		<tt>build-arch</tt> and <tt>build-indep</tt>.
 		The <tt>build-arch</tt> target, if provided, should
-		perform all non-interactive configuration and
-		compilation required for producing all
-		architecture-dependant binary packages (those packages
-		for which the body of the <tt>Architecture</tt> field
-		in <tt>debian/control</tt> is not <tt>all</tt>).
-		Similarly, the <tt>build-indep</tt> target, if
-		provided, should perform all non-interactive
-		configuration and compilation required for producing
-		all architecture-independent binary packages (those
-		packages for which the body of the
+		perform all the configuration and compilation required
+		for producing all architecture-dependant binary packages
+		(those packages for which the body of the
 		<tt>Architecture</tt> field in <tt>debian/control</tt>
-		is <tt>all</tt>).  The <tt>build</tt> target should
-		depend on those of the targets <tt>build-arch</tt> and
-		<tt>build-indep</tt> that are provided in the rules
-		file.
+		is not <tt>all</tt>).
+		Similarly, the <tt>build-indep</tt> target, if
+		provided, should perform all the configuration and
+		compilation required for producing all
+		architecture-independent binary packages
+		(those packages for which the body of the
+		<tt>Architecture</tt> field in <tt>debian/control</tt>
+		is <tt>all</tt>).
+		The <tt>build</tt> target should depend on those of the
+		targets <tt>build-arch</tt> and <tt>build-indep</tt> that
+		are provided in the rules file.
 	      </p>
 
 	      <p>
@@ -1921,8 +1922,7 @@
 	      <p>
 		The <tt>binary</tt> target must be all that is
 		necessary for the user to build the binary package(s)
-		produced from this source package.  All of these
-		targets are required to be non-interactive.  It is
+		produced from this source package.  It is
 		split into two parts: <prgn>binary-arch</prgn> builds
 		the binary packages which are specific to a particular
 		architecture, and <tt>binary-indep</tt> builds
@@ -1971,7 +1971,7 @@
 		and <tt>binary</tt> targets may have had, except
 		that it should leave alone any output files created in
 		the parent directory by a run of a <tt>binary</tt>
-		target. This target must be non-interactive.
+		target.
 	      </p>
 
 	      <p>
@@ -2351,7 +2351,7 @@ Package: libc6
 	  archive, from other files in the source package,
 	  described above.  When unpacking, it is checked against
 	  the files and directories in the other parts of the
-	  source package (see).
+	  source package.
 	</p>
 
       </sect>
@@ -2546,7 +2546,7 @@ Package: libc6
 	  </p>
 
 	  <p>
-	    See <ref id="pkg-debianrules"> for information how to get the
+	    See <ref id="debianrules"> for information how to get the
 	    architecture for the build process.
 	  </p>
 	</sect1>
@@ -6080,9 +6080,8 @@ Reloading <var>description</var> configuration...done.
 
 	<p>
 	  Registration of MIME type handlers allows programs like mail
-	  user agents and web browsers to to invoke these handlers to
-	  view, edit or display MIME types they don't support
-	  directly.
+	  user agents and web browsers to invoke these handlers to
+	  view, edit or display MIME types they don't support directly.
 	</p>
 
 	<p>
@@ -8474,6 +8473,10 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	  <file>changelog.Debian.gz</file>.
 	</p>
 
+	<p>
+	  For details about the format and contents of the Debian
+	  changelog file, please see <ref id="dpkgchangelog">.
+	</p>
       </sect>
     </chapt>
 
