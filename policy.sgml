@@ -88,7 +88,7 @@
 	  </p>
 	<p>
 	  A copy of the GNU General Public License is available as
-	  <tt>/usr/doc/copyright/GPL</tt> in the Debian GNU/Linux
+	  <tt>/usr/share/common-licences/GPL</tt> in the Debian GNU/Linux
 	  distribution or on the World Wide Web at 
 	  <url id="http://www.gnu.org/copyleft/gpl.html"
 	  name="&urlname">. You can also obtain it by writing to the
@@ -300,7 +300,7 @@
 		program is extracted from Debian and used or
 		distributed without Debian but otherwise within the
 		terms of the program's license, all parties to whom
-		the program is redistributed should have the same
+		the program is redistributed must have the same
 		rights as those that are granted in conjunction with
 		the Debian system.
 	      </p>
@@ -426,7 +426,7 @@
 	<p>
 	  Every package must be accompanied by a verbatim copy of its
 	  copyright and distribution license in the file
-	  /usr/doc/&lt;package-name&gt;/copyright (see <ref
+	  /usr/share/doc/&lt;package-name&gt;/copyright (see <ref
 	  id="copyrightfile"> for details).</p>
 	<p>
 	  We reserve the right to restrict files from being included
@@ -550,15 +550,15 @@
 		expect to find on any Unix-like system.  If the
 		expectation is that an experienced Unix person who
 		found it missing would say `What the F*!@&lt;+ is
-		going on, where is <prgn>foo</prgn>', it should be in
+		going on, where is <prgn>foo</prgn>', it must be in
 		<tt>important</tt>.  This is an important criterion
 		because we are trying to produce, amongst other
 		things, a free Unix.  Other packages without which the
-		system will not run well or be usable should also be
-		here.  This does <em>not</em> include Emacs or X11 or
-		TeX or any other large applications.  The
-		<tt>important</tt> packages are just a bare minimum of
-		commonly-expected and necessary tools.</p>
+		system will not run well or be usable must also be
+               here.  This does <em>not</em> include Emacs, the X
+               Window System, TeX or any other large applications.
+               The <tt>important</tt> packages are just a bare
+               minimum of commonly-expected and necessary tools.</p>
 	    </item>
 	    <tag><tt>standard</tt></tag>
 	    <item>
@@ -580,8 +580,8 @@
 		all the software that you might reasonably want to
 		install if you didn't know what it was or don't have
 		specialised requirements. This is a much larger system
-		and includes X11, a full TeX distribution, and lots of
-		applications.</p>
+		and includes the X Window System, a full TeX
+		distribution, and lots of applications.</p>
 	    </item>
 	    <tag><tt>extra</tt></tag>
 	    <item>
@@ -596,7 +596,7 @@
 	  
 	<p>
 	  Packages may not depend on packages with lower priority
-	  values.  If this should happen, one of the priority values
+	  values.  If this does happen, one of the priority values
 	  will have to be adapted.
 	</p>
       </sect>
@@ -661,19 +661,19 @@
 	  <heading>The description of a package</heading>
 	    
 	  <p>
-	    Every Debian package should have an extended description
+	    Every Debian package must have an extended description
 	    stored in the appropriate field of the control record.</p>
 	    
 	  <p>
-	    The description should be written so that it tells the
-	    user what they need to know to decide whether to install
-	    the package. This description should not just be copied
-	    from the blurb for the program.  Instructions for
-	    configuring or using the package should not be
-	    included--that is what installation scripts, manual pages,
-	    Info files, etc. are for.  Copyright statements and other
-	    administrivia should not be included--that is what the
-	    copyright file is for.</p>
+	    The description must be written so that it tells the user
+	    what they need to know to decide whether to install the
+	    package. This description should not just be copied from
+	    the blurb for the program.  Instructions for configuring
+	    or using the package must not be included -- that is what
+	    installation scripts, manual pages, Info files, etc. are
+	    for.  Copyright statements and other administrivia must
+	    not be included -- that is what the copyright file is
+	    for.</p>
 	</sect1>
 	    
 	    
@@ -776,10 +776,10 @@
 	  <p>
 	    Since these packages can not easily be removed (you'll
 	    have to specify an extra <em>force option</em> to
-	    <prgn>dpkg</prgn>) this flag should only be used where
+	    <prgn>dpkg</prgn>) this flag must only be used where
 	    absolutely necessary.
 	    
-	    A shared library package should not be tagged
+	    A shared library package must not be tagged
 	    <em>essential</em>--the dependencies will prevent its
 	    premature removal, and we need to be able to remove it
 	    when it has been superseded.</p>
@@ -795,7 +795,7 @@
 	  <heading>Maintainer scripts</heading>
 	    
 	  <p>
-	    The package installation scripts should avoid producing
+	    The package installation scripts must avoid producing
 	    output which it is unnecessary for the user to see and
 	    should rely on <prgn>dpkg</prgn> to stave off boredom on
 	    the part of a user installing many packages.  This means,
@@ -829,7 +829,7 @@
 	    and prompt the user to hit return to acknowledge the
 	    message.  Copyright messages do not count as vitally
 	    important (they belong in
-	    <tt>/usr/doc/<var>package</var>/copyright</tt>); neither
+	    <tt>/usr/share/doc/<var>package</var>/copyright</tt>); neither
 	    do instructions on how to use a program (these should be
 	    in on line documentation, where all the users can see
 	    them).</p>
@@ -901,6 +901,24 @@
 	    changed when only cosmetic, typographical or other edits
 	    which do not change the meaning are made, or changes which
 	    do not affect the contents of packages.</p>
+
+	  <p>
+	    For package maintainers, only the first 3 digits of the
+	    manual version are significant in representing the
+	    <em>Standards-Version</em>, and either these 3 digits or
+	    the complete 4 digits can be specified--that's up to the
+	    maintainer. 
+	    <footnote>
+	      <p>
+		In the past, people specified 4 digits in the
+		Standards-Version field, like `2.3.0.0'.  Since any
+		`patch-level changes' don't introduce new policy, it
+		was thought it would be better to relax policy and
+		only require that the first 3 digits are specified. (4
+		digits can still be used if someone wants to do so.)
+	      </p>
+	    </footnote>
+	  </p>
 	    
 	  <p>
 	    You should regularly, and especially if your package has
@@ -956,7 +974,7 @@
 	    
 	  <p>
 	    A copy of the file which will be installed in
-	    <tt>/usr/doc/<var>package</var>/copyright</tt> should be
+	    <tt>/usr/share/doc/<var>package</var>/copyright</tt> should be
 	    in <tt>debian/copyright</tt>.</p>
 	    
 	  <p>
@@ -1029,13 +1047,25 @@
 	    
 	  <p>
 	    The location of all installed files and directories must
-	    comply fully with the Linux File system Structure (FSSTND).
-	    The latest version of this document can be found alongside
-	    this manual or on <ftpsite>tsx-11.mit.edu</ftpsite> in
+	    comply (with some exceptions
+	    <footnote>
+	      <p>In an as yet unreleased version of the standard, the
+		location of the mail spool and state information
+		directories has changed; and we proipose to follow the
+		latter, since that would mean that we do not ahve to
+		move things around again when the new version of the
+		FHS comes around). The changes are, amongst others,
+		s%/var/mail%/var/spool/mail% and
+		s%/var/state%/var/lib%</p>
+	    </footnote>
+	    ) with the Linux File system Hierarchy Standard
+	    (FHS).  The latest version of this document can be found
+	    alongside this manual or on
+	    <ftpsite>tsx-11.mit.edu</ftpsite> in
 	    <ftppath>/pub/linux/docs/linux-standards/fsstnd/</ftppath>.
 	    Specific questions about following the standard may be
 	    asked on <prgn>debian-devel</prgn>, or referred to Daniel
-	    Quinlan, the FSSTND coordinator, at
+	    Quinlan, the FHS coordinator, at
 	    <email>quinlan@pathname.com</email>.</p></sect1>
 	    
 	    
@@ -1043,7 +1073,7 @@
 	  <heading>Site-specific programs</heading>
 	    
 	  <p>
-	    As mandated by the FSSTND no package should place any
+	    As mandated by the FHS no package should place any
 	    files in <tt>/usr/local</tt>, either by putting them in
 	    the file system archive to be unpacked by <prgn>dpkg</prgn>
 	    or by manipulating them in their maintainer scripts.</p>
@@ -1060,9 +1090,9 @@
 	    <tt>/usr/local</tt>, not <em>in</em>
 	    <tt>/usr/local</tt>. The directory <tt>/usr/local</tt>
 	    itself may only contain the sub-directories listed in
-	    FSSTND, section 4.8. However, you may create directories
+	    FHS, section 4.6. However, you may create directories
 	    below them as you wish. You may not remove any of the
-	    directories listed in 4.8, even if you created them.</p>
+	    directories listed in 4.6, even if you created them.</p>
 	    
 	  <p>
 	    Since <tt>/usr/local</tt> may be mounted read-only from a
@@ -1758,7 +1788,14 @@
 	  
       <sect>
 	<heading>Menus</heading>
-	  
+
+	<p>
+          Menu entries should follow the current menu policy as
+          defined in the file <ftpsite>ftp.debian.org</ftpsite> in
+          <ftppath>/debian/doc/package-developer/menu_policy.txt</ftppath>
+          or your local mirror.
+	</p>
+
 	<p>
 	  The Debian <tt>menu</tt> packages provides a unique
 	  interface between packages providing applications and
@@ -1806,7 +1843,7 @@
 	  
 	  The interpretation of any keyboard events should be
 	  independent of the terminal that's used (either the console,
-	  X windows, rlogin/telnet session, etc.).</p>
+	  X terminal emulators, rlogin/telnet session, etc.).</p>
 	  
 	<p>
 	  The following list explains how the different programs
@@ -2033,15 +2070,50 @@
 	  <p>
 	    Note that under some circumstances it may be useful to
 	    install a shared library unstripped, for example when
-	    building a separate package to support debugging.</p>
-	    
-	  <p>
-	    Please make sure that you use only released versions of
-	    shared libraries to build your packages; otherwise other
-	    users will not be able to run your binaries
-	    properly. Producing source packages that depend on
-	    unreleased compilers is also usually a bad
-	    idea.</p></sect>
+	    building a separate package to support debugging.
+	</p>
+	
+	<p>
+	  An ever increasing number of packages are using libtool to
+	  do their linking. The latest GNU libtools (>= 1.3a) can take
+	  advantage of installed libtool archive files (`*.la'). The
+	  main advantage of libtool's .la files is that it allows
+	  libtool to store and subsequently access metadata with
+	  respect to the libraries it builds.  libtool will search for
+	  those files, which contain a lot of useful information about
+	  a library (e.g. dependency libraries for static
+	  linking). Also, they're essential for programs using
+	  libltdl.
+	</p>
+
+	<p>
+	  Certainly libtool is fully capable of linking against shared
+	  libraries which don't have .la files, but being a mere shell
+	  script it can add considerably to the build time of a
+	  libtool using package if that shellscript has to derive all
+	  this infomation from first principles for each library every
+	  time it is linked. With the advent of libtool-1.4 (and to a
+	  lesser extent libtool-1.3), the .la files will also store
+	  information about inter-library dependencies which cannot
+	  necessarily be derived after the .la file is deleted.
+	</p>
+
+	<p>
+	  Packages that use libtool to create shared libraries must
+	  include the <em>.la</em> files in the <em>-dev</em>
+	  packages. This is a good idea in general, and espescially
+	  for static linking issues.
+	</p>
+	
+	<p>
+	  Please make sure that you use only released versions of
+	  shared libraries to build your packages; otherwise other
+	  users will not be able to run your binaries
+	  properly. Producing source packages that depend on
+	  unreleased compilers is also usually a bad
+	  idea.
+	</p>
+      </sect>
 	    
 	    
 	<sect>
@@ -2343,7 +2415,24 @@
       
       <sect>
 	<heading>Log files</heading>
-	
+	<p>
+	  The traditional approach to log files has been to set up ad
+	  hoc log rotation schemes using simple shell scripts and
+	  cron. While this approach is highly customizable, it
+	  requires quite a lot of sysadmin work. Even though the
+	  original Debian system helped a little by automatically
+	  installing a system which can be used as a template, this
+	  was deemed not enough. 
+	</p>
+
+	<p>
+	  A better scheme is to use logrotate, a GPL'd program
+	  developed by Red Hat, which centralizes log management. It
+	  has both a config file (<tt>/etc/logrotate.conf</tt>) and a
+	  directory where packages can drop logrotation info
+	  (<tt>/etc/logrotate.d</tt>). 
+	</p>
+
 	<p>
 	  Log files should usually be named
 	  <tt>/var/log/<var>package</var>.log</tt>.  If you have many
@@ -2355,18 +2444,26 @@
 	<p>
 	  Make sure that any log files are rotated occasionally so
 	  that they don't grow indefinitely; the best way to do this
-	  is to use <prgn>savelog</prgn> program in an
-	  <tt>/etc/cron.daily</tt>, <tt>/etc/cron.weekly</tt> or
-	  <tt>/etc/cron.monthly</tt> script. Here is a good example:
+	  is to drop a script into the directory
+	  <tt>/etc/logrotate.d</tt> and use the facilities provided by
+	  logrotate. Here is a good example for a logrotate config
+	  file (for more information see <manref name="logrotate"
+						 section="8">):
 	  <example>
-	    [ -d /var/log/apache/. ] || exit 0
-	    umask 022
-	    cd /var/log/apache
-	    if [ -fs access.log ]
-	    then
-	    savelog -c 7 access.log > /dev/null
-	    fi
-	  </example></p>
+        /var/log/foo/* {
+                rotate 12
+                weekly
+                compress
+                postrotate
+                        /etc/init.d/foo force-reload
+                endscript
+        }
+	  </example> 	  
+	  Which rotates all files under `/var/log/foo', saves 12
+	  compressed generations, and sends a HUP signal at the end of
+	  rotation.
+
+	</p>
 	
 	<p>
 	  Make sure that any log files are removed when the package is
@@ -2531,6 +2628,24 @@
 	  
 	  
       <sect>
+        <heading>Using pseudo-ttys and modifying wtmp, utmp and lastlog</heading>
+	  
+	<p>
+	  Some programs need to create pseudo-ttys. This should be done
+	  using Unix98 ptys if the C library supports it. The resulting
+	  program must not be installed setuid root, unless that
+	  is required for other functionality.
+	</p>
+	
+	<p>
+	  The files <tt>/var/run/utmp</tt>, <tt>/var/log/wtmp</tt> and
+	  <tt>/var/log/lastlog</tt> must be installed writeable by
+	  group utmp.  Programs who need to modify those files must
+	  be installed install setgid utmp.
+	</p>
+      </sect>
+
+      <sect>
 	<heading>Editors and pagers</heading>
 	  
 	<p>
@@ -2601,7 +2716,7 @@
 		
 	      <p>
 		Html documents for a package are stored in
-		/usr/doc/<var>package</var> and can be referred to as
+		/usr/share/doc/<var>package</var> and can be referred to as
 		<example>
 		  http://localhost/doc/&lt;package&gt;/&lt;filename&gt;
 		</example></p></item>
@@ -2612,7 +2727,7 @@
 	      <p>
 		Web Applications should try to avoid storing files in
 		the Web Document Root.  Instead use the
-		/usr/doc/&lt;package&gt; directory for documents and
+		/usr/share/doc/&lt;package&gt; directory for documents and
 		register the Web Application via the menu package. If
 		access to the web-root is unavoidable then use
 		<example>
@@ -2640,7 +2755,7 @@
 	<p>
 	  The mail spool is <tt>/var/spool/mail</tt> and the interface
 	  to send a mail message is <tt>/usr/sbin/sendmail</tt> (as
-	  per the FSSTND).  The mail spool is part of the base system
+	  per the FHS).  The mail spool is part of the base system
 	  and not part of the MTA package.</p>
 	  
 	<p>
@@ -2684,7 +2799,7 @@
 	<p>
 	  The location for the <prgn>rmail</prgn> program used by UUCP
 	  for incoming mail is <tt>/usr/sbin/rmail</tt>, as per the
-	  FSSTND.  Likewise, <prgn>rsmtp</prgn>, for receiving
+	  FHS.  Likewise, <prgn>rsmtp</prgn>, for receiving
 	  batch-SMTP-over-UUCP, is in <tt>/usr/sbin/rsmtp</tt> if it
 	  is supported.</p>
 	  
@@ -2747,20 +2862,22 @@
 	  
 	  
       <sect>
-	<heading>Programs for the X Windows system</heading>
+	<heading>Programs for the X Window system</heading>
 	  
 	<p>
 	  Some programs can be configured with or without support for
-	  X Windows.  Typically these binaries produced when
-	  configured for X will need the X shared libraries to
+	  the X Window System.  Typically, binaries produced when
+	  built with X support will need the X shared libraries to
 	  run.</p>
 	  
 	<p>
 	  Such programs should be configured <em>with</em> X support,
-	  and should declare a dependency on <tt>xlib6g</tt> (for the
-	  X11R6 libraries).  Users who wish to use the program can
-	  install just the relatively small <tt>xlib6g</tt> package,
-	  and do not need to install the whole of X.</p>
+	  and should declare a dependency on <tt>xlib6g</tt> (which
+	  contains X shared libraries).  Users who wish to use the
+	  program can install just the relatively small
+	  <tt>xfree86-common</tt> and <tt>xlib6g</tt> packages, and do
+	  not need to install the whole of X.
+	</p>
 	  
 	<p>
 	  Do not create two versions (one with X support and one
@@ -2768,33 +2885,67 @@
 	  
 	<p>
 	  <em>Application defaults</em> files have to be installed in
-	  the directory
-	  <tt>/usr/X11R6/lib/X11/app-defaults/</tt>. They are
-	  considered as part of the program code. Thus, they should
-	  not be modified and should not be tagged as
-	  <em>conffile</em>. If the local system administrator wants
-	  to customise X applications globally, the file
-	  <tt>/etc/X11/Xresources</tt> should be used.</p>
+	  the directory <tt>/usr/X11R6/lib/X11/app-defaults/</tt>.
+	  They are considered as part of the program code.  Thus, they
+	  should not be modified and should not be tagged as
+	  <em>conffile</em>.  If the local system administrator wants
+	  to customise X applications globally, a file with the same
+	  name as that of the package should be placed in the
+	  <tt>/etc/X11/Xresources/</tt> directory instead.
+	  <em>Important:</em> packages that install files into the
+	  <tt>/etc/X11/Xresources/</tt> directory <em>must</em>
+	  declare a conflict with <tt>xbase (&lt;&lt;
+	  3.3.2.3a-2)</tt>; if this is not done it is possible for the
+	  package to destroy a previously-existing
+	  <tt>/etc/X11/Xresources</tt> <em>file</em>.
+	</p>
+
+	<p>
+	  No package should ever install files into the directories
+	  <tt>/usr/bin/X11/</tt>, <tt>/usr/share/doc/X11/</tt>,
+	  <tt>/usr/include/X11/</tt>, or <tt>/usr/lib/X11/</tt>; these
+	  directories are actually symbolic links, which <tt>dpkg</tt>
+	  does not follow when unpacking a package.  Instead, use
+	  <tt>/usr/X11R6/bin/</tt>,
+	  <tt>/usr/share/doc/</tt><var>package/</var> (i.e., place
+	  files with the rest of your package's documentation),
+	  <tt>/usr/X11R6/include/</tt>, and <tt>/usr/X11R6/lib/</tt>.
+	  It is permissible, and even preferable, however, for a
+	  package to refer to the <tt>/usr/{bin,include,lib}/X11/</tt>
+	  directories internally, however; this restriction governs
+	  only the paths used by the package as it is unpacked onto
+	  the system.
+	</p>
 	  
 	<p>
-	  If you package a program that requires a non-free Motif
-	  library, it would be good if you can provide a "foo-smotif"
-	  and a "foo-dmotif" package, containing a (against Motif
-	  libraries) statically and a dynamically linked version,
-	  respectively. This way, users without Motif can use the
-	  package too, while users that have Motif installed get the
-	  advantages of a dynamically linked version.</p>
-	  
+	  If you package a program that requires the (non-free)
+	  OSF/Motif library, you should try to determine if the
+	  programs works reasonably well with the free
+	  re-implementation of Motif called LessTif.  If so, build the
+	  package using the LessTif libraries; it can then go into the
+	  main section of the package repository and become an
+	  official part of the Debian distribution.
+	</p>
+
 	<p>
-	  However, if your package works reliably with lesstif, you
-	  should package it with lesstif, and not with Motif at
-	  all.</p>
-	  
-	<p>
-	  Note, that packages that require non-free Motif libraries
-	  can't go into the main section. If your package is free
-	  otherwise, it should go into contrib. Otherwise it has to go
-	  into non-free.</p></sect>
+	  If however, the Motif-based program works insufficiently
+	  well with LessTif, you should instead provide "-smotif" and
+	  "-dmotif" versions (appending these identifiers to the name
+	  of the package), which are statically and dynamically linked
+	  against the Motif libraries, respectively.  (All known
+	  versions of OSF/Motif permit redistribution of
+	  statically-linked binaries using the library, but check the
+	  license on your copy of Motif to be sure.)  This two-package
+	  approach allows users without Motif to use the package,
+	  whereas users with Motif installed can enjoy the advantages
+	  of the dynamically-linked version (a considerable savings in
+	  disk space usage, download time, etc.).  Neither "-smotif"
+	  nor "-dmotif" packages can go into the main section; if the
+	  licensing on the package is compatible with the Debian Free
+	  Software Guidelines, it may go into the contrib section;
+	  otherwise it must go into the non-free section.
+	</p>
+      </sect>
 	  
 	  
       <sect>
@@ -2846,11 +2997,11 @@
 	  security hole.</p>
 	  
 	<p>
-	  As described in the FSSTND, binaries of games should be
+	  As described in the FHS, binaries of games should be
 	  installed in the directory <tt>/usr/games</tt>. This also
-	  applies to games that use the X windows system. Manual pages
+	  applies to games that use the X Window system. Manual pages
 	  for games (X and non-X games) should be installed in
-	  <tt>/usr/man/man6</tt>.</p>
+	  <tt>/usr/share/man/man6</tt>.</p>
       </sect>
     </chapt>
       
@@ -2862,8 +3013,8 @@
 	  
 	<p>
 	  You must install manual pages in <prgn>nroff</prgn> source
-	  form, in appropriate places under <tt>/usr/man</tt>.  You
-	  should only use sections 1 to 9 (see the FSSTND for more
+	  form, in appropriate places under <tt>/usr/share/man</tt>.  You
+	  should only use sections 1 to 9 (see the FHS for more
 	  details).  You must <em>not</em> install a preformatted `cat
 	  page'.</p>
 	  
@@ -2876,7 +3027,7 @@
 	  <tt>debian/rules</tt> like this:
 	  <example>
 	    ln -s ../man7/undocumented.7.gz \
-	    debian/tmp/usr/man/man[1-9]/the_requested_manpage.[1-9].gz
+	    debian/tmp/usr/share/man/man[1-9]/the_requested_manpage.[1-9].gz
 	  </example> 
 	  This manpage claims that the lack of a manpage has been
 	  reported as a bug, so you may only do this if it really has
@@ -2906,14 +3057,14 @@
 	  absolute filenames in <tt>.so</tt> directives.  The filename
 	  in a <tt>.so</tt> in a manpage should be relative to the
 	  base of the manpage tree (usually
-	  <tt>/usr/man</tt>).</p></sect>
+	  <tt>/usr/share/man</tt>).</p></sect>
 	  
 	  
       <sect>
 	<heading>Info documents</heading>
 	  
 	<p>
-	  Info documents should be installed in <tt>/usr/info</tt>.
+	  Info documents should be installed in <tt>/usr/share/info</tt>.
 	  They should be compressed with <tt>gzip -9</tt>.</p>
 	  
 	<p>
@@ -2922,14 +3073,14 @@
 	  file, in its post-installation script:
 	  <example>
 	    install-info --quiet --section Development Development \
-	    /usr/info/foobar.info
+	    /usr/share/info/foobar.info
 	  </example></p>
 	  
 	<p>
 	  It is a good idea to specify a section for the location of
 	  your program; this is done with the <tt>--section</tt>
 	  switch.  To determine which section to use, you should look
-	  at <tt>/usr/info/dir</tt> on your system and choose the most
+	  at <tt>/usr/share/info/dir</tt> on your system and choose the most
 	  relevant (or create a new section if none of the current
 	  sections are relevant).  Note that the <tt>--section</tt>
 	  flag takes two arguments; the first is a regular expression
@@ -2939,7 +3090,7 @@
 	<p>
 	  You must remove the entries in the pre-removal script:
 	  <example>
-	    install-info --quiet --remove /usr/info/foobar.info
+	    install-info --quiet --remove /usr/share/info/foobar.info
 	  </example></p>
 	  
 	<p>
@@ -2955,7 +3106,7 @@
 	  Any additional documentation that comes with the package can
 	  be installed at the discretion of the package maintainer.
 	  Text documentation should be installed in a directory
-	  <tt>/usr/doc/<var>package</var></tt>, where
+	  <tt>/usr/share/doc/<var>package</var></tt>, where
 	  <var>package</var> is the name of the package, and
 	  compressed with <tt>gzip -9</tt> unless it is small.</p>
 	
@@ -2969,7 +3120,7 @@
 	<p>
 	  It is often a good idea to put text information files
 	  (<tt>README</tt>s, changelogs, and so forth) that come with
-	  the source package in <tt>/usr/doc/<var>package</var></tt>
+	  the source package in <tt>/usr/share/doc/<var>package</var></tt>
 	  in the binary package.  However, you don't need to install
 	  the instructions for building and installing the package, of
 	  course!</p>
@@ -2987,7 +3138,7 @@
 	  mark up format that can be converted to various other formats
 	  you should if possible ship HTML versions in a binary
 	  package, in the directory
-	  <tt>/usr/doc/<var>appropriate package</var></tt> or its
+	  <tt>/usr/share/doc/<var>appropriate package</var></tt> or its
 	  subdirectories.
 	  <footnote>
 	    <p>The rationale: The important thing here is that HTML
@@ -3007,7 +3158,7 @@
 	<p>
 	  Every package must be accompanied by a verbatim copy of its
 	  copyright and distribution license in the file
-	  /usr/doc/&lt;package-name&gt;/copyright. This file must
+	  /usr/share/doc/&lt;package-name&gt;/copyright. This file must
 	  neither be compressed nor be a symbolic link.</p>
 	
 	<p>
@@ -3019,8 +3170,8 @@
 	  involved with its creation.</p>
 	
 	<p>
-	  /usr/doc/&lt;package-name&gt; may be a symbolic link to a
-	  directory in /usr/doc only if two packages both come from
+	  /usr/share/doc/&lt;package-name&gt; may be a symbolic link to a
+	  directory in /usr/share/doc only if two packages both come from
 	  the same source and the first package has a "Depends"
 	  relationship on the second.  These rules are important
 	  because copyrights must be extractable by mechanical
@@ -3029,13 +3180,36 @@
 	<p>
 	  Packages distributed under the UCB BSD license, the Artistic
 	  license, the GNU GPL, and the GNU LGPL should refer to the
-	  files /usr/doc/copyright/BSD, /usr/doc/copyright/Artistic,
-	  /usr/doc/copyright/GPL, and /usr/doc/copyright/LGPL.</p>
+	  files /usr/share/common-licenses/BSD,
+	  /usr/share/common-licenses/Artistic,
+	  /usr/share/common-licenses/GPL, and
+	  /usr/share/common-licenses/LGPL.
+	  <footnote>
+	    <p>
+	      Why "licenses" and not "copyright"? Because
+	      <tt>/usr/doc/copyright</tt> used to contain all the
+	      copyright files, plus the four common licenses GPL,
+	      LGPL, Artistic and BSD. Now individual copyright files
+	      for packages are no longer in a common directory. Once
+	      <tt>/usr/doc/copyright</tt> is almost empty it makes
+	      sense to rename "copyright" to "licenses"
+	    </p> 
+	    <p>
+	      Why "common-licenses" and not "licenses"? Because if I
+	      put just "licenses" I'm sure I will receive a bug report
+	      saying "license foo is not included in the licenses
+	      directory. They are not all the licenses, just a few
+	      common ones. I could use /usr/share/doc/common-licenses
+	      but I think this is too long, and, after all, the GPL
+	      does not "document" anything, it is merely a licence.
+	    </p>
+	  </footnote>
+	</p>
 	
 	<p>
 	  Do not use the copyright file as a general <tt>README</tt>
 	  file.  If your package has such a file it should be
-	  installed in <tt>/usr/doc/<var>package</var>/README</tt> or
+	  installed in <tt>/usr/share/doc/<var>package</var>/README</tt> or
 	  <tt>README.Debian</tt> or some other appropriate place.</p>
       </sect>
       
@@ -3045,7 +3219,7 @@
 	<p>
 	  Any examples (configurations, source files, whatever),
 	  should be installed in a directory
-	  <tt>/usr/doc/<var>package</var>/examples</tt>.  These files
+	  <tt>/usr/share/doc/<var>package</var>/examples</tt>.  These files
 	  should not be referenced by any program--they're there for
 	  the benefit of the system administrator and users, as
 	  documentation only.</p>
@@ -3059,12 +3233,13 @@
 	  <tt>debian/changelog</tt> file from your Debian source tree,
 	  and a copy of the upstream changelog file if there is one.
 	  The debian/changelog file should be installed in
-	  <tt>/usr/doc/<var>package</var></tt> as
+	  <tt>/usr/share/doc/<var>package</var></tt> as
 	  <tt>changelog.Debian.gz</tt>.  If the upstream changelog
 	  file is text formatted, it must be accessible as
-	  <tt>/usr/doc/<var>package</var>/changelog.gz</tt>.  If the
-	  upstream changelog file is HTML formatted, it must be
-	  accessible as <tt>/usr/doc/<var>package</var>/changelog.html.gz</tt>.
+	  <tt>/usr/share/doc/<var>package</var>/changelog.gz</tt>.  If
+	  the upstream changelog file is HTML formatted, it must be
+	  accessible as
+	  <tt>/usr/share/doc/<var>package</var>/changelog.html.gz</tt>.
 	  If the upstream changelog files do not already conform to
 	  this naming convention, then this may be achieved by either
 	  renaming the files or adding a symbolic link at the
@@ -3080,8 +3255,8 @@
 	  the Debian changelog and the upstream one because there is
 	  no separate upstream maintainer then that changelog should
 	  usually be installed as
-	  <tt>/usr/doc/<var>package</var>/changelog.gz</tt>; if there
-	  is a separate upstream maintainer, but no upstream
+	  <tt>/usr/share/doc/<var>package</var>/changelog.gz</tt>; if
+	  there is a separate upstream maintainer, but no upstream
 	  changelog, then the Debian changelog should still be called
 	  <tt>changelog.Debian.gz</tt>.</p>
       </sect>

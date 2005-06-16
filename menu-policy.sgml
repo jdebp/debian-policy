@@ -1,0 +1,300 @@
+<!doctype debiandoc system [
+<!-- include version information so we don't have to hard code it
+     within the document -->
+<!entity % versiondata SYSTEM "version.ent"> %versiondata;
+]>
+<debiandoc>
+  <!--
+  Debian GNU/Linux Menu Sub-Policy Manual.
+  Copyright (C)1999 ;
+
+  released under the terms of the GNU General Public License, version
+  2 or (at your option) any later.
+
+  The debian-policy mailing list has taken responsibility for the
+  contents of this document8, with the package maintainers responsible
+  for packagingn adminstrivia only.  
+ 
+  -->
+  
+  <book>
+    <titlepag>
+      <title>The Debian Menu sub-policy</title>
+      <author>
+	<name>Chris Waters  </name>
+	<email>xtifr@dsp.net</email>
+      </author>
+      <author>
+	<name>Joey Hess</name> 
+	<email>joey@kitenet.net</email>
+      </author>
+      <author>
+	<name>Joost Witteveen</name> 
+	<email>joostje@debian.org</email>
+      </author>
+      <author>
+	<name>The Debian Policy mailing List</name>
+	<email>debian-policy@lists.debian.org</email>
+      </author>
+      <version>version &version;, &date;</version>
+
+      <abstract>
+	This manual describes the policy requirements for the Menu
+	system used in the Debian GNU/Linux distribution. This
+	document is part of the policy package for Debian. The policy
+	package itself is maintained by a group of maintainers that
+	have no editorial powers. At the moment, the list of
+	maintainers is:
+	<enumlist>
+	  <item>
+	    <p>Michael Alan Dorman <email>mdorman@debian.org</email></p>
+	  </item>
+	  <item>
+	    <p>Richard Braakman <email>dark@xs4all.nl</email></p>
+	  </item>
+	  <item>
+	    <p>Philip Hands <email>phil@hands.com</email></p>
+	  </item>
+	  <item>
+	    <p>Manoj Srivastava <email>srivasta@debian.org</email></p>
+	  </item>
+	</enumlist>
+      </abstract>
+
+
+      <copyright>
+	<copyrightsummary>
+	  Copyright &copy;1999 .
+	</copyrightsummary>
+	<p>
+	  This manual is free software; you may redistribute it and/or
+	  modify it under the terms of the GNU General Public License
+	  as published by the Free Software Foundation; either version
+	  2, or (at your option) any later version.
+	</p>
+
+	<p>
+	  This is distributed in the hope that it will be useful, but
+	  <em>without any warranty</em>; without even the implied
+	  warranty of merchantability or fitness for a particular
+	  purpose.  See the GNU General Public License for more
+	  details.
+	  </p>
+	<p>
+	  A copy of the GNU General Public License is available as
+	  <tt>/usr/doc/copyright/GPL</tt> in the Debian GNU/Linux
+	  distribution or on the World Wide Web at 
+	  <url id="http://www.gnu.org/copyleft/gpl.html"
+	  name="&urlname">. You can also obtain it by writing to the
+	  Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+	  Boston, MA 02111-1307, USA.
+	</p>
+      </copyright>
+    </titlepag>
+
+    <toc detail="sect">
+    <chapt>
+      <heading>About this document</heading>
+      <p>
+	The latest copy of this document can be found at
+	<ftpsite>ftp.debian.org</ftpsite>
+	<ftppath>/debian/doc/package-developer/menu_policy.txt</ftppath> 
+      </p>
+      <p>
+	This document has been extracted and separated from the
+	<em>Menu</em> package to:<enumlist>
+	  <item>
+	    <p>Increase the visibility of the Menu sub policy</p>
+	  </item>
+	  <item>
+	    <p>
+	      Reduce the coupling between policy and
+	      implementation. If this separtion is not made, every
+	      time we want to change menu policy, we have to arrange
+	      to get the maintainer to release a new version of the
+	      package, even if the package has not otherwise
+	      changed. It also involves yet another layer, making the
+	      policy changes that much harder to implement.</p>
+	  </item>
+	</enumlist>
+      </p>
+    </chapt>
+    <chapt>
+      <heading>Menu Structure</heading>
+      <p>
+	If you have a package which doesn't fit within the existing
+	menu heirarchy, please bring it up on the debian-devel mailing
+	list.  If you have other proposals for changing the menu
+	heirarchy, or making other changes to menu policy, please
+	bring it up on debian-policy.
+      </p>
+      <sect>
+	<heading>Preferred menu structure</heading>
+	<p>
+	  Here is the authoritative list of Debian's menu
+	  structure. Please do not put your packages into any other
+	  sections without asking for permission first!
+	</p>
+	<p><taglist>
+	    <tag>Apps</tag>
+	    <item>
+	      <p>normal applications</p>
+	      <p><taglist>
+		  <tag>Databases</tag>
+		  <item>
+		    <p>interactive database programs</p>
+		  </item>
+		  <tag>Editors</tag>
+		  <item>
+		    <p>text editors, word processors</p>
+		  </item>
+		  <tag>Emulators</tag>
+		  <item>
+		    <p>wine, dosemu, etc.</p>
+		  </item>
+		  <tag>Graphics</tag>
+		  <item>
+		    <p>image manipulation</p>
+		  </item>
+		  <tag>Hammradio</tag>
+		  <item>
+		    <p>anything relating to ham radio</p>
+		  </item>
+		  <tag>Math</tag>
+		  <item>
+		    <p>math related programs</p>
+		  </item>
+		  <tag>Net</tag>
+		  <item>
+		    <p>network programs that don't fit elsewhere</p>
+		  </item>
+		  <tag>Programming</tag>
+		  <item>
+		    <p>debuggers, etc.</p>
+		  </item>
+		  <tag>Tools</tag>
+		  <item>
+		    <p>simple apps, like clocks, that perform only one task</p>
+		  </item>
+		  <tag>Technical</tag>
+		  <item>
+		    <p>technical stuff</p>
+		  </item>
+		  <tag>Text</tag>
+		  <item>
+		    <p>text oriented tools other than editors</p>
+		  </item>
+		  <tag>Shells</tag>
+		  <item>
+		    <p>bash, ksh, zsh, etc.</p>
+		  </item>
+		  <tag>Sound</tag>
+		  <item>
+		    <p>sound players and editors</p>
+		  </item>
+		  <tag>Viewers</tag>
+		  <item>
+		    <p>image viewers</p>
+		  </item>
+		  <tag>System</tag>
+		  <item>
+		    <p>system administration and monitoring tools</p>
+		  </item>
+		</taglist>
+	      </p>
+	    </item>
+	    <tag>Games</tag>
+	    <item>
+	      <p>games and recreations</p>
+	      <p><taglist>
+		  <tag>Adventure</tag>
+		  <item>
+		    <p>walk around virtual space, zork, MOO's, etc</p>
+		  </item>
+		  <tag>Arcade</tag>
+		  <item>
+		    <p>any game where reflexes count</p>
+		  </item>
+		  <tag>Board</tag>
+		  <item>
+		    <p>games played on a board</p>
+		  </item>
+		  <tag>Card</tag>
+		  <item>
+		    <p>games involving a deck of cards</p>
+		  </item>
+		  <tag>Puzzles</tag>
+		  <item>
+		    <p>tests of ingenuity and logic</p>
+		  </item>
+		  <tag>Sports</tag>
+		  <item>
+		    <p>games derived from "real world" sports</p>
+		  </item>
+		  <tag>Strategy</tag>
+		  <item>
+		    <p>games involving long term strategic thinking</p>
+		  </item>
+		  <tag>Tetris-like</tag>
+		  <item>
+		    <p>games involving falling blocks</p>
+		  </item>
+		  <tag>Toys</tag>
+		  <item>
+		    <p>amusements, eye-candy, etc.</p>
+		  </item>
+		</taglist>
+	      </p>
+	    </item>
+	    <tag>Help</tag>
+	    <item>
+	      <p>programs that provide user documentation</p>
+	    </item>
+	    <tag>Screen</tag>
+	    <item>
+	      <p>programs that affect the whole screen</p>
+	      <p>
+		<taglist>
+		  <tag>Lock</tag>
+		  <item>
+		    <p>programs to lock the screen</p>
+		  </item>
+		  <tag>Save</tag>
+		  <item>
+		    <p>screen savers</p>
+		  </item>
+		  <tag>Root-window</tag>
+		  <item>
+		    <p>things that fill the root window</p>
+		  </item>
+		</taglist>
+	      </p>
+	    </item>
+	    <tag>WindowManagers</tag>
+	    <item>
+	      <p>X window managers</p>
+	      <p>
+		<taglist>
+		  <tagModules></tag>
+		  <item>
+		    <p>window manager modules</p>
+		  </item>
+		</taglist>
+	      </p>
+	    </item>
+	    <tag>XShells</tag>
+	    <item>
+	      <p>xterm and its brethern</p>
+	    </item>
+	  </taglist>
+	</p>
+      </sect>
+    </chapt>
+  </book>
+</debiandoc>
+
+
+
+
+
+
