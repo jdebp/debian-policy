@@ -1390,38 +1390,12 @@
 	    reconfigure the package if necessary.  You should
 	    <em>not</em> configure the package and edit the generated
 	    <prgn>Makefile</prgn>!  This makes it impossible for
-	    someone else to later reconfigure the package.</p></sect1>
-
-
-	<sect1>
-	  <heading>Documenting your changes</heading>
+	    someone else to later reconfigure the package.</p>
 
 	  <p>
 	    You should document your changes and updates to the source
-	    package properly in the <file>debian/changelog</file> file. (Note
-	    that mistakes in changelogs are usually best rectified by
-	    making a new changelog entry rather than "rewriting history"
-	    by editing old changelog entries.)</p>
-
-	  <p>
-	    In non-experimental packages you must use a format for
-	    <file>debian/changelog</file> which is supported by the most
-	    recent released version of <prgn>dpkg</prgn>.<footnote>
-	      <p>
-		If you wish to use an alternative format, you may do
-		so as long as you include a parser for it in your
-		source package.  The parser must have an API
-		compatible with that expected by
-		<prgn>dpkg-genchanges</prgn> and
-		<prgn>dpkg-gencontrol</prgn>.  If there is general
-		interest in the new format, you should contact the
-		<package>dpkg</package> maintainer to have the parser
-		script for it included in the <prgn>dpkg</prgn>
-		package.  (You will need to agree that the parser and
-		its manpage may be distributed under the GNU GPL, just
-		as the rest of `dpkg' is.)
-	      </p>
-	    </footnote>
+	    package properly in the <file>debian/changelog</file> file.
+            For more information, please see <ref id="changelogs">.
 	  </p>
 	</sect1>
 
@@ -7625,14 +7599,16 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	  from <file>/usr/share/doc/<var>package</var>/</file>.
 	</p>
 
-      </sect>
-
-      <sect id="usrdoc">
-	<heading>Accessing the documentation</heading>
+	<p>
+	  <file>/usr/share/doc/<var>package</var></file> may be a symbolic
+	  link to another directory in <file>/usr/share/doc</file> only if
+	  the two packages both come from the same source and the
+	  first package Depends on the second. 
+	</p>
 
 	<p>
 	  Former Debian releases placed all additional documentation
-	  in <file>/usr/doc/<var>package</var></file>.  This has now
+	  in <file>/usr/doc/<var>package</var></file>.  This has been
 	  changed to <file>/usr/share/doc/<var>package</var></file>,
 	  and packages must not put documentation in the directory
 	  <file>/usr/doc/<var>package</var></file>. <footnote>
@@ -7683,9 +7659,7 @@ install-info --quiet --remove /usr/share/info/foobar.info
 
 	<p>
 	  In addition, the copyright file must say where the upstream
-	  sources (if any) were obtained, and should explain briefly what
-	  modifications were made in the Debian version of the package
-	  compared to the upstream one.  It should name the original
+	  sources (if any) were obtained.  It should name the original
 	  authors of the package and the Debian maintainer(s) who were
 	  involved with its creation.</p>
 
@@ -7740,16 +7714,51 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	</p>
       </sect>
 
-      <sect id="instchangelog">
+      <sect id="changelogs">
 	<heading>Changelog files</heading>
+
+        <p>
+          The Debian changelog file (<file>debian/changelog</file>) should
+	  explain briefly what modifications were made in the Debian version
+	  of the package compared to the upstream one. Other changes and
+	  updates to the package should also be documented in this file.
+        </p>
+
+        <p>
+          Mistakes in changelogs are usually best rectified by
+          making a new changelog entry rather than "rewriting history"
+          by editing old changelog entries.
+        </p>
+
+        <p>
+          The format of the <file>debian/changelog</file> file is described
+          in <ref id="dpkgchangelog">. In non-experimental packages you must
+          use a format for <file>debian/changelog</file> which is supported
+          by the most recent released version of <prgn>dpkg</prgn>.<footnote>
+            <p>
+            If you wish to use an alternative format, you may do so as long
+            as you include a parser for it in your source package.  The
+            parser must have an API compatible with that expected by
+            <prgn>dpkg-genchanges</prgn> and <prgn>dpkg-gencontrol</prgn>. 
+            If there is general interest in the new format, you should
+            contact the <package>dpkg</package> maintainer to have the
+            parser script for it included in the <prgn>dpkg</prgn> package. 
+            (You will need to agree that the parser and its manpage may be
+            distributed under the GNU GPL, just as the rest of `dpkg' is.)
+            </p>
+          </footnote>
+	</p>
 
 	<p>
 	  Packages that are not Debian-native must contain a
 	  compressed copy of the <file>debian/changelog</file> file from
 	  the Debian source tree in
 	  <file>/usr/share/doc/<var>package</var></file> with the name
-	  <file>changelog.Debian.gz</file>.  If an upstream changelog is
-	  available, it should be accessible as
+	  <file>changelog.Debian.gz</file>.
+        </p>
+
+        <p>
+          If an upstream changelog is available, it should be accessible as
 	  <file>/usr/share/doc/<var>package</var>/changelog.gz</file> in
 	  plain text.  If the upstream changelog is distributed in
 	  HTML, it should be made available in that form as
@@ -7769,14 +7778,6 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	</p>
 
 	<p>
-	  <file>/usr/share/doc/<var>package</var></file> may be a symbolic
-	  link to another directory in <file>/usr/share/doc</file> only if
-	  the two packages both come from the same source and the
-	  first package Depends on the second. 
-	</p>
-
-
-	<p>
 	  All of these files should be installed compressed using
 	  <tt>gzip -9</tt>, as they will become large with time even
 	  if they start out small.
@@ -7791,6 +7792,7 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	  there is a separate upstream maintainer, but no upstream
 	  changelog, then the Debian changelog should still be called
 	  <file>changelog.Debian.gz</file>.</p>
+
       </sect>
     </chapt>
 
