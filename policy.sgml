@@ -3209,8 +3209,17 @@ Depends: libc6 (>= 2.2.1), exim | mail-transport-agent
 Source: glibc
 Build-Depends-Indep: texinfo
 Build-Depends: kernel-headers-2.2.10 [!hurd-i386],
-hurd-dev [hurd-i386], gnumach-dev [hurd-i386]
+  hurd-dev [hurd-i386], gnumach-dev [hurd-i386]
 	  </example>
+	</p>
+
+	<p>
+	  Note that the binary package relationship fields such as
+	  <tt>Depends</tt> appear in one of the binary package
+	  sections of the control file, whereas the build-time
+	  relationships such as <tt>Build-Depends</tt> appear in the
+	  source package section of the control file (which is the
+	  first section).
 	</p>
       </sect>
 
@@ -3222,8 +3231,10 @@ hurd-dev [hurd-i386], gnumach-dev [hurd-i386]
 
 	<p>
 	  These five fields are used to declare a dependency
-	  relationship by one package on another.  They appear in the
-	  depending package's control file.
+	  relationship by one package on another.  Except for
+	  <tt>Enhances</tt>, they appear in the depending (binary)
+	  package's control file.  (<tt>Enhances</tt> appears in the
+	  recommending package's control file.)
 	</p>
 
 	<p>
@@ -4225,7 +4236,14 @@ libbar 1 bar1 (>= 1.0-1)
 	    For example, the <tt>emacsen-common</tt> package could
 	    contain something like
 	    <example compact="compact">
-mkdir -p /usr/local/share/emacs/site-lisp || true
+if [ ! -e /usr/local/share/emacs ]
+then
+  if mkdir /usr/local/share/emacs 2>/dev/null
+  then
+    chown root:staff /usr/local/share/emacs
+    chmod 2775 /usr/local/share/emacs
+  fi
+fi
 	    </example>
 	    in its <prgn>postinst</prgn> script, and
 	    <example compact="compact">
