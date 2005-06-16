@@ -5459,7 +5459,7 @@ rmdir /usr/local/share/emacs 2>/dev/null || true
 	    should include a <tt>test</tt> statement at the top of the
 	    script, like this:
 	    <example compact="compact">
-test -x <var>program-executed-later-in-script</var> || exit 0
+test -f <var>program-executed-later-in-script</var> || exit 0
 	    </example>
 	  </p>
 
@@ -6431,7 +6431,7 @@ endif
           Although not enforced by the build tools, shared libraries           
           must be linked against all libraries that they use symbols from      
           in the same way that binaries are.  This ensures the correct         
-          functioning of the <ref id="sharedlibs-shlibdeps">shlibs</ref>       
+          functioning of the  <ref id="sharedlibs-shlibdeps">shlibs       
           system and guarantees that all libraries can be safely opened        
           with <tt>dlopen()</tt>.  Packagers may wish to use the gcc           
           option <tt>-Wl,-z,defs</tt> when building a shared library.          

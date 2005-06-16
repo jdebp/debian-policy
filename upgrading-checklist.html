@@ -7,9 +7,9 @@
     Created On       : Thu Oct 29 20:54:48 1998
     Created On Node  : tiamat.datasync.com
     Last Modified By : Manoj Srivastava
-    Last Modified On : Fri Mar 21 13:22:56 2003
+    Last Modified On : Sat Jun  7 15:11:50 2003
     Last Machine Used: glaurung.green-gryphon.com
-    Update Count     : 32
+    Update Count     : 48
     Status           : Unknown, Use with caution!
     HISTORY          :
     Description      :
@@ -53,34 +53,44 @@ picking your way through this list.
 <h2>The checklist</h2>
 
 <pre>
+3.6.0                      Jun 03
+
+     - Added Games/Simulation and Apps/Educational to menu subpolicy
+       [menu policy]
+     - Debian changelogs should be UTF-8 encoded. [C.2.2]
+     - shared libraries must be linked against all libraries that they
+       use symbols from in the same way that binaries are. [10.2]
+     - build-depends-indep need not be satisfied during clean
+       target. [7.6] 
+
 3.5.10                     May 03
 
      - packages providing the x-terminal-emulator virtual package
        ought to ensure that they interpret the command line exactly
-       like xterm does. [12.8.3]
+       like xterm does. [11.8.3]
      - Window managers compliant with the Window Manager Specification
-       Project may add 40 points for ranking in the alternatives [12.8.4]
+       Project may add 40 points for ranking in the alternatives [11.8.4]
 
 
 3.5.9.0                    Mar 03
 
      - The section describing the Description: package field once again has
-       full details of the long description format. [5.7.2]
+       full details of the long description format. [3.4.2]
      - Clarified that if a package has non-build-essential
        build-dependencies, it should have them listed in the Build-Depends
-       and related fields (i.e. it's not merely optional). [2.4.2]
+       and related fields (i.e. it's not merely optional). [4.2]
      - When asked to restart a service that isn't already running,
-       the init script should start the service. [10.3.2]
+       the init script should start the service. [9.3.2]
      - If the purpose of a package is to provide examples, then the
        example files can be installed into <tt>/usr/share/doc/package</tt>
-       (rather than <tt>/usr/share/doc/package/examples</tt>). [13.6]
+       (rather than <tt>/usr/share/doc/package/examples</tt>). [12.6]
 
 
 3.5.8.0                    Nov 02
 
      - It is no longer necessary to keep a log of changes to the upstream
        sources in the copyright file. Instead, all such changes should be
-       documented in the changelog file. [13.7]
+       documented in the changelog file. [12.7]
      - <tt>Build-Depends</tt>, 	<tt>Build-Conflicts</tt>,
        <tt>Build-Depends-Indep</tt>, and
        <tt>Build-Conflicts-Indep</tt> must also be satisfied when the
@@ -90,44 +100,44 @@ picking your way through this list.
        policy]
      - It is no longer recommended to create symlinks from nonexistent
        manual pages to undocumented(7). Missing manual pages for programs
-       are still a bug. [13.1]
+       are still a bug. [12.1]
 
 3.5.7.0                    Aug 02
 
      - Packages no longer have to ask permission to call MAKEDEV in
-       postinst, merely notifying the user ought to be enough. [11.6]
+       postinst, merely notifying the user ought to be enough. [10.6]
      - cryptographic software may now be included in the main
-       archive. [2.1.5]
+       archive. [2.2.4]
      - task packages are no longer permitted; tasks are now created by a
-       special Tasks: field in the control file. [2.3.8]
+       special Tasks: field in the control file. [3.9]
      - window managers that support netwm can now add 20 points when
        they add themselves as an alternative for
-       /usr/bin/x-window-manager [12.8.4]
+       /usr/bin/x-window-manager [11.8.4]
      - The default compilation options have now changed, one should
        provide debugging symbols in all cases, and optionally step
        back optimization to -O0, depending on the DEB_BUILD_OPTIONS
-       environment variable. [11.1]
+       environment variable. [10.1]
      - Added mention of build-arch, build-indep, etc, in describing
        the relationships with `Build-Depends', `Build-Conflicts',
        `Build-Depends-Indep', and `Build-Conflicts-Indep'. May need to
-       review the new rules.  [7.6, 5.2]
+       review the new rules.  [7.6, 4.9]
      - Changed rules on how, and when, to invoke ldconfig in maintainer
-       scripts. Long rationale. [9]
+       scripts. Long rationale. [8]
      - [Added the last note in 3.5.6 upgrading checklist item regarding
        build rules, please see below]
 
 3.5.6.0                    Jul 01
 
      - Emacs and TeX are no longer mandated by policy to be priority
-       standard packages [2.2]
+       standard packages [2.5]
      - Programs that access docs need to do so via /usr/share/doc, and
-       not via /usr/doc/ as was the policy previously [12.5]
+       not via /usr/doc/ as was the policy previously [11.5]
      - Putting documentation in /usr/doc versus /usr/share/doc is now
-       a ``serious'' policy violation. [13.3]
+       a ``serious'' policy violation. [12.3]
      - For web servers, one should not provide non-local access to the
        /usr/share/doc hierarchy. If one can't provide access controls for
        the http://localhost/doc/ directory, then it is preferred that one
-       ask permission to expose that information during the install. [12.5]
+       ask permission to expose that information during the install. [11.5]
      - There are new rules for build-indep/build-arch targets and
        there is a new Build-Depend-Indep semantic. [7]
 
@@ -136,27 +146,27 @@ picking your way through this list.
 
      - Manpages should not rely on header information to have
        alternative manpage names available; it should only use
-       symlinks or .so pages to do this [13.1]
+       symlinks or .so pages to do this [12.1]
      - [Clarified note in 3.5.3.0 upgrading checklist regarding
         examples and templates: this refers only to those examples used
-        by scripts; see section 11.7.3 for the whole story]
-     - Included a new section 11.9.1 describing the use of
+        by scripts; see section 10.7.3 for the whole story]
+     - Included a new section 10.9.1 describing the use of
        dpkg-statoverride; this does not have the weight of policy
      - Clarify Standards-Version: you don't need to rebuild your
        packages just to change the Standards-Version!
      - Plugins are no longer bound by all the rules of shared
-       libraries [11.2]
+       libraries [10.2]
      - X Windows related things:
        * Clarification of priority levels of X Window System related
-         packages [12.8.1]
-       * Rules for defining x-terminal-emulator improved [12.8.3]
+         packages [11.8.1]
+       * Rules for defining x-terminal-emulator improved [11.8.3]
        * X Font policy rewritten: you must read this if you provide
-         fonts for the X Window System [12.8.5]
-       * Packages must not ship /usr/X11R6/lib/X11/app-defaults/ [12.8.6]
+         fonts for the X Window System [11.8.5]
+       * Packages must not ship /usr/X11R6/lib/X11/app-defaults/ [11.8.6]
        * X-related packages should usually use the regular FHS
-         locations; imake-using packages are exempted from this [12.8.7]
+         locations; imake-using packages are exempted from this [11.8.7]
        * OpenMotif linked binaries have the same rules as
-         OSF/Motif-linked ones [12.8.8]
+         OSF/Motif-linked ones [11.8.8]
 
 
 3.5.4.0                    Apr 01
@@ -164,10 +174,10 @@ picking your way through this list.
      - The system-wide mail directory is now /var/mail, no longer
        /var/spool/mail.  Any packages accessing the mail spool should
        access it via /var/mail and include a suitable Depends field;
-       details in [12.6]
+       details in [11.6]
      - The perl policy is now part of Debian policy proper. Perl
        programs and modules should follow the current Perl policy
-       [12.9; perl-policy]
+       [11.9; perl-policy]
 
 
 3.5.3.0                    Apr 01
@@ -177,36 +187,36 @@ picking your way through this list.
      - Examples and templates files for use by scripts should now live
        in /usr/share/&lt;package&gt; or /usr/lib/&lt;package&gt;, with
        symbolic links from /usr/share/doc/&lt;package&gt;/examples as
-       needed [11.7.3]
+       needed [10.7.3]
 
 
 3.5.2.0                    Feb 01
 
      - X app-defaults directory has moved from
-       /usr/X11R6/lib/X11/app-defaults to /etc/X11/app-defaults [12.8.6]
+       /usr/X11R6/lib/X11/app-defaults to /etc/X11/app-defaults [11.8.6]
 
 
 3.5.1.0                    Feb 01
 
      - dpkg-shlibdeps now uses objdump, so shared libraries have to be
-       run through dpkg-shlibdeps as well as executables [9.1]
+       run through dpkg-shlibdeps as well as executables [8.1]
 
 
 3.5.0.0                    Jan 01
 
      - Font packages for the X Window System must now declare a
-       dependency on xutils (>= 4.0.2) [12.8.5]
+       dependency on xutils (>= 4.0.2) [11.8.5]
 
 
 3.2.1.1                    Jan 01
 
      - Daemon startup scripts in /etc/init.d/ should not contain
        modifiable parameters; these should be moved to a file in
-       /etc/default/; see [10.3.2] for details
+       /etc/default/; see [9.3.2] for details
      - Files in /usr/share/doc must not be referenced by any
        program.  If such files are needed, they must be placed in
        /usr/share/&lt;package&gt;/, and symbolic links created as required
-       in /usr/share/doc/&lt;package&gt;/ [13.3]
+       in /usr/share/doc/&lt;package&gt;/ [12.3]
      - Much of the packaging manual has now been imported into the
        policy document
 
@@ -215,34 +225,34 @@ picking your way through this list.
 
      - A package of priority standard or higher may provide two
        binaries, one compiled with support for the X Window System,
-       and the other without [12.8.1]
+       and the other without [11.8.1]
 
 
 3.2.0.0                    Aug 00
 
      - By default executables should not be built with the debugging
        option -g. Instead, it is recommended to support building the
-       package with debugging information optionally.  Details in [11.1]
+       package with debugging information optionally.  Details in [10.1]
      - Policy for packages where the upstream uses HTML changelog
        files has been expanded.  In short, a plain text changelog file
-       should always be generated for the upstream changes [13.8]
-     - Please note that the new release of the X window system (4.x)
+       should always be generated for the upstream changes [12.8]
+     - Please note that the new release of the X window system (3.2)
        shall probably need sweeping changes in policy
      - Policy for packages providing the following X-based features
        has been codified:
-       - X server (virtual package xserver) [12.8.2]
-       - X terminal emulator (virtual package x-terminal-emulator) [12.8.3]
+       - X server (virtual package xserver) [11.8.2]
+       - X terminal emulator (virtual package x-terminal-emulator) [11.8.3]
        - X window manager (virtual package x-window-manager, and
          /usr/bin/x-window-manager alternative, with priority
-         calculation guidelines) [12.8.4]
+         calculation guidelines) [11.8.4]
        - X fonts (this section has been written from scratch) [12.8.5]
-       - X application defaults [12.8.6]
+       - X application defaults [11.8.6]
      - Policy for packages using the X Window System and FHS issues
-       has been clarified; see [12.8.7]
+       has been clarified; see [11.8.7]
      - No package may contain or make hard links to conffiles [11.7.3]
      - Noted that newer dpkg versions do not require extreme care in
        always creating the shared lib before the symlink, so the unpack
-       order be correct [9]
+       order be correct [8]
 
 
 3.1.1.0                    Nov 99
@@ -255,60 +265,60 @@ picking your way through this list.
 
      - /usr/doc/&lt;package&gt; has to be a symlink pointing to
        /usr/share/doc/&lt;package&gt;, to be maintained by postinst
-       and prerm scripts.  Details are in [13.4]
+       and prerm scripts.  Details are in [defunct]
      - Introduced source dependencies (Build-Depends, etc.) [7.1, 7.6]
      - /etc/rc.boot has been deprecated in favour of /etc/rcS.d.
        (Packages should not be touching this directory, but should use
-       update-rc.d instead) [10.3.4]
+       update-rc.d instead) [9.3.4]
      - update-rc.d is now the *only* allowable way of accessing the
        /etc/rc?.d/[SK]??* links.  Any scripts which manipulate them
        directly must be changed to use update-rc.d instead.  (This is
        because the file-rc package handles this information in an
-       incompatible way.) [10.3.3]
+       incompatible way.) [9.3.3]
      - Architecture-specific examples go in /usr/lib/&lt;package&gt;/examples
        with symlinks from /usr/share/doc/&lt;package&gt;/examples/* or from
-       /usr/share/doc/&lt;package&gt;/examples itself [13.7]
+       /usr/share/doc/&lt;package&gt;/examples itself [12.7]
      - Updated FHS to a 2.1 draft; this reverts /var/state to
-       /var/lib [10.1.1]
-     - Added MIME sub-policy document [10.7; mime-policy]
+       /var/lib [9.1.1]
+     - Added MIME sub-policy document [9.7; mime-policy]
      - VISUAL is allowed as a (higher priority) alternative to EDITOR [12.4]
      - Modified liblockfile description, which affects
        mailbox-accessing programs.  Please see the policy document for
-       details [12.6]
+       details [11.6]
      - If a package provides a changelog in HTML format, a text-only
        version should also be included.  (Such a version may be prepared
-       using lynx -dump -nolist.) [13.8]
+       using lynx -dump -nolist.) [12.7]
      - Description of how to handle version numbers based on dates
-       added [4.1]
+       added [3.2.1]
 
 
 3.0.1.0                    Jul 99
 
     -  Added the clarification that the .la files are essential for the
        packages using libtool's libltdl library, in which case the
-       .la files must go in the run-time library package [11.2]
+       .la files must go in the run-time library package [10.2]
 
 
 3.0.0.0                    Jun 99
 
     - Debian formally moves from the FSSTND to the FHS. This is a
       major change, and the implications of this move are probably
-      not all known. [10.1]
+      not all known. [9.1]
     - Only 3 digits of the Standards version need be included in
-      control files, though all four digits are still permitted. [2.4.1]
+      control files, though all four digits are still permitted. [4.1]
     - The location of the GPL has changed to
       /usr/share/common-licenses. This may require changing the
       copyright files to point to the correct location of the GPL and
-      other major licenses [13.6]
+      other major licenses [12.6]
     - Packages that use libtool to create shared libraries must
-      include the .la files in the -dev packages [11.2]
-    - Use logrotate to rotate log files [11.8]
+      include the .la files in the -dev packages [10.2]
+    - Use logrotate to rotate log files [10.8]
     - section 5.8 has been rewritten (Programs for the X Window
-      System) [now 12.8]
+      System) [now 11.8]
     - There is now an associated menu policy, in a separate document,
-      that carries the full weight of Debian policy [10.6; menu-policy]
+      that carries the full weight of Debian policy [9.6; menu-policy]
     - Programs which need to modify the files /var/run/utmp,
-      /var/log/wtmp and /var/log/lastlog must be installed setgid utmp [12.3]
+      /var/log/wtmp and /var/log/lastlog must be installed setgid utmp [11.3]
 
 
 2.5.0.0                         Oct 98
