@@ -112,8 +112,10 @@ stamp-build:
 	fi
 	# The extra '.' in the tmac path doesn't matter if
 	GROFF_TMAC_PATH=. cd fhs && $(MAKE) fhs.ps fhs.pdf fhs.txt
-	lynx -dump fhs-changes-2.1.html > fhs/fhs-changes-2.1.text
-	lynx -dump upgrading-checklist.html > upgrading-checklist.text
+	links -dump fhs-changes-2.1.html | perl -pe 's/[\r\0]//g' > \
+                    fhs/fhs-changes-2.1.text
+	links -dump upgrading-checklist.html | perl -pe 's/[\r\0]//g' > \
+                    upgrading-checklist.text
 	$(MAKE) -C debconf_spec all
 	gzip -9f debconf_spec/debconf_specification.txt
 	touch stamp-build

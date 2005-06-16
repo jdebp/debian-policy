@@ -3,7 +3,7 @@ Section: doc
 Priority: optional
 Maintainer: Debian Policy List <debian-policy@lists.debian.org>
 Standards-Version: ${debian-policy:Version}
-Build-Depends-Indep: lynx, debiandoc-sgml, sp, liburi-perl, libpaperg, tetex-bin, tetex-extra, latex2html, libi18n-langtags-perl, groff, bsdmainutils, pstoedit
+Build-Depends-Indep: links, debiandoc-sgml, sp, liburi-perl, libpaperg, tetex-bin, tetex-extra, latex2html, libi18n-langtags-perl, groff, bsdmainutils, pstoedit, tidy, jade, docbook-xml
 
 Package: debian-policy
 Architecture: all
