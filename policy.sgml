@@ -73,7 +73,6 @@
 	  the behavior of the packaging system. Instead, this manual
 	  attempts to define the interface to the package management
 	  system that the developers have to be conversant with.<footnote>
-	    <p>
 	      Informally, the criteria used for inclusion is that the
 	      material meet one of the following requirements:
 	      <taglist compact="compact">
@@ -101,7 +100,6 @@
 	      Please note that these are not mutually exclusive;
 	      selected conventions often become parts of standard
 	      interfaces.
-	    </p>
 	  </footnote>
 	</p>
 
@@ -10207,9 +10205,8 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	    representation of blank line).</p>
 	</sect1>
 
-	<sect1 id="pkg-f-Filename"><heading><tt>Filename</tt> and
-	<tt>MSDOS-Filename</tt>
-	  </heading>
+	<sect1 id="pkg-f-Filename">
+	  <heading><tt>Filename</tt> and <tt>MSDOS-Filename</tt></heading>
 
 	  <p>
 	    These fields in <tt>Packages</tt> files give the
