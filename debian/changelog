@@ -2,6 +2,7 @@ debian-policy (3.5.0.1) unstable; urgency=low
 
   * Removed deprecated virtual package names        closes: #84641
   * Changed rmdir postrm example (suggestion on -policy list)
+  * Removed Richard Braakman from list of maintainers at his request
 
  --
 
