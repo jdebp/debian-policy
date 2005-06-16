@@ -6151,31 +6151,25 @@
 
 	<p>
 	  <em>Application defaults</em> files must be installed in the
-	  directory <tt>/usr/X11R6/lib/X11/app-defaults/</tt>.
-	  <footnote>
-	    <p>Note: This shall change very shortly.</p>
-	  </footnote>
-	  They should not be registered as <em>conffile</em>s or
-	  otherwise treated as configuration files.  Customization of
-	  programs' X resources may be supported with the provision of
-	  a file with the same name as that of the package placed in
-	  the <tt>/etc/X11/Xresources/</tt> directory, which must
-	  registered as a <em>conffile</em>.  <em>Important:</em>
-	  packages that install files into the
-	  <tt>/etc/X11/Xresources/</tt> directory <em>must</em>
-	  declare a conflict with <tt>xbase (&lt;&lt;
-	    3.3.2.3a-2)</tt>; if this is not done it is possible for the
-	  installing package to destroy a previously-existing
-	  <tt>/etc/X11/Xresources</tt> <em>file</em> which had been
-	  customized by the system administrator.
-	  <footnote>
-	    <p>Rationale: clarifies the language to properly
-	      address the package maintainer, not the system
-	      administrator, as to how to manage
-	      /etc/X11/Xresources.</p>
-	  </footnote>
+	  directory <tt>/etc/X11/app-defaults/</tt> (use of a
+	  localized subdirectory of <tt>/etc/X11/</tt> as described in
+	  the <emph>X Toolkit Intrinsics - C Language Interface</emph>
+	  manual is also permitted).  They must be registered as
+	  <em>conffile</em>s or handled as configuration files.  For
+	  programs that are not linked against the X Toolkit (Xt)
+	  library, customization of programs' X resources may also be
+	  supported with the provision of a file with the same name as
+	  that of the package placed in the
+	  <tt>/etc/X11/Xresources/</tt> directory, which must
+	  registered as a <em>conffile</em> or handled as a
+	  configuration file.  <em>Important:</em> packages that
+	  install files into the <tt>/etc/X11/Xresources/</tt>
+	  directory <em>must</em> declare a conflict with <tt>xbase
+	  (&lt;&lt; 3.3.2.3a-2)</tt>; if this is not done it is
+	  possible for the installing package to destroy a
+	  previously-existing <tt>/etc/X11/Xresources</tt> file which
+	  had been customized by the system administrator.
 	</p>
-
 
 	<p>
 	  <em>Packages using the X Window System should abide by the FHS
