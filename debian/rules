@@ -174,7 +174,8 @@ stamp-policy:  build
 	(tar cf -	    policy-process.html) |   (cd $(DOCDIR);   tar xf -)
 	sed -e 's/#PACKAGE#/$(package)/g' debian/postinst.in > debian/postinst
 	sed -e 's/#PACKAGE#/$(package)/g' debian/prerm.in > debian/prerm
-	$(install_program)  debian/{postinst,prerm}  debian/tmp/DEBIAN/
+	$(install_program)  debian/postinst          debian/tmp/DEBIAN/
+	$(install_program)  debian/prerm             debian/tmp/DEBIAN/
 	dpkg-gencontrol	    -pdebian-policy -Pdebian/tmp -isp
 	chown		    -R root.root debian/tmp
 	chmod		    -R go=rX debian/tmp

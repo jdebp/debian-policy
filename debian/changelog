@@ -18,10 +18,10 @@ debian-policy (3.5.1.0) unstable; urgency=low
   * Add the "main" section of each distribution (got left out by
     accident!)                 (Bug#64304, #75955 from packaging-manual)
   * Clean version numbering string     (Bug#73064 from packaging-manual)
-  * Add "links" to Build-Depends list
   * Install HTML version of FHS                     closes: Bug#83487
+  * Removed bashism from debian/rules
 
- -- Julian Gilbey <jdg@debian.org>  Thu, 15 Feb 2001 11:42:31 +0000
+ -- Julian Gilbey <jdg@debian.org>  Thu, 15 Feb 2001 12:13:00 +0000
 
 debian-policy (3.5.0.0) unstable; urgency=low
 
