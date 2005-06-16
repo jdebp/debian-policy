@@ -1685,7 +1685,7 @@ Package: libc6
 
       <p>
 	The version number format is:
-	&lsqb;<var>epoch</var><tt>:</tt>&rsqb;<var>upstream_version</var>&lsqb;<tt>-</tt><var>debian_revision</var>&rsqb;
+	[<var>epoch</var><tt>:</tt>]<var>upstream_version</var>[<tt>-</tt><var>debian_revision</var>]
       </p>
 
       <p>

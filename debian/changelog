@@ -2,21 +2,21 @@ debian-policy (3.5.9.0) unstable; urgency=low
 
   Josip:
   * Added missing bits of information about Description: fields from
-    the old Packaging manual, closes: #172022.
+    the old Packaging manual,                                   closes: #172022
   * Fixed a stale reference to the "base system maintainer" to
-    base-passwd maintainer, closes: #174927.
+    base-passwd maintainer,                                     closes: #174927
   * Fixed an accidental change from /usr/share/package to /usr/share/doc in
     the paragraph about not depending on /usr/share/doc/package,
-    closes: #174048.
+                                                                closes: #174048
   * Fixed several errors reported by Guenther Palfinger, with some help from
-    Richard Braakman, closes: #177205, #177206, #177207, #177208, #177209.
+    Richard Braakman,       closes: #177205, #177206, #177207, #177208, #177209
   * Added versions to links and docbook-xml source-dependencies, hopefully
     fixes the bug with potato, and even if it doesn't, I don't care :)
-    closes #103459.
-  * Fixed typos in the debconf spec noticed by Jay Bonci, closes: #178455.
+                                                                closes: #103459
+  * Fixed typos in the debconf spec noticed by Jay Bonci,       closes: #178455
   * Clarified that using Build-Depends for build-dependencies is not a "may"
     but a "should", added proper linking among various sections dealing with
-    the dependencies so that there is no confusion, closes: #87510.
+    the dependencies so that there is no confusion,              closes: #87510
     If any one of those poor, misguided people ;) still thinks that the
     requirement should be a "must" (in _our_ meaning, not RFC "MUST"),
     please file a new bug, as it's quite unproductive to have to sift
@@ -24,20 +24,20 @@ debian-policy (3.5.9.0) unstable; urgency=low
     explanations how policy should work, occasionally sprinkled with
     offtopic stuff, too.
   * When asked to restart a service that isn't already running, the init
-    script should start it, closes: #60979.
+    script should start it,                                      closes: #60979
   * Rephrased section on configuration files to remove confusing use of
-    "should", closes: #170019.
-  * Rearranged the shared library information properly, closes: #109166.
+    "should",                                                   closes: #170019
+  * Rearranged the shared library information properly,         closes: #109166
     This change also centralizes the info on how to ship static libraries
-    in one place (hopefully not too ambiguous), closes: #93975.
+    in one place (hopefully not too ambiguous),                  closes: #93975
   * Allow examples to be placed in /usr/share/doc/package/ in packages
-    that are meant to provide examples, closes: #69864.
+    that are meant to provide examples,                          closes: #69864
   * Removed several references to the Policy manual etc in the stuff
-    imported from old packaging manual, closes: #181923.
+    imported from old packaging manual,                         closes: #181923
   * Fixed too greedy wildcard match in the logrotate example,
-    closes: #183544.
+                                                                closes: #183544
 
- -- 
+ -- Manoj Srivastava <srivasta@acm.org>  Fri,  7 Mar 2003 12:35:16 -0600
 
 debian-policy (3.5.8.0) unstable; urgency=low
 
