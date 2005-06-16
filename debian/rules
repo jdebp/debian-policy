@@ -19,19 +19,19 @@
 # endif
 
 # set the dpkg-architecture vars; but we don't use them, so we'll comment out
-# export DEB_BUILD_ARCH      := $(shell dpkg-architecture $(ha) -qDEB_BUILD_ARCH)
-# export DEB_BUILD_GNU_CPU   := $(shell dpkg-architecture $(ha) -qDEB_BUILD_GNU_CPU)
-# export DEB_BUILD_GNU_SYSTEM:= $(shell dpkg-architecture $(ha) -qDEB_BUILD_GNU_SYSTEM)
-# export DEB_BUILD_GNU_TYPE  := $(shell dpkg-architecture $(ha) -qDEB_BUILD_GNU_TYPE)
-# export DEB_HOST_ARCH       := $(shell dpkg-architecture $(ha) -qDEB_HOST_ARCH)
-# export DEB_HOST_GNU_CPU    := $(shell dpkg-architecture $(ha) -qDEB_HOST_GNU_CPU)
-# export DEB_HOST_GNU_SYSTEM := $(shell dpkg-architecture $(ha) -qDEB_HOST_GNU_SYSTEM)
-# export DEB_HOST_GNU_TYPE   := $(shell dpkg-architecture $(ha) -qDEB_HOST_GNU_TYPE)
+# export DEB_BUILD_ARCH      ?= $(shell dpkg-architecture $(ha) -qDEB_BUILD_ARCH)
+# export DEB_BUILD_GNU_CPU   ?= $(shell dpkg-architecture $(ha) -qDEB_BUILD_GNU_CPU)
+# export DEB_BUILD_GNU_SYSTEM?= $(shell dpkg-architecture $(ha) -qDEB_BUILD_GNU_SYSTEM)
+# export DEB_BUILD_GNU_TYPE  ?= $(shell dpkg-architecture $(ha) -qDEB_BUILD_GNU_TYPE)
+# export DEB_HOST_ARCH       ?= $(shell dpkg-architecture $(ha) -qDEB_HOST_ARCH)
+# export DEB_HOST_GNU_CPU    ?= $(shell dpkg-architecture $(ha) -qDEB_HOST_GNU_CPU)
+# export DEB_HOST_GNU_SYSTEM ?= $(shell dpkg-architecture $(ha) -qDEB_HOST_GNU_SYSTEM)
+# export DEB_HOST_GNU_TYPE   ?= $(shell dpkg-architecture $(ha) -qDEB_HOST_GNU_TYPE)
 
-
-# The name of the package (for example, `emacs').
-package := $(shell grep Source debian/control | sed 's/^Source: //')
 # arch	:= $(shell dpkg --print-installation-architecture)
+
+# Basic information
+package := $(shell grep Source debian/control | sed 's/^Source: //')
 date	:= $(shell date +"%Y-%m-%d")
 version := $(shell awk -F '[()]' '/^$(package)/{ print $$2; exit }' debian/changelog)
 
@@ -41,18 +41,18 @@ TMPTOP	  := $(SRCTOP)/debian/tmp
 DOCDIR	  := $(TMPTOP)/usr/share/doc/$(package)
 LIBDIR	  := $(TMPTOP)/usr/share/doc-base
 
+sanitycheck := debian/rules policy.sgml
 
-SGML_FILES      = policy menu-policy mime-policy policy-process perl-policy
-DESC_FILES      = debian-policy debian-menu-policy debian-perl-policy \
-                  debian-mime-policy debian-policy-process debconf-spec \
-		  fhs
+SGML_FILES := policy menu-policy mime-policy policy-process perl-policy
+DESC_FILES := debian-policy debian-menu-policy debian-perl-policy \
+              debian-mime-policy debian-policy-process debconf-spec fhs
 
 # While we have two versions of the FHS installed in the source package,
 # we need to modify this to handle it.  This is the easiest way to do it.
 # FHS_ARCHIVE := $(wildcard fhs*.tar.gz)
 # And with version 2.1, we have to build the text and dvi versions
 # ourselves :-(
-FHS_ARCHIVE  :=  fhs-2.1-source.tar.gz
+FHS_ARCHIVE  := fhs-2.1-source.tar.gz
 FHS_HTML     := fhs-2.1.html.tar.gz
 FHS_FILES    := fhs/fhs.ps fhs/fhs.txt fhs/fhs.pdf
 FHS_BYHAND   := fhs-2.1.html.tar.gz fhs/fhs.txt
@@ -76,28 +76,20 @@ FILES_TO_CLEAN  = debian/files debian/buildinfo  debian/substvars \
 		  policy.pdf.gz policy.ps.gz \
 		  debconf_specification.xml.tar.gz
 
-STAMPS_TO_CLEAN = stamp-policy stamp-build
-DIRS_TO_CLEAN   = debian/tmp fhs $(SGML_FILES:=.html)
+STAMPS_TO_CLEAN := stamp-policy stamp-build
+DIRS_TO_CLEAN   := debian/tmp fhs $(SGML_FILES:=.html)
 
 
-install_file   = /usr/bin/install -p	-o root -g root	 -m  644
-install_program= /usr/bin/install -p	-o root -g root	 -m  755
-make_directory = /usr/bin/install -p -d -o root -g root	 -m  755
+install_file    := install -p	-o root -g root	 -m  644
+install_program := install -p	-o root -g root	 -m  755
+make_directory  := install -p -d	-o root -g root	 -m  755
 
 
 all build: stamp-build
-stamp-build: version.ent
-	$(checkdir)
-	@set -ex; \
-	for file in $(SGML_FILES); do \
-	  nsgmls -gues $$file.sgml; \
-	  debiandoc2html $$file.sgml; \
-	  debiandoc2text $$file.sgml; \
-	  if [ -f $$file.text ]; then mv $$file.text $$file.txt; fi; \
-	  gzip -f9 $$file.txt; \
-	  tar -cf $$file.html.tar $$file.html; \
-	  gzip -f9 $$file.html.tar; \
-	done
+stamp-build: version.ent $(sanitycheck)
+	$(MAKE) $(SGML_FILES:=.sgml.validate) \
+		$(SGML_FILES:=.html.tar.gz) \
+		$(SGML_FILES:=.txt.gz)
 	tar -zxf $(FHS_ARCHIVE)
 	# Need to use a patched tmac.m macro file if we're using a pre-1.16
 	# groff; version 1.16 is apparently fixed
@@ -116,16 +108,13 @@ stamp-build: version.ent
 	touch stamp-build
 
 configure: version.ent
-version.ent: $(SGML_FILES:=.sgml) $(DESC_FILES:=.desc) \
-  upgrading-checklist.html debian/changelog
+version.ent: debian/changelog
 	rm -f $@
 	echo "<!entity version \"$(version)\">" >> $@
 	echo "<!entity date    \"$(date)\">"	>> $@
-	touch $@
 
-clean:
+clean: $(sanitycheck)
 # Undoes the effect of `make -f debian/rules build'.
-	$(checkdir)
 	$(MAKE) -C debconf_spec clean
 	rm -f  $(FILES_TO_CLEAN) $(STAMPS_TO_CLEAN)
 	rm -rf $(DIRS_TO_CLEAN)
@@ -136,20 +125,18 @@ clean:
 
 
 binary:		binary-indep binary-arch
-binary-arch:	build
-	$(checkdir)
+binary-arch:	build $(sanitycheck)
 # There are no architecture-dependent files to be uploaded
 # generated by this package.  If there were any they would be
 # made here.
 
 binary-indep:	stamp-policy
-stamp-policy:  build
+stamp-policy:  build $(sanitycheck)
 	@test $$(id | sed -e 's/(.*$$//' -e 's/^uid=//') || \
 		(echo need root priviledges; exit 1)
-	$(checkdir)
 #	This is unnecessary; commenting out
 #	test -f stamp-build	|| $(MAKE) -f	     debian/rules build
-	-rm -rf			$(TMPTOP)
+	rm -rf			$(TMPTOP)
 	$(make_directory)	$(TMPTOP)/DEBIAN
 #	$(make_directory)	$(DOCDIR)/fsstnd
 	$(make_directory)	$(DOCDIR)/fhs
@@ -184,7 +171,7 @@ stamp-policy:  build
 	sed -e 's/#PACKAGE#/$(package)/g' debian/prerm.in > debian/prerm
 	$(install_program)  debian/postinst          debian/tmp/DEBIAN/
 	$(install_program)  debian/prerm             debian/tmp/DEBIAN/
-	dpkg-gencontrol	    -pdebian-policy -Pdebian/tmp -isp
+	dpkg-gencontrol	    -p$(package) -Pdebian/tmp -isp
 	chown		    -R root:root debian/tmp
 	chmod		    -R go=rX debian/tmp
 	dpkg		    --build debian/tmp ..
@@ -199,13 +186,6 @@ stamp-policy:  build
 	done
 	touch		    stamp-policy
 
-
-define checkdir
-	test -f debian/rules -a -f policy.sgml
-endef
-
-source diff:
-	@echo >&2 'source and diff are obsolete - use dpkg-source -b'; false
 
 .PHONY: configure build binary binary-arch binary-indep clean checkroot
 
