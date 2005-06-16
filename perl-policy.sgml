@@ -12,7 +12,7 @@
 	<name>Brendan O'Dea</name>
 	<email>bod@debian.org</email>
       </author>
-      <version>version 1.19</version>
+      <version>version 1.20</version>
 
       <abstract>
 	This document describes the packaging of Perl within the Debian
@@ -342,7 +342,8 @@ $(MAKE) install PREFIX=$(CURDIR)/debian/tmp/usr
 	    a minimum version of the <package>perl</package> package
 	    used to build the module, and must additionally depend on
 	    the expansion of
-	    <package>perlapi-$Config{version}</package>.
+	    <package>perlapi-$Config{version}</package> using
+	    the <tt>Config</tt> module.
 	  </p>
 	</sect1>
 

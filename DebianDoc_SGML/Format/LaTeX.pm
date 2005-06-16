@@ -468,6 +468,8 @@ sub _sdata
     output( $DebianDoc_SGML::Format::Driver::sdata_mapping{ $_[0] } )
 	if defined( $DebianDoc_SGML::Format::Driver::sdata_mapping{ $_[0] } );
 }
+
+my $in_quote=0;
 sub _sani
 {
     ( $_ ) = @_;
@@ -498,7 +500,15 @@ sub _sani
 #    s/----/---/g;
 
     # quotes
+    if ($in_quote && /\"/) {
+	s/\"/\'\'/;
+	$in_quote=0;
+    }
     s/\"(.*?)\"/\`\`$1\'\'/g;
+    if (/\"/) { # quotes left
+	s/\"/\`\`/;
+	$in_quote=1;
+    }
 
     # dots should be ellipsis "..."
     s/\.\.\./\\dots /g;
