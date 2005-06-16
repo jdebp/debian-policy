@@ -8,6 +8,7 @@ debian-policy (3.5.10.0) unstable; urgency=low
   * Fixed various typos, closes: #189274, #187418, #187422, #189654.
   * Removed broken link to csh.whynot on CPAN, closes: #187567.
   * Updated archive section list, closes: #187420.
+  * Stop attaching byhand tarballs, cf. bug #184082.
   Manoj:
   * Clarify x-terminal-emulator virtual package eligibility, in an
     extention to an informative footnote.                    closes: Bug#165063
