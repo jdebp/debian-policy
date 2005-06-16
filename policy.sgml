@@ -138,7 +138,7 @@
 	  <url
 	  id="ftp://ftp.debian.org/debian/doc/manuals/debian-policy.html.tar.gz" name="&urlname">
 	  or from the Debian WWW server at
-	  <url id="http://www.debian.org/doc/manuals/debian-policy/"
+	  <url id="http://www.debian.org/doc/debian-policy/"
 	  name="&urlname"></p>
 
 	<p>
@@ -2078,14 +2078,14 @@
 	<p>
 	  An ever increasing number of packages are using libtool to
 	  do their linking. The latest GNU libtools (>= 1.3a) can take
-	  advantage of installed libtool archive files (`*.la'). The
-	  main advantage of libtool's .la files is that it allows
-	  libtool to store and subsequently access metadata with
-	  respect to the libraries it builds.  libtool will search for
-	  those files, which contain a lot of useful information about
-	  a library (e.g. dependency libraries for static
-	  linking). Also, they're essential for programs using
-	  libltdl.
+	  advantage of the nmetadata in the installed libtool archive
+	  files (`*.la'). The main advantage of libtool's .la files is
+	  that it allows libtool to store and subsequently access
+	  metadata with respect to the libraries it builds.  libtool
+	  will search for those files, which contain a lot of useful
+	  information about a library (e.g. dependency libraries for
+	  static linking). Also, they're <em>essential</em> for
+	  programs using libltdl.
 	</p>
 
 	<p>
@@ -2103,8 +2103,11 @@
 	<p>
 	  Packages that use libtool to create shared libraries must
 	  include the <em>.la</em> files in the <em>-dev</em>
-	  packages. This is a good idea in general, and especially
-	  for static linking issues.
+	  packages, with the exception that if the package relies on
+	  libtool's <em>libltdl</em> library, in which case the .la
+	  files must go in the run-time library package.  This is a
+	  good idea in general, and especially for static linking
+	  issues.
 	</p>
 	
 	<p>

@@ -1,10 +1,15 @@
-debian-policy (3.0.0.1) unstable; urgency=low
+debian-policy (3.0.1.0) unstable; urgency=low
 
   * A few typos and omissions corrected
   * Added the pop3-server to the virtual packages list, as decided on the
     list. 
+  * Fix the self reference to a location on the web site. closes: Bug#39408
+  * Added the clarification that the .la files are essential for the
+    packages using libtool's libltdl library, in which case the
+    .la files must go in the run-time library package. (this is why this
+    is version 3.0.1.0, and not 3.0.0.1)
 
- -- Manoj Srivastava <srivasta@debian.org>  Thu,  1 Jul 1999 12:38:08 -0500
+ -- Manoj Srivastava <srivasta@debian.org>  Thu,  1 Jul 1999 14:48:25 -0500
 
 debian-policy (3.0.0.0) unstable; urgency=low
 
