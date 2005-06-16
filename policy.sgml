@@ -1869,10 +1869,9 @@
 
       <sect id="timestamps"><heading>Time Stamps</heading>
 	<p>
-	  Maintainers are encouraged to preserve the modification
-	  times of the upstream source files in a package, as far as
-	  is reasonably possible. Even though this is optional, this
-	  is still a good idea.
+	  Maintainers should preserve the modification times of the
+	  upstream source files in a package, as far as is reasonably
+	  possible.
 	  <footnote>
 	    <p>
 	      The rationale is that there is some information conveyed
@@ -1887,12 +1886,12 @@
       </sect>
 
       <sect id="debianrules"><heading><tt>debian/rules</tt> - the
-	  main building script	  </heading>
+	  main building script</heading>
 
 	<p>
 	  This file must be an executable makefile, and contains the
 	  package-specific recipes for compiling the package and
-	  building binary package(s) out of the source.
+	  building binary package(s) from the source.
 	</p>
 
 	<p>
@@ -1905,7 +1904,7 @@
 	  Since an interactive <tt>debian/rules</tt> script makes it
 	  impossible to auto-compile that package and also makes it
 	  hard for other people to reproduce the same binary
-	  package, all <strong>required targets</strong> MUST be
+	  package, all <em>required targets</em> MUST be
 	  non-interactive. At a minimum, required targets are the
 	  ones called by <prgn>dpkg-buildpackage</prgn>, namely,
 	  <em>clean</em>, <em>binary</em>, <em>binary-arch</em>,
@@ -1915,17 +1914,21 @@
 	</p>
 
 	<p>
-	  The targets which must be present are:
+	  The required and optional targets are as follows:
 	  <taglist>
 	    <tag><tt>build</tt></tag>
 	    <item>
 	      <p>
-		This should perform all non-interactive
-		configuration and compilation of the package.  If a
-		package has an interactive pre-build configuration
-		routine, the Debianised source package should be
-		built after this has taken place, so that it can be
-		built without rerunning the configuration.
+		This should perform all non-interactive configuration
+		and compilation of the package.  If a package has an
+		interactive pre-build configuration routine, the
+		Debianized source package must either be built after
+		this has taken place (so that the binary package can
+		be built without rerunning the configuration) or the
+		configuration routine modified to become
+		non-interactive.  (The latter is preferable if there
+		are architecture-specific features detected by the
+		configuration routine.)
 	      </p>
 
 	      <p>
@@ -1948,19 +1951,35 @@
 	      </p>
 
 	      <p>
-		The <prgn>build</prgn> target may need to run
-		<prgn>clean</prgn> first - see below.
+		The <prgn>build</prgn> target may need to run the
+		<prgn>clean</prgn> target first - see below.
 	      </p>
 
 	      <p>
-		When a package has a configuration routine that
-		takes a long time, or when the makefiles are poorly
-		designed, or when <prgn>build</prgn> needs to run
-		<prgn>clean</prgn> first, it is a good idea to
+		When a package has a configuration and build routine
+		which takes a long time, or when the makefiles are
+		poorly designed, or when <prgn>build</prgn> needs to
+		run <prgn>clean</prgn> first, it is a good idea to
 		<tt>touch build</tt> when the build process is
 		complete.  This will ensure that if <tt>debian/rules
-		  build</tt> is run again it will not rebuild the
-		whole program.
+		build</tt> is run again it will not rebuild the whole
+		program.
+		<footnote>
+		  <p>
+		    Another common way to do this is for <prgn>build</prgn>
+		    to depend on <prgn>build-stamp</prgn> and to do
+		    nothing else, and for the <prgn>build-stamp</prgn>
+		    target to do the building and to <tt>touch
+		    build-stamp</tt> on completion.  This is
+		    especially useful if the build routine creates a
+		    file or directory called <tt>build</tt>; in such a
+		    case, <prgn>build</prgn> will need to be listed as
+		    a phony target (i.e., as a dependency of the
+		    <tt>.PHONY</tt> target).  See the documentation of
+		    <prgn>make</prgn> for more information on phony
+		    targets.
+		  </p>
+		</footnote>
 	      </p>
 	    </item>
 
@@ -1970,11 +1989,11 @@
 	    <item>
 	      <p>
 		The <prgn>binary</prgn> target must be all that is
-		necessary for the user to build the binary
-		package. All these targets are required to be
-		non-interactive.  It is split into two parts:
-		<prgn>binary-arch</prgn> builds the packages' output
-		files which are specific to a particular
+		necessary for the user to build the binary package(s)
+		produced from this source package.  All of these
+		targets are required to be non-interactive.  It is
+		split into two parts: <prgn>binary-arch</prgn> builds
+		the binary packages which are specific to a particular
 		architecture, and <prgn>binary-indep</prgn> builds
 		those which are not.
 	      </p>
@@ -1987,7 +2006,7 @@
 	      </p>
 
 	      <p>
-		Both <prgn>binary-*</prgn> targets should depend on
+		Each <prgn>binary-*</prgn> target should depend on
 		the <prgn>build</prgn> target, above, so that the
 		package is built if it has not been already.  It
 		should then create the relevant binary package(s),
@@ -1998,17 +2017,24 @@
 	      </p>
 
 	      <p>
-		If one of the <prgn>binary-*</prgn> targets has
-		nothing to do (this will be always be the case if
-		the source generates only a single binary package,
-		whether architecture-dependent or not) it
-		<em>must</em> still exist, and must always
-		succeed.
+		Both the <prgn>binary-arch</prgn> and
+		<prgn>binary-indep</prgn> targets <em>must</em> exist.
+		If one of them has nothing to do (which will always be
+		the case if the source generates only a single binary
+		package, whether architecture-dependent or not), it
+		must still exist and must always succeed.
 	      </p>
 
 	      <p>
 		The <prgn>binary</prgn> targets must be invoked as
 		root.
+		<footnote>
+		  <p>
+		    The <prgn>fakeroot</prgn> package often allows one
+		    to build a package correctly even without being
+		    root.
+		  </p>
+		</footnote>
 	      </p>
 	    </item>
 
@@ -2016,19 +2042,18 @@
 	    <item>
 
 	      <p>
-		This must undo any effects that the
-		<prgn>build</prgn> and <prgn>binary</prgn> targets
-		may have had, except that it should leave alone any
-		output files created in the parent directory by a
-		run of <prgn>binary</prgn>. This target must be
-		non-interactive.
+		This must undo any effects that the <prgn>build</prgn>
+		and <prgn>binary</prgn> targets may have had, except
+		that it should leave alone any output files created in
+		the parent directory by a run of a <prgn>binary</prgn>
+		target. This target must be non-interactive.
 	      </p>
 
 	      <p>
-		If a <prgn>build</prgn> file is touched at the end
-		of the <prgn>build</prgn> target, as suggested
-		above, it should be removed as the first thing that
-		<prgn>clean</prgn> does, so that running
+		If a <prgn>build</prgn> file is touched at the end of
+		the <prgn>build</prgn> target, as suggested above, it
+		should be removed as the first action that
+		<prgn>clean</prgn> performs, so that running
 		<prgn>build</prgn> again after an interrupted
 		<prgn>clean</prgn> doesn't think that everything is
 		already done.
@@ -2071,8 +2096,8 @@
 
 	<p>
 	  The <prgn>build</prgn>, <prgn>binary</prgn> and
-	  <prgn>clean</prgn> targets must be invoked with a current
-	  directory of the package's top-level directory.
+	  <prgn>clean</prgn> targets must be invoked with the current
+	  directory being the package's top-level directory.
 	</p>
 
 
@@ -2083,11 +2108,14 @@
 	</p>
 
 	<p>
-	  The architecture we build on and build for is determined by
-	  make variables via dpkg-architecture. You can get the Debian
-	  architecture and the GNU style architecture specification
-	  string for the build machine as well as the host
-	  machine. Here is a list of supported make variables:
+	  The architectures we build on and build for are determined
+	  by <prgn>make</prgn> variables using
+	  <prgn>dpkg-architecture</prgn>.  You can determine the
+	  Debian architecture and the GNU style architecture
+	  specification string for the build machine (the machine type
+	  we are building on) as well as for the host machine (the
+	  machine type we are building for).  Here is a list of
+	  supported <prgn>make</prgn> variables:
 	  <list compact="compact">
 	    <item>
 	      <p><tt>DEB_*_ARCH</tt> (the Debian architecture)</p>
@@ -2097,25 +2125,23 @@
 		specification string)</p>
 	    </item>
 	    <item>
-	      <p><tt>DEB_*_GNU_CPU</tt> (the CPU part of DEB_*_GNU_TYPE)</p>
+	      <p><tt>DEB_*_GNU_CPU</tt> (the CPU part of
+	      <tt>DEB_*_GNU_TYPE</tt>)</p>
 	    </item>
 	    <item>
 	      <p><tt>DEB_*_GNU_SYSTEM</tt> (the System part of
-		DEB_*_GNU_TYPE)</p>
+		<tt>DEB_*_GNU_TYPE</tt>)</p>
 	  </list>
-	</p>
-
-	<p>
 	  where <tt>*</tt> is either <tt>BUILD</tt> for specification of
-	  the build machine or <tt>HOST</tt> for specification of the machine
-	  we build for.
+	  the build machine or <tt>HOST</tt> for specification of the
+	  host machine.
 	</p>
 
 	<p>
 	  Backward compatibility can be provided in the rules file
 	  by setting the needed variables to suitable default
-	  values, please refer to the documentation of
-	  dpkg-architecture for details.
+	  values; please refer to the documentation of
+	  <prgn>dpkg-architecture</prgn> for details.
 	</p>
 
 	<p>
