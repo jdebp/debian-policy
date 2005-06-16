@@ -17,7 +17,7 @@
   Christoph Lameter contributed the "Web Standard"
   The debian-policy mailing list has taken responsibility for the
   contents of this document since September 1998, with the package
-  maintainers responsible for packagingn adminstrivia only.
+  maintainers responsible for packaging adminstrivia only.
   -->
   
   <book>
@@ -555,10 +555,10 @@
 		because we are trying to produce, amongst other
 		things, a free Unix.  Other packages without which the
 		system will not run well or be usable must also be
-               here.  This does <em>not</em> include Emacs, the X
-               Window System, TeX or any other large applications.
-               The <tt>important</tt> packages are just a bare
-               minimum of commonly-expected and necessary tools.</p>
+		here.  This does <em>not</em> include Emacs, the X
+		Window System, TeX or any other large applications.
+		The <tt>important</tt> packages are just a bare
+		minimum of commonly-expected and necessary tools.</p>
 	    </item>
 	    <tag><tt>standard</tt></tag>
 	    <item>
@@ -579,16 +579,16 @@
 		required, but that's not what is meant here.) This is
 		all the software that you might reasonably want to
 		install if you didn't know what it was or don't have
-		specialised requirements. This is a much larger system
+		specialized requirements. This is a much larger system
 		and includes the X Window System, a full TeX
-		distribution, and lots of applications.</p>
+		distribution, and many applications.</p>
 	    </item>
 	    <tag><tt>extra</tt></tag>
 	    <item>
 	      <p>		
 		This contains packages that conflict with others with
 		higher priorities, or are only likely to be useful if
-		you already know what they are or have specialised
+		you already know what they are or have specialized
 		requirements.
 	      </p>
 	    </item>
@@ -803,7 +803,7 @@
 	    <prgn>install-info</prgn>.</p>
 	    
 	  <p>
-	    Packages should try to minimise the amount of prompting
+	    Packages should try to minimize the amount of prompting
 	    they need to do, and they should ensure that the user will
 	    only ever be asked each question once.  This means that
 	    packages should try to use appropriate shared
@@ -1051,8 +1051,8 @@
 	    <footnote>
 	      <p>In an as yet unreleased version of the standard, the
 		location of the mail spool and state information
-		directories has changed; and we proipose to follow the
-		latter, since that would mean that we do not ahve to
+		directories has changed; and we propose to follow the
+		latter, since that would mean that we do not have to
 		move things around again when the new version of the
 		FHS comes around). The changes are, amongst others,
 		s%/var/mail%/var/spool/mail% and
@@ -1153,7 +1153,7 @@
 	<p>
 	  Apart from this we should have dynamically allocated ids,
 	  which should by default be arranged in some sensible
-	  order--but the behaviour should be configurable.</p>
+	  order--but the behavior should be configurable.</p>
 	  
 	<p>
 	  No package except <tt>base-passwd</tt> may modify
@@ -1200,7 +1200,7 @@
 		<prgn>adduser</prgn> will choose UIDs and GIDs for
 		user accounts in this range, though
 		<tt>adduser.conf</tt> may be used to modify this
-		behaviour.</p>
+		behavior.</p>
 	    </item>
 		
 	    <tag>30000-59999:</tag>
@@ -1401,7 +1401,7 @@
 	    symbolic links in <tt>/etc/rc<var>n</var>.d</tt>.</p>
 	    
 	  <p>
-	    To get the default behaviour for your package, put in your
+	    To get the default behavior for your package, put in your
 	    <tt>postinst</tt> script
 	    <example>
 	      update-rc.d <var>package</var> defaults &gt;/dev/null
@@ -1438,7 +1438,7 @@
 	    
 	  <p>
 	    For example, the <prgn>kbd</prgn> package provides a
-	    script here for initialising the keyboard layout and
+	    script here for initializing the keyboard layout and
 	    console font and mode.</p>
 	    
 	  <p>
@@ -1757,7 +1757,7 @@
 		</example>
 		You should print the `done.' right after the job has been completed,
 		so that the user gets informed why he has to wait. You can get this
-		behaviour by saying
+		behavior by saying
 		<example>
 		  echo -n "Doing something very useful..."
 		  do_something
@@ -1841,9 +1841,9 @@
 	    <item><p>emacs: the help prefix</p></item>
 	  </taglist>
 	  
-	  The interpretation of any keyboard events should be
-	  independent of the terminal that's used (either the console,
-	  X terminal emulators, rlogin/telnet session, etc.).</p>
+	  The interpretation of any keyboard events should be independent
+	  of the terminal that's used, be it a virtual console, an X
+	  terminal emulator, an rlogin/telnet session, etc.</p>
 	  
 	<p>
 	  The following list explains how the different programs
@@ -1924,7 +1924,7 @@
 	    <item><p>
 		Some systems (including previous Debian versions) use
 		xmodmap to arrange for both <tt>&lt;--</tt> and Delete
-		to generate KB_Delete).  We can change the behaviour
+		to generate KB_Delete).  We can change the behavior
 		of their X clients via the same X resources that we
 		use to do it for our own, or have our clients be
 		configured via their resources when things are the
@@ -2090,8 +2090,8 @@
 	  Certainly libtool is fully capable of linking against shared
 	  libraries which don't have .la files, but being a mere shell
 	  script it can add considerably to the build time of a
-	  libtool using package if that shellscript has to derive all
-	  this infomation from first principles for each library every
+	  libtool using package if that shell-script has to derive all
+	  this information from first principles for each library every
 	  time it is linked. With the advent of libtool-1.4 (and to a
 	  lesser extent libtool-1.3), the .la files will also store
 	  information about inter-library dependencies which cannot
@@ -2101,7 +2101,7 @@
 	<p>
 	  Packages that use libtool to create shared libraries must
 	  include the <em>.la</em> files in the <em>-dev</em>
-	  packages. This is a good idea in general, and espescially
+	  packages. This is a good idea in general, and especially
 	  for static linking issues.
 	</p>
 	
@@ -2264,10 +2264,10 @@
 	  <heading>Symbolic links</heading>
 	    
 	  <p>
-	    In general, symbolic links within a toplevel directory
+	    In general, symbolic links within a top-level directory
 	    should be relative, and symbolic links pointing from one
-	    toplevel directory into another should be absolute. (A
-	    toplevel directory is a sub-directory of the root
+	    top-level directory into another should be absolute. (A
+	    top-level directory is a sub-directory of the root
 	    directory `/'.)</p>
 	    
 	  <p>
@@ -2865,20 +2865,19 @@
 	<heading>Programs for the X Window system</heading>
 	  
 	<p>
-	  Some programs can be configured with or without support for
-	  the X Window System.  Typically, binaries produced when
-	  built with X support will need the X shared libraries to
-	  run.</p>
-	  
+	  Some programs can be configured with or without support for the X
+	  Window System.  Typically, binaries produced with support for X
+	  will need the X shared libraries to run.
+	</p>
+  
 	<p>
 	  Such programs should be configured <em>with</em> X support,
 	  and should declare a dependency on <tt>xlib6g</tt> (which
 	  contains X shared libraries).  Users who wish to use the
 	  program can install just the relatively small
 	  <tt>xfree86-common</tt> and <tt>xlib6g</tt> packages, and do
-	  not need to install the whole of X.
-	</p>
-	  
+	  not need to install the whole of X.</p>
+  
 	<p>
 	  Do not create two versions (one with X support and one
 	  without) of your package.</p>
@@ -2888,8 +2887,8 @@
 	  the directory <tt>/usr/X11R6/lib/X11/app-defaults/</tt>.
 	  They are considered as part of the program code.  Thus, they
 	  should not be modified and should not be tagged as
-	  <em>conffile</em>.  If the local system administrator wants
-	  to customise X applications globally, a file with the same
+	  <em>conffile</em>s.  If the local system administrator wants
+	  to customize X applications globally, a file with the same
 	  name as that of the package should be placed in the
 	  <tt>/etc/X11/Xresources/</tt> directory instead.
 	  <em>Important:</em> packages that install files into the
@@ -2897,41 +2896,41 @@
 	  declare a conflict with <tt>xbase (&lt;&lt;
 	  3.3.2.3a-2)</tt>; if this is not done it is possible for the
 	  package to destroy a previously-existing
-	  <tt>/etc/X11/Xresources</tt> <em>file</em>.
-	</p>
-
+	  <tt>/etc/X11/Xresources</tt> <em>file</em>.</p>
+	  
 	<p>
 	  No package should ever install files into the directories
-	  <tt>/usr/bin/X11/</tt>, <tt>/usr/share/doc/X11/</tt>,
+	  <tt>/usr/bin/X11/</tt>, <tt>/usr/doc/X11/</tt>,
 	  <tt>/usr/include/X11/</tt>, or <tt>/usr/lib/X11/</tt>; these
 	  directories are actually symbolic links, which <tt>dpkg</tt>
 	  does not follow when unpacking a package.  Instead, use
-	  <tt>/usr/X11R6/bin/</tt>,
-	  <tt>/usr/share/doc/</tt><var>package/</var> (i.e., place
-	  files with the rest of your package's documentation),
-	  <tt>/usr/X11R6/include/</tt>, and <tt>/usr/X11R6/lib/</tt>.
-	  It is permissible, and even preferable, however, for a
-	  package to refer to the <tt>/usr/{bin,include,lib}/X11/</tt>
-	  directories internally, however; this restriction governs
-	  only the paths used by the package as it is unpacked onto
-	  the system.
-	</p>
-	  
-	<p>
+	  <tt>/usr/X11R6/bin/</tt>, <tt>/usr/doc/package/</tt> (i.e.,
+	  place files with the rest of your package's documentation),
+	  <tt>/usr/X11R6/include/</tt>, and
+	  <tt>/usr/X11R6/lib/</tt>.  This restriction governs only the
+	  paths used by the package as it is unpacked onto the system; it
+	  is permissible, and even preferable, for files within a package
+	  (shell scripts, for instance) to refer to the
+	  <tt>/usr/{bin,include,lib}/X11/</tt> directories rather than
+	  their <tt>/usr/X11R6/</tt> counterparts -- this way they do not
+	  have to be modified in the event that the X Window System
+	  packages install their files into a different directory in the
+	  future.</p>
+
+ 	<p>
 	  If you package a program that requires the (non-free)
-	  OSF/Motif library, you should try to determine if the
+	  OSF/Motif library, you should try to determine whether the
 	  programs works reasonably well with the free
 	  re-implementation of Motif called LessTif.  If so, build the
 	  package using the LessTif libraries; it can then go into the
 	  main section of the package repository and become an
-	  official part of the Debian distribution.
-	</p>
-
+	  official part of the Debian distribution.</p>
+	  
 	<p>
 	  If however, the Motif-based program works insufficiently
-	  well with LessTif, you should instead provide "-smotif" and
-	  "-dmotif" versions (appending these identifiers to the name
-	  of the package), which are statically and dynamically linked
+	  well with LessTif, you should instead provide "-smotif" and "-dmotif"
+	  versions (appending these identifiers to the name of the
+	  package), which are statically and dynamically linked
 	  against the Motif libraries, respectively.  (All known
 	  versions of OSF/Motif permit redistribution of
 	  statically-linked binaries using the library, but check the
@@ -2944,6 +2943,7 @@
 	  licensing on the package is compatible with the Debian Free
 	  Software Guidelines, it may go into the contrib section;
 	  otherwise it must go into the non-free section.
+
 	</p>
       </sect>
 	  
@@ -3201,7 +3201,7 @@
 	      directory. They are not all the licenses, just a few
 	      common ones. I could use /usr/share/doc/common-licenses
 	      but I think this is too long, and, after all, the GPL
-	      does not "document" anything, it is merely a licence.
+	      does not "document" anything, it is merely a license.
 	    </p>
 	  </footnote>
 	</p>

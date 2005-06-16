@@ -5,9 +5,9 @@
 ## Created On	    : Thu Oct 29 15:35:55 1998
 ## Created On Node  : tiamat.datasync.com
 ## Last Modified By : Manoj Srivastava
-## Last Modified On : Tue Jun 29 10:27:46 1999
+## Last Modified On : Tue Jun 29 14:55:15 1999
 ## Last Machine Used: glaurung.green-gryphon.com
-## Update Count	    : 45
+## Update Count	    : 47
 ## Status	    : Unknown, Use with caution!
 ## HISTORY	    :
 ## Description	    :
@@ -39,7 +39,7 @@ DOCDIR	  := $(TMPTOP)/usr/doc/$(package)
 LIBDIR	  := $(TMPTOP)/usr/share/doc-base
 
 PTMPTOP	  := $(SRCTOP)/debian/tmp-packaging
-PDOCDIR	  := $(PTMPTOP)/usr/doc/$(package)
+PDOCDIR	  := $(PTMPTOP)/usr/doc/$(ppackage)
 PLIBDIR	  := $(PTMPTOP)/usr/share/doc-base
 
 FHS_ARCHIVE  =$(shell ls -1 fhs*.tar.gz)
@@ -167,9 +167,9 @@ stamp-packaging:  build
 	debiandoc2latexps  -O packaging.sgml | gzip -9f > ../packaging.ps.gz
 	debiandoc2latexpdf -O packaging.sgml | gzip -9f > ../packaging.pdf.gz
 	GZIP=-9v tar zcf   ../packaging.html.tar.gz    packaging.html
-	dpkg-distaddfile   -fdebian/files	   packaging.ps.gz	 byhand -
-	dpkg-distaddfile   -fdebian/files	   packaging.pdf.gz	 byhand -
-	dpkg-distaddfile   -fdebian/files	   packaging.html.tar.gz byhand -
+	dpkg-distaddfile   -fdebian/files	 packaging.ps.gz       byhand -
+	dpkg-distaddfile   -fdebian/files	 packaging.pdf.gz      byhand -
+	dpkg-distaddfile   -fdebian/files	 packaging.html.tar.gz byhand -
 	for i in	    $(PBYHAND_FILES); do \
 	  $(install_file)   $$i		   ..		     ; \
 	  dpkg-distaddfile  -fdebian/files $$i	     byhand - ; \
