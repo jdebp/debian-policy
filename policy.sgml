@@ -7352,6 +7352,7 @@ name ["<var>syshostname</var>"]:
 	    against Motif and with <tt>-dmotif</tt> appended to the
 	    package name.
 	  </p>
+
 	  <p>
 	    Both Motif-linked versions are dependent
 	    upon non-DFSG-compliant software and thus cannot be
