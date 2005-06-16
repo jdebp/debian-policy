@@ -33,11 +33,10 @@
 package := $(shell grep Source debian/control | sed 's/^Source: //')
 # arch	:= $(shell dpkg --print-installation-architecture)
 date	:= $(shell date +"%Y-%m-%d")
-version := $(shell LC_ALL=C dpkg-parsechangelog | \
-		   grep ^Version: | sed 's/^Version: *//')
+version := $(shell awk -F '[()]' '/^$(package)/{ print $$2; exit }' debian/changelog)
 
 # Location of the source dir
-SRCTOP	  := $(shell if [ "$$PWD" != "" ]; then echo $$PWD; else pwd; fi;)
+SRCTOP	  := $(CURDIR)
 TMPTOP	  := $(SRCTOP)/debian/tmp
 DOCDIR	  := $(TMPTOP)/usr/share/doc/$(package)
 LIBDIR	  := $(TMPTOP)/usr/share/doc-base
@@ -50,14 +49,14 @@ DESC_FILES      = debian-policy debian-menu-policy debian-perl-policy \
 
 # While we have two versions of the FHS installed in the source package,
 # we need to modify this to handle it.  This is the easiest way to do it.
-# FHS_ARCHIVE  =$(shell ls -1 fhs*.tar.gz)
+# FHS_ARCHIVE := $(wildcard fhs*.tar.gz)
 # And with version 2.1, we have to build the text and dvi versions
 # ourselves :-(
-FHS_ARCHIVE  =fhs-2.1-source.tar.gz
-FHS_HTML     =fhs-2.1.html.tar.gz
-FHS_FILES    =fhs/fhs.ps fhs/fhs.txt fhs/fhs.pdf
-FHS_BYHAND   =fhs-2.1.html.tar.gz fhs/fhs.txt
-# FSSTND_FILES =FSSTND-FAQ fsstnd-1.2.dvi.gz fsstnd-1.2.ps.gz fsstnd-1.2.txt.gz
+FHS_ARCHIVE  :=  fhs-2.1-source.tar.gz
+FHS_HTML     := fhs-2.1.html.tar.gz
+FHS_FILES    := fhs/fhs.ps fhs/fhs.txt fhs/fhs.pdf
+FHS_BYHAND   := fhs-2.1.html.tar.gz fhs/fhs.txt
+# FSSTND_FILES := FSSTND-FAQ fsstnd-1.2.dvi.gz fsstnd-1.2.ps.gz fsstnd-1.2.txt.gz
 POLICY_FILES = $(SGML_FILES:=.sgml) $(SGML_FILES:=.txt.gz) \
 	       virtual-package-names-list.txt \
 	       upgrading-checklist.txt libc6-migration.txt version.ent \
@@ -77,7 +76,7 @@ FILES_TO_CLEAN  = debian/files debian/buildinfo  debian/substvars \
 		  policy.pdf.gz policy.ps.gz \
 		  debconf_specification.xml.tar.gz
 
-STAMPS_TO_CLEAN = stamp-policy stamp-build stamp-configure
+STAMPS_TO_CLEAN = stamp-policy stamp-build
 DIRS_TO_CLEAN   = debian/tmp fhs $(SGML_FILES:=.html)
 
 
@@ -85,13 +84,10 @@ install_file   = /usr/bin/install -p	-o root -g root	 -m  644
 install_program= /usr/bin/install -p	-o root -g root	 -m  755
 make_directory = /usr/bin/install -p -d -o root -g root	 -m  755
 
-GROFF_VERSION := $(shell dpkg -s groff | sed -n -e 's/Version: //p')
-
 
 all build: stamp-build
-stamp-build:
+stamp-build: version.ent
 	$(checkdir)
-	-test -f stamp-configure || $(MAKE) -f debian/rules configure
 	@set -ex; \
 	for file in $(SGML_FILES); do \
 	  nsgmls -gues $$file.sgml; \
@@ -105,7 +101,7 @@ stamp-build:
 	tar -zxf $(FHS_ARCHIVE)
 	# Need to use a patched tmac.m macro file if we're using a pre-1.16
 	# groff; version 1.16 is apparently fixed
-	if dpkg --compare-versions "$(GROFF_VERSION)" lt 1.16; then \
+	if dpkg --compare-versions "$(shell dpkg -s groff | sed -n -e 's/Version: //p')" lt 1.16; then \
 	    cp /usr/share/groff/tmac/tmac.m fhs && \
 	    cd fhs && patch -p1 < ../mm1.32-patch; \
 	fi
@@ -119,12 +115,13 @@ stamp-build:
 	gzip -9f debconf_spec/debconf_specification.txt
 	touch stamp-build
 
-configure: stamp-configure
-stamp-configure:
-	rm -f version.ent
-	echo "<!entity version \"$(version)\">" >> version.ent
-	echo "<!entity date    \"$(date)\">"	    >> version.ent
-	touch stamp-configure
+configure: version.ent
+version.ent: $(SGML_FILES:=.sgml) $(DESC_FILES:=.desc) \
+  upgrading-checklist.html debian/changelog
+	rm -f $@
+	echo "<!entity version \"$(version)\">" >> $@
+	echo "<!entity date    \"$(date)\">"	>> $@
+	touch $@
 
 clean:
 # Undoes the effect of `make -f debian/rules build'.
