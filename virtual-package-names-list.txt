@@ -80,7 +80,7 @@ System
                          other applications
  time-daemon             anything that serves as a time daemon
  ups-monitor             anything that is capable of controlling an UPS
-
+ flexmem                 anything that can  access flexible memory via the OBEX Protocol 
 
 Documentation
 -------------
@@ -249,3 +249,4 @@ Manoj Srivastava:
 
 Manoj Srivastava:
    4 Feb 2005 Added mpd-client
+              Added flexmem
