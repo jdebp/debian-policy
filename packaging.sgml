@@ -245,7 +245,7 @@
 	<p>
 	  When you've prepared the package, you should invoke:
 	  <example>
-	    dpkg --build <var>directory</var>
+  dpkg --build <var>directory</var>
 	  </example>
 	</p>
 	  
@@ -262,15 +262,17 @@
 	  to examine the contents of this newly-created file.  You may find the
 	  output of following commands enlightening:
 	  <example>
-dpkg-deb --info <var>filename</var>.deb
-dpkg-deb --contents <var>filename</var>.deb
-dpkg --contents <var>filename</var>.deb
-</example>
+  dpkg-deb --info <var>filename</var>.deb
+  dpkg-deb --contents <var>filename</var>.deb
+  dpkg --contents <var>filename</var>.deb
+	  </example>
 	  To view the copyright file for a package you could use this command:
-<example>
-dpkg --fsys-tarfile <var>filename</var>.deb | tar xof usr/doc/<var>\*</var>copyright | less
-</example></p>
-	
+	  <example>
+  dpkg --fsys-tarfile <var>filename</var>.deb | tar xof usr/doc/<var>\*</var>copyright | less
+	  </example>
+	</p>
+      </sect>
+
       <sect id="controlarea">
 	<heading>
 	  Package control information files
@@ -540,7 +542,7 @@ dpkg --fsys-tarfile <var>filename</var>.deb | tar xof usr/doc/<var>\*</var>copyr
 	  <p>	    
 	    To unpack a package it is typically invoked with
 	    <example>
-	      dpkg-source -x <var>.../path/to/filename</var>.dsc
+  dpkg-source -x <var>.../path/to/filename</var>.dsc
 	    </example> 
 	  </p>
 
@@ -557,7 +559,7 @@ dpkg --fsys-tarfile <var>filename</var>.deb | tar xof usr/doc/<var>\*</var>copyr
 	  <p>	    
 	    To create a packed source archive it is typically invoked:
 	    <example>
-	      dpkg-source -b <var>package</var>-<var>version</var>
+  dpkg-source -b <var>package</var>-<var>version</var>
 	  </example>
 	  </p>
 
@@ -676,17 +678,15 @@ dpkg --fsys-tarfile <var>filename</var>.deb | tar xof usr/doc/<var>\*</var>copyr
 	  <p>	    
 	    For a package which generates only one binary package, and
 	    which builds it in <tt>debian/tmp</tt> relative to the top
-	    of the source package, it is usually sufficient to call:
-	    <example>
-	      dpkg-gencontrol
-	    </example>
+	    of the source package, it is usually sufficient to call
+	    <prgn>dpkg-gencontrol</prgn>.
 	  </p>
 
 	  <p>	    
 	    Sources which build several binaries will typically need
 	    something like:
 	    <example>
-	      dpkg-gencontrol -Pdebian/tmp-<var>pkg</var> -p<var>package</var>
+  dpkg-gencontrol -Pdebian/tmp-<var>pkg</var> -p<var>package</var>
 	    </example> The <tt>-P</tt> tells
 	    <prgn>dpkg-gencontrol</prgn> that the package is being
 	    built in a non-default directory, and the <tt>-p</tt>
@@ -751,15 +751,15 @@ dpkg --fsys-tarfile <var>filename</var>.deb | tar xof usr/doc/<var>\*</var>copyr
 	    binaries like <prgn>top</prgn> which require only a
 	    recommendation.  It can say in its <tt>debian/rules</tt>:
 	    <example>
-	      dpkg-shlibdeps -dPre-Depends ps -dRecommends top
+  dpkg-shlibdeps -dPre-Depends ps -dRecommends top
 	    </example>
 	    and then in its main control file <tt>debian/control</tt>:
 	    <example>
-	      <var>...</var>
-	      Package: procps
-	      Pre-Depends: ${shlibs:Pre-Depends}
-	      Recommends: ${shlibs:Recommends}
-	      <var>...</var>
+  <var>...</var>
+  Package: procps
+  Pre-Depends: ${shlibs:Pre-Depends}
+  Recommends: ${shlibs:Recommends}
+  <var>...</var>
 	    </example>
 	  </p>
 
@@ -800,7 +800,7 @@ dpkg --fsys-tarfile <var>filename</var>.deb | tar xof usr/doc/<var>\*</var>copyr
 	    It is usually invoked from the <prgn>binary</prgn> target of
 	    <tt>debian/rules</tt>:
 	    <example>
-	      dpkg-distaddfile <var>filename</var> <var>section</var> <var>priority</var>
+  dpkg-distaddfile <var>filename</var> <var>section</var> <var>priority</var>
 	    </example>
 	    The <var>filename</var> is relative to the directory where
 	    <prgn>dpkg-genchanges</prgn> will expect to find it - this
@@ -1203,12 +1203,12 @@ dpkg --fsys-tarfile <var>filename</var>.deb | tar xof usr/doc/<var>\*</var>copyr
 	      For example, if the main source information control file
 	      contains the field
 	      <example>
-		XBS-Comment: I stand between the candle and the star.
+  XBS-Comment: I stand between the candle and the star.
 	      </example>
 	      then the binary and source package control files will contain the
 	      field
 	      <example>
-		Comment: I stand between the candle and the star.
+  Comment: I stand between the candle and the star.
 	      </example>
 	    </p>
 	  </sect2>
@@ -1241,14 +1241,13 @@ dpkg --fsys-tarfile <var>filename</var>.deb | tar xof usr/doc/<var>\*</var>copyr
 	  <p>
 	    That format is a series of entries like this:	
 	    <example>
-	      <var>package</var> (<var>version</var>) <var>distribution(s)</var>;
-	      urgency=<var>urgency</var>
+  <var>package</var> (<var>version</var>) <var>distribution(s)</var>; urgency=<var>urgency</var>
+
+   * <var>change details</var>
+   <var>more change details</var>
+   * <var>even more change details</var>
 	      
-	      * <var>change details</var>
-	      <var>more change details</var>
-	      * <var>even more change details</var>
-	      
-	      -- <var>maintainer name and email address</var>  <var>date</var>
+  -- <var>maintainer name and email address</var>  <var>date</var>
 	    </example>
 	  </p>
 
@@ -1339,7 +1338,7 @@ dpkg --fsys-tarfile <var>filename</var>.deb | tar xof usr/doc/<var>\*</var>copyr
 	      parentheses should be the name of the format.  For
 	      example, you might say:
 	      <example>
-		@@@ changelog-format: joebloggs @@@
+  @@@ changelog-format: joebloggs @@@
 	      </example>
 	      Changelog format names are non-empty strings of alphanumerics.
 	    </p>
@@ -1950,7 +1949,7 @@ dpkg --fsys-tarfile <var>filename</var>.deb | tar xof usr/doc/<var>\*</var>copyr
 	      <p>
 		This actually invokes
 		<example>
-		  gcc --print-libgcc-file-name
+  gcc --print-libgcc-file-name
 		</example> and parses and decomposes the output and
 		looks the CPU type from the GCC configuration in a
 		table in <prgn>dpkg</prgn>.  This is so that it will
@@ -2367,7 +2366,7 @@ dpkg --fsys-tarfile <var>filename</var>.deb | tar xof usr/doc/<var>\*</var>copyr
 	    commentary (separated by a space) which is usually in
 	    parentheses.  For example:
 	    <example>
-	      Urgency: LOW (HIGH for diversions users)
+  Urgency: LOW (HIGH for diversions users)
 	    </example>
 	  </p>
 
@@ -2917,7 +2916,7 @@ dpkg --fsys-tarfile <var>filename</var>.deb | tar xof usr/doc/<var>\*</var>copyr
 		    <p>If a version the package is already
 		      installed, call
 		      <example>
-			<var>old-prerm</var> upgrade <var>new-version</var>
+  <var>old-prerm</var> upgrade <var>new-version</var>
 		      </example></p>
 		  </item>
 		  <item>
@@ -2925,11 +2924,11 @@ dpkg --fsys-tarfile <var>filename</var>.deb | tar xof usr/doc/<var>\*</var>copyr
 		      If this gives an error (ie, a non-zero exit
 		      status), dpkg will attempt instead:
 		      <example>
-			<var>new-prerm</var> failed-upgrade <var>old-version</var>
+  <var>new-prerm</var> failed-upgrade <var>old-version</var>
 		      </example>
 		      Error unwind, for both the above cases:
 		      <example>
-			<var>old-postinst</var> abort-upgrade <var>new-version</var>
+  <var>old-postinst</var> abort-upgrade <var>new-version</var>
 		      </example>
 		    </p>
 		  </item>
@@ -2945,15 +2944,15 @@ dpkg --fsys-tarfile <var>filename</var>.deb | tar xof usr/doc/<var>\*</var>copyr
 		      package and <tt>--auto-deconfigure</tt> is
 		      specified, call, for each such package:
 		      <example>
-			<var>deconfigured's-prerm</var> deconfigure \
-			in-favour <var>package-being-installed</var> <var>version</var> \
-			removing <var>conflicting-package</var> <var>version</var>
+  <var>deconfigured's-prerm</var> deconfigure \
+   in-favour <var>package-being-installed</var> <var>version</var> \
+    removing <var>conflicting-package</var> <var>version</var>
 		      </example>
 		      Error unwind:
 		      <example>
-			<var>deconfigured's-postinst</var> abort-deconfigure \
-			in-favour <var>package-being-installed-but-failed</var> <var>version</var> \
-			removing <var>conflicting-package</var> <var>version</var>
+  <var>deconfigured's-postinst</var> abort-deconfigure \
+    in-favour <var>package-being-installed-but-failed</var> <var>version</var> \
+      removing <var>conflicting-package</var> <var>version</var>
 		      </example> 
 		      The deconfigured packages are marked as
 		      requiring configuration, so that if
@@ -2963,12 +2962,12 @@ dpkg --fsys-tarfile <var>filename</var>.deb | tar xof usr/doc/<var>\*</var>copyr
 		  <item>
 		    <p>To prepare for removal of the conflicting package, call:
 		      <example>
-			<var>conflictor's-prerm</var> remove in-favour <var>package</var> <var>new-version</var>
+  <var>conflictor's-prerm</var> remove in-favour <var>package</var> <var>new-version</var>
 		      </example>
 		      Error unwind:
 		      <example>
-			<var>conflictor's-postinst</var> abort-remove \
-			in-favour <var>package</var> <var>new-version</var>
+  <var>conflictor's-postinst</var> abort-remove \
+    in-favour <var>package</var> <var>new-version</var>
 		      </example>
 		    </p>
 		  </item>
@@ -2981,7 +2980,7 @@ dpkg --fsys-tarfile <var>filename</var>.deb | tar xof usr/doc/<var>\*</var>copyr
 		  <item>
 		    <p>If the package is being upgraded, call:
 		      <example>
-			<var>new-preinst</var> upgrade <var>old-version</var>
+  <var>new-preinst</var> upgrade <var>old-version</var>
 		      </example></p>
 		  </item>
 		  <item>
@@ -2990,19 +2989,19 @@ dpkg --fsys-tarfile <var>filename</var>.deb | tar xof usr/doc/<var>\*</var>copyr
 		      files from a previous version installed (ie, it
 		      is in the `configuration files only' state):
 		      <example>
-			<var>new-preinst</var> install <var>old-version</var>
+  <var>new-preinst</var> install <var>old-version</var>
 		      </example></p>
 		    
 		  <item>
 		    <p>Otherwise (ie, the package was completely purged):
 		      <example>
-			<var>new-preinst</var> install
+  <var>new-preinst</var> install
 		      </example>
 		      Error unwind versions, respectively:
 		      <example>
-			<var>new-postrm</var> abort-upgrade <var>old-version</var>
-			<var>new-postrm</var> abort-install <var>old-version</var>
-			<var>new-postrm</var> abort-install
+  <var>new-postrm</var> abort-upgrade <var>old-version</var>
+    <var>new-postrm</var> abort-install <var>old-version</var>
+      <var>new-postrm</var> abort-install
 		      </example>
 		    </p>
 		  </item>
@@ -3068,17 +3067,17 @@ dpkg --fsys-tarfile <var>filename</var>.deb | tar xof usr/doc/<var>\*</var>copyr
 		  <item>
 		    <p>If the package is being upgraded, call
 		      <example>
-			<var>old-postrm</var> upgrade <var>new-version</var>
+  <var>old-postrm</var> upgrade <var>new-version</var>
 		      </example></p>
 		  </item>
 		  <item>
 		    <p>If this fails, <prgn>dpkg</prgn> will attempt:
 		      <example>
-			<var>new-postrm</var> failed-upgrade <var>old-version</var>
+  <var>new-postrm</var> failed-upgrade <var>old-version</var>
 		      </example>
 		      Error unwind, for both cases:
 		      <example>
-			<var>old-preinst</var> abort-upgrade <var>new-version</var>
+  <var>old-preinst</var> abort-upgrade <var>new-version</var>
 		      </example>
 		    </p>
 		  </item>
@@ -3112,9 +3111,10 @@ dpkg --fsys-tarfile <var>filename</var>.deb | tar xof usr/doc/<var>\*</var>copyr
 		  <item>
 		    <p><prgn>dpkg</prgn> calls:
 		      <example>
-			<var>disappearer's-postrm</var> disappear \
-			<var>overwriter</var> <var>overwriter-version</var>
-		      </example></p>
+  <var>disappearer's-postrm</var> disappear \
+    <var>overwriter</var> <var>overwriter-version</var>
+		      </example>
+		    </p>
 		  </item>
 		  <item>
 		      <p>The package's maintainer scripts are removed.
@@ -3181,7 +3181,7 @@ dpkg --fsys-tarfile <var>filename</var>.deb | tar xof usr/doc/<var>\*</var>copyr
 	  --install</tt>, or with <tt>--configure</tt>), we first
 	  update the conffiles and then call:
 	  <example>
-	    <var>postinst</var> configure <var>most-recently-configured-version</var>
+  <var>postinst</var> configure <var>most-recently-configured-version</var>
 	  </example>
 	</p>
 
@@ -3205,9 +3205,11 @@ dpkg --fsys-tarfile <var>filename</var>.deb | tar xof usr/doc/<var>\*</var>copyr
 	<p>	  
 	  <enumlist>
 	    <item>
-	      <p><example>
-		  <var>prerm</var> remove
-		</example></p>
+	      <p>
+		<example>
+  <var>prerm</var> remove
+		</example>
+	      </p>
 	    </item>
 	    <item>
 	      <p>
@@ -3216,7 +3218,7 @@ dpkg --fsys-tarfile <var>filename</var>.deb | tar xof usr/doc/<var>\*</var>copyr
 	    </item>
 	    <item>
 	      <p><example>
-		  <var>postrm</var> remove
+  <var>postrm</var> remove
 		</example></p>
 	    </item>
 	    <item>
@@ -3238,7 +3240,7 @@ dpkg --fsys-tarfile <var>filename</var>.deb | tar xof usr/doc/<var>\*</var>copyr
 	    </item>
 	    <item>
 	      <p><example>
-		  <var>postrm</var> purge
+  <var>postrm</var> purge
 		</example></p>
 	    </item>
 	    <item>
@@ -3275,8 +3277,8 @@ dpkg --fsys-tarfile <var>filename</var>.deb | tar xof usr/doc/<var>\*</var>copyr
       <p>	
 	The field's format is as follows:
 	<example>
-	  Description: <var>single line synopsis</var>
-	  <var>extended description over several lines</var>
+  Description: <var>single line synopsis</var>
+  <var>extended description over several lines</var>
 	</example>
       </p>
 
@@ -3421,26 +3423,26 @@ dpkg --fsys-tarfile <var>filename</var>.deb | tar xof usr/doc/<var>\*</var>copyr
 
 	<p>	  
 	  <example>
-	    Package: smail
-	    Version: 3.1.29.1-13
-	    Maintainer: Ian Jackson &lt;iwj10@cus.cam.ac.uk&gt;
-	    Recommends: pine | mailx | elm | emacs | mail-user-agent
-	    Suggests: metamail
-	    Depends: cron, libc5
-	    Conflicts: sendmail
-	    Provides: mail-transport-agent
-	    Description: Electronic mail transport system.
-	    Smail is the recommended mail transport agent (MTA) for Debian.
-	    .
-	    An MTA is the innards of the mail system - it takes messages from
-	    user-friendly mailer programs and arranges for them to be delivered
-	    locally or passed on to other systems as required.
-	    .
-	    In order to make use of it you must have one or more user level
-	    mailreader programs such as elm, pine, mailx or Emacs (which has Rmail
-	    and VM as mailreaders) installed.  If you wish to send messages other
-	    than just to other users of your system you must also have appropriate
-	    networking support, in the form of IP or UUCP.
+  Package: smail
+  Version: 3.1.29.1-13
+  Maintainer: Ian Jackson &lt;iwj10@cus.cam.ac.uk&gt;
+  Recommends: pine | mailx | elm | emacs | mail-user-agent
+  Suggests: metamail
+  Depends: cron, libc5
+  Conflicts: sendmail
+  Provides: mail-transport-agent
+  Description: Electronic mail transport system.
+  Smail is the recommended mail transport agent (MTA) for Debian.
+  .
+  An MTA is the innards of the mail system - it takes messages from
+  user-friendly mailer programs and arranges for them to be delivered
+  locally or passed on to other systems as required.
+  .
+  In order to make use of it you must have one or more user level
+  mailreader programs such as elm, pine, mailx or Emacs (which has Rmail
+  and VM as mailreaders) installed.  If you wish to send messages other
+  than just to other users of your system you must also have appropriate
+  networking support, in the form of IP or UUCP.
 	  </example>
 	</p>
       </sect>
@@ -3517,9 +3519,9 @@ dpkg --fsys-tarfile <var>filename</var>.deb | tar xof usr/doc/<var>\*</var>copyr
 	<p>	  
 	  For example:
 	  <example>
-	    Package: metamail
-	    Version: 2.7-3
-	    Depends: libc5 (>= 5.2.18-4), mime-support, csh | tcsh
+  Package: metamail
+  Version: 2.7-3
+  Depends: libc5 (>= 5.2.18-4), mime-support, csh | tcsh
 	  </example>
 	</p>
       </sect>
@@ -3848,13 +3850,13 @@ dpkg --fsys-tarfile <var>filename</var>.deb | tar xof usr/doc/<var>\*</var>copyr
 	  packages which provide it.  This is so that, for example,
 	  supposing we have
 	  <example>
-	    Package: vm
-	    Depends: emacs
+  Package: vm
+  Depends: emacs
 	  </example>
 	  and someone else releases an xemacs package they can say
 	  <example>
-	    Package: xemacs
-	    Provides: emacs
+  Package: xemacs
+  Provides: emacs
 	  </example> and all will work in the interim (until a purely
 	  virtual package name is decided on and the <tt>emacs</tt>
 	  and <tt>vm</tt> packages are changed to use it).
@@ -4001,14 +4003,14 @@ dpkg --fsys-tarfile <var>filename</var>.deb | tar xof usr/doc/<var>\*</var>copyr
 	<p>	  
 	  For example, consider the set of packages:
 	  <example>
-	    Package: glibcdoc
-	    Recommends: info-browser
-	    
-	    Package: info
-	    Provides: info-browser
-	    
-	    Package: emacs
-	    Provides: info-browser
+  Package: glibcdoc
+  Recommends: info-browser
+  
+  Package: info
+  Provides: info-browser
+  
+  Package: emacs
+  Provides: info-browser
 	  </example>
 	</p>
 
@@ -4017,8 +4019,8 @@ dpkg --fsys-tarfile <var>filename</var>.deb | tar xof usr/doc/<var>\*</var>copyr
 	  same priority then <prgn>dselect</prgn>'s choice is
 	  essentially random.  Better would be
 	  <example>
-	    Package: glibcdoc
-	    Recommends: info | info-browser
+  Package: glibcdoc
+  Recommends: info | info-browser
 	  </example>
 	  so that <prgn>dselect</prgn> defaults to selecting the
 	  lightweight standalone info browser.
@@ -4262,10 +4264,10 @@ dpkg --fsys-tarfile <var>filename</var>.deb | tar xof usr/doc/<var>\*</var>copyr
 	supposing that a <prgn>smailwrapper</prgn> package wishes to
 	install a wrapper around <tt>/usr/sbin/smail</tt>:
 	<example>
-	  if [ install = "$1" ]; then
-	  dpkg-divert --package smailwrapper --add --rename \
-	  --divert /usr/sbin/smail.real /usr/sbin/smail
-	  fi
+  if [ install = "$1" ]; then
+     dpkg-divert --package smailwrapper --add --rename \
+        --divert /usr/sbin/smail.real /usr/sbin/smail
+  fi
 	</example> Testing <tt>$1</tt> is necessary so that the script
 	doesn't try to add the diversion again when
 	<prgn>smailwrapper</prgn> is upgraded.  The <tt>--package
@@ -4277,10 +4279,10 @@ dpkg --fsys-tarfile <var>filename</var>.deb | tar xof usr/doc/<var>\*</var>copyr
       <p>	
 	The postrm has to do the reverse:
 	<example>
-	  if [ remove = "$1" ]; then
-	  dpkg-divert --package smailwrapper --remove --rename \
-	  --divert /usr/sbin/smail.real /usr/sbin/smail
-	  fi
+  if [ remove = "$1" ]; then
+     dpkg-divert --package smailwrapper --remove --rename \
+        --divert /usr/sbin/smail.real /usr/sbin/smail
+  fi
 	</example>
       </p>
 
@@ -4385,7 +4387,7 @@ dpkg --fsys-tarfile <var>filename</var>.deb | tar xof usr/doc/<var>\*</var>copyr
 	<p>	  
 	  Each line is of the form:
 	  <example>
-	    <var>library-name</var> <var>version-or-soname</var> <var>dependencies ...</var>
+ <var>library-name</var> <var>version-or-soname</var> <var>dependencies ...</var>
 	  </example>
 	</p>
 
@@ -4417,7 +4419,7 @@ dpkg --fsys-tarfile <var>filename</var>.deb | tar xof usr/doc/<var>\*</var>copyr
 	  <var>1.2.3-1</var>, then the package's <var>shlibs</var>
 	  could say:
 	  <example>
-	    libfoo 1	foo (>= 1.2.3-1)
+  libfoo 1	foo (>= 1.2.3-1)
 	  </example>
 	</p>
 
@@ -4531,7 +4533,7 @@ dpkg --fsys-tarfile <var>filename</var>.deb | tar xof usr/doc/<var>\*</var>copyr
 	      <tt>debian/rules</tt> file.  If your package contains
 	      only binaries (e.g. no scripts) use:
 	      <example>
-		dpkg-shlibdeps debian/tmp/usr/bin/* debian/tmp/usr/sbin/*
+  dpkg-shlibdeps debian/tmp/usr/bin/* debian/tmp/usr/sbin/*
 	      </example>
 	      If <prgn>dpkg-shlibdeps</prgn> doesn't complain, you're
 	      done. If it does complain you might need to create your
@@ -4545,7 +4547,7 @@ dpkg --fsys-tarfile <var>filename</var>.deb | tar xof usr/doc/<var>\*</var>copyr
 	      Create a <tt>debian/shlibs</tt> file and let
 	      <tt>debian/rules</tt> install it in the control area:	      
 	      <example>
-		install -m644 debian/shlibs debian/tmp/DEBIAN
+  install -m644 debian/shlibs debian/tmp/DEBIAN
 	      </example>
 	      If your package contains additional binaries see above.
 	    </p>
@@ -4566,18 +4568,18 @@ dpkg --fsys-tarfile <var>filename</var>.deb | tar xof usr/doc/<var>\*</var>copyr
 	    Let's assume you are packaging a binary <tt>foo</tt>. Your
 	    output in building the package might look like this.	    
 	    <example>
-	      $ ldd foo
-	      libbar.so.1 => /usr/X11R6/lib/libbar.so.1.0
-	      libc.so.5 => /lib/libc.so.5.2.18
-	      libX11.so.6 => /usr/X11R6/lib/libX11.so.6.0
+  $ ldd foo
+  libbar.so.1 => /usr/X11R6/lib/libbar.so.1.0
+  libc.so.5 => /lib/libc.so.5.2.18
+  libX11.so.6 => /usr/X11R6/lib/libX11.so.6.0
 	    </example>
 	    And when you ran <prgn>dpkg-shlibdeps</prgn>
 	    <example>
-	      $ dpkg-shlibdeps -o foo
-	      dpkg-shlibdeps: warning: unable to find dependency information 
-	      for shared library libbar 
-	      (soname 1, path /usr/X11R6/lib/libbar.so.1.0, dependency field Depends)
-	      shlibs:Depends=elf-x11r6lib, libc5 (>= 5.2.18)
+  $ dpkg-shlibdeps -o foo
+  dpkg-shlibdeps: warning: unable to find dependency information 
+  for shared library libbar 
+  (soname 1, path /usr/X11R6/lib/libbar.so.1.0, dependency field Depends)
+  shlibs:Depends=elf-x11r6lib, libc5 (>= 5.2.18)
 	    </example>
 	    The <prgn>foo</prgn> binary depends on the
 	    <prgn>libbar</prgn> shared library, but no package seems
@@ -4588,10 +4590,10 @@ dpkg --fsys-tarfile <var>filename</var>.deb | tar xof usr/doc/<var>\*</var>copyr
 
 	  <p>
 	    <example>
-	      $ dpkg -S /usr/X11R6/lib/libbar.so.1.0
-	      bar1: /usr/X11R6/lib/libbar.so.1.0
-	      $ dpkg -s bar1 | grep Version
-	      Version: 1.0-1
+  $ dpkg -S /usr/X11R6/lib/libbar.so.1.0
+  bar1: /usr/X11R6/lib/libbar.so.1.0
+  $ dpkg -s bar1 | grep Version
+  Version: 1.0-1
 	    </example>
 	    This tells us that the <prgn>bar1</prgn> package, version
 	    1.0-1 is the one we are using. Now we can create our own
@@ -4599,7 +4601,7 @@ dpkg --fsys-tarfile <var>filename</var>.deb | tar xof usr/doc/<var>\*</var>copyr
 	    problem. Include the following line into your
 	    <tt>debian/shlibs.local</tt> file.
 	    <example>
-	      libbar 1 bar1 (>= 1.0-1)
+  libbar 1 bar1 (>= 1.0-1)
 	    </example>
 	    Now your package build should work. As soon as the
 	    maintainer of <prgn>libbar1</prgn> provides a
@@ -4723,7 +4725,7 @@ dpkg --fsys-tarfile <var>filename</var>.deb | tar xof usr/doc/<var>\*</var>copyr
 	<p>	  
 	  <tt>names</tt> will be formatted as a list of lines, each containing:
 	  <example>
-	    <var>sequence</var> <var>method</var> <var>summary</var>
+ <var>sequence</var> <var>method</var> <var>summary</var>
 	  </example>
 	</p>
 	<p>	  
@@ -4820,9 +4822,9 @@ dpkg --fsys-tarfile <var>filename</var>.deb | tar xof usr/doc/<var>\*</var>copyr
 	      appropriate details, and a local variables entry to the
 	      bottom to set Emacs to the right mode:
 	      <example>
-		Local variables:
-		mode: debian-changelog
-		End:
+  Local variables:
+  mode: debian-changelog
+  End:
 	      </example>
 	    </p>
 	  </item>
