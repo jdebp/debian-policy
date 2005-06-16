@@ -59,7 +59,7 @@ debian-policy (2.5.0.0) unstable; urgency=low
     by putting in a layer of abstractions. 
 
 
- -- Manoj Srivastava <phil@hands.com>  Thu, 29 Oct 1998 15:16:52 -0600
+ -- Manoj Srivastava <srivasta@debian.org>  Thu, 29 Oct 1998 15:16:52 -0600
 
 debian-policy (2.4.1.4) unstable; urgency=low
 
