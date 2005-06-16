@@ -1,6 +1,6 @@
 Source: debian-policy
 Section: doc
-Priority: extra
+Priority: optional
 Maintainer: Debian Policy List <debian-policy@lists.debian.org>
 Standards-Version: ${debian-policy:Version}
 
