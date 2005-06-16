@@ -1,3 +1,66 @@
+debian-policy (2.5.0.0) unstable; urgency=low
+
+  * AMENDMENT: Added in changes in Bug #25911, which rearranged sections
+    to create a new section 4, namely, files. Section 3.3 ("Files") should
+    become Section 4.  The Sections that are currently Section 4 and
+    Section 5 should be moved down to become Section 5 and Section 6
+    accordingly. 
+
+    What is now Section 5.5 ("Log files") should be moved to be a
+    subsection of the new Section 4 ("Files"), becoming section 4.8,
+    placing it after "Configuration files", moving the would-be Section
+    4.8 ("Permissions and owners") to Section 4.9.  All subsections of the
+    current Section 5 after 5.5 should be accordingly moved down to fill
+    in the number gap. 
+
+    This, along with the next amendment, justifies bumping up the version
+    number. closes: BUG#25911
+  
+  * AMENDMENT: Added in changes in Bug #21185, about the naming and
+    compression of changelog files. Now, if the upstream changelog file is
+    HTML formatted, it should be accessible as
+    /usr/doc/<package>/changelog.html.gz It also allows for this to be a
+    symlink, if the upstream file name does not conform to Debian
+    conventions. closes: BUG#21185
+
+  * AMENDMENT: Added in changes in Bug #7890, to make clear that the HTML
+    documents should be supplied in _some_ package, not necessarily in the
+    main binary package (at the discretion of the maintainer). 
+    closes: BUG#7890
+  
+  * AMENDMENT: Added in changes in Bug #26461, which corrects the policy
+    to refer to /usr/doc/<package>/copyright, rather than
+    /usr/doc/copyright/<package>. closes: BUG#26461
+  
+  * AMENDMENT: Added in changes in Bug #25385, which allow the
+    architecture specification strings to be of the form <arch>-<os>,
+    where os is one of linux, gnu. Previously, only linux was allowed, now
+    we also cater to the hurd. closes: BUG#25385
+  
+  * The responsibility of the contents of this package has now passed to
+    the debian-policy mailing list. The packaging details are now being
+    managed by a group of maintainers that do ot won the contents. 
+  
+  * Make the package optional, not extra. 
+  
+  * Re did the SGML markup. Normalized the document, and undid the omitted
+    and shor tags. Personally, I use too many DTD's in real life to be so
+    converssant with each one to be clever with tag omissions, and, since
+    I have a smart editor, omitting tags does not byuy one much. In the
+    process, I discovered a few errors in the markup (one of my
+    predecessors hasd the unfortunate habit of treating <p> as a "create
+    some space here" tag, and more often than not put it at the end of a
+    paragraph, rather than using is as a container element (which is what
+    it is, really). 
+  
+  * Re did the control files, making them more robust
+  
+  * re did the rules file, making it more general, and easier to maintain
+    by putting in a layer of abstractions. 
+
+
+ -- Manoj Srivastava <phil@hands.com>  Thu, 29 Oct 1998 15:16:52 -0600
+
 debian-policy (2.4.1.4) unstable; urgency=low
 
   * New Maintainer <debian-policy@lists.debian.org>
