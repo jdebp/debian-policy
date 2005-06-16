@@ -371,7 +371,12 @@ $(MAKE) install PREFIX=$(CURDIR)/debian/&lt;tmp&gt;/usr
 	    file, using a substitution such as <tt>${perl:Depends}</tt>
 	    is suggested.  This allows the dependencies to be determined
 	    as build time and written to the <file>substvars</file> file
-	    in the form <tt>perl:Depends=<var>deps</var></tt>.
+	    in the form
+	    <tt>perl:Depends=<var>deps</var></tt>.<footnote>
+	      <p>Please note that dependencies caused by versioned
+	      uses and on separately packaged modules are not included
+	      in this variable and must be explicitly included.</p>
+	    </footnote>
 	  </p>
 	  <p>
 	    Packages built with <prgn>debhelper</prgn> may use

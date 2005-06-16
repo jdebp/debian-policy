@@ -7,7 +7,7 @@
 	<name>Manoj Srivastava</name>
         <email>srivasta@debian.org</email>
       </author>
-      <version>$Revision: 1.5 $</version>
+      <version>$Revision: 1.6 $</version>
       <copyright>
         <copyrightsummary>Copyright &copy; 2000 by Manoj Srivastava. 
         </copyrightsummary>
@@ -49,9 +49,7 @@
       <p>
 	<em>In the following, the term developer refers to registered
 	  Debian developers.</em>
-      </p>
-      <p>A copy of this document should also be found at <url
-      id="http://master.debian.org/~srivasta/policy/"></p>      
+      </p>  
     </chapt>
     <chapt>
       <heading>Archives and Personnel</heading>

@@ -693,7 +693,7 @@
 	  <em>libs</em>, <em>libdevel</em>, <em>mail</em>,
 	  <em>math</em>, <em>misc</em>, <em>net</em>, <em>news</em>,
 	  <em>non-US</em>, <em>non-free</em>, <em>oldlibs</em>,
-	  <em>otherosfs</em>, <em>perl</em>, <em>python</em>
+	  <em>otherosfs</em>, <em>perl</em>, <em>python</em>,
 	  <em>science</em>, <em>shells</em>,
 	  <em>sound</em>, <em>tex</em>, <em>text</em>,
 	  <em>utils</em>, <em>web</em>, <em>x11</em>.
@@ -856,11 +856,11 @@
 
 	  <p>
 	    To prevent having to use epochs for every new upstream
-	    version, the version number should be changed to the
-	    following format in such cases: "19960501", "19961224". It
-	    is up to the maintainer whether he/she wants to bother the
-	    upstream maintainer to change the version numbers upstream,
-	    too.
+	    version, the date based portion of the version number
+	    should be changed to the following format in such cases:
+	    "19960501", "19961224". It is up to the maintainer whether
+	    he/she wants to bother the upstream maintainer to change
+	    the version numbers upstream, too.
 	  </p>
 
 	  <p>
@@ -1079,10 +1079,7 @@
 	  package names can be found in the <tt>debian-policy</tt> package.
 	  It is also available from the Debian web mirrors at
 	  <tt><url name="/doc/packaging-manuals/virtual-package-names-list.txt"
-		id="http://www.debian.org/doc/packaging-manuals/virtual-package-names-list.txt"></tt>
-	  and from the Debian archive mirrors at
-	  <tt><url name="/doc/package-developer/virtual-package-names-list.txt"
-		id="http://ftp.debian.org/debian/doc/package-developer/virtual-package-names-list.txt"></tt>.
+		id="http://www.debian.org/doc/packaging-manuals/virtual-package-names-list.txt"></tt>.
 	</p>
 
 	<p>
@@ -1188,7 +1185,7 @@
 
 	<p>
 	  The package installation scripts should avoid producing
-	  output which it is unnecessary for the user to see and
+	  output which is unnecessary for the user to see and
 	  should rely on <prgn>dpkg</prgn> to stave off boredom on
 	  the part of a user installing many packages.  This means,
 	  amongst other things, using the <tt>--quiet</tt> option on
@@ -1250,10 +1247,7 @@
 	    <package>debian-policy</package> package.
 	    It is also available from the Debian web mirrors at
             <tt><url name="/doc/packaging-manuals/debconf_specification.html"
-		id="http://www.debian.org/doc/packaging-manuals/debconf_specification.html"></tt>
-	    and from the Debian archive mirrors at
-            <tt><url name="/doc/package-developer/debconf_specification.txt.gz"
-		id="http://ftp.debian.org/debian/doc/package-developer/debconf_specification.txt.gz"></tt>.
+		id="http://www.debian.org/doc/packaging-manuals/debconf_specification.html"></tt>.
 	  </p>
 
 	  <p>
@@ -1483,14 +1477,15 @@
 	</p>
 
 	<p>
-	  If you need to edit a <prgn>Makefile</prgn> where
-	  GNU-style <prgn>configure</prgn> scripts are used, you
-	  should edit the <file>.in</file> files rather than editing the
+	  If you need to edit a <prgn>Makefile</prgn> where GNU-style
+	  <prgn>configure</prgn> scripts are used, you should edit the
+	  <file>.in</file> files rather than editing the
 	  <prgn>Makefile</prgn> directly.  This allows the user to
 	  reconfigure the package if necessary.  You should
 	  <em>not</em> configure the package and edit the generated
-	  <prgn>Makefile</prgn>!  This makes it impossible for
-	  someone else to later reconfigure the package.
+	  <prgn>Makefile</prgn>!  This makes it impossible for someone
+	  else to later reconfigure the package without losing the
+	  changes you made.
 	</p>
 
       </sect>
@@ -1658,7 +1653,7 @@
 	      contact the <package>dpkg</package> maintainer to have the
 	      parser script for it included in the <prgn>dpkg</prgn>
 	      package.  (You will need to agree that the parser and its
-	      manpage may be distributed under the GNU GPL, just as the rest
+	      man page may be distributed under the GNU GPL, just as the rest
 	      of <prgn>dpkg</prgn> is.)
 	    </footnote>
 	  </p>
@@ -5572,7 +5567,7 @@ test -f <var>program-executed-later-in-script</var> || exit 0
 
 	    <p>
 	      For more information about using <tt>update-rc.d</tt>,
-	      please consult its manpage <manref name="update-rc.d"
+	      please consult its man page <manref name="update-rc.d"
 		section="8">.
 	    </p>
 	  </sect2>
@@ -5630,7 +5625,7 @@ test -f <var>program-executed-later-in-script</var> || exit 0
 
 	    <p>
 	      For more information about using
-	      <prgn>invoke-rc.d</prgn>, please consult its manpage
+	      <prgn>invoke-rc.d</prgn>, please consult its man page
 	      <manref name="invoke-rc.d" section="8">.
 	    </p>
 	  </sect2>
@@ -6041,10 +6036,7 @@ Reloading <var>description</var> configuration...done.
 	  files in the <tt>debian-policy</tt> package.
 	  It is also available from the Debian web mirrors at
           <tt><url name="/doc/packaging-manuals/menu-policy/"
-		id="http://www.debian.org/doc/packaging-manuals/menu-policy/"></tt>
-	  and from the Debian archive mirrors at
-          <tt><url name="/doc/package-developer/menu-policy.txt.gz"
-		id="http://ftp.debian.org/debian/doc/package-developer/menu-policy.txt.gz"></tt>.
+		id="http://www.debian.org/doc/packaging-manuals/menu-policy/"></tt>.
 	</p>
 
 	<p>
@@ -6083,10 +6075,7 @@ Reloading <var>description</var> configuration...done.
 	  files in the <tt>debian-policy</tt> package.
 	  It is also available from the Debian web mirrors at
           <tt><url name="/doc/packaging-manuals/mime-policy/"
-		id="http://www.debian.org/doc/packaging-manuals/mime-policy/"></tt>
-	  and from the Debian archive mirrors at
-          <tt><url name="/doc/package-developer/mime-policy.txt.gz"
-		id="http://ftp.debian.org/debian/doc/package-developer/mime-policy.txt.gz"></tt>.
+		id="http://www.debian.org/doc/packaging-manuals/mime-policy/"></tt>.
 	</p>
 
       </sect>
@@ -6603,7 +6592,7 @@ strip --strip-unneeded <var>your-lib</var>
 	  <prgn>csh</prgn> and <prgn>tcsh</prgn> should be avoided as
 	  scripting languages.  See <em>Csh Programming Considered
 	  Harmful</em>, one of the <tt>comp.unix.*</tt> FAQs, which
-	  can be found at <url id="http://language.perl.com/versus/csh.whynot">.
+	  can be found at <url id="http://www.faqs.org/faqs/unix-faq/shell/csh-whynot/">.
 	  If an upstream package comes with <prgn>csh</prgn> scripts
 	  then you must make sure that they start with
 	  <tt>#!/bin/csh</tt> and make your package depend on the
@@ -7718,7 +7707,7 @@ name ["<var>syshostname</var>"]:
 
               <item>
                   If the window manager complies with <url
-		    id="http://www.freedesktop.org/standards/wm-spec.html"
+		    id="http://www.freedesktop.org/Standards/wm-spec"
 		    name="The Window Manager Specification Project">,
                   written by the <url id="http://www.freedesktop.org/"
 		    name="Free Desktop Group">, add 40 points.
@@ -8075,10 +8064,7 @@ name ["<var>syshostname</var>"]:
 	  files in the <tt>debian-policy</tt> package.
 	  It is also available from the Debian web mirrors at
           <tt><url name="/doc/packaging-manuals/perl-policy/"
-		id="http://www.debian.org/doc/packaging-manuals/perl-policy/"></tt>
-	  and from the Debian archive mirrors at
-          <tt><url name="/doc/package-developer/perl-policy.txt.gz"
-		id="http://ftp.debian.org/debian/doc/package-developer/perl-policy.txt.gz"></tt>.
+		id="http://www.debian.org/doc/packaging-manuals/perl-policy/"></tt>.
 	</p>
       </sect>
 
@@ -8175,7 +8161,7 @@ name ["<var>syshostname</var>"]:
           and should be reported to the Debian Bug Tracking System (the
           maintainer of the package is allowed to write this bug report
           themselves, if they so desire).  Do not close the bug report
-          until a proper manpage is available.<footnote>
+          until a proper man page is available.<footnote>
               It is not very hard to write a man page. See the
 	      <url id="http://www.schweikhardt.net/man_page_howto.html"
 		name="Man-Page-HOWTO">,
@@ -8187,10 +8173,10 @@ name ["<var>syshostname</var>"]:
 	</p>
 
 	<p>
-	  You may forward a complaint about a missing manpage to the
+	  You may forward a complaint about a missing man page to the
 	  upstream authors, and mark the bug as forwarded in the
 	  Debian bug tracking system.  Even though the GNU Project do
-	  not in general consider the lack of a manpage to be a bug,
+	  not in general consider the lack of a man page to be a bug,
 	  we do; if they tell you that they don't consider it a bug
 	  you should leave the bug in our bug tracking system open
 	  anyway.
@@ -8201,21 +8187,21 @@ name ["<var>syshostname</var>"]:
         </p>
 
 	<p>
-	  If one manpage needs to be accessible via several names it
+	  If one man page needs to be accessible via several names it
 	  is better to use a symbolic link than the <file>.so</file>
 	  feature, but there is no need to fiddle with the relevant
 	  parts of the upstream source to change from <file>.so</file> to
 	  symlinks: don't do it unless it's easy.  You should not
 	  create hard links in the manual page directories, nor put
 	  absolute filenames in <file>.so</file> directives.  The filename
-	  in a <file>.so</file> in a manpage should be relative to the
-	  base of the manpage tree (usually
+	  in a <file>.so</file> in a man page should be relative to the
+	  base of the man page tree (usually
 	  <file>/usr/share/man</file>). If you do not create any links
 	  (whether symlinks, hard links, or <tt>.so</tt> directives)
-	  in the filesystem to the alternate names of the manpage,
+	  in the filesystem to the alternate names of the man page,
 	  then you should not rely on <prgn>man</prgn> finding your
-	  manpage under those names based solely on the information in
-	  the manpage's header.<footnote>
+	  man page under those names based solely on the information in
+	  the man page's header.<footnote>
 	      Supporting this in <prgn>man</prgn> often requires
 	      unreasonable processing time to find a manual page or to
 	      report that none exists, and moves knowledge into man's
@@ -8547,7 +8533,7 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	This manual does not go into detail about the options and
 	usage of the package building and installation tools.  It
 	should therefore be read in conjuction with those programs'
-	manpages.
+	man pages.
       </p>
 
       <p>
@@ -8555,7 +8541,7 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	for managing various system configuration and similar issues,
 	such as <prgn>update-rc.d</prgn> and
 	<prgn>install-info</prgn>, are not described in detail here -
-	please see their manpages.
+	please see their man pages.
       </p>
 
       <p>
@@ -8593,7 +8579,7 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	In the future binary packages may also contain other
 	components, such as checksums and digital signatures. The
 	format for the archive is described in full in the
-	<file>deb(5)</file> manpage.
+	<file>deb(5)</file> man page.
       </p>
 
 
@@ -8664,7 +8650,7 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	</p>
 
 	<p>
-	  See the manpage <manref name="dpkg-deb" section="8"> for details of how
+	  See the man page <manref name="dpkg-deb" section="8"> for details of how
 	  to examine the contents of this newly-created file.  You may find the
 	  output of following commands enlightening:
 	  <example>
@@ -9939,7 +9925,7 @@ install-info --quiet --remove /usr/share/info/foobar.info
       </p>
 
       <p>
-	See the manpage <manref name="update-alternatives"
+	See the man page <manref name="update-alternatives"
 	section="8"> for details.
       </p>
 
