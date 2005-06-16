@@ -68,6 +68,7 @@ LIBDIR	  := $(TMPTOP)/usr/share/doc-base
 FHS_ARCHIVE  =fhs-2.1-source.tar.gz
 FHS_HTML     =fhs-2.1.html.tar.gz
 FHS_FILES    =fhs/fhs.ps fhs/fhs.txt fhs/fhs.pdf
+FHS_BYHAND   =fhs-2.1.html.tar.gz fhs/fhs.txt
 # FSSTND_FILES =FSSTND-FAQ fsstnd-1.2.dvi.gz fsstnd-1.2.ps.gz fsstnd-1.2.txt.gz
 POLICY_FILES =policy.text.gz policy.sgml virtual-package-names-list.text \
 	      upgrading-checklist.text libc6-migration.text version.ent \
@@ -80,7 +81,8 @@ BYHAND_FILES =policy.text.gz libc6-migration.text \
 	      virtual-package-names-list.text menu-policy.text.gz \
 	      mime-policy.text.gz policy.ps.gz policy.pdf.gz \
               policy.html.tar.gz \
-	      debconf_spec/debconf_specification.txt.gz
+	      debconf_spec/debconf_specification.txt.gz \
+	      $(FHS_BYHAND)
 
 
 install_file   = /usr/bin/install -p	-o root -g root	 -m  644
@@ -166,6 +168,7 @@ stamp-policy:  build
 	$(install_file)	    $(FHS_FILES)	     $(DOCDIR)/fhs/
 	$(install_file)	    debian/changelog	     $(DOCDIR)/
 	-gzip -fqr9	    $(DOCDIR)
+	-gunzip		    $(DOCDIR)/version.ent
 	$(install_file)	    debian/copyright	     $(DOCDIR)/
 	$(install_file)	    debian-policy.desc	     $(LIBDIR)/debian-policy
 	(tar cf -	    policy.html) |	     (cd $(DOCDIR);   tar xf -)
@@ -180,17 +183,16 @@ stamp-policy:  build
 	chown		    -R root.root debian/tmp
 	chmod		    -R go=rX debian/tmp
 	dpkg		    --build debian/tmp ..
-	debiandoc2latexps    policy.sgml
-	gzip -9qvf           policy.ps
-	debiandoc2latexpdf   policy.sgml
-	gzip -9qfv 	     policy.pdf
-	GZIP=-9v tar zcf     policy.html.tar.gz    policy.html
-	$(install_file)	     version.ent           $(DOCDIR)/
+	debiandoc2latexps   policy.sgml
+	gzip -9qvf          policy.ps
+	debiandoc2latexpdf  policy.sgml
+	gzip -9qfv 	    policy.pdf
+	GZIP=-9v tar zcf    policy.html.tar.gz    policy.html
 	for i in	    $(BYHAND_FILES); do                          \
 	  $(install_file)   $$i		   ..		               ; \
 	  dpkg-distaddfile  -fdebian/files `basename $$i`     byhand - ; \
 	done
-	touch		   stamp-policy
+	touch		    stamp-policy
 
 
 define checkdir

@@ -44,7 +44,7 @@
       <abstract>
 	This manual describes the policy requirements for the Debian
 	GNU/Linux distribution. This includes the structure and
-	contents of the Debian archive, several design issues of the
+	contents of the Debian archive and several design issues of the
 	operating system, as well as technical requirements that each
 	package must satisfy to be included in the distribution. The
 	policy package itself is maintained by a group of maintainers
@@ -58,7 +58,7 @@
 	    <p>Philip Hands <email>phil@hands.com</email></p>
 	  </item>
 	  <item>
-	    <p>Julian Gilbey <email>J.D.Gilbey@qmw.ac.uk</email></p>
+	    <p>Julian Gilbey <email>jdg@debian.org</email></p>
 	  </item>
 	  <item>
 	    <p>Manoj Srivastava <email>srivasta@debian.org</email></p>
@@ -89,10 +89,10 @@
 
 	<p>
 	  A copy of the GNU General Public License is available as
-	  <tt>/usr/share/common-licences/GPL</tt> in the Debian GNU/Linux
+	  <tt>/usr/share/common-licenses/GPL</tt> in the Debian GNU/Linux
 	  distribution or on the World Wide Web at
 	  <url id="http://www.gnu.org/copyleft/gpl.html"
-	       name="The GNU Public Licence">. You can also obtain it by writing to the
+	       name="The GNU General Public Licence">. You can also obtain it by writing to the
 	  Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 	  Boston, MA 02111-1307, USA.
 	</p>
@@ -108,7 +108,7 @@
 	<p>
 	  This manual describes the policy requirements for the Debian
 	  GNU/Linux distribution. This includes the structure and
-	  contents of the Debian archive, several design issues of the
+	  contents of the Debian archive and several design issues of the
 	  operating system, as well as technical requirements that
 	  each package must satisfy to be included in the
 	  distribution.
@@ -133,12 +133,13 @@
 		    The material presented represents an interface to
 		    the packaging system that is mandated for use, and
 		    is used by, a significant number of packages, and
-		    should not be changed without peer review. Package
-		    maintainers can then rely on this interfaces not
-		    changing, and the package management software
-		    authors need to ensure compatibility with these
-		    interface definitions. (control file and and
-		    changelog file formats are one example)
+		    therefore should not be changed without peer
+		    review. Package maintainers can then rely on this
+		    interfaces not changing, and the package
+		    management software authors need to ensure
+		    compatibility with these interface
+		    definitions. (Control file and and changelog file
+		    formats are examples.)
 		  </p>
 		</item>
 		<tag>Chosen Convention</tag>
@@ -159,7 +160,7 @@
 	</p>
 
 	<p>
-	  Please note that the footnotes present in this manual are
+	  The footnotes present in this manual are
 	  merely informative, and are not part of Debian policy itself.
 	</p>
 
@@ -181,47 +182,56 @@
 	</p>
 	<p>
 	  These classifications are roughly equivalent to the bug
-	  severities <em>important</em> (for <em>must</em> or
-	  <em>required</em> directive violations), <em>normal</em>
+	  severities <em>serious</em> (for <em>must</em> or
+	  <em>required</em> directive violations), <em>minor</em>,
+	  <em>normal</em> or <em>important</em>
 	  (for <em>should</em> or <em>recommended</em> directive
 	  violations) and <em>wishlist</em> (for <em>optional</em>
 	  items). <footnote>
-	    <p>Also see RFC 2119.</p>
+	    <p>Compare RFC 2119.  Note, however, that these words are
+	  used in a different way in this document.</p>
 	  </footnote>
 	</p>
 	<p>
 	  Much of the information presented in this manual will be
 	  useful even when building a package which is to be
-	  distributed in some other way or is for local use.
+	  distributed in some other way or is intended for local use
+	  only.
 	</p>
       </sect>
       <sect>
 	<heading>New versions of this document</heading>
 	<p>
 	  The current version of this document is always accessible from the
-	  Debian FTP server <ftpsite>ftp.debian.org</ftpsite> at
+	  Debian FTP server <ftpsite>ftp.debian.org</ftpsite> as
 	  <ftppath>/debian/doc/package-developer/debian-policy.html.tar.gz</ftppath>
-	  or from the Debian WWW server at
+	  or from the
 	  <url id="http://www.debian.org/doc/debian-policy/"
-	       name="The Debian Policy Manual">.</p>
+	       name="Debian Policy Manual"> webpage.</p>
 
 	<p>
 	  In addition, this manual is distributed via the Debian package
 	  <tt>debian-policy</tt>.
 	</p>
+
+	<p>
+	  The <tt>debian-policy</tt> package also includes the file
+	  <tt>upgrading-checklist.txt</tt> which indicates policy
+	  changes between versions of this document.
+        </p>
       </sect>
       <sect>
 	<heading>Feedback</heading>
 
 	<p>
 	  As the Debian GNU/Linux system is continuously evolving this
-	  manual is changed from time to time.
+	  manual does so too.
 	</p>
 	<p>
-	  While the authors of this document tried hard not to include
-	  any typos or other errors these still occur. If you discover
-	  an error in this manual or if you want to tell us any
-	  comments, suggestions, or critics please send an email to
+	  While the authors of this document have tried hard to avoid
+	  typos and other errors, these do still occur. If you discover
+	  an error in this manual or if you want to give any
+	  comments, suggestions, or criticisms please send an email to
 	  the Debian Policy List,
 	  <email>debian-policy@lists.debian.org</email>, or submit a
 	  bug report against the <tt>debian-policy</tt> package.
@@ -232,28 +242,31 @@
       <heading>The Debian Archive</heading>
       <p>
 	The Debian GNU/Linux system is maintained and distributed as a
-	collection of <em>packages</em>. Since there are so many of them (over
-	5000) they are split into <em>sections</em> and <em>priorities</em> to
-	simplify handling of them.
+	collection of <em>packages</em>. Since there are so many of
+	them (currently well over 6000), they are split into
+	<em>sections</em> and given <em>priorities</em> to simplify
+	the handling of them.
       </p>
       <p>
 	The effort of the Debian project is to build a free operating
 	system, but not every package we want to make accessible is
-	<em>free</em> in our sense (see Debian Free Software
+	<em>free</em> in our sense (see the Debian Free Software
 	Guidelines, below), or may be imported/exported without
 	restrictions. Thus, the archive is split into the sections
 	<em>main</em>, <em>non-free</em>, <em>contrib</em>,
 	<em>non-US/main</em>, <em>non-US/non-free</em>, and
-	<em>non-US/contrib</em>.</p>
-
-      <p>
-	The <em>main</em> and the <em>non-US/main</em> sections form
-	the <em>Debian GNU/Linux distribution</em>.
+	<em>non-US/contrib</em>.  The sections are explained in detail
+	below.
       </p>
 
       <p>
-	Packages in the other sections are not considered as part of
-	the Debian distribution, though we support their use, and we
+	The <em>main</em> and the <em>non-US/main</em> sections
+	together form the <em>Debian GNU/Linux distribution</em>.
+      </p>
+
+      <p>
+	Packages in the other sections are not considered to be part
+	of the Debian distribution, although we support their use and
 	provide infrastructure for them (such as our bug-tracking
 	system and mailing lists). This Debian Policy Manual applies
 	to these packages as well.</p>
@@ -261,18 +274,19 @@
       <sect id="pkgcopyright">
 	<heading>Package copyright and sections</heading>
 	<p>
-	  The aims of this policy are:
+	  The aims of this section are:
 
 	  <list compact="compact">
 	    <item>
-	      <p>We want to make as much software available as we
-		can.</p>
+	      <p>to allow us to make as much software available as we
+		can,</p>
 	    </item>
 	    <item>
-	      <p>We want to encourage everyone to write free software.</p>
+	      <p>to allow us to encourage everyone to write free
+	      software, and</p>
 	    </item>
 	    <item>
-	      <p> We want to make it easy for people to produce
+	      <p>to allow us to make it easy for people to produce
 		CD-ROMs of our system without violating any licenses,
 		import/export restrictions, or any other laws.</p>
 	    </item>
@@ -281,8 +295,8 @@
 	<sect1>
 	  <heading>The Debian Free Software Guidelines</heading>
 	  <p>
-	    The Debian Free Software Guidelines (DFSG) is our
-	    definition of `free' software.
+	    The Debian Free Software Guidelines (DFSG) form our
+	    definition of `free software'.  These are:
 	    <taglist>
 	      <tag>Free Redistribution
 	      </tag>
@@ -326,7 +340,7 @@
 		  source code. The license may require derived works to
 		  carry a different name or version number from the
 		  original software.  (This is a compromise. The Debian
-		  group encourages all authors to not restrict any
+		  Project encourages all authors to not restrict any
 		  files, source or binary, from being modified.)
 		</p>
 	      </item>
@@ -398,23 +412,26 @@
 	<sect1>
 	  <heading>The main section</heading>
 	  <p>
-	    Every package in "main"  and "non-US/main" must comply with
-	    the DFSG (Debian  Free Software Guidelines).</p>
+	    Every package in <em>main</em> and <em>non-US/main</em>
+	    must comply with the DFSG (Debian Free Software
+	    Guidelines).</p>
 
 	  <p>
-	    In addition, the packages in "main"
+	    In addition, the packages in <em>main</em>
 	    <list compact="compact">
 	      <item>
 		<p>
-		  must not require a package outside of "main" for
-		  compilation or execution (thus, the package must not
-		  declare a "Depends", "Recommends", or
-		  "Build-Depends" relationship on a non-main package),
+		  must not require a package outside of <em>main</em>
+		  for compilation or execution (thus, the package must
+		  not declare a "Depends", "Recommends", or
+		  "Build-Depends" relationship on a non-<em>main</em>
+		  package),
 		</p>
 	      </item>
 	      <item>
 		<p>
 		  must not be so buggy that we refuse to support them,
+		  and
 		</p>
 	      </item>
 	      <item>
@@ -426,12 +443,13 @@
 	    </list>
 	  </p>
 	  <p>
-	    Similarly, the packages in "non-US/main"
+	    Similarly, the packages in <em>non-US/main</em>
 	    <list compact="compact">
 	      <item>
 		<p>
-		   must not require a package outside of "main" or
-		   "non-US/main" for compilation or execution,
+		   must not require a package outside of <em>main</em>
+		   or <em>non-US/main</em> for compilation or
+		   execution,
 		</p>
 	      </item>
 	      <item>
@@ -451,63 +469,121 @@
 	<sect1>
 	  <heading>The contrib section</heading>
 	  <p>
-	    Every package in "contrib"  and "non-US/contrib" must
-	    comply with the DFSG.
+	    Every package in <em>contrib</em> and
+	    <em>non-US/contrib</em> must comply with the DFSG.
 	  </p>
 
 	  <p>
-	    Examples of packages which would be included in "contrib"
-	    or "non-US/contrib" are
+	    In addition, the packages in <em>contrib</em> and
+	    <em>non-US/contrib</em>
 	    <list compact="compact">
 	      <item>
 		<p>
-		  free packages which require "contrib", "non-free"
-		  packages or packages which are not in our
-		  archive at all for compilation or execution,
+		  must not be so buggy that we refuse to support them,
+		  and
+		</p>
+	      </item>
+	      <item>
+		<p>
+		  must meet all policy requirements presented in this
+		  manual.
+		</p>
+	      </item>
+	    </list>
+	  </p>
+
+	  <p>
+	    Furthermore, packages in <em>contrib</em> must not require
+	    a package in a <em>non-US</em> section for compilation or
+	    execution.
+	  </p>
+
+	  <p>
+	    Examples of packages which would be included in
+	    <em>contrib</em> or <em>non-US/contrib</em> are:
+	    <list compact="compact">
+	      <item>
+		<p>
+		  free packages which require <em>contrib</em>,
+		  <em>non-free</em> packages or packages which are not
+		  in our archive at all for compilation or execution,
+		  and
 		</p>
 	      </item>
 	      <item>
 		<p>
 		  wrapper packages or other sorts of free accessories for
-		  non-free programs,
+		  non-free programs.
 		</p>
 	      </item>
 	    </list>
 	  </p>
 	</sect1>
 	<sect1>
-	  <heading>The non-free section and non-US/non-free </heading>
+	  <heading>The non-free section</heading>
 	  <p>
-	    Packages must be placed in "non-free" or "non-US/non-free"
-	    if they are not compliant with the DFSG or are encumbered
-	    by patents or other legal issues that make their
-	    distribution problematic.
+	    Packages must be placed in <em>non-free</em> or
+	    <em>non-US/non-free</em> if they are not compliant with
+	    the DFSG or are encumbered by patents or other legal
+	    issues that make their distribution problematic.
+	  </p>
+	  <p>
+	    In addition, the packages in <em>non-free</em> and
+	    <em>non-US/non-free</em>
+	    <list compact="compact">
+	      <item>
+		<p>
+		  must not be so buggy that we refuse to support them,
+		  and
+		</p>
+	      </item>
+	      <item>
+		<p>
+		  must meet all policy requirements presented in this
+		  manual that it is possible for them to meet.
+		  <footnote>
+		    <p>
+		      It is possible that there are policy
+		      requirements which the package is unable to
+		      meet, for example, if the source is
+		      unavailable.  These situations will need to be
+		      handled on a case-by-case basis.
+		    </p>
+		  </footnote>
+		</p>
+	      </item>
+	    </list>
 	  </p>
 	</sect1>
+
 	<sect1>
 	  <heading>The non-US sections</heading>
 	  <p>
-	    Some programs with cryptographic program code need to be stored
-	    on the "non-US" server because of export restrictions of the
-	    U.S. Such programs must be distributed in the appropriate
-	    non-US section, either non-US/main, non-US/contrib or
-	    non-US/non-free. </p>
+	    Some programs with cryptographic program code need to be
+	    stored on the <em>non-US</em> server because of United
+	    States export restrictions.  Such programs must be
+	    distributed in the appropriate <em>non-US</em> section,
+	    either <em>non-US/main</em>, <em>non-US/contrib</em> or
+	    <em>non-US/non-free</em>.
+	  </p>
 	  <p>
 	    This applies only to packages which contain cryptographic
-	    code. A package containing a program with an interface to a
-	    cryptographic program or a program that's dynamically linked
-	    against a cryptographic library should not be distributed
-	    via the non-us server if it is capable of running without the
-	    cryptography library or program.
+	    code. A package containing a program with an interface to
+	    a cryptographic program or a program that's dynamically
+	    linked against a cryptographic library should not be
+	    distributed via the <em>non-US</em> server if it is
+	    capable of running without the cryptographic library or
+	    program.
 	  </p>
 	</sect1>
 	<sect1>
 	  <heading>Further copyright considerations</heading>
 	  <p>
-	    Every package must be accompanied by a verbatim copy of its
-	    copyright and distribution license in the file
-	    /usr/share/doc/&lt;package-name&gt;/copyright (see
-	    <ref id="copyrightfile"> for details).</p>
+	    Every package must be accompanied by a verbatim copy of
+	    its copyright and distribution license in the file
+	    <tt>/usr/share/doc/<ital>&lt;package-name&gt;</ital>/copyright</tt>
+	    (see <ref id="copyrightfile"> for further details).
+	  </p>
 	  <p>
 	    We reserve the right to restrict files from being included
 	    anywhere in our archives if
@@ -538,91 +614,130 @@
 	  </p>
 
 	  <p>
-	    Programs whose authors encourage the user to make donations
-	    are fine for the main distribution, provided that the
-	    authors do not claim that not donating is immoral,
-	    unethical, illegal or something similar; otherwise they must
-	    go in non-free.</p>
+	    Programs whose authors encourage the user to make
+	    donations are fine for the main distribution, provided
+	    that the authors do not claim that not donating is
+	    immoral, unethical, illegal or something similar; in such
+	    a case they must go in <em>non-free</em>.</p>
 
 	  <p>
 	    Packages whose copyright permission notices (or patent
-	    problems) do not allow redistribution even of only binaries,
-	    and where no special permission has been obtained, must not be
-	    placed on the Debian FTP site and its mirrors at all.</p>
+	    problems) do not even allow redistribution of binaries
+	    only, and where no special permission has been obtained,
+	    must not be placed on the Debian FTP site and its mirrors
+	    at all.</p>
 
 	  <p>
-	    Note, that under international copyright law (this applies
-	    in the United States, too) <em>no</em> distribution or
-	    modification of a work is allowed without an explicit notice
-	    saying so.  Therefore a program without a copyright notice
-	    <em>is</em> copyrighted and you may not do anything to it
-	    without risking being sued! Likewise if a program has a
-	    copyright notice but no statement saying what is permitted
-	    then nothing is permitted.</p>
+	    Note that under international copyright law (this applies
+	    in the United States, too), <em>no</em> distribution or
+	    modification of a work is allowed without an explicit
+	    notice saying so.  Therefore a program without a copyright
+	    notice <em>is</em> copyrighted and you may not do anything
+	    to it without risking being sued! Likewise if a program
+	    has a copyright notice but no statement saying what is
+	    permitted then nothing is permitted.</p>
 
 	  <p>
 	    Many authors are unaware of the problems that restrictive
-	    copyrights (or lack of copyright notices) can cause for the
-	    users of their supposedly-free software.  It is often
+	    copyrights (or lack of copyright notices) can cause for
+	    the users of their supposedly-free software.  It is often
 	    worthwhile contacting such authors diplomatically to ask
-	    them to modify their license terms. However, this is a
+	    them to modify their license terms. However, this can be a
 	    politically difficult thing to do and you should ask for
-	    advice on <tt>debian-legal</tt> first.</p>
+	    advice on the <tt>debian-legal</tt> mailing list first, as
+	    explained below.
+	  </p>
 
 	  <p>
-	    When in doubt, send mail to
+	    When in doubt about a copyright, send mail to
 	    <email>debian-legal@lists.debian.org</email>.  Be prepared
 	    to provide us with the copyright statement.  Software
 	    covered by the GPL, public domain software and BSD-like
-	    copyrights are safe; be wary of the phrases `commercial use
-	    prohibited' and `distribution restricted'.</p>
+	    copyrights are safe; be wary of the phrases `commercial
+	    use prohibited' and `distribution restricted'.
+	  </p>
 	</sect1>
 	<sect1>
 	  <heading>Subsections</heading>
 
 	  <p>
-	    The packages in all the sections (<em>main</em>,
-	    <em>contrib</em>, <em>non-US/main</em>, <em>non-free</em>,
-	    <em>non-US/contrib</em>, and <em>non-US/non-free</em>) are
-	    grouped further into <em>subsections</em> to simplify
-	    handling.</p>
+	    The packages in the sections <em>main</em>,
+	    <em>contrib</em> and <em>non-free</em> are grouped further
+	    into <em>subsections</em> to simplify handling.
+	  </p>
 
 	  <p>
-	    The section for each package should be specified in the
-	    package's <em>control record</em>. However, the maintainer of
-	    the Debian archive may override this selection to assure the
-	    consistency of the Debian distribution. </p>
+	    The section and subsection for each package should be
+	    specified in the package's <tt>Section</tt> control
+	    record.  However, the maintainer of the Debian archive
+	    may override this selection to ensure the consistency of
+	    the Debian distribution.  The <tt>Section</tt> field
+	    should be of the form:
+	    <list compact="compact">
+	      <item>
+		<p>
+		  <ital>subsection</ital> if the package is in the
+		  <em>main</em> section,
+		</p>
+	      </item>
+	      <item>
+		<p>
+		  <ital>section/subsection</ital> if the package is in
+		  the <em>contrib</em> or <em>non-free</em> section,
+		  and
+		</p>
+	      </item>
+	      <item>
+		<p>
+		  <tt>non-US</tt>, <tt>non-US/contrib</tt> or
+		  <tt>non-US/non-free</tt> if the package is in
+		  <em>non-US/main</em>, <em>non-US/contrib</em> or
+		  <em>non-US/non-free</em> respectively.
+		</p>
+	      </item>
+	    </list>
+	  </p>
 
 	  <p>
-	    Please check the current Debian distribution to see which
-	    sections are available.</p>
+	    The Debian archive maintainers provide the authoritative
+	    list of subsections.  At present, they are:
+	    <em>admin</em>, <em>base</em>, <em>comm</em>,
+	    <em>contrib</em>, <em>devel</em>, <em>doc</em>,
+	    <em>editors</em>, <em>electronics</em>, <em>games</em>,
+	    <em>graphics</em>, <em>hamradio</em>,
+	    <em>interpreters</em>, <em>libs</em>, <em>mail</em>,
+	    <em>math</em>, <em>misc</em>, <em>net</em>, <em>news</em>,
+	    <em>non-US</em>, <em>non-free</em>, <em>oldlibs</em>,
+	    <em>otherosfs</em>, <em>science</em>, <em>shells</em>,
+	    <em>sound</em>, <em>tex</em>, <em>text</em>,
+	    <em>utils</em>, <em>web</em>, <em>x11</em>.
+	  </p>
 	</sect1>
       <sect>
 	<heading>Priorities</heading>
 
 	<p>
-	  Each package should have a <em>priority</em> value,
-	  which is included in the package's <em>control
-	    record</em>. This information is used in the Debian package
-	  management tool to separate high-priority packages from
-	  less-important packages.</p>
+	  Each package should have a <em>priority</em> value, which is
+	  included in the package's <em>control record</em>. This
+	  information is used by the Debian package management tools
+	  to separate high-priority packages from less-important
+	  packages.</p>
 
 	<p>
-	  The following <em>priority levels</em> are supported by the
-	  Debian package management system, <prgn>dpkg</prgn>.
+	  The following <em>priority levels</em> are recognised by the
+	  Debian package management tools.
 	  <taglist>
 	    <tag><tt>required</tt></tag>
 	    <item>
 	      <p>
-		<tt>required</tt> packages are necessary for the
-		proper functioning of the system.  You must not remove
-		these packages or your system may become totally
-		broken and you may not even be able to use
-		<prgn>dpkg</prgn> to put things back.  Systems with
-		only the <tt>required</tt> packages are probably
-		unusable, but they do have enough functionality to
-		allow the sysadmin to boot and install more
-		software.</p>
+		Packages which are necessary for the proper
+		functioning of the system.  You must not remove these
+		packages or your system may become totally broken and
+		you may not even be able to use <prgn>dpkg</prgn> to
+		put things back.  Systems with only the
+		<tt>required</tt> packages are probably unusable, but
+		they do have enough functionality to allow the
+		sysadmin to boot and install more software.</p>
 	    </item>
 	    <tag><tt>important</tt></tag>
 	    <item>
@@ -630,16 +745,23 @@
 		Important programs, including those which one would
 		expect to find on any Unix-like system.  If the
 		expectation is that an experienced Unix person who
-		found it missing would say `What the F*!@&lt;+ is
-		going on, where is <prgn>foo</prgn>', it must be in
-		<tt>important</tt>.  This is an important criterion
-		because we are trying to produce, amongst other
-		things, a free Unix.  Other packages without which the
-		system will not run well or be usable must also be
-		here.  This does <em>not</em> include Emacs, the X
-		Window System, TeX or any other large applications.
-		The <tt>important</tt> packages are just a bare
-		minimum of commonly-expected and necessary tools.</p>
+		found it missing would say `What on earth is going on,
+		where is <prgn>foo</prgn>?', it must be an
+		<tt>important</tt> package.
+		<footnote>
+		  <p>
+		    This is an important criterion because we are
+		    trying to produce, amongst other things, a free
+		    Unix.
+		  </p>
+		</footnote>
+		Other packages without which the system will not run
+		well or be usable must also have priority
+		<tt>important</tt>.  This does
+		<em>not</em> include Emacs, the X Window System, TeX
+		or any other large applications.  The
+		<tt>important</tt> packages are just a bare minimum of
+		commonly-expected and necessary tools.</p>
 	    </item>
 	    <tag><tt>standard</tt></tag>
 	    <item>
@@ -650,20 +772,19 @@
 		else.  It doesn't include many large applications, but
 		it does include Emacs (this is more of a piece of
 		infrastructure than an application) and a reasonable
-		subset of TeX and LaTeX (if this is possible without
-		X).</p>
+		subset of TeX and LaTeX.</p>
 	    </item>
 	    <tag><tt>optional</tt></tag>
 	    <item>
 	      <p>
-		(In a sense everything is optional that isn't
-		required, but that's not what is meant here.) This is
+		(In a sense everything that isn't required is
+		optional, but that's not what is meant here.) This is
 		all the software that you might reasonably want to
-		install if you didn't know what it was or don't have
+		install if you didn't know what it was and don't have
 		specialized requirements. This is a much larger system
-		and includes the X Window System, a full TeX distribution,
-		and many applications. Note that optional packages should
-		not conflict with each other.
+		and includes the X Window System, a full TeX
+		distribution, and many applications. Note that
+		optional packages should not conflict with each other.
 	      </p>
 	    </item>
 	    <tag><tt>extra</tt></tag>
@@ -681,8 +802,8 @@
 	<p>
 	  Packages must not depend on packages with lower priority
 	  values (excluding build-time dependencies).  In order to
-	  ensure this, the priorities of one or more packages must
-	  be adjusted.
+	  ensure this, the priorities of one or more packages may need
+	  to be adjusted.
 	</p>
       </sect>
 
