@@ -29,6 +29,10 @@ debian-policy (3.6.2.1) unstable; urgency=low
     suggested in the bug report, just use which. which lives in an
     essential package, so can be used in the preinst of packages.
                                                              (Closes: #291026).
+  * Bug fix: "debian-policy: please clarify/loosen the policy on rewriting
+    history", thanks to Frank Küster. Since this was not really a
+    directive, but merely an expression of an opinion, moved it into an
+    informative footnote.                                    (Closes: #290270).
 
  --
 
