@@ -5,9 +5,9 @@
 ## Created On	    : Thu Oct 29 15:35:55 1998
 ## Created On Node  : tiamat.datasync.com
 ## Last Modified By : Manoj Srivastava
-## Last Modified On : Wed Sep  6 09:37:43 2000
+## Last Modified On : Sat Oct 26 12:29:03 2002
 ## Last Machine Used: glaurung.green-gryphon.com
-## Update Count	    : 56
+## Update Count	    : 58
 ## Status	    : Unknown, Use with caution!
 ## HISTORY	    :
 ## Description	    :
@@ -110,7 +110,7 @@ stamp-build:
 	    cd fhs && patch -p1 < ../mm1.32-patch; \
 	fi
 	# The extra '.' in the tmac path won't harm if unnecessary
-	GROFF_TMAC_PATH=. cd fhs && $(MAKE) fhs.ps fhs.pdf fhs.txt
+	GROFF_TMAC_PATH=. GROFF_NO_SGR=1 $(MAKE) -C fhs fhs.ps fhs.pdf fhs.txt
 	links -dump fhs-changes-2.1.html | perl -pe 's/[\r\0]//g' > \
                     fhs/fhs-changes-2.1.txt
 	links -dump upgrading-checklist.html | perl -pe 's/[\r\0]//g' > \

@@ -265,12 +265,16 @@ Description: domain for this computer
       section on templates.
     </para>
     <para>
-      The config-file contains a new element, which I call the configmodule.
-      This is a program that will determine the configuration before the
-      package is unpacked.  This means it is run <emphasis>before</emphasis>
-      the preinst, and before the package is unpacked! This is done to make
-      sure that we can use the desired configuration in the preinst if
-      necessary.
+      The config-file contains a new element, which I call the
+      configmodule.  This is a program that will determine the
+      configuration before the package is unpacked.  This means it is
+      usually run <emphasis>before</emphasis> the preinst, and before
+      the package is unpacked! 
+      <note>
+	<simpara>Plese see debconf-devel(8) for details.</simpara>
+      </note>
+      This is done to make sure that we can
+      use the desired configuration in the preinst if necessary.
     </para>
     <para>
       How does the configmodule get its information?  The configmodule

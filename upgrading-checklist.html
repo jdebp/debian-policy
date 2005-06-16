@@ -7,9 +7,9 @@
     Created On       : Thu Oct 29 20:54:48 1998
     Created On Node  : tiamat.datasync.com
     Last Modified By : Manoj Srivastava
-    Last Modified On : Sat Aug 31 02:02:54 2002
+    Last Modified On : Sat Oct 26 12:22:40 2002
     Last Machine Used: glaurung.green-gryphon.com
-    Update Count     : 28
+    Update Count     : 29
     Status           : Unknown, Use with caution!
     HISTORY          :
     Description      :
@@ -56,27 +56,27 @@ picking your way through this list.
 3.5.7.0                    Aug 02
 
      - Packages no longer have to ask permission to call MAKEDEV in
-       postinst, merely notifying the user ought to be enough.
+       postinst, merely notifying the user ought to be enough. [11.6]
      - cryptographic software may now be included in the main
-       archive. 
+       archive. [2.1.5]
      - task packages are now not permitted; tasks are now created by a
-       special Tasks: field in the control file.
+       special Tasks: field in the control file. [2.3.8]
      - window managers that support netwm now can added 20 points when
        they add themselves as an alternative for
-       /usr/bin/x-window-manager
+       /usr/bin/x-window-manager [12.8.4]
      - There are new rules for build-indep/build-arch targets and
        there is a new Build-Depend-Indep semantic. These were actually
-       introduced in 3.5.6, but I forgot to mention them here.
+       introduced in 3.5.6, but I forgot to mention them here. [7]
      - The default compilation options have now changed, one should
        provide debugging symbols in all cases, and optionally step
        back optimization to -O0, depending on the DEB_BUILD_OPTIONS
-       environment variable.
+       environment variable. [11.1]
      - Added mention of build-arch, build-indep, etc, in describing
        the relationships with `Build-Depends', `Build-Conflicts',
        `Build-Depends-Indep', and `Build-Conflicts-Indep'. May need to
-       review the new rules. 
+       review the new rules.  [7.6, 5.2]
      - Changed rules on how, and when, to invoke ldconfig in maintiner
-       scripts. Long rationale.
+       scripts. Long rationale. [9]
 
 3.5.6.0                    Jul 01
 
