@@ -1031,7 +1031,7 @@
 
           <p>
             This set of packages is all available packages which have the
-            name of the selected task in the <tt>Task<tt> field of their
+            name of the selected task in the <tt>Task</tt> field of their
             control file. The format of this field is a list of tasks,
             separated by commas.
           </p>

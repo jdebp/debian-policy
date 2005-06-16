@@ -360,11 +360,13 @@ $(MAKE) install PREFIX=$(CURDIR)/debian/&lt;tmp&gt;/usr
 	    in the form <tt>perl:Depends=<var>deps</var></tt>.
 	  </p>
 	  <p>
-	    Packages built with <prgn>debhelper</prgn> may use <manref
-	    name="dh_perl" section=1> to generate this substitution
-	    automatically.  This additionally requires a versioned
-	    <tt>Build-Depends</tt> (or <tt>Build-Depends-Indep</tt>)
-	    on <tt>debhelper (>= 3.0.18)</tt>.
+	    Packages built with <prgn>debhelper</prgn> may use
+
+	    <manref name="dh_perl" section="1"> to generate this
+	    substitution automatically.  This additionally requires a
+	    versioned <tt>Build-Depends</tt> (or
+	    <tt>Build-Depends-Indep</tt>) on <tt>debhelper (>=
+	    3.0.18)</tt>.
 	  </p>
 	</sect1>
       </sect>
@@ -398,7 +400,7 @@ $(MAKE) install PREFIX=$(CURDIR)/debian/&lt;tmp&gt;/usr
 	</p>
 	<p>
 	  As with modules, packages using <prgn>debhelper</prgn> may use
-	  <manref name="dh_perl" section=1> to automatically generate
+	  <manref name="dh_perl" section="1"> to automatically generate
 	  dependences (see <ref id="dh_perl">).
 	</p>
       </sect>
