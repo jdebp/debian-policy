@@ -34,6 +34,8 @@ debian-policy (3.5.9.0) unstable; urgency=low
     that are meant to provide examples, closes: #69864.
   * Removed several references to the Policy manual etc in the stuff
     imported from old packaging manual, closes: #181923.
+  * Fixed too greedy wildcard match in the logrotate example,
+    closes: #183544.
 
  -- 
 
