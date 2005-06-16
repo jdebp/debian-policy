@@ -5,9 +5,9 @@
 # Created On       : Thu Oct 29 15:23:36 1998
 # Created On Node  : tiamat.datasync.com
 # Last Modified By : Manoj Srivastava
-# Last Modified On : Mon Feb 28 22:32:47 2000
+# Last Modified On : Fri Mar 17 17:00:35 2000
 # Last Machine Used: glaurung.green-gryphon.com
-# Update Count     : 5
+# Update Count     : 8
 # Status           : Unknown, Use with caution!
 # HISTORY          : 
 # Description      : 
@@ -26,7 +26,7 @@ PACKAGE=#PACKAGE#
 # its automatic conffile handling, and all the packages we depend of
 # are already fully installed and configured.
 
-package_name=debian-policy
+package_name=#PACKAGE#
 
 if [ -z "package_name" ]; then
     print >&2 "Internal Error. Please report a bug."
@@ -53,6 +53,21 @@ case "$1" in
 	    cd /usr/share/doc 
 	    starget_dir=$(/bin/pwd);
 	    cd /
+
+            link_target="../share/doc/$package_name";
+            cd /usr/doc/;
+            if [ -d ../share/doc/ ]; then
+                cd ../share/doc/
+                ltarget=$(/bin/pwd);
+                if [ "$starget_dir" = "$ltarget" ]; then
+                    link_target="../share/doc/$package_name";
+                else
+                    link_target="/usr/share/doc/$package_name";
+                fi
+            else
+                link_target="/usr/share/doc/$package_name"
+            fi
+
 
 	    # Well, make sure that we do not get tripped up by the symlink
 	    if [ -L /usr/doc/$package_name ]; then
@@ -98,14 +113,14 @@ EOF
 		    echo "/usr/doc/$package_name still exists"
 		    if [ -L /usr/doc/$package_name ]; then
 			echo "it is a symbolic link, overwriting"
-			ln -sf ../share/doc/$package_name /usr/doc/$package_name
+			ln -sf $link_target /usr/doc/$package_name
 		    else
 			echo "This is an error. Aborting"
 			exit 1
 		    fi
 		fi
 		# File unexists. Free to go ahead and create link
-		ln -sf ../share/doc/$package_name /usr/doc/$package_name
+		ln -sf $link_target /usr/doc/$package_name
 
 	    fi
 	fi

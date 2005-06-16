@@ -118,7 +118,9 @@
 	  mechanisms involved in package creation, installation, and
 	  removal.  This information can be found in the <em>Debian
 	  Packaging Manual</em> and the <em>Debian System
-	    Administrators' Manual</em>.
+	    Administrators' Manual</em>. Please note that the
+	    footnotes present in this manual are merely informative,
+	    and are not part of Debian policy itself. 
 	  </p>
 	<p>
 	  This document assumes familiarity with these other two
@@ -2065,53 +2067,109 @@
       </sect>
     </chapt>
     <chapt>
-	<heading>Files</heading>
-	  
+      <heading>Files</heading>
+      
+      
+      <sect>
+	<heading>Binaries</heading>
 	
-	<sect>
-	  <heading>Binaries</heading>
+	<p>
+	  It is not allowed that two packages install programs with
+	  different functionality but with the same filenames. (The
+	  case of two programs having the same functionality but
+	  different implementations is handled via `alternatives.')
+	  If this case happens, one of the programs has to be
+	  renamed. The maintainers should report this to the
+	  developers' mailing and try to find a consensus about
+	  which package will have to be renamed.  If a consensus can
+	  not be reached, <em>both</em> programs must be
+	  renamed.</p>
+	
+	<p>
+	  Generally the following compilation parameters should be used:
+	  <example>
+	    CC = gcc 
+	    CFLAGS = -O2 -Wall # sane warning options vary between programs 
+	    LDFLAGS = # none 
+	    install -s # (or use strip on the files in debian/tmp)
+	  </example></p>
+	
+	<p>
+	  Note that by default all installed binaries should be stripped,
+	  either by using the <tt>-s</tt> flag to
+	  <prgn>install</prgn>, or by calling <prgn>strip</prgn> on
+	  the binaries after they have been copied into
+	  <tt>debian/tmp</tt> but before the tree is made into a
+	  package.</p>
+	
+	<p>
+	  The <tt>-N</tt> flag should not be used.  On a.out systems
+	  it may have been useful for some very small binaries, but
+	  for ELF it has no good effect.</p>
 	    
-	  <p>
-	    It is not allowed that two packages install programs with
-	    different functionality but with the same filenames. (The
-	    case of two programs having the same functionality but
-	    different implementations is handled via `alternatives.')
-	    If this case happens, one of the programs has to be
-	    renamed. The maintainers should report this to the
-	    developers' mailing and try to find a consensus about
-	    which package will have to be renamed.  If a consensus can
-	    not be reached, <em>both</em> programs must be
-	    renamed.</p>
-	    
-	  <p>
-	    Generally the following compilation parameters should be used:
-	    <example>
-	      CC = gcc 
-	      CFLAGS = -O2 -g -Wall # sane warning options vary between programs 
-	      LDFLAGS = # none 
-	      install -s # (or use strip on the files in debian/tmp)
-	    </example></p>
-	    
-	  <p>
-	    Note that all installed binaries should be stripped,
-	    either by using the <tt>-s</tt> flag to
-	    <prgn>install</prgn>, or by calling <prgn>strip</prgn> on
-	    the binaries after they have been copied into
-	    <tt>debian/tmp</tt> but before the tree is made into a
-	    package.</p>
-	    
-	  <p>
-	    The <tt>-g</tt> flag is useful on compilation so that you
-	    have available a full set of debugging symbols in your
-	    built source tree, in case anyone should file a bug report
-	    involving (for example) a core dump.</p>
-	    
-	  <p>
-	    The <tt>-N</tt> flag should not be used.  On a.out systems
-	    it may have been useful for some very small binaries, but
-	    for ELF it has no good effect.</p>
-	    
-	  <p>
+	<p>
+	  Debugging symbols are useful for error diagnosis, investigation
+	  of core dumps (which may be submitted by users in bug reports),
+	  or testing and developing the software. Therefore it is
+	  recommended to support building the package with
+	  debugging information through the following interface:
+	  If the environment variable <tt>DEB_BUILD_OPTIONS</tt>
+	  contains the string <tt>debug</tt>, compile the software with
+	  debugging information (usually this involves adding the
+	  <tt>-g</tt> flag to <tt>CFLAGS</tt>). This allows to generate
+	  a build tree with debugging information. If the environment
+	  variable <tt>DEB_BUILD_OPTIONS</tt> contains the
+	  string <tt>nostrip</tt>, do not strip the files at installation
+	  time. This allows to generate a package with debugging
+	  information included. The following makefile snippet
+	  is only an example how to test for either
+	  condition:
+	  <footnote>
+	    <p>
+	      Rationale: Building by default with -g causes more
+	      wasted CPU cycles since the information is stripped away
+	      anyway. The package can by default build without -g if
+	      it also provides a mechanism to easily be rebuilt with
+	      debugging information. This can be done by providing a
+	      "build-debug" make target, or allowing the user to
+	      specify "BUILD_DEBUG=yes" in the environment while
+	      compiling that package.
+	    </p>
+	    <p>Now this has several added benefits:
+	      <list>
+		<item>
+		  <p>
+		    It is actually easier to build debugging bins and
+		    libraries this way (no more editing debian/rules
+		    or similar) since it provides a documented way of
+		    getting this type of build.</p>
+		</item>
+		<item>
+		  <p>
+		    There will be much less wasted cpu time for the
+		    autobuilders since not having debugging
+		    information (and hence also not having to strip
+		    it) will increase the speed of compiles. This
+		    skips an entire pass of the compiler,
+		  </p>
+		</item>
+	      </list>
+	    </p>
+	  </footnote>
+
+           <example>
+             CFLAGS = -O2 -Wall
+             INSTALL = install
+
+             ifneq (,$(findstring debug,$(DEB_BUILD_OPTIONS)))
+               CFLAGS += -g
+             ifneq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
+               INSTALL += -s
+             endif
+             endif
+           </example></p>
+
+ 	  <p>
 	    It is up to the package maintainer to decide what
 	    compilation options are best for the package.  Certain
 	    binaries (such as computationally-intensive programs) may
@@ -3133,75 +3191,287 @@
 	  contains X shared libraries).  Users who wish to use the
 	  program can install just the relatively small
 	  <tt>xfree86-common</tt> and <tt>xlib6g</tt> packages, and do
-	  not need to install the whole of X.</p>
+	  not need to install the whole of X.
+	  <footnote>
+	    <p>Note: With the release of the new X window System
+	    version (4.X), there probably shall be a sweeping change
+	    in the X Window System Policy in the future.</p>
+	  </footnote>
+	</p>
   
 	<p>
 	  Do not create two versions (one with X support and one
 	  without) of your package.</p>
 	  
 	<p>
-	  <em>Application defaults</em> files have to be installed in
-	  the directory <tt>/usr/X11R6/lib/X11/app-defaults/</tt>.
-	  They are considered as part of the program code.  Thus, they
-	  should not be modified and should not be tagged as
-	  <em>conffile</em>s nor otherwise treated as configuration
-	  files.  If the local system administrator wants
-	  to customize X applications globally, a file with the same
-	  name as that of the package should be placed in the
-	  <tt>/etc/X11/Xresources/</tt> directory instead.
+         <em>Packages which provide an X server</em> that, directly or
+         indirectly, communicates with real input and display hardware
+         should declare in their control data that they provide the
+	  virtual package <tt>xserver</tt>.
+	  <footnote>
+	    <p>
+	      Rationale: implement current practice, and provide an
+	      actual policy for usage of the "xserver" virtual package
+	      which appears in the virtual packages list.
+	      In a nutshell, X servers that interface directly with
+	      the display and input hardware or via another subsystem
+	      (e.g., GGI) should provide xserver.  Things like Xvfb,
+	      Xnest, and Xprt should not.
+	    </p>
+	  </footnote>
+       </p>
+
+	<p>
+	  <em>Packages that provide a terminal emulator</em> for the X
+	  Window System which support a terminal type with a terminfo
+	  description provided in the <tt>ncurses-base</tt> package
+	  should declare in their control data that they provide the
+	  virtual package <tt>x-terminal-emulator</tt>.  They should
+	  also register themselves as an alternative for
+	  <tt>/usr/bin/x-terminal-emulator</tt>, with a priority of
+	  20.
+	</p>
+
+        <p>
+	  <em>Packages that provide window managers</em> should declare in
+	  their control data that they provide the virtual package
+	  <tt>x-window-manager</tt>.  They should also register themselves as an
+	  alternative for <tt>/usr/bin/x-window-manager</tt>, with a priority
+	  calculated as follows:
+	  <list>
+	    <item>Start with a priority of 20.</item>
+	    <item>If the window manager supports the Debian menu system,
+		add 20 points if this support is available in the
+		package's default configuration (i.e., no
+		configuration files belonging to the system or user
+		have to be edited to activate the feature); if
+		configuration files must be modified, add only 10
+		points.</item>
+	    <item>If the window manager permits the X session to be
+		restarted using a <em>different</em> window manager
+		(without killing the X server) in its default
+		configuration, add 10 points; otherwise add
+		none.</item>
+         </list>
+       </p>
+
+	<p>
+         <em>Packages that provide fonts for the X Window System</em>
+         must do a number of things to ensure that they are both
+         available without modification of the X or font server
+         configuration, and that they do not corrupt files used by
+         other font packages to register information about themselves.
+         <enumlist>
+           <item>
+		Fonts of any type supported by the X Window System
+		should be be in a separate binary package from any
+		executables, libraries, or documentation (except that
+		specific to the fonts shipped); if a program or
+		library is <em>unusable</em> without one or more
+		specific fonts, the package containing the program or
+		library should declare a dependency on the package(s)
+		containing the font(s) it requires.
+	    </item>
+           <item>
+		BDF fonts should be converted to PCF fonts with the
+		<tt>bdftopcf</tt> utility (available in the
+		<tt>xbase-clients</tt> package, <tt>gzip</tt>ped, and
+		placed in a directory that corresponds to their
+		resolution:
+		<list>
+		  <item>
+		      100 dpi fonts should be placed in
+		      <tt>/usr/X11R6/lib/X11/fonts/100dpi/</tt>.
+		  </item>
+		  <item>
+		      75 dpi fonts should be placed in
+		      <tt>/usr/X11R6/lib/X11/fonts/75dpi/</tt>.
+		  </item>
+		  <item>
+		      Character-cell fonts, cursor fonts, and other
+		      low-resolution fonts should be placed in
+		      <tt>/usr/X11R6/lib/X11/fonts/misc/</tt>.
+		  </item>
+		</list>
+	    </item>
+	    <item>
+		Speedo fonts should be placed in
+		<tt>/usr/X11R6/lib/X11/fonts/Speedo/</tt>.
+	    </item>
+	    <item>
+		Type 1 fonts should be placed in
+		/usr/X11R6/lib/X11/fonts/Type1/</tt>.  If font metric files are
+		available, they may be placed here as well.
+	    </item>
+	    <item>
+		Subdirectories of <tt>/usr/X11R6/lib/X11/fonts/</tt>
+		other than those listed above should be neither created nor
+		used.  (The <tt>PEX</tt> and <tt>cyrillic</tt> directories are
+		excepted for historical reasons, but installation of files into
+		these directories remains discouraged.)
+	    </item>
+	    <item>
+		Font packages may, instead of placing files directly in
+		the X font directories listed above, provide symbolic links in
+		the font directory which point to the files' actual location
+		in the filesystem.  Such a location should comply with the
+		FHS.
+	    </item>
+	    <item>
+		Font packages should not contain both 75dpi and 100dpi
+		versions of a font.  If both are available, they should be
+		provided in separate binary packages with "-75dpi" or "-100dpi"
+		appended to the names of the packages containing the
+		corresponding fonts.
+	    </item>
+	    <item>
+		Fonts destined for the <tt>misc</tt> subdirectory should
+		not be included in the same package as 75dpi or 100dpi fonts;
+		instead, they should be provided in a separate package with
+		"-misc" appended to its name.
+	    </item>
+	    <item>
+		Font packages <em>must not</em> provide the files
+		<tt>fonts.dir</tt>, <tt>fonts.alias</tt>, or
+		<tt>fonts.scale</tt> in a font directory.
+		<list>
+		  <item>
+		      <tt>fonts.dir</tt> files must not be provided at
+		      all.
+		  </item>
+		  <item>
+		      <tt>fonts.alias</tt> and <tt>fonts.scale</tt>
+		      files, if needed, should be provided in the
+		      directory
+		      <tt>/etc/X11/fonts/<em>fontdir</em>/<em>package</em>.<em>extension</em></tt>,
+		      where <em>fontdir</em> is the name of the
+		      subdirectory of
+		      <tt>/usr/X11R6/lib/X11/fonts/</tt> where the
+		      package's corresponding fonts are stored (e.g.,
+		      <tt>75dpi</tt> or <tt>misc</tt>),
+		      <em>package</em> is the name of the package that
+		      provides these fonts, and <em>extension</em> is
+		      either <tt>scale</tt> or <tt>alias</tt>,
+		      whichever corresponds to the file
+		      contents.
+		  </item>
+		</list>
+	    </item>
+	    <item>
+		Font packages must declare a dependency on
+		<tt>xbase-clients</tt> and, in the package
+		post-installation and post-removal scripts, invoke the
+		<tt>mkfontdir</tt> command on each directory into
+		which they installed fonts.
+	    </item>
+	    <item>
+		Font packages that provide one or more
+		<tt>fonts.scale</tt> files as described above must declare a
+		versioned dependency on <tt>xbase-clients (&gt;=
+		  3.3.3.1-5)</tt> and invoke <tt>update-fonts-scale</tt> on each
+		directory into which they installed fonts
+		<em>before</em> invoking <tt>mkfontdir</tt> on that
+		directory.  This invocation must occur in both the
+		post-installation and post-removal scripts.
+	    </item>
+	    <item>
+		Font packages that provide one or more
+		<tt>fonts.alias</tt> files as described above must
+		declare a versioned dependency on <tt>xbase-clients
+		(&gt;= 3.3.3.1-5)</tt> and, in the package
+		post-installation and post-removal scripts, invoke
+		<tt>update-fonts-alias</tt> on each directory into
+		which they installed fonts.
+	    </item>
+	    <item>
+		Font packages must not provide alias names for the
+		fonts they include which collide with alias names already in
+		use by fonts already packaged.
+	    </item>
+	    <item>
+		Font packages must not provide fonts with the same XLFD
+		registry name as another font already packaged.
+	    </item>
+	  </enumlist>
+	</p>
+
+       <p>
+         <em>Application defaults</em> files must be installed in the
+         directory <tt>/usr/X11R6/lib/X11/app-defaults/</tt>.  They should
+         not be registered as <em>conffile</em>s or otherwise treated as
+         configuration files.  Customization of programs' X resources may
+         be supported with the provision of a file with the same name as
+         that of the package placed in the <tt>/etc/X11/Xresources/</tt>
+         directory, which should be registered as a <em>conffile</em>.
 	  <em>Important:</em> packages that install files into the
-	  <tt>/etc/X11/Xresources/</tt> directory <em>must</em>
-	  declare a conflict with <tt>xbase (&lt;&lt;
-	  3.3.2.3a-2)</tt>; if this is not done it is possible for the
-	  package to destroy a previously-existing
-	  <tt>/etc/X11/Xresources</tt> <em>file</em>.</p>
+         <tt>/etc/X11/Xresources/</tt> directory <em>must</em> declare a
+         conflict with <tt>xbase (&lt;&lt; 3.3.2.3a-2)</tt>; if this is
+         not done it is possible for the installing package to destroy a
+         previously-existing <tt>/etc/X11/Xresources</tt> <em>file</em>
+         which had been customized by the system administrator.
+	  <footnote>
+	    <p>Rationale: clarifies the language to properly
+	      address the package maintainer, not the system
+	      administrator, as to how to manage
+	      /etc/X11/Xresources.</p>
+	  </footnote>
+       </p>
+
 	  
 	<p>
-	  No package should ever install files into the directories
-	  <tt>/usr/bin/X11/</tt>, <tt>/usr/share/doc/X11/</tt>,
-	  <tt>/usr/include/X11/</tt>, or <tt>/usr/lib/X11/</tt>; these
-	  directories are actually symbolic links, which <tt>dpkg</tt>
-	  does not follow when unpacking a package.  Instead, use
-	  <tt>/usr/X11R6/bin/</tt>, <tt>/usr/share/doc/package/</tt>
-	  (i.e., place files with the rest of your package's
-	  documentation), <tt>/usr/X11R6/include/</tt>, and
-	  <tt>/usr/X11R6/lib/</tt>.  This restriction governs only the
-	  paths used by the package as it is unpacked onto the system;
-	  it is permissible, and even preferable, for files within a
-	  package (shell scripts, for instance) to refer to the
-	  <tt>/usr/{bin,include,lib}/X11/</tt> directories rather than
-	  their <tt>/usr/X11R6/</tt> counterparts -- this way they do
-	  not have to be modified in the event that the X Window
-	  System packages install their files into a different
-	  directory in the future.</p>
+	  <em>Packages using the X Window System should abide by the FHS
+	    standard whenever possible</em>; they should install binaries,
+	  libraries, manual pages, and other files in FHS-mandated
+	  locations wherever possible.  This means that files should
+	  not be installed into <tt>/usr/X11R6/bin/</tt>,
+	  <tt>/usr/X11R6/lib/</tt>, or <tt>/usr/X11R6/man/</tt> unless
+	  this is necessary for the package to operate properly.
+	  Configuration files for window managers and display managers
+	  should be placed in a subdirectory of <tt>/etc/X11/</tt>
+	  corresponding to the package name due to these programs'
+	  tight integration with the mechanisms of the X Window
+	  System.  Application-level programs should use the
+	  <tt>/etc/</tt> directory unless otherwise mandated by
+	  policy.  The installation of files into subdirectories of
+	  <tt>/usr/X11R6/include/X11/</tt> and
+	  <tt>/usr/X11R6/lib/X11/</tt> is permitted but discouraged;
+	  package maintainers should determine if subdirectories of
+	  <tt>/usr/lib/</tt> and <tt>/usr/share/</tt> can be used
+	  instead (symlinks from the X11R6 directories to
+	  FHS-compliant locations is encouraged if the program is not
+	  easily configured to look elsewhere for its files).
+	  Packages must not provide -- or install files into -- the
+	  directories <tt>/usr/bin/X11/</tt>,
+	  <tt>/usr/include/X11/</tt>, or <tt>/usr/lib/X11/</tt>.
+	  Files within a package should, however, make reference to
+	  these directories, rather than their X11R6-named
+	  counterparts <tt>/usr/X11R6/bin/</tt>,
+	  <tt>/usr/X11R6/include/X11/</tt>, and
+	  <tt>/usr/X11R6/lib/X11/</tt>, if the resources being
+	  referred to have not been moved to FHS-compliant locations.
+       </p>
 
  	<p>
-	  If you package a program that requires the (non-free)
-	  OSF/Motif library, you should try to determine whether the
-	  programs works reasonably well with the free
-	  re-implementation of Motif called LessTif.  If so, build the
-	  package using the LessTif libraries; it can then go into the
-	  main section of the package repository and become an
-	  official part of the Debian distribution.</p>
-	  
-	<p>
-	  If however, the Motif-based program works insufficiently
-	  well with LessTif, you should instead provide "-smotif" and "-dmotif"
-	  versions (appending these identifiers to the name of the
-	  package), which are statically and dynamically linked
-	  against the Motif libraries, respectively.  (All known
-	  versions of OSF/Motif permit redistribution of
-	  statically-linked binaries using the library, but check the
-	  license on your copy of Motif to be sure.)  This two-package
-	  approach allows users without Motif to use the package,
-	  whereas users with Motif installed can enjoy the advantages
-	  of the dynamically-linked version (a considerable savings in
-	  disk space usage, download time, etc.).  Neither "-smotif"
-	  nor "-dmotif" packages can go into the main section; if the
-	  licensing on the package is compatible with the Debian Free
-	  Software Guidelines, it may go into the contrib section;
-	  otherwise it must go into the non-free section.
-
+	  <em>Programs that require the non-DFSG-compliant OSF/Motif
+	    library</em> should be compiled against and tested with
+	  LessTif (a free re-implementation of Motif) instead.  If the
+	  maintainer judges that the program or programs do not work
+	  sufficiently well with LessTif to be distributed and
+	  supported, but do so when compiled against Motif, then two
+	  versions of the package should be created; one linked
+	  statically against Motif and with <tt>-smotif</tt> appended
+	  to the package name, and one linked dynamically against
+	  Motif and with <tt>-dmotif</tt> appended to the package
+	  name.  Both Motif-linked versions are dependent upon
+	  non-DFSG-compliant software and thus cannot be uploaded to
+	  the main distribution; if the software is itself
+	  DFSG-compliant it may be uploaded to the contrib
+	  distribution.  While known existing versions of OSF/Motif
+	  permit unlimited redistribution of binaries linked against
+	  the library (whether statically or dynamically), it is the
+	  package maintainer's responsibility to determine whether
+	  this is permitted by the license of the copy of OSF/Motif in
+	  his or her possession.
 	</p>
       </sect>
 	  
@@ -3546,7 +3816,15 @@
 	  changelog files do not already conform to this naming
 	  convention, then this may be achieved by either renaming the
 	  files or adding a symbolic link at the packaging developer's
-	  discretion.  </p>
+	  discretion.
+	  <footnote>
+	    <p>
+	      Rationale: People should not have to look into two
+	      places ofr upstream changelogs merely because they are
+	      in HTML format.
+	    </p>
+	  </footnote>
+	</p>
 	
 	<p>
 	  Both should be installed compressed using <tt>gzip -9</tt>,

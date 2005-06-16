@@ -5,9 +5,9 @@
 # Created On       : Thu Oct 29 15:31:03 1998
 # Created On Node  : tiamat.datasync.com
 # Last Modified By : Manoj Srivastava
-# Last Modified On : Thu Oct 29 15:33:43 1998
-# Last Machine Used: tiamat.datasync.com
-# Update Count     : 1
+# Last Modified On : Fri Mar 17 17:10:23 2000
+# Last Machine Used: glaurung.green-gryphon.com
+# Update Count     : 2
 # Status           : Unknown, Use with caution!
 # HISTORY          : 
 # Description      : 
@@ -18,7 +18,7 @@
 set -e
 
 # This is filled in by debian/rules
-PACKAGE=#PACKAGE#
+package_name=#PACKAGE#
 
 # This script is called as the first step in removing the package from
 # the system.  This includes cases where the user explicitly asked for
@@ -29,6 +29,9 @@ case "$1" in
   remove)
     # This package about to be removed.
     :
+    if [ -L /usr/doc/$package_name ]; then
+        rm -f /usr/doc/$package_name
+    fi
 
     # There are two sub-cases:
     if test "${2+set}" = set; then
@@ -59,6 +62,9 @@ case "$1" in
   upgrade)
     # Prepare to upgrade FROM THIS VERSION of this package to version $2.
     :
+    if [ -L /usr/doc/$package_name ]; then
+        rm -f /usr/doc/$package_name
+    fi
 
     ;;
   failed-upgrade)
@@ -72,11 +78,7 @@ case "$1" in
      exit 0;;
 esac
 
-# FSSTND compatibility symlinks
-if [ \( "$1" = "upgrade" -o "$1" = "remove" \) \
-    -a -L /usr/doc/$PACKAGE ]; then
-	rm -f /usr/doc/$PACKAGE
-fi
+
 
 if [ -x /usr/sbin/install-docs ]; then
     /usr/sbin/install-docs -r $PACKAGE
