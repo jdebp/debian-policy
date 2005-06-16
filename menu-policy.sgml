@@ -4,33 +4,24 @@
 <!entity % versiondata SYSTEM "version.ent"> %versiondata;
 ]>
 <debiandoc>
+
   <!--
-  Debian GNU/Linux Menu Sub-Policy Manual.
-  Copyright (C)1999 ;
-
-  released under the terms of the GNU General Public License, version
-  2 or (at your option) any later.
-
   The debian-policy mailing list has taken responsibility for the
   contents of this document, with the package maintainers responsible
-  for packaging adminstrivia only.  
- 
+  for packaging administrivia only.
   -->
-  
+
   <book>
     <titlepag>
       <title>The Debian Menu sub-policy</title>
       <author>
-	<name>Chris Waters  </name>
-	<email>xtifr@debian.org</email>
+	<name>Chris Waters</name>
       </author>
       <author>
 	<name>Joey Hess</name> 
-	<email>joey@kitenet.net</email>
       </author>
       <author>
 	<name>Joost Witteveen</name> 
-	<email>joostje@debian.org</email>
       </author>
       <author>
 	<name>The Debian Policy mailing List</name>
@@ -41,24 +32,12 @@
       <abstract>
 	This manual describes the policy requirements for the Menu
 	system used in the Debian GNU/Linux distribution. This
-	document is part of the policy package for Debian. The policy
-	package itself is maintained by a group of maintainers that
-	have no editorial powers. At the moment, the list of
-	maintainers is:
-	<enumlist>
-	  <item>
-	    <p>Julian Gilbey <email>J.D.Gilbey@qmw.ac.uk</email></p>
-	  </item>
-	  <item>
-	    <p>Manoj Srivastava <email>srivasta@debian.org</email></p>
-	  </item>
-	</enumlist>
+	document is part of the policy package for Debian.
       </abstract>
-
 
       <copyright>
 	<copyrightsummary>
-	  Copyright &copy;1999 .
+	  Copyright &copy; 1999 Software in the Public Interest, Inc.
 	</copyrightsummary>
 	<p>
 	  This manual is free software; you may redistribute it and/or
@@ -66,14 +45,13 @@
 	  as published by the Free Software Foundation; either version
 	  2, or (at your option) any later version.
 	</p>
-
 	<p>
 	  This is distributed in the hope that it will be useful, but
 	  <em>without any warranty</em>; without even the implied
 	  warranty of merchantability or fitness for a particular
 	  purpose.  See the GNU General Public License for more
 	  details.
-	  </p>
+	</p>
 	<p>
 	  A copy of the GNU General Public License is available as
 	  <tt>/usr/doc/copyright/GPL</tt> in the Debian GNU/Linux
@@ -90,9 +68,14 @@
     <chapt>
       <heading>About this document</heading>
       <p>
-	The latest copy of this document can be found at
-	<ftpsite>ftp.debian.org</ftpsite>
-	<ftppath>/debian/doc/package-developer/menu-policy.txt.gz</ftppath> 
+	The latest copy of this document can be found in the
+	<tt>menu-policy</tt> files in the <tt>debian-policy</tt> package.
+	They are also available from the Debian web mirrors at
+	<tt><url name="/doc/packaging-manuals/menu-policy/"
+		id="http://www.debian.org/doc/packaging-manuals/menu-policy/"></tt>
+	and from the Debian archive mirrors at
+	<tt><url name="/doc/package-developer/menu-policy.txt.gz"
+		id="http://ftp.debian.org/debian/doc/package-developer/menu-policy.txt.gz"></tt>.
       </p>
       <p>
 	This document has been extracted and separated from the
@@ -290,9 +273,3 @@
     </chapt>
   </book>
 </debiandoc>
-
-
-
-
-
-
