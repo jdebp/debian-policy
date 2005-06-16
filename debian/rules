@@ -68,7 +68,7 @@ LIBDIR	  := $(TMPTOP)/usr/share/doc-base
 FHS_ARCHIVE  =fhs-2.1-source.tar.gz
 FHS_HTML     =fhs-2.1.html.tar.gz
 FHS_FILES    =fhs/fhs.ps fhs/fhs.txt fhs/fhs.pdf
-FSSTND_FILES =FSSTND-FAQ fsstnd-1.2.dvi.gz fsstnd-1.2.ps.gz fsstnd-1.2.txt.gz
+# FSSTND_FILES =FSSTND-FAQ fsstnd-1.2.dvi.gz fsstnd-1.2.ps.gz fsstnd-1.2.txt.gz
 POLICY_FILES =policy.text.gz policy.sgml virtual-package-names-list.text \
 	      upgrading-checklist.text libc6-migration.text version.ent \
 	      menu-policy.sgml menu-policy.text.gz \
@@ -152,7 +152,7 @@ stamp-policy:  build
 	test -f stamp-build	|| $(MAKE) -f	     debian/rules build
 	-rm -rf			$(TMPTOP)
 	$(make_directory)	$(TMPTOP)/DEBIAN
-	$(make_directory)	$(DOCDIR)/fsstnd
+#	$(make_directory)	$(DOCDIR)/fsstnd
 	$(make_directory)	$(DOCDIR)/fhs
 	$(make_directory)	$(LIBDIR)
 	# create a substvar to reference from debian/control so that
@@ -162,7 +162,7 @@ stamp-policy:  build
 	# itself...
 	echo "debian-policy:Version=$(version)"	     > debian/substvars
 	$(install_file)	    $(POLICY_FILES)	     $(DOCDIR)/
-	$(install_file)	    $(FSSTND_FILES)	     $(DOCDIR)/fsstnd/
+#	$(install_file)	    $(FSSTND_FILES)	     $(DOCDIR)/fsstnd/
 	$(install_file)	    $(FHS_FILES)	     $(DOCDIR)/fhs/
 	$(install_file)	    debian/changelog	     $(DOCDIR)/
 	-gzip -fqr9	    $(DOCDIR)

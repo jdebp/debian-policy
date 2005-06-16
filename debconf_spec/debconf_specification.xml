@@ -9,7 +9,6 @@
 <article>
 
   <articleinfo>
-    <!-- one of (indexterm contrib authorblurb affiliation othername lineage surname firstname honorific citetitle volumenum titleabbrev title subtitle seriesvolnums revhistory releaseinfo pubsnumber publishername publisher pubdate productnumber productname printhistory pagenums othercredit orgname issuenum issn isbn invpartnumber editor edition date corpname corpauthor copyright contractsponsor contractnum confgroup collab biblioset bibliomisc authorinitials authorgroup author artpagenums address abstract abbrev itermset keywordset subjectset modespec legalnotice mediaobject graphic) -->
     <title>Configuration management</title>
     <subtitle>revision 7.0</subtitle>
     <author>
