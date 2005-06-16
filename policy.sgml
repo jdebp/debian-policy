@@ -1489,7 +1489,7 @@
 	  ignored there; it is conventional to put a single space
 	  after the colon.  For example, a field might be:
 	  <example>
-	    Package: libc6
+Package: libc6
 	  </example>
 	  the field name is <tt>Package</tt> and the field value
 	  <tt>libc6</tt>.
@@ -2729,7 +2729,7 @@
 		    <p>If a version of the package is already
 		      installed, call
 		      <example>
-			<var>old-prerm</var> upgrade <var>new-version</var>
+<var>old-prerm</var> upgrade <var>new-version</var>
 		      </example></p>
 		  </item>
 		  <item>
@@ -2737,11 +2737,11 @@
 		      If the script runs but exits with a non-zero
 		      exit status, <prgn>dpkg</prgn> will attempt:
 		      <example>
-			<var>new-prerm</var> failed-upgrade <var>old-version</var>
+<var>new-prerm</var> failed-upgrade <var>old-version</var>
 		      </example>
 		      Error unwind, for both the above cases:
 		      <example>
-			<var>old-postinst</var> abort-upgrade <var>new-version</var>
+<var>old-postinst</var> abort-upgrade <var>new-version</var>
 		      </example>
 		    </p>
 		  </item>
@@ -2757,15 +2757,15 @@
 		      package and <tt>--auto-deconfigure</tt> is
 		      specified, call, for each such package:
 		      <example>
-			<var>deconfigured's-prerm</var> deconfigure \
-			in-favour <var>package-being-installed</var> <var>version</var> \
-			removing <var>conflicting-package</var> <var>version</var>
+<var>deconfigured's-prerm</var> deconfigure \
+  in-favour <var>package-being-installed</var> <var>version</var> \
+    removing <var>conflicting-package</var> <var>version</var>
 		      </example>
 		      Error unwind:
 		      <example>
-			<var>deconfigured's-postinst</var> abort-deconfigure \
-			in-favour <var>package-being-installed-but-failed</var> <var>version</var> \
-			removing <var>conflicting-package</var> <var>version</var>
+<var>deconfigured's-postinst</var> abort-deconfigure \
+  in-favour <var>package-being-installed-but-failed</var> <var>version</var> \
+    removing <var>conflicting-package</var> <var>version</var>
 		      </example>
 		      The deconfigured packages are marked as
 		      requiring configuration, so that if
@@ -2775,12 +2775,13 @@
 		  <item>
 		    <p>To prepare for removal of the conflicting package, call:
 		      <example>
-			<var>conflictor's-prerm</var> remove in-favour <var>package</var> <var>new-version</var>
+<var>conflictor's-prerm</var> remove \
+  in-favour <var>package</var> <var>new-version</var>
 		      </example>
 		      Error unwind:
 		      <example>
-			<var>conflictor's-postinst</var> abort-remove \
-			in-favour <var>package</var> <var>new-version</var>
+<var>conflictor's-postinst</var> abort-remove \
+  in-favour <var>package</var> <var>new-version</var>
 		      </example>
 		    </p>
 		  </item>
@@ -2793,7 +2794,7 @@
 		  <item>
 		    <p>If the package is being upgraded, call:
 		      <example>
-			<var>new-preinst</var> upgrade <var>old-version</var>
+<var>new-preinst</var> upgrade <var>old-version</var>
 		      </example></p>
 		  </item>
 		  <item>
@@ -2802,19 +2803,19 @@
 		      files from a previous version installed (i.e., it
 		      is in the `configuration files only' state):
 		      <example>
-			<var>new-preinst</var> install <var>old-version</var>
+<var>new-preinst</var> install <var>old-version</var>
 		      </example></p>
 
 		  <item>
 		    <p>Otherwise (i.e., the package was completely purged):
 		      <example>
-			<var>new-preinst</var> install
+<var>new-preinst</var> install
 		      </example>
 		      Error unwind actions, respectively:
 		      <example>
-			<var>new-postrm</var> abort-upgrade <var>old-version</var>
-			<var>new-postrm</var> abort-install <var>old-version</var>
-			<var>new-postrm</var> abort-install
+<var>new-postrm</var> abort-upgrade <var>old-version</var>
+<var>new-postrm</var> abort-install <var>old-version</var>
+<var>new-postrm</var> abort-install
 		      </example>
 		    </p>
 		  </item>
@@ -2884,17 +2885,17 @@
 		  <item>
 		    <p>If the package is being upgraded, call
 		      <example>
-			<var>old-postrm</var> upgrade <var>new-version</var>
+<var>old-postrm</var> upgrade <var>new-version</var>
 		      </example></p>
 		  </item>
 		  <item>
 		    <p>If this fails, <prgn>dpkg</prgn> will attempt:
 		      <example>
-			<var>new-postrm</var> failed-upgrade <var>old-version</var>
+<var>new-postrm</var> failed-upgrade <var>old-version</var>
 		      </example>
 		      Error unwind, for both cases:
 		      <example>
-			<var>old-preinst</var> abort-upgrade <var>new-version</var>
+<var>old-preinst</var> abort-upgrade <var>new-version</var>
 		      </example>
 		    </p>
 		  </item>
@@ -2930,8 +2931,8 @@
 		  <item>
 		    <p><prgn>dpkg</prgn> calls:
 		      <example>
-			<var>disappearer's-postrm</var> disappear \
-			<var>overwriter</var> <var>overwriter-version</var>
+<var>disappearer's-postrm</var> disappear \
+  <var>overwriter</var> <var>overwriter-version</var>
 		      </example>
 		    </p>
 		  </item>
@@ -3004,7 +3005,7 @@
 	    --install</tt>, or with <tt>--configure</tt>), we first
 	  update any <tt>conffile</tt>s and then call:
 	  <example>
-	    <var>postinst</var> configure <var>most-recently-configured-version</var>
+<var>postinst</var> configure <var>most-recently-configured-version</var>
 	  </example>
 	</p>
 
@@ -3030,7 +3031,7 @@
 	    <item>
 	      <p>
 		<example>
-		  <var>prerm</var> remove
+<var>prerm</var> remove
 		</example>
 	      </p>
 	    </item>
@@ -3040,9 +3041,11 @@
 	      </p>
 	    </item>
 	    <item>
-	      <p><example>
-		  <var>postrm</var> remove
-		</example></p>
+	      <p>
+		<example>
+<var>postrm</var> remove
+		</example>
+	      </p>
 	    </item>
 	    <item>
 	      <p>
@@ -3064,9 +3067,11 @@
 		<tt>.dpkg-{old,new,tmp}</tt>, etc.) are removed.</p>
 	    </item>
 	    <item>
-	      <p><example>
-		  <var>postrm</var> purge
-		</example></p>
+	      <p>
+		<example>
+<var>postrm</var> purge
+		</example>
+	      </p>
 	    </item>
 	    <item>
 	      <p>The package's file list is removed.</p>
@@ -3166,9 +3171,9 @@
 	<p>
 	  For example, a list of dependencies might appear as:
 	  <example>
-	    Package: mutt
-	    Version: 1.3.17-1
-	    Depends: libc6 (>= 2.2.1), exim | mail-transport-agent
+Package: mutt
+Version: 1.3.17-1
+Depends: libc6 (>= 2.2.1), exim | mail-transport-agent
 	  </example>
 	</p>
 
@@ -3193,10 +3198,10 @@
 	<p>
 	  For example:
 	  <example>
-	    Source: glibc
-	    Build-Depends-Indep: texinfo
-	    Build-Depends: kernel-headers-2.2.10 [!hurd-i386],
-	    hurd-dev [hurd-i386], gnumach-dev [hurd-i386]
+Source: glibc
+Build-Depends-Indep: texinfo
+Build-Depends: kernel-headers-2.2.10 [!hurd-i386],
+hurd-dev [hurd-i386], gnumach-dev [hurd-i386]
 	  </example>
 	</p>
       </sect>
@@ -3447,15 +3452,15 @@
 	  packages which provide it.  This is so that, for example,
 	  supposing we have
 	  <example>
-	    Package: foo
-	    Depends: bar
+Package: foo
+Depends: bar
 	  </example>
 	  and someone else releases an enhanced version of the
 	  <tt>bar</tt> package (for example, a non-US variant), they
 	  can say:
 	  <example>
-	    Package: bar-plus
-	    Provides: bar
+Package: bar-plus
+Provides: bar
 	  </example>
 	  and the <tt>bar-plus</tt> package will now also satisfy the
 	  dependency for the <tt>foo</tt> package.
@@ -3924,8 +3929,8 @@ Replaces: mail-transport-agent
 	  compiled binaries and libraries (but no scripts), you can
 	  use a command such as:
 	  <example>
-	    dpkg-shlibdeps debian/tmp/usr/bin/* debian/tmp/usr/sbin/* \
-	       debian/tmp/usr/lib/*
+dpkg-shlibdeps debian/tmp/usr/bin/* debian/tmp/usr/sbin/* \
+  debian/tmp/usr/lib/*
 	  </example>
 	  Otherwise, you will need to explicitly list the compiled
 	  binaries and libraries.
@@ -3973,7 +3978,7 @@ Replaces: mail-transport-agent
 	  beginning with <tt>#</tt> are considered to be commments and
 	  are ignored.  Each line is of the form:
 	  <example>
-	    <var>library-name</var> <var>soname-version-number</var> <var>dependencies ...</var>
+<var>library-name</var> <var>soname-version-number</var> <var>dependencies ...</var>
 	  </example>
 	</p>
 
@@ -4000,7 +4005,7 @@ Replaces: mail-transport-agent
 	    <p>
 	      This can be determined using the command
 	      <example>
-		objdump -p /usr/lib/libz.so.1.1.3 | grep SONAME
+objdump -p /usr/lib/libz.so.1.1.3 | grep SONAME
 	      </example>
 	    </p>
 	  </footnote>
@@ -4022,7 +4027,7 @@ Replaces: mail-transport-agent
 	  <tt>1.3</tt> was <var>1:1.1.3-1</var>, then the
 	  <tt>shlibs</tt> entry for this library could say:
 	  <example>
-	    libz 1 zlib1g (>= 1:1.1.3)
+libz 1 zlib1g (>= 1:1.1.3)
 	  </example>
 	  The version-specific dependency is to avoid warnings from
 	  the dynamic linker about using older shared libraries with
@@ -4041,11 +4046,11 @@ Replaces: mail-transport-agent
 	  <tt>debian/shlibs.<var>package</var></tt> instead).  Then
 	  let <tt>debian/rules</tt> install it in the control area:
 	  <example>
-	    install -m644 debian/shlibs debian/tmp/DEBIAN
+install -m644 debian/shlibs debian/tmp/DEBIAN
 	  </example>
 	  or, in the case of a multi-binary package:
 	  <example>
-	    install -m644 debian/shlibs.<var>package</var> debian/<var>package</var>/DEBIAN/shlibs
+install -m644 debian/shlibs.<var>package</var> debian/<var>package</var>/DEBIAN/shlibs
 	  </example>
 	  An alternative way of doing this is to create the
 	  <tt>shlibs</tt> file in the control area directly from
@@ -4089,19 +4094,19 @@ Replaces: mail-transport-agent
 	  <tt>debian/substvars</tt>, and the lines have been wrapped
 	  for ease of reading):
 	  <example>
-	    $ dpkg-shlibdeps -O debian/tmp/usr/bin/foo
-	    dpkg-shlibdeps: warning: unable to find dependency
-	     information for shared library libbar (soname 1,
-	     path /usr/lib/libbar.so.1, dependency field Depends)
-	    shlibs:Depends=libc6 (>= 2.2.2-2)
+$ dpkg-shlibdeps -O debian/tmp/usr/bin/foo
+dpkg-shlibdeps: warning: unable to find dependency
+  information for shared library libbar (soname 1,
+  path /usr/lib/libbar.so.1, dependency field Depends)
+shlibs:Depends=libc6 (>= 2.2.2-2)
 	  </example>
 	  You can then run <prgn>ldd</prgn> on the binary to find the
 	  full location of the library concerned:
 	  <example>
-	    $ ldd foo
-	    libbar.so.1 => /usr/lib/libbar.so.1 (0x4001e000)
-	    libc.so.6 => /lib/libc.so.6 (0x40032000)
-	    /lib/ld-linux.so.2 => /lib/ld-linux.so.2 (0x40000000)
+$ ldd foo
+libbar.so.1 => /usr/lib/libbar.so.1 (0x4001e000)
+libc.so.6 => /lib/libc.so.6 (0x40032000)
+/lib/ld-linux.so.2 => /lib/ld-linux.so.2 (0x40000000)
 	  </example>
 	  So the <prgn>foo</prgn> binary depends on the
 	  <prgn>libbar</prgn> shared library, but no package seems to
@@ -4109,10 +4114,10 @@ Replaces: mail-transport-agent
 	  <tt>libbar.so.1</tt> in <tt>/var/lib/dpkg/info/</tt>.  Let's
 	  determine the package responsible:
 	  <example>
-	    $ dpkg -S /usr/lib/libbar.so.1
-	    bar1: /usr/lib/libbar.so.1
-	    $ dpkg -s bar1 | grep Version
-	    Version: 1.0-1
+$ dpkg -S /usr/lib/libbar.so.1
+bar1: /usr/lib/libbar.so.1
+$ dpkg -s bar1 | grep Version
+Version: 1.0-1
 	  </example>
 	  This tells us that the <tt>bar1</tt> package, version 1.0-1,
 	  is the one we are using.  Now we can file a bug against the
@@ -4121,7 +4126,7 @@ Replaces: mail-transport-agent
 	  Including the following line into your
 	  <tt>debian/shlibs.local</tt> file:
 	  <example>
-	    libbar 1 bar1 (>= 1.0-1)
+libbar 1 bar1 (>= 1.0-1)
 	  </example>
 	  should allow the package build to work.
 	</p>
@@ -4198,12 +4203,12 @@ Replaces: mail-transport-agent
 	  <p>
 	    For example, the <prgn>emacs</prgn> package will contain
 	    <example>
-	      mkdir -p /usr/local/lib/emacs/site-lisp || true
+mkdir -p /usr/local/lib/emacs/site-lisp || true
 	    </example>
 	    in the <tt>postinst</tt> script, and
 	    <example>
-	      rmdir /usr/local/lib/emacs/site-lisp || true
-	      rmdir /usr/local/lib/emacs || true
+rmdir /usr/local/lib/emacs/site-lisp || true
+rmdir /usr/local/lib/emacs || true
 	    </example>
 	    in the <tt>prerm</tt> script.</p>
 
@@ -4437,8 +4442,8 @@ Replaces: mail-transport-agent
 	    <prgn>bind</prgn> would have a lower number than the
 	    script that starts <prgn>inn</prgn> so that it runs first:
 	    <example>
-	      /etc/rc2.d/S17bind
-	      /etc/rc2.d/S70inn
+/etc/rc2.d/S17bind
+/etc/rc2.d/S70inn
 	    </example>
 	  </p>
 	</sect1>
@@ -4507,7 +4512,7 @@ Replaces: mail-transport-agent
 	    should include a <tt>test</tt> statement at the top of the
 	    script, like this:
 	    <example>
-	      test -f <var>program-executed-later-in-script</var> || exit 0
+test -f <var>program-executed-later-in-script</var> || exit 0
 	    </example></p>
 
 	  <p>
@@ -4575,13 +4580,13 @@ Replaces: mail-transport-agent
 	    To get the default behavior for your package, put in your
 	    <tt>postinst</tt> script
 	    <example>
-	      update-rc.d <var>package</var> defaults &gt;/dev/null
+update-rc.d <var>package</var> defaults &gt;/dev/null
 	    </example>
 	    and in your <tt>postrm</tt>
 	    <example>
-	      if [ purge = "$1" ]; then
-	      update-rc.d <var>package</var> remove &gt;/dev/null
-	      fi
+if [ purge = "$1" ]; then
+  update-rc.d <var>package</var> remove &gt;/dev/null
+fi
 	    </example></p>
 
 	  <p>
@@ -4656,54 +4661,54 @@ Replaces: mail-transport-agent
 
 	  <p>
 	    <example>
-	      #!/bin/sh
-	      #
-	      # Original version by Robert Leslie
-	      # &lt;rob@mars.org&gt;, edited by iwj and cs
+#!/bin/sh
+#
+# Original version by Robert Leslie
+# &lt;rob@mars.org&gt;, edited by iwj and cs
 
-	      test -x /usr/sbin/named || exit 0
+test -x /usr/sbin/named || exit 0
 
-              # Source defaults file.
-              PARAMS=''
-              if [ -f /etc/default/bind ]; then
-                . /etc/default/bind
-              fi
+# Source defaults file.
+PARAMS=''
+if [ -f /etc/default/bind ]; then
+  . /etc/default/bind
+fi
 
 
-	      case "$1" in
-	      start)
-	      echo -n "Starting domain name service: named"
-	      start-stop-daemon --start --quiet --exec /usr/sbin/named \
-	                        -- $PARAMS
-	      echo "."
-	      ;;
-	      stop)
-	      echo -n "Stopping domain name service: named"
-	      start-stop-daemon --stop --quiet  \
-	      --pidfile /var/run/named.pid --exec /usr/sbin/named
-	      echo "."
-	      ;;
-	      restart)
-	      echo -n "Restarting domain name service: named"
-	      start-stop-daemon --stop --quiet  \
-	      --pidfile /var/run/named.pid --exec /usr/sbin/named
-	      start-stop-daemon --start --verbose --exec /usr/sbin/named \
-	                        -- $PARAMS
-	      echo "."
-	      ;;
-	      force-reload|reload)
-	      echo -n "Reloading configuration of domain name service: named"
-	      start-stop-daemon --stop --signal 1 --quiet  \
-	      --pidfile /var/run/named.pid --exec /usr/sbin/named
-	      echo "."
-	      ;;
-	      *)
-	      echo "Usage: /etc/init.d/bind {start|stop|restart|reload|force-reload}" >&2
-	      exit 1
-	      ;;
-	      esac
+case "$1" in
+start)
+  echo -n "Starting domain name service: named"
+  start-stop-daemon --start --quiet --exec /usr/sbin/named \
+                    -- $PARAMS
+  echo "."
+  ;;
+stop)
+  echo -n "Stopping domain name service: named"
+  start-stop-daemon --stop --quiet  \
+    --pidfile /var/run/named.pid --exec /usr/sbin/named
+  echo "."
+  ;;
+restart)
+  echo -n "Restarting domain name service: named"
+  start-stop-daemon --stop --quiet  \
+    --pidfile /var/run/named.pid --exec /usr/sbin/named
+  start-stop-daemon --start --verbose --exec /usr/sbin/named \
+                    -- $PARAMS
+  echo "."
+  ;;
+force-reload|reload)
+  echo -n "Reloading configuration of domain name service: named"
+  start-stop-daemon --stop --signal 1 --quiet  \
+    --pidfile /var/run/named.pid --exec /usr/sbin/named
+  echo "."
+  ;;
+*)
+  echo "Usage: /etc/init.d/bind {start|stop|restart|reload|force-reload}" >&2
+  exit 1
+  ;;
+esac
 
-	      exit 0
+exit 0
 	    </example>
 	  </p>
 
@@ -4714,9 +4719,9 @@ Replaces: mail-transport-agent
 	  </p>
 	  <p>
 	    <example>
-	      # Specified parameters to pass to named. See named(8).
-              # You may uncomment the following line, and edit to taste.
-              #PARAMS="-u nobody"
+# Specified parameters to pass to named. See named(8).
+# You may uncomment the following line, and edit to taste.
+#PARAMS="-u nobody"
 	    </example>
 	  </p>
 
@@ -4730,14 +4735,14 @@ Replaces: mail-transport-agent
 	    and having named running in all runlevels, it can say in
 	    its <tt>postinst</tt>:
 	    <example>
-	      update-rc.d bind defaults >/dev/null
+update-rc.d bind defaults >/dev/null
 	    </example>
 	    And in its <tt>postrm</tt>, to remove the links when the
 	    package is purged:
 	    <example>
-	      if [ purge = "$1" ]; then
-	      update-rc.d bind remove >/dev/null
-	      fi
+if [ purge = "$1" ]; then
+  update-rc.d bind remove >/dev/null
+fi
 	    </example></p>
 	</sect1></sect>
 
@@ -4754,9 +4759,9 @@ Replaces: mail-transport-agent
 	  via cron, it should place a file with the name of the
 	  package in one of the following directories:
 	  <example>
-	    /etc/cron.daily
-	    /etc/cron.weekly
-	    /etc/cron.monthly
+/etc/cron.daily
+/etc/cron.weekly
+/etc/cron.monthly
 	  </example>
 	  As these directory names imply, the files within them are
 	  executed on a daily, weekly, or monthly basis,
@@ -4834,13 +4839,16 @@ Replaces: mail-transport-agent
 		mention ``him'' directly.  For example, if you think
 		of saying
 		<example>
-		  I'm starting network daemons: nfsd mountd.
+I'm starting network daemons: nfsd mountd.
 		</example>
 		just say
 		<example>
-		  Starting network daemons: nfsd mountd.
-		</example></p></item>
-	  </list></p>
+Starting network daemons: nfsd mountd.
+		</example>
+	      </p>
+	    </item>
+	  </list>
+	</p>
 
 	<p>
 	  The following formats should be used</p>
@@ -4855,7 +4863,7 @@ Replaces: mail-transport-agent
 		daemons.  The output should look like this (a single
 		line, no leading spaces):
 		<example>
-		  Starting &lt;description&gt;: &lt;daemon-1&gt; &lt;daemon-2&gt; &lt;...&gt; &lt;daemon-n&gt;.
+Starting &lt;description&gt;: &lt;daemon-1&gt; &lt;daemon-2&gt; &lt;...&gt; &lt;daemon-n&gt;.
 		</example>
 		The &lt;description&gt; should describe the subsystem
 		the daemon or set of daemons are part of, while
@@ -4866,24 +4874,24 @@ Replaces: mail-transport-agent
 	      <p>
 		For example, the output of /etc/init.d/lpd would look like:
 		<example>
-		  Starting printer spooler: lpd.
+Starting printer spooler: lpd.
 		</example></p>
 
 	      <p>
 		This can be achieved by saying
 		<example>
-		  echo -n "Starting printer spooler: lpd"
-		  start-stop-daemon --start --quiet lpd
-		  echo "."
+echo -n "Starting printer spooler: lpd"
+start-stop-daemon --start --quiet lpd
+echo "."
 		</example>
 		in the script. If you have more than one daemon to
 		start, you should do the following:
 		<example>
-		  echo -n "Starting remote file system services:"
-		  echo -n " nfsd"; start-stop-daemon --start --quiet nfsd
-		  echo -n " mountd"; start-stop-daemon --start --quiet mountd
-		  echo -n " ugidd"; start-stop-daemon --start --quiet ugidd
-		  echo "."
+echo -n "Starting remote file system services:"
+echo -n " nfsd"; start-stop-daemon --start --quiet nfsd
+echo -n " mountd"; start-stop-daemon --start --quiet mountd
+echo -n " ugidd"; start-stop-daemon --start --quiet ugidd
+echo "."
 		</example>
 		This makes it possible for the user to see what takes
 		so long and when the final daemon has been
@@ -4891,8 +4899,9 @@ Replaces: mail-transport-agent
 		example above the system administrator can easily
 		comment out a line if he don't wants to start a
 		specific daemon, while the displayed message still
-		looks good.</p></item>
-
+		looks good.
+	      </p>
+	    </item>
 
 	    <item>
 	      <p>when something needs to be configured.</p>
@@ -4901,18 +4910,22 @@ Replaces: mail-transport-agent
 		If you have to set up different parameters of the
 		system upon boot up, you should use this format:
 		<example>
-		  Setting &lt;parameter&gt; to `&lt;value&gt;'.
-		</example></p>
+Setting &lt;parameter&gt; to `&lt;value&gt;'.
+		</example>
+	      </p>
 
 	      <p>
 		You can use the following echo statement to get the quotes right:
 		<example>
-		  echo "Setting DNS domainname to \`"value"'."
-		</example></p>
+echo "Setting DNS domainname to \`"value"'."
+		</example>
+	      </p>
 
 	      <p>
 		Note that the left quotation mark (`) is different
-		from the right (').</p></item>
+		from the right (').
+	      </p>
+	    </item>
 
 	    <item>
 	      <p>when a daemon is stopped.</p>
@@ -4925,7 +4938,7 @@ Replaces: mail-transport-agent
 	      <p>
 		So stopping the printer daemon will like like this:
 		<example>
-		  Stopping printer spooler: lpd.
+Stopping printer spooler: lpd.
 		</example></p></item>
 
 	    <item>
@@ -4938,17 +4951,19 @@ Replaces: mail-transport-agent
 		via `netdate' or killing all processes when the system
 		comes down. Your message should like this:
 		<example>
-		  Doing something very useful...done.
+Doing something very useful...done.
 		</example>
 		You should print the `done.' right after the job has been completed,
 		so that the user gets informed why he has to wait. You can get this
 		behavior by saying
 		<example>
-		  echo -n "Doing something very useful..."
-		  do_something
-		  echo "done."
+echo -n "Doing something very useful..."
+do_something
+echo "done."
 		</example>
-		in your script.</p></item>
+		in your script.
+	      </p>
+	    </item>
 
 	    <item>
 	      <p>when the configuration is reloaded.</p>
@@ -4957,8 +4972,10 @@ Replaces: mail-transport-agent
 		When a daemon is forced to reload its configuration
 		files you should use the following format:
 		<example>
-		  Reloading &lt;daemon's-name&gt; configuration...done.
-		</example></p></item>
+Reloading &lt;daemon's-name&gt; configuration...done.
+		</example>
+	      </p>
+	    </item>
 
 	    <item>
 	      <p>when none of the above rules apply.</p>
@@ -4967,9 +4984,12 @@ Replaces: mail-transport-agent
 		If you have to print a message that doesn't fit into
 		the styles described above, you can use something
 		appropriate, but please have a look at the overall
-		rules listed above.</p></item>
-	  </list></p></sect>
-
+		rules listed above.
+	      </p>
+	    </item>
+	  </list>
+	</p>
+      </sect>
 
       <sect>
 	<heading>Menus</heading>
@@ -5182,10 +5202,10 @@ Replaces: mail-transport-agent
 	  Here is an example of a wrapper script for this purpose:
 
 	  <example>
-	    #!/bin/sh
-	    BAR=${BAR:-/var/lib/fubar}
-	    export BAR
-	    exec /usr/lib/foo/foo "$@"
+#!/bin/sh
+BAR=${BAR:-/var/lib/fubar}
+export BAR
+exec /usr/lib/foo/foo "$@"
 	  </example></p>
 
 	<p>
@@ -5217,10 +5237,10 @@ Replaces: mail-transport-agent
 	<p>
 	  Generally the following compilation parameters should be used:
 	  <example>
-	    CC = gcc
-	    CFLAGS = -O2 -Wall # sane warning options vary between programs
-	    LDFLAGS = # none
-	    install -s # (or use strip on the files in debian/tmp)
+CC = gcc
+CFLAGS = -O2 -Wall # sane warning options vary between programs
+LDFLAGS = # none
+install -s # (or use strip on the files in debian/tmp)
 	  </example></p>
 
 	<p>
@@ -5288,19 +5308,19 @@ Replaces: mail-transport-agent
 
 
 	  <example>
-	    CFLAGS = -O2 -Wall
-	    INSTALL = install
-            INSTALL_FILE    = $(INSTALL) -p    -o root -g root  -m  644
-            INSTALL_PROGRAM = $(INSTALL) -p    -o root -g root  -m  755
-	    INSTALL_SCRIPT  = $(INSTALL) -p    -o root -g root  -m  755
-            INSTALL_DIR     = $(INSTALL) -p -d -o root -g root  -m  755
+CFLAGS = -O2 -Wall
+INSTALL = install
+INSTALL_FILE    = $(INSTALL) -p    -o root -g root  -m  644
+INSTALL_PROGRAM = $(INSTALL) -p    -o root -g root  -m  755
+INSTALL_SCRIPT  = $(INSTALL) -p    -o root -g root  -m  755
+INSTALL_DIR     = $(INSTALL) -p -d -o root -g root  -m  755
 
-	    ifneq (,$(findstring debug,$(DEB_BUILD_OPTIONS)))
-	    CFLAGS += -g
-	    endif
-	    ifeq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
-	    INSTALL_PROGRAM += -s
-	    endif
+ifneq (,$(findstring debug,$(DEB_BUILD_OPTIONS)))
+CFLAGS += -g
+endif
+ifeq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
+INSTALL_PROGRAM += -s
+endif
 	  </example>
 
 	  Please note that the above example is merely informative,
@@ -5341,7 +5361,7 @@ Replaces: mail-transport-agent
 	  Note that all installed shared libraries should be
 	  stripped with
 	  <example>
-	    strip --strip-unneeded &lt;your-lib&gt;
+strip --strip-unneeded &lt;your-lib&gt;
 	  </example>
 	  (The option `--strip-unneeded' makes <tt>strip</tt> remove
 	  only the symbols which aren't needed for relocation
@@ -5590,10 +5610,10 @@ Replaces: mail-transport-agent
 	  For example, in your <prgn>Makefile</prgn> or
 	  <tt>debian/rules</tt>, do things like:
 	  <example>
-	    ln -fs gcc $(prefix)/bin/cc
-	    ln -fs gcc debian/tmp/usr/bin/cc
-	    ln -fs ../sbin/sendmail $(prefix)/bin/runq
-	    ln -fs ../sbin/sendmail debian/tmp/usr/bin/runq
+ln -fs gcc $(prefix)/bin/cc
+ln -fs gcc debian/tmp/usr/bin/cc
+ln -fs ../sbin/sendmail $(prefix)/bin/runq
+ln -fs ../sbin/sendmail debian/tmp/usr/bin/runq
 	  </example></p>
 
 	<p>
@@ -5918,14 +5938,14 @@ Replaces: mail-transport-agent
 	  file (for more information see <manref name="logrotate"
 						 section="8">):
 	  <example>
-	    /var/log/foo/* {
-	    rotate 12
-	    weekly
-	    compress
-	    postrotate
-	    /etc/init.d/foo force-reload
-	    endscript
-	    }
+/var/log/foo/* {
+rotate 12
+weekly
+compress
+postrotate
+/etc/init.d/foo force-reload
+endscript
+}
 	  </example>
 	  Which rotates all files under `/var/log/foo', saves 12
 	  compressed generations, and sends a HUP signal at the end of
@@ -6050,7 +6070,7 @@ Replaces: mail-transport-agent
 	  If a program needs to specify an <em>architecture specification
 	    string</em> in some place, the following format should be used:
 	  <example>
-	    &lt;arch&gt;-&lt;os&gt;
+&lt;arch&gt;-&lt;os&gt;
 	  </example>
 	  where `&lt;arch&gt;' is one of the following: i386, alpha, arm, m68k,
 	  powerpc, sparc and `&lt;os&gt;' is one of: linux, gnu.  Use
@@ -6189,13 +6209,14 @@ Replaces: mail-transport-agent
 	      <p>Cgi-bin executable files are installed in the
 		directory
 		<example>
-		  /usr/lib/cgi-bin/&lt;cgi-bin-name&gt;
+/usr/lib/cgi-bin/&lt;cgi-bin-name&gt;
 		</example>
 		and should be referred to as
 		<example>
-		  http://localhost/cgi-bin/&lt;cgi-bin-name&gt;
-		</example></p></item>
-
+http://localhost/cgi-bin/&lt;cgi-bin-name&gt;
+		</example>
+	      </p>
+	    </item>
 
 	    <item><p>Access to html documents</p>
 
@@ -6207,9 +6228,10 @@ Replaces: mail-transport-agent
 		    backward compatibility, see <ref id="usrdoc"></footnote>
 		and can be referred to as
 		<example>
-		  http://localhost/doc/&lt;package&gt;/&lt;filename&gt;
-		</example></p></item>
-
+http://localhost/doc/&lt;package&gt;/&lt;filename&gt;
+		</example>
+	      </p>
+	    </item>
 
 	    <item><p>Web Document Root</p>
 
@@ -6220,7 +6242,7 @@ Replaces: mail-transport-agent
 		register the Web Application via the menu package. If
 		access to the web-root is unavoidable then use
 		<example>
-		  /var/www
+/var/www
 		</example>
 		as the Document Root. This might be just a
 		symbolic link to the location where the sysadmin has
@@ -6327,15 +6349,16 @@ Replaces: mail-transport-agent
 	  name will not just be used by that package.  For example, in
 	  this situation the INN package says:
 	  <example>
-	    Please enter the `mail name' of your system.  This is the
-	    hostname portion of the address to be shown on outgoing
-	    news and mail messages.  The default is
-	    <var>syshostname</var>, your system's host name.  Mail
-	    name [`<var>syshostname</var>']:
+Please enter the `mail name' of your system.  This is the
+hostname portion of the address to be shown on outgoing
+news and mail messages.  The default is
+<var>syshostname</var>, your system's host name.  Mail
+name [`<var>syshostname</var>']:
 	  </example>
 	  where <var>syshostname</var> is the output of <tt>hostname
-	    --fqdn</tt>.</p></sect>
-
+	    --fqdn</tt>.
+	</p>
+      </sect>
 
       <sect>
 	<heading>News system configuration</heading>
@@ -6749,8 +6772,8 @@ Replaces: mail-transport-agent
 	  may be provided.  This symbolic link can be created from
 	  <tt>debian/rules</tt> like this:
 	  <example>
-	    ln -s ../man7/undocumented.7.gz \
-	    debian/tmp/usr/share/man/man[1-9]/the_requested_manpage.[1-9].gz
+ln -s ../man7/undocumented.7.gz \
+debian/tmp/usr/share/man/man[1-9]/the_requested_manpage.[1-9].gz
 	  </example>
 	  This manpage claims that the lack of a manpage has been
 	  reported as a bug, so you may only do this if it really has
@@ -6795,8 +6818,8 @@ Replaces: mail-transport-agent
 	  <tt>dir</tt>
 	  file, in its post-installation script:
 	  <example>
-	    install-info --quiet --section Development Development \
-	    /usr/share/info/foobar.info
+install-info --quiet --section Development Development \
+/usr/share/info/foobar.info
 	  </example></p>
 
 	<p>
@@ -6813,7 +6836,7 @@ Replaces: mail-transport-agent
 	<p>
 	  You should remove the entries in the pre-removal script:
 	  <example>
-	    install-info --quiet --remove /usr/share/info/foobar.info
+install-info --quiet --remove /usr/share/info/foobar.info
 	  </example></p>
 
 	<p>
@@ -6880,19 +6903,19 @@ Replaces: mail-transport-agent
 	  this is to put the following in the package's
 	  <prgn>postinst</prgn>:
           <example>
-	    if [ "$1" = "configure" ]; then
-	    if [ -d /usr/doc -a ! -e /usr/doc/#PACKAGE# \
-            -a -d /usr/share/doc/#PACKAGE# ]; then
-	    ln -sf ../share/doc/#PACKAGE# /usr/doc/#PACKAGE#
-	    fi
-	    fi
+if [ "$1" = "configure" ]; then
+  if [ -d /usr/doc -a ! -e /usr/doc/#PACKAGE# \
+       -a -d /usr/share/doc/#PACKAGE# ]; then
+    ln -sf ../share/doc/#PACKAGE# /usr/doc/#PACKAGE#
+  fi
+fi
           </example>
           And the following in the package's <prgn>prerm</prgn>:
           <example>
-	    if [ \( "$1" = "upgrade" -o "$1" = "remove" \) \
-	    -a -L /usr/doc/#PACKAGE# ]; then
-	    rm -f /usr/doc/#PACKAGE#
-	    fi
+if [ \( "$1" = "upgrade" -o "$1" = "remove" \) \
+     -a -L /usr/doc/#PACKAGE# ]; then
+  rm -f /usr/doc/#PACKAGE#
+fi
           </example>
 	</p>
       </sect>
