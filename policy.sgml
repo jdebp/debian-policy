@@ -1251,7 +1251,7 @@
 	      <p>
 		In the past, people specified the full version number
 		in the Standards-Version field, for example "2.3.0.0".
-		Since minor patch-level changes don"t introduce new
+		Since minor patch-level changes don't introduce new
 		policy, it was thought it would be better to relax
 		policy and only require the first 3 components to be
 		specified, in this example "2.3.0".  All four
