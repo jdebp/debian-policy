@@ -5,9 +5,9 @@
 # Created On       : Thu Oct 29 15:23:36 1998
 # Created On Node  : tiamat.datasync.com
 # Last Modified By : Manoj Srivastava
-# Last Modified On : Fri Mar 17 17:00:35 2000
+# Last Modified On : Sat Oct 26 13:19:34 2002
 # Last Machine Used: glaurung.green-gryphon.com
-# Update Count     : 8
+# Update Count     : 9
 # Status           : Unknown, Use with caution!
 # HISTORY          : 
 # Description      : 
@@ -38,94 +38,6 @@ case "$1" in
   configure)
     # Configure this package.  If the package must prompt the user for
     # information, do it here.
-
-    if [ -d /usr/doc ]; then
-	# Well, we still need to handle this. At this point, /usr/doc
-	# can be a symlink
-	
-	if [  -d /usr/share/doc/$package_name ]; then
-	    # So the new doc dir exists, goody
-	    
-	    # well, either one of these is a symlink, they can be
-	    # pointing off _anywhere_
-	    cd /usr/doc/;
-	    target_dir=$(/bin/pwd);
-	    cd /usr/share/doc 
-	    starget_dir=$(/bin/pwd);
-	    cd /
-
-            link_target="../share/doc/$package_name";
-            cd /usr/doc/;
-            if [ -d ../share/doc/ ]; then
-                cd ../share/doc/
-                ltarget=$(/bin/pwd);
-                if [ "$starget_dir" = "$ltarget" ]; then
-                    link_target="../share/doc/$package_name";
-                else
-                    link_target="/usr/share/doc/$package_name";
-                fi
-            else
-                link_target="/usr/share/doc/$package_name"
-            fi
-
-
-	    # Well, make sure that we do not get tripped up by the symlink
-	    if [ -L /usr/doc/$package_name ]; then
-		rm -f /usr/doc/$package_name
-	    fi
-
-	    if [ "$target_dir" != "$starget_dir" ]; then
-		# Ok. The directories are in different locations
-	    	if [ -d /usr/doc/$package_name ]; then
-		    echo "Yikes! The old directory, /usr/doc/$package_name,"
-		    echo "has not ben removed! This is an error; attempting"
-		    echo "repairs."
-		    find /usr/doc/$package_name/ -type f -name .dhelp \
-			-exec rm {} \;
-		    find /usr/doc/$package_name/ -type d -depth \
-                	 -exec rmdir --ignore-fail-on-non-empty {} \;
-
-		    if [ -d /usr/doc/$package_name ]; then
-			cat <<EOF 
-Failed repairs. There are old files in /usr/doc/$package_name/ created
-by you or another script. I can copy them over to the new location
-/usr/share/doc/$package_name, if you wish, preserving your versions of
-the files.  No files shall be over written, instead, backup versions
-shall be created in /usr/share/doc/$package_name as needed.
-
-Shall I copy the files over [Yn]?
-EOF
-			read answer;
-			case "$answer" in
-			    [Nn]*)
-				echo "Not copying over, aborting";
-				exit 1;
-				;;	
-			    *)
-				cp -a --backup=t /usr/doc/$package_name  \
-				    /usr/share/doc/$package_name/.. ;
-				rm -rf /usr/doc/$package_name;
-			esac
-		    fi
-		fi
-
-		if [ -e /usr/doc/$package_name ]; then
-		    echo "/usr/doc/$package_name still exists"
-		    if [ -L /usr/doc/$package_name ]; then
-			echo "it is a symbolic link, overwriting"
-			ln -sf $link_target /usr/doc/$package_name
-		    else
-			echo "This is an error. Aborting"
-			exit 1
-		    fi
-		fi
-		# File unexists. Free to go ahead and create link
-		ln -sf $link_target /usr/doc/$package_name
-
-	    fi
-	fi
-    fi
-
 
     if [ -x /usr/sbin/install-docs ]; then
 	/usr/sbin/install-docs -i /usr/share/doc-base/debian-policy
