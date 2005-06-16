@@ -1,27 +1,75 @@
-<html><head><title>Policy checklist for upgrading your packages</title></head>
-<body>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+  <head>
+ <!--                             -*- Mode: Sgml -*- 
+    upgrading-checklist.html
+    Author           : Manoj Srivastava ( srivasta@tiamat.datasync.com ) 
+    Created On       : Thu Oct 29 20:54:48 1998
+    Created On Node  : tiamat.datasync.com
+    Last Modified By : Manoj Srivastava
+    Last Modified On : Thu Oct 29 22:10:16 1998
+    Last Machine Used: tiamat.datasync.com
+    Update Count     : 5
+    Status           : Unknown, Use with caution!
+    HISTORY          : 
+    Description      : 
 
-<h1>Policy checklist for upgrading your packages</h1>
+    -->
 
-<h2>About the checklist</h2>
 
+    <title>Policy checklist for upgrading your packages</title>
+  </head>
+  <body>
+
+    <h1>Policy checklist for upgrading your packages</h1>
+
+    <h2>About the checklist</h2>
+
+<p>
 The checklist below has been created to simplify the upgrading process
 of old packages. Note, that this list is not `official.' If you have
 doubts about a certain topic, if you need more details, or if you
 think some other package does not comply with policy, please refer to
 the Policy Manual.
-<p>
+</p>
 
+<p>
 Here is how the check list works: Check out which policy version your
 packages complies with currently. Than move upwards until the top and
 check which of the items on the list might concern your package. If an
 item does not give you enough details, please check out the Policy
 Manual.
-<p>
+</p>
 
 <h2>The checklist</h2>
 
 <pre>
+
+2.5.0.0                         Oct 98
+
+  Policy Manual:
+    - Rearranged the manula to create a new Section 4, Files
+      + Section 3.3 ("Files") was moved to Section 4. The Sections
+        that  were Section 4 and Section 5 were  moved down to become
+        Section 5 and Section 6.
+      + What was Section 5.5 ("Log files") is now a subsection of the
+        new Section 4 ("Files"), becoming section 4.8, placed after
+        "Configuration files", moving the Section 4.8 ("Permissions
+        and owners") to Section 4.9.  All subsections of the old
+        Section 5 after 5.5  were moved down to fill in the number
+        gap. 
+    - Modified the section about changelog files to accomodate
+      upstream changelogs which were formatted as HTML/ These
+      upstream chagelog files should now be accessible as
+      /usr/doc/package/changelog.html.gz 
+      + Symlinks are permissible to link the real, or upstream,
+        changelog name to the Debian mandated name.
+    - Clarified that HTML documentation should be present in some
+      package, though not necessarily the main binary package.
+    - Corrected all references to the location of the copyright
+      files. The correct location is /usr/doc/package/copyright
+    - Ratified the architecture specification strings to cater to the
+      HURD. 
 
 2.4.1.0                         Apr 98
 
@@ -158,7 +206,25 @@ Manual.
 	* Upstream changelog must be installed too
 </pre>
 
-<p>
-<hr>
+    <hr>
 
-</body></html>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+<!-- Keep this comment at the end of the file
+Local variables:
+mode: sgml
+sgml-indent-data: t
+sgml-live-element-indicator: t
+sgml-set-face: t
+End:
+-->
