@@ -55,6 +55,27 @@ picking your way through this list.
 <pre>
 3.6.0                      Jul 2003
 
+     - Restructuring causing shifts in section numbers and bumping of
+       the minor version number:
+     + Many packaging manual appendices that were integrated into policy
+       sections are now empty, and replaced with links to the Policy.
+       In particular, the appendices that included the list of control
+       fields were updated (new fields like Closes, Changed-By were added)
+       and the list of fields for each of control, .changes and .dsc files
+       is now in Policy, and they're marked mandatory, recommended or
+       optional based on the current practice and the behaviour of the
+       deb-building toolchain.
+     + Elimination of needlessly deep section levels, primarily in the
+       chapter Debian Archive, from which two new chapters were split out,
+       Binary packages and Source packages. What remained was reordered
+       properly, that is, some sect1s became sects etc.
+     + Several sections that were redundant, crufty or simply not designed
+       with any sort of vision, were rearranged according to the formula that
+       everything should be either in the same place or properly interlinked.
+       Some things remained split up between different chapters when they
+       talked about different aspects of files: their content, their syntax,
+       and their placement in the file system. In particular, see the new
+       sections about changelog files.
      - Added Games/Simulation and Apps/Education to menu subpolicy
        [menu policy]
      - Debian changelogs should be UTF-8 encoded. [C.2.2]
