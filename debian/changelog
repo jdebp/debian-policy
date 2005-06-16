@@ -1,7 +1,7 @@
 debian-policy (3.0.1.1) unstable; urgency=low
 
   * Typo corrected in packaging manual. closes: Bug#40180
-  * Chnaged rules file to adapt to new debiandoc behaviour.
+  * Chnaged rules file to create ps and pdf files.
 
  -- Manoj Srivastava <srivasta@debian.org>  Mon, 16 Aug 1999 01:21:09 -0500
 
