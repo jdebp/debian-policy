@@ -47,93 +47,106 @@ Manoj
 
 Now, the list:
 
-X Window System
----------------
-x-terminal-emulator     any X client which emulates a terminal with a
-                        terminfo description in the ncurses-base package
-x-window-manager        any X client which provides window management
-                        services
-xserver                 any X server that (directly or indirectly) manages
-                        physical input and display hardware
+Format:
+ <virtual package name>  <packages that provide it include...>
+
+[Those marked with a (*) are handled using the alternatives mechanism;
+others may do so as well.]
 
 Miscellaneous
 -------------
-[Those marked with a (*) are handled using the alternatives mechanism;
-others may do so as well.]
-awk                     Anything providing suitable /usr/bin/{awk,nawk} (*)
-c-compiler              Anything providing a C compiler
-c-shell                 Anything providing a suitable /bin/csh (*)
-debconf-2.0             Any package that provides the debconf protocol
-dhcp-client             Any package providing a DHCP client                 
-dotfile-module          Anything that provides a module for the
-                        Dotfile Generator
-dict-client             Any package providing clients for the Dictionary Server
-dict-server             Any package providing the Dictionary Server
-emacsen                 Anything providing the GNU emacs or a
-                        compatible editor
-foomatic-data           Any package providing PPD printer description files
-fortran77-compiler      Anything providing a Fortran77 compiler
-ftp-server              Any ftp server
-httpd                   Any HTTP server
-ident-server            Anything providing an identd daemon
-info-browser            Something that can browse GNU Info files
-aspell-dictionary       Anything providing a dictionary for the aspell system
-ispell-dictionary       Anything providing a dictionary for the ispell system
-kernel-headers          Kernel header files (<linux/*.h>, <asm/*.h>)
-kernel-image            Kernel image (vmlinuz, System.map, modules)
-kernel-source           Kernel source code
-linux-kernel-log-daemon A daemon to facilitate logging for the Linux kernel
-lambdamoo-core          A lambdamoo-compatible database package  
-lambdamoo-server        Anything running a moo using a lambdamoo-core
-libc-dev                Anything that provides header and object files
-                        of `libc'
-man-browser             Anything that can read man pages
-radius-server           Any package that provides a RADIUS server for acct/auth
-rsh-client              Any package that provides an rsh client
-rsh-server              Any package that provides an rsh server
-system-log-daemon       A daemon that provides a logging facility for
-                        other applications
-tclsh                   Anything that provides /usr/bin/tclsh (*)
-telnet-client           Any package that provides a telnet client
-telnet-server           Any package that provides a telnet server
-time-daemon             Anything that servers as a time daemon
-ups-monitor             Anything that is capable of controlling an UPS
-wish                    Anything that provides /usr/bin/wish (*)
-wordlist                Anything that provides /usr/share/dict/words (*)
-www-browser             Something that can browse html files
+ awk                     a suitable /usr/bin/{awk,nawk} (*)
+ c-shell                 a suitable /bin/csh (*)
+ dotfile-module          a module for the Dotfile Generator
+ emacsen                 the GNU emacs or a compatible editor
+ tclsh                   a /usr/bin/tclsh (*)
+ wish                    a /usr/bin/wish (*)
+
+Development
+-----------
+ c-compiler              a C compiler
+ debconf-2.0             the debconf protocol
+ fortran77-compiler      a Fortran77 compiler
+ kernel-headers          kernel header files (<linux/*.h>, <asm/*.h>)
+ kernel-image            kernel image (vmlinuz, System.map, modules)
+ kernel-source           kernel source code
+ libc-dev                header and object files of `libc'
+
+System
+------
+ foomatic-data           PPD printer description files
+ linux-kernel-log-daemon a daemon to facilitate logging for the Linux kernel
+ system-log-daemon       a daemon that provides a logging facility for
+                         other applications
+ time-daemon             anything that serves as a time daemon
+ ups-monitor             anything that is capable of controlling an UPS
+
+Documentation
+-------------
+ aspell-dictionary       a dictionary for the aspell system
+ dict-client             clients for the Dictionary Server
+ dict-server             the Dictionary Server
+ info-browser            something that can browse GNU Info files
+ ispell-dictionary       a dictionary for the ispell system
+ man-browser             something that can read man pages
+ wordlist                a /usr/share/dict/words (*)
+ www-browser             something that can browse HTML files
+
+Network
+-------
+ dhcp-client             a DHCP client
+ ftp-server              a FTP server
+ httpd                   a HTTP server
+ ident-server            an identd daemon
+ lambdamoo-core          a lambdamoo-compatible database package  
+ lambdamoo-server        anything running a moo using a lambdamoo-core
+ radius-server           a RADIUS server for acct/auth
+ rsh-client              an rsh client
+ rsh-server              an rsh server
+ telnet-client           a telnet client
+ telnet-server           a telnet server
 
 News and Mail
 -------------
-imap-client             Any mail reader capable of accessing remote mail
-                        folders using the IMAP protocol (e.g. Pine)
-imap-server             Any IMAP mail server
-mail-reader             Mail user agents (Pine, Elm, mailx, &c)
-mail-transport-agent    Mail transport agents (Smail, Sendmail, &c)
-news-reader             Any news reader (trn, tin, &c)
-news-transport-system   Local news system (INN, C News or B News)
-pgp                     A version of PGP (International or US)
-pop3-server             Any POP3 Server
+ imap-client             a mail reader capable of accessing remote mail
+                         folders using the IMAP protocol (e.g. Pine)
+ imap-server             an IMAP mail server
+ mail-reader             a mail user agent (e.g. Pine, Elm, mailx, &c)
+ mail-transport-agent    a mail transport agent (e.g. Smail, Sendmail, &c)
+ news-reader             a news reader (e.g. trn, tin, &c)
+ news-transport-system   a local news system (e.g. INN, C News or B News)
+ pgp                     a version of PGP (International or US)
+ pop3-server             a POP3 Server
+
+X Window System
+---------------
+ x-terminal-emulator     an X client which emulates a terminal with a
+                         terminfo description in the ncurses-base package
+ x-window-manager        an X client which provides window management
+                         services
+ xserver                 an X server that (directly or indirectly) manages
+                         physical input and display hardware
 
 Graphics and MultiMedia
 -----------------------
-mp3-encoder             Any MP3 encoder package
-mp3-decoder             Any MP3 decoder package
-audio-mixer:            Utility to control the input and output levels
-                        of a sound card, with a tty interface
-x-audio-mixer:          Utility to control the input and output levels
-                        of a sound card, X Window system interface
-pdf-preview             Any preprocessor that creates PDF output
-pdf-viewer              Anything that can display PDF files
-postscript-preview      Any preprocessor that creates Postscript output
-postscript-viewer       Anything that can display Postscript files
+ mp3-encoder             an MP3 encoder package
+ mp3-decoder             an MP3 decoder package
+ audio-mixer             a utility to control the input and output levels
+                         of a sound card, with a tty interface
+ x-audio-mixer           a utility to control the input and output levels
+                         of a sound card, X Window System interface
+ pdf-preview             a preprocessor that creates PDF output
+ pdf-viewer              anything that can display PDF files
+ postscript-preview      a preprocessor that creates Postscript output
+ postscript-viewer       anything that can display Postscript files
 
 Java and virtual machines
 -------------------------
-java-compiler           Any java compiler, for Java version 1
-java2-compiler,         Any java compiler, for Java version 2
-java-virtual-machine    Any JAVA virtual machine
-java1-runtime           Any Java runtime environment, Java version 1
-java2-runtime.          Any Java runtime environment, Java version 2
+ java-compiler           a java compiler, for Java version 1
+ java2-compiler          a java compiler, for Java version 2
+ java-virtual-machine    a JAVA virtual machine
+ java1-runtime           a Java runtime environment, Java version 1
+ java2-runtime           a Java runtime environment, Java version 2
 
 
 Old and obsolete virtual package names
@@ -152,7 +165,7 @@ Ian Jackson:
 Andrew Howell:
   26 Mar 1996 Added www-browser.
 
-Manoj Srivastava
+Manoj Srivastava:
   11 May 1996 Added kernel-image, added new location of this file
 
 Warwick Harvey:
@@ -166,7 +179,7 @@ Warwick Harvey:
   20 Aug 1996 Added sgmls, removed metafont, dvilj, dvips
   25 Nov 1996 Removed editor (should have done this a long time ago)
 
-Christian Schwarz
+Christian Schwarz:
   29 Apr 1997 New maintainer of this list
    5 May 1997 Added wordlist
   29 May 1997 Added dotfile-module, ups-monitor, tcl-interpreter,
@@ -180,50 +193,43 @@ Christian Schwarz
   29 Jan 1998 Added libc-dev, emacsen
   14 Apr 1998 Removed obsolete virtual package `emacs'
 
-Manoj Srivastava
+Manoj Srivastava:
   23 Jun 1999 Added pop3-server
   13 Jul 1999 Added ftp-server
 
-Julian Gilbey
+Julian Gilbey:
   26 Oct 1999 Added ispell-dictionary
               Added man-browser
               Added ident-server
               Alphabeticised lists
 
-Manoj Srivastava
+Manoj Srivastava:
   11 Jul 2000 Added x-terminal-emulator
               Added x-window-manager
               Added xserver
               Added linux-kernel-log-daemon
               Added system-log-faemon
-
-Manoj Srivastava
   24 Aug 2000 Added mp3-encoder
               Added mp3-decoder
               Added time-daemon
               Added rsh-client
               Added telnet-client
-
-Manoj Srivastava
   16 Jan 2001 Added rsh server
               Added telnet-server
 
-Julian Gilbey
+Julian Gilbey:
   13 Feb 2001 Removed libc.4.so
               Removed xcompat virtual package names
 
-Manoj Srivastava
+Manoj Srivastava:
   14 Mar 2002 Added java-compiler, java2-compiler
               Added java-virtual-machine
               Added java1-runtime and java2-runtime
 	      Added dict-client
 	      Added foomatic-data
 	      Added audio-mixer and x-audio-mixer
-Manoj Srivastava
   30 Aug 2002 Added debconf-2.0
               Added dhcp-client
               Added aspell-dictionary
               Added radius-server
-
-Manoj Srivastava
    9 Sep 2002 Added dict-server
