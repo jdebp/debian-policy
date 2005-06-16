@@ -5,7 +5,7 @@ debian-policy (3.5.9.1) unstable; urgency=low
     closes: #182792.
   * Changed the formatting of the link to the authors section to avoid
     confusion in the debiandoc2txt output, closes: #185985.
-  * Fixed various typos, closes: #189274, #187418, #187422.
+  * Fixed various typos, closes: #189274, #187418, #187422, #189654.
   * Removed broken link to csh.whynot on CPAN, closes: #187567.
   * Updated archive section list, closes: #187420.
   Manoj:

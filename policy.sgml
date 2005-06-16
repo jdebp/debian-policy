@@ -2811,7 +2811,7 @@ Package: libc6
 	      </p>
 
 	      <p>
-		It is an error for a package to contains files which
+		It is an error for a package to contain files which
 		are on the system in another package, unless
 		<tt>Replaces</tt> is used (see <ref id="replaces">).
 		<!--
