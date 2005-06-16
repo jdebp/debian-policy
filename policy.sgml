@@ -2286,6 +2286,7 @@ Package: libc6
 	  syntax is described above, in <ref id="pkg-controlfields">.
 
 	<list compact="compact">
+	  <item><qref id="f-Format"><tt>Format</tt></qref></item>
 	  <item><qref id="f-Source"><tt>Source</tt></qref> (mandatory)</item>
 	  <item><qref id="f-Version"><tt>Version</tt></qref> (mandatory)</item>
 	  <item><qref id="f-Maintainer"><tt>Maintainer</tt></qref> (mandatory)</item>
