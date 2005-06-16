@@ -202,7 +202,7 @@ endef
 source diff:
 	@echo >&2 'source and diff are obsolete - use dpkg-source -b'; false
 
-.PHONY: binary binary-arch binary-indep clean checkroot
+.PHONY: configure build binary binary-arch binary-indep clean checkroot
 
 #Local variables:
 #mode: makefile
