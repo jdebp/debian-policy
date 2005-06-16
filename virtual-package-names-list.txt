@@ -91,6 +91,7 @@ pgp                     A version of PGP (International or US)
 imap-client             Any mail reader capable of accessing remote mail
                         folders using the IMAP protocol (e.g. Pine)
 imap-server             Any IMAP mail server
+pop3-server             Any POP3 Server
 
 Old and obsolete virtual package names
 --------------------------------------

@@ -1,3 +1,11 @@
+debian-policy (3.0.0.1) unstable; urgency=low
+
+  * A few typos and omissions corrected
+  * Added the pop3-server to the virtual packages list, as decided on the
+    list. 
+
+ -- Manoj Srivastava <srivasta@debian.org>  Thu,  1 Jul 1999 12:38:08 -0500
+
 debian-policy (3.0.0.0) unstable; urgency=low
 
   * This is a test version of the policy package, and shall not be

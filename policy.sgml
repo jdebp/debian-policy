@@ -502,9 +502,10 @@
 	<heading>Subsections</heading>
 
 	<p>
-	  The packages in the <em>main</em>, <em>contrib</em>, and
-	  <em>non-free</em> sections are grouped further into
-	  <em>subsections</em> to simplify handling of them.</p>
+	  The packages in all the sections (<em>main</em>,
+	  <em>contrib</em>, <em>non-US</em>, and <em>non-free</em>)
+	  are grouped further into <em>subsections</em> to simplify
+	  handling of them.</p>
 
 	<p>
 	  The section for each package is specified in the package's
@@ -649,10 +650,11 @@
 	    
 	  <p>
 	    If the maintainer of a package quits from the Debian
-	    project the Debian QA Group takes over the maintainership
-	    of the package until someone else volunteers for that
-	    task. These packages are called <em>orphaned
-	    packages</em>.
+	    project the Debian QA Group
+	    <email>debian-qa@lists.debian.org</email> takes over the
+	    maintainership of the package until someone else
+	    volunteers for that task. These packages are called
+	    <em>orphaned packages</em>.
 	  </p>
 	</sect1>
 	    
@@ -1269,8 +1271,8 @@
 	    <p>
 	    
 	    The names of the links all have the form
-	    <tt>S<var>mm/<var>script</var></var></tt> or
-	    <tt>K<var>mm/<var>script</var></var></tt> where
+	    <tt>S<var>mm</var><var>script</var></tt> or
+	    <tt>K<var>mm</var><var>script</var></tt> where
 	    <var>mm</var> is a two-digit number and <var>script</var>
 	    is the name of the script (this should be the same as the
 	    name of the actual script in <tt>/etc/init.d</tt>.
