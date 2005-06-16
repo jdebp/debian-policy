@@ -66,12 +66,14 @@ POLICY_FILES = $(SGML_FILES:=.sgml) $(SGML_FILES:=.txt.gz) \
                debconf_spec/debconf_specification.txt.gz \
                policy.ps.gz policy.pdf.gz
 
+# policy.{pdf,ps,tpt,txt} are generated files
 FILES_TO_CLEAN  = debian/files debian/buildinfo  debian/substvars \
 		  debian/postinst debian/prerm \
 		  version.ent upgrading-checklist.txt \
 		  $(SGML_FILES:=.txt.gz) $(SGML_FILES:=.html.tar.gz) \
 		  policy.pdf.gz policy.ps.gz \
-		  debconf_specification.xml.tar.gz
+		  debconf_specification.xml.tar.gz \
+                  policy.pdf policy.ps policy.txt policy.
 
 STAMPS_TO_CLEAN := stamp-policy stamp-build
 DIRS_TO_CLEAN   := debian/tmp fhs $(SGML_FILES:=.html)
