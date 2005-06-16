@@ -1496,7 +1496,14 @@
 	<p>
 	  Changes in the Debian version of the package should be
 	  briefly explained in the Debian changelog file
-	  <file>debian/changelog</file>. This includes modifications
+	  <file>debian/changelog</file>.<footnote>
+            <p>
+              Mistakes in changelogs are usually best rectified by
+              making a new changelog entry rather than "rewriting
+              history" by editing old changelog entries.
+            </p>
+          </footnote>
+          This includes modifications
 	  made in the Debian package compared to the upstream one
 	  as well as other changes and updates to the package.
 	  <footnote>
@@ -1510,9 +1517,7 @@
 	</p>
 
         <p>
-          Mistakes in changelogs are usually best rectified by making
-	  a new changelog entry rather than "rewriting history" by
-          editing old changelog entries.
+          
         </p>
 
         <p>
