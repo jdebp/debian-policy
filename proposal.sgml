@@ -7,7 +7,7 @@
 	<name>Manoj Srivastava</name>
 	<email>srivasta@debian.org</email>
       </author>
-      <version>$Revision: 1.5 $</version>
+      <version>$Revision: 1.6 $</version>
       <copyright>
 	<copyrightsummary>Copyright &#169; 1998 by Manoj Srivastava. 
 	</copyrightsummary>
@@ -29,8 +29,47 @@
 	Debian Policy documents are to be maintained and updated, it
 	sets forth the processes, and also calls for the creation of a
 	team responsible for the task of updating policy, however,
-	this team does not act as author or editor of Policy it self,
+	this team does not act as author or editor of Policy itself,
 	that is the task of the Debian Policy mailing list.
+      </p>
+      <p>
+	It should also be pointed out that this proposal itself doess
+	not call for the modificxation of the Policy documents
+	themselves. I would rather not rush into anything as serious
+	as modification of the formal policy documents themselves, and
+	I suspect that we would learn and refine this process in
+	practice. I would rather that the formal modifications be
+	deferred until after the kinks of this process have been
+	worked out.
+      </p>
+      <p>
+	Another thing that bears mentioning is that this proposal is
+	only for the every day routine functioning of the policy
+	group. Traditionally, the policy group, under the aegis of the
+	Policy editor, worked on the basis of a consensus derived in
+	the group. This proposal merely removes the need of a
+	dedicated policy editor, and passes the debian packages that
+	contain the policy into the hands of a few people who no
+	longer exercise editorial control, and, paying homage to our
+	growth, relaxes the requirement for a consensus.
+      </p>
+      <p>
+	This is not supposed to change the way the group works, except
+	in minor detail. There are some policy changes are light
+	weight and can be decided upon within the policy group, by
+	near consensus.  In most day-to-day cases, the Policy group
+	should and must be able to conduct Policy discussions and
+	amendments without the intervention of the Technical Committee
+	or other Constitutional issues.  Only in cases of extreme
+	dispute (formal objection) should the intervention of
+	Constitutional bodies come into play. In any other situation,
+	the Policy group should be able to conduct business
+	unfettered.  This is the only way we can continue to improve
+	Debian.
+      </p>
+      <p>
+	<em>In the following, the term developer refers to registered
+	  Debian developers.</em>
       </p>
       <p>A copy of this document should also be found at <url
       id="http://master.debian.org/%7Esrivasta/policy/"></p>
@@ -45,14 +84,19 @@
       <sect>
 	<heading>People Seconding the Proposal</heading>
 	<p>	
-	  Well, since Michael Alan Dorman and Richard Braakman have
-	  volunteered to serve on the policy maintainer team, I think
-	  they have no objection to being seconds.<enumlist>
+	  Well, since Michael Alan Dorman, Phil Hands, and Richard
+	  Braakman have volunteered to serve on the policy maintainer
+	  team, I think they have no objection to being
+	  seconds.
+	  <enumlist>
 	    <item>
 	      <p>Michael Alan Dorman <email>mdorman@debian.org</email></p>
 	    </item>
 	    <item>
 	      <p>Richard Braakman <email>dark@xs4all.nl</email></p>
+	    </item>
+	    <item>
+	      <p>Philip Hands <email>phil@hands.com</email></p>
 	    </item>
 	  </enumlist>
 	</p>
@@ -67,7 +111,7 @@
 	  access to the CVS repository for the Policy documents;
 	  however, this set of people behave more like maintainers
 	  rather than authors/editors. This group does not create
-	  policy, not does it exercise editorial control, Policy is
+	  policy, nor does it exercise editorial control, Policy is
 	  decided "upstream".  The group that decides on policy should
 	  be the group of developers on the Debian-policy mailing
 	  lists, which is how it was always done; so the group of
@@ -137,22 +181,36 @@
 	    </item>
 	  </enumlist>
 	</p>
+	<p>
+	  The whole discussion process is meant to be light weight; If
+	  you wish the proposals to be amended, talk to the proposer,
+	  and get the amendment in. Or else, post an alternative, and
+	  let the  group decide which one is better.
+	</p>
+	<p>
+	  If the process gets very contentous, and needs something
+	  like votes on amendments and withdrawl of proposal, then
+	  this is not the correct forum for this, and the procedures
+	  outlied in the constitution should be followed.
+	</p>
+	<p>
+	  This document is not suppoed to supplant the processes
+	  outlined in the constitution, nor is it an end run around
+	  them.
+	</p>
 	<sect1>
 	  <heading>Notifications and Status Reports</heading>
 	  <p>
 	    Periodically, possibly weekly, a summary of current policy
 	    topics can be posted to the Developers mailing list, as
-	    well as to the policy mailing list. The list of topics
-	    should be posted on the web as well.</p>
-	  <p>
-	    If the current topic list is kept in CVS, then a simple
-	    script could handle both the tasks, and all the
-	    maintainers need do is keep the CVS repository up do
-	    date. If the Bug tracking system is used, this may be
-	    semi-automated too.</p>
+	    well as to the policy mailing list. Since the BTS is used
+	    for keeping track of policy amendments, the list of
+	    current amendments shall always be on the web.</p>
 	  <p>
 	    Amendments to policy that have been accepted by the policy
-	    group shall also be part of the notification.</p>
+	    group shall also be part of the notification. (recently
+	    resolved bugs)
+	  </p>
 	</sect1>
       </sect>
       <sect>
@@ -161,7 +219,7 @@
 	  It has been observed in the past that discussions on the
 	  mailing list devolve into endless arguments. In order to get
 	  away from the debating society aspect, at the time of the
-	  formal proposal,a deadline can be set (probably by the
+	  formal proposal, a deadline can be set (probably by the
 	  proposer, since they are likely to have an idea how
 	  contentious the discussion is likely to be) for ending
 	  discussion on the issue, which should rarely be less than 10
@@ -199,6 +257,16 @@
 	  issues a small minority should not always hold up deployment
 	  of policy.</p>
 	<p>
+	  If the issue raised is especially contentous, or is deemed
+	  to be suitable for review by the full set of developers,
+	  then four or more developers can call for a hold on the
+	  proposal, and move to send the proposal to the larger
+	  developer body as a General
+	  Resolution. <strong>Note:</strong> The constitution may have
+	  additional requirements for submitting a General Resolution,
+	  for example, a minimum number of seconders, etc.
+	</p>
+	<p>
 	  If a consensus is not reached, (or if someone submits a
 	  formal objection to the proposal) and the end of the
 	  discussion period is near, then one is faced with a dilemma.
@@ -233,17 +301,65 @@
 	<p>
 	  A fascinating sub proposal has been that we use the bug
 	  tracking system to track policy amendments in progress. If
-	  this is used, we may initiate discussions in the policy group
-	  by filing wish-list bugs (note: this should be open to
-	  anyone at all)</p>
+	  this is used, we may initiate discussions in the policy
+	  group by filing wish-list bugs (note: this should be open to
+	  anyone at all) This simplies how me manage and track open
+	  amendments and issues.  I think both retitling and the
+	  severity of the bugs can and should be used.</p>
 	<p>
-	  Formal proposals should be treated as normal bugs, and after
-	  the discussion period are either closed (when incorporated
-	  in policy, or roundly rejected as undesirable), or are
-	  demoted to (forwarded?) wish list bugs. I like them being
-	  demoted to forwarded status, since the upstream authors (the
-	  policy mailing list) has already had a stab at them, and
-	  they have been shelved until further notice. </p>
+	  <taglist>
+	    <tag>Issue raised</tag>
+	    <item>
+	      <p>
+		wishlist bug opened in BTS, with a subject of
+		"[PROPOSED] ..."
+	      </p>
+	    </item>
+	    <tag>Seconds</tag>
+	    <item>
+	      <p>
+		developers may second the issue by emailing "seconded"
+		to the BTS. (Issue: what if the so called seconder is
+		not a registered Debian developer?)
+	      </p>
+	    </item>
+	    <tag>Amendment</tag>
+	    <item>
+	      <p>
+		when a propsed issue becomes a formal amendment, the
+		bug severity is raised to "normal" and the bug is
+		retitled to "[AMENDMENT DD/MM/YYY] ...".  Actually it
+		might be better to close the proposal and reopen so
+		the bug date reflects when the clock starts ticking on
+		the bug; in which case the bug could simply be
+		retitled "[AMENDMENT] ...".
+	      </p>
+	    </item>
+	    <tag>Accepted</tag>
+	    <item>
+	      <p>
+		if the amendment is accepted, the bug is marked
+		forwarded, until it is actually integrated into Policy
+		and uploaded and moved into the archive, at which time
+		the bug is retitled "[ACCEPTED]..." and closed.
+	      </p>
+	    </item>
+	    <tag>Rejected</tag>
+	    <item>
+	      <p>
+		if the amendment is closed, it is retitled as
+		"[REJECTED] ..." and marked as closed
+	      </p>
+	    </item>
+	    <tag>Deadlocked</tag>
+	    <item>
+	      <p>
+		if the amendment is deadlocked, it is marked as 
+		"[DEADLOCKED] ...",
+	      </p>
+	    </item>
+	  </taglist>
+	</p>
 	<p>
 	  I think that the Policy is critical enough for the project
 	  that any real flaws in the policy be automatically be deemed
