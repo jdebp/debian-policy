@@ -508,7 +508,8 @@
 	  </footnote>
 	</p>
       </sect>
-      
+    </chapt>
+
     <chapt id="sourcepkg">
       <heading>Source packages</heading>
 
@@ -2765,7 +2766,7 @@
       <p>	
 	If you need to compare version numbers in a script, you may use
 	<tt>dpkg --compare-versions ...</tt>. Type <tt>dpkg
-	--help</tt> --> --for details on arguments.
+	--help</tt> for details on arguments.
       </p>
 
       <sect>
@@ -3145,7 +3146,7 @@
 		<footnote>
 		  <p>
 		    Part of the problem is due to what is arguably a
-		    bug in <prgn>dpkg</prgn> .
+		    bug in <prgn>dpkg</prgn>.
 		  </p>
 		</footnote>
 	      </p>
@@ -4170,7 +4171,7 @@
       <sect><heading>Relationships between source and binary packages -
               <tt>Build-Depends</tt>, <tt>Build-Depends-Indep</tt>,
               <tt>Build-Conflicts</tt>, <tt>Build-Conflicts-Indep</tt>
-           </heading>
+	</heading>
 
         <p>
           A source package may declare a dependency or a conflict on a
@@ -4182,32 +4183,32 @@
           when one of the targets in <tt>debian/rules</tt> that the
           particular field applies to is invoked.
 
-        <taglist>
-          <tag><tt>Build-Depends</tt>, <tt>Build-Conflicts</tt></tag>
-          <item>
-            <p>
-              The <tt>Build-Depends</tt> and <tt>Build-Conflicts</tt> fields apply
-              to the targets
-              <tt>build</tt>, <tt>binary</tt>, <tt>binary-arch</tt>
-              and <tt>binary-indep</tt>.
-            </p>
-          </item>
-          <tag><tt>Build-Depends-Indep</tt>, <tt>Build-Conflicts-Indep</tt></tag>
-          <item>
-            <p>
-              The <tt>Build-Depends-Indep</tt> and
-              <tt>Build-Conflicts-Indep</tt> fields apply to the
-              targets <tt>binary</tt> and <tt>binary-indep</tt>.
-            </p>
-          </item>
-        </taglist>
+	  <taglist>
+	    <tag><tt>Build-Depends</tt>, <tt>Build-Conflicts</tt></tag>
+	    <item>
+	      <p>
+                The <tt>Build-Depends</tt> and
+		<tt>Build-Conflicts</tt> fields apply to the targets
+		<tt>build</tt>, <tt>binary</tt>, <tt>binary-arch</tt>
+		and <tt>binary-indep</tt>.
+	      </p>
+	    </item>
+	    <tag><tt>Build-Depends-Indep</tt>, <tt>Build-Conflicts-Indep</tt></tag>
+	    <item>
+	      <p>
+                The <tt>Build-Depends-Indep</tt> and
+		<tt>Build-Conflicts-Indep</tt> fields apply to the
+		targets <tt>binary</tt> and <tt>binary-indep</tt>.
+	      </p>
+	    </item>
+	  </taglist>
 
-      </p>
+	</p>
 
-    </sect>
+      </sect>
+    </chapt>
 
 
-   </chapt>
     <chapt id="conffiles"><heading>Configuration file handling
       </heading>
 
@@ -5222,25 +5223,3 @@
     
   </book>
 </debiandoc>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
