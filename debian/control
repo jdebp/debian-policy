@@ -3,8 +3,8 @@ Section: doc
 Priority: optional
 Maintainer: Debian Policy List <debian-policy@lists.debian.org>
 Uploaders: Julian Gilbey <jdg@debian.org>, Manoj Srivastava <srivasta@debian.org>
-Standards-Version: 3.5.8.0
-Build-Depends-Indep: links, debiandoc-sgml (>= 1.1.47), sp, liburi-perl, libpaperg, tetex-bin, tetex-extra, latex2html, libi18n-langtags-perl, groff, bsdmainutils, pstoedit, tidy, jade, docbook-xml, docbook-utils
+Standards-Version: 3.5.8
+Build-Depends-Indep: links (>= 0.90), debiandoc-sgml (>= 1.1.47), sp, liburi-perl, libpaperg, tetex-bin, tetex-extra, latex2html, libi18n-langtags-perl, groff, bsdmainutils, pstoedit, tidy, jade, docbook-xml (>= 3.1.1), docbook-utils
 
 Package: debian-policy
 Architecture: all
