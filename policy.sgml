@@ -764,10 +764,8 @@
 		These packages provide a reasonably small but not too
 		limited character-mode system.  This is what will be
 		installed by default if the user doesn't select anything
-		else.  It doesn't include many large applications, but
-		it does include Emacs (this is more of a piece of
-		infrastructure than an application) and a reasonable
-		subset of TeX and LaTeX.</p>
+		else.  It doesn't include many large applications.
+		.</p>
 	    </item>
 	    <tag><tt>optional</tt></tag>
 	    <item>
@@ -1906,63 +1904,64 @@ Package: libc6
 	<p>
 	  The required and optional targets are as follows:
 	  <taglist>
-	    <tag><tt>build</tt></tag>
+	    <tag><tt>build</tt>, <tt>build-arch</tt> (optional),
+	      <tt>build-indep</tt> (optional)</tag>
 	    <item>
 	      <p>
-		This should perform all non-interactive configuration
-		and compilation of the package.  If a package has an
-		interactive pre-build configuration routine, the
-		Debianized source package must either be built after
-		this has taken place (so that the binary package can
-		be built without rerunning the configuration) or the
-		configuration routine modified to become
-		non-interactive.  (The latter is preferable if there
-		are architecture-specific features detected by the
-		configuration routine.)
+		The <tt>build</tt> target should perform all
+		non-interactive configuration and compilation of the
+		package.  If a package has an interactive pre-build
+		configuration routine, the Debianized source package
+		must either be built after this has taken place (so
+		that the binary package can be built without rerunning
+		the configuration) or the configuration routine
+		modified to become non-interactive.  (The latter is
+		preferable if there are architecture-specific features
+		detected by the configuration routine.)
 	      </p>
 
 	      <p>
 		For some packages, notably ones where the same
 		source tree is compiled in different ways to produce
-		two binary packages, the <prgn>build</prgn> target
+		two binary packages, the <tt>build</tt> target
 		does not make much sense.  For these packages it is
 		good enough to provide two (or more) targets
 		(<tt>build-a</tt> and <tt>build-b</tt> or whatever)
 		for each of the ways of building the package, and a
-		<prgn>build</prgn> target that does nothing.  The
-		<prgn>binary</prgn> target will have to build the
+		<tt>build</tt> target that does nothing.  The
+		<tt>binary</tt> target will have to build the
 		package in each of the possible ways and make the
 		binary package out of each.
 	      </p>
 
 	      <p>
-		The <prgn>build</prgn> target must not do anything
+		The <tt>build</tt> target must not do anything
 		that might require root privilege.
 	      </p>
 
 	      <p>
-		The <prgn>build</prgn> target may need to run the
-		<prgn>clean</prgn> target first - see below.
+		The <tt>build</tt> target may need to run the
+		<tt>clean</tt> target first - see below.
 	      </p>
 
 	      <p>
 		When a package has a configuration and build routine
 		which takes a long time, or when the makefiles are
-		poorly designed, or when <prgn>build</prgn> needs to
-		run <prgn>clean</prgn> first, it is a good idea to
+		poorly designed, or when <tt>build</tt> needs to
+		run <tt>clean</tt> first, it is a good idea to
 		<tt>touch build</tt> when the build process is
 		complete.  This will ensure that if <tt>debian/rules
 		build</tt> is run again it will not rebuild the whole
 		program.<footnote>
 		  <p>
-		    Another common way to do this is for <prgn>build</prgn>
+		    Another common way to do this is for <tt>build</tt>
 		    to depend on <prgn>build-stamp</prgn> and to do
 		    nothing else, and for the <prgn>build-stamp</prgn>
 		    target to do the building and to <tt>touch
 		    build-stamp</tt> on completion.  This is
 		    especially useful if the build routine creates a
 		    file or directory called <tt>build</tt>; in such a
-		    case, <prgn>build</prgn> will need to be listed as
+		    case, <tt>build</tt> will need to be listed as
 		    a phony target (i.e., as a dependency of the
 		    <tt>.PHONY</tt> target).  See the documentation of
 		    <prgn>make</prgn> for more information on phony
@@ -1977,37 +1976,35 @@ Package: libc6
 	    </tag>
 	    <item>
 	      <p>
-		The <prgn>binary</prgn> target must be all that is
+		The <tt>binary</tt> target must be all that is
 		necessary for the user to build the binary package(s)
 		produced from this source package.  All of these
 		targets are required to be non-interactive.  It is
 		split into two parts: <prgn>binary-arch</prgn> builds
 		the binary packages which are specific to a particular
-		architecture, and <prgn>binary-indep</prgn> builds
+		architecture, and <tt>binary-indep</tt> builds
 		those which are not.
 	      </p>
-
 	      <p>
-		<prgn>binary</prgn> may be (and commonly is) a target
-		with no commands which simply depends on
-		<prgn>binary-arch</prgn> and
-		<prgn>binary-indep</prgn>.
+		<tt>binary</tt> may be (and commonly is) a target with
+		no commands which simply depends on
+		<tt>binary-arch</tt> and <tt>binary-indep</tt>.
+	      </p>
+	      <p>
+		Both <tt>binary-*</tt> targets should depend on the
+		<tt>build</tt> target, or on the appropriate
+		<tt>build-arch</tt> or <tt>build-indep</tt> target, if
+		provided, so that the package is built if it has not
+		been already.  It should then create the relevant
+		binary package(s), using <tt>dpkg-gencontrol</tt> to
+		make their control files and <tt>dpkg-deb</tt> to
+		build them and place them in the parent of the top
+		level directory.
 	      </p>
 
 	      <p>
-		Each <prgn>binary-*</prgn> target should depend on
-		the <prgn>build</prgn> target, above, so that the
-		package is built if it has not been already.  It
-		should then create the relevant binary package(s),
-		using <prgn>dpkg-gencontrol</prgn> to make their
-		control files and <prgn>dpkg-deb</prgn> to build
-		them and place them in the parent of the top level
-		directory.
-	      </p>
-
-	      <p>
-		Both the <prgn>binary-arch</prgn> and
-		<prgn>binary-indep</prgn> targets <em>must</em> exist.
+		Both the <tt>binary-arch</tt> and
+		<tt>binary-indep</tt> targets <em>must</em> exist.
 		If one of them has nothing to do (which will always be
 		the case if the source generates only a single binary
 		package, whether architecture-dependent or not), it
@@ -2015,7 +2012,7 @@ Package: libc6
 	      </p>
 
 	      <p>
-		The <prgn>binary</prgn> targets must be invoked as
+		The <tt>binary</tt> targets must be invoked as
 		root.<footnote>
 		  <p>
 		    The <prgn>fakeroot</prgn> package often allows one
@@ -2029,29 +2026,29 @@ Package: libc6
 	    <tag><tt>clean</tt></tag>
 	    <item>
 	      <p>
-		This must undo any effects that the <prgn>build</prgn>
-		and <prgn>binary</prgn> targets may have had, except
+		This must undo any effects that the <tt>build</tt>
+		and <tt>binary</tt> targets may have had, except
 		that it should leave alone any output files created in
-		the parent directory by a run of a <prgn>binary</prgn>
+		the parent directory by a run of a <tt>binary</tt>
 		target. This target must be non-interactive.
 	      </p>
 
 	      <p>
-		If a <prgn>build</prgn> file is touched at the end of
-		the <prgn>build</prgn> target, as suggested above, it
+		If a <tt>build</tt> file is touched at the end of
+		the <tt>build</tt> target, as suggested above, it
 		should be removed as the first action that
-		<prgn>clean</prgn> performs, so that running
-		<prgn>build</prgn> again after an interrupted
-		<prgn>clean</prgn> doesn't think that everything is
+		<tt>clean</tt> performs, so that running
+		<tt>build</tt> again after an interrupted
+		<tt>clean</tt> doesn't think that everything is
 		already done.
 	      </p>
 
 	      <p>
-		The <prgn>clean</prgn> target may need to be
-		invoked as root if <prgn>binary</prgn> has been
-		invoked since the last <prgn>clean</prgn>, or if
-		<prgn>build</prgn> has been invoked as root (since
-		<prgn>build</prgn> may create directories, for
+		The <tt>clean</tt> target may need to be
+		invoked as root if <tt>binary</tt> has been
+		invoked since the last <tt>clean</tt>, or if
+		<tt>build</tt> has been invoked as root (since
+		<tt>build</tt> may create directories, for
 		example).
 	      </p>
 	    </item>
@@ -2081,8 +2078,8 @@ Package: libc6
 	  </taglist>
 
 	<p>
-	  The <prgn>build</prgn>, <prgn>binary</prgn> and
-	  <prgn>clean</prgn> targets must be invoked with the current
+	  The <tt>build</tt>, <tt>binary</tt> and
+	  <tt>clean</tt> targets must be invoked with the current
 	  directory being the package's top-level directory.
 	</p>
 
@@ -2166,12 +2163,20 @@ Package: libc6
 	  That format is a series of entries like this:
 	  <example compact="compact">
 <var>package</var> (<var>version</var>) <var>distribution(s)</var>; urgency=<var>urgency</var>
-
+	    <comment>
+	      <p>[optional blank line(s), stripped]</p>
+	    </comment>
   * <var>change details</var>
     <var>more change details</var>
+	    <comment>
+	      <p>[blank line(s), included in output of dpkg-parsechangelog]</p>
+	    </comment>
   * <var>even more change details</var>
-
- -- <var>maintainer name</var> &lt;<var>email address</var>&gt;  <var>date</var>
+	    <comment>
+	      <p>[optional blank line(s), stripped]</p>
+	    </comment>
+	    -- <var>maintainer name</var> &lt;<var>email
+	      address</var>&gt;<var>[two spaces]</var>  <var>date</var>
 	  </example>
 	</p>
 
@@ -2297,7 +2302,7 @@ Package: libc6
 	<p>
 	  The <tt>debian/substvars</tt> file is usually generated and
 	  modified dynamically by <tt>debian/rules</tt> targets; in
-	  this case it must be removed by the <prgn>clean</prgn>
+	  this case it must be removed by the <tt>clean</tt>
 	  target.
 	</p>
 
@@ -2330,9 +2335,9 @@ Package: libc6
 	      occurs
 	    </p>
 	  </footnote>) should be removed by the
-	  <prgn>clean</prgn> target.  It may also be wise to
+	  <tt>clean</tt> target.  It may also be wise to
 	  ensure a fresh start by emptying or removing it at the
-	  start of the <prgn>binary</prgn> target.
+	  start of the <tt>binary</tt> target.
 	</p>
 
 	<p>
@@ -2341,7 +2346,7 @@ Package: libc6
 	  <tt>.deb</tt> file that will be created when <tt>dpkg-deb
 	  --build</tt> is run for that binary package.  So for most
 	  packages all that needs to be done with this file is to
-	  delete it in the <prgn>clean</prgn> target.
+	  delete it in the <tt>clean</tt> target.
 	</p>
 
 	<p>
@@ -4134,11 +4139,12 @@ libbar 1 bar1 (>= 1.0-1)
 	  <p>
 	    The location of all installed files and directories must
 	    comply with the Filesystem Hierarchy Standard (FHS),
-	    version 2.1.  This can be found in the
-	    <tt>debian-policy</tt> package or on <url
-	    id="http://www.debian.org/doc/packaging-manuals/fhs"
-	    name="FHS (Debian copy)"> alongside this manual or on <url
-	    id="http://www.pathname.com/fhs/" name="FHS (upstream)">.
+	    except where doing so would violate other terms of Debian
+	    Policy. The latest version of this document can be found
+	    in the <tt>debian-policy</tt> package or on 
+	    <url id="http://www.debian.org/doc/packaging-manuals/fhs"
+	      name="FHS (Debian copy)"> alongside this manual or on 
+	    <url id="http://www.pathname.com/fhs/" name="FHS (upstream)">.
 	    Specific questions about following the standard may be
 	    asked on the <tt>debian-devel</tt> mailing list, or
 	    referred to Daniel Quinlan, the FHS coordinator, at
@@ -6023,7 +6029,7 @@ ln -fs ../sbin/sendmail debian/tmp/usr/bin/runq
 	    operate sensibly (dotfiles that they do not create
 	    themselves automatically, that is) are a bad thing.
 	    Furthermore, programs should be configured by the Debian
-	    default installation as behave as closely to the upstream
+	    default installation to behave as closely to the upstream
 	    default behaviour as possible.
 	  </p>
 
@@ -6481,18 +6487,18 @@ http://localhost/cgi-bin/<var>cgi-bin-name</var>
 
 	      <p>
 		HTML documents for a package are stored in
-                <tt>/usr/share/doc/<var>package</var></tt> but should
-                be accessed via symlinks as
-                <tt>/usr/doc/<var>package</var></tt><footnote>
-		  <p>
-		    for backward compatibility; see <ref
-		      id="usrdoc">
-		  </p>
-		</footnote>
+                <tt>/usr/share/doc/<var>package</var></tt>
 		and can be referred to as
 		<example compact="compact">
 http://localhost/doc/<var>package</var>/<var>filename</var>
 		</example>
+	      </p>
+             <p>
+                The web server should restrict access to the document
+                tree so that only clients on the same host can read
+                the documents. If the web server does not support such
+                access controls, then it should not provide access at
+                all, or ask about providing access during installation.
 	      </p>
 	    </item>
 
@@ -7565,13 +7571,22 @@ fi
 	now-deprecated Packaging Manual, version 3.2.1.0.  They are
 	the chapters which are likely to be of use to package
 	maintainers and which have not already been included in the
-	policy document itself.  They have not yet been checked to
-	ensure that they are compatible with the contents of policy,
-	and if there are any contradictions, the version in the main
-	policy document takes precedence.  The remaining chapters of
-	the old Packaging Manual have also not been read in detail to
-	ensure that there are not parts which have been left out.
-	Both of these will be done in due course.
+	policy document itself. Most of these sections are very likely
+	not relevant to policy; they should be treated as
+	documentation for the packaging system. Please note that these
+	appendices are included for convenience, and for historical
+	reasons: they used to be part of policy package, and they have
+	not yet been incorporated into dpkg documentation. However,
+	they still have value, and hence they are presented here.
+      </p>
+      <p>
+	They have not yet been checked to ensure that they are
+	compatible with the contents of policy, and if there are any
+	contradictions, the version in the main policy document takes
+	precedence.  The remaining chapters of the old Packaging
+	Manual have also not been read in detail to ensure that there
+	are not parts which have been left out.  Both of these will be
+	done in due course. 
       </p>
 
       <p>
@@ -7747,7 +7762,7 @@ fi
 	  </example>
 	  To view the copyright file for a package you could use this command:
 	  <example>
-  dpkg --fsys-tarfile <var>filename</var>.deb | tar xof usr/doc/<var>\*</var>copyright | less
+  dpkg --fsys-tarfile <var>filename</var>.deb | tar xof usr/share/doc/<var>\*</var>copyright | less
 	  </example>
 	</p>
       </sect>
@@ -8066,8 +8081,8 @@ fi
 	  <p>	    
 	    <prgn>dpkg-buildpackage</prgn> is a script which invokes
 	    <prgn>dpkg-source</prgn>, the <tt>debian/rules</tt>
-	    targets <prgn>clean</prgn>, <prgn>build</prgn> and
-	    <prgn>binary</prgn>, <prgn>dpkg-genchanges</prgn> and
+	    targets <tt>clean</tt>, <tt>build</tt> and
+	    <tt>binary</tt>, <prgn>dpkg-genchanges</prgn> and
 	    <prgn>pgp</prgn> to build a signed source and binary
 	    package upload.
 	  </p>
@@ -8283,7 +8298,7 @@ fi
 	  </p>
 
 	  <p>	    
-	    It is usually invoked from the <prgn>binary</prgn> target of
+	    It is usually invoked from the <tt>binary</tt> target of
 	    <tt>debian/rules</tt>:
 	    <example>
   dpkg-distaddfile <var>filename</var> <var>section</var> <var>priority</var>
@@ -8414,40 +8429,70 @@ fi
 		  built after this has taken place, so that it can be
 		  built without rerunning the configuration.
 		</p>
-
+		
+		<p>
+		  A package may also provide both of the targets
+		  <tt>build-arch</tt> and <tt>build-indep</tt>.  The
+		  <tt>build-arch</tt> target, if provided, should
+		  perform all non-interactive configuration and
+		  compilation required for producing all
+		  architecture-dependant binary packages (those packages
+		  for which the body of the <tt>Architecture</tt> field
+		  in <tt>debian/control</tt> is not <tt>all</tt>).
+		  Similarly, the <tt>build-indep</tt> target, if
+		  provided, should perform all non-interactive
+		  configuration and compilation required for producing
+		  all architecture-independent binary packages (those
+		  packages for which the body of the
+		  <tt>Architecture</tt> field in <tt>debian/control</tt>
+		  is <tt>all</tt>).  The <tt>build</tt> target should
+		  depend on those of the targets <tt>build-arch</tt> and
+		  <tt>build-indep</tt> that are provided in the rules
+		  file.
+		</p>
+		
 		<p>		  
+		  If one or both of the targets <tt>build-arch</tt> and
+		  <tt>build-indep</tt> are not provided, then invoking
+		  <tt>debian/rules</tt> with one of the not-provided
+		  targets as arguments should produce a exit status code
+		  of 2.  Usually this is provided automatically by make
+		  if the target is missing.
+		</p>
+		
+		<p>
 		  For some packages, notably ones where the same
 		  source tree is compiled in different ways to produce
-		  two binary packages, the <prgn>build</prgn> target
-		  does not make much sense.  For these packages it is
-		  good enough to provide two (or more) targets
+		  two binary packages, the <tt>build</tt> target does
+		  not make much sense.  For these packages it is good
+		  enough to provide two (or more) targets
 		  (<tt>build-a</tt> and <tt>build-b</tt> or whatever)
 		  for each of the ways of building the package, and a
-		  <prgn>build</prgn> target that does nothing.  The
-		  <prgn>binary</prgn> target will have to build the
+		  <tt>build</tt> target that does nothing.  The
+		  <tt>binary</tt> target will have to build the
 		  package in each of the possible ways and make the
 		  binary package out of each.
 		</p>
 
 		<p>		  
-		  The <prgn>build</prgn> target must not do anything
-		  that might require root privilege.
+		  The targets <tt>build</tt>, <tt>build-arch</tt>
+		  and <tt>build-indep</tt> target must not do
+		  anything that might require root privilege.
 		</p>
 
 		<p>		  
-		  The <prgn>build</prgn> target may need to run
-		  <prgn>clean</prgn> first - see below.
+		  The <tt>build</tt> target may need to run
+		  <tt>clean</tt> first - see below.
 		</p>
 
-		<p>		  
-		  When a package has a configuration routine that
-		  takes a long time, or when the makefiles are poorly
-		  designed, or when <prgn>build</prgn> needs to run
-		  <prgn>clean</prgn> first, it is a good idea to
-		  <tt>touch build</tt> when the build process is
-		  complete.  This will ensure that if <tt>debian/rules
-		    build</tt> is run again it will not rebuild the
-		    whole program.
+		<p>	
+		  When a package has a configuration routine that takes
+		  a long time, or when the makefiles are poorly
+		  designed, or when <tt>build</tt> needs to run
+		  <tt>clean</tt> first, it is a good idea to <tt>touch
+		    build</tt> when the build process is complete.  This
+		  will ensure that if <tt>debian/rules build</tt> is run
+		  again it will not rebuild the whole program.
 		</p>
 	      </item>
 		
@@ -8456,18 +8501,18 @@ fi
 	      </tag> 
 	      <item>
 		<p>
-		  The <prgn>binary</prgn> target should be all that is
+		  The <tt>binary</tt> target should be all that is
 		  necessary for the user to build the binary
 		  package. All these targets are required to be
 		  non-interactive.  It is split into two parts:
-		  <prgn>binary-arch</prgn> builds the packages' output
+		  <tt>binary-arch</tt> builds the packages' output
 		  files which are specific to a particular
-		  architecture, and <prgn>binary-indep</prgn> builds
+		  architecture, and <tt>binary-indep</tt> builds
 		  those which are not.
 		</p>
 
 		<p>		  
-		  <prgn>binary</prgn> should usually be a target with
+		  <tt>binary</tt> should usually be a target with
 		  no commands which simply depends on
 		  <prgn>binary-arch</prgn> and
 		  <prgn>binary-indep</prgn>.
@@ -8475,7 +8520,7 @@ fi
 
 		<p>		  
 		  Both <prgn>binary-*</prgn> targets should depend on
-		  the <prgn>build</prgn> target, above, so that the
+		  the <tt>build</tt> target, above, so that the
 		  package is built if it has not been already.  It
 		  should then create the relevant binary package(s),
 		  using <prgn>dpkg-gencontrol</prgn> to make their
@@ -8499,7 +8544,7 @@ fi
 		</p>
 
 		<p>		  
-		  The <prgn>binary</prgn> targets must be invoked as
+		  The <tt>binary</tt> targets must be invoked as
 		  root.
 		</p>
 	      </item>
@@ -8509,29 +8554,29 @@ fi
 		
 		<p>
 		  This should undo any effects that the
-		  <prgn>build</prgn> and <prgn>binary</prgn> targets
+		  <tt>build</tt> and <tt>binary</tt> targets
 		  may have had, except that it should leave alone any
 		  output files created in the parent directory by a
-		  run of <prgn>binary</prgn>. This target is required
+		  run of <tt>binary</tt>. This target is required
 		  to be non-interactive.
 		</p>
 
 		<p>		  
-		  If a <prgn>build</prgn> file is touched at the end
-		  of the <prgn>build</prgn> target, as suggested
+		  If a <tt>build</tt> file is touched at the end
+		  of the <tt>build</tt> target, as suggested
 		  above, it must be removed as the first thing that
-		  <prgn>clean</prgn> does, so that running
-		  <prgn>build</prgn> again after an interrupted
-		  <prgn>clean</prgn> doesn't think that everything is
+		  <tt>clean</tt> does, so that running
+		  <tt>build</tt> again after an interrupted
+		  <tt>clean</tt> doesn't think that everything is
 		  already done.
 		</p>
 
 		<p>		  
-		  The <prgn>clean</prgn> target must be invoked as
-		  root if <prgn>binary</prgn> has been invoked since
-		  the last <prgn>clean</prgn>, or if
-		  <prgn>build</prgn> has been invoked as root (since
-		  <prgn>build</prgn> may create directories, for
+		  The <tt>clean</tt> target must be invoked as
+		  root if <tt>binary</tt> has been invoked since
+		  the last <tt>clean</tt>, or if
+		  <tt>build</tt> has been invoked as root (since
+		  <tt>build</tt> may create directories, for
 		  example).
 		</p>
 	      </item>
@@ -8562,8 +8607,8 @@ fi
 	    </taglist>
 	      
 	  <p>
-	    The <prgn>build</prgn>, <prgn>binary</prgn> and
-	    <prgn>clean</prgn> targets must be invoked with a current
+	    The <tt>build</tt>, <tt>binary</tt> and
+	    <tt>clean</tt> targets must be invoked with a current
 	    directory of the package's top-level directory.
 	  </p>
 	    
@@ -9016,7 +9061,7 @@ fi
 	  <p>	    
 	    The is usually generated and modified dynamically by
 	    <tt>debian/rules</tt> targets; in this case it must be
-	    removed by the <prgn>clean</prgn> target.
+	    removed by the <tt>clean</tt> target.
 	  </p>
 
 	  <p>
@@ -9049,9 +9094,9 @@ fi
 		  occurs
 		</p>
 	      </footnote>) should be removed by the
-	      <prgn>clean</prgn> target.  It may also be wise to
+	      <tt>clean</tt> target.  It may also be wise to
 	      ensure a fresh start by emptying or removing it at the
-	      start of the <prgn>binary</prgn> target.
+	      start of the <tt>binary</tt> target.
 	  </p>
 
 	  <p>	    
@@ -9059,7 +9104,7 @@ fi
 	    for the <tt>.deb</tt> file that will be created by
 	    <prgn>dpkg-deb</prgn> from the control file that it
 	    generates, so for most packages all that needs to be done
-	    with this file is to delete it in <prgn>clean</prgn>.
+	    with this file is to delete it in <tt>clean</tt>.
 	  </p>
 
 	  <p>	    
@@ -9076,7 +9121,7 @@ fi
 
 	  <p>	    
 	    This is the canonical temporary location for the
-	    construction of binary packages by the <prgn>binary</prgn>
+	    construction of binary packages by the <tt>binary</tt>
 	    target.  The directory <tt>tmp</tt> serves as the root of
 	    the filesystem tree as it is being constructed (for
 	    example, by using the package's upstream makefiles install
@@ -9094,8 +9139,8 @@ fi
 
 	  <p>	    
 	    Whatever <tt>tmp</tt> directories are created and used by
-	    <prgn>binary</prgn> must of course be removed by the
-	    <prgn>clean</prgn> target.</p></sect1>
+	    <tt>binary</tt> must of course be removed by the
+	    <tt>clean</tt> target.</p></sect1>
       </sect>
 	
 	

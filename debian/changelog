@@ -1,11 +1,28 @@
-debian-policy (3.5.5.1) unstable; urgency=low
+debian-policy (3.5.6.0) unstable; urgency=low
 
   * Change footnote about urgency values to the now-current list: low,
     medium, high, emergency.
   * Correct note about /etc/default files being conffiles/config files,
     which I mucked up (sorry Joey) [10.3.2]
+  * [AMENDMENT 2001/06/26] Downgrade emacs/tex to optional   
+                                                  closes: Bug#102204, Bug#53849
+  * [AMENDMENT 2001/06/26] Next stage in usr/doc -> usr/share/doc transition
+                                                             closes: Bug#102199
 
- --
+  * [AMENDMENT 09/06/2001] Clarifying FHS policy   closes: Bug#98291, Bug#60461
+  * Spelling correction                                      closes: Bug#105625
+  * [AMMENDMENT 28/06/2001] Restrict http access to /usr/share/doc
+                                                             closes: Bug#100631
+  * [AMENDMENT 23/5/2001] Optional build-arch and build-indep targets for
+    debian/rules                                             closes: Bug#72335
+  * The old packaging manual is included in the policy document as an
+    informative appendix. It is not part of Debian Technical Policy, and
+    its presence is a temporary measure until dpkg documentation includes
+    ther information provided.                               closes: Bug#105535
+  * Added information about optional blank lines in the chagelog format.
+                                                             closes: Bug#105538
+
+ -- Manoj Srivastava <srivasta@debian.org>  Tue, 24 Jul 2001 21:43:22 -0500
 
 debian-policy (3.5.5.0) unstable; urgency=low
 
