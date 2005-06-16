@@ -5,9 +5,9 @@
 # Created On       : Thu Oct 29 15:23:36 1998
 # Created On Node  : tiamat.datasync.com
 # Last Modified By : Manoj Srivastava
-# Last Modified On : Sat Oct 26 13:19:34 2002
+# Last Modified On : Fri Mar  7 13:32:56 2003
 # Last Machine Used: glaurung.green-gryphon.com
-# Update Count     : 9
+# Update Count     : 10
 # Status           : Unknown, Use with caution!
 # HISTORY          : 
 # Description      : 
@@ -68,11 +68,7 @@ case "$1" in
 
     fi
 
-    # FSSTND compatible symlinks
-    if [ -d /usr/doc -a ! -e /usr/doc/$PACKAGE \
-	-a -d /usr/share/doc/$PACKAGE ]; then
-	    ln -sf ../share/doc/$PACKAGE /usr/doc/$PACKAGE
-    fi
+    
     ;;
   abort-upgrade)
     # Back out of an attempt to upgrade this package FROM THIS VERSION
