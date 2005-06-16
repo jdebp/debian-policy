@@ -7,7 +7,7 @@
 	<name>Manoj Srivastava</name>
 	<email>srivasta@debian.org</email>
       </author>
-      <version>$Revision: 1.3 $</version>
+      <version>$Revision: 1.4 $</version>
       <copyright>
 	<copyrightsummary>
 	  This document is copyright 1998 Manoj Srivastava. Anyone is
@@ -28,7 +28,7 @@
 	that is the task of the Debian Policy mailing list.
       </p>
       <p>A copy of this document should also be found at <url
-      id="http://master.debian.org/%7Esrivasta/proposal.html"></p>
+      id="http://master.debian.org/%7Esrivasta/policy/"></p>
       <sect>
 	<heading>Deadline for tabling the discussion</heading>
 	<p>	  
