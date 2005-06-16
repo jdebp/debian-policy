@@ -157,17 +157,14 @@
 
 	<p>
 	  This manual is distributed via the Debian package
-	  <package>debian-policy</package>.
+	  <package><url name="debian-policy" id="http://packages.debian.org/debian-policy"></package>.
 	</p>
 
 	<p>
 	  The current version of this document is also available from
 	  the Debian web mirrors at
 	  <tt><url name="/doc/debian-policy/"
-		id="http://www.debian.org/doc/debian-policy/"></tt>
-	  and from the Debian archive mirrors at
-	  <tt><url name="/doc/package-developer/policy.txt.gz"
-		id="http://ftp.debian.org/debian/doc/package-developer/policy.txt.gz"></tt>.
+		id="http://www.debian.org/doc/debian-policy/"></tt>.
 	  Also available from the same directory are several other
 	  formats: <file>policy.html.tar.gz</file>, <file>policy.pdf.gz</file>
 	  and <file>policy.ps.gz</file>.

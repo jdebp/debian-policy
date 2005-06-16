@@ -67,16 +67,16 @@
     <toc detail="sect">
     <chapt>
       <heading>About this document</heading>
+
       <p>
-	The latest copy of this document can be found in the
-	<tt>menu-policy</tt> files in the <tt>debian-policy</tt> package.
-	They are also available from the Debian web mirrors at
+	This document is distributed as the <tt>menu-policy</tt> files
+	in the Debian package
+        <package><url name="debian-policy" id="http://packages.debian.org/debian-policy"></package>.
+	It is also available from the Debian web mirrors at
 	<tt><url name="/doc/packaging-manuals/menu-policy/"
-		id="http://www.debian.org/doc/packaging-manuals/menu-policy/"></tt>
-	and from the Debian archive mirrors at
-	<tt><url name="/doc/package-developer/menu-policy.txt.gz"
-		id="http://ftp.debian.org/debian/doc/package-developer/menu-policy.txt.gz"></tt>.
+		id="http://www.debian.org/doc/packaging-manuals/menu-policy/"></tt>.
       </p>
+
       <p>
 	This document has been extracted and separated from the
 	<em>Menu</em> package to:<enumlist>
@@ -96,6 +96,7 @@
 	</enumlist>
       </p>
     </chapt>
+
     <chapt>
       <heading>Menu Structure</heading>
       <p>
