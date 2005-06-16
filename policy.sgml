@@ -706,7 +706,7 @@
 	  <p>
 	    Sometimes, there are several packages doing more-or-less
 	    the same job. In this case, it's useful to define a
-	    <em>virtual package</em> who's name describes the function
+	    <em>virtual package</em> whose name describes the function
 	    the packages have. (The virtual packages just exist
 	    logically, not physically--that's why they are called
 	    <em>virtual</em>.) The packages with this particular
