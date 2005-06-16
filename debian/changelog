@@ -7,6 +7,10 @@ debian-policy (3.5.9.1) unstable; urgency=low
     extention to an informative footnote.                    closes: Bug#165063
   * Add 40 points, not 20, when the window manager is compliant with "The
     Window Manager Specification Project".                   closes: Bug#167004
+  * Fixed reference to the debconf URL (we can change the url as it
+    changes again, and I don't think any additional load would accrue
+    since people using the old URL were redirected to auric anyway).
+                                                             closes: Bug#184518
 
  -- 
 

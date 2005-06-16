@@ -1116,8 +1116,8 @@
 	      <ftppath>/debian/doc/package-developer/debconf_specification.txt.gz</ftppath>
 	      or on your local mirror.<footnote>
 		<p>
-		  4% of Debian packages [see <url
-		  id="http://kitenet.net/programs/debconf/stats/"
+		  6% of Debian packages [see <url
+		  id="http://auric.debian.org/%7Ejoeyh/debconf-stats/data/"
 		  name="Debconf stats">] currently use
 		  <package>debconf</package> to prompt the user at
 		  install time, and this number is growing daily. The
