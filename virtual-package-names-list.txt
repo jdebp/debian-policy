@@ -1,7 +1,7 @@
 
               AUTHORITATIVE LIST OF VIRTUAL PACKAGE NAMES
 
-                            October 1999
+                            January 2001
 
 
 Below is an authoritative list of virtual package names currently
@@ -48,7 +48,7 @@ Manoj
 Now, the list:
 
 X Window System
- ---------
+---------------
 x-terminal-emulator     any X client which emulates a terminal with a
                         terminfo description in the ncurses-base package
 x-window-manager        any X client which provides window management
@@ -82,7 +82,6 @@ lambdamoo-core          A lambdamoo-compatible datebase package
 lambdamoo-server        Anything running a moo using a lambdamoo-core
 libc-dev                Anything that provides header and object files
                         of `libc'
-libc.so.4               An a.out shared C library, version 4.x.x.
 man-browser             Anything that can read man pages
 pdf-preview             Any preprocessor that creates PDF output
 pdf-viewer              Anything that can display PDF files
@@ -123,11 +122,7 @@ Old and obsolete virtual package names
 Note, that no other package then the ones listed here should use
 these virtual package names.
 
-X11R5                   provided by xcompat for compatibility reasons
-X11R6                   do.
-xr5shlib                do.
-aout-x11r6lib           do.
-
+[There are currently no such package names in use]
 
 Changelog
 ---------
@@ -177,25 +172,23 @@ Julian Gilbey
               Alphabeticised lists
 
 Manoj Srivastava
-  11 July 2000 Added x-terminal-emulator
-               Added x-window-manager
-               Added xserver
-               Added linux-kernel-log-daemon
-               Added system-log-faemon
+  11 Jul 2000 Added x-terminal-emulator
+              Added x-window-manager
+              Added xserver
+              Added linux-kernel-log-daemon
+              Added system-log-faemon
 
 Manoj Srivastava
-  24 August 2000 Added mp3-encoder
-                 Added mp3-decoder
-                 Added time-daemon
-                 Added rsh-client
-                 Added telnet-client
+  24 Aug 2000 Added mp3-encoder
+              Added mp3-decoder
+              Added time-daemon
+              Added rsh-client
+              Added telnet-client
+
 Manoj Srivastava
-  16 January 2001 Added rsh server
-                  Added telnet-server
+  16 Jan 2001 Added rsh server
+              Added telnet-server
 
-
-
-
-
-
-
+Julian Gilbey
+  13 Feb 2001 Removed libc.4.so
+              Removed xcompat virtual package names
