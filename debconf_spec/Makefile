@@ -10,3 +10,5 @@ all: debconf_specification.txt debconf_specification.html
 
 clean:
 	rm -f *.css *.html *.txt *.txt.gz
+
+.DELETE_ON_ERROR:
