@@ -3,6 +3,7 @@ debian-policy (3.6.0) unstable; urgency=low
   * Restructured Policy, closes: #189306.
     XXX write a better description here XXX
     XXX update the section numbers in the upgrading checklist XXX
+  * Added Games/Simulation to menu subpolicy               closes: Bug#194974
 
  -- 
 
