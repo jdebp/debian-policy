@@ -764,8 +764,7 @@
 		These packages provide a reasonably small but not too
 		limited character-mode system.  This is what will be
 		installed by default if the user doesn't select anything
-		else.  It doesn't include many large applications.
-		.</p>
+		else.  It doesn't include many large applications.</p>
 	    </item>
 	    <tag><tt>optional</tt></tag>
 	    <item>
@@ -3758,8 +3757,8 @@ Replaces: mail-transport-agent
 	    <p>
 	      In the past, the shared libraries linked to were
 	      determined by calling <prgn>ldd</prgn>, but now
-	      <prgn>objdump</prgn> to do this.  The only change this
-	      makes to package building is that
+	      <prgn>objdump</prgn> is used to do this.  The only
+	      change this makes to package building is that
 	      <prgn>dpkg-shlibdeps</prgn> must also be run on shared
 	      libraries, whereas in the past this was unnecessary.
 	      The rest of this footnote explains the advantage that
@@ -3962,7 +3961,7 @@ dpkg-shlibdeps debian/tmp/usr/bin/* debian/tmp/usr/sbin/* \
 
 	<p>
 	  Each <tt>shlibs</tt> file has the same format.  Lines
-	  beginning with <tt>#</tt> are considered to be commments and
+	  beginning with <tt>#</tt> are considered to be comments and
 	  are ignored.  Each line is of the form:
 	  <example compact="compact">
 <var>library-name</var> <var>soname-version-number</var> <var>dependencies ...</var>

@@ -1,3 +1,9 @@
+debian-policy (3.5.6.1) unstable; urgency=low
+
+  * 
+
+ --
+
 debian-policy (3.5.6.0) unstable; urgency=low
 
   * Change footnote about urgency values to the now-current list: low,
@@ -18,7 +24,7 @@ debian-policy (3.5.6.0) unstable; urgency=low
   * The old packaging manual is included in the policy document as an
     informative appendix. It is not part of Debian Technical Policy, and
     its presence is a temporary measure until dpkg documentation includes
-    ther information provided.                               closes: Bug#105535
+    the information provided.                                closes: Bug#105535
   * Added information about optional blank lines in the chagelog format.
                                                              closes: Bug#105538
 
