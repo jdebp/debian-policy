@@ -33,6 +33,10 @@
 	<email>srivasta@debian.org</email>
       </author>
       <author>
+	<name>Maintainer: Julian Gilbey </name>
+	<email>J.D.Gilbey@qmw.ac.uk</email>
+      </author>
+      <author>
 	<name>Maintainer: The Debian Policy group </name>
 	<email>debian-policy@lists.debian.org</email>
       </author>
@@ -56,6 +60,9 @@
           <item>
             <p>Philip Hands <email>phil@hands.com</email></p>
           </item>
+	  <item>
+	    <p>Julian Gilbey <email>J.D.Gilbey@qmw.ac.uk</email></p>
+	  </item>
           <item>
             <p>Manoj Srivastava <email>srivasta@debian.org</email></p>
           </item>
@@ -731,7 +738,7 @@
 	  </p>
 
 	  <p>	    
-	    Its arguments are executables
+	    Its arguments are executables and libraries
 	    <footnote>
 	      <p>
 		They may be specified either in the locations in the
@@ -744,7 +751,7 @@
 	  </p>
 
 	  <p>	    
-	    If some of the executable(s) shared libraries should only
+	    If some of the found shared libraries should only
 	    warrant a <tt>Recommends</tt> or <tt>Suggests</tt>, or if
 	    some warrant a <tt>Pre-Depends</tt>, this can be achieved
 	    by using the <tt>-d<var>dependency-field</var></tt> option
@@ -4645,11 +4652,16 @@
 	<sect1><heading><em>How</em> does <prgn>dpkg-shlibdeps</prgn>
 	work?
 	  </heading>
-
 	  <p>	    
-	    <prgn>dpkg-shlibdeps</prgn> calls <prgn>ldd</prgn> to
-	    determine the shared libraries used by the compiled
-	    binaries passed through its command line.
+	    <prgn>dpkg-shlibdeps</prgn> calls <prgn>objdump</prgn> to
+           determine the shared libraries directly
+           <footnote> a binary <tt>foo</tt> directly use a library
+           <tt>libbar</tt> if it is linked with that library. Other
+           libraries that are needed by <tt>libbar</tt> are linked
+           indirectly to <tt>foo</tt>, and the dynamic linker will load
+           the automatically when it loads <tt>libbar</tt>.
+           </footnote> used by the compiled binaries and libraries
+           passed through its command line.
 	  </p>
 
 	  <p>	    
