@@ -1,3 +1,11 @@
+debian-policy (3.5.7.1) unstable; urgency=low
+
+  * Fix the debconf spec to (postinst -> postrm)             closes: Bug#129375
+  * Fix update-rc.d example, mention that changing run-levels or priority
+    may require removing and re-creating the symbolic links. closes: Bug#149709
+
+ --
+
 debian-policy (3.5.7.0) unstable; urgency=low
 
   * Fixed some broken hrefs in links
