@@ -186,7 +186,7 @@ Description: domain for this computer
 	For localization, the description field (and also the choices
 	field of a select or multiselect type question, and the
 	default field of a string or password type question) can be
-	supplimented with versions for other languages. These are
+	supplemented with versions for other languages. These are
 	named <emphasis>Description-ll</emphasis>,
 	<emphasis>Description-ll_LL</emphasis>,
 	<emphasis>Description-ll_LL.encoding</emphasis> and so on.
@@ -280,7 +280,7 @@ Description: domain for this computer
       usually run <emphasis>before</emphasis> the preinst, and before
       the package is unpacked!
       <note>
-	<simpara>Plese see debconf-devel(8) for details.</simpara>
+	<simpara>Please see debconf-devel(8) for details.</simpara>
       </note>
       This is done to make sure that we can
       use the desired configuration in the preinst if necessary.

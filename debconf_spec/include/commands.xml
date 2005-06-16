@@ -229,9 +229,9 @@
   </para>
   <para>
     Note that as a special convenience behavior, frontends will
-    redisplay already seen questons if the question was first seen by
+    redisplay already seen questions if the question was first seen by
     the user in the same confmodule run. This makes it easy for a
-    confmodule to back up to previous questons without having to reset
+    confmodule to back up to previous questions without having to reset
     the seen flag.
   </para>
 </listitem>
