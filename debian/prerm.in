@@ -87,6 +87,7 @@ if [ -x /usr/sbin/install-docs ]; then
     /usr/sbin/install-docs -r debian-perl-policy
     /usr/sbin/install-docs -r debian-policy-process
     /usr/sbin/install-docs -r debconf-spec
+    /usr/sbin/install-docs -r fhs
 fi
 
 exit 0

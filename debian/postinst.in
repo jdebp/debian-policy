@@ -134,6 +134,7 @@ EOF
 	/usr/sbin/install-docs -i /usr/share/doc-base/debian-perl-policy
 	/usr/sbin/install-docs -i /usr/share/doc-base/debian-policy-process
 	/usr/sbin/install-docs -i /usr/share/doc-base/debconf-spec
+	/usr/sbin/install-docs -i /usr/share/doc-base/fhs
     fi
 
     # There are three sub-cases:
