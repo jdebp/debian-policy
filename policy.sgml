@@ -7207,7 +7207,7 @@ done
 	    string</em> in some place, the following format should be
 	    used: <var>arch</var>-<var>os</var><footnote>
 	      The following architectures and operating systems are
-	      currently recognised by <prgn>dpkg-archictecture</prgn>.
+	      currently recognised by <prgn>dpkg-architecture</prgn>.
 	      The architecture, <tt><var>arch</var></tt>, is one of
 	      the following: <tt>alpha</tt>, <tt>arm</tt>,
 	      <tt>hppa</tt>, <tt>i386</tt>, <tt>ia64</tt>,
