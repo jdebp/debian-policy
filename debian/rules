@@ -5,9 +5,9 @@
 ## Created On	    : Thu Oct 29 15:35:55 1998
 ## Created On Node  : tiamat.datasync.com
 ## Last Modified By : Manoj Srivastava
-## Last Modified On : Sat Jun  7 13:31:08 2003
-## Last Machine Used: glaurung.green-gryphon.com
-## Update Count	    : 60
+## Last Modified On : Tue Oct 26 15:20:25 2004
+## Last Machine Used: glaurung.internal.golden-gryphon.com
+## Update Count	    : 62
 ## Status	    : Unknown, Use with caution!
 ## HISTORY	    :
 ## Description	    :
@@ -55,6 +55,9 @@ DESC_FILES := debian-policy debian-menu-policy debian-perl-policy \
 FHS_ARCHIVE  := fhs-2.1-source.tar.gz
 FHS_HTML     := fhs-2.1.html.tar.gz
 FHS_FILES    := fhs/fhs.ps fhs/fhs.txt fhs/fhs.pdf
+FHS_NEW_ARCHIVE  := fhs-2.3-source.tar.gz
+FHS_NEW_HTML     := fhs-2.3.html
+FHS_NEW_FILES    := fhs-2.3.ps.gz fhs-2.3.txt.gz fhs-2.3.pdf.gz
 # FSSTND_FILES := FSSTND-FAQ fsstnd-1.2.dvi.gz fsstnd-1.2.ps.gz fsstnd-1.2.txt.gz
 POLICY_FILES = $(SGML_FILES:=.sgml) $(SGML_FILES:=.txt.gz) \
 	       virtual-package-names-list.txt \
@@ -148,6 +151,8 @@ stamp-policy:  build $(sanitycheck)
 	# Be more specific with file compression
 	gzip -f9	    $(DOCDIR)/*.txt $(DOCDIR)/*.sgml \
 				$(DOCDIR)/fhs/* $(DOCDIR)/changelog
+# These are allready compressed
+	$(install_file)	    $(FHS_NEW_FILES)	     $(DOCDIR)/fhs/
 	$(install_file)	    debian/copyright	     $(DOCDIR)/
 	GZIP=-9 cd debconf_spec && \
 	  tar -zcf ../debconf_specification.xml.tar.gz *
@@ -161,6 +166,7 @@ stamp-policy:  build $(sanitycheck)
 	  tar -C $(DOCDIR) -zxf $$file.html.tar.gz; \
 	done
 	tar -C $(DOCDIR)/fhs -zxf $(FHS_HTML)
+	$(install_file)     $(FHS_NEW_HTML)    $(DOCDIR)/fhs
 	sed -e 's/#PACKAGE#/$(package)/g' debian/postinst.in > debian/postinst
 	sed -e 's/#PACKAGE#/$(package)/g' debian/prerm.in > debian/prerm
 	$(install_program)  debian/postinst          debian/tmp/DEBIAN/
