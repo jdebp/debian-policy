@@ -4395,6 +4395,22 @@ Replaces: mail-transport-agent
 	<package><var>libraryname</var>-<var>soversion</var>-dev</package>
 	instead.
       </p>
+
+        <p>                                                                 
+          If your package includes run-time support programs that            
+          do not need to be invoked manually by users, but are               
+          nevertheless required  for the package to function, then it        
+          is recommended that these programs are placed                      
+          (if they are binary) in a subdirectory of                          
+          <file>/usr/lib</file>, preferably under                            
+          <file>/usr/lib/</file><var>package-name</var>.                     
+          If the program is architecture independent, the                    
+          recommendation is for it to be placed in a subdirectory of         
+          <file>/usr/share</file> instead, preferably under                  
+          <file>/usr/share/</file><var>package-name</var>.                     
+        </p>                                                                 
+                                                                            
+
       <p>
 	If you have several shared libraries built from the same
 	source tree you may lump them all together into a single

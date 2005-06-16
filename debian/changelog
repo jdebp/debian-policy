@@ -35,6 +35,9 @@ debian-policy (3.6.2.1) unstable; urgency=low
     informative footnote.                                    (Closes: #290270).
   * Bug fix: "debian-policy: virtual package request: mpd-client", thanks
     to Eric Wong                                             (Closes: #270020).
+  * Bug fix: "[ACCEPTED 2005/02/04]: "libexec", or use of "lib" for
+    binaries in lib* packages", thanks to Junichi Uekawa 
+                                                              (Closes: #146023). 
 
  --
 
