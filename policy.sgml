@@ -1234,42 +1234,17 @@
 	  <heading>Prompting in maintainer scripts</heading>
 	  <p>
 	    Package maintainer scripts may prompt the user if
-	    necessary. Prompting may be accomplished by hand<footnote>
-		From the Jargon file: by hand 2. By extension,
-		writing code which does something in an explicit or
-		low-level way for which a presupplied library
-		(<em>debconf, in this instance</em>) routine ought
-		to have been available.
-	    </footnote>
-	    (but this is deprecated), or by communicating through a program
-	    which conforms to the Debian Configuration management
-	    specification, version 2 or higher, such as
-	    <prgn>debconf</prgn><footnote>
-		<p>
-		  6% of Debian packages [see <url
-		  id="http://ftp-master.debian.org/~joeyh/debconf-stats/"
-		  name="Debconf stats">] currently use
-		  <package>debconf</package> to prompt the user at
-		  install time, and this number is growing daily. The
-		  benefits of using debconf are briefly explained at
-		  <url id="http://www.debian.org/doc/packaging-manuals/debconf_specification.html"
-		  name="Debconf introduction">; they include
-		  preconfiguration, (mostly) noninteractive
-		  installation, elimination of redundant prompting,
-		  consistency of user interface, etc.
-		</p>
-
-		<p>
-		  With this increasing number of packages using
-		  <package>debconf</package>, plus the existence of a
-		  nascent second implementation of the Debian
-		  configuration management system
-		  (<package>cdebconf</package>), and the stabilization
-		  of the protocol these things use, the time has
-		  finally come to reflect the use of these things in
-		  policy.
-		</p>
-	    </footnote>.
+	    necessary. Prompting should be done by communicating
+	    through a program, such as <prgn>debconf</prgn>, which
+	    conforms to the Debian Configuration management
+	    specification, version 2 or higher.  Prompting the user by
+	    other means, such as by hand<footnote>
+                From the Jargon file: by hand 2. By extension,
+                writing code which does something in an explicit or
+                low-level way for which a presupplied library
+                (<em>debconf, in this instance</em>) routine ought
+                to have been available.
+            </footnote>, is now deprecated.
 	  </p>
 
 	  <p>
@@ -3728,8 +3703,10 @@ Package: libc6
 	    </item>
 	  </enumlist>
 
-	  No attempt is made to unwind after errors during
-	  removal.
+	  If there are problems during this process, we call
+           <example  compact="compact">postinst
+           abort-remove</example>. No other attempt is made to unwind
+           after errors during removal. 
 	</p>
       </sect>
     </chapt>
