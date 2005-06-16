@@ -1,3 +1,16 @@
+debian-policy (3.5.9.0) unstable; urgency=low
+
+  Josip:
+  * Added missing bits of information about Description: fields from
+    the old Packaging manual, closes: #172022.
+  * Fixed a stale reference to the "base system maintainer" to
+    base-passwd maintainer, closes: #174927.
+  * Fixed an accidental change from /usr/share/package to /usr/share/doc in
+    the paragraph about not depending on /usr/share/doc/package,
+    closes: #174048.
+
+ -- 
+
 debian-policy (3.5.8.0) unstable; urgency=low
 
   Manoj
