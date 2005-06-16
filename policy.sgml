@@ -4580,18 +4580,18 @@ test -f <var>program-executed-later-in-script</var> || exit 0
 	    change.  As the scripts themselves are frequently
 	    <tt>conffile</tt>s, modifying them requires that the
 	    administrator merge in their changes each time the package
-	    is upgraded and the <tt>conffile changes</tt>.  To ease
+	    is upgraded and the <tt>conffile</tt> changes.  To ease
 	    the burden on the system administrator, such configurable
 	    values should not be placed directly in the script.
 	    Instead, they should be placed in a file in
-	    <tt>/etc/default</tt>, which typically will have thesame
+	    <tt>/etc/default</tt>, which typically will have the same
 	    base name as the <tt>init.d</tt> script.  This extra file
 	    should be sourced by the script when the script runs.  It
 	    must contain only variable settings and comments in POSIX
-	    <prgn>sh</prgn> format.  It should not be a
-	    <tt>conffile</tt>, but a configuration file maintained by
-	    the package maintainer scripts.  See <ref id="config files">
-	    for more details.
+	    <prgn>sh</prgn> format.  It may either be a
+	    <tt>conffile</tt> or a configuration file maintained by
+	    the package maintainer scripts.  See <ref id="config
+	    files"> for more details.
 	  </p>
 
 	  <p>
