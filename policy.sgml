@@ -52,12 +52,6 @@
 	maintainers is:
 	<enumlist>
 	  <item>
-	    <p>Michael Alan Dorman <email>mdorman@debian.org</email></p>
-	  </item>
-	  <item>
-	    <p>Philip Hands <email>phil@hands.com</email></p>
-	  </item>
-	  <item>
 	    <p>Julian Gilbey <email>jdg@debian.org</email></p>
 	  </item>
 	  <item>
@@ -1530,7 +1524,7 @@
 	<p>
 	  This list here is not supposed to be exhaustive. Most fields
 	  are dealt with elsewhere in this document and in the
-	  packaging manual.
+	  dpkg documentation.
 	</p>
 	<sect1 id="f-Package"><heading><tt>Package</tt>
 	  </heading>
@@ -2183,7 +2177,7 @@
 	    <var>package</var> (<var>version</var>) <var>distribution(s)</var>; urgency=<var>urgency</var>
 
 	    * <var>change details</var>
-	    <var>more change details</var>
+	      <var>more change details</var>
 	    * <var>even more change details</var>
 
 	    -- <var>maintainer name and email address</var>  <var>date</var>
@@ -3141,12 +3135,14 @@
 	  is done in brackets after each individual package name and
 	  the optional version specification.  The brackets enclose a
 	  list of Debian architecture names separated by whitespace.
-	  An exclamation mark may be prepended to each name. If the
-	  current Debian host architecture is not in this list and
-	  there are no exclamation marks in the list, or it is in the
-	  list with a prepended exclamation mark, the package name and
-	  the associated version specification are ignored completely
-	  for the purposes of defining the relationships.
+	  Exclamation marks may be prepended to each of the names.
+	  (It is not permitted for some names to be prepended with
+	  exclamation marks and others not.) If the current Debian
+	  host architecture is not in this list and there are no
+	  exclamation marks in the list, or it is in the list with a
+	  prepended exclamation mark, the package name and the
+	  associated version specification are ignored completely for
+	  the purposes of defining the relationships.
 	</p>
 
 	<p>
@@ -3726,7 +3722,7 @@
 	    <footnote>
 	      <p>
 		It used to do this by calling <prgn>ldd</prgn>, but it
-		now calls <prgn>objdump</prgn> to to this. This
+		now calls <prgn>objdump</prgn> to do this. This
 		requires a couple of changes in the way that packages
 		are built.
 	      </p>
@@ -5496,8 +5492,9 @@
 		upgrading <tt>conffile</tt>s.
 	      </p>
 	    </footnote>
+	    </p>
 
-	  <p>
+	    <p>
 	    The other way to do it is via the maintainer scripts.
 	    In this case, the configuration file must not be listed as
 	    a <tt>conffile</tt> and must not be part of the package
@@ -5521,17 +5518,20 @@
 	    have to do any configuration other than that done
 	    (semi-)automatically by the <tt>postinst</tt> script.</p>
 
-	  <p>
-	    A common practice is to create a script called
-	    <tt><var>package</var>-configure</tt> and have the
-	    package's <tt>postinst</tt> call it if and only if the
-	    configuration file does not already exist. In certain
-	    cases it is useful for there to be an example or template
-	    file which the maintainer scripts use. Such files should
-	    be in <tt>/usr/share/doc</tt> if they are examples or
-	    <tt>/usr/lib</tt> if they are templates, and should be
-	    perfectly ordinary <prgn>dpkg</prgn>-handled files
-	    (<em>not</em> <tt>conffiles</tt>).</p>
+	    <p>
+		A common practice is to create a script called
+		<tt><var>package</var>-configure</tt> and have the
+		package's <tt>postinst</tt> call it if and only if the
+		configuration file does not already exist. In certain
+		cases it is useful for there to be an example or template
+		file which the maintainer scripts use. Such files should
+		be in <tt>/usr/share/&lt;package&gt;</tt> or
+		<tt>/usr/lib/&lt;package&gt;</tt> with a symbolic link
+		from <tt>/usr/share/doc/&lt;package&gt;/examples</tt>
+		if they are examples, and should be
+		perfectly ordinary <prgn>dpkg</prgn>-handled files
+		(<em>not</em> <tt>conffiles</tt>).
+	      </p>
 
 	  <p>
 	    These two styles of configuration file handling must
