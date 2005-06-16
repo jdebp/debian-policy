@@ -1,3 +1,10 @@
+debian-policy (3.5.8.0) unstable; urgency=low
+
+  * Added example for why one may call ldconfig anywhere in the
+    postsint.                                                closes: Bug#120585
+
+ -- Manoj Srivastava <srivasta@debian.org>  Wed, 13 Nov 2002 00:04:50 -0600
+
 debian-policy (3.5.7.1) unstable; urgency=low
 
   * Fix the debconf spec to (postinst -> postrm) closes: Bug#129375, Bug#160839
