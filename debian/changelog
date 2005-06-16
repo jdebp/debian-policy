@@ -19,11 +19,14 @@ debian-policy (2.5.1.90) unstable; urgency=low
     Window System) closes: Bug#38212
   * [ACCEPTED 1999/05/15] Separate menu policy (like virtual package list)
     closes: Bug#37713
+  * [ACCEPTED 1999/05/09] Utmp group proposal
+    closes: Bug#37389
   * [ACCEPTED 1999/05/09] Adopt the FHS in place of FSSTND
     Changed all references to the proper FHS versions. This was a first
     scan, so some references may still need to be changed. closes: Bug#37345
+  * Updated the upgrading checklist.
 
- -- Manoj Srivastava <phil@hands.com>  Tue, 29 Jun 1999 14:57:47 -0500
+ --
 
 debian-policy (2.5.1.0) unstable; urgency=low
 
