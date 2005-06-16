@@ -4,6 +4,8 @@ debian-policy (3.6.1.1) unstable; urgency=low
   * [AMENDMENT 15/09/2003] Move documentation of behavior of ancient dpkg
     in 6.6 to a footnote.                                  closes: Bug#209855
   * Fix the outdated link for the mime subpolicy.          closes: Bug#212153
+  * Fix a missing comma in the list of sections            closes: Bug#215524
+  * Fix spelling of sysv-rc                                closes: Bug#215558
 
  --
 
