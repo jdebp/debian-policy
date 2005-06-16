@@ -77,6 +77,7 @@ ispell-dictionary       Anything providing a dictionary for the
 kernel-headers          Kernel header files (<linux/*.h>, <asm/*.h>)
 kernel-image            Kernel image (vmlinuz, System.map, modules)
 kernel-source           Kernel source code
+linux-kernel-log-daemon A daemon to facilitate logging for the Linux kernel
 lambdamoo-core          A lambdamoo-compatible datebase package
 lambdamoo-server        Anything running a moo using a lambdamoo-core
 libc-dev                Anything that provides header and object files
@@ -87,6 +88,8 @@ pdf-preview             Any preprocessor that creates PDF output
 pdf-viewer              Anything that can display PDF files
 postscript-preview      Any preprocessor that creates Postscript output
 postscript-viewer       Anything that can display Postscript files
+system-log-daemon       A daemon that provides a logging facility for
+                        other applications
 tclsh                   Anything that provides /usr/bin/tclsh (*)
 ups-monitor             Anything that is capable of controlling an UPS
 wish                    Anything that provides /usr/bin/wish (*)
@@ -162,3 +165,10 @@ Julian Gilbey
               Added man-browser
               Added ident-server
               Alphabeticised lists
+
+Manoj Srivastava
+  11 July 2000 Added x-terminal-emulator
+               Added x-window-manager
+               Added xserver
+               Added linux-kernel-log-daemon
+               Added system-log-faemon
