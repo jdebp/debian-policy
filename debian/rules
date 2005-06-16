@@ -5,30 +5,30 @@
 ## Created On	    : Thu Oct 29 15:35:55 1998
 ## Created On Node  : tiamat.datasync.com
 ## Last Modified By : Manoj Srivastava
-## Last Modified On : Sat Oct 26 12:29:03 2002
+## Last Modified On : Sat Jun  7 12:35:31 2003
 ## Last Machine Used: glaurung.green-gryphon.com
-## Update Count	    : 58
+## Update Count	    : 59
 ## Status	    : Unknown, Use with caution!
 ## HISTORY	    :
 ## Description	    :
 ## $Id$
 ###############################################################################
 
-# ifdef ARCH
-#   ha:=-a$(ARCH)
-# endif
+ifdef ARCH
+  ha:=-a$(ARCH)
+endif
 
-# set the dpkg-architecture vars; but we don't use them, so we'll comment out
-# export DEB_BUILD_ARCH      ?= $(shell dpkg-architecture $(ha) -qDEB_BUILD_ARCH)
-# export DEB_BUILD_GNU_CPU   ?= $(shell dpkg-architecture $(ha) -qDEB_BUILD_GNU_CPU)
-# export DEB_BUILD_GNU_SYSTEM?= $(shell dpkg-architecture $(ha) -qDEB_BUILD_GNU_SYSTEM)
-# export DEB_BUILD_GNU_TYPE  ?= $(shell dpkg-architecture $(ha) -qDEB_BUILD_GNU_TYPE)
-# export DEB_HOST_ARCH       ?= $(shell dpkg-architecture $(ha) -qDEB_HOST_ARCH)
-# export DEB_HOST_GNU_CPU    ?= $(shell dpkg-architecture $(ha) -qDEB_HOST_GNU_CPU)
-# export DEB_HOST_GNU_SYSTEM ?= $(shell dpkg-architecture $(ha) -qDEB_HOST_GNU_SYSTEM)
-# export DEB_HOST_GNU_TYPE   ?= $(shell dpkg-architecture $(ha) -qDEB_HOST_GNU_TYPE)
+set the dpkg-architecture vars; but we don't use them, so we'll comment out
+export DEB_BUILD_ARCH      ?= $(shell dpkg-architecture $(ha) -qDEB_BUILD_ARCH)
+export DEB_BUILD_GNU_CPU   ?= $(shell dpkg-architecture $(ha) -qDEB_BUILD_GNU_CPU)
+export DEB_BUILD_GNU_SYSTEM?= $(shell dpkg-architecture $(ha) -qDEB_BUILD_GNU_SYSTEM)
+export DEB_BUILD_GNU_TYPE  ?= $(shell dpkg-architecture $(ha) -qDEB_BUILD_GNU_TYPE)
+export DEB_HOST_ARCH       ?= $(shell dpkg-architecture $(ha) -qDEB_HOST_ARCH)
+export DEB_HOST_GNU_CPU    ?= $(shell dpkg-architecture $(ha) -qDEB_HOST_GNU_CPU)
+export DEB_HOST_GNU_SYSTEM ?= $(shell dpkg-architecture $(ha) -qDEB_HOST_GNU_SYSTEM)
+export DEB_HOST_GNU_TYPE   ?= $(shell dpkg-architecture $(ha) -qDEB_HOST_GNU_TYPE)
 
-# arch	:= $(shell dpkg --print-installation-architecture)
+arch	:= $(shell dpkg --print-installation-architecture)
 
 # Basic information
 package := $(shell grep Source debian/control | sed 's/^Source: //')
