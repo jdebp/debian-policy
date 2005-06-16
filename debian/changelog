@@ -11,6 +11,7 @@ debian-policy (3.5.9.1) unstable; urgency=low
     changes again, and I don't think any additional load would accrue
     since people using the old URL were redirected to auric anyway).
                                                              closes: Bug#184518
+  * Inserted the word only in the package name section.      closes: Bug#184368
 
  -- 
 

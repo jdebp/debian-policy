@@ -811,7 +811,7 @@
 	    archive.</p>
 
 	  <p>
-	    Package names must consist of lower case letters
+	    Package names must consist only of lower case letters
 	    (<tt>a-z</tt>), digits (<tt>0-9</tt>), plus (<tt>+</tt>)
 	    and minus (<tt>-</tt>) signs, and periods (<tt>.</tt>).
 	    They must be at least two characters long and must start
