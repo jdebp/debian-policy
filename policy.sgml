@@ -251,7 +251,7 @@
 	  is the Debian Developer's Reference. This document describes
 	  procedures and resources for Debian developers, but it is
 	  <em>not</em> normative; rather, it includes things that don't
-	  belong into the Policy, such as best practices for developers.
+	  belong in the Policy, such as best practices for developers.
 	</p>
 
 	<p>
@@ -555,8 +555,8 @@
 	  <p>
 	    Programs which use patented algorithms that have a
 	    restricted license also need to be stored on "non-us",
-	    since that is located in a country where it is not allowed
-	    to patent algorithms.
+	    since the non-us archive is located in a country where
+	    patenting algorithms is not allowed.
 	  </p>
 
 	  <p>
@@ -859,7 +859,7 @@
 	    version, the date based portion of the version number
 	    should be changed to the following format in such cases:
 	    "19960501", "19961224". It is up to the maintainer whether
-	    he/she wants to bother the upstream maintainer to change
+	    they want to bother the upstream maintainer to change
 	    the version numbers upstream, too.
 	  </p>
 
@@ -893,7 +893,7 @@
 	  The maintainer must be specified in the
 	  <tt>Maintainer</tt> control field with their correct name
 	  and a working email address.  If one person maintains
-	  several packages, he/she should try to avoid having
+	  several packages, they should try to avoid having
 	  different forms of their name and email address in
 	  the <tt>Maintainer</tt> fields of those packages.
 	</p>
@@ -5446,7 +5446,7 @@ rmdir /usr/local/share/emacs 2>/dev/null || true
 	    the scripts to the local system, e.g., to disable a
 	    service without de-installing the package, or to specify
 	    some special command line options when starting a service,
-	    while making sure her changes aren't lost during the next
+	    while making sure their changes aren't lost during the next
 	    package upgrade.
 	  </p>
 
@@ -5812,8 +5812,8 @@ fi
 
 	    <item>
 		Design your messages as if the computer is telling you
-		what he is doing (let him be polite :-), but don't
-		mention "him" directly.  For example, if you think of
+		what it is doing (let it be polite :-), but don't
+		mention "it" directly.  For example, if you think of
 		saying
 		<example compact="compact">
 I'm starting network daemons: nfsd mountd.
@@ -5879,7 +5879,7 @@ echo "."
 		so long and when the final daemon has been started.
 		You should be careful where to put spaces: in the
 		example above the system administrator can easily
-		comment out a line if he don't wants to start a
+		comment out a line if they don't want to start a
 		specific daemon, while the displayed message still
 		looks good.
 	      </p>
@@ -5946,7 +5946,7 @@ Doing something very useful...done.
 		</example>
 		You should print the <tt>done.</tt> immediately after
 		the job has been completed, so that the user is
-		informed why she has to wait.  You can get this
+		informed why they have to wait.  You can get this
 		behavior by saying
 		<example compact="compact">
 echo -n "Doing something very useful..."
@@ -7211,7 +7211,7 @@ endscript
 	    If a system administrator wishes to have a file (or
 	    directory or other such thing) installed with owner and
 	    permissions different from those in the distributed Debian
-	    package, he can use the <prgn>dpkg-statoverride</prgn>
+	    package, they can use the <prgn>dpkg-statoverride</prgn>
 	    program to instruct <prgn>dpkg</prgn> to use the different
 	    settings every time the file is installed.  Thus the
 	    package maintainer should distribute the files with their
@@ -7356,7 +7356,7 @@ done
 	  program to edit or display a text document.  Since there are
 	  lots of different editors and pagers available in the Debian
 	  distribution, the system administrator and each user should
-	  have the possibility to choose his/her preferred editor and
+	  have the possibility to choose their preferred editor and
 	  pager.
 	</p>
 
@@ -8084,7 +8084,7 @@ name ["<var>syshostname</var>"]:
 	    binaries linked against the library (whether statically or
 	    dynamically), it is the package maintainer's
 	    responsibility to determine whether this is permitted by
-	    the license of the copy of Motif in his or her possession.
+	    the license of the copy of Motif in their possession.
 	  </p>
 	</sect1>
       </sect>

@@ -6,6 +6,12 @@ debian-policy (3.6.2.1) unstable; urgency=low
   * Bug fix: "[PROPOSAL] Document Uploaders: field in policy", thanks to
     Andrew Pollock. Andreas Metzler provided the wording, though it was
     modified during inclusion.                              (Closes: #203145).
+  * Bug fix: "debian-policy: Minor grammatical correction in section 9.4",
+    thanks to Eric Evans. I rejected the proposed change, instead I went
+    over the whole policy document and removed all he/she/him/her
+    constructs before the gender police jump all over me.   (Closes: #273122).
+  * Bug fix: "XSI:ism in prerm and postinst", thanks to David Weinehall
+                                                            (Closes: #260092).
 
  --
 
