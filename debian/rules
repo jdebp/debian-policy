@@ -5,9 +5,9 @@
 ## Created On	    : Thu Oct 29 15:35:55 1998
 ## Created On Node  : tiamat.datasync.com
 ## Last Modified By : Manoj Srivastava
-## Last Modified On : Fri Oct 30 00:19:38 1998
+## Last Modified On : Fri Oct 30 00:53:33 1998
 ## Last Machine Used: tiamat.datasync.com
-## Update Count	    : 26
+## Update Count	    : 30
 ## Status	    : Unknown, Use with caution!
 ## HISTORY	    :
 ## Description	    :
@@ -20,11 +20,11 @@ date	:= $(shell date +"%Y-%m-%d")
 version := $(shell LC_ALL=C dpkg-parsechangelog | \
 		   grep ^Version: | sed 's/^Version: *//')
 
-FILES_TO_CLEAN = debian/files debian/buildinfo debian/substvars \
-		 version.ent
+FILES_TO_CLEAN  = debian/files debian/buildinfo  debian/substvars \
+		  version.ent  policy.lout policy.lout.ld lout.li \
+		  upgrading-checklist.text policy.text.gz
 STAMPS_TO_CLEAN = stamp-binary stamp-build stamp-configure
-DIRS_TO_CLEAN  = debian/tmp policy.html policy.text* policy.lout* \
-		 lout.li upgrading-checklist.text
+DIRS_TO_CLEAN   = debian/tmp policy.html
 
 # Location of the source dir
 SRCTOP	  := $(shell if [ "$$PWD" != "" ]; then echo $$PWD; else pwd; fi;)
@@ -96,7 +96,7 @@ stamp-binary:  build
 	$(install_file)	    $(POLICY_FILES)	     $(DOCDIR)/
 	$(install_file)	    $(FSSTND_FILES)	     $(DOCDIR)/fsstnd/
 	$(install_file)	    debian/changelog	     $(DOCDIR)/
-	-gzip -fq9	    $(DOCDIR)
+	-gzip -fqr9	    $(DOCDIR)
 	$(install_file)	    debian-policy.desc	     $(LIBDIR)/
 	$(install_file)	    debian/copyright	     $(DOCDIR)/
 	(tar cf -	    policy.html) |	     (cd $(DOCDIR);   tar xf -)
@@ -107,7 +107,7 @@ stamp-binary:  build
 	dpkg		    --build debian/tmp ..
 	debiandoc2ps	    -pa4 -1 -O policy.sgml | gzip -9v >	 ../policy.ps.gz
 	GZIP=-9v tar zcf    ../policy.html.tar.gz    policy.html
-	dpkg-distaddfile   -fdebian/files	     policy.ps.gz	byhand -
+	dpkg-distaddfile    -fdebian/files	     policy.ps.gz	byhand -
 	dpkg-distaddfile    -fdebian/files	     policy.html.tar.gz byhand -
 	for i in	    $(BYHAND_FILES); do \
 	  $(install_file)   $$i		   ..		     ; \
