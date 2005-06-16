@@ -4,6 +4,14 @@ debian-policy (3.6.0) unstable; urgency=low
     XXX write a better description here XXX
     XXX update the section numbers in the upgrading checklist XXX
   * Added Games/Simulation to menu subpolicy               closes: Bug#194974
+  * [ACCEPTED]: Debian changelogs should be UTF-8 encoded. Changed the
+    wording from a should to a may; since a should would make an unknown
+    number of packages insta buggy. A reuest makes all these wishlist
+    bugs; we can raise the severity in a later version of policy.
+                                                           closes: Bug#174982
+  * Added LANG=C before the debiandoc2X invocations, this ensures that the
+    resulting documents do not get converted to the locale on the building
+    machine.                                               closes: Bug#175064
 
  -- 
 
@@ -321,7 +329,7 @@ debian-policy (3.5.3.0) unstable; urgency=low
     version.
   * Richard Braakman and Michael Dorman have expressed their resignation
     from policy maintenance duties.
-  * fixed the date thinko in upgrading checklist. Thanks to Sébastien
+  * fixed the date thinko in upgrading checklist. Thanks to SÃ©bastien
     Montagne <sebastien.montagne@netcourrier.com>        closes: Bug#84236
 
  -- Manoj Srivastava <srivasta@debian.org>  Sun, 15 Apr 2001 13:36:19 -0500

@@ -8,25 +8,25 @@ mime-policy.sgml: version.ent
 	nsgmls -wall -gues $<
 
 %.html/index.html: %.sgml
-	debiandoc2html $<
+	LANG=C debiandoc2html $<
 
 %.html.tar.gz: %.html/index.html
 	tar -czf $(<:/index.html=.tar.gz) $(<:/index.html=)
 
 %.txt: %.sgml
-	debiandoc2text $<
+	LANG=C debiandoc2text $<
 
 %.txt.gz: %.txt
 	gzip -cf9 $< > $@
 
 %.ps: %.sgml
-	debiandoc2latexps $<
+	LANG=C debiandoc2latexps $<
 
 %.ps.gz: %.ps
 	gzip -cf9 $< > $@
 
 %.pdf: %.sgml
-	debiandoc2latexpdf $<
+	LANG=C debiandoc2latexpdf $<
 
 %.pdf.gz: %.pdf
 	gzip -cf9 $< > $@

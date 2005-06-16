@@ -2815,7 +2815,7 @@ Package: libc6
 	      Those containing a single space followed by a single full stop
 	      character. These are rendered as blank lines. This is the
 	      <em>only</em> way to get a blank line<footnote>
-		Completely empty lines will not be rendered as blank lines. 
+		Completely empty lines will not be rendered as blank lines.
 		Instead, they will cause the parser to think you're starting
 		a whole new record in the control file, and will therefore
 		likely abort with an error.
@@ -3870,7 +3870,7 @@ Build-Depends: kernel-headers-2.2.10 [!hurd-i386],
           they may not be installed at the same time as certain other
           packages, and/or that they depend on the presence of others.
         </p>
-  
+
         <p>
           This is done using the <tt>Depends</tt>, <tt>Pre-Depends</tt>,
           <tt>Recommends</tt>, <tt>Suggests</tt>, <tt>Enhances</tt> and
@@ -4266,7 +4266,7 @@ Replaces: mail-transport-agent
           installed or absent at the time of building the package
           can declare relationships to those binary packages.
         </p>
-  
+
         <p>
           This is done using the <tt>Build-Depends</tt>,
           <tt>Build-Depends-Indep</tt>, <tt>Build-Conflicts</tt> and
@@ -8175,9 +8175,9 @@ name ["<var>syshostname</var>"]:
           maintainer of the package is allowed to write this bug report
           themselves, if they so desire).  Do not close the bug report
           until a proper manpage is available.<footnote>
-              It is not very hard to write a man page. See the 
+              It is not very hard to write a man page. See the
 	      <url id="http://www.schweikhardt.net/man_page_howto.html"
-		name="Man-Page-HOWTO">, 
+		name="Man-Page-HOWTO">,
 	      <manref name="man" section="7">, the examples
               created by <prgn>debmake</prgn> or <prgn>dh_make</prgn>,
 	      the helper programs <prgn>help2man</prgn>, or the
@@ -9219,7 +9219,48 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	    See <ref id="dpkgchangelog">.
 	  </p>
 
-	  <sect2><heading>Defining alternative changelog formats
+	  <p>
+	    It is recommended that the entire changelog be encoded in the
+	    <url id="http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc2279.html" name="UTF-8">
+	    encoding of
+	    <url id="http://www.unicode.org/"
+	    name="Unicode">.<footnote>
+	      <p>
+		Support for Unicode, and specifically UTF-8, is
+		steadily increasing among popular applications in
+		Debian.  For example, in unstable, GNOME 2 has
+		excellent support (almost level 2) in almost all its
+		applications; the big remaining one is gnome-terminal,
+		of which one requires development versions in order to
+		support UTF-8 (available in Debian experimental now if
+		you want to play).  I think that by the time sarge is
+		released, UTF-8 support will start to hit critical
+		mass. </p>
+	      <p>
+		I think it is fairly obvious that we need to
+		eventually transition to UTF-8 for our package
+		infrastructure; it is really the only sane charset in
+		an international environment.  Now, we can't switch to
+		using UTF-8 for package control fields and the like
+		until dpkg has better support, but one thing we can
+		start doing today is requesting that Debian changelogs
+		are UTF-8 encoded. At some point in time, we can start
+		requiring them to do so. 
+	      </p>
+	      <p>
+		Checking for non-UTF8 characters in a changelog is
+		trivial.  Dump the file through 
+		<example>iconv -f utf-8 -t ucs-4</example>
+                  discard the output, and check the return
+		value.  If there are any characters in the stream
+		which are invalid UTF-8 sequences, iconv will exit
+		with an error code; and this will be the case for the
+		vast majority of other character sets.
+	      </p>
+	    </footnote>
+	  </p>
+
+ 	  <sect2><heading>Defining alternative changelog formats
 	    </heading>
 
 	    <p>
