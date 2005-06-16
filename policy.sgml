@@ -2197,12 +2197,12 @@ Package: libc6
 	  currently only one useful <var>keyword</var>,
 	  <tt>urgency</tt>).<footnote>
 	    <p>
-	      Usual urgency values are <tt>low</tt>, <tt>medium</tt>,
-	      <tt>high</tt> and <tt>critical</tt>.  They have an
-	      effect on how quickly a package will be considered for
-	      inclusion into the <tt>testing</tt> distribution, and
-	      give an indication of the importance of any fixes
-	      included in this upload.
+	      Recognised urgency values are <tt>low</tt>,
+	      <tt>medium</tt>, <tt>high</tt> and <tt>emergency</tt>.
+	      They have an effect on how quickly a package will be
+	      considered for inclusion into the <tt>testing</tt>
+	      distribution, and give an indication of the importance
+	      of any fixes included in this upload.
 	    </p>
 	  </footnote>
 	</p>
