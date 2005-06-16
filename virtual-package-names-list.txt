@@ -1,7 +1,7 @@
 
               AUTHORITATIVE LIST OF VIRTUAL PACKAGE NAMES
 
-                            February 2001
+                            September 2002
 
 
 Below is an authoritative list of virtual package names currently
@@ -15,9 +15,9 @@ Packages MUST NOT use virtual package names (except privately, amongst
 a cooperating group of packages) unless they have been agreed upon and
 appear in this list.
 
-The latest version of this file can be found in
-        doc/package-developer/virtual-package-names-list.text
-on your local Debian FTP site.
+The latest version of this file can be found in the debian-policy, or at
+http://www.debian.org/doc/packaging-manuals/virtual-package-names-list.txt
+(or any other Debian web mirror).
 
 The procedure for updating the list is as follows:
 
