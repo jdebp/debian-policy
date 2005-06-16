@@ -5,9 +5,9 @@
 ## Created On	    : Thu Oct 29 15:35:55 1998
 ## Created On Node  : tiamat.datasync.com
 ## Last Modified By : Manoj Srivastava
-## Last Modified On : Fri Oct 30 00:53:33 1998
-## Last Machine Used: tiamat.datasync.com
-## Update Count	    : 30
+## Last Modified On : Tue Apr 27 10:38:06 1999
+## Last Machine Used: glaurung.green-gryphon.com
+## Update Count	    : 34
 ## Status	    : Unknown, Use with caution!
 ## HISTORY	    :
 ## Description	    :
@@ -15,7 +15,7 @@
 ###############################################################################
 # The name of the package (for example, `emacs').
 package := $(shell grep Source debian/control | sed 's/^Source: //')
-arch	:=$(shell dpkg --print-architecture)
+arch	:= $(shell dpkg --print-installation-architecture)
 date	:= $(shell date +"%Y-%m-%d")
 version := $(shell LC_ALL=C dpkg-parsechangelog | \
 		   grep ^Version: | sed 's/^Version: *//')
@@ -34,7 +34,7 @@ LIBDIR	  := $(TMPTOP)/usr/share/doc-base
 
 FSSTND_FILES   =FSSTND-FAQ fsstnd-1.2.dvi.gz fsstnd-1.2.ps.gz fsstnd-1.2.txt.gz
 POLICY_FILES   =policy.text.gz policy.sgml virtual-package-names-list.text \
-		upgrading-checklist.text libc6-migration.text
+		upgrading-checklist.text libc6-migration.text version.ent
 BYHAND_FILES   =policy.text.gz libc6-migration.text\
 		virtual-package-names-list.text
 
@@ -51,7 +51,7 @@ stamp-build:
 	debiandoc2html policy.sgml
 	debiandoc2text policy.sgml
 	lynx -dump upgrading-checklist.html > upgrading-checklist.text
-	gzip -9 policy.text
+	gzip -9f policy.text
 	touch stamp-build
 
 configure: stamp-configure
@@ -60,6 +60,7 @@ stamp-configure:
 	echo "<!entity version \"$(version)\">" >> version.ent
 	echo "<!entity date    \"$(date)\">"	    >> version.ent
 	touch stamp-configure
+
 clean:
 # Undoes the effect of `make -f debian/rules build'.
 	$(checkdir)

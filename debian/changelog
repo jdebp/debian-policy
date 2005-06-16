@@ -1,3 +1,20 @@
+debian-policy (2.5.1.0) unstable; urgency=low
+
+  * Removed double '>' marks from the policy document. closes: Bug#35095
+  * Corrected canonical source for "Csh Programming Considered Harmful"
+    closes: Bug#36286 Bug#32499
+  * Fixed typo in invocation of update-rc.d. closes: Bug#34988 Bug#34543
+  * Fixed misspelling of accessible. Ran ispell over the rest of the
+    document (painful because of the large number of technical terms in
+    there). closes: Bug#34233
+  * Make the binary package contain the version.ent as well. closes: Bug#31033
+  * Fixed typo s/as is/is/. closes: Bug#30302
+  * AMENDMENT 23/04/1999: changed /etc/nntpserver recommendation to
+    /etc/news/server. closes: Bug#21875
+  * Added the current list of policy maintainers. closes: Bug#30148
+
+ -- Manoj Srivastava <srivasta@debian.org>  Tue, 27 Apr 1999 11:10:29 -0500
+
 debian-policy (2.5.0.0) unstable; urgency=low
 
   * AMENDMENT: Added in changes in Bug #25911, which rearranged sections

@@ -46,8 +46,26 @@
 	GNU/Linux distribution. This includes the structure and
 	contents of the Debian archive, several design issues of the
 	operating system, as well as technical requirements that each
-	package must satisfy to be included in the distribution.
+	package must satisfy to be included in the distribution. The
+	policy package itself is maintained by a group of maintainers
+	that have no editorial powers. At the moment, the list of
+	maintainers is:
+	<enumlist>
+	  <item>
+	    <p>Michael Alan Dorman <email>mdorman@debian.org</email></p>
+	  </item>
+	  <item>
+	    <p>Richard Braakman <email>dark@xs4all.nl</email></p>
+	  </item>
+	  <item>
+	    <p>Philip Hands <email>phil@hands.com</email></p>
+	  </item>
+	  <item>
+	    <p>Manoj Srivastava <email>srivasta@debian.org</email></p>
+	  </item>
+	</enumlist>
       </abstract>
+
 
       <copyright>
 	<copyrightsummary>
@@ -195,10 +213,10 @@
       <sect1>
 	<heading>The Debian Free Software Guidelines</heading>
 	<p>
-	  The Debian Free Software Guidelines (DFSG) as is our
+	  The Debian Free Software Guidelines (DFSG) is our
 	  definition of `free' software.
 	  <taglist>
-	    <tag>>Free Redistribution
+	    <tag>Free Redistribution
 	    </tag>
 	    <item>
 	      <p>
@@ -790,7 +808,7 @@
 	    only ever be asked each question once.  This means that
 	    packages should try to use appropriate shared
 	    configuration files (such as <tt>/etc/papersize</tt> and
-	    <tt>/etc/nntpserver</tt>), rather than each prompting for
+	    <tt>/etc/news/server</tt>), rather than each prompting for
 	    their own list of required pieces of information.</p>
 	    
 	  <p>
@@ -844,7 +862,7 @@
 	    correctly all the packages which supply an instance of the
 	    `shared' command name (or, in general, filename) must use
 	    it.  You can use <tt>Conflicts</tt> to force the
-	    deinstallation of other packages supplying it which do not
+	    De-installation of other packages supplying it which do not
 	    (yet) use <prgn>update-alternatives</prgn>.  It may in
 	    this case be appropriate to specify a conflict on earlier
 	    versions on something--this is an exception to the usual
@@ -1003,15 +1021,15 @@
 	
       
       <sect>
-	<heading>Filesystem hierarchy</heading>
+	<heading>File system hierarchy</heading>
 	  
 	
 	<sect1>
-	  <heading>Linux Filesystem Structure</heading>
+	  <heading>Linux File system Structure</heading>
 	    
 	  <p>
 	    The location of all installed files and directories must
-	    comply fully with the Linux Filesystem Structure (FSSTND).
+	    comply fully with the Linux File system Structure (FSSTND).
 	    The latest version of this document can be found alongside
 	    this manual or on <ftpsite>tsx-11.mit.edu</ftpsite> in
 	    <ftppath>/pub/linux/docs/linux-standards/fsstnd/</ftppath>.
@@ -1027,7 +1045,7 @@
 	  <p>
 	    As mandated by the FSSTND no package should place any
 	    files in <tt>/usr/local</tt>, either by putting them in
-	    the filesystem archive to be unpacked by <prgn>dpkg</prgn>
+	    the file system archive to be unpacked by <prgn>dpkg</prgn>
 	    or by manipulating them in their maintainer scripts.</p>
 	    
 	  <p>
@@ -1356,7 +1374,7 @@
 	    To get the default behaviour for your package, put in your
 	    <tt>postinst</tt> script
 	    <example>
-	      update-rc.d <var>package</var> default &gt;/dev/null
+	      update-rc.d <var>package</var> defaults &gt;/dev/null
 	    </example>
 	    and in your <tt>postrm</tt>
 	    <example>
@@ -1380,12 +1398,12 @@
 	    
 	    
 	<sect1>
-	  <heading>Boot-time initialisation</heading>
+	  <heading>Boot-time initialization</heading>
 	    
 	  <p>
 	    There is another directory, <tt>/etc/rc.boot</tt>, which
 	    contains scripts which are run once per machine boot.
-	    This facility is provided for initialisation of hardware
+	    This facility is provided for initialization of hardware
 	    devices, cleaning up of leftover files, and so forth.</p>
 	    
 	  <p>
@@ -1413,7 +1431,7 @@
 	  <p>
 	    <em>Do not</em> include the
 	    <tt>/etc/rc<var>n</var>.d/*</tt> symbolic links in the
-	    <tt>.deb</tt> filesystem archive!  <em>This will cause
+	    <tt>.deb</tt> file system archive!  <em>This will cause
 	    problems!</em> You should create them with
 	    <prgn>update-rc.d</prgn>, as above.</p>
 	    
@@ -1425,7 +1443,7 @@
 	    conffiles.  (This is important since we want to give the
 	    local system administrator the chance to adapt the scripts
 	    to the local system--e.g., to disable a service without
-	    deinstalling the package, or to specify some special
+	    De-installing the package, or to specify some special
 	    command line options when starting a service--while making
 	    sure her changes aren't lost during the next package
 	    upgrade.)</p></sect1>
@@ -1498,7 +1516,7 @@
 	    and having named running in all runlevels, it can say in
 	    its <tt>postinst</tt>:
 	    <example>
-	      update-rc.d bind default >/dev/null
+	      update-rc.d bind defaults >/dev/null
 	    </example>
 	    And in its <tt>postrm</tt>, to remove the links when the
 	    package is purged: 
@@ -1646,7 +1664,7 @@
 		in the script. If you have more than one daemon to
 		start, you should do the following:
 		<example>
-		  echo -n "Starting remote filesystem services:"
+		  echo -n "Starting remote file system services:"
 		  echo -n " nfsd"; start-stop-daemon --start --quiet nfsd
 		  echo -n " mountd"; start-stop-daemon --start --quiet mountd
 		  echo -n " ugidd"; start-stop-daemon --start --quiet ugidd
@@ -2148,13 +2166,15 @@
 	    <prgn>csh</prgn> and <prgn>tcsh</prgn> should be avoided
 	    as scripting languages.  See <em>Csh Programming
 	    Considered Harmful</em>, one of the <tt>comp.unix.*</tt>
-	    FAQs.  It can be found on <ftpsite>rtfm.mit.edu</ftpsite>
-	    in
-	    <ftppath>/pub/usenet-by-group/comp.unix.programmer/Csh_Programming_Considered_Harmful</ftppath>.
-	    If an upstream package comes with <prgn>csh</prgn> scripts
-	    then you must make sure that they start with
-	    <tt>#!/bin/csh</tt> and make your package depend on the
-	    <prgn>c-shell</prgn> virtual package.</p>
+	  FAQs.  It can be found on 
+	  <url id="http://language.perl.com/versus/csh.whynot">, or
+	  <url id="http://www.cpan.org/doc/FMTEYEWTK/versus/csh.whynot">
+	  or even on <ftpsite>ftp.cpan.org</ftpsite> 
+	  <ftppath>/pub/perl/CPAN/doc/FMTEYEWTK/versus/csh.whynot</ftppath>.
+	  If an upstream package comes with <prgn>csh</prgn> scripts
+	  then you must make sure that they start with
+	  <tt>#!/bin/csh</tt> and make your package depend on the
+	  <prgn>c-shell</prgn> virtual package.</p>
 	    
 	  <p>
 	    Any scripts which create files in world-writable
@@ -2249,7 +2269,7 @@
 	    
 	  <p>
 	    It is almost certain that any file in <tt>/etc</tt> that
-	    is in your package's filesystem archive should be listed
+	    is in your package's file system archive should be listed
 	    in <prgn>dpkg</prgn>'s <tt>conffiles</tt> control area
 	    file.  (See the <em>Debian Packaging
             Manual</em>).</p>
@@ -2447,7 +2467,7 @@
 	    
 	  <p>
 	    Note that changing the numeric value of an id associated with a name
-	    is very difficult, and involves searching the filesystem for all
+	    is very difficult, and involves searching the file system for all
 	    appropriate files.  You need to think carefully whether a static or
 	    dynamic id is required, since changing your mind later will cause
 	    problems.</p>
@@ -2964,7 +2984,7 @@
 	
 	<p>
 	  If your package comes with extensive documentation in a
-	  markup format that can be converted to various other formats
+	  mark up format that can be converted to various other formats
 	  you should if possible ship HTML versions in a binary
 	  package, in the directory
 	  <tt>/usr/doc/<var>appropriate package</var></tt> or its
@@ -3041,10 +3061,10 @@
 	  The debian/changelog file should be installed in
 	  <tt>/usr/doc/<var>package</var></tt> as
 	  <tt>changelog.Debian.gz</tt>.  If the upstream changelog
-	  file is text formatted, it must be accessable as
+	  file is text formatted, it must be accessible as
 	  <tt>/usr/doc/<var>package</var>/changelog.gz</tt>.  If the
 	  upstream changelog file is HTML formatted, it must be
-	  accessable as <tt>/usr/doc/<var>package</var>/changelog.html.gz</tt>.
+	  accessible as <tt>/usr/doc/<var>package</var>/changelog.html.gz</tt>.
 	  If the upstream changelog files do not already conform to
 	  this naming convention, then this may be achieved by either
 	  renaming the files or adding a symbolic link at the
