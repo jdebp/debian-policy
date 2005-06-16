@@ -589,8 +589,9 @@
 	  
 	<p>
 	  Packages may not depend on packages with lower priority
-	  values (excluding build-time dependencies).  If this does
-	  happen, one of the priority values will have to be adapted.
+	  values (excluding build-time dependencies).  In order to
+	  ensure this, the priorities of one or more packages may have
+	  to be adjusted.
 	</p>
       </sect>
 	  
@@ -2560,6 +2561,21 @@
 	    time).</p>
 
 	  <p>
+	    In order to ensure that local changes are preserved
+	    correctly, no package may contain or make hard links to
+	    conffiles.
+	    <footnote>
+	      <p>
+		Rationale: There are two problems with hard links.
+		The first is that some editors break the link while
+		editing one of the files, so that the two files may
+		unwittingly become different.  The second is that
+		<prgn>dpkg</prgn> might break the hard link while
+		upgrading <tt>conffile</tt>s.
+	      </p>
+	    </footnote>
+
+	  <p>
 	    The other way to do it is to via the maintainer scripts.
 	    In this case, the configuration file must not be listed as
 	    a <tt>conffile</tt> and must not be part of the package
@@ -2600,6 +2616,7 @@
 	    not be mixed</em>, for that way lies madness:
 	    <prgn>dpkg</prgn> will ask about overwriting the file
 	    every time the package is upgraded.</p>
+
 	</sect1>
 
 	<sect1>
