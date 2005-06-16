@@ -684,12 +684,14 @@
 	    list of subsections.  At present, they are:
 	    <em>admin</em>, <em>base</em>, <em>comm</em>,
 	    <em>contrib</em>, <em>devel</em>, <em>doc</em>,
-	    <em>editors</em>, <em>electronics</em>, <em>games</em>,
-	    <em>graphics</em>, <em>hamradio</em>,
-	    <em>interpreters</em>, <em>libs</em>, <em>mail</em>,
+	    <em>editors</em>, <em>electronics</em>, <em>embedded</em>,
+	    <em>games</em>, <em>gnome</em> <em>graphics</em>,
+	    <em>hamradio</em>, <em>interpreters</em>, <em>kde</em>,
+	    <em>libs</em>, <em>libdevel</em>, <em>mail</em>,
 	    <em>math</em>, <em>misc</em>, <em>net</em>, <em>news</em>,
 	    <em>non-US</em>, <em>non-free</em>, <em>oldlibs</em>,
-	    <em>otherosfs</em>, <em>science</em>, <em>shells</em>,
+	    <em>otherosfs</em>, <em>perl</em>, <em>python</em>
+	    <em>science</em>, <em>shells</em>,
 	    <em>sound</em>, <em>tex</em>, <em>text</em>,
 	    <em>utils</em>, <em>web</em>, <em>x11</em>.
 	  </p>

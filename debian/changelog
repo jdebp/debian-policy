@@ -7,7 +7,8 @@ debian-policy (3.5.9.1) unstable; urgency=low
     confusion in the debiandoc2txt output, closes: #185985.
   * Fixed various typos, closes: #189274, #187418, #187422.
   * Removed broken link to csh.whynot on CPAN, closes: #187567.
-  Manoj
+  * Updated archive section list, closes: #187420.
+  Manoj:
   * Clarify x-terminal-emulator virtual package eligibility, in an
     extention to an informative footnote.                    closes: Bug#165063
   * Add 40 points, not 20, when the window manager is compliant with "The
