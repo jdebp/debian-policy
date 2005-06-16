@@ -286,10 +286,20 @@
 	<em>free</em> in our sense (see the Debian Free Software
 	Guidelines, below), or may be imported/exported without
 	restrictions. Thus, the archive is split into the sections
-	<em>main</em>, <em>non-free</em>, <em>contrib</em>,
-	<em>non-US/main</em>, <em>non-US/non-free</em>, and
-	<em>non-US/contrib</em>.  The sections are explained in detail
-	below.
+	based on their licenses and other restrictions.
+      </p>
+
+      <p>
+	The aims of this are:
+
+	<list compact="compact">
+	  <item>to allow us to make as much software available as we can</item>
+	  <item>to allow us to encourage everyone to write free software,
+	        and</item>
+	  <item>to allow us to make it easy for people to produce
+		CD-ROMs of our system without violating any licenses,
+		import/export restrictions, or any other laws.</item>
+	</list>
       </p>
 
       <p>
@@ -302,32 +312,14 @@
 	of the Debian distribution, although we support their use and
 	provide infrastructure for them (such as our bug-tracking
 	system and mailing lists). This Debian Policy Manual applies
-	to these packages as well.</p>
+	to these packages as well.
+      </p>
 
-      <sect id="pkgcopyright">
-	<heading>Package copyright and sections</heading>
+      <sect id="dfsg">
+	<heading>The Debian Free Software Guidelines</heading>
 	<p>
-	  The aims of this section are:
-
-	  <list compact="compact">
-	    <item>
-		to allow us to make as much software available as we can,
-	    </item>
-	    <item>
-		to allow us to encourage everyone to write free software, and
-	    </item>
-	    <item>
-		to allow us to make it easy for people to produce
-		CD-ROMs of our system without violating any licenses,
-		import/export restrictions, or any other laws.
-	    </item>
-	  </list>
-	</p>
-	<sect1>
-	  <heading>The Debian Free Software Guidelines</heading>
-	  <p>
-	    The Debian Free Software Guidelines (DFSG) form our
-	    definition of "free software".  These are:
+	  The Debian Free Software Guidelines (DFSG) form our
+	  definition of "free software".  These are:
 	    <taglist>
 	      <tag>Free Redistribution
 	      </tag>
@@ -418,10 +410,15 @@
                   licenses that we consider <em>free</em>.
 	      </item>
 	    </taglist>
-	  </p>
-	</sect1>
-	<sect1>
+	</p>
+      </sect>
+
+      <sect id="sections">
+	<heading>Sections</heading>
+
+	<sect1 id="main">
 	  <heading>The main section</heading>
+
 	  <p>
 	    Every package in <em>main</em> and <em>non-US/main</em>
 	    must comply with the DFSG (Debian Free Software
@@ -571,140 +568,151 @@
 	    server as well.
 	  </p>
 	</sect1>
-	<sect1>
-	  <heading>Further copyright considerations</heading>
-	  <p>
-	    Every package must be accompanied by a verbatim copy of
-	    its copyright and distribution license in the file
-	    <file>/usr/share/doc/<var>package</var>/copyright</file>
-	    (see <ref id="copyrightfile"> for further details).
-	  </p>
-	  <p>
-	    We reserve the right to restrict files from being included
-	    anywhere in our archives if
-	    <list compact="compact">
-	      <item>
+      </sect>
+
+      <sect id="pkgcopyright">
+	<heading>Copyright considerations</heading>
+
+	<p>
+	  Every package must be accompanied by a verbatim copy of
+	  its copyright and distribution license in the file
+	  <file>/usr/share/doc/<var>package</var>/copyright</file>
+	  (see <ref id="copyrightfile"> for further details).
+	</p>
+
+	<p>
+	  We reserve the right to restrict files from being included
+	  anywhere in our archives if
+	  <list compact="compact">
+	    <item>
 		  their use or distribution would break a law,
-	      </item>
-	      <item>
+	    </item>
+	    <item>
 		  there is an ethical conflict in their distribution or
 		  use,
-	      </item>
-	      <item>
+	    </item>
+	    <item>
 		  we would have to sign a license for them, or
-	      </item>
-	      <item>
+	    </item>
+	    <item>
 		  their distribution would conflict with other project
 		  policies.
-	      </item>
-	    </list>
-	  </p>
+	    </item>
+	  </list>
+	</p>
 
-	  <p>
-	    Programs whose authors encourage the user to make
-	    donations are fine for the main distribution, provided
-	    that the authors do not claim that not donating is
-	    immoral, unethical, illegal or something similar; in such
-	    a case they must go in <em>non-free</em>.</p>
+	<p>
+	  Programs whose authors encourage the user to make
+	  donations are fine for the main distribution, provided
+	  that the authors do not claim that not donating is
+	  immoral, unethical, illegal or something similar; in such
+	  a case they must go in <em>non-free</em>.
+	</p>
 
-	  <p>
-	    Packages whose copyright permission notices (or patent
-	    problems) do not even allow redistribution of binaries
-	    only, and where no special permission has been obtained,
-	    must not be placed on the Debian FTP site and its mirrors
-	    at all.</p>
+	<p>
+	  Packages whose copyright permission notices (or patent
+	  problems) do not even allow redistribution of binaries
+	  only, and where no special permission has been obtained,
+	  must not be placed on the Debian FTP site and its mirrors
+	  at all.
+	</p>
 
-	  <p>
-	    Note that under international copyright law (this applies
-	    in the United States, too), <em>no</em> distribution or
-	    modification of a work is allowed without an explicit
-	    notice saying so.  Therefore a program without a copyright
-	    notice <em>is</em> copyrighted and you may not do anything
-	    to it without risking being sued! Likewise if a program
-	    has a copyright notice but no statement saying what is
-	    permitted then nothing is permitted.</p>
+	<p>
+	  Note that under international copyright law (this applies
+	  in the United States, too), <em>no</em> distribution or
+	  modification of a work is allowed without an explicit
+	  notice saying so.  Therefore a program without a copyright
+	  notice <em>is</em> copyrighted and you may not do anything
+	  to it without risking being sued! Likewise if a program
+	  has a copyright notice but no statement saying what is
+	  permitted then nothing is permitted.
+	</p>
 
-	  <p>
-	    Many authors are unaware of the problems that restrictive
-	    copyrights (or lack of copyright notices) can cause for
-	    the users of their supposedly-free software.  It is often
-	    worthwhile contacting such authors diplomatically to ask
-	    them to modify their license terms. However, this can be a
-	    politically difficult thing to do and you should ask for
-	    advice on the <tt>debian-legal</tt> mailing list first, as
-	    explained below.
-	  </p>
+	<p>
+	  Many authors are unaware of the problems that restrictive
+	  copyrights (or lack of copyright notices) can cause for
+	  the users of their supposedly-free software.  It is often
+	  worthwhile contacting such authors diplomatically to ask
+	  them to modify their license terms. However, this can be a
+	  politically difficult thing to do and you should ask for
+	  advice on the <tt>debian-legal</tt> mailing list first, as
+	  explained below.
+	</p>
 
-	  <p>
-	    When in doubt about a copyright, send mail to
-	    <email>debian-legal@lists.debian.org</email>.  Be prepared
-	    to provide us with the copyright statement.  Software
-	    covered by the GPL, public domain software and BSD-like
-	    copyrights are safe; be wary of the phrases "commercial
-	    use prohibited" and "distribution restricted".
-	  </p>
-	</sect1>
-	<sect1>
-	  <heading>Subsections</heading>
+	<p>
+	  When in doubt about a copyright, send mail to
+	  <email>debian-legal@lists.debian.org</email>.  Be prepared
+	  to provide us with the copyright statement.  Software
+	  covered by the GPL, public domain software and BSD-like
+	  copyrights are safe; be wary of the phrases "commercial
+	  use prohibited" and "distribution restricted".
+	</p>
+      </sect>
 
-	  <p>
-	    The packages in the sections <em>main</em>,
-	    <em>contrib</em> and <em>non-free</em> are grouped further
-	    into <em>subsections</em> to simplify handling.
-	  </p>
+      <sect id="subsections">
+	<heading>Subsections</heading>
 
-	  <p>
-	    The section and subsection for each package should be
-	    specified in the package's <tt>Section</tt> control
-	    record.  However, the maintainer of the Debian archive
-	    may override this selection to ensure the consistency of
-	    the Debian distribution.  The <tt>Section</tt> field
-	    should be of the form:
-	    <list compact="compact">
-	      <item>
+	<p>
+	  The packages in the sections <em>main</em>,
+	  <em>contrib</em> and <em>non-free</em> are grouped further
+	  into <em>subsections</em> to simplify handling.
+	</p>
+
+	<p>
+	  The section and subsection for each package should be
+	  specified in the package's <tt>Section</tt> control
+	  record (see <ref id="f-Section">).
+	  However, the maintainer of the Debian archive
+	  may override this selection to ensure the consistency of
+	  the Debian distribution.  The <tt>Section</tt> field
+	  should be of the form:
+	  <list compact="compact">
+	    <item>
 		  <em>subsection</em> if the package is in the
 		  <em>main</em> section,
-	      </item>
-	      <item>
+	    </item>
+	    <item>
 		  <em>section/subsection</em> if the package is in
 		  the <em>contrib</em> or <em>non-free</em> section,
 		  and
-	      </item>
-	      <item>
+	    </item>
+	    <item>
 		  <tt>non-US</tt>, <tt>non-US/contrib</tt> or
 		  <tt>non-US/non-free</tt> if the package is in
 		  <em>non-US/main</em>, <em>non-US/contrib</em> or
 		  <em>non-US/non-free</em> respectively.
-	      </item>
-	    </list>
-	  </p>
+	    </item>
+	  </list>
+	</p>
 
-	  <p>
-	    The Debian archive maintainers provide the authoritative
-	    list of subsections.  At present, they are:
-	    <em>admin</em>, <em>base</em>, <em>comm</em>,
-	    <em>contrib</em>, <em>devel</em>, <em>doc</em>,
-	    <em>editors</em>, <em>electronics</em>, <em>embedded</em>,
-	    <em>games</em>, <em>gnome</em> <em>graphics</em>,
-	    <em>hamradio</em>, <em>interpreters</em>, <em>kde</em>,
-	    <em>libs</em>, <em>libdevel</em>, <em>mail</em>,
-	    <em>math</em>, <em>misc</em>, <em>net</em>, <em>news</em>,
-	    <em>non-US</em>, <em>non-free</em>, <em>oldlibs</em>,
-	    <em>otherosfs</em>, <em>perl</em>, <em>python</em>
-	    <em>science</em>, <em>shells</em>,
-	    <em>sound</em>, <em>tex</em>, <em>text</em>,
-	    <em>utils</em>, <em>web</em>, <em>x11</em>.
-	  </p>
-	</sect1>
-      <sect>
+	<p>
+	  The Debian archive maintainers provide the authoritative
+	  list of subsections.  At present, they are:
+	  <em>admin</em>, <em>base</em>, <em>comm</em>,
+	  <em>contrib</em>, <em>devel</em>, <em>doc</em>,
+	  <em>editors</em>, <em>electronics</em>, <em>embedded</em>,
+	  <em>games</em>, <em>gnome</em> <em>graphics</em>,
+	  <em>hamradio</em>, <em>interpreters</em>, <em>kde</em>,
+	  <em>libs</em>, <em>libdevel</em>, <em>mail</em>,
+	  <em>math</em>, <em>misc</em>, <em>net</em>, <em>news</em>,
+	  <em>non-US</em>, <em>non-free</em>, <em>oldlibs</em>,
+	  <em>otherosfs</em>, <em>perl</em>, <em>python</em>
+	  <em>science</em>, <em>shells</em>,
+	  <em>sound</em>, <em>tex</em>, <em>text</em>,
+	  <em>utils</em>, <em>web</em>, <em>x11</em>.
+	</p>
+      </sect>
+
+      <sect id="priorities">
 	<heading>Priorities</heading>
 
 	<p>
 	  Each package should have a <em>priority</em> value, which is
-	  included in the package's <em>control record</em>. This
-	  information is used by the Debian package management tools
-	  to separate high-priority packages from less-important
-	  packages.</p>
+	  included in the package's <em>control record</em>
+	  (see <ref id="f-Priority">).
+	  This information is used by the Debian package management tools to
+	  separate high-priority packages from less-important packages.
+	</p>
 
 	<p>
 	  The following <em>priority levels</em> are recognised by the
@@ -778,323 +786,470 @@
 	</p>
       </sect>
 
+    </chapt>
+
+
+    <chapt id="binary">
+      <heading>Binary packages</heading>
+
+      <p>
+	The Debian GNU/Linux distribution is based on the Debian
+	package management system, called <prgn>dpkg</prgn>. Thus,
+	all packages in the Debian distribution must be provided
+	in the <tt>.deb</tt> file format.
+      </p>
+
       <sect>
-	<heading>Binary packages</heading>
+	<heading>The package name</heading>
 
 	<p>
-	  The Debian GNU/Linux distribution is based on the Debian
-	  package management system, called <prgn>dpkg</prgn>. Thus,
-	  all packages in the Debian distribution must be provided
-	  in the <tt>.deb</tt> file format.</p>
+	  Every package must have a name that's unique within the Debian
+	  archive.
+	</p>
 
+	<p>
+	  The package name is part of the file name of the
+	  <tt>.deb</tt> file and is included in the control field
+	  information.
+	</p>
+
+	<p>
+	  Format is described in <ref id="f-Package">.
+	</p>
+      </sect>
+
+      <sect id="versions">
+	<heading>The version of a package</heading>
+
+	<p>
+	  Every package has a version number recorded in its
+	  <tt>Version</tt> control file field, described in
+	  <ref id="f-Version">.
+	</p>
+
+	<p>
+	  The package management system imposes an ordering on version
+	  numbers, so that it can tell whether packages are being up- or
+	  downgraded and so that package system front end applications
+	  can tell whether a package it finds available is newer than
+	  the one installed on the system.  The version number format
+	  has the most significant parts (as far as comparison is
+	  concerned) at the beginning.
+	</p>
+
+	<p>
+	  If an upstream package has problematic version numbers they
+	  should be converted to a sane form for use in the
+	  <tt>Version</tt> field.
+	</p>
 
 	<sect1>
-	  <heading>The package name</heading>
+	  <heading>Version numbers based on dates</heading>
 
 	  <p>
-	    Every package must have a name that's unique within the Debian
-	    archive.</p>
-
-	  <p>
-	    Package names must consist only of lower case letters
-	    (<tt>a-z</tt>), digits (<tt>0-9</tt>), plus (<tt>+</tt>)
-	    and minus (<tt>-</tt>) signs, and periods (<tt>.</tt>).
-	    They must be at least two characters long and must start
-	    with an alphanumeric character.
+	    In general, Debian packages should use the same version
+	    numbers as the upstream sources.
 	  </p>
 
 	  <p>
-	    The package name is part of the file name of the
-	    <tt>.deb</tt> file and is included in the control field
-	    information.
+	    However, in some cases where the upstream version number is
+	    based on a date (e.g., a development "snapshot" release) the
+	    package management system cannot handle these version
+	    numbers without epochs. For example, dpkg will consider
+	    "96May01" to be greater than "96Dec24".
+	  </p>
+
+	  <p>
+	    To prevent having to use epochs for every new upstream
+	    version, the version number should be changed to the
+	    following format in such cases: "19960501", "19961224". It
+	    is up to the maintainer whether he/she wants to bother the
+	    upstream maintainer to change the version numbers upstream,
+	    too.
+	  </p>
+
+	  <p>
+	    Note that other version formats based on dates which are
+	    parsed correctly by the package management system should
+	    <em>not</em> be changed.
+	  </p>
+
+	  <p>
+	    Native Debian packages (i.e., packages which have been
+	    written especially for Debian) whose version numbers include
+	    dates should always use the "YYYYMMDD" format.
 	  </p>
 	</sect1>
 
-	<sect1>
-	  <heading>The maintainer of a package</heading>
-	 <p>
-	    Every package must have a Debian maintainer (the
-	    maintainer may be one person or a group of people
-	    reachable from a common email address, such as a mailing
-	    list).  The maintainer is responsible for ensuring that
-	    the package is placed in the appropriate distributions.
-	  </p>
+      </sect>
 
-	  <p>
-	    The maintainer must be specified in the
-	    <tt>Maintainer</tt> control field with their correct name
-	    and a working email address.  If one person maintains
-	    several packages, he/she should try to avoid having
-	    different forms of their name and email address in
-	    the <tt>Maintainer</tt> fields of those packages.
-	  </p>
+      <sect>
+	<heading>The maintainer of a package</heading>
 
-	  <p>
-	    If the maintainer of a package quits from the Debian
-	    project, "Debian QA Group"
-	    <email>packages@qa.debian.org</email> takes over the
-	    maintainership of the package until someone else
-	    volunteers for that task. These packages are called
-	    <em>orphaned packages</em>.<footnote>
+	<p>
+	  Every package must have a Debian maintainer (the
+	  maintainer may be one person or a group of people
+	  reachable from a common email address, such as a mailing
+	  list).  The maintainer is responsible for ensuring that
+	  the package is placed in the appropriate distributions.
+	</p>
+
+	<p>
+	  The maintainer must be specified in the
+	  <tt>Maintainer</tt> control field with their correct name
+	  and a working email address.  If one person maintains
+	  several packages, he/she should try to avoid having
+	  different forms of their name and email address in
+	  the <tt>Maintainer</tt> fields of those packages.
+	</p>
+
+	<p>
+	  The format of the <tt>Maintainer</tt> control field is
+	  described in <ref id="f-Maintainer">.
+	</p>
+
+	<p>
+	  If the maintainer of a package quits from the Debian
+	  project, "Debian QA Group"
+	  <email>packages@qa.debian.org</email> takes over the
+	  maintainership of the package until someone else
+	  volunteers for that task. These packages are called
+	  <em>orphaned packages</em>.<footnote>
 		The detailed procedure for doing this gracefully can
 		be found in the Debian Developer's Reference,
 		see <ref id="related">.
+	  </footnote>
+	</p>
+      </sect>
+
+      <sect id="descriptions">
+	<heading>The description of a package</heading>
+
+	<p>
+	  Every Debian package must have an extended description
+	  stored in the appropriate field of the control record.
+	  The technical information about the format of the
+	  <tt>Description</tt> field is in <ref id="f-Description">.
+	</p>
+
+	<p>
+	  The description should describe the package (the program) to a
+	  user (system administrator) who has never met it before so that
+	  they have enough information to decide whether they want to
+	  install it. This description should not just be copied verbatim
+	  from the program's documentation.
+	</p>
+
+	<p>
+	  Put important information first, both in the synopsis and
+	  extended description.  Sometimes only the first part of the
+	  synopsis or of the description will be displayed.  You can
+	  assume that there will usually be a way to see the whole
+	  extended description.
+	</p>
+
+	<p>
+	  The description should also give information about the
+	  significant dependencies and conflicts between this package
+	  and others, so that the user knows why these dependencies and
+	  conflicts have been declared.
+	</p>
+
+	<p>
+	  Instructions for configuring or using the package should
+	  not be included (that is what installation scripts,
+	  manual pages, info files, etc., are for).  Copyright
+	  statements and other administrivia should not be included
+	  either (that is what the copyright file is for).
+	</p>
+
+        <sect1 id="synopsis"><heading>The single line synopsis</heading>
+
+	  <p>
+	    The single line synopsis should be kept brief - certainly
+	    under 80 characters.
+	  </p>
+
+	  <p>
+	    Do not include the package name in the synopsis line.  The
+	    display software knows how to display this already, and you
+	    do not need to state it.  Remember that in many situations
+	    the user may only see the synopsis line - make it as
+	    informative as you can.
+	  </p>
+
+	</sect1>
+
+        <sect1 id="extendeddesc"><heading>The extended description</heading>
+
+	  <p>
+	    Do not try to continue the single line synopsis into the
+	    extended description.  This will not work correctly when
+	    the full description is displayed, and makes no sense
+	    where only the summary (the single line synopsis) is
+	    available.
+	  </p>
+
+	  <p>
+	    The extended description should describe what the package
+	    does and how it relates to the rest of the system (in terms
+	    of, for example, which subsystem it is which part of).
+	  </p>
+
+	  <p>
+	    The description field needs to make sense to anyone, even
+	    people who have no idea about any of the things the
+	    package deals with.<footnote>
+		The blurb that comes with a program in its
+		announcements and/or <prgn>README</prgn> files is
+		rarely suitable for use in a description.  It is
+		usually aimed at people who are already in the
+		community where the package is used.
 	    </footnote>
 	  </p>
-	</sect1>
-
-
-	<sect1>
-	  <heading>The description of a package</heading>
-
-	  <p>
-	    Every Debian package must have an extended description
-	    stored in the appropriate field of the control record.</p>
-
-	  <p>
-	    The description should be written so that it gives the
-	    system administrator enough information to decide whether
-	    to install the package. This description should not just
-	    be copied verbatim from the program's documentation.
-	    Instructions for configuring or using the package should
-	    not be included (that is what installation scripts,
-	    manual pages, info files, etc., are for).  Copyright
-	    statements and other administrivia should not be included
-	    either (that is what the copyright file is for).
-	  </p>
-
-	  <p>
-	    Please refer to <ref id="descriptions"> for more information.
-	  </p>
 
 	</sect1>
 
+      </sect>
 
-	<sect1>
-	  <heading>Dependencies</heading>
+      <sect>
+	<heading>Dependencies</heading>
 
-	  <p>
-	    Every package must specify the dependency information
-	    about other packages that are required for the first to
-	    work correctly.</p>
+	<p>
+	  Every package must specify the dependency information
+	  about other packages that are required for the first to
+	  work correctly.
+	</p>
 
-	  <p>
-	    For example, a dependency entry must be provided for any
-	    shared libraries required by a dynamically-linked executable
-	    binary in a package.</p>
+	<p>
+	  For example, a dependency entry must be provided for any
+	  shared libraries required by a dynamically-linked executable
+	  binary in a package.
+	</p>
 
-	  <p>
-	    Packages are not required to declare any dependencies they
-	    have on other packages which are marked <tt>Essential</tt>
-	    (see below), and should not do so unless they depend on a
-	    particular version of that package.</p>
+	<p>
+	  Packages are not required to declare any dependencies they
+	  have on other packages which are marked <tt>Essential</tt>
+	  (see below), and should not do so unless they depend on a
+	  particular version of that package.
+	</p>
 
-	  <p>
-	    Sometimes, a package requires another package to be installed
-	    <em>and</em> configured before it can be installed. In this
-	    case, you must specify a <tt>Pre-Depends</tt> entry for
-	    the package.</p>
+	<p>
+	  Sometimes, a package requires another package to be installed
+	  <em>and</em> configured before it can be installed. In this
+	  case, you must specify a <tt>Pre-Depends</tt> entry for
+	  the package.
+	</p>
 
-	  <p>
-	    You should not specify a <tt>Pre-Depends</tt> entry for a
-	    package before this has been discussed on the
-	    <tt>debian-devel</tt> mailing list and a consensus about
-	    doing that has been reached.</p></sect1>
+	<p>
+	  You should not specify a <tt>Pre-Depends</tt> entry for a
+	  package before this has been discussed on the
+	  <tt>debian-devel</tt> mailing list and a consensus about
+	  doing that has been reached.
+	</p>
 
+	<p>
+	  The format of the package interrelationship control fields is
+	  described in <ref id="relationships">.
+	</p>
+      </sect>
 
-	<sect1 id="virtual_pkg">
-	  <heading>Virtual packages</heading>
+      <sect id="virtual_pkg">
+	<heading>Virtual packages</heading>
 
-	  <p>
-	    Sometimes, there are several packages which offer
-	    more-or-less the same functionality. In this case, it's
-	    useful to define a <em>virtual package</em> whose name
-	    describes that common functionality.  (The virtual
-	    packages only exist logically, not physically; that's why
-	    they are called <em>virtual</em>.) The packages with this
-	    particular function will then <em>provide</em> the virtual
-	    package. Thus, any other package requiring that function
-	    can simply depend on the virtual package without having to
-	    specify all possible packages individually.</p>
+	<p>
+	  Sometimes, there are several packages which offer
+	  more-or-less the same functionality. In this case, it's
+	  useful to define a <em>virtual package</em> whose name
+	  describes that common functionality.  (The virtual
+	  packages only exist logically, not physically; that's why
+	  they are called <em>virtual</em>.) The packages with this
+	  particular function will then <em>provide</em> the virtual
+	  package. Thus, any other package requiring that function
+	  can simply depend on the virtual package without having to
+	  specify all possible packages individually.
+	</p>
 
-	  <p>
-	    All packages should use virtual package names where
-	    appropriate, and arrange to create new ones if necessary.
-	    They should not use virtual package names (except privately,
-	    amongst a cooperating group of packages) unless they have
-	    been agreed upon and appear in the list of virtual package
-	    names. (See also <ref id="virtual">)</p>
+	<p>
+	  All packages should use virtual package names where
+	  appropriate, and arrange to create new ones if necessary.
+	  They should not use virtual package names (except privately,
+	  amongst a cooperating group of packages) unless they have
+	  been agreed upon and appear in the list of virtual package
+	  names. (See also <ref id="virtual">)
+	</p>
 
-	  <p>
-	    The latest version of the authoritative list of virtual
-	    package names can be found in the <tt>debian-policy</tt> package.
-	    It's also available from the Debian web mirrors at
-	    <tt><url name="/doc/packaging-manuals/virtual-package-names-list.txt"
+	<p>
+	  The latest version of the authoritative list of virtual
+	  package names can be found in the <tt>debian-policy</tt> package.
+	  It is also available from the Debian web mirrors at
+	  <tt><url name="/doc/packaging-manuals/virtual-package-names-list.txt"
 		id="http://www.debian.org/doc/packaging-manuals/virtual-package-names-list.txt"></tt>
-	    and from the Debian archive mirrors at
-	    <tt><url name="/doc/package-developer/virtual-package-names-list.txt"
+	  and from the Debian archive mirrors at
+	  <tt><url name="/doc/package-developer/virtual-package-names-list.txt"
 		id="http://ftp.debian.org/debian/doc/package-developer/virtual-package-names-list.txt"></tt>.
-	  </p>
+	</p>
 
-	  <p>
-	    The procedure for updating the list is described in the preface
-	    to the list.
-	  </p>
+	<p>
+	  The procedure for updating the list is described in the preface
+	  to the list.
+	</p>
 
-	</sect1>
+      </sect>
 
-	<sect1>
-	  <heading>Base system</heading>
+      <sect>
+	<heading>Base system</heading>
 
-	  <p>
-	    The  <tt>base system</tt> is a minimum subset of the Debian
-	    GNU/Linux system that is installed before everything else
-	    on a new system. Thus, only very few packages are allowed
-	    to go into the <tt>base</tt> section to keep the required
-	    disk usage very small.</p>
+	<p>
+	  The <tt>base system</tt> is a minimum subset of the Debian
+	  GNU/Linux system that is installed before everything else
+	  on a new system. Thus, only very few packages are allowed
+	  to go into the <tt>base</tt> section to keep the required
+	  disk usage very small.
+	</p>
 
-	  <p>
-	    Most of these packages will have the priority value
-	    <tt>required</tt> or at least <tt>important</tt>, and many
-	    of them will be tagged <tt>essential</tt> (see below).</p>
+	<p>
+	  Most of these packages will have the priority value
+	  <tt>required</tt> or at least <tt>important</tt>, and many
+	  of them will be tagged <tt>essential</tt> (see below).
+	</p>
+      </sect>
 
+      <sect>
+	<heading>Essential packages</heading>
 
-	</sect1>
+	<p>
+	  Some packages are tagged <tt>essential</tt> for a system
+	  using the <tt>Essential</tt> control file field.
+	  The format of the <tt>Essential</tt> control field is
+	  described in <ref id="f-Essential">.
+	</p>
 
+	<p>
+	  Since these packages cannot be easily removed (one has to
+	  specify an extra <em>force option</em> to
+	  <prgn>dpkg</prgn> to do so), this flag must not be used
+	  unless absolutely necessary.  A shared library package
+	  must not be tagged <tt>essential</tt>; dependencies will
+	  prevent its premature removal, and we need to be able to
+	  remove it when it has been superseded.
+	</p>
 
-	<sect1>
-	  <heading>Essential packages</heading>
-
-	  <p>
-	    Some packages are tagged <tt>essential</tt>. (They have
-	    <tt>Essential: yes</tt> in their package control record.)
-	    This flag is used for packages that are <em>essential</em>
-	    for a system.</p>
-
-	  <p>
-	    Since these packages cannot be easily removed (one has to
-	    specify an extra <em>force option</em> to
-	    <prgn>dpkg</prgn> to do so), this flag must not be used
-	    unless absolutely necessary.  A shared library package
-	    must not be tagged <tt>essential</tt>; dependencies will
-	    prevent its premature removal, and we need to be able to
-	    remove it when it has been superseded.
-	  </p>
-
-	  <p>
-	    Since dpkg will not prevent upgrading of other packages
-            while an <tt>essential</tt> package is in an unconfigured
+	<p>
+	  Since dpkg will not prevent upgrading of other packages
+	  while an <tt>essential</tt> package is in an unconfigured
             state, all <tt>essential</tt> packages must supply all of
             their core functionality even when unconfigured. If the
             package cannot satisfy this requirement it must not be
             tagged as essential, and any packages depending on this
             package must instead have explicit dependency fields as
             appropriate.
-	  </p>
+	</p>
 
+	<p>
+	  You must not tag any packages <tt>essential</tt> before
+	  this has been discussed on the <tt>debian-devel</tt>
+	  mailing list and a consensus about doing that has been
+	  reached.
+	</p>
+      </sect>
+
+      <sect>
+	<heading>Tasks</heading>
+
+	<p>
+	  The Debian install process allows the user to choose from
+	  a number of common tasks which a Debian system can be used to
+	  perform. Selecting a task with <prgn>tasksel</prgn> causes
+	  a set of packages that are useful in performing that task to be
+	  installed.
+	</p>
+
+	<p>
+	  This set of packages is all available packages which have the
+	  name of the selected task in the <tt>Task</tt> field of their
+	  control file. The format of this field is a list of tasks,
+	  separated by commas.
+	</p>
+
+	<p>
+	  You should not tag any packages as belonging to a task
+	  before this has been discussed on the
+	  <em>debian-devel</em> mailing list and a consensus about
+	  doing that has been reached.
+	</p>
+
+	<p>
+	  For third parties (and historical reasons), tasksel also
+	  supports constructing tasks based on <em>task
+	  packages</em>. These are packages whose names begin with
+	  <em>task-</em>. Task packages should not be included in the
+	  Debian archive.
+	</p>
+      </sect>
+
+      <sect id="maintscripts">
+	<heading>Maintainer Scripts</heading>
+
+	<p>
+	  The package installation scripts should avoid producing
+	  output which it is unnecessary for the user to see and
+	  should rely on <prgn>dpkg</prgn> to stave off boredom on
+	  the part of a user installing many packages.  This means,
+	  amongst other things, using the <tt>--quiet</tt> option on
+	  <prgn>install-info</prgn>.
+	</p>
+
+	<p>
+	  Errors which occur during the execution of an installation
+	  script must be checked and the installation must not
+	  continue after an error.
+	</p>
+
+	<p>
+	  Note that in general <ref id="scripts"> applies to package
+	  maintainer scripts, too.
+	</p>
+
+	<p>
+	  You should not use <prgn>dpkg-divert</prgn> on a file
+	  belonging to another package without consulting the
+	  maintainer of that package first.
+	</p>
+
+	<p>
+	  All packages which supply an instance of a common command
+	  name (or, in general, filename) should generally use
+	  <prgn>update-alternatives</prgn>, so that they may be
+	  installed together.  If <prgn>update-alternatives</prgn>
+	  is not used, then each package must use
+	  <tt>Conflicts</tt> to ensure that other packages are
+	  de-installed.  (In this case, it may be appropriate to
+	  specify a conflict against earlier versions of something
+	  that previously did not use
+	  <prgn>update-alternatives</prgn>; this is an exception to
+	  the usual rule that versioned conflicts should be
+	  avoided.)
+	</p>
+
+	<sect1 id="maintscriptprompt">
+	  <heading>Prompting in maintainer scripts</heading>
 	  <p>
-	    You must not tag any packages <tt>essential</tt> before
-	    this has been discussed on the <tt>debian-devel</tt>
-	    mailing list and a consensus about doing that has been
-	    reached.
-	  </p>
-	</sect1>
-         <sect1>
-          <heading>Tasks</heading>
-
-          <p>
-            The Debian install process allows the user to choose from
-            a number of common tasks which a Debian system can be used to
-            perform. Selecting a task with <prgn>tasksel</prgn> causes
-            a set of packages that are useful in performing that task to be
-            installed.
-          </p>
-
-          <p>
-            This set of packages is all available packages which have the
-            name of the selected task in the <tt>Task</tt> field of their
-            control file. The format of this field is a list of tasks,
-            separated by commas.
-          </p>
-
-          <p>
-            You should not tag any packages as belonging to a task
-            before this has been discussed on the
-            <em>debian-devel</em> mailing list and a consensus about
-            doing that has been reached.
-          </p>
-
-          <p>
-            For third parties (and historical reasons), tasksel also
-            supports constructing tasks based on <em>task
-            packages</em>. These are packages whose names begin with
-            <em>task-</em>. Task packages should not be included in the
-            Debian archive.
-          </p>
-        </sect1>
-
-	<sect1 id="maintscripts">
-	  <heading>Maintainer Scripts</heading>
-
-	  <p>
-	    The package installation scripts should avoid producing
-	    output which it is unnecessary for the user to see and
-	    should rely on <prgn>dpkg</prgn> to stave off boredom on
-	    the part of a user installing many packages.  This means,
-	    amongst other things, using the <tt>--quiet</tt> option on
-	    <prgn>install-info</prgn>.</p>
-
-	  <p>
-	    Errors which occur during the execution of an installation
-	    script must be checked and the installation must not
-	    continue after an error.
-	  </p>
-
-	  <p>
-	    Note that in general <ref id="scripts"> applies to package
-	    maintainer scripts, too.
-	  </p>
-
-	  <p>
-	    You should not use <prgn>dpkg-divert</prgn> on a file
-	    belonging to another package without consulting the
-	    maintainer of that package first.
-	  </p>
-
-	  <p>
-	    All packages which supply an instance of a common command
-	    name (or, in general, filename) should generally use
-	    <prgn>update-alternatives</prgn>, so that they may be
-	    installed together.  If <prgn>update-alternatives</prgn>
-	    is not used, then each package must use
-	    <tt>Conflicts</tt> to ensure that other packages are
-	    de-installed.  (In this case, it may be appropriate to
-	    specify a conflict against earlier versions of something
-	    that previously did not use
-	    <prgn>update-alternatives</prgn>; this is an exception to
-	    the usual rule that versioned conflicts should be
-	    avoided.)
-	  </p>
-
-
-	  <sect2 id="maintscriptprompt">
-	    <heading>Prompting in maintainer scripts</heading>
-	    <p>
-	      Package maintainer scripts may prompt the user if
-	      necessary. Prompting may be accomplished by
-	      hand<footnote>
-		  From the Jargon file: by hand 2. By extension,
-		  writing code which does something in an explicit or
-		  low-level way for which a presupplied library
-		  (<em>debconf, in this instance</em>) routine ought
-		  to have been available.
-	      </footnote> (but this is deprecated), or by communicating
-	      through a program which conforms to the Debian Configuration
-	      management specification, version 2 or higher, such as
-	      <prgn>debconf</prgn><footnote>
+	    Package maintainer scripts may prompt the user if
+	    necessary. Prompting may be accomplished by hand<footnote>
+		From the Jargon file: by hand 2. By extension,
+		writing code which does something in an explicit or
+		low-level way for which a presupplied library
+		(<em>debconf, in this instance</em>) routine ought
+		to have been available.
+	    </footnote>
+	    (but this is deprecated), or by communicating through a program
+	    which conforms to the Debian Configuration management
+	    specification, version 2 or higher, such as
+	    <prgn>debconf</prgn><footnote>
 		<p>
 		  6% of Debian packages [see <url
-		  id="http://auric.debian.org/%7Ejoeyh/debconf-stats/data/"
+		  id="http://ftp-master.debian.org/~joeyh/debconf-stats/"
 		  name="Debconf stats">] currently use
 		  <package>debconf</package> to prompt the user at
 		  install time, and this number is growing daily. The
@@ -1117,173 +1272,155 @@
 		  finally come to reflect the use of these things in
 		  policy.
 		</p>
-	      </footnote>.
-	    </p>
+	    </footnote>.
+	  </p>
 
-	    <p>
-	      The Debian Configuration management specification is included
-	      in the <file>debconf_specification</file> files in the
-	      <package>debian-policy</package> package.
-	      It is also available from the Debian web mirrors at
-              <tt><url name="/doc/packaging-manuals/debconf_specification.html"
+	  <p>
+	    The Debian Configuration management specification is included
+	    in the <file>debconf_specification</file> files in the
+	    <package>debian-policy</package> package.
+	    It is also available from the Debian web mirrors at
+            <tt><url name="/doc/packaging-manuals/debconf_specification.html"
 		id="http://www.debian.org/doc/packaging-manuals/debconf_specification.html"></tt>
-	      and from the Debian archive mirrors at
-              <tt><url name="/doc/package-developer/debconf_specification.txt.gz"
+	    and from the Debian archive mirrors at
+            <tt><url name="/doc/package-developer/debconf_specification.txt.gz"
 		id="http://ftp.debian.org/debian/doc/package-developer/debconf_specification.txt.gz"></tt>.
-	    </p>
+	  </p>
 
-	    <p>
-	      Packages which use the Debian Configuration management
-	      specification may contain an additional
-	      <prgn>config</prgn> script and a <tt>templates</tt>
-	      file in their control archive. The <prgn>config</prgn>
-	      script might be run before the <prgn>preinst</prgn>
-	      script, and before the package is unpacked or any of its
-	      dependencies or pre-dependancies are satisfied.
-	      Therefore it must work using only the tools present in
-	      <em>essential</em> packages.<footnote>
+	  <p>
+	    Packages which use the Debian Configuration management
+	    specification may contain an additional
+	    <prgn>config</prgn> script and a <tt>templates</tt>
+	    file in their control archive. The <prgn>config</prgn>
+	    script might be run before the <prgn>preinst</prgn>
+	    script, and before the package is unpacked or any of its
+	    dependencies or pre-dependancies are satisfied.
+	    Therefore it must work using only the tools present in
+	    <em>essential</em> packages.<footnote>
 		  <package>Debconf</package> or another tool that
 		  implements the Debian Configuration management
 		  specification will also be installed, and any
 		  versioned dependencies on it will be satisfied
 		  before preconfiguration begins.
-	      </footnote>
-	    </p>
-
-	    <p>
-	      Packages should try to minimize the amount of prompting
-	      they need to do, and they should ensure that the user
-	      will only ever be asked each question once.  This means
-	      that packages should try to use appropriate shared
-	      configuration files (such as <file>/etc/papersize</file> and
-	      <file>/etc/news/server</file>), and shared
-	      <package>debconf</package> variables rather than each
-	      prompting for their own list of required pieces of
-	      information.
-	    </p>
-
-	    <p>
-	      It also means that an upgrade should not ask the same
-	      questions again, unless the user has used <tt>dpkg
-		--purge</tt> to remove the package's configuration.  The
-	      answers to configuration questions should be stored in an
-	      appropriate place in <file>/etc</file> so that the user can
-	      modify them, and how this has been done should be
-	      documented.</p>
-
-	    <p>
-	      If a package has a vitally important piece of
-	      information to pass to the user (such as "don't run me
-	      as I am, you must edit the following configuration files
-	      first or you risk your system emitting badly-formatted
-	      messages"), it should display this in the
-	      <prgn>config</prgn> or <prgn>postinst</prgn> script and
-	      prompt the user to hit return to acknowledge the
-	      message.  Copyright messages do not count as vitally
-	      important (they belong in
-	      <file>/usr/share/doc/<var>package</var>/copyright</file>);
-	      neither do instructions on how to use a program (these
-	      should be in on-line documentation, where all the users
-	      can see them).</p>
-
-	    <p>
-	      Any necessary prompting should almost always be confined
-	      to the <prgn>config</prgn> or <prgn>postinst</prgn>
-	      script. If it is done in the <prgn>postinst</prgn>, it
-	      should be protected with a conditional so that
-	      unnecessary prompting doesn't happen if a package's
-	      installation fails and the <prgn>postinst</prgn> is
-	      called with <tt>abort-upgrade</tt>,
-	      <tt>abort-remove</tt> or <tt>abort-deconfigure</tt>.</p>
-	</sect1>
-      </sect>
-
-      <sect>
-	<heading>Source packages</heading>
-
-	<sect1 id="standardsversion">
-	  <heading>Standards conformance</heading>
-
-	  <p>
-	    In the source package's <tt>Standards-Version</tt> control
-            field, you should specify the most recent version number
-            of this policy document with which your package complied
-            when it was last updated.  The current version number is
-            &version;.
-	  </p>
-
-	  <p>
-	    This information may be used to file bug reports
-	    automatically if your package becomes too much out of
-	    date.
-	  </p>
-
-	  <p>
-	    The version number has four components: major and minor
-	    version number and major and minor patch level.  When the
-	    standards change in a way that requires every package to
-	    change the major number will be changed.  Significant
-	    changes that will require work in many packages will be
-	    signaled by a change to the minor number.  The major patch
-	    level will be changed for any change to the meaning of the
-	    standards, however small; the minor patch level will be
-	    changed when only cosmetic, typographical or other edits
-	    are made which neither change the meaning of the document
-	    nor affect the contents of packages.</p>
-
-	  <p>
-	    Thus only the first three components of the policy version
-	    are significant in the <em>Standards-Version</em> control
-	    field, and so either these three components or the all
-	    four components may be specified.<footnote>
-		In the past, people specified the full version number
-		in the Standards-Version field, for example "2.3.0.0".
-		Since minor patch-level changes don't introduce new
-		policy, it was thought it would be better to relax
-		policy and only require the first 3 components to be
-		specified, in this example "2.3.0".  All four
-		components may still be used if someone wishes to do
-		so.
 	    </footnote>
 	  </p>
 
 	  <p>
-	    You should regularly, and especially if your package has
-	    become out of date, check for the newest Policy Manual
-	    available and update your package, if necessary. When your
-	    package complies with the new standards you should update the
-	    <tt>Standards-Version</tt> source package field and
-	    release it.<footnote>
+	    Packages should try to minimize the amount of prompting
+	    they need to do, and they should ensure that the user
+	    will only ever be asked each question once.  This means
+	    that packages should try to use appropriate shared
+	    configuration files (such as <file>/etc/papersize</file> and
+	    <file>/etc/news/server</file>), and shared
+	    <package>debconf</package> variables rather than each
+	    prompting for their own list of required pieces of
+	    information.
+	  </p>
+
+	  <p>
+	    It also means that an upgrade should not ask the same
+	    questions again, unless the user has used
+	    <tt>dpkg --purge</tt> to remove the package's configuration.
+	    The answers to configuration questions should be stored in an
+	    appropriate place in <file>/etc</file> so that the user can
+	    modify them, and how this has been done should be
+	    documented.
+	  </p>
+
+	  <p>
+	    If a package has a vitally important piece of
+	    information to pass to the user (such as "don't run me
+	    as I am, you must edit the following configuration files
+	    first or you risk your system emitting badly-formatted
+	    messages"), it should display this in the
+	    <prgn>config</prgn> or <prgn>postinst</prgn> script and
+	    prompt the user to hit return to acknowledge the
+	    message.  Copyright messages do not count as vitally
+	    important (they belong in
+	    <file>/usr/share/doc/<var>package</var>/copyright</file>);
+	    neither do instructions on how to use a program (these
+	    should be in on-line documentation, where all the users
+	    can see them).
+	  </p>
+
+	  <p>
+	    Any necessary prompting should almost always be confined
+	    to the <prgn>config</prgn> or <prgn>postinst</prgn>
+	    script. If it is done in the <prgn>postinst</prgn>, it
+	    should be protected with a conditional so that
+	    unnecessary prompting doesn't happen if a package's
+	    installation fails and the <prgn>postinst</prgn> is
+	    called with <tt>abort-upgrade</tt>,
+	    <tt>abort-remove</tt> or <tt>abort-deconfigure</tt>.
+	  </p>
+	</sect1>
+
+      </sect>
+
+    </chapt>
+
+
+    <chapt id="source">
+      <heading>Source packages</heading>
+
+      <sect id="standardsversion">
+	<heading>Standards conformance</heading>
+
+	<p>
+	  Source packages should specify the most recent version number
+	  of this policy document with which your package complied
+	  when it was last updated.
+	</p>
+
+	<p>
+	  This information may be used to file bug reports
+	  automatically if your package becomes too much out of date.
+	</p>
+
+	<p>
+	  The version is specified in the <tt>Standards-Version</tt>
+	  control field.
+	  The format of the <tt>Standards-Version</tt> field is
+	  described in <ref id="f-Standards-Version">.
+	</p>
+
+	<p>
+	  You should regularly, and especially if your package has
+	  become out of date, check for the newest Policy Manual
+	  available and update your package, if necessary. When your
+	  package complies with the new standards you should update the
+	  <tt>Standards-Version</tt> source package field and
+	  release it.<footnote>
 		See the file <file>upgrading-checklist</file> for
 		information about policy which has changed between
 		different versions of this document.
-	    </footnote>
-	  </p>
-	</sect1>
+	  </footnote>
+	</p>
 
+      </sect>
 
-	<sect1 id="pkg-relations">
-	  <heading>Package relationships</heading>
+      <sect id="pkg-relations">
+	<heading>Package relationships</heading>
 
-	  <p>
-	    Source packages should specify which binary packages they
-	    require to be installed or not to be installed in order to
-	    build correctly.  For example, if building a package
-	    requires a certain compiler, then the compiler should be
-	    specified as a build-time dependency.
-	  </p>
+	<p>
+	  Source packages should specify which binary packages they
+	  require to be installed or not to be installed in order to
+	  build correctly.  For example, if building a package
+	  requires a certain compiler, then the compiler should be
+	  specified as a build-time dependency.
+	</p>
 
-	  <p>
-	    It is not necessary to explicitly specify build-time
-	    relationships on a minimal set of packages that are always
-	    needed to compile, link and put in a Debian package a
-	    standard "Hello World!" program written in C or C++.  The
-	    required packages are called <em>build-essential</em>, and
-	    an informational list can be found in
-	    <file>/usr/share/doc/build-essential/list</file> (which is
-	    contained in the <tt>build-essential</tt>
-	    package).<footnote>
-	      Rationale:
+	<p>
+	  It is not necessary to explicitly specify build-time
+	  relationships on a minimal set of packages that are always
+	  needed to compile, link and put in a Debian package a
+	  standard "Hello World!" program written in C or C++.  The
+	  required packages are called <em>build-essential</em>, and
+	  an informational list can be found in
+	  <file>/usr/share/doc/build-essential/list</file> (which is
+	  contained in the <tt>build-essential</tt>
+	  package).<footnote>
+	    Rationale:
 		<list compact="compact">
 		  <item>
 		      This allows maintaining the list separately
@@ -1304,15 +1441,15 @@
 		      the policy management process in the BTS.
 		  </item>
 		</list>
-	    </footnote>
-	  </p>
+	  </footnote>
+	</p>
 
-	  <p>
-	    When specifying the set of build-time dependencies, one
-	    should list only those packages explicitly required by the
-	    build.  It is not necessary to list packages which are
-	    required merely because some other package in the list of
-	    build-time dependencies depends on them.<footnote>
+	<p>
+	  When specifying the set of build-time dependencies, one
+	  should list only those packages explicitly required by the
+	  build.  It is not necessary to list packages which are
+	  required merely because some other package in the list of
+	  build-time dependencies depends on them.<footnote>
 		The reason for this is that dependencies change, and
 		you should list all those packages, and <em>only</em>
 		those packages that <em>you</em> need directly.  What
@@ -1324,518 +1461,269 @@
 		them: installation of <package>libimlib2-dev</package>
 		will automatically ensure that all of its run-time
 		dependencies are satisfied.
-	    </footnote>
-	  </p>
+	  </footnote>
+	</p>
 
-	  <p>
-	    If build-time dependencies are specified, it must be
-	    possible to build the package and produce working binaries
-	    on a system with only essential and build-essential
-	    packages installed and also those required to satisfy the
-	    build-time relationships (including any implied
-	    relationships).  In particular, this means that version
-	    clauses should be used rigorously in build-time
-	    relationships so that one cannot produce bad or
-	    inconsistently configured packages when the relationships
-	    are properly satisfied.
-	  </p>
+	<p>
+	  If build-time dependencies are specified, it must be
+	  possible to build the package and produce working binaries
+	  on a system with only essential and build-essential
+	  packages installed and also those required to satisfy the
+	  build-time relationships (including any implied
+	  relationships).  In particular, this means that version
+	  clauses should be used rigorously in build-time
+	  relationships so that one cannot produce bad or
+	  inconsistently configured packages when the relationships
+	  are properly satisfied.
+	</p>
 
-	  <p>
-	    <ref id="relationships"> explains the technical details.
-	  </p>
-
-	<sect1>
-	  <heading>Changes to the upstream sources</heading>
-
-	  <p>
-	    If changes to the source code are made that are not
-	    specific to the needs of the Debian system, they should be
-	    sent to the upstream authors in whatever form they prefer
-	    so as to be included in the upstream version of the
-	    package.</p>
-
-	  <p>
-	    If you need to configure the package differently for
-	    Debian or for Linux, and the upstream source doesn't
-	    provide a way to do so, you should add such configuration
-	    facilities (for example, a new <prgn>autoconf</prgn> test
-	    or <tt>#define</tt>) and send the patch to the upstream
-	    authors, with the default set to the way they originally
-	    had it.  You can then easily override the default in your
-	    <file>debian/rules</file> or wherever is appropriate.</p>
-
-	  <p>
-	    You should make sure that the <prgn>configure</prgn> utility
-	    detects the correct architecture specification string
-	    (refer to <ref id="arch-spec"> for details).</p>
-
-	  <p>
-	    If you need to edit a <prgn>Makefile</prgn> where
-	    GNU-style <prgn>configure</prgn> scripts are used, you
-	    should edit the <file>.in</file> files rather than editing the
-	    <prgn>Makefile</prgn> directly.  This allows the user to
-	    reconfigure the package if necessary.  You should
-	    <em>not</em> configure the package and edit the generated
-	    <prgn>Makefile</prgn>!  This makes it impossible for
-	    someone else to later reconfigure the package.</p>
-
-	  <p>
-	    You should document your changes and updates to the source
-	    package properly in the <file>debian/changelog</file> file.
-            For more information, please see <ref id="changelogs">.
-	  </p>
-	</sect1>
-
-
-	<sect1>
-	  <heading>Error trapping in makefiles</heading>
-
-	  <p>
-	    When <prgn>make</prgn> invokes a command in a makefile
-	    (including your package's upstream makefiles and
-	    <file>debian/rules</file>), it does so using <prgn>sh</prgn>.  This
-	    means that <prgn>sh</prgn>'s usual bad error handling
-	    properties apply: if you include a miniature script as one
-	    of the commands in your makefile you'll find that if you
-	    don't do anything about it then errors are not detected
-	    and <prgn>make</prgn> will blithely continue after
-	    problems.</p>
-
-	  <p>
-	    Every time you put more than one shell command (this
-	    includes using a loop) in a makefile command you
-	    must make sure that errors are trapped.  For
-	    simple compound commands, such as changing directory and
-	    then running a program, using <tt>&amp;&amp;</tt> rather
-	    than semicolon as a command separator is sufficient.  For
-	    more complex commands including most loops and
-	    conditionals you should include a separate <tt>set -e</tt>
-	    command at the start of every makefile command that's
-	    actually one of these miniature shell scripts.</p></sect1>
-
-
-	<sect1>
-	  <heading>Obsolete constructs and libraries</heading>
-
-	  <p>
-	    The include file <tt>&lt;varargs.h&gt;</tt> is
-	    provided to support end-users compiling very old software;
-	    the library <tt>libtermcap</tt> is provided to support the
-	    execution of software which has been linked against it
-	    (either old programs or those such as Netscape which are
-	    only available in binary form).</p>
-
-	  <p>
-	    Debian packages should be patched to use
-	    <tt>&lt;stdarg.h&gt;</tt> and <tt>ncurses</tt>
-	    instead.
-	  </p>
-	</sect1>
+	<p>
+	  <ref id="relationships"> explains the technical details.
+	</p>
       </sect>
-    </chapt>
-
-    <chapt id="controlfields"><heading>Control files and their fields</heading>
-
-      <p>
-	Many of the tools in the package management suite manipulate
-	data represented in a common format, known as <em>control
-	data</em>.  The data is often stored in <em>control
-	files</em>.  Binary and source packages have control files,
-	and the <file>.changes</file> files which control the installation
-	of uploaded files are also in control file format.
-	<prgn>dpkg</prgn>'s internal databases are in a similar
-	format.
-      </p>
-
-      <sect id="controlsyntax"><heading>Syntax of control files</heading>
-
-	<p>
-	  A control file consists of one or more paragraphs of fields.
-	  The paragraphs are separated by blank lines.  Some control
-	  files allow only one paragraph; others allow several, in
-	  which case each paragraph usually refers to a different
-	  package.  (For example, in source packages, the first
-	  paragraph refers to the source package, and later paragraphs
-	  refer to binary packages generated from the source.)
-	</p>
-
-	<p>
-	  Each paragraph consists of a series of data fields; each
-	  field consists of the field name, followed by a colon and
-	  then the data/value associated with that field.  It ends at
-	  the end of the line.  Horizontal whitespace (spaces and
-	  tabs) may occur immediately before or after the value and is
-	  ignored there; it is conventional to put a single space
-	  after the colon.  For example, a field might be:
-	  <example compact="compact">
-Package: libc6
-	  </example>
-	  the field name is <tt>Package</tt> and the field value
-	  <tt>libc6</tt>.
-	</p>
-
-	<p>
-	  Some fields' values may span several lines; in this case
-	  each continuation line <em>must</em> start with a space or
-	  tab.  Any trailing spaces or tabs at the end of individual
-	  lines of a field value are ignored.
-	</p>
-
-	<p>
-	  Except where otherwise stated only a single line of data is
-	  allowed and whitespace is not significant in a field body.
-	  Whitespace must not appear inside names (of packages,
-	  architectures, files or anything else) or version numbers,
-	  or between the characters of multi-character version
-	  relationships.
-	</p>
-
-	<p>
-	  Field names are not case-sensitive, but it is usual to
-	  capitalize the field names using mixed case as shown below.
-	</p>
-
-	<p>
-	  Blank lines, or lines consisting only of spaces and tabs,
-	  are not allowed within field values or between fields - that
-	  would mean a new paragraph.
-	</p>
-
-      </sect>
-
-      <sect><heading>List of fields</heading>
-	<p>
-	  This list here is not supposed to be exhaustive. Most fields
-	  are dealt with elsewhere in this document.
-	</p>
-	<sect1 id="f-Package"><heading><tt>Package</tt>
-	  </heading>
-
-	  <p>
-	    The name of the binary package.  Package names consist of
-	    lower case letters (<tt>a-z</tt>), digits (<tt>0-9</tt>),
-	    plus (<tt>+</tt>) and minus (<tt>-</tt>) signs, and
-	    periods (<tt>.</tt>).
-	  </p>
-
-	  <p>
-	    They must be at least two characters long and must start
-	    with an alphanumeric character.  The use of lowercase
-	    package names is required unless the package you're
-	    building (or referring to, in other fields) is already
-	    using uppercase characters.</p>
-	</sect1>
-
-	<sect1 id="f-Version"><heading><tt>Version</tt>
-	  </heading>
-
-	  <p>
-	    This lists the source or binary package's version number -
-	    see <ref id="versions">.
-	  </p>
-
-	</sect1>
-
-	<sect1
-	       id="f-Standards-Version"><heading><tt>Standards-Version</tt>
-	  </heading>
-
-	  <p>
-            The most recent version of the standards (the policy
-	    manual and associated texts) with which the package
-	    complies.  This is updated manually when editing the
-	    source package to conform to newer standards; it can
-	    sometimes be used to tell when a package needs attention.
-	    Its format is described above; see
-	    <ref id="standardsversion">.
-	  </p>
-	</sect1>
-
-
-	<sect1 id="f-Distribution"><heading><tt>Distribution</tt>
-	  </heading>
-
-	  <p>
-	    In a <file>.changes</file> file or parsed changelog output
-	    this contains the (space-separated) name(s) of the
-	    distribution(s) where this version of the package should
-	    be installed.  Valid distributions are determined by the
-	    archive maintainers.<footnote>
-		Current distribution names are:
-		<taglist compact="compact">
-		  <tag><em>stable</em></tag>
-		  <item>
-		      This is the current "released" version of Debian
-		      GNU/Linux.  Once the distribution is
-		      <em>stable</em> only security fixes and other
-		      major bug fixes are allowed. When changes are
-		      made to this distribution, the release number is
-		      increased (for example: 2.2r1 becomes 2.2r2 then
-		      2.2r3, etc).
-		  </item>
-
-		  <tag><em>unstable</em></tag>
-		  <item>
-		      This distribution value refers to the
-		      <em>developmental</em> part of the Debian
-		      distribution tree. New packages, new upstream
-		      versions of packages and bug fixes go into the
-		      <em>unstable</em> directory tree. Download from
-		      this distribution at your own risk.
-		  </item>
-
-		  <tag><em>testing</em></tag>
-		  <item>
-		      This distribution value refers to the
-		      <em>testing</em> part of the Debian distribution
-		      tree.  It receives its packages from the
-		      unstable distribution after a short time lag to
-		      ensure that there are no major issues with the
-		      unstable packages.  It is less prone to breakage
-		      than unstable, but still risky.  It is not
-		      possible to upload packages directly to
-		      <em>testing</em>.
-		  </item>
-
-		  <tag><em>frozen</em></tag>
-		  <item>
-		      From time to time, the <em>testing</em>
-		      distribution enters a state of "code-freeze" in
-		      anticipation of release as a <em>stable</em>
-		      version. During this period of testing only
-		      fixes for existing or newly-discovered bugs will
-		      be allowed.  The exact details of this stage are
-		      determined by the Release Manager.
-		  </item>
-
-		  <tag><em>experimental</em></tag>
-		  <item>
-		      The packages with this distribution value are
-		      deemed by their maintainers to be high
-		      risk. Oftentimes they represent early beta or
-		      developmental packages from various sources that
-		      the maintainers want people to try, but are not
-		      ready to be a part of the other parts of the
-		      Debian distribution tree. Download at your own
-		      risk.
-		  </item>
-		</taglist>
-
-		You should list <em>all</em> distributions that the
-		package should be installed into.
-	    </footnote>
-	  </p>
-	</sect1>
-
-      </sect>
-
-    </chapt>
-
-
-    <chapt id="versions"><heading>Version numbering</heading>
-
-      <p>
-	Every package has a version number recorded in its
-	<tt>Version</tt> control file field.
-      </p>
-
-      <p>
-	The package management system imposes an ordering on version
-	numbers, so that it can tell whether packages are being up- or
-	downgraded and so that package system front end applications
-	can tell whether a package it finds available is newer than
-	the one installed on the system.  The version number format
-	has the most significant parts (as far as comparison is
-	concerned) at the beginning.
-      </p>
-
-      <p>
-	The version number format is:
-	[<var>epoch</var><tt>:</tt>]<var>upstream_version</var>[<tt>-</tt><var>debian_revision</var>]
-      </p>
-
-      <p>
-	The three components here are:
-	<taglist>
-	  <tag><var>epoch</var></tag>
-	  <item>
-	    <p>
-	      This is a single (generally small) unsigned integer.  It
-	      may be omitted, in which case zero is assumed.  If it is
-	      omitted then the <var>upstream_version</var> may not
-	      contain any colons.
-	    </p>
-
-	    <p>
-	      It is provided to allow mistakes in the version numbers
-	      of older versions of a package, and also a package's
-	      previous version numbering schemes, to be left behind.
-	    </p>
-	  </item>
-
-	  <tag><var>upstream_version</var></tag>
-	  <item>
-	    <p>
-	      This is the main part of the version number.  It is
-	      usually the version number of the original ("upstream")
-	      package from which the <file>.deb</file> file has been made,
-	      if this is applicable.  Usually this will be in the same
-	      format as that specified by the upstream author(s);
-	      however, it may need to be reformatted to fit into the
-	      package management system's format and comparison
-	      scheme.
-	    </p>
-
-	    <p>
-	      The comparison behavior of the package management system
-	      with respect to the <var>upstream_version</var> is
-	      described below.  The <var>upstream_version</var>
-	      portion of the version number is mandatory.
-	    </p>
-
-	    <p>
-	      The <var>upstream_version</var> may contain only
-	      alphanumerics<footnote>
-		Alphanumerics are <tt>A-Za-z0-9</tt> only.
-	      </footnote>
-	      and the characters <tt>.</tt> <tt>+</tt> <tt>-</tt>
-	      <tt>:</tt> (full stop, plus, hyphen, colon) and should
-	      start with a digit.  If there is no
-	      <var>debian_revision</var> then hyphens are not allowed;
-	      if there is no <var>epoch</var> then colons are not
-	      allowed.</p>
-	  </item>
-
-	  <tag><var>debian_revision</var></tag>
-	  <item>
-	    <p>
-	      This part of the version number specifies the version of
-	      the Debian package based on the upstream version.  It
-	      may contain only alphanumerics and the characters
-	      <tt>+</tt> and <tt>.</tt> (plus and full stop) and is
-	      compared in the same way as the
-	      <var>upstream_version</var> is.
-	    </p>
-
-	    <p>
-	      It is optional; if it isn't present then the
-	      <var>upstream_version</var> may not contain a hyphen.
-	      This format represents the case where a piece of
-	      software was written specifically to be turned into a
-	      Debian package, and so there is only one "debianization"
-	      of it and therefore no revision indication is required.
-	    </p>
-
-	    <p>
-	      It is conventional to restart the
-	      <var>debian_revision</var> at <tt>1</tt> each time the
-	      <var>upstream_version</var> is increased.
-	    </p>
-
-	    <p>
-	      The package management system will break the version
-	      number apart at the last hyphen in the string (if there
-	      is one) to determine the <var>upstream_version</var> and
-	      <var>debian_revision</var>.  The absence of a
-	      <var>debian_revision</var> compares earlier than the
-	      presence of one (but note that the
-	      <var>debian_revision</var> is the least significant part
-	      of the version number).
-	    </p>
-	  </item>
-	</taglist>
-      </p>
-
-      <p>
-	The <var>upstream_version</var> and <var>debian_revision</var>
-	parts are compared by the package management system using the
-	same algorithm:
-      </p>
-
-      <p>
-	The strings are compared from left to right.
-      </p>
-
-      <p>
-	First the initial part of each string consisting entirely of
-	non-digit characters is determined.  These two parts (one of
-	which may be empty) are compared lexically.  If a difference
-	is found it is returned.  The lexical comparison is a
-	comparison of ASCII values modified so that all the letters
-	sort earlier than all the non-letters.
-      </p>
-
-      <p>
-	Then the initial part of the remainder of each string which
-	consists entirely of digit characters is determined.  The
-	numerical values of these two parts are compared, and any
-	difference found is returned as the result of the comparison.
-	For these purposes an empty string (which can only occur at
-	the end of one or both version strings being compared) counts
-	as zero.
-      </p>
-
-      <p>
-	These two steps (comparing and removing initial non-digit
-	strings and initial digit strings) are repeated until a
-	difference is found or both strings are exhausted.
-      </p>
-
-      <p>
-	Note that the purpose of epochs is to allow us to leave behind
-	mistakes in version numbering, and to cope with situations
-	where the version numbering scheme changes.  It is
-	<em>not</em> intended to cope with version numbers containing
-	strings of letters which the package management system cannot
-	interpret (such as <tt>ALPHA</tt> or <tt>pre-</tt>), or with
-	silly orderings (the author of this manual has heard of a
-	package whose versions went <tt>1.1</tt>, <tt>1.2</tt>,
-	<tt>1.3</tt>, <tt>1</tt>, <tt>2.1</tt>, <tt>2.2</tt>,
-	<tt>2</tt> and so forth).
-      </p>
-
-      <p>
-	If an upstream package has problematic version numbers they
-	should be converted to a sane form for use in the
-	<tt>Version</tt> field.
-      </p>
 
       <sect>
-	<heading>Version numbers based on dates</heading>
-	<p>
-	  In general, Debian packages should use the same version
-	  numbers as the upstream sources.</p>
+	<heading>Changes to the upstream sources</heading>
 
 	<p>
-	  However, in some cases where the upstream version number is
-	  based on a date (e.g., a development "snapshot" release) the
-	  package management system cannot handle these version
-	  numbers without epochs. For example, dpkg will consider
-	  "96May01" to be greater than "96Dec24".</p>
+	  If changes to the source code are made that are not
+	  specific to the needs of the Debian system, they should be
+	  sent to the upstream authors in whatever form they prefer
+	  so as to be included in the upstream version of the
+	  package.
+	</p>
 
 	<p>
-	  To prevent having to use epochs for every new upstream
-	  version, the version number should be changed to the
-	  following format in such cases: "19960501", "19961224". It
-	  is up to the maintainer whether he/she wants to bother the
-	  upstream maintainer to change the version numbers upstream,
-	  too.</p>
+	  If you need to configure the package differently for
+	  Debian or for Linux, and the upstream source doesn't
+	  provide a way to do so, you should add such configuration
+	  facilities (for example, a new <prgn>autoconf</prgn> test
+	  or <tt>#define</tt>) and send the patch to the upstream
+	  authors, with the default set to the way they originally
+	  had it.  You can then easily override the default in your
+	  <file>debian/rules</file> or wherever is appropriate.
+	</p>
 
 	<p>
-	  Note that other version formats based on dates which are
-	  parsed correctly by the package management system should
-	  <em>not</em> be changed.</p>
+	  You should make sure that the <prgn>configure</prgn> utility
+	  detects the correct architecture specification string
+	  (refer to <ref id="arch-spec"> for details).
+	</p>
 
 	<p>
-	  Native Debian packages (i.e., packages which have been
-	  written especially for Debian) whose version numbers include
-	  dates should always use the "YYYYMMDD" format.</p>
+	  If you need to edit a <prgn>Makefile</prgn> where
+	  GNU-style <prgn>configure</prgn> scripts are used, you
+	  should edit the <file>.in</file> files rather than editing the
+	  <prgn>Makefile</prgn> directly.  This allows the user to
+	  reconfigure the package if necessary.  You should
+	  <em>not</em> configure the package and edit the generated
+	  <prgn>Makefile</prgn>!  This makes it impossible for
+	  someone else to later reconfigure the package.
+	</p>
+
       </sect>
-    </chapt>
 
-    <chapt id="miscellaneous"><heading>Packaging Considerations</heading>
+      <sect id="dpkgchangelog">
+	<heading>Debian changelog: <file>debian/changelog</file></heading>
 
-      <sect id="timestamps"><heading>Time Stamps</heading>
+	<p>
+	  Changes in the Debian version of the package should be
+	  briefly explained in the Debian changelog file
+	  <file>debian/changelog</file>. This includes modifications
+	  made in the Debian package compared to the upstream one
+	  as well as other changes and updates to the package.
+	  <footnote>
+	      Although there is nothing stopping an author who is also
+	      the Debian maintainer from using this changelog for all
+	      their changes, it will have to be renamed if the Debian
+	      and upstream maintainers become different people. In such
+	      a case, however, it might be better to maintain the package
+	      as a non-native package.
+	  </footnote>
+	</p>
+
+        <p>
+          Mistakes in changelogs are usually best rectified by making
+	  a new changelog entry rather than "rewriting history" by
+          editing old changelog entries.
+        </p>
+
+        <p>
+          The format of the <file>debian/changelog</file> allows the
+	  package building tools to discover which version of the package
+	  is being built and find out other release-specific information.
+	</p>
+
+	<p>
+	  That format is a series of entries like this:
+
+<example compact="compact">
+<var>package</var> (<var>version</var>) <var>distribution(s)</var>; urgency=<var>urgency</var>
+	    <var>
+	      [optional blank line(s), stripped]
+	    </var>
+  * <var>change details</var>
+    <var>more change details</var>
+	    <var>
+	      [blank line(s), included in output of dpkg-parsechangelog]
+	    </var>
+  * <var>even more change details</var>
+	    <var>
+	      [optional blank line(s), stripped]
+	    </var>
+ -- <var>maintainer name</var> &lt;<var>email address</var>&gt;<var>[two spaces]</var>  <var>date</var>
+</example>
+	</p>
+
+	<p>
+	  <var>package</var> and <var>version</var> are the source
+	  package name and version number.
+	</p>
+
+	<p>
+	  <var>distribution(s)</var> lists the distributions where
+	  this version should be installed when it is uploaded - it
+	  is copied to the <tt>Distribution</tt> field in the
+	  <file>.changes</file> file.  See <ref id="f-Distribution">.
+	</p>
+
+	<p>
+	  <var>urgency</var> is the value for the <tt>Urgency</tt>
+	  field in the <file>.changes</file> file for the upload
+	  (see <ref id="f-Urgency">). It is not possible to specify
+	  an urgency containing commas; commas are used to separate
+	  <tt><var>keyword</var>=<var>value</var></tt> settings in the
+	  <prgn>dpkg</prgn> changelog format (though there is
+	  currently only one useful <var>keyword</var>,
+	  <tt>urgency</tt>).<footnote>
+	      Recognised urgency values are <tt>low</tt>,
+	      <tt>medium</tt>, <tt>high</tt> and <tt>emergency</tt>.
+	      They have an effect on how quickly a package will be
+	      considered for inclusion into the <tt>testing</tt>
+	      distribution, and give an indication of the importance
+	      of any fixes included in this upload.
+	  </footnote>
+	</p>
+
+	<p>
+	  The change details may in fact be any series of lines
+	  starting with at least two spaces, but conventionally each
+	  change starts with an asterisk and a separating space and
+	  continuation lines are indented so as to bring them in
+	  line with the start of the text above.  Blank lines may be
+	  used here to separate groups of changes, if desired.
+	</p>
+
+	<p>
+	  If this upload resolves bugs recorded in the Bug Tracking
+	  System (BTS), they may be automatically closed on the
+	  inclusion of this package into the Debian archive by
+	  including the string: <tt>closes: Bug#<var>nnnnn</var></tt>
+	  in the change details.<footnote>
+	      To be precise, the string should match the following
+	      Perl regular expression:
+	      <example>
+/closes:\s*(?:bug)?\#?\s?\d+(?:,\s*(?:bug)?\#?\s?\d+)*/i
+	      </example>
+	      Then all of the bug numbers listed will be closed by the
+	      archive maintenance script (<prgn>katie</prgn>), or in
+	      the case of an NMU, marked as fixed.
+	  </footnote>
+	  This information is conveyed via the <tt>Closes</tt> field
+	  in the <tt>.changes</tt> file (see <ref id="f-Closes">).
+	</p>
+
+	<p>
+	  The maintainer name and email address used in the changelog
+	  should be the details of the person uploading <em>this</em>
+	  version.  They are <em>not</em> necessarily those of the
+	  usual package maintainer.  The information here will be
+	  copied to the <tt>Changed-By</tt> field in the
+	  <tt>.changes</tt> file (see <ref id="f-Changed-By">),
+	  and then later used to send an acknowledgement when the
+	  upload has been installed.
+	</p>
+
+	<p>
+	  The <var>date</var> should be in RFC822 format<footnote>
+	      This is generated by the <prgn>822-date</prgn>
+	      program.
+	  </footnote>; it should include the time zone specified
+	  numerically, with the time zone name or abbreviation
+	  optionally present as a comment in parentheses.
+	</p>
+
+	<p>
+	  The first "title" line with the package name should start
+	  at the left hand margin; the "trailer" line with the
+	  maintainer and date details should be preceded by exactly
+	  one space.  The maintainer details and the date must be
+	  separated by exactly two spaces.
+	</p>
+
+	<p>
+	  For more information on placement of the changelog files
+	  within binary packages, please see <ref id="changelogs">.
+	</p>
+
+	<sect1><heading>Alternative changelog formats</heading>
+
+	  <p>
+	    In non-experimental packages you must use a format for
+	    <file>debian/changelog</file> which is supported by the most
+	    recent released version of <prgn>dpkg</prgn>.
+	    <footnote>
+	      If there is general interest in the new format, you should
+	      contact the <package>dpkg</package> maintainer to have the
+	      parser script for it included in the <prgn>dpkg</prgn>
+	      package.  (You will need to agree that the parser and its
+	      manpage may be distributed under the GNU GPL, just as the rest
+	      of <prgn>dpkg</prgn> is.)
+	    </footnote>
+	  </p>
+
+	  <p>
+	    It is possible to use a format different from the standard
+	    one by providing a changelog parser for the format you wish
+	    to use. The parser must have an API compatible with that
+	    expected by <prgn>dpkg-genchanges</prgn> and
+	    <prgn>dpkg-gencontrol</prgn>, and it must not interact with
+	    the user at all.
+	  </p>
+	</sect1>
+      </sect>
+
+      <sect>
+	<heading>Error trapping in makefiles</heading>
+
+	<p>
+	  When <prgn>make</prgn> invokes a command in a makefile
+	  (including your package's upstream makefiles and
+	  <file>debian/rules</file>), it does so using <prgn>sh</prgn>.  This
+	  means that <prgn>sh</prgn>'s usual bad error handling
+	  properties apply: if you include a miniature script as one
+	  of the commands in your makefile you'll find that if you
+	  don't do anything about it then errors are not detected
+	  and <prgn>make</prgn> will blithely continue after
+	  problems.
+	</p>
+
+	<p>
+	  Every time you put more than one shell command (this
+	  includes using a loop) in a makefile command you
+	  must make sure that errors are trapped.  For
+	  simple compound commands, such as changing directory and
+	  then running a program, using <tt>&amp;&amp;</tt> rather
+	  than semicolon as a command separator is sufficient.  For
+	  more complex commands including most loops and
+	  conditionals you should include a separate <tt>set -e</tt>
+	  command at the start of every makefile command that's
+	  actually one of these miniature shell scripts.
+	</p>
+      </sect>
+
+      <sect id="timestamps">
+	<heading>Time Stamps</heading>
 	<p>
 	  Maintainers should preserve the modification times of the
 	  upstream source files in a package, as far as is reasonably
@@ -1850,8 +1738,49 @@ Package: libc6
 	</p>
       </sect>
 
-      <sect id="debianrules"><heading><file>debian/rules</file> - the
-	  main building script</heading>
+      <sect id="restrictions">
+	<heading>Restrictions on objects in source packages</heading>
+
+	<p>
+	  The source package may not contain any hard links<footnote>
+	    <p>
+	      This is not currently detected when building source
+	      packages, but only when extracting
+	      them.
+	    </p>
+	    <p>
+	      Hard links may be permitted at some point in the
+	      future, but would require a fair amount of
+	      work.
+	    </p>
+	  </footnote>, device special files, sockets or setuid or
+	  setgid files.<footnote>
+	      Setgid directories are allowed.
+	  </footnote>
+	</p>
+      </sect>
+
+      <sect>
+	<heading>Obsolete constructs and libraries</heading>
+
+	<p>
+	  The include file <tt>&lt;varargs.h&gt;</tt> is
+	  provided to support end-users compiling very old software;
+	  the library <tt>libtermcap</tt> is provided to support the
+	  execution of software which has been linked against it
+	  (either old programs or those such as Netscape which are
+	  only available in binary form).
+	</p>
+
+	<p>
+	  Debian packages should be patched to use
+	  <tt>&lt;stdarg.h&gt;</tt> and <tt>ncurses</tt>
+	  instead.
+	</p>
+      </sect>
+
+      <sect id="debianrules">
+	<heading>Main building script: <file>debian/rules</file></heading>
 
 	<p>
 	  This file must be an executable makefile, and contains the
@@ -1879,10 +1808,9 @@ Package: libc6
 	</p>
 
 	<p>
-	  The required and optional targets are as follows:
+	  The targets are as follows (required unless stated otherwise):
 	  <taglist>
-	    <tag><tt>build</tt>, <tt>build-arch</tt> (optional),
-	      <tt>build-indep</tt> (optional)</tag>
+	    <tag><tt>build</tt></tag>
 	    <item>
 	      <p>
 		The <tt>build</tt> target should perform all
@@ -1943,6 +1871,46 @@ Package: libc6
 		    <prgn>make</prgn> for more information on phony
 		    targets.
 		</footnote>
+	      </p>
+	    </item>
+
+	    <tag><tt>build-arch</tt> (optional),
+		 <tt>build-indep</tt> (optional)
+	    </tag>
+	    <item>
+	      <p>
+		A package may also provide both of the targets
+		<tt>build-arch</tt> and <tt>build-indep</tt>.
+		The <tt>build-arch</tt> target, if provided, should
+		perform all non-interactive configuration and
+		compilation required for producing all
+		architecture-dependant binary packages (those packages
+		for which the body of the <tt>Architecture</tt> field
+		in <tt>debian/control</tt> is not <tt>all</tt>).
+		Similarly, the <tt>build-indep</tt> target, if
+		provided, should perform all non-interactive
+		configuration and compilation required for producing
+		all architecture-independent binary packages (those
+		packages for which the body of the
+		<tt>Architecture</tt> field in <tt>debian/control</tt>
+		is <tt>all</tt>).  The <tt>build</tt> target should
+		depend on those of the targets <tt>build-arch</tt> and
+		<tt>build-indep</tt> that are provided in the rules
+		file.
+	      </p>
+
+	      <p>
+		If one or both of the targets <tt>build-arch</tt> and
+		<tt>build-indep</tt> are not provided, then invoking
+		<file>debian/rules</file> with one of the not-provided
+		targets as arguments should produce a exit status code
+		of 2.  Usually this is provided automatically by make
+		if the target is missing.
+	      </p>
+
+	      <p>
+		The <tt>build-arch</tt> and <tt>build-indep</tt> targets
+		must not do anything that might require root privilege.
 	      </p>
 	    </item>
 
@@ -2110,149 +2078,9 @@ Package: libc6
 	</p>
       </sect>
 
-      <sect id="dpkgchangelog"><heading><file>debian/changelog</file>
-	</heading>
-
-	<p>
-	  This file records the changes to the Debian-specific parts of the
-	  package<footnote>
-	      Though there is nothing stopping an author who is also
-	      the Debian maintainer from using it for all their
-	      changes, it will have to be renamed if the Debian and
-	      upstream maintainers become different people.  In such a
-	      case, however, it might be better to maintain the
-	      package as a non-native package.
-	  </footnote>.
-	</p>
-
-	<p>
-	  It has a special format which allows the package building
-	  tools to discover which version of the package is being
-	  built and find out other release-specific information.
-	</p>
-
-	<p>
-	  That format is a series of entries like this:
-	  <example compact="compact">
-<var>package</var> (<var>version</var>) <var>distribution(s)</var>; urgency=<var>urgency</var>
-	    <comment>
-	      <p>[optional blank line(s), stripped]</p>
-	    </comment>
-  * <var>change details</var>
-    <var>more change details</var>
-	    <comment>
-	      <p>[blank line(s), included in output of dpkg-parsechangelog]</p>
-	    </comment>
-  * <var>even more change details</var>
-	    <comment>
-	      <p>[optional blank line(s), stripped]</p>
-	    </comment>
-	    -- <var>maintainer name</var> &lt;<var>email
-	      address</var>&gt;<var>[two spaces]</var>  <var>date</var>
-	  </example>
-	</p>
-
-	<p>
-	  <var>package</var> and <var>version</var> are the source
-	  package name and version number.
-	</p>
-
-	<p>
-	  <var>distribution(s)</var> lists the distributions where
-	  this version should be installed when it is uploaded - it
-	  is copied to the <tt>Distribution</tt> field in the
-	  <file>.changes</file> file.  See <ref id="f-Distribution">.
-	</p>
-
-	<p>
-	  <var>urgency</var> is the value for the <tt>Urgency</tt>
-	  field in the <file>.changes</file> file for the upload. It is
-	  not possible to specify an urgency containing commas; commas
-	  are used to separate
-	  <tt><var>keyword</var>=<var>value</var></tt> settings in the
-	  <prgn>dpkg</prgn> changelog format (though there is
-	  currently only one useful <var>keyword</var>,
-	  <tt>urgency</tt>).<footnote>
-	      Recognised urgency values are <tt>low</tt>,
-	      <tt>medium</tt>, <tt>high</tt> and <tt>emergency</tt>.
-	      They have an effect on how quickly a package will be
-	      considered for inclusion into the <tt>testing</tt>
-	      distribution, and give an indication of the importance
-	      of any fixes included in this upload.
-	  </footnote>
-	</p>
-
-	<p>
-	  The change details may in fact be any series of lines
-	  starting with at least two spaces, but conventionally each
-	  change starts with an asterisk and a separating space and
-	  continuation lines are indented so as to bring them in
-	  line with the start of the text above.  Blank lines may be
-	  used here to separate groups of changes, if desired.
-	</p>
-
-	<p>
-	  If this upload resolves bugs recorded in the Bug Tracking
-	  System (BTS), they may be automatically closed on the
-	  inclusion of this package into the Debian archive by
-	  including the string: <tt>closes: Bug#<var>nnnnn</var></tt>
-	  in the change details.<footnote>
-	      To be precise, the string should match the following
-	      Perl regular expression:
-	      <example>
-/closes:\s*(?:bug)?\#?\s?\d+(?:,\s*(?:bug)?\#?\s?\d+)*/i
-	      </example>
-	      Then all of the bug numbers listed will be closed by the
-	      archive maintenance script (<prgn>katie</prgn>), or in
-	      the case of an NMU, marked as fixed.
-	  </footnote>
-	</p>
-
-	<p>
-	  The maintainer name and email address used in the changelog
-	  should be the details of the person uploading <em>this</em>
-	  version.  They are <em>not</em> necessarily those of the
-	  usual package maintainer.  The information here will be
-	  copied to the <tt>Changed-By</tt> field in the
-	  <tt>.changes</tt> file, and then later used to send an
-	  acknowledgement when the upload has been installed.
-	</p>
-
-	<p>
-	  The <var>date</var> should be in RFC822 format<footnote>
-	      This is generated by the <prgn>822-date</prgn>
-	      program.
-	  </footnote>; it should include the time zone specified
-	  numerically, with the time zone name or abbreviation
-	  optionally present as a comment in parentheses.
-	</p>
-
-	<p>
-	  The first "title" line with the package name should start
-	  at the left hand margin; the "trailer" line with the
-	  maintainer and date details should be preceded by exactly
-	  one space.  The maintainer details and the date must be
-	  separated by exactly two spaces.
-	</p>
-
-	<sect1><heading>Defining alternative changelog formats</heading>
-
-	  <p>
-	    It is possible to use a different format to the standard
-	    one, by providing a parser for the format you wish to
-	    use.
-	  </p>
-	  <p>
-	    A changelog parser must not interact with the user at
-	    all.
-	  </p>
-	</sect1>
-      </sect>
-
-<!-- FIXME: section pkg-srcsubstvars is the same as srcsubstvars -->
-
-      <sect id="srcsubstvars"><heading><file>debian/substvars</file>
-	  and variable substitutions	  </heading>
+<!-- FIXME: section pkg-srcsubstvars is the same as substvars -->
+      <sect id="substvars">
+	<heading>Variable substitutions: <file>debian/substvars</file></heading>
 
 	<p>
 	  When <prgn>dpkg-gencontrol</prgn>,
@@ -2279,8 +2107,8 @@ Package: libc6
 	  format of <file>debian/substvars</file>.</p>
       </sect>
 
-      <sect id="debianfiles"><heading><file>debian/files</file>
-	</heading>
+      <sect id="debianfiles">
+	<heading>Generated files list: <file>debian/files</file></heading>
 
 	<p>
 	  This file is not a permanent part of the source tree; it
@@ -2323,102 +2151,641 @@ Package: libc6
 	  the file to the list in <file>debian/files</file>.</p>
       </sect>
 
-      <sect id="restrictions"><heading>Restrictions on objects in source packages
-	</heading>
+    </chapt>
+
+
+    <chapt id="controlfields">
+      <heading>Control files and their fields</heading>
+
+      <p>
+	The package management system manipulates data represented in
+	a common format, known as <em>control data</em>, stored in
+	<em>control files</em>.
+	Control files are used for source packages, binary packages and
+	the <file>.changes</file> files which control the installation
+	of uploaded files<footnote>
+	    <prgn>dpkg</prgn>'s internal databases are in a similar
+	    format.
+	</footnote>.
+      </p>
+
+      <sect id="controlsyntax">
+	<heading>Syntax of control files</heading>
 
 	<p>
-	  The source package may not contain any hard links<footnote>
-	    <p>
-	      This is not currently detected when building source
-	      packages, but only when extracting
-	      them.
-	    </p>
-	    <p>
-	      Hard links may be permitted at some point in the
-	      future, but would require a fair amount of
-	      work.
-	    </p>
-	  </footnote>, device special files, sockets or setuid or
-	  setgid files.<footnote>
-	      Setgid directories are allowed.
-	  </footnote>
+	  A control file consists of one or more paragraphs of
+	  fields<footnote>
+		The paragraphs are also sometimes referred to as stanzas.
+	  </footnote>.
+	  The paragraphs are separated by blank lines.  Some control
+	  files allow only one paragraph; others allow several, in
+	  which case each paragraph usually refers to a different
+	  package.  (For example, in source packages, the first
+	  paragraph refers to the source package, and later paragraphs
+	  refer to binary packages generated from the source.)
+	</p>
+
+	<p>
+	  Each paragraph consists of a series of data fields; each
+	  field consists of the field name, followed by a colon and
+	  then the data/value associated with that field.  It ends at
+	  the end of the line.  Horizontal whitespace (spaces and
+	  tabs) may occur immediately before or after the value and is
+	  ignored there; it is conventional to put a single space
+	  after the colon.  For example, a field might be:
+	  <example compact="compact">
+Package: libc6
+	  </example>
+	  the field name is <tt>Package</tt> and the field value
+	  <tt>libc6</tt>.
+	</p>
+
+	<p>
+	  Some fields' values may span several lines; in this case
+	  each continuation line must start with a space or a tab.
+	  Any trailing spaces or tabs at the end of individual
+	  lines of a field value are ignored.
+	</p>
+
+	<p>
+	  Except where otherwise stated, only a single line of data is
+	  allowed and whitespace is not significant in a field body.
+	  Whitespace must not appear inside names (of packages,
+	  architectures, files or anything else) or version numbers,
+	  or between the characters of multi-character version
+	  relationships.
+	</p>
+
+	<p>
+	  Field names are not case-sensitive, but it is usual to
+	  capitalize the field names using mixed case as shown below.
+	</p>
+
+	<p>
+	  Blank lines, or lines consisting only of spaces and tabs,
+	  are not allowed within field values or between fields - that
+	  would mean a new paragraph.
+	</p>
+
+      </sect>
+
+      <sect id="sourcecontrolfiles">
+	<heading>Source package control files -- <file>debian/control</file></heading>
+
+	<p>
+	  The <file>debian/control</file> file contains the most vital
+	  (and version-independent) information about the source package
+	  and about the binary packages it creates.
+	</p>
+
+	<p>
+	  The first paragraph of the control file contains information about
+	  the source package in general. The subsequent sets each describe a
+	  binary package that the source tree builds.
+	</p>
+
+	<p>
+	  The fields in the general paragraph (the first one, for the source
+	  package) are:
+
+	  <list compact="compact">
+	    <item><qref id="f-Source"><tt>Source</tt></qref> (mandatory)</item>
+	    <item><qref id="f-Maintainer"><tt>Maintainer</tt></qref> (mandatory)</item>
+	    <item><qref id="f-Section"><tt>Section</tt></qref> (recommended)</item>
+	    <item><qref id="f-Priority"><tt>Priority</tt></qref> (recommended)</item>
+	    <item><qref id="sourcebinarydeps"><tt>Build-Depends</tt> et al</qref></item>
+	    <item><qref id="f-Standards-Version"><tt>Standards-Version</tt></qref> (recommended)</item>
+	  </list>
+	</p>
+
+	<p>
+	  The fields in the binary package paragraphs are:
+
+	  <list compact="compact">
+	    <item><qref id="f-Package"><tt>Package</tt></qref> (mandatory)</item>
+	    <item><qref id="f-Architecture"><tt>Architecture</tt></qref> (mandatory)</item>
+	    <item><qref id="f-Section"><tt>Section</tt></qref> (recommended)</item>
+	    <item><qref id="f-Priority"><tt>Priority</tt></qref> (recommended)</item>
+	    <item><qref id="f-Essential"><tt>Essential</tt></qref></item>
+	    <item><qref id="binarydeps"><tt>Depends</tt> et al</qref></item>
+	    <item><qref id="f-Description"><tt>Description</tt></qref> (mandatory)</item>
+	  </list>
+	</p>
+
+	<p>
+	  The syntax and semantics of the fields are described below.
+	</p>
+
+<!-- stuff -->
+
+	<p>
+	  These fields are used by <prgn>dpkg-gencontrol</prgn> to
+	  generate control files for binary packages (see below), by
+	  <prgn>dpkg-genchanges</prgn> to generate the
+	  <tt>.changes</tt> file to accompany the upload, and by
+	  <prgn>dpkg-source</prgn> when it creates the <file>.dsc</file>
+	  source control file as part of a source archive.
+	</p>
+
+	<p>
+	  The fields here may contain variable references - their
+	  values will be substituted by <prgn>dpkg-gencontrol</prgn>,
+	  <prgn>dpkg-genchanges</prgn> or <prgn>dpkg-source</prgn>
+	  when they generate output control files.
+	  See <ref id="substvars"> for details.
+	</p>
+
+      </sect>
+
+      <sect id="binarycontrolfiles">
+	<heading>Binary package control files -- <file>DEBIAN/control</file></heading>
+
+	<p>
+	  The <file>DEBIAN/control</file> file contains the most vital
+	  (and version-dependent) information about a binary package.
+	</p>
+
+	<p>
+	  The fields in this file are:
+
+	  <list compact="compact">
+	    <item><qref id="f-Package"><tt>Package</tt></qref> (mandatory)</item>
+	    <item><qref id="f-Source"><tt>Source</tt></qref></item>
+	    <item><qref id="f-Version"><tt>Version</tt></qref> (mandatory)</item>
+	    <item><qref id="f-Section"><tt>Section</tt></qref> (recommended)</item>
+	    <item><qref id="f-Priority"><tt>Priority</tt></qref> (recommended)</item>
+	    <item><qref id="f-Architecture"><tt>Architecture</tt></qref> (mandatory)</item>
+	    <item><qref id="f-Essential"><tt>Essential</tt></qref></item>
+	    <item><qref id="binarydeps"><tt>Depends</tt> et al</qref></item>
+	    <item><qref id="f-Installed-Size"><tt>Installed-Size</tt></qref></item>
+	    <item><qref id="f-Maintainer"><tt>Maintainer</tt></qref> (mandatory)</item>
+	    <item><qref id="f-Description"><tt>Description</tt></qref> (mandatory)</item>
+	  </list>
 	</p>
       </sect>
 
-      <sect id="descriptions"><heading>Descriptions of packages - the
-	  <tt>Description</tt> field</heading>
+      <sect id="debiansourcecontrolfiles">
+	<heading>Debian source control files -- <tt>.dsc</tt></heading>
 
 	<p>
-	  The "Description" control file field consists of two parts,
-	  the synopsis or the short description, and the long description.
-	  The field's format is as follows:
-	</p>
+	  This file contains a series of fields, identified and
+	  separated just like the fields in the control file of
+	  a binary package.  The fields are listed below; their
+	  syntax is described above, in <ref id="pkg-controlfields">.
 
-	<p><example>
-	Description: &lt;single line synopsis&gt;
-	 &lt;extended description over several lines&gt;
-</example></p>
-
-	<p>
-	  The description is intended to describe the program to a user
-	  who has never met it before so that they know whether they
-	  want to install it.  It should also give information about the
-	  significant dependencies and conflicts between this package
-	  and others, so that the user knows why these dependencies and
-	  conflicts have been declared.
+	<list compact="compact">
+	  <item><qref id="f-Source"><tt>Source</tt></qref> (mandatory)</item>
+	  <item><qref id="f-Version"><tt>Version</tt></qref> (mandatory)</item>
+	  <item><qref id="f-Maintainer"><tt>Maintainer</tt></qref> (mandatory)</item>
+	  <item><qref id="f-Binary"><tt>Binary</tt></qref></item>
+	  <item><qref id="f-Architecture"><tt>Architecture</tt></qref></item>
+          <item><qref id="sourcebinarydeps"><tt>Build-Depends</tt> et al</qref></item>
+	  <item><qref id="f-Standards-Version"><tt>Standards-Version</tt></qref> (recommended)</item>
+	  <item><qref id="f-Files"><tt>Files</tt></qref> (mandatory)</item>
+	</list>
 	</p>
 
 	<p>
-	  Put important information first, both in the synopsis and
-	  extended description.  Sometimes only the first part of the
-	  synopsis or of the description will be displayed.  You can
-	  assume that there will usually be a way to see the whole
-	  extended description.
+	  The source package control file is generated by
+	  <prgn>dpkg-source</prgn> when it builds the source
+	  archive, from other files in the source package,
+	  described above.  When unpacking, it is checked against
+	  the files and directories in the other parts of the
+	  source package (see).
 	</p>
 
-        <sect1 id="synopsis"><heading>The single line synopsis</heading>
+      </sect>
+
+      <sect id="debianchangesfiles">
+	<heading>Debian changes files -- <file>.changes</file></heading>
+
+	<p>
+	  The .changes files are used by the Debian archive maintenance
+	  software to process updates to packages. They contain one
+	  paragraph which contains information from the
+	  <tt>debian/control</tt> file and other data about the
+	  source package gathered via <tt>debian/changelog</tt>
+	  and <tt>debian/rules</tt>.
+	</p>
+
+	<p>
+	  The fields in this file are:
+
+	  <list compact="compact">
+	    <item><qref id="f-Format"><tt>Format</tt></qref> (mandatory)</item>
+	    <item><qref id="f-Date"><tt>Date</tt></qref> (mandatory)</item>
+	    <item><qref id="f-Source"><tt>Source</tt></qref> (mandatory)</item>
+	    <item><qref id="f-Binary"><tt>Binary</tt></qref> (mandatory)</item>
+	    <item><qref id="f-Architecture"><tt>Architecture</tt></qref> (mandatory)</item>
+	    <item><qref id="f-Version"><tt>Version</tt></qref> (mandatory)</item>
+	    <item><qref id="f-Distribution"><tt>Distribution</tt></qref> (mandatory)</item>
+	    <item><qref id="f-Urgency"><tt>Urgency</tt></qref> (recommended)</item>
+	    <item><qref id="f-Maintainer"><tt>Maintainer</tt></qref> (mandatory)</item>
+	    <item><qref id="f-Changed-By"><tt>Changed-By</tt></qref></item>
+	    <item><qref id="f-Description"><tt>Description</tt></qref> (mandatory)</item>
+	    <item><qref id="f-Closes"><tt>Closes</tt></qref></item>
+	    <item><qref id="f-Changes"><tt>Changes</tt></qref> (mandatory)</item>
+	    <item><qref id="f-Files"><tt>Files</tt></qref> (mandatory)</item>
+	  </list>
+	</p>
+      </sect>
+
+      <sect id="controlfieldslist">
+	<heading>List of fields</heading>
+
+	<sect1 id="f-Source">
+	  <heading><tt>Source</tt></heading>
 
 	  <p>
-	    The single line synopsis should be kept brief - certainly
-	    under 80 characters.
+	    This field identifies the source package name.
 	  </p>
 
 	  <p>
-	    Do not include the package name in the synopsis line.  The
-	    display software knows how to display this already, and you
-	    do not need to state it.  Remember that in many situations
-	    the user may only see the synopsis line - make it as
-	    informative as you can.
+	    In a main source control information, a <file>.changes</file>
+	    or a <file>.dsc</file> file this may contain only the name
+	    of the source package.
+	  </p>
+
+	  <p>
+	    In the control file of a binary package it may be followed
+	    by a version number in parentheses<footnote>
+		It is customary to leave a space after the package name
+		if a version number is specified.
+	    </footnote>.
+	    This version number may be omitted (and is, by
+	    <prgn>dpkg-gencontrol</prgn>) if it has the same value as
+	    the <tt>Version</tt> field of the binary package in
+	    question.  The field itself may be omitted from a binary
+	    package control file when the source package has the same
+	    name and version as the binary package.
+	  </p>
+	</sect1>
+
+	<sect1 id="f-Maintainer">
+	  <heading><tt>Maintainer</tt></heading>
+
+	  <p>
+	    The package maintainer's name and email address.  The name
+	    should come first, then the email address inside angle
+	    brackets <tt>&lt;&gt</tt> (in RFC822 format).
+	  </p>
+
+	  <p>
+	    If the maintainer's name contains a full stop then the
+	    whole field will not work directly as an email address due
+	    to a misfeature in the syntax specified in RFC822; a
+	    program using this field as an address must check for this
+	    and correct the problem if necessary (for example by
+	    putting the name in round brackets and moving it to the
+	    end, and bringing the email address forward).
+	  </p>
+	</sect1>
+
+	<sect1 id="f-Changed-By">
+	  <heading><tt>Changed-By</tt></heading>
+
+	  <p>
+	    The name and email address of the person who changed the
+	    said package. Usually the name of the maintainer.
+	    All the rules for the Maintainer field apply here, too.
+	  </p>
+	</sect1>
+
+	<sect1 id="f-Section">
+	  <heading><tt>Section</tt></heading>
+
+	  <p>
+	    This field specifies an application area into which the package
+	    has been classified. See <ref id="subsections">.
+	  </p>
+
+	  <p>
+	    When it appears in the <file>debian/control</file> file,
+	    it gives the value for the subfield of the same name in
+	    the <tt>Files</tt> field of the <file>.changes</file> file.
+	    It also gives the default for the same field in the binary
+	    packages.
+	  </p>
+
+	  <p>
+	    By default, <prgn>dpkg-gencontrol</prgn> does not include this
+	    field in the control file of a binary package - use the
+	    <tt>-is</tt> (or <tt>-isp</tt>) options to achieve this effect.
+	  </p>
+	</sect1>
+
+	<sect1 id="f-Priority">
+	  <heading><tt>Priority</tt></heading>
+
+	  <p>
+	    This field represents how important that it is that the user
+	    have the package installed. See <ref id="priorities">.
+	  </p>
+
+	  <p>
+	    When it appears in the <file>debian/control</file> file,
+	    it gives the value for the subfield of the same name in
+	    the <tt>Files</tt> field of the <file>.changes</file> file.
+	    It also gives the default for the same field in the binary
+	    packages.
+	  </p>
+
+	  <p>
+	    By default, <prgn>dpkg-gencontrol</prgn> does not include this
+	    field in the control file of a binary package - use the
+	    <tt>-ip</tt> (or <tt>-isp</tt>) options to achieve this effect.
+	  </p>
+	</sect1>
+
+	<sect1 id="f-Package">
+	  <heading><tt>Package</tt></heading>
+
+	  <p>
+	    The name of the binary package.
+	  </p>
+
+	  <p>
+	    Package names must consist only of lower case letters
+	    (<tt>a-z</tt>), digits (<tt>0-9</tt>), plus (<tt>+</tt>)
+	    and minus (<tt>-</tt>) signs, and periods (<tt>.</tt>).
+	    They must be at least two characters long and must start
+	    with an alphanumeric character.
+	  </p>
+	</sect1>
+
+	<sect1 id="f-Architecture">
+	  <heading><tt>Architecture</tt></heading>
+
+	  <p>
+	    This is the architecture string; it is a single word for
+	    the Debian architecture. The special value <tt>all</tt>
+	    indicates that the package is architecture-independent.
+	  </p>
+
+	  <p>
+	    In the main <file>debian/control</file> file in the source
+	    package, or in the source package control file
+	    <file>.dsc</file>, a list of architectures (separated by
+	    spaces) is also allowed, as is the special value
+	    <tt>any</tt>.  A list indicates that the source will build
+	    an architecture-dependent package, and will only work
+	    correctly on the listed architectures.  <tt>any</tt>
+	    indicates that though the source package isn't dependent
+	    on any particular architecture and should compile fine on
+	    any one, the binary package(s) produced are not
+	    architecture-independent but will instead be specific to
+	    whatever the current build architecture is.
+	  </p>
+
+	  <p>
+	    In a <file>.changes</file> file the <tt>Architecture</tt>
+	    field lists the architecture(s) of the package(s)
+	    currently being uploaded.  This will be a list; if the
+	    source for the package is being uploaded too the special
+	    entry <tt>source</tt> is also present.
+	  </p>
+
+	  <p>
+	    See <ref id="pkg-debianrules"> for information how to get the
+	    architecture for the build process.
+	  </p>
+	</sect1>
+
+	<sect1 id="f-Essential">
+	  <heading><tt>Essential</tt></heading>
+
+	  <p>
+	    This is a boolean field which may occur only in the
+	    control file of a binary package or in a per-package fields
+	    paragraph of a main source control data file.
+	  </p>
+
+	  <p>
+	    If set to <tt>yes</tt> then the package management system
+	    will refuse to remove the package (upgrading and replacing
+	    it is still possible). The other possible value is <tt>no</tt>,
+	    which is the same as not having the field at all.
+	  </p>
+	</sect1>
+
+	<sect1>
+	  <heading>Package interrelationship fields:
+	    <tt>Depends</tt>, <tt>Pre-Depends</tt>,
+	    <tt>Recommends</tt>, <tt>Suggests</tt>, <tt>Conflicts</tt>,
+	    <tt>Provides</tt>, <tt>Replaces</tt>
+	  </heading>
+
+	  <p>
+	    These fields describe the package's relationships with
+	    other packages.  Their syntax and semantics are described
+	    in <ref id="relationships">.</p>
+	</sect1>
+
+	<sect1 id="f-Standards-Version">
+	  <heading><tt>Standards-Version</tt></heading>
+
+	  <p>
+            The most recent version of the standards (the policy
+	    manual and associated texts) with which the package
+	    complies.
+	  </p>
+
+	  <p>
+	    The version number has four components: major and minor
+	    version number and major and minor patch level.  When the
+	    standards change in a way that requires every package to
+	    change the major number will be changed.  Significant
+	    changes that will require work in many packages will be
+	    signaled by a change to the minor number.  The major patch
+	    level will be changed for any change to the meaning of the
+	    standards, however small; the minor patch level will be
+	    changed when only cosmetic, typographical or other edits
+	    are made which neither change the meaning of the document
+	    nor affect the contents of packages.
+	  </p>
+
+	  <p>
+	    Thus only the first three components of the policy version
+	    are significant in the <em>Standards-Version</em> control
+	    field, and so either these three components or the all
+	    four components may be specified.<footnote>
+	  	In the past, people specified the full version number
+	  	in the Standards-Version field, for example "2.3.0.0".
+	  	Since minor patch-level changes don't introduce new
+	  	policy, it was thought it would be better to relax
+	  	policy and only require the first 3 components to be
+	  	specified, in this example "2.3.0".  All four
+	  	components may still be used if someone wishes to do so.
+	    </footnote>
 	  </p>
 
 	</sect1>
 
-        <sect1 id="extendeddesc"><heading>The extended description</heading>
+	<sect1 id="f-Version">
+	  <heading><tt>Version</tt></heading>
 
 	  <p>
-	    Do not try to continue the single line synopsis into the
-	    extended description.  This will not work correctly when
-	    the full description is displayed, and makes no sense
-	    where only the summary (the single line synopsis) is
-	    available.
+	    The version number of a package. The format is:
+	    [<var>epoch</var><tt>:</tt>]<var>upstream_version</var>[<tt>-</tt><var>debian_revision</var>]
 	  </p>
 
 	  <p>
-	    The extended description should describe what the package
-	    does and how it relates to the rest of the system (in terms
-	    of, for example, which subsystem it is which part of).
+	    The three components here are:
+	    <taglist>
+	      <tag><var>epoch</var></tag>
+	      <item>
+	        <p>
+	          This is a single (generally small) unsigned integer.  It
+	          may be omitted, in which case zero is assumed.  If it is
+	          omitted then the <var>upstream_version</var> may not
+	          contain any colons.
+	        </p>
+
+	        <p>
+	          It is provided to allow mistakes in the version numbers
+	          of older versions of a package, and also a package's
+	          previous version numbering schemes, to be left behind.
+	        </p>
+	      </item>
+
+	      <tag><var>upstream_version</var></tag>
+	      <item>
+	        <p>
+	          This is the main part of the version number.  It is
+	          usually the version number of the original ("upstream")
+	          package from which the <file>.deb</file> file has been made,
+	          if this is applicable.  Usually this will be in the same
+	          format as that specified by the upstream author(s);
+	          however, it may need to be reformatted to fit into the
+	          package management system's format and comparison
+	          scheme.
+	        </p>
+
+	        <p>
+	          The comparison behavior of the package management system
+	          with respect to the <var>upstream_version</var> is
+	          described below.  The <var>upstream_version</var>
+	          portion of the version number is mandatory.
+	        </p>
+
+	        <p>
+	          The <var>upstream_version</var> may contain only
+	          alphanumerics<footnote>
+			Alphanumerics are <tt>A-Za-z0-9</tt> only.
+	          </footnote>
+	          and the characters <tt>.</tt> <tt>+</tt> <tt>-</tt>
+	          <tt>:</tt> (full stop, plus, hyphen, colon) and should
+	          start with a digit.  If there is no
+	          <var>debian_revision</var> then hyphens are not allowed;
+	          if there is no <var>epoch</var> then colons are not
+	          allowed.
+		</p>
+	      </item>
+
+	      <tag><var>debian_revision</var></tag>
+	      <item>
+	        <p>
+	          This part of the version number specifies the version of
+	          the Debian package based on the upstream version.  It
+	          may contain only alphanumerics and the characters
+	          <tt>+</tt> and <tt>.</tt> (plus and full stop) and is
+	          compared in the same way as the
+	          <var>upstream_version</var> is.
+	        </p>
+
+	        <p>
+	          It is optional; if it isn't present then the
+	          <var>upstream_version</var> may not contain a hyphen.
+	          This format represents the case where a piece of
+	          software was written specifically to be turned into a
+	          Debian package, and so there is only one "debianization"
+	          of it and therefore no revision indication is required.
+	        </p>
+
+	        <p>
+	          It is conventional to restart the
+	          <var>debian_revision</var> at <tt>1</tt> each time the
+	          <var>upstream_version</var> is increased.
+	        </p>
+
+	        <p>
+	          The package management system will break the version
+	          number apart at the last hyphen in the string (if there
+	          is one) to determine the <var>upstream_version</var> and
+	          <var>debian_revision</var>.  The absence of a
+	          <var>debian_revision</var> compares earlier than the
+	          presence of one (but note that the
+	          <var>debian_revision</var> is the least significant part
+	          of the version number).
+	        </p>
+	      </item>
+	    </taglist>
 	  </p>
 
 	  <p>
-	    The description field needs to make sense to anyone, even
-	    people who have no idea about any of the things the
-	    package deals with.<footnote>
-		The blurb that comes with a program in its
-		announcements and/or <prgn>README</prgn> files is
-		rarely suitable for use in a description.  It is
-		usually aimed at people who are already in the
-		community where the package is used.
-	    </footnote>
+	    The <var>upstream_version</var> and <var>debian_revision</var>
+	    parts are compared by the package management system using the
+	    same algorithm:
+	  </p>
+
+	  <p>
+	    The strings are compared from left to right.
+	  </p>
+
+	  <p>
+	    First the initial part of each string consisting entirely of
+	    non-digit characters is determined.  These two parts (one of
+	    which may be empty) are compared lexically.  If a difference
+	    is found it is returned.  The lexical comparison is a
+	    comparison of ASCII values modified so that all the letters
+	    sort earlier than all the non-letters.
+	  </p>
+
+	  <p>
+	    Then the initial part of the remainder of each string which
+	    consists entirely of digit characters is determined.  The
+	    numerical values of these two parts are compared, and any
+	    difference found is returned as the result of the comparison.
+	    For these purposes an empty string (which can only occur at
+	    the end of one or both version strings being compared) counts
+	    as zero.
+	  </p>
+
+	  <p>
+	    These two steps (comparing and removing initial non-digit
+	    strings and initial digit strings) are repeated until a
+	    difference is found or both strings are exhausted.
+	  </p>
+
+	  <p>
+	    Note that the purpose of epochs is to allow us to leave behind
+	    mistakes in version numbering, and to cope with situations
+	    where the version numbering scheme changes.  It is
+	    <em>not</em> intended to cope with version numbers containing
+	    strings of letters which the package management system cannot
+	    interpret (such as <tt>ALPHA</tt> or <tt>pre-</tt>), or with
+	    silly orderings (the author of this manual has heard of a
+	    package whose versions went <tt>1.1</tt>, <tt>1.2</tt>,
+	    <tt>1.3</tt>, <tt>1</tt>, <tt>2.1</tt>, <tt>2.2</tt>,
+	    <tt>2</tt> and so forth).
+	  </p>
+	</sect1>
+
+        <sect1 id="f-Description">
+	  <heading><tt>Description</tt></heading>
+
+	  <p>
+	    In a source or binary control file, the <tt>Description</tt>
+	    field contains a description of the binary package, consisting
+	    of two parts, the synopsis or the short description, and the
+	    long description. The field's format is as follows:
+	  </p>
+
+	  <p>
+<example>
+	Description: &lt;single line synopsis&gt;
+	 &lt;extended description over several lines&gt;
+</example>
 	  </p>
 
 	  <p>
@@ -2466,19 +2833,361 @@ Package: libc6
 	    Do not use tab characters.  Their effect is not predictable.
 	  </p>
 
+	  <p>
+	    See <ref id="descriptions"> for further information on this.
+	  </p>
+
+	  <p>
+	    In a <file>.changes</file> file, the <tt>Description</tt> field
+	    contains a summary of the descriptions for the packages being
+	    uploaded.
+	  </p>
+
+	  <p>
+	    The part of the field before the first newline is empty;
+	    thereafter each line has the name of a binary package and
+	    the summary description line from that binary package.
+	    Each line is indented by one space.
+	  </p>
+
 	</sect1>
+
+	<sect1 id="f-Distribution">
+	  <heading><tt>Distribution</tt></heading>
+
+	  <p>
+	    In a <file>.changes</file> file or parsed changelog output
+	    this contains the (space-separated) name(s) of the
+	    distribution(s) where this version of the package should
+	    be installed.  Valid distributions are determined by the
+	    archive maintainers.<footnote>
+		Current distribution names are:
+		<taglist compact="compact">
+		  <tag><em>stable</em></tag>
+		  <item>
+		      This is the current "released" version of Debian
+		      GNU/Linux.  Once the distribution is
+		      <em>stable</em> only security fixes and other
+		      major bug fixes are allowed. When changes are
+		      made to this distribution, the release number is
+		      increased (for example: 2.2r1 becomes 2.2r2 then
+		      2.2r3, etc).
+		  </item>
+
+		  <tag><em>unstable</em></tag>
+		  <item>
+		      This distribution value refers to the
+		      <em>developmental</em> part of the Debian
+		      distribution tree. New packages, new upstream
+		      versions of packages and bug fixes go into the
+		      <em>unstable</em> directory tree. Download from
+		      this distribution at your own risk.
+		  </item>
+
+		  <tag><em>testing</em></tag>
+		  <item>
+		      This distribution value refers to the
+		      <em>testing</em> part of the Debian distribution
+		      tree.  It receives its packages from the
+		      unstable distribution after a short time lag to
+		      ensure that there are no major issues with the
+		      unstable packages.  It is less prone to breakage
+		      than unstable, but still risky.  It is not
+		      possible to upload packages directly to
+		      <em>testing</em>.
+		  </item>
+
+		  <tag><em>frozen</em></tag>
+		  <item>
+		      From time to time, the <em>testing</em>
+		      distribution enters a state of "code-freeze" in
+		      anticipation of release as a <em>stable</em>
+		      version. During this period of testing only
+		      fixes for existing or newly-discovered bugs will
+		      be allowed.  The exact details of this stage are
+		      determined by the Release Manager.
+		  </item>
+
+		  <tag><em>experimental</em></tag>
+		  <item>
+		      The packages with this distribution value are
+		      deemed by their maintainers to be high
+		      risk. Oftentimes they represent early beta or
+		      developmental packages from various sources that
+		      the maintainers want people to try, but are not
+		      ready to be a part of the other parts of the
+		      Debian distribution tree. Download at your own
+		      risk.
+		  </item>
+		</taglist>
+
+		<p>
+		  You should list <em>all</em> distributions that the
+		  package should be installed into.
+		</p>
+
+		<p>
+		  More information is available in the Debian Developer's
+		  Reference, section "The Debian archive".
+		</p>
+	    </footnote>
+	  </p>
+	</sect1>
+
+	<sect1 id="f-Date">
+	  <heading><tt>Date</tt></heading>
+
+	  <p>
+	    This field includes the date the package was built or last edited.
+	  </p>
+
+	  <p>
+	    The value of this field is usually extracted from the
+	    <file>debian/changelog</file> file - see
+	    <ref id="dpkgchangelog">).
+	  </p>
+	</sect1>
+
+	<sect1 id="f-Format">
+	  <heading><tt>Format</tt></heading>
+
+	  <p>
+	    This field specifies a format revision for the file.
+	    The most current format described in the Policy Manual
+	    is version <strong>1.5</strong>.  The syntax of the
+	    format value is the same as that of a package version
+	    number except that no epoch or Debian revision is allowed
+	    - see <ref id="f-Version">.
+	  </p>
+	</sect1>
+
+	<sect1 id="f-Urgency">
+	  <heading><tt>Urgency</tt></heading>
+
+	  <p>
+	    This is a description of how important it is to upgrade to
+	    this version from previous ones.  It consists of a single
+	    keyword usually taking one of the values <tt>low</tt>,
+	    <tt>medium</tt> or <tt>high</tt> (not case-sensitive)
+	    followed by an optional commentary (separated by a space)
+	    which is usually in parentheses.  For example:
+
+	    <example>
+  Urgency: low (HIGH for users of diversions)
+	    </example>
+
+	  </p>
+
+	  <p>
+	    The value of this field is usually extracted from the
+	    <file>debian/changelog</file> file - see
+	    <ref id="dpkgchangelog">.
+	  </p>
+	</sect1>
+
+	<sect1 id="f-Changes">
+	  <heading><tt>Changes</tt></heading>
+
+	  <p>
+	    This field contains the human-readable changes data, describing
+	    the differences between the last version and the current one.
+	  </p>
+
+	  <p>
+	    There should be nothing in this field before the first
+	    newline; all the subsequent lines must be indented by at
+	    least one space; blank lines must be represented by a line
+	    consiting only of a space and a full stop.
+	  </p>
+
+	  <p>
+	    The value of this field is usually extracted from the
+	    <file>debian/changelog</file> file - see
+	    <ref id="dpkgchangelog">).
+	  </p>
+
+	  <p>
+	    Each version's change information should be preceded by a
+	    "title" line giving at least the version, distribution(s)
+	    and urgency, in a human-readable way.
+	  </p>
+
+	  <p>
+	    If data from several versions is being returned the entry
+	    for the most recent version should be returned first, and
+	    entries should be separated by the representation of a
+	    blank line (the "title" line may also be followed by the
+	    representation of blank line).
+	  </p>
+	</sect1>
+
+	<sect1 id="f-Binary">
+	  <heading><tt>Binary</tt></heading>
+
+	  <p>
+	    This field is a list of binary packages.
+	  </p>
+
+	  <p>
+	    When it appears in the <file>.dsc</file> file it is the list
+	    of binary packages which a source package can produce.  It
+	    does not necessarily produce all of these binary packages
+	    for every architecture.  The source control file doesn't
+	    contain details of which architectures are appropriate for
+	    which of the binary packages.
+	  </p>
+
+	  <p>
+	    When it appears in a <file>.changes</file> file it lists the
+	    names of the binary packages actually being uploaded.
+	  </p>
+
+	  <p>
+	    The syntax is a list of binary packages separated by
+	    commas<footnote>
+		A space after each comma is conventional.
+	    </footnote>. Currently the packages must be separated using
+	    only spaces in the <file>.changes</file> file.
+	  </p>
+	</sect1>
+
+	<sect1 id="f-Installed-Size">
+	  <heading><tt>Installed-Size</tt></heading>
+
+	  <p>
+	    This field appears in the control files of binary
+	    packages, and in the <file>Packages</file> files.  It gives
+	    the total amount of disk space required to install the
+	    named package.
+	  </p>
+
+	  <p>
+	    The disk space is represented in kilobytes as a simple
+	    decimal number.
+	  </p>
+	</sect1>
+
+	<sect1 id="f-Files">
+	  <heading><tt>Files</tt></heading>
+
+	  <p>
+	    This field contains a list of files with information about
+	    each one.  The exact information and syntax varies with
+	    the context.  In all cases the part of the field
+	    contents on the same line as the field name is empty.  The
+	    remainder of the field is one line per file, each line
+	    being indented by one space and containing a number of
+	    sub-fields separated by spaces.
+	  </p>
+
+	  <p>
+	    In the <file>.dsc</file> file, each line contains the MD5
+	    checksum, size and filename of the tar file and (if applicable)
+	    diff file which make up the remainder of the source
+	    package<footnote>
+		That is, the parts which are not the <tt>.dsc</tt>.
+	    </footnote>.
+	    The exact forms of the filenames are described
+	    in <ref id="pkg-sourcearchives">.
+	  </p>
+
+	  <p>
+	    In the <file>.changes</file> file this contains one line per
+	    file being uploaded.  Each line contains the MD5 checksum,
+	    size, section and priority and the filename.
+	    The <qref id="f-Section">section</qref>
+	    and <qref id="f-Priority">priority</qref>
+	    are the values of the corresponding fields in
+	    the main source control file.  If no section or priority is
+	    specified then <tt>-</tt> should be used, though section
+	    and priority values must be specified for new packages to
+	    be installed properly.
+	  </p>
+
+	  <p>
+	    The special value <tt>byhand</tt> for the section in a
+	    <tt>.changes</tt> file indicates that the file in question
+	    is not an ordinary package file and must by installed by
+	    hand by the distribution maintainers.  If the section is
+	    <tt>byhand</tt> the priority should be <tt>-</tt>.
+	  </p>
+
+	  <p>
+	    If a new Debian revision of a package is being shipped and
+	    no new original source archive is being distributed the
+	    <tt>.dsc</tt> must still contain the <tt>Files</tt> field
+	    entry for the original source archive
+	    <file><var>package</var>-<var>upstream-version</var>.orig.tar.gz</file>,
+	    but the <file>.changes</file> file should leave it out.  In
+	    this case the original source archive on the distribution
+	    site must match exactly, byte-for-byte, the original
+	    source archive which was used to generate the
+	    <file>.dsc</file> file and diff which are being uploaded.</p>
+	</sect1>
+
+	<sect1 id="f-Closes">
+	  <heading><tt>Closes</tt></heading>
+
+	  <p>
+	    A space-separated list of bug report numbers that the upload
+	    governed by the .changes file closes.
+	  </p>
+	</sect1>
+
+      </sect>
+
+      <sect>
+	<heading>User-defined fields</heading>
+
+	<p>
+	  Additional user-defined fields may be added to the
+	  source package control file.  Such fields will be
+	  ignored, and not copied to (for example) binary or
+	  source package control files or upload control files.
+	</p>
+
+	<p>
+	  If you wish to add additional unsupported fields to
+	  these output files you should use the mechanism
+	  described here.
+	</p>
+
+	<p>
+	  Fields in the main source control information file with
+	  names starting <tt>X</tt>, followed by one or more of
+	  the letters <tt>BCS</tt> and a hyphen <tt>-</tt>, will
+	  be copied to the output files.  Only the part of the
+	  field name after the hyphen will be used in the output
+	  file.  Where the letter <tt>B</tt> is used the field
+	  will appear in binary package control files, where the
+	  letter <tt>S</tt> is used in source package control
+	  files and where <tt>C</tt> is used in upload control
+	  (<tt>.changes</tt>) files.
+	</p>
+
+	<p>
+	  For example, if the main source information control file
+	  contains the field
+	  <example>
+  XBS-Comment: I stand between the candle and the star.
+	  </example>
+	  then the binary and source package control files will contain the
+	  field
+	  <example>
+  Comment: I stand between the candle and the star.
+	  </example>
+	</p>
 
       </sect>
 
     </chapt>
 
 
-    <chapt id="maintainerscripts"><heading>Package maintainer scripts
-	and installation procedure
-      </heading>
+    <chapt id="maintainerscripts">
+      <heading>Package maintainer scripts and installation procedure</heading>
 
-      <sect><heading>Introduction to package maintainer scripts
-	</heading>
+      <sect>
+	<heading>Introduction to package maintainer scripts</heading>
 
 	<p>
 	  It is possible to supply scripts as part of a package which
@@ -2539,7 +3248,7 @@ Package: libc6
 	  considerations really apply to all shell scripts.</p>
       </sect>
 
-      <sect>
+      <sect id="idempotency">
 	<heading>Maintainer scripts Idempotency</heading>
 
 	<p>
@@ -2561,7 +3270,7 @@ Package: libc6
 	</p>
       </sect>
 
-      <sect>
+      <sect id="controllingterminal">
 	<heading>Controlling terminal for maintainer scripts</heading>
 
 	<p>
@@ -3075,7 +3784,7 @@ Package: libc6
 	  package.  This is done in parentheses after each individual
 	  package name; the parentheses should contain a relation from
 	  the list below followed by a version number, in the format
-	  described in <ref id="versions">.
+	  described in <ref id="f-Version">.
 	</p>
 
 	<p>
@@ -3149,7 +3858,7 @@ Build-Depends: kernel-headers-2.2.10 [!hurd-i386],
 	</p>
       </sect>
 
-      <sect>
+      <sect id="binarydeps">
         <heading>Binary Dependencies - <tt>Depends</tt>,
           <tt>Recommends</tt>, <tt>Suggests</tt>, <tt>Enhances</tt>,
           <tt>Pre-Depends</tt>
@@ -3546,7 +4255,8 @@ Replaces: mail-transport-agent
 	</sect1>
       </sect>
 
-      <sect><heading>Relationships between source and binary packages -
+      <sect id="sourcebinarydeps">
+	<heading>Relationships between source and binary packages -
 	  <tt>Build-Depends</tt>, <tt>Build-Depends-Indep</tt>,
 	  <tt>Build-Conflicts</tt>, <tt>Build-Conflicts-Indep</tt>
 	</heading>
@@ -3618,20 +4328,10 @@ Replaces: mail-transport-agent
 		<tt>binary-indep</tt>.
 	    </item>
 	  </taglist>
-
 	</p>
 
       </sect>
 
-    </chapt>
-
-
-    <chapt id="conffiles">
-      <heading>Configuration file handling</heading>
-
-      <p>
-	This chapter has been superseded by <ref id="config-files">.
-      </p>
     </chapt>
 
 
@@ -4299,6 +4999,7 @@ libbar 1 bar1 (>= 1.0-1)
       </sect>
 
     </chapt>
+
 
     <chapt id="opersys"><heading>The Operating System</heading>
 
@@ -5350,7 +6051,7 @@ Reloading <var>description</var> configuration...done.
 	<p>
 	  The menu policy can be found in the <tt>menu-policy</tt>
 	  files in the <tt>debian-policy</tt> package.
-	  They are also available from the Debian web mirrors at
+	  It is also available from the Debian web mirrors at
           <tt><url name="/doc/packaging-manuals/menu-policy/"
 		id="http://www.debian.org/doc/packaging-manuals/menu-policy/"></tt>
 	  and from the Debian archive mirrors at
@@ -5393,7 +6094,7 @@ Reloading <var>description</var> configuration...done.
 	<p>
 	  The MIME support policy can be found in the <tt>mime-policy</tt>
 	  files in the <tt>debian-policy</tt> package.
-	  They are also available from the Debian web mirrors at
+	  It is also available from the Debian web mirrors at
           <tt><url name="/doc/packaging-manuals/mime-policy/"
 		id="http://www.debian.org/doc/packaging-manuals/mime-policy/"></tt>
 	  and from the Debian archive mirrors at
@@ -5588,8 +6289,8 @@ exec /usr/lib/foo/foo "$@"
 
 	<p>
 	  Furthermore, as <file>/etc/profile</file> is a configuration
-	  file of the <prgn>base-files</prgn> package, other packages must not
-	  put any environment variables or other commands into that
+	  file of the <prgn>base-files</prgn> package, other packages must
+	  not put any environment variables or other commands into that
 	  file.
 	</p>
       </sect>
@@ -6529,6 +7230,7 @@ done
       </sect>
     </chapt>
 
+
     <chapt id="customized-programs">
       <heading>Customized programs</heading>
 
@@ -6787,10 +7489,8 @@ http://localhost/doc/<var>package</var>/<var>filename</var>
 	  </footnote>. Using the functions <tt>maillock</tt> and
 	  <tt>mailunlock</tt> provided by the
 	  <tt>liblockfile*</tt><footnote>
-	    <p>
-	      You will need to depend on <tt>liblockfile1
-		(&gt;&gt;1.01)</tt> to use these functions.
-	    </p>
+	      You will need to depend on <tt>liblockfile1 (&gt;&gt;1.01)</tt>
+	      to use these functions.
 	  </footnote> packages is the recommended way to realize this.
 	</p>
 
@@ -6977,7 +7677,7 @@ name ["<var>syshostname</var>"]:
 		  </footnote>
 		  and runs the specified <var>command</var>,
 		  interpreting the entirity of the rest of the command
-		  line as a command to pass straight to exec, in the 
+		  line as a command to pass straight to exec, in the
 		  manner that <tt>xterm</tt> does.
 	      </item>
 
@@ -7013,13 +7713,14 @@ name ["<var>syshostname</var>"]:
 		  have to be edited to activate the feature); if
 		  configuration files must be modified, add only 10
 		  points.
+		</p>
 	      </item>
 
               <item>
-                  If the window manager complies with  <url
+                  If the window manager complies with <url
 		    id="http://www.freedesktop.org/standards/wm-spec.html"
 		    name="The Window Manager Specification Project">,
-                  written by the <url id="http://www.freedesktop.org"
+                  written by the <url id="http://www.freedesktop.org/"
 		    name="Free Desktop Group">, add 40 points.
               </item>
 
@@ -7372,7 +8073,7 @@ name ["<var>syshostname</var>"]:
 	<p>
 	  The Perl policy can be found in the <tt>perl-policy</tt>
 	  files in the <tt>debian-policy</tt> package.
-	  They are also available from the Debian web mirrors at
+	  It is also available from the Debian web mirrors at
           <tt><url name="/doc/packaging-manuals/perl-policy/"
 		id="http://www.debian.org/doc/packaging-manuals/perl-policy/"></tt>
 	  and from the Debian archive mirrors at
@@ -7447,8 +8148,9 @@ name ["<var>syshostname</var>"]:
       </sect>
     </chapt>
 
-    <chapt id="docs"><heading>Documentation</heading>
 
+    <chapt id="docs">
+      <heading>Documentation</heading>
 
       <sect>
 	<heading>Manual pages</heading>
@@ -7729,37 +8431,6 @@ install-info --quiet --remove /usr/share/info/foobar.info
       <sect id="changelogs">
 	<heading>Changelog files</heading>
 
-        <p>
-          The Debian changelog file (<file>debian/changelog</file>) should
-	  explain briefly what modifications were made in the Debian version
-	  of the package compared to the upstream one. Other changes and
-	  updates to the package should also be documented in this file.
-        </p>
-
-        <p>
-          Mistakes in changelogs are usually best rectified by
-          making a new changelog entry rather than "rewriting history"
-          by editing old changelog entries.
-        </p>
-
-        <p>
-          The format of the <file>debian/changelog</file> file is described
-          in <ref id="dpkgchangelog">. In non-experimental packages you must
-          use a format for <file>debian/changelog</file> which is supported
-          by the most recent released version of <prgn>dpkg</prgn>.<footnote>
-              If you wish to use an alternative format, you may do so as
-              long as you include a parser for it in your source package.
-              The parser must have an API compatible with that expected by
-              <prgn>dpkg-genchanges</prgn> and <prgn>dpkg-gencontrol</prgn>.
-              If there is general interest in the new format, you should
-              contact the <package>dpkg</package> maintainer to have the
-              parser script for it included in the <prgn>dpkg</prgn>
-              package.  (You will need to agree that the parser and its
-              manpage may be distributed under the GNU GPL, just as the rest
-              of <prgn>dpkg</prgn> is.)
-          </footnote>
-	</p>
-
 	<p>
 	  Packages that are not Debian-native must contain a
 	  compressed copy of the <file>debian/changelog</file> file from
@@ -7800,7 +8471,8 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	  <file>/usr/share/doc/<var>package</var>/changelog.gz</file>; if
 	  there is a separate upstream maintainer, but no upstream
 	  changelog, then the Debian changelog should still be called
-	  <file>changelog.Debian.gz</file>.</p>
+	  <file>changelog.Debian.gz</file>.
+	</p>
 
       </sect>
     </chapt>
@@ -7821,6 +8493,7 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	not yet been incorporated into dpkg documentation. However,
 	they still have value, and hence they are presented here.
       </p>
+
       <p>
 	They have not yet been checked to ensure that they are
 	compatible with the contents of policy, and if there are any
@@ -7829,6 +8502,12 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	Manual have also not been read in detail to ensure that there
 	are not parts which have been left out.  Both of these will be
 	done in due course.
+      </p>
+
+      <p>
+	Certain parts of the Packaging manual were integrated into the
+	Policy Manual proper, and removed from the appendices. Links
+	have been placed from the old locations to the new ones.
       </p>
 
       <p>
@@ -7891,9 +8570,8 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	Policy and Programmer's Manual.</p>
     </appendix>
 
-    <appendix id="pkg-binarypkg"><heading>Binary packages (from old
-    Packaging Manual)
-      </heading>
+    <appendix id="pkg-binarypkg">
+      <heading>Binary packages (from old Packaging Manual)</heading>
 
       <p>
 	The binary package has two main sections.  The first part
@@ -7998,9 +8676,7 @@ install-info --quiet --remove /usr/share/info/foobar.info
       </sect>
 
       <sect id="pkg-controlarea">
-	<heading>
-	  Package control information files
-	</heading>
+	<heading>Package control information files</heading>
 
 	<p>
 	  The control information portion of a binary package is a
@@ -8026,28 +8702,28 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	  <taglist>
 	    <tag><tt>control</tt>
 	    <item>
-
 	      <p>
 		This is the key description file used by
 		<prgn>dpkg</prgn>.  It specifies the package's name
 		and version, gives its description for the user,
 		states its relationships with other packages, and so
-		forth.  See <ref id="pkg-controlfile">.
+		forth.  See <ref id="sourcecontrolfiles"> and
+		<ref id="binarycontrolfiles">.
 	      </p>
 
 	      <p>
 		It is usually generated automatically from information
 		in the source package by the
 		<prgn>dpkg-gencontrol</prgn> program, and with
-		assistance from <prgn>dpkg-shlibdeps</prgn>.  See <ref
-		id="pkg-sourcetools">.</p>
+		assistance from <prgn>dpkg-shlibdeps</prgn>.
+		See <ref id="pkg-sourcetools">.
+	      </p>
 	    </item>
 
 	    <tag><tt>postinst</tt>, <tt>preinst</tt>, <tt>postrm</tt>,
-	    <tt>prerm</tt>
+		 <tt>prerm</tt>
 	    </tag>
 	    <item>
-
 	      <p>
 		These are exectuable files (usually scripts) which
 		<prgn>dpkg</prgn> runs during installation, upgrade
@@ -8055,80 +8731,50 @@ install-info --quiet --remove /usr/share/info/foobar.info
 		deal with matters which are particular to that package
 		or require more complicated processing than that
 		provided by <prgn>dpkg</prgn>.  Details of when and
-		how they are called are in <ref
-		id="maintainerscripts">.
+		how they are called are in <ref id="maintainerscripts">.
 	      </p>
 
 	      <p>
-		It is very important to make these scripts
-		idempotent.
-		<footnote>
-		    That means that if it runs successfully or fails
-		    and then you call it again it doesn't bomb out,
-		    but just ensures that everything is the way it
-		    ought to be.
-		</footnote> This is so that if an error occurs, the
-		user interrupts <prgn>dpkg</prgn> or some other
-		unforeseen circumstance happens you don't leave the
-		user with a badly-broken package.
+		It is very important to make these scripts idempotent.
+		See <ref id="idempotency">.
 	      </p>
 
 	      <p>
 		The maintainer scripts are guaranteed to run with a
 		controlling terminal and can interact with the user.
-		If they need to prompt for passwords, do full-screen
-		interaction or something similar you should do these
-		things to and from <file>/dev/tty</file>, since
-		<prgn>dpkg</prgn> will at some point redirect scripts'
-		standard input and output so that it can log the
-		installation process.  Likewise, because these scripts
-		may be executed with standard output redirected into a
-		pipe for logging purposes, Perl scripts should set
-		unbuffered output by setting <tt>$|=1</tt> so that the
-		output is printed immediately rather than being
-		buffered.
+		See <ref id="controllingterminal">.
 	      </p>
-
-	      <p>
-		Each script should return a zero exit status for
-		success, or a nonzero one for failure.</p>
 	    </item>
 
 	    <tag><tt>conffiles</tt>
 	    </tag>
 	    <item>
-
-	      <p>
 		This file contains a list of configuration files which
 		are to be handled automatically by <prgn>dpkg</prgn>
 		(see <ref id="pkg-conffiles">).  Note that not necessarily
-		every configuration file should be listed here.</p>
+		every configuration file should be listed here.
 	    </item>
 
 	    <tag><tt>shlibs</tt>
 	    </tag>
 	    <item>
-
-	      <p>
 		This file contains a list of the shared libraries
 		supplied by the package, with dependency details for
 		each.  This is used by <prgn>dpkg-shlibdeps</prgn>
 		when it determines what dependencies are required in a
 		package control file. The <tt>shlibs</tt> file format
 		is described on <ref id="shlibs">.
-	      </p>
 	    </item>
 	  </taglist>
 	</p>
 
       <sect id="pkg-controlfile">
-	<heading>
-	  The main control information file: <tt>control</tt>
-	</heading>
+	<heading>The main control information file: <tt>control</tt></heading>
+
 	<p>
 	  The most important control information file used by
 	  <prgn>dpkg</prgn> when it installs a package is
-	  <tt>control</tt>.  It contains all the package"s "vital
+	  <tt>control</tt>.  It contains all the package's "vital
 	  statistics".
 	</p>
 
@@ -8142,70 +8788,21 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	</p>
 
 	<p>
-	  The fields in binary package control files are:
-	  <list compact="compact">
-	    <item>
-	      <p><qref id="pkg-f-Package"><tt>Package</tt></qref> (mandatory)</p>
-	    </item>
-	    <item>
-	      <p><qref id="versions"><tt>Version</tt></qref> (mandatory)</p>
-	    </item>
-	    <item><p><qref id="pkg-f-Architecture"><tt>Architecture</tt></qref>
-		(mandatory)
-		<footnote>
-		    This field should appear in all packages, though
-		    <prgn>dpkg</prgn> doesn't require it yet so that
-		    old packages can still be installed.
-		</footnote>
-	      </p>
-	    </item>
-	    <item>
-	      <p><qref id="relationships"><tt>Depends</tt>,
-		  <tt>Provides</tt> et al.</qref></p>
-	    </item>
-	    <item>
-	      <p><qref id="pkg-f-Essential"><tt>Essential</tt></qref></p>
-	    </item>
-	    <item>
-	      <p><qref id="pkg-f-Maintainer"><tt>Maintainer</tt></qref></p>
-	    </item>
-	    <item>
-	      <p><qref id="pkg-f-classification"><tt>Section</tt>,
-		  <tt>Priority</tt></qref></p>
-	    </item>
-	    <item>
-	      <p><qref id="pkg-f-Source"><tt>Source</tt></qref></p>
-	    </item>
-	    <item>
-	      <p><qref id="descriptions"><tt>Description</tt></qref></p>
-	    </item>
-	    <item>
-	      <p>
-		<qref id="pkg-f-Installed-Size"><tt>Installed-Size</tt></qref>
-	      </p>
-	    </item>
-	  </list>
+	  The fields in binary package control files are listed in
+	  <ref id="binarycontrolfiles">.
+	</p>
 
 	<p>
 	  A description of the syntax of control files and the purpose
-	  of these fields is available in <ref id="pkg-controlfields">.
+	  of the fields is available in <ref id="controlfields">.
 	</p>
       </sect>
 
       <sect>
 	<heading>Time Stamps</heading>
+
 	<p>
-	  Maintainers are encouraged to preserve the modification
-	  times of the upstream source files in a package, as far as
-	  is reasonably possible.
-	  <footnote>
-	      The rationale is that there is some information conveyed
-	      by knowing the age of the file, for example, you could
-	      recognize that some documentation is very old by looking
-	      at the modification time, so it would be nice if the
-	      modification time of the upstream source would be
-	      preserved.
-	  </footnote>
+	  See <ref id="timestamps">.
 	</p>
       </sect>
     </appendix>
@@ -8529,8 +9126,7 @@ install-info --quiet --remove /usr/share/info/foobar.info
 
 	  <p>
 	    The <var>section</var> and <var>priority</var> are passed
-	    unchanged into the resulting <file>.changes</file> file.  See
-	    <ref id="pkg-f-classification">.
+	    unchanged into the resulting <file>.changes</file> file.
 	  </p>
 	</sect1>
 
@@ -8584,8 +9180,8 @@ install-info --quiet --remove /usr/share/info/foobar.info
         </sect1>
       </sect>
 
-      <sect id="pkg-sourcetree"><heading>The Debianised source tree
-	</heading>
+      <sect id="pkg-sourcetree">
+	<heading>The Debianised source tree</heading>
 
 	<p>
 	  The source archive scheme described later is intended to
@@ -8604,526 +9200,20 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	  tree.  They are described below.
 	</p>
 
-	<sect1 id="pkg-debianrules"><heading><file>debian/rules</file> - the main building
-	script
-	  </heading>
+	<sect1 id="pkg-debianrules">
+	  <heading><file>debian/rules</file> - the main building script</heading>
 
 	  <p>
-	    This file is an executable makefile, and contains the
-	    package-specific recipies for compiling the package and
-	    building binary package(s) out of the source.
+	    See <ref id="debianrules">.
 	  </p>
-
-	  <p>
-	    It must start with the line <tt>#!/usr/bin/make -f</tt>,
-	    so that it can be invoked by saying its name rather than
-	    invoking <prgn>make</prgn> explicitly.
-	  </p>
-
-	  <p>
-	    Since an interactive <file>debian/rules</file> script makes it
-	    impossible to autocompile that package and also makes it
-	    hard for other people to reproduce the same binary
-	    package, all <strong>required targets</strong> have to be
-	    non-interactive. At a minimul, required targets are the
-	    ones called by <prgn>dpkg-buildpackage</prgn>, namely,
-	    <em>clean</em>, <em>binary</em>, <em>binary-arch</em>, and
-	    <em>build</em>. It also follows that any target that these
-	    targets depend on must also be non-interactive.
-	  </p>
-
-	  <p>
-	    The targets which are required to be present are:
-	    <taglist>
-	      <tag><tt>build</tt></tag>
-	      <item>
-		<p>
-		  This should perform all non-interactive
-		  configuration and compilation of the package.  If a
-		  package has an interactive pre-build configuration
-		  routine, the Debianised source package should be
-		  built after this has taken place, so that it can be
-		  built without rerunning the configuration.
-		</p>
-
-		<p>
-		  A package may also provide both of the targets
-		  <tt>build-arch</tt> and <tt>build-indep</tt>.  The
-		  <tt>build-arch</tt> target, if provided, should
-		  perform all non-interactive configuration and
-		  compilation required for producing all
-		  architecture-dependant binary packages (those packages
-		  for which the body of the <tt>Architecture</tt> field
-		  in <tt>debian/control</tt> is not <tt>all</tt>).
-		  Similarly, the <tt>build-indep</tt> target, if
-		  provided, should perform all non-interactive
-		  configuration and compilation required for producing
-		  all architecture-independent binary packages (those
-		  packages for which the body of the
-		  <tt>Architecture</tt> field in <tt>debian/control</tt>
-		  is <tt>all</tt>).  The <tt>build</tt> target should
-		  depend on those of the targets <tt>build-arch</tt> and
-		  <tt>build-indep</tt> that are provided in the rules
-		  file.
-		</p>
-
-		<p>
-		  If one or both of the targets <tt>build-arch</tt> and
-		  <tt>build-indep</tt> are not provided, then invoking
-		  <file>debian/rules</file> with one of the not-provided
-		  targets as arguments should produce a exit status code
-		  of 2.  Usually this is provided automatically by make
-		  if the target is missing.
-		</p>
-
-		<p>
-		  For some packages, notably ones where the same
-		  source tree is compiled in different ways to produce
-		  two binary packages, the <tt>build</tt> target does
-		  not make much sense.  For these packages it is good
-		  enough to provide two (or more) targets
-		  (<tt>build-a</tt> and <tt>build-b</tt> or whatever)
-		  for each of the ways of building the package, and a
-		  <tt>build</tt> target that does nothing.  The
-		  <tt>binary</tt> target will have to build the
-		  package in each of the possible ways and make the
-		  binary package out of each.
-		</p>
-
-		<p>
-		  The targets <tt>build</tt>, <tt>build-arch</tt>
-		  and <tt>build-indep</tt> target must not do
-		  anything that might require root privilege.
-		</p>
-
-		<p>
-		  The <tt>build</tt> target may need to run
-		  <tt>clean</tt> first - see below.
-		</p>
-
-		<p>
-		  When a package has a configuration routine that takes
-		  a long time, or when the makefiles are poorly
-		  designed, or when <tt>build</tt> needs to run
-		  <tt>clean</tt> first, it is a good idea to <tt>touch
-		    build</tt> when the build process is complete.  This
-		  will ensure that if <tt>debian/rules build</tt> is run
-		  again it will not rebuild the whole program.
-		</p>
-	      </item>
-
-	      <tag><tt>binary</tt>, <tt>binary-arch</tt>,
-		<tt>binary-indep</tt>
-	      </tag>
-	      <item>
-		<p>
-		  The <tt>binary</tt> target should be all that is
-		  necessary for the user to build the binary
-		  package. All these targets are required to be
-		  non-interactive.  It is split into two parts:
-		  <tt>binary-arch</tt> builds the packages' output
-		  files which are specific to a particular
-		  architecture, and <tt>binary-indep</tt> builds
-		  those which are not.
-		</p>
-
-		<p>
-		  <tt>binary</tt> should usually be a target with
-		  no commands which simply depends on
-		  <prgn>binary-arch</prgn> and
-		  <prgn>binary-indep</prgn>.
-		</p>
-
-		<p>
-		  Both <prgn>binary-*</prgn> targets should depend on
-		  the <tt>build</tt> target, above, so that the
-		  package is built if it has not been already.  It
-		  should then create the relevant binary package(s),
-		  using <prgn>dpkg-gencontrol</prgn> to make their
-		  control files and <prgn>dpkg-deb</prgn> to build
-		  them and place them in the parent of the top level
-		  directory.
-		</p>
-
-		<p>
-		  If one of the <prgn>binary-*</prgn> targets has
-		  nothing to do (this will be always be the case if
-		  the source generates only a single binary package,
-		  whether architecture-dependent or not) it
-		  <em>must</em> still exist, but should always
-		  succeed.
-		</p>
-
-		<p>
-		  <ref id="pkg-binarypkg"> describes how to construct
-		  binary packages.
-		</p>
-
-		<p>
-		  The <tt>binary</tt> targets must be invoked as
-		  root.
-		</p>
-	      </item>
-
-	      <tag><tt>clean</tt></tag>
-	      <item>
-
-		<p>
-		  This should undo any effects that the
-		  <tt>build</tt> and <tt>binary</tt> targets
-		  may have had, except that it should leave alone any
-		  output files created in the parent directory by a
-		  run of <tt>binary</tt>. This target is required
-		  to be non-interactive.
-		</p>
-
-		<p>
-		  If a <tt>build</tt> file is touched at the end
-		  of the <tt>build</tt> target, as suggested
-		  above, it must be removed as the first thing that
-		  <tt>clean</tt> does, so that running
-		  <tt>build</tt> again after an interrupted
-		  <tt>clean</tt> doesn't think that everything is
-		  already done.
-		</p>
-
-		<p>
-		  The <tt>clean</tt> target must be invoked as
-		  root if <tt>binary</tt> has been invoked since
-		  the last <tt>clean</tt>, or if
-		  <tt>build</tt> has been invoked as root (since
-		  <tt>build</tt> may create directories, for
-		  example).
-		</p>
-	      </item>
-
-	      <tag><tt>get-orig-source</tt> (optional)</tag>
-	      <item>
-
-		<p>
-		  This target fetches the most recent version of the
-		  original source package from a canonical archive
-		  site (via FTP or WWW, for example), does any
-		  necessary rearrangement to turn it into the original
-		  source tarfile format described below, and leaves it
-		  in the current directory.
-		</p>
-
-		<p>
-		  This target may be invoked in any directory, and
-		  should take care to clean up any temporary files it
-		  may have left.
-		</p>
-
-		<p>
-		  This target is optional, but providing it if
-		  possible is a good idea.
-		</p>
-	      </item>
-	    </taglist>
-
-	  <p>
-	    The <tt>build</tt>, <tt>binary</tt> and
-	    <tt>clean</tt> targets must be invoked with a current
-	    directory of the package's top-level directory.
-	  </p>
-
-
-	  <p>
-	    Additional targets may exist in <file>debian/rules</file>,
-	    either as published or undocumented interfaces or for the
-	    package's internal use.
-	  </p>
-
-          <p>
-            The architecture we build on and build for is determined by make
-            variables via dpkg-architecture (see <ref id="pkg-dpkgarch">). You can
-            get the Debian architecture and the GNU style architecture
-            specification string for the build machine as well as the host
-            machine. Here is a list of supported make variables:
-	    <list compact="compact">
-	      <item>
-		<p><tt>DEB_*_ARCH</tt> (the Debian architecture)</p>
-	      </item>
-	      <item>
-		<p><tt>DEB_*_GNU_TYPE</tt> (the GNU style architecture
-		  specification string)</p>
-	      </item>
-	      <item>
-		<p><tt>DEB_*_GNU_CPU</tt> (the CPU part of DEB_*_GNU_TYPE)</p>
-	      </item>
-	      <item>
-		<p><tt>DEB_*_GNU_SYSTEM</tt> (the System part of
-		  DEB_*_GNU_TYPE)</p>
-	    </list>
-	  </p>
-
-          <p>
-            where <tt>*</tt> is either <tt>BUILD</tt> for specification of
-            the build machine or <tt>HOST</tt> for specification of the machine
-            we build for.
-          </p>
-
-          <p>
-            Backward compatibility can be provided in the rules file
-            by setting the needed variables to suitable default
-            values, please refer to the documentation of
-            dpkg-architecture for details.
-          </p>
-
-          <p>
-            It is important to understand that the <tt>DEB_*_ARCH</tt>
-            string does only determine which Debian architecture we
-            build on resp. for. It should not be used to get the CPU
-            or System information, the GNU style variables should be
-            used for that.
-          </p>
 	</sect1>
 
 
-	<sect1><heading><file>debian/control</file>
-	  </heading>
+	<sect1 id="pkg-dpkgchangelog">
+	  <heading><file>debian/changelog</file></heading>
 
 	  <p>
-	    This file contains version-independent details about the
-	    source package and about the binary packages it creates.
-	  </p>
-
-	  <p>
-	    It is a series of sets of control fields, each
-	    syntactically similar to a binary package control file.
-	    The sets are separated by one or more blank lines.  The
-	    first set is information about the source package in
-	    general; each subsequent set describes one binary package
-	    that the source tree builds.
-	  </p>
-
-	  <p>
-	    The syntax and semantics of the fields are described below
-	    in <ref id="pkg-controlfields">.
-	  </p>
-
-	  <p>
-	    The general (binary-package-independent) fields are:
-	    <list compact="compact">
-	      <item>
-		<p><qref id="pkg-f-Source"><tt>Source</tt></qref> (mandatory)</p>
-	      </item>
-	      <item>
-		<p><qref id="pkg-f-Maintainer"><tt>Maintainer</tt></qref></p>
-	      </item>
-	      <item>
-		<p>
-		  <qref id="pkg-f-classification"><tt>Section</tt> and
-		    <tt>Priority</tt></qref>
-		  (classification, mandatory)
-		</p>
-	      </item>
-               <item>
-                 <p>
-                   <qref id="relationships"><tt>Build-Depends</tt> et
-                     al.</qref> (source package interrelationships)
-                 </p>
-               </item>
-	      <item>
-		<p>
-		  <qref id="pkg-f-Standards-Version"><tt>Standards-Version</tt></qref>
-		</p>
-	      </item>
-	    </list>
-
-	  <p>
-	    The per-binary-package fields are:
-	    <list compact="compact">
-	      <item>
-		<p><qref id="pkg-f-Package"><tt>Package</tt></qref> (mandatory)</p>
-	      </item>
-	      <item>
-		<p>
-		  <qref	id="pkg-f-Architecture"><tt>Architecture</tt></qref>
-		  (mandatory)</p>
-	      </item>
-	      <item>
-		<p><qref id="descriptions"><tt>Description</tt></qref></p>
-	      </item>
-	      <item>
-		<p>
-		  <qref id="pkg-f-classification"><tt>Section</tt> and
-		    <tt>Priority</tt></qref> (classification)</p>
-	      </item>
-	      <item>
-		<p><qref id="pkg-f-Essential"><tt>Essential</tt></qref></p>
-	      </item>
-	      <item>
-		<p>
-		  <qref id="relationships"><tt>Depends</tt> et
-                  al.</qref> (binary package interrelationships)
-		</p>
-	      </item>
-	    </list>
-
-	  <p>
-	    These fields are used by <prgn>dpkg-gencontrol</prgn> to
-	    generate control files for binary packages (see below), by
-	    <prgn>dpkg-genchanges</prgn> to generate the
-	    <tt>.changes</tt> file to accompany the upload, and by
-	    <prgn>dpkg-source</prgn> when it creates the <file>.dsc</file>
-	    source control file as part of a source archive.
-	  </p>
-
-	  <p>
-	    The fields here may contain variable references - their
-	    values will be substituted by
-	    <prgn>dpkg-gencontrol</prgn>, <prgn>dpkg-genchanges</prgn>
-	    or <prgn>dpkg-source</prgn> when they generate output
-	    control files.  See <ref id="pkg-srcsubstvars"> for details.
-	  </p>
-
-	  <p> <sect2><heading>User-defined fields
-	    </heading>
-
-	    <p>
-	      Additional user-defined fields may be added to the
-	      source package control file.  Such fields will be
-	      ignored, and not copied to (for example) binary or
-	      source package control files or upload control files.
-	    </p>
-
-	    <p>
-	      If you wish to add additional unsupported fields to
-	      these output files you should use the mechanism
-	      described here.
-	    </p>
-
-	    <p>
-	      Fields in the main source control information file with
-	      names starting <tt>X</tt>, followed by one or more of
-	      the letters <tt>BCS</tt> and a hyphen <tt>-</tt>, will
-	      be copied to the output files.  Only the part of the
-	      field name after the hyphen will be used in the output
-	      file.  Where the letter <tt>B</tt> is used the field
-	      will appear in binary package control files, where the
-	      letter <tt>S</tt> is used in source package control
-	      files and where <tt>C</tt> is used in upload control
-	      (<tt>.changes</tt>) files.
-	    </p>
-
-	    <p>
-	      For example, if the main source information control file
-	      contains the field
-	      <example>
-  XBS-Comment: I stand between the candle and the star.
-	      </example>
-	      then the binary and source package control files will contain the
-	      field
-	      <example>
-  Comment: I stand between the candle and the star.
-	      </example>
-	    </p>
-	  </sect2>
-
-	</sect1>
-
-	<sect1 id="pkg-dpkgchangelog"><heading><file>debian/changelog</file>
-	  </heading>
-
-	  <p>
-	    This file records the changes to the Debian-specific parts of the
-	    package
-	    <footnote>
-		Though there is nothing stopping an author who is also
-		the Debian maintainer from using it for all their
-		changes, it will have to be renamed if the Debian and
-		upstream maintainers become different
-		people.
-	    </footnote>.
-	  </p>
-
-	  <p>
-	    It has a special format which allows the package building
-	    tools to discover which version of the package is being
-	    built and find out other release-specific information.
-	  </p>
-
-	  <p>
-	    That format is a series of entries like this:
-	    <example>
-  <var>package</var> (<var>version</var>) <var>distribution(s)</var>; urgency=<var>urgency</var>
-
-   * <var>change details</var>
-   <var>more change details</var>
-   * <var>even more change details</var>
-
-  -- <var>maintainer name and email address</var>  <var>date</var>
-	    </example>
-	  </p>
-
-	  <p>
-	    <var>package</var> and <var>version</var> are the source
-	    package name and version number.
-	  </p>
-
-	  <p>
-	    <var>distribution(s)</var> lists the distributions where
-	    this version should be installed when it is uploaded - it
-	    is copied to the <tt>Distribution</tt> field in the
-	    <tt>.changes</tt> file.  See <ref id="pkg-f-Distribution">.
-	  </p>
-
-	  <p>
-	    <var>urgency</var> is the value for the <tt>Urgency</tt>
-	    field in the <file>.changes</file> file for the upload.  See
-	    <ref id="pkg-f-Urgency">.  It is not possible to specify an
-	    urgency containing commas; commas are used to separate
-	    <tt><var>keyword</var>=<var>value</var></tt> settings in
-	    the <prgn>dpkg</prgn> changelog format (though there is
-	    currently only one useful <var>keyword</var>,
-	    <tt>urgency</tt>).
-	  </p>
-
-	  <p>
-	    The change details may in fact be any series of lines
-	    starting with at least two spaces, but conventionally each
-	    change starts with an asterisk and a separating space and
-	    continuation lines are indented so as to bring them in
-	    line with the start of the text above.  Blank lines may be
-	    used here to separate groups of changes, if desired.
-	  </p>
-
-	  <p>
-	    The maintainer name and email address should <em>not</em>
-	    necessarily be those of the usual package maintainer.
-	    They should be the details of the person doing
-	    <em>this</em> version.  The information here will be
-	    copied to the <file>.changes</file> file, and then later used
-	    to send an acknowledgement when the upload has been
-	    installed.
-	  </p>
-
-	  <p>
-	    The <var>date</var> should be in RFC822 format
-	    <footnote>
-		This is generated by the <prgn>822-date</prgn>
-		program.
-	    </footnote>; it should include the timezone specified
-	    numerically, with the timezone name or abbreviation
-	    optionally present as a comment.
-	  </p>
-
-	  <p>
-	    The first "title" line with the package name should start
-	    at the left hand margin; the "trailer" line with the
-	    maintainer and date details should be preceded by exactly
-	    one space.  The maintainer details and the date must be
-	    separated by exactly two spaces.
-	  </p>
-
-	  <p>
-	    An Emacs mode for editing this format is available: it is
-	    called <tt>debian-changelog-mode</tt>.  You can have this
-	    mode selected automatically when you edit a Debian
-	    changelog by adding a local variables clause to the end of
-	    the changelog.
+	    See <ref id="dpkgchangelog">.
 	  </p>
 
 	  <sect2><heading>Defining alternative changelog formats
@@ -9179,37 +9269,15 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	    <p>
 	      The fields are:
 	      <list compact="compact">
-		<item>
-		  <p><qref id="pkg-f-Source"><tt>Source</tt></qref></p>
-		</item>
-		<item>
-		  <p><qref id="versions"><tt>Version</tt></qref> (mandatory)</p>
-		</item>
-		<item>
-		  <p>
-		    <qref id="pkg-f-Distribution"><tt>Distribution</tt></qref>
-		    (mandatory)
-		  </p>
-		</item>
-		<item>
-		  <p><qref id="pkg-f-Urgency"><tt>Urgency</tt></qref> (mandatory)</p>
-		</item>
-		<item>
-		  <p>
-		    <qref id="pkg-f-Maintainer"><tt>Maintainer</tt></qref>
-		    (mandatory)
-		  </p>
-		</item>
-		<item>
-		  <p><qref id="pkg-f-Date"><tt>Date</tt></qref></p>
-		</item>
-		<item>
-		  <p>
-		    <qref id="pkg-f-Changes"><tt>Changes</tt></qref>
-		    (mandatory)
-		  </p>
-		</item>
+		<item><qref id="f-Source"><tt>Source</tt></qref></item>
+		<item><qref id="f-Version"><tt>Version</tt></qref> (mandatory)</item>
+		<item><qref id="f-Distribution"><tt>Distribution</tt></qref> (mandatory)</item>
+		<item><qref id="f-Urgency"><tt>Urgency</tt></qref> (mandatory)</item>
+		<item><qref id="f-Maintainer"><tt>Maintainer</tt></qref> (mandatory)</item>
+		<item><qref id="f-Date"><tt>Date</tt></qref></item>
+		<item><qref id="f-Changes"><tt>Changes</tt></qref> (mandatory)</item>
 	      </list>
+	    </p>
 
 	    <p>
 	      If several versions are being returned (due to the use
@@ -9222,8 +9290,8 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	    </p>
 
 	    <p>
-	      For the format of the <tt>Changes</tt> field see <ref
-	      id="pkg-f-Changes">.
+	      For the format of the <tt>Changes</tt> field see
+	      <ref id="f-Changes">.
 	    </p>
 
 	    <p>
@@ -9249,83 +9317,26 @@ install-info --quiet --remove /usr/share/info/foobar.info
 
 	    <p>
 	      A changelog parser may not interact with the user at
-	      all.</p></sect2>
+	      all.
+	    </p>
+	  </sect2>
 	</sect1>
 
-<!-- FIXME: section pkg-srcsubstvars is the same as srcsubstvars -->
-
-	<sect1 id="pkg-srcsubstvars"><heading><file>debian/substvars</file>
-	and variable substitutions
-	  </heading>
+	<sect1 id="pkg-srcsubstvars">
+	  <heading><file>debian/substvars</file> and variable substitutions</heading>
 
 	  <p>
-	    When <prgn>dpkg-gencontrol</prgn>,
-	    <prgn>dpkg-genchanges</prgn> and <prgn>dpkg-source</prgn>
-	    generate control files they do variable substitutions on
-	    their output just before writing it.  Variable
-	    substitutions have the form
-	    <tt>${<var>variable-name</var>}</tt>.  The optional file
-	    <file>debian/substvars</file> contains variable substitutions
-	    to be used; variables can also be set directly from
-	    <file>debian/rules</file> using the <tt>-V</tt> option to the
-	    source packaging commands, and certain predefined
-	    variables are available.
+	    See <ref id="substvars">.
 	  </p>
 
-	  <p>
-	    This file is usually generated and modified dynamically by
-	    <file>debian/rules</file> targets, in which case it must be
-	    removed by the <tt>clean</tt> target.
-	  </p>
-
-	  <p>
-	    See <manref name="dpkg-source" section="1"> for full
-	    details about source variable substitutions, including the
-	    format of <file>debian/substvars</file>.</p>
 	</sect1>
 
-	<sect1><heading><file>debian/files</file>
-	  </heading>
+	<sect1>
+	  <heading><file>debian/files</file></heading>
 
 	  <p>
-	    This file is not a permanent part of the source tree; it
-	    is used while building packages to record which files are
-	    being generated.  <prgn>dpkg-genchanges</prgn> uses it
-	    when it generates a <file>.changes</file> file.
+	    See <ref id="debianfiles">.
 	  </p>
-
-	  <p>
-	    It should not exist in a shipped source package, and so it
-	    (and any backup files or temporary files such as
-	    <file>files.new</file>
-	      <footnote>
-		  <file>files.new</file> is used as a temporary file by
-		  <prgn>dpkg-gencontrol</prgn> and
-		  <prgn>dpkg-distaddfile</prgn> - they write a new
-		  version of <file>files</file> here before renaming it,
-		  to avoid leaving a corrupted copy if an error
-		  occurs
-	      </footnote>) should be removed by the
-	      <tt>clean</tt> target.  It may also be wise to
-	      ensure a fresh start by emptying or removing it at the
-	      start of the <tt>binary</tt> target.
-	  </p>
-
-	  <p>
-	    <prgn>dpkg-gencontrol</prgn> adds an entry to this file
-	    for the <file>.deb</file> file that will be created by
-	    <prgn>dpkg-deb</prgn> from the control file that it
-	    generates, so for most packages all that needs to be done
-	    with this file is to delete it in <tt>clean</tt>.
-	  </p>
-
-	  <p>
-	    If a package upload includes files besides the source
-	    package and any binary packages whose control files were
-	    made with <prgn>dpkg-gencontrol</prgn> then they should be
-	    placed in the parent of the package's top-level directory
-	    and <prgn>dpkg-distaddfile</prgn> should be called to add
-	    the file to the list in <file>debian/files</file>.</p>
 	</sect1>
 
 	<sect1><heading><file>debian/tmp</file>
@@ -9369,50 +9380,9 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	  <taglist>
 	    <tag>Debian source control file - <tt>.dsc</tt></tag>
 	    <item>
-
-	      <p>
-		This file contains a series of fields, identified and
-		separated just like the fields in the control file of
-		a binary package.  The fields are listed below; their
-		syntax is described above, in <ref id="pkg-controlfields">.
-		<list compact="compact">
-		  <item>
-		    <p><qref id="pkg-f-Source"><tt>Source</tt></qref></p>
-		  </item>
-		  <item>
-		    <p><qref id="versions"><tt>Version</tt></qref></p>
-		  </item>
-		  <item>
-		    <p><qref id="pkg-f-Maintainer"><tt>Maintainer</tt></qref></p>
-		  </item>
-		  <item>
-		    <p><qref id="pkg-f-Binary"><tt>Binary</tt></qref></p>
-		  </item>
-		  <item>
-		    <p><qref id="pkg-f-Architecture"><tt>Architecture</tt></qref></p>
-		  </item>
-                  <item>
-                     <p>
-                       <qref id="relationships"><tt>Build-Depends</tt> et
-                         al.</qref> (source package interrelationships)
-                     </p>
-                  </item>
-		  <item>
-		    <p>
-		      <qref id="pkg-f-Standards-Version"><tt>Standards-Version</tt></qref></p>
-		  </item>
-		  <item>
-		    <p><qref id="pkg-f-Files"><tt>Files</tt></qref></p>
-		  </item>
-		</list>
-
-	      <p>
-		The source package control file is generated by
-		<prgn>dpkg-source</prgn> when it builds the source
-		archive, from other files in the source package,
-		described above.  When unpacking it is checked against
-		the files and directories in the other parts of the
-		source package, as described below.</p>
+		This file is a control file used by <prgn>dpkg-source</prgn>
+		to extract a source package.
+		See <ref id="debiansourcecontrolfiles">.
 	    </item>
 
 	    <tag>
@@ -9479,9 +9449,8 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	</p>
       </sect>
 
-      <sect><heading>Unpacking a Debian source package without
-      <prgn>dpkg-source</prgn>
-	</heading>
+      <sect>
+	<heading>Unpacking a Debian source package without <prgn>dpkg-source</prgn></heading>
 
 	<p>
 	  <tt>dpkg-source -x</tt> is the recommended way to unpack a
@@ -9516,8 +9485,8 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	  <file>.diff.gz</file> file will not work.
 	</p>
 
-	<sect1><heading>Restrictions on objects in source packages
-	  </heading>
+	<sect1>
+	  <heading>Restrictions on objects in source packages</heading>
 
 	  <p>
 	    The source package may not contain any hard links
@@ -9595,9 +9564,8 @@ install-info --quiet --remove /usr/share/info/foobar.info
       </sect>
     </appendix>
 
-    <appendix id="pkg-controlfields"><heading>Control files and their
-	fields (from old Packaging Manual)
-      </heading>
+    <appendix id="pkg-controlfields">
+      <heading>Control files and their fields (from old Packaging Manual)</heading>
 
       <p>
 	Many of the tools in the <prgn>dpkg</prgn> suite manipulate
@@ -9608,50 +9576,11 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	format.
       </p>
 
-      <sect><heading>Syntax of control files
-	</heading>
+      <sect>
+	<heading>Syntax of control files</heading>
 
 	<p>
-	  A file consists of one or more paragraphs of fields.  The
-	  paragraphs are separated by blank lines.  Some control files
-	  only allow one paragraph; others allow several, in which
-	  case each paragraph often refers to a different package.
-	</p>
-
-	<p>
-	  Each paragraph is a series of fields and values; each field
-	  consists of a name, followed by a colon and the value.  It
-	  ends at the end of the line.  Horizontal whitespace (spaces
-	  and tabs) may occur before or after the value and is ignored
-	  there; it is conventional to put a single space after the
-	  colon.
-	</p>
-
-	<p>
-	  Some fields' values may span several lines; in this case
-	  each continuation line <em>must</em> start with a space or
-	  tab.  Any trailing spaces or tabs at the end of individual
-	  lines of a field value are ignored.
-	</p>
-
-	<p>
-	  Except where otherwise stated only a single line of data is
-	  allowed and whitespace is not significant in a field body.
-	  Whitespace may never appear inside names (of packages,
-	  architectures, files or anything else), version numbers or
-	  in between the characters of multi-character version
-	  relationships.
-	</p>
-
-	<p>
-	  Field names are not case-sensitive, but it is usual to
-	  capitalise the field names using mixed case as shown below.
-	</p>
-
-	<p>
-	  Blank lines, or lines consisting only of spaces and tabs,
-	  are not allowed within field values or between fields - that
-	  would mean a new paragraph.
+	  See <ref id="controlsyntax">.
 	</p>
 
 	<p>
@@ -9662,544 +9591,17 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	</p>
       </sect>
 
-      <sect><heading>List of fields
-	</heading>
-
-	<sect1 id="pkg-f-Package"><heading><tt>Package</tt>
-	  </heading>
-
-	  <p>
-	    The name of the binary package.  Package names consist of
-	    the alphanumerics and <tt>+</tt> <tt>-</tt> <tt>.</tt>
-	    (plus, minus and full stop).
-	    <footnote>
-		The characters <tt>@</tt> <tt>:</tt> <tt>=</tt>
-		<tt>%</tt> <tt>_</tt> (at, colon, equals, percent
-		and underscore) used to be legal and are still
-		accepted when found in a package file, but may not be
-		used in new packages.
-	    </footnote>
-	  </p>
-
-	  <p>
-	    They must be at least two characters and must start with
-	    an alphanumeric.  In current versions of dpkg they are
-	    sort of case-sensitive<footnote>
-		This is a bug.
-	    </footnote>; use lowercase package names unless
-	    the package you're building (or referring to, in other
-	    fields) is already using uppercase.
-	  </p>
-	</sect1>
-
-	<sect1 id="pkg-f-Version"><heading><tt>Version</tt>
-	  </heading>
-
-	  <p>
-	    This lists the source or binary package's version number -
-	    see <ref id="versions">.
-	  </p>
-
-	</sect1>
-
-	<sect1 id="pkg-f-Architecture"><heading><tt>Architecture</tt>
-	  </heading>
-
-	  <p>
-	    This is the architecture string; it is a single word for
-	    the Debian architecture.
-	  </p>
-
-	  <p>
-	    <prgn>dpkg</prgn> will check the declared architecture of
-	    a binary package against its own compiled-in value before
-	    it installs it.
-	  </p>
-
-	  <p>
-	    The special value <tt>all</tt> indicates that the package
-	    is architecture-independent.
-	  </p>
-
-	  <p>
-	    In the main <file>debian/control</file> file in the source
-	    package, or in the source package control file
-	    <file>.dsc</file>, a list of architectures (separated by
-	    spaces) is also allowed, as is the special value
-	    <tt>any</tt>.  A list indicates that the source will build
-	    an architecture-dependent package, and will only work
-	    correctly on the listed architectures.  <tt>any</tt>
-	    indicates that though the source package isn't dependent
-	    on any particular architecture and should compile fine on
-	    any one, the binary package(s) produced are not
-	    architecture-independent but will instead be specific to
-	    whatever the current build architecture is.
-	  </p>
-
-	  <p>
-	    In a <file>.changes</file> file the <tt>Architecture</tt>
-	    field lists the architecture(s) of the package(s)
-	    currently being uploaded.  This will be a list; if the
-	    source for the package is being uploaded too the special
-	    entry <tt>source</tt> is also present.
-	  </p>
-
-	  <p>
-	    See <ref id="pkg-debianrules"> for information how to get the
-	    architecture for the build process.
-	  </p>
-	</sect1>
-
-	<sect1 id="pkg-f-Maintainer"><heading><tt>Maintainer</tt>
-	  </heading>
-
-	  <p>
-	    The package maintainer's name and email address.  The name
-	    should come first, then the email address inside angle
-	    brackets <tt>&lt;&gt</tt> (in RFC822 format).
-	  </p>
-
-	  <p>
-	    If the maintainer's name contains a full stop then the
-	    whole field will not work directly as an email address due
-	    to a misfeature in the syntax specified in RFC822; a
-	    program using this field as an address must check for this
-	    and correct the problem if necessary (for example by
-	    putting the name in round brackets and moving it to the
-	    end, and bringing the email address forward).
-	  </p>
-
-	  <p>
-	    In a <file>.changes</file> file or parsed changelog data this
-	    contains the name and email address of the person
-	    responsible for the particular version in question - this
-	    may not be the package's usual maintainer.
-	  </p>
-
-	  <p>
-	    This field is usually optional in as far as the
-	    <prgn>dpkg</prgn> are concerned, but its absence when
-	    building packages usually generates a warning.</p>
-	</sect1>
-
-	<sect1 id="pkg-f-Source"><heading><tt>Source</tt>
-	  </heading>
-
-	  <p>
-	    This field identifies the source package name.
-	  </p>
-
-	  <p>
-	    In a main source control information or a
-	    <file>.changes</file> or <file>.dsc</file> file or parsed
-	    changelog data this may contain only the name of the
-	    source package.
-	  </p>
-
-	  <p>
-	    In the control file of a binary package (or in a
-	    <file>Packages</file> file) it may be followed by a version
-	    number in parentheses.
-	    <footnote>
-		It is usual to leave a space after the package name if
-		a version number is specified.
-	    </footnote> This version number may be omitted (and is, by
-	    <prgn>dpkg-gencontrol</prgn>) if it has the same value as
-	    the <tt>Version</tt> field of the binary package in
-	    question.  The field itself may be omitted from a binary
-	    package control file when the source package has the same
-	    name and version as the binary package.
-	  </p>
-	</sect1>
-
-	<sect1><heading>Package interrelationship fields:
-	    <tt>Depends</tt>, <tt>Pre-Depends</tt>,
-	    <tt>Recommends</tt> <tt>Suggests</tt>, <tt>Conflicts</tt>,
-	    <tt>Provides</tt>, <tt>Replaces</tt>
-	  </heading>
-
-	  <p>
-	    These fields describe the package's relationships with
-	    other packages.  Their syntax and semantics are described
-	    in <ref id="relationships">.</p>
-	</sect1>
-
-	<sect1 id="pkg-f-Description"><heading><tt>Description</tt>
-	  </heading>
-
-	  <p>
-	    In a binary package <tt>Packages</tt> file or main source
-	    control file this field contains a description of the
-	    binary package, in a special format.  See <ref
-	    id="descriptions"> for details.
-	  </p>
-
-	  <p>
-	    In a <file>.changes</file> file it contains a summary of the
-	    descriptions for the packages being uploaded.  The part of
-	    the field before the first newline is empty; thereafter
-	    each line has the name of a binary package and the summary
-	    description line from that binary package.  Each line is
-	    indented by one space.</p>
-	</sect1>
-
-	<sect1 id="pkg-f-Essential"><heading><tt>Essential</tt>
-	  </heading>
-
-	  <p>
-	    This is a boolean field which may occur only in the
-	    control file of a binary package (or in the
-	    <file>Packages</file> file) or in a per-package fields
-	    paragraph of a main source control data file.
-	  </p>
-
-	  <p>
-	    If set to <tt>yes</tt> then <prgn>dpkg</prgn> and
-	    <prgn>dselect</prgn> will refuse to remove the package
-	    (though it can be upgraded and/or replaced).  The other
-	    possible value is <tt>no</tt>, which is the same as not
-	    having the field at all.</p>
-	</sect1>
-
-	<sect1 id="pkg-f-classification"><heading><tt>Section</tt> and
-	<tt>Priority</tt>
-	  </heading>
-
-	  <p>
-	    These two fields classify the package.  The
-	    <tt>Priority</tt> represents how important that it is that
-	    the user have it installed; the <tt>Section</tt>
-	    represents an application area into which the package has
-	    been classified.
-	  </p>
-
-	  <p>
-	    When they appear in the <file>debian/control</file> file these
-	    fields give values for the section and priority subfields
-	    of the <tt>Files</tt> field of the <file>.changes</file> file,
-	    and give defaults for the section and priority of the
-	    binary packages.
-	  </p>
-
-	  <p>
-	    The section and priority are represented, though not as
-	    separate fields, in the information for each file in the
-	    <qref id="pkg-f-Files"><tt>-File</tt></qref>field of a
-	    <file>.changes</file> file.  The section value in a
-	    <file>.changes</file> file is used to decide where to install
-	    a package in the FTP archive.
-	  </p>
-
-	  <p>
-	    These fields are not used by by <prgn>dpkg</prgn> proper,
-	    but by <prgn>dselect</prgn> when it sorts packages and
-	    selects defaults.
-	  </p>
-
-	  <p>
-	    These fields can appear in binary package control files,
-	    in which case they provide a default value in case the
-	    <file>Packages</file> files are missing the information.
-	    <prgn>dpkg</prgn> and <prgn>dselect</prgn> will only use
-	    the value from a <file>.deb</file> file if they have no other
-	    information; a value listed in a <file>Packages</file> file
-	    will always take precedence.  By default
-	    <prgn>dpkg-gencontrol</prgn> does not include the section
-	    and priority in the control file of a binary package - use
-	    the <tt>-isp</tt>, <tt>-is</tt> or <tt>-ip</tt> options to
-	    achieve this effect.</p>
-	</sect1>
-
-	<sect1 id="pkg-f-Binary"><heading><tt>Binary</tt>
-	  </heading>
-
-	  <p>
-	    This field is a list of binary packages.
-	  </p>
-
-	  <p>
-	    When it appears in the <file>.dsc</file> file it is the list
-	    of binary packages which a source package can produce.  It
-	    does not necessarily produce all of these binary packages
-	    for every architecture.  The source control file doesn't
-	    contain details of which architectures are appropriate for
-	    which of the binary packages.
-	  </p>
-
-	  <p>
-	    When it appears in a <file>.changes</file> file it lists the
-	    names of the binary packages actually being uploaded.
-	  </p>
-
-	  <p>
-	    The syntax is a list of binary packages separated by
-	    commas.
-	    <footnote>
-		A space after each comma is conventional.
-	    </footnote> Currently the packages must be separated using
-	    only spaces in the <file>.changes</file> file.</p>
-	</sect1>
-
-	<sect1 id="pkg-f-Installed-Size"><heading><tt>Installed-Size</tt>
-	  </heading>
-
-	  <p>
-	    This field appears in the control files of binary
-	    packages, and in the <file>Packages</file> files.  It gives
-	    the total amount of disk space required to install the
-	    named package.
-	  </p>
-
-	  <p>
-	    The disk space is represented in kilobytes as a simple
-	    decimal number.</p>
-	</sect1>
-
-	<sect1 id="pkg-f-Files"><heading><tt>Files</tt>
-	  </heading>
-
-	  <p>
-	    This field contains a list of files with information about
-	    each one.  The exact information and syntax varies with
-	    the context.  In all cases the part of the field
-	    contents on the same line as the field name is empty.  The
-	    remainder of the field is one line per file, each line
-	    being indented by one space and containing a number of
-	    sub-fields separated by spaces.
-	  </p>
-
-	  <p>
-	    In the <file>.dsc</file> (Debian source control) file each
-	    line contains the MD5 checksum, size and filename of the
-	    tarfile and (if applicable) diff file which make up the
-	    remainder of the source package.
-	    <footnote>
-		That is, the parts which are not the <tt>.dsc</tt>.
-	    </footnote> The exact forms of the filenames are described
-	    in <ref id="pkg-sourcearchives">.
-	  </p>
-
-	  <p>
-	    In the <file>.changes</file> file this contains one line per
-	    file being uploaded.  Each line contains the MD5 checksum,
-	    size, section and priority and the filename.  The section
-	    and priority are the values of the corresponding fields in
-	    the main source control file - see <ref
-	    id="pkg-f-classification">.  If no section or priority is
-	    specified then <tt>-</tt> should be used, though section
-	    and priority values must be specified for new packages to
-	    be installed properly.
-	  </p>
-
-	  <p>
-	    The special value <tt>byhand</tt> for the section in a
-	    <tt>.changes</tt> file indicates that the file in question
-	    is not an ordinary package file and must by installed by
-	    hand by the distribution maintainers.  If the section is
-	    <tt>byhand</tt> the priority should be <tt>-</tt>.
-	  </p>
-
-	  <p>
-	    If a new Debian revision of a package is being shipped and
-	    no new original source archive is being distributed the
-	    <tt>.dsc</tt> must still contain the <tt>Files</tt> field
-	    entry for the original source archive
-	    <file><var>package</var>-<var>upstream-version</var>.orig.tar.gz</file>,
-	    but the <file>.changes</file> file should leave it out.  In
-	    this case the original source archive on the distribution
-	    site must match exactly, byte-for-byte, the original
-	    source archive which was used to generate the
-	    <file>.dsc</file> file and diff which are being uploaded.</p>
-	</sect1>
-
-
-	<sect1
-	id="pkg-f-Standards-Version"><heading><tt>Standards-Version</tt>
-	  </heading>
-
-	  <p>
-	    The most recent version of the standards (the Debian Policy
-	    and associated texts) with which the package complies. This
-	    is updated manually when editing the source package to
-	    conform to newer standards; it can sometimes be used to
-	    tell when a package needs attention.
-	  </p>
-
-	  <p>
-	    Its format is the same as that of a version number except
-	    that no epoch or Debian revision is allowed - see <ref
-	    id="versions">.</p>
-	</sect1>
-
-
-	<sect1 id="pkg-f-Distribution"><heading><tt>Distribution</tt>
-	  </heading>
-
-	  <p>
-	    In a <file>.changes</file> file or parsed changelog output
-	    this contains the (space-separated) name(s) of the
-	    distribution(s) where this version of the package should
-	    be or was installed.  Distribution names follow the rules
-	    for package names.  (See <ref id="pkg-f-Package">).
-	  </p>
-
-	  <p>
-	    Current distribution values are:
-	  <taglist>
-	    <tag><em>stable</em></tag>
-	    <item>
-	      <p>
-		This is the current "released" version of Debian
-		GNU/Linux.  A new version is released approximately
-		every 3 months after the <em>development</em> code has
-		been <em>frozen</em> for a month of testing.  Once the
-		distribution is <em>stable</em> only major bug fixes
-		are allowed. When changes are made to this
-		distribution, the release number is increased
-		(for example: 1.2r1 becomes 1.2r2 then 1.2r3, etc).
-	      </p>
-	    </item>
-
-	    <tag><em>unstable</em></tag>
-	    <item>
-	      <p>
-		This distribution value refers to the
-		<em>developmental</em> part of the Debian distribution
-		tree. New packages, new upstream versions of packages
-		and bug fixes go into the <em>unstable</em> directory
-		tree. Download from this distribution at your own
-		risk.</p>
-	    </item>
-
-	    <tag><em>contrib</em></tag>
-	    <item>
-	      <p>
-		The packages with this distribution value do not meet
-		the criteria for inclusion in the main Debian
-		distribution as defined by the Policy Manual, but meet
-		the criteria for the <em>contrib</em>
-		Distribution. There is currently no distinction
-		between stable and unstable packages in the
-		<em>contrib</em> or <em>non-free</em>
-		distributions. Use your best judgement in downloading
-		from this Distribution.</p>
-	    </item>
-
-	    <tag><em>non-free</em></tag>
-	    <item>
-	      <p>
-		Like the packages in the <em>contrib</em> seciton,
-		the packages in <em>non-free</em> do not meet the
-		criteria for inclusion in the main Debian distribution
-		as defined by the Policy Manual. Again, use your best
-		judgement in downloading from this Distribution.</p>
-
-	    <tag><em>experimental</em></tag>
-	    <item>
-	      <p>
-		The packages with this distribution value are deemed
-		by their maintainers to be high risk. Oftentimes they
-		represent early beta or developmental packages from
-		various sources that the maintainers want people to
-		try, but are not ready to be a part of the other parts
-		of the Debian distribution tree. Download at your own
-		risk.</p>
-	    </item>
-
-	    <tag><em>frozen</em></tag>
-	    <item>
-	      <p>
-		From time to time, (currently, every 3 months) the
-		<em>unstable</em> distribution enters a state of
-		"code-freeze" in anticipation of release as a
-		<em>stable</em> version. During this period of testing
-		(usually 4 weeks) only fixes for existing or
-		newly-discovered bugs will be allowed.
-	      </p>
-	    </item>
-	  </taglist> You should list <em>all</em> distributions that
-	  the package should be installed into. Except in unusual
-	  circumstances, installations to <em>stable</em> should also
-	  go into <em>frozen</em> (if it exists) and
-	  <em>unstable</em>. Likewise, installations into
-	  <em>frozen</em> should also go into <em>unstable</em>.</p>
-	</sect1>
-
-	<sect1 id="pkg-f-Urgency"><heading><tt>Urgency</tt>
-	  </heading>
-
-	  <p>
-	    This is a description of how important it is to upgrade to
-	    this version from previous ones.  It consists of a single
-	    keyword usually taking one of the values <tt>LOW</tt>,
-	    <tt>MEDIUM</tt> or <tt>HIGH</tt>) followed by an optional
-	    commentary (separated by a space) which is usually in
-	    parentheses.  For example:
-	    <example>
-  Urgency: LOW (HIGH for diversions users)
-	    </example>
-	  </p>
-
-	  <p>
-	    This field appears in the <file>.changes</file> file and in
-	    parsed changelogs; its value appears as the value of the
-	    <tt>urgency</tt> attribute in a <prgn>dpkg</prgn>-style
-	    changelog (see <ref id="pkg-dpkgchangelog">).
-	  </p>
-
-	  <p>
-	    Urgency keywords are not case-sensitive.</p>
-	</sect1>
-
-	<sect1 id="pkg-f-Date"><heading><tt>Date</tt>
-	  </heading>
-
-	  <p>
-	    In <tt>.changes</tt> files and parsed changelogs, this
-	    gives the date the package was built or last edited.</p>
-	</sect1>
-
-	<sect1 id="pkg-f-Format"><heading><tt>Format</tt>
-	  </heading>
-
-	  <p>
-	    This field occurs in <file>.changes</file> files, and
-	    specifies a format revision for the file.  The format
-	    described here is version <tt>1.5</tt>.  The syntax of the
-	    format value is the same as that of a package version
-	    number except that no epoch or Debian revision is allowed
-	    - see <ref id="versions">.</p>
-	</sect1>
-
-	<sect1 id="pkg-f-Changes"><heading><tt>Changes</tt>
-	  </heading>
-
-	  <p>
-	    In a <file>.changes</file> file or parsed changelog this field
-	    contains the human-readable changes data, describing the
-	    differences between the last version and the current one.
-	  </p>
-
-	  <p>
-	    There should be nothing in this field before the first
-	    newline; all the subsequent lines must be indented by at
-	    least one space; blank lines must be represented by a line
-	    consiting only of a space and a full stop.
-	  </p>
-
-	  <p>
-	    Each version's change information should be preceded by a
-	    "title" line giving at least the version, distribution(s)
-	    and urgency, in a human-readable way.
-	  </p>
-
-	  <p>
-	    If data from several versions is being returned the entry
-	    for the most recent version should be returned first, and
-	    entries should be separated by the representation of a
-	    blank line (the "title" line may also be followed by the
-	    representation of blank line).</p>
-	</sect1>
+      <sect>
+	<heading>List of fields</heading>
+
+	<p>
+	  See <ref id="controlfieldslist">.
+	</p>
+
+	<p>
+	  This section now contains only the fields that didn't belong
+	  to the Policy manual.
+	</p>
 
 	<sect1 id="pkg-f-Filename">
 	  <heading><tt>Filename</tt> and <tt>MSDOS-Filename</tt></heading>
