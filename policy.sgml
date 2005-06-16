@@ -4228,7 +4228,11 @@ libbar 1 bar1 (>= 1.0-1)
 	    referred here can be found in the <tt>debian-policy</tt>
 	    package or on
 	    <url id="http://www.debian.org/doc/packaging-manuals/fhs/"
-	      name="FHS (Debian copy)"> alongside this manual. The
+	      name="FHS (Debian copy)"> alongside this manual (or, if
+	    you have the <package>debian-policy</package> installed,
+	    you can try <url
+	      id="file:///usr/share/doc/debian-policy/fhs/" name="FHS
+	      (local copy)">). The
 	    latest version, which may be a more recent version, may
 	    be found on
 	    <url id="http://www.pathname.com/fhs/" name="FHS (upstream)">.
@@ -5327,7 +5331,7 @@ Reloading <var>description</var> configuration...done.
 
 	<p>
 	  <list>
-	    <item><p><tt>&lt;--</tt> generates <tt>KB_Backspace</tt>
+	    <item><p><tt>&lt;--</tt> generates <tt>KB_BackSpace</tt>
 		in X.</p></item>
 
 	    <item><p><tt>Delete</tt> generates <tt>KB_Delete</tt> in
@@ -5549,7 +5553,7 @@ install -s # (or use strip on the files in debian/tmp)
 	      <p>
 		This string means that the debugging symbols should
 		not be stripped from the binary during installation,
-		so that debugging information may be included in the           +               package.
+		so that debugging information may be included in the package.
 	      </p>
 	    </item>
 	  </taglist>
@@ -5880,8 +5884,9 @@ strip --strip-unneeded <var>your-lib</var>
 	<p>
 	  You may wish to restrict your script to POSIX features when
 	  possible so that it may use <file>/bin/sh</file> as its
-	  interpreter. If your script works with <prgn>ash</prgn>,
-	  it's probably POSIX compliant, but if you are in doubt, use
+	  interpreter. If your script works with <prgn>dash</prgn>
+	  (originally called <prgn>ash</prgn>), it's probably POSIX
+	  compliant, but if you are in doubt, use
 	  <file>/bin/bash</file>.
 	</p>
 
@@ -7757,6 +7762,14 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	    </p>
 	  </footnote>
 	</p>
+
+	<p>
+	  <file>/usr/share/doc/<var>package</var></file> may be a symbolic
+	  link to another directory in <file>/usr/share/doc</file> only if
+	  the two packages both come from the same source and the
+	  first package Depends on the second. 
+	</p>
+
 
 	<p>
 	  All of these files should be installed compressed using

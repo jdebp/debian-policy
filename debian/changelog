@@ -1,10 +1,22 @@
 debian-policy (3.5.7.1) unstable; urgency=low
 
-  * Fix the debconf spec to (postinst -> postrm)             closes: Bug#129375
+  * Fix the debconf spec to (postinst -> postrm) closes: Bug#129375, Bug#160839
   * Fix update-rc.d example, mention that changing run-levels or priority
     may require removing and re-creating the symbolic links. closes: Bug#149709
+  * Fix the groff and col -b interaction                     closes: Bug#164755
+  * Added section numbers to upgrading checklist             closes: Bug#160914
+  * Fixed typo KB_Backspace -> KB_BackSpace
+  * Clarify wording in the section about ChangeLog files to allow for
+    symbolic links in /usr/share/doc/ directory (was already allowed in a
+    previous section of policy 13.6)                         closes: Bug#111137
+  * Removed a spurious + from text.                          closes: Bug#160908
+  * Added a note in the debconf spec to consult debconf-devel(8) for
+    details.                                                 closes: Bug#133030
+  * Added a reference to the local copy of the FHS.          closes: Bug#122928
+  * Updated reference to ash (dash). This implements the non controversial
+    parts of Bug#161455.    
 
- --
+ -- Manoj Srivastava <srivasta@debian.org>  Sat, 26 Oct 2002 13:12:49 -0500
 
 debian-policy (3.5.7.0) unstable; urgency=low
 
