@@ -131,6 +131,7 @@
 	  <em>may</em> (or <em>optional</em>) are truly optional and
 	  adherence is left to the maintainer's discretion.
 	</p>
+
 	<p>
 	  These classifications are roughly equivalent to the bug
 	  severities <em>serious</em> (for <em>must</em> or
@@ -138,11 +139,13 @@
 	  <em>normal</em> or <em>important</em>
 	  (for <em>should</em> or <em>recommended</em> directive
 	  violations) and <em>wishlist</em> (for <em>optional</em>
-	  items).<footnote>
-	    <p>Compare RFC 2119.  Note, however, that these words are
-	  used in a different way in this document.</p>
+	  items).
+	  <footnote>
+		Compare RFC 2119.  Note, however, that these words are
+		used in a different way in this document.
 	  </footnote>
 	</p>
+
 	<p>
 	  Much of the information presented in this manual will be
 	  useful even when building a package which is to be
@@ -224,6 +227,45 @@
           Please do not try to reach the individual authors or maintainers
           of the Policy Manual regarding changes to the Policy.
         </p>
+      </sect>
+
+      <sect id="related">
+	<heading>Related documents</heading>
+
+	<p>
+	  There are several other documents other than this Policy Manual
+	  that are necessary to fully understand some Debian policies and
+	  procedures.
+	</p>
+
+	<p>
+	  The external "sub-policy" documents are referred to in:
+	  <list compact="compact">
+	    <item><ref id="fhs"></item>
+	    <item><ref id="virtual_pkg"></item>
+	    <item><ref id="menus"></item>
+	    <item><ref id="mime"></item>
+	    <item><ref id="perl"></item>
+	    <item><ref id="maintscriptprompt"></item>
+	    <item><ref id="emacs"></item>
+	  </list>
+	</p>
+
+	<p>
+	  In addition to those, which carry the weight of policy, there
+	  is the Debian Developer's Reference. This document describes
+	  procedures and resources for Debian developers, but it is
+	  <em>not</em> normative; rather, it includes things that don't
+	  belong into the Policy, such as best practices for developers.
+	</p>
+
+	<p>
+	  The Developer's Reference is available in the
+	  <package>developers-reference</package> package.
+	  It's also available from the Debian web mirrors at
+	  <tt><url name="/doc/developers-reference/"
+		id="http://www.debian.org/doc/developers-reference/"></tt>.
+	</p>
       </sect>
 
     </chapt>
@@ -794,17 +836,9 @@
 	    maintainership of the package until someone else
 	    volunteers for that task. These packages are called
 	    <em>orphaned packages</em>.<footnote>
-	      <p>
 		The detailed procedure for doing this gracefully can
-		be found in the Debian Developer's Reference, either
-		in the <tt>developers-reference</tt> package, or on
-		the Debian FTP server
-		<ftpsite>ftp.debian.org</ftpsite> as
-		<ftppath>/debian/doc/package-developer/developers-reference.txt.gz</ftppath>
-		or from the <url
-		id="http://www.debian.org/doc/packaging-manuals/developers-reference/"
-		name="Debian Developer's Reference"> webpage.
-	      </p>
+		be found in the Debian Developer's Reference,
+		see <ref id="related">.
 	    </footnote>
 	  </p>
 	</sect1>
@@ -1043,28 +1077,21 @@
 	  </p>
 
 
-	  <sect2>
+	  <sect2 id="maintscriptprompt">
 	    <heading>Prompting in maintainer scripts</heading>
 	    <p>
 	      Package maintainer scripts may prompt the user if
 	      necessary. Prompting may be accomplished by
 	      hand<footnote>
-		<p>From the Jasrgon file: by hand 2. By extension,
+		  From the Jargon file: by hand 2. By extension,
 		  writing code which does something in an explicit or
 		  low-level way for which a presupplied library
 		  (<em>debconf, in this instance</em>) routine ought
-		  to have been available.</p>
-	      </footnote> (but this is deprecated), or by
-	      communicating though a program, which conforms to the
-	      Debian Configuration management specification, version 2
-	      or higher (such as <prgn>debconf</prgn>).  Thiss
-	      specification is included in the
-	      <file>debconf_specification</file> files in the
-	      <package>debian-policy</package> package.  You may also
-	      find this file on the FTP site
-	      <ftpsite>ftp.debian.org</ftpsite> in
-	      <ftppath>/debian/doc/package-developer/debconf_specification.txt.gz</ftppath>
-	      or on your local mirror.<footnote>
+		  to have been available.
+	      </footnote> (but this is deprecated), or by communicating
+	      through a program which conforms to the Debian Configuration
+	      management specification, version 2 or higher, such as
+	      <prgn>debconf</prgn><footnote>
 		<p>
 		  6% of Debian packages [see <url
 		  id="http://auric.debian.org/%7Ejoeyh/debconf-stats/data/"
@@ -1089,10 +1116,22 @@
 		  of the protocol these things use, the time has
 		  finally come to reflect the use of these things in
 		  policy.
-
 		</p>
-	      </footnote>
+	      </footnote>.
 	    </p>
+
+	    <p>
+	      The Debian Configuration management specification is included
+	      in the <file>debconf_specification</file> files in the
+	      <package>debian-policy</package> package.
+	      It is also available from the Debian web mirrors at
+              <tt><url name="/doc/packaging-manuals/debconf_specification.html"
+		id="http://www.debian.org/doc/packaging-manuals/debconf_specification.html"></tt>
+	      and from the Debian archive mirrors at
+              <tt><url name="/doc/package-developer/debconf_specification.txt.gz"
+		id="http://ftp.debian.org/debian/doc/package-developer/debconf_specification.txt.gz"></tt>.
+	    </p>
+
 	    <p>
 	      Packages which use the Debian Configuration management
 	      specification may contain an additional
@@ -1103,13 +1142,11 @@
 	      dependencies or pre-dependancies are satisfied.
 	      Therefore it must work using only the tools present in
 	      <em>essential</em> packages.<footnote>
-		<p>
 		  <package>Debconf</package> or another tool that
 		  implements the Debian Configuration management
 		  specification will also be installed, and any
 		  versioned dependencies on it will be satisfied
 		  before preconfiguration begins.
-		</p>
 	      </footnote>
 	    </p>
 
@@ -1199,7 +1236,6 @@
 	    are significant in the <em>Standards-Version</em> control
 	    field, and so either these three components or the all
 	    four components may be specified.<footnote>
-	      <p>
 		In the past, people specified the full version number
 		in the Standards-Version field, for example "2.3.0.0".
 		Since minor patch-level changes don't introduce new
@@ -1208,7 +1244,6 @@
 		specified, in this example "2.3.0".  All four
 		components may still be used if someone wishes to do
 		so.
-	      </p>
 	    </footnote>
 	  </p>
 
@@ -1219,11 +1254,9 @@
 	    package complies with the new standards you should update the
 	    <tt>Standards-Version</tt> source package field and
 	    release it.<footnote>
-	      <p>
 		See the file <file>upgrading-checklist</file> for
 		information about policy which has changed between
 		different versions of this document.
-	      </p>
 	    </footnote>
 	  </p>
 	</sect1>
@@ -1250,7 +1283,7 @@
 	    <file>/usr/share/doc/build-essential/list</file> (which is
 	    contained in the <tt>build-essential</tt>
 	    package).<footnote>
-	      <p>Rationale:
+	      Rationale:
 		<list compact="compact">
 		  <item>
 		      This allows maintaining the list separately
@@ -1271,8 +1304,6 @@
 		      the policy management process in the BTS.
 		  </item>
 		</list>
-	      </p>
-
 	    </footnote>
 	  </p>
 
@@ -1282,7 +1313,6 @@
 	    build.  It is not necessary to list packages which are
 	    required merely because some other package in the list of
 	    build-time dependencies depends on them.<footnote>
-	      <p>
 		The reason for this is that dependencies change, and
 		you should list all those packages, and <em>only</em>
 		those packages that <em>you</em> need directly.  What
@@ -1294,7 +1324,6 @@
 		them: installation of <package>libimlib2-dev</package>
 		will automatically ensure that all of its run-time
 		dependencies are satisfied.
-	      </p>
 	    </footnote>
 	  </p>
 
@@ -1667,7 +1696,7 @@ Package: libc6
 	    <p>
 	      The <var>upstream_version</var> may contain only
 	      alphanumerics<footnote>
-		<p>Alphanumerics are <tt>A-Za-z0-9</tt> only.</p>
+		Alphanumerics are <tt>A-Za-z0-9</tt> only.
 	      </footnote>
 	      and the characters <tt>.</tt> <tt>+</tt> <tt>-</tt>
 	      <tt>:</tt> (full stop, plus, hyphen, colon) and should
@@ -1811,14 +1840,12 @@ Package: libc6
 	  Maintainers should preserve the modification times of the
 	  upstream source files in a package, as far as is reasonably
 	  possible.<footnote>
-	    <p>
 	      The rationale is that there is some information conveyed
 	      by knowing the age of the file, for example, you could
 	      recognize that some documentation is very old by looking
 	      at the modification time, so it would be nice if the
 	      modification time of the upstream source would be
 	      preserved.
-	    </p>
 	  </footnote>
 	</p>
       </sect>
@@ -1903,7 +1930,6 @@ Package: libc6
 		complete.  This will ensure that if <tt>debian/rules
 		build</tt> is run again it will not rebuild the whole
 		program.<footnote>
-		  <p>
 		    Another common way to do this is for <tt>build</tt>
 		    to depend on <prgn>build-stamp</prgn> and to do
 		    nothing else, and for the <prgn>build-stamp</prgn>
@@ -1916,7 +1942,6 @@ Package: libc6
 		    <tt>.PHONY</tt> target).  See the documentation of
 		    <prgn>make</prgn> for more information on phony
 		    targets.
-		  </p>
 		</footnote>
 	      </p>
 	    </item>
@@ -1964,11 +1989,9 @@ Package: libc6
 	      <p>
 		The <tt>binary</tt> targets must be invoked as
 		root.<footnote>
-		  <p>
 		    The <prgn>fakeroot</prgn> package often allows one
 		    to build a package correctly even without being
 		    root.
-		  </p>
 		</footnote>
 	      </p>
 	    </item>
@@ -2093,14 +2116,12 @@ Package: libc6
 	<p>
 	  This file records the changes to the Debian-specific parts of the
 	  package<footnote>
-	    <p>
 	      Though there is nothing stopping an author who is also
 	      the Debian maintainer from using it for all their
 	      changes, it will have to be renamed if the Debian and
 	      upstream maintainers become different people.  In such a
 	      case, however, it might be better to maintain the
 	      package as a non-native package.
-	    </p>
 	  </footnote>.
 	</p>
 
@@ -2152,14 +2173,12 @@ Package: libc6
 	  <prgn>dpkg</prgn> changelog format (though there is
 	  currently only one useful <var>keyword</var>,
 	  <tt>urgency</tt>).<footnote>
-	    <p>
 	      Recognised urgency values are <tt>low</tt>,
 	      <tt>medium</tt>, <tt>high</tt> and <tt>emergency</tt>.
 	      They have an effect on how quickly a package will be
 	      considered for inclusion into the <tt>testing</tt>
 	      distribution, and give an indication of the importance
 	      of any fixes included in this upload.
-	    </p>
 	  </footnote>
 	</p>
 
@@ -2178,7 +2197,6 @@ Package: libc6
 	  inclusion of this package into the Debian archive by
 	  including the string: <tt>closes: Bug#<var>nnnnn</var></tt>
 	  in the change details.<footnote>
-	    <p>
 	      To be precise, the string should match the following
 	      Perl regular expression:
 	      <example>
@@ -2187,7 +2205,6 @@ Package: libc6
 	      Then all of the bug numbers listed will be closed by the
 	      archive maintenance script (<prgn>katie</prgn>), or in
 	      the case of an NMU, marked as fixed.
-	    </p>
 	  </footnote>
 	</p>
 
@@ -2203,10 +2220,8 @@ Package: libc6
 
 	<p>
 	  The <var>date</var> should be in RFC822 format<footnote>
-	    <p>
 	      This is generated by the <prgn>822-date</prgn>
 	      program.
-	    </p>
 	  </footnote>; it should include the time zone specified
 	  numerically, with the time zone name or abbreviation
 	  optionally present as a comment in parentheses.
@@ -2278,14 +2293,12 @@ Package: libc6
 	  It should not exist in a shipped source package, and so it
 	  (and any backup files or temporary files such as
 	  <file>files.new</file><footnote>
-	    <p>
 	      <file>files.new</file> is used as a temporary file by
 	      <prgn>dpkg-gencontrol</prgn> and
 	      <prgn>dpkg-distaddfile</prgn> - they write a new
 	      version of <tt>files</tt> here before renaming it,
 	      to avoid leaving a corrupted copy if an error
-	      occurs
-	    </p>
+	      occurs.
 	  </footnote>) should be removed by the
 	  <tt>clean</tt> target.  It may also be wise to
 	  ensure a fresh start by emptying or removing it at the
@@ -2327,9 +2340,7 @@ Package: libc6
 	    </p>
 	  </footnote>, device special files, sockets or setuid or
 	  setgid files.<footnote>
-	    <p>
 	      Setgid directories are allowed.
-	    </p>
 	  </footnote>
 	</p>
       </sect>
@@ -2541,13 +2552,11 @@ Package: libc6
 	  should merely do the things that were left undone the first
 	  time, if any, and exit with a success status if everything
 	  is OK.<footnote>
-	    <p>
 	      This is so that if an error occurs, the user interrupts
 	      <prgn>dpkg</prgn> or some other unforeseen circumstance
 	      happens you don't leave the user with a badly-broken
 	      package when <prgn>dpkg</prgn> attempts to repeat the
 	      action.
-	    </p>
 	  </footnote>
 	</p>
       </sect>
@@ -3651,14 +3660,12 @@ Replaces: mail-transport-agent
 	<package><var>libraryname</var><var>soversion</var></package>, where
 	<file><var>soversion</var></file> is the version number in the
 	soname of the shared library<footnote>
-	    <p>
 	      The soname is the shared object name: it's the thing
 	      that has to match exactly between building an executable
 	      and running it for the dynamic linker to be able run the
 	      program.  For example, if the soname of the library is
 	      <file>libfoo.so.6</file>, the library package would be
 	      called <file>libfoo6</file>.
-	    </p>
 	  </footnote>.
 	Alternatively, if it would be confusing to directly append
 	<var>soversion</var> to <var>libraryname</var> (e.g. because
@@ -3706,7 +3713,6 @@ Replaces: mail-transport-agent
 	time that <prgn>dpkg</prgn> installs it and the time that
 	<prgn>ldconfig</prgn> is run in the <prgn>postinst</prgn>
 	script.<footnote>
-	  <p>
 	    The package management system requires the library to be
 	    placed before the symbolic link pointing to it in the
 	    <file>.deb</file> file.  This is so that when
@@ -3724,7 +3730,6 @@ Replaces: mail-transport-agent
 	    reorders the files itself as necessary when building a
 	    package.  Thus it is no longer important to concern
 	    oneself with the order of file creation.
-	  </p>
 	</footnote>
       </p>
 
@@ -4023,7 +4028,6 @@ Replaces: mail-transport-agent
 		given the name <file>shlibs</file>.  These files give
 		details of any shared libraries included in the
 		package.<footnote>
-		  <p>
 		    An example may help here.  Let us say that the
 		    source package <tt>foo</tt> generates two binary
 		    packages, <tt>libfoo2</tt> and
@@ -4050,7 +4054,6 @@ Replaces: mail-transport-agent
 		    all of the individual binary packages'
 		    <tt>shlibs</tt> files have been installed into the
 		    build directory.
-		  </p>
 		</footnote>
 	      </p>
 	    </item>
@@ -4095,12 +4098,10 @@ dpkg-shlibdeps debian/tmp/usr/bin/* debian/tmp/usr/sbin/* \
 	  </example>
 	  Otherwise, you will need to explicitly list the compiled
 	  binaries and libraries.<footnote>
-	    <p>
 	      If you are using <tt>debhelper</tt>, the
 	      <prgn>dh_shlibdeps</prgn> program will do this work for
 	      you.  It will also correctly handle multi-binary
 	      packages.
-	    </p>
 	  </footnote>
 	</p>
 
@@ -4161,12 +4162,10 @@ dpkg-shlibdeps debian/tmp/usr/bin/* debian/tmp/usr/sbin/* \
 	  dynamic linker, and is usually of the form
 	  <tt><var>name</var>.so.<var>major-version</var></tt>, in our
 	  example, <tt>libz.so.1</tt>.<footnote>
-	    <p>
 	      This can be determined using the command
 	      <example compact="compact">
 objdump -p /usr/lib/libz.so.1.1.3 | grep SONAME
 	      </example>
-	    </p>
 	  </footnote>
 	  The version part is the part which comes after
 	  <tt>.so.</tt>, so in our case, it is <tt>1</tt>.
@@ -4215,10 +4214,8 @@ install -m644 debian/shlibs.<var>package</var> debian/<var>package</var>/DEBIAN/
 	  <file>shlibs</file> file in the control area directly from
 	  <file>debian/rules</file> without using a <file>debian/shlibs</file>
 	  file at all,<footnote>
-	    <p>
 	      This is what <prgn>dh_makeshlibs</prgn> in the
 	      <tt>debhelper</tt> suite does.
-	    </p>
 	  </footnote>
 	  since the <file>debian/shlibs</file> file itself is ignored by
 	  <prgn>dpkg-shlibdeps</prgn>.
@@ -4309,7 +4306,7 @@ libbar 1 bar1 (>= 1.0-1)
 	<heading>Filesystem hierarchy</heading>
 
 
-	<sect1>
+	<sect1 id="fhs">
 	  <heading>Filesystem Structure</heading>
 
 	  <p>
@@ -5326,7 +5323,7 @@ Reloading <var>description</var> configuration...done.
 	  are kept on the system in this situation.</p>
       </sect>
 
-      <sect>
+      <sect id="menus">
 	<heading>Menus</heading>
 
 	<p>
@@ -5369,7 +5366,7 @@ Reloading <var>description</var> configuration...done.
 	</p>
       </sect>
 
-      <sect>
+      <sect id="mime">
 	<heading>Multimedia handlers</heading>
 
 	<p>
@@ -6410,7 +6407,6 @@ endscript
 	  security policy by changing the permissions on a binary:
 	  they can do this by using <prgn>dpkg-statoverride</prgn>, as
 	  described below.<footnote>
-	    <p>
 	      Ordinary files installed by <prgn>dpkg</prgn> (as
 	      opposed to <tt>conffile</tt>s and other similar objects)
 	      normally have their permissions reset to the distributed
@@ -6420,7 +6416,6 @@ endscript
 	      remember to describe <prgn>dpkg-statoverride</prgn> in
 	      the package documentation; being a relatively new
 	      addition to Debian, it is probably not yet well-known.
-	    </p>
 	  </footnote>
 	  Another method you should consider is to create a group for
 	  people allowed to use the program(s) and make any setuid
@@ -6550,7 +6545,6 @@ done
 	  If a program needs to specify an <em>architecture specification
 	    string</em> in some place, the following format should be
 	    used: <var>arch</var>-<var>os</var><footnote>
-	    <p>
 	      The following architectures and operating systems are
 	      currently recognised by <prgn>dpkg-archictecture</prgn>.
 	      The architecture, <tt><var>arch</var></tt>, is one of
@@ -6563,7 +6557,6 @@ done
 	      <tt>linux</tt>, <tt>gnu</tt>, <tt>freebsd</tt> and
 	      <tt>openbsd</tt>.  Use of <tt>gnu</tt> in this string is
 	      reserved for the GNU/Hurd operating system.
-	    </p>
 	  </footnote>.
 	</p>
 
@@ -6690,10 +6683,8 @@ done
 	  It is not required for a package to depend on
 	  <tt>editor</tt> and <tt>pager</tt>, nor is it required for a
 	  package to provide such virtual packages.<footnote>
-	    <p>
 	      The Debian base system already provides an editor and a
-	      pager program,
-	    </p>
+	      pager program.
 	  </footnote>
 	</p>
       </sect>
@@ -6795,12 +6786,10 @@ http://localhost/doc/<var>package</var>/<var>filename</var>
 	  should use <tt>fcntl()</tt> first and dot locking after
 	  this, or alternatively implement the two locking methods in
 	  a non blocking way<footnote>
-	    <p>
 	      If it is not possible to establish both locks, the
 	      system shouldn't wait for the second lock to be
 	      established, but remove the first lock, wait a (random)
 	      time, and start over locking again.
-	    </p>
 	  </footnote>. Using the functions <tt>maillock</tt> and
 	  <tt>mailunlock</tt> provided by the
 	  <tt>liblockfile*</tt><footnote>
@@ -7378,7 +7367,7 @@ name ["<var>syshostname</var>"]:
 	</sect1>
       </sect>
 
-      <sect>
+      <sect id="perl">
 	<heading>Perl programs and modules</heading>
 
 	<p>
@@ -7397,7 +7386,7 @@ name ["<var>syshostname</var>"]:
 	</p>
       </sect>
 
-      <sect>
+      <sect id="emacs">
 	<heading>Emacs lisp programs</heading>
 
 	<p>
@@ -7490,7 +7479,6 @@ name ["<var>syshostname</var>"]:
           maintainer of the package is allowed to write this bug report
           themselves, if they so desire).  Do not close the bug report
           until a proper manpage is available.<footnote>
-            <p>
               It is not very hard to write a man page. See the 
 	      <url id="http://www.schweikhardt.net/man_page_howto.html"
 		name="Man-Page-HOWTO">, 
@@ -7498,7 +7486,6 @@ name ["<var>syshostname</var>"]:
               created by <prgn>debmake</prgn> or <prgn>dh_make</prgn>,
 	      the helper programs <prgn>help2man</prgn>, or the
               directory <file>/usr/share/doc/man-db/examples</file>.
-            </p>
           </footnote>
 	</p>
 
@@ -7532,14 +7519,12 @@ name ["<var>syshostname</var>"]:
 	  then you should not rely on <prgn>man</prgn> finding your
 	  manpage under those names based solely on the information in
 	  the manpage's header.<footnote>
-	    <p>
 	      Supporting this in <prgn>man</prgn> often requires
 	      unreasonable processing time to find a manual page or to
 	      report that none exists, and moves knowledge into man's
 	      database that would be better left in the filesystem.
 	      This support is therefore deprecated and will cease to
 	      be present in the future.
-	    </p>
  	  </footnote>
  	</p>
       </sect>
@@ -7617,11 +7602,9 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	  Packages must not require the existance of any files in
 	  <file>/usr/share/doc/</file> in order to function
 	  <footnote>
-	    <p>
 	      The system administrator should be able to
 	      delete files in <file>/usr/share/doc/</file> without causing
 	      any programs to break.
-	    </p>
 	  </footnote>.
 	  Any files that are referenced by programs but are also
 	  useful as standalone documentation should be installed under
@@ -7642,9 +7625,9 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	  changed to <file>/usr/share/doc/<var>package</var></file>,
 	  and packages must not put documentation in the directory
 	  <file>/usr/doc/<var>package</var></file>. <footnote>
-	    <p>At this phase of the transition, we no longer require a
+	    At this phase of the transition, we no longer require a
 	    symbolic link in <file>/usr/doc/</file>. At a later point,
-	    policy shall change to make the symbolic links a bug.</p>
+	    policy shall change to make the symbolic links a bug.
 	  </footnote>
 	</p>
       </sect>
@@ -7663,11 +7646,9 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	  package, in the directory
 	  <file>/usr/share/doc/<var>appropriate-package</var></file> or
 	  its subdirectories.<footnote>
-	    <p>
 	      The rationale: The important thing here is that HTML
 	      docs should be available in <em>some</em> package, not
 	      necessarily in the main binary package.
-	    </p>
 	  </footnote>
 	</p>
 
@@ -7771,7 +7752,6 @@ install-info --quiet --remove /usr/share/info/foobar.info
           in <ref id="dpkgchangelog">. In non-experimental packages you must
           use a format for <file>debian/changelog</file> which is supported
           by the most recent released version of <prgn>dpkg</prgn>.<footnote>
-            <p>
               If you wish to use an alternative format, you may do so as
               long as you include a parser for it in your source package.
               The parser must have an API compatible with that expected by
@@ -7782,7 +7762,6 @@ install-info --quiet --remove /usr/share/info/foobar.info
               package.  (You will need to agree that the parser and its
               manpage may be distributed under the GNU GPL, just as the rest
               of <prgn>dpkg</prgn> is.)
-            </p>
           </footnote>
 	</p>
 
@@ -7806,11 +7785,9 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	  naming convention, then this may be achieved either by
 	  renaming the files, or by adding a symbolic link, at the
 	  maintainer's discretion.<footnote>
-	    <p>
 	      Rationale: People should not have to look in places for
 	      upstream changelogs merely because they are given
 	      different names or are distributed in HTML format.
-	    </p>
 	  </footnote>
 	</p>
 
@@ -7863,11 +7840,9 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	<prgn>dpkg</prgn> is a suite of programs for creating binary
 	package files and installing and removing them on Unix
 	systems.<footnote>
-	  <p>
 	    <prgn>dpkg</prgn> is targetted primarily at Debian
 	    GNU/Linux, but may work on or be ported to other
 	    systems.
-	  </p>
 	</footnote>
       </p>
 
@@ -8093,12 +8068,10 @@ install-info --quiet --remove /usr/share/info/foobar.info
 		It is very important to make these scripts
 		idempotent.
 		<footnote>
-		  <p>
 		    That means that if it runs successfully or fails
 		    and then you call it again it doesn't bomb out,
 		    but just ensures that everything is the way it
 		    ought to be.
-		  </p>
 		</footnote> This is so that if an error occurs, the
 		user interrupts <prgn>dpkg</prgn> or some other
 		unforeseen circumstance happens you don't leave the
@@ -8185,11 +8158,9 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	    <item><p><qref id="pkg-f-Architecture"><tt>Architecture</tt></qref>
 		(mandatory)
 		<footnote>
-		  <p>
 		    This field should appear in all packages, though
 		    <prgn>dpkg</prgn> doesn't require it yet so that
 		    old packages can still be installed.
-		  </p>
 		</footnote>
 	      </p>
 	    </item>
@@ -8233,14 +8204,12 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	  times of the upstream source files in a package, as far as
 	  is reasonably possible.
 	  <footnote>
-	    <p>
 	      The rationale is that there is some information conveyed
 	      by knowing the age of the file, for example, you could
 	      recognize that some documentation is very old by looking
 	      at the modification time, so it would be nice if the
 	      modification time of the upstream source would be
 	      preserved.
-	    </p>
 	  </footnote>
 	</p>
       </sect>
@@ -8403,10 +8372,8 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	    permissions and ownerships set and the package is constructed using
 	    <prgn>dpkg-deb/</prgn>
 	      <footnote>
-	      <p>
 		This is so that the control file which is produced has
 		the right permissions
-	      </p>
 	    </footnote>.
 	  </p>
 
@@ -9069,13 +9036,11 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	    This file records the changes to the Debian-specific parts of the
 	    package
 	    <footnote>
-	      <p>
 		Though there is nothing stopping an author who is also
 		the Debian maintainer from using it for all their
 		changes, it will have to be renamed if the Debian and
 		upstream maintainers become different
 		people.
-	      </p>
 	    </footnote>.
 	  </p>
 
@@ -9143,10 +9108,8 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	  <p>
 	    The <var>date</var> should be in RFC822 format
 	    <footnote>
-	      <p>
 		This is generated by the <prgn>822-date</prgn>
 		program.
-	      </p>
 	    </footnote>; it should include the timezone specified
 	    numerically, with the timezone name or abbreviation
 	    optionally present as a comment.
@@ -9341,14 +9304,12 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	    (and any backup files or temporary files such as
 	    <file>files.new</file>
 	      <footnote>
-		<p>
 		  <file>files.new</file> is used as a temporary file by
 		  <prgn>dpkg-gencontrol</prgn> and
 		  <prgn>dpkg-distaddfile</prgn> - they write a new
 		  version of <file>files</file> here before renaming it,
 		  to avoid leaving a corrupted copy if an error
 		  occurs
-		</p>
 	      </footnote>) should be removed by the
 	      <tt>clean</tt> target.  It may also be wise to
 	      ensure a fresh start by emptying or removing it at the
@@ -9566,24 +9527,18 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	  <p>
 	    The source package may not contain any hard links
 	    <footnote>
-	      <p>
 		This is not currently detected when building source
 		packages, but only when extracting
 		them.
-	      </p>
 	    </footnote>
 	    <footnote>
-	      <p>
 		Hard links may be permitted at some point in the
 		future, but would require a fair amount of
 		work.
-	      </p>
 	    </footnote>, device special files, sockets or setuid or
 	    setgid files.
 	    <footnote>
-	      <p>
 		Setgid directories are allowed.
-	      </p>
 	    </footnote>
 	  </p>
 
@@ -9611,12 +9566,10 @@ install-info --quiet --remove /usr/share/info/foobar.info
 		<p>
 		  Removing files, directories or symlinks.
 		  <footnote>
-		    <p>
 		      Renaming a file is not treated specially - it is
 		      seen as the removal of the old file (which
 		      generates a warning, but is otherwise ignored),
-		      and the creation of the new
-		      one.</p>
+		      and the creation of the new one.
 		  </footnote>
 		</p>
 	      </item>
@@ -9725,23 +9678,23 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	    the alphanumerics and <tt>+</tt> <tt>-</tt> <tt>.</tt>
 	    (plus, minus and full stop).
 	    <footnote>
-	      <p>
 		The characters <tt>@</tt> <tt>:</tt> <tt>=</tt>
 		<tt>%</tt> <tt>_</tt> (at, colon, equals, percent
 		and underscore) used to be legal and are still
 		accepted when found in a package file, but may not be
-		used in new packages
-	      </p>
+		used in new packages.
 	    </footnote>
 	  </p>
 
 	  <p>
 	    They must be at least two characters and must start with
 	    an alphanumeric.  In current versions of dpkg they are
-	    sort of case-sensitive<footnote><p>This is a
-	    bug.</p></footnote>; use lowercase package names unless
+	    sort of case-sensitive<footnote>
+		This is a bug.
+	    </footnote>; use lowercase package names unless
 	    the package you're building (or referring to, in other
-	    fields) is already using uppercase.</p>
+	    fields) is already using uppercase.
+	  </p>
 	</sect1>
 
 	<sect1 id="pkg-f-Version"><heading><tt>Version</tt>
@@ -9853,10 +9806,8 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	    <file>Packages</file> file) it may be followed by a version
 	    number in parentheses.
 	    <footnote>
-	      <p>
 		It is usual to leave a space after the package name if
 		a version number is specified.
-	      </p>
 	    </footnote> This version number may be omitted (and is, by
 	    <prgn>dpkg-gencontrol</prgn>) if it has the same value as
 	    the <tt>Version</tt> field of the binary package in
@@ -9989,9 +9940,7 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	    The syntax is a list of binary packages separated by
 	    commas.
 	    <footnote>
-	      <p>
 		A space after each comma is conventional.
-	      </p>
 	    </footnote> Currently the packages must be separated using
 	    only spaces in the <file>.changes</file> file.</p>
 	</sect1>
@@ -10030,10 +9979,7 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	    tarfile and (if applicable) diff file which make up the
 	    remainder of the source package.
 	    <footnote>
-	      <p>
-		That is, the parts which are not the
-		<tt>.dsc</tt>.
-	      </p>
+		That is, the parts which are not the <tt>.dsc</tt>.
 	    </footnote> The exact forms of the filenames are described
 	    in <ref id="pkg-sourcearchives">.
 	  </p>
