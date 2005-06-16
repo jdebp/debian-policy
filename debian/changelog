@@ -25,6 +25,8 @@ debian-policy (3.5.9.0) unstable; urgency=low
     offtopic stuff, too.
   * When asked to restart a service that isn't already running, the init
     script should start it, closes: #60979.
+  * Rephrased section on configuration files to remove confusing use of
+    "should", closes: #170019.
 
  -- 
 

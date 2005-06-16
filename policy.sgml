@@ -6077,17 +6077,16 @@ ln -fs ../sbin/sendmail debian/tmp/usr/bin/runq
 	  <heading>Location</heading>
 	  <p>
 	    Any configuration files created or used by your package
-	    must reside in <file>/etc</file>. If there are several you
-	    should consider creating a subdirectory of <file>/etc</file>
+	    must reside in <file>/etc</file>. If there are several,
+	    consider creating a subdirectory of <file>/etc</file>
 	    named after your package.</p>
 
 	  <p>
 	    If your package creates or uses configuration files
 	    outside of <file>/etc</file>, and it is not feasible to modify
-	    the package to use the <file>/etc</file>, you should still put
-	    the files in <file>/etc</file> and create symbolic links to
-	    those files from the location that the package
-	    requires.</p>
+	    the package to use <file>/etc</file> directly, put the files
+	    in <file>/etc</file> and create symbolic links to those files
+	    from the location that the package requires.</p>
 	</sect1>
 
 	<sect1>
