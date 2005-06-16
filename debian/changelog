@@ -5,6 +5,7 @@ debian-policy (3.5.4.1) unstable; urgency=low
     merged with the 3.5.3.0 changelog entry)
   * Add section numbers to upgrading-checklist for all revisions from
     3.0.0 onwards
+  * Complete rewrite (and renumbering) of sections 9.1 and 9,2
 
  --
 
