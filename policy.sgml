@@ -9449,15 +9449,11 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	    </tag>
 
 	    <item>
-
 	      <p>
 		This is a compressed (with <tt>gzip -9</tt>)
 		<prgn>tar</prgn> file containing the source code from
-		the upstream authors of the program.  The tarfile
-		unpacks into a directory
-		<file><var>package</var>-<var>upstream-version</var>.orig</file>,
-		and does not contain files anywhere other than in
-		there or in its subdirectories.</p>
+		the upstream authors of the program.
+	      </p>
 	    </item>
 
 	    <tag>
@@ -9491,7 +9487,7 @@ install-info --quiet --remove /usr/share/info/foobar.info
 		automatically make the <file>debian/rules</file> file
 		executable (see below).</p></item>
 	  </taglist>
-
+	</p>
 
 	<p>
 	  If there is no original source code - for example, if the
@@ -9499,8 +9495,8 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	  maintainer is the same as the upstream maintainer - the
 	  format is slightly different: then there is no diff, and the
 	  tarfile is named
-	  <file><var>package</var>_<var>version</var>.tar.gz</file> and
-	  contains a directory
+	  <file><var>package</var>_<var>version</var>.tar.gz</file>,
+	  and preferably contains a directory named
 	  <file><var>package</var>-<var>version</var></file>.
 	</p>
       </sect>
