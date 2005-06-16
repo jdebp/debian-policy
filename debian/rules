@@ -50,8 +50,10 @@ PLIBDIR	  := $(PTMPTOP)/usr/share/doc-base
 # While we have two versions of the FHS installed in the source package,
 # we need to modify this to handle it.  This is the easiest way to do it.
 # FHS_ARCHIVE  =$(shell ls -1 fhs*.tar.gz)
-FHS_ARCHIVE  =fhs-2.1-pre-03.tar.gz
-FHS_FILES    =fhs/fhs.dvi fhs/fhs.ps fhs/fhs.txt
+# And with version 2.1, we have to build the text and dvi versions
+# ourselves :-(
+FHS_ARCHIVE  =fhs-2.1-source.tar.gz
+FHS_FILES    =fhs/fhs.dvi fhs/fhs.ps fhs/fhs.txt fhs/fhs.pdf
 FSSTND_FILES =FSSTND-FAQ fsstnd-1.2.dvi.gz fsstnd-1.2.ps.gz fsstnd-1.2.txt.gz
 POLICY_FILES =policy.text.gz policy.sgml virtual-package-names-list.text \
 	      upgrading-checklist.text libc6-migration.text \
@@ -81,6 +83,12 @@ stamp-build:
 	  gzip -9f $$file.text; \
 	done
 	tar zfx $(FHS_ARCHIVE)
+	# Need to use a patched tmac.m macro file; can remove this
+	# bit once groff is fixed
+	cp /usr/share/groff/tmac/tmac.m fhs
+	cd fhs && patch -p1 < ../mm1.32-patch
+	GROFF_TMAC_PATH=. cd fhs && $(MAKE) all
+	lynx -dump fhs-changes-2.1.html > fhs/fhs-changes-2.1.text
 	lynx -dump upgrading-checklist.html > upgrading-checklist.text
 	touch stamp-build
 
