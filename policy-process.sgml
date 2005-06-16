@@ -7,9 +7,9 @@
 	<name>Manoj Srivastava</name>
         <email>srivasta@debian.org</email>
       </author>
-      <version>$Revision: 1.4 $</version>
+      <version>$Revision: 1.5 $</version>
       <copyright>
-        <copyrightsummary>Copyright &#169; 2000 by Manoj Srivastava. 
+        <copyrightsummary>Copyright &copy; 2000 by Manoj Srivastava. 
         </copyrightsummary>
         <p>
           You are given permission to redistribute this document
