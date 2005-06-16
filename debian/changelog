@@ -13,6 +13,7 @@ debian-policy (3.5.9.0) unstable; urgency=low
   * Added versions to links and docbook-xml source-dependencies, hopefully
     fixes the bug with potato, and even if it doesn't, I don't care :)
     closes #103459.
+  * Fixed typos in the debconf spec noticed by Jay Bonci, closes: #178455.
 
  -- 
 
