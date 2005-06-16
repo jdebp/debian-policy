@@ -560,7 +560,7 @@
 
 	  <p>
 	    Programs which use patented algorithms that have a
-	    restrictied license also need to be stored on "non-us",
+	    restricted license also need to be stored on "non-us",
 	    since that is located in a country where it is not allowed
 	    to patent algorithms.
 	  </p>
@@ -1107,7 +1107,7 @@
 
 		<p>
 		  With this increasing number of packages using
-		  <package>debconf</package>, plus the existance of a
+		  <package>debconf</package>, plus the existence of a
 		  nascent second implementation of the Debian
 		  configuration management system
 		  (<package>cdebconf</package>), and the stabilization
@@ -5657,7 +5657,7 @@ install -s # (or use strip on the files in debian/tmp)
 	    <tag>noopt</tag>
 	    <item>
 		The presence of this string means that the package
-		should be complied with a minimum of optimization.
+		should be compiled with a minimum of optimization.
 		For C programs, it is best to add <tt>-O0</tt>
 		to <tt>CFLAGS</tt> (although this is usually the
 		default).  Some programs might fail to build or run at
@@ -5900,13 +5900,7 @@ strip --strip-unneeded <var>your-lib</var>
 	  <prgn>csh</prgn> and <prgn>tcsh</prgn> should be avoided as
 	  scripting languages.  See <em>Csh Programming Considered
 	  Harmful</em>, one of the <tt>comp.unix.*</tt> FAQs, which
-	  can be found at <url
-	  id="http://language.perl.com/versus/csh.whynot">.<footnote>
-	      It can also be found on
-	      <url id="http://www.cpan.org/doc/FMTEYEWTK/versus/csh.whynot">
-	      or on the ftp site <ftpsite>ftp.cpan.org</ftpsite> as
-	      <ftppath>/pub/perl/CPAN/doc/FMTEYEWTK/versus/csh.whynot</ftppath>.
-	  </footnote>
+	  can be found at <url id="http://language.perl.com/versus/csh.whynot">.
 	  If an upstream package comes with <prgn>csh</prgn> scripts
 	  then you must make sure that they start with
 	  <tt>#!/bin/csh</tt> and make your package depend on the
@@ -7598,7 +7592,7 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	  course!</p>
 
 	<p>
-	  Packages must not require the existance of any files in
+	  Packages must not require the existence of any files in
 	  <file>/usr/share/doc/</file> in order to function
 	  <footnote>
 	      The system administrator should be able to
