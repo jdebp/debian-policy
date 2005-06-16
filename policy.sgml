@@ -95,7 +95,7 @@
 	  <tt>/usr/share/common-licences/GPL</tt> in the Debian GNU/Linux
 	  distribution or on the World Wide Web at 
 	  <url id="http://www.gnu.org/copyleft/gpl.html" 
-	  name="The GNU Public Licence">. You can also obtain it by writing to the
+	       name="The GNU Public Licence">. You can also obtain it by writing to the
 	  Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 	  Boston, MA 02111-1307, USA.
 	</p>
@@ -115,10 +115,61 @@
 	  operating system, as well as technical requirements that
 	  each package must satisfy to be included in the
 	  distribution.
-	  </p>
+	</p>
+	
+	
+	<p>
+	  This manual also describes Debian policy as it relates to
+	  creating Debian packages. It is not a tutorial on how to build
+	  packages, nor is it exhaustive where it comes to describing
+	  the behavior of the packaging system. Instead, this manual
+	  attempts to define the interface to the package management
+	  system that the developers have to be conversant with.
+	  <footnote>
+	    <p>
+	      Informally, the criteria used for inclusion is that the
+	      material meet one of the following requirements:
+	      <taglist>
+		<tag>Standard interfaces</tag>
+		<item>
+		  <p>
+		    The material presented represents an interface to
+		    the packaging system that is mandated for use, and
+		    is used by, a significant number of packages, and
+		    should not be changed without peer review. Package
+		    maintainers can then rely on this interfaces not
+		    changing, and the package management software
+		    authors need to ensure compatibility with these
+		    interface definitions. (control file and and
+		    changelog file formats are one example)
+		  </p>
+		</item>
+		<tag>Chosen Convention</tag>
+		<item>
+		  <p>
+		    If there are a number of technically viable choices
+		    that can be made, but one needs to select one of
+		    these options for inter-operability. The version
+		    number format is one example.
+		  </p>
+		</item>
+	      </taglist>
+	      Please note that these are not mutually exclusive;
+	      selected conventions often become parts of standard
+	      interfaces. 
+	    </p>
+	  </footnote>
+	</p>
+	
+	<p>
+	  Please note that the footnotes present in this manual are
+	  merely informative, and are not part of Debian policy itself.
+	</p>
+	
+	
 	<p>
 	  In this manual, the words <em>must</em>, <em>should</em> and
-	  <em>may</em>, and the adjectives <em>required></em>,
+	  <em>may</em>, and the adjectives <em>required</em>,
 	  <em>recommended</em> and <em>optional</em>, are used to
 	  distinguish the significance of the various guidelines in
 	  this policy document. Packages that do not conform the the
@@ -142,20 +193,6 @@
 	  </footnote>
 	</p>
 	<p>
-	  This manual does <em>not</em> describe the technical
-	  mechanisms involved in package creation, installation, and
-	  removal.  This information can be found in the <em>Debian
-	  Packaging Manual</em> and the <em>Debian System
-	    Administrators' Manual</em>. Please note that the
-	  footnotes present in this manual are merely informative,
-	  and are not part of Debian policy itself. 
-	</p>
-	<p>
-	  This document assumes familiarity with these other two
-	  manuals.  Unfortunately, the <em>System Administrators'
-	  Manual</em> does not exist yet.
-	</p>
-	<p>
 	  Much of the information presented in this manual will be
 	  useful even when building a package which is to be
 	  distributed in some other way or is for local use.
@@ -169,7 +206,7 @@
 	  <ftppath>/debian/doc/package-developer/debian-policy.html.tar.gz</ftppath>
 	  or from the Debian WWW server at
 	  <url id="http://www.debian.org/doc/debian-policy/"
-	  name="The Debian Policy Manual">.</p>
+	       name="The Debian Policy Manual">.</p>
 
 	<p>
 	  In addition, this manual is distributed via the Debian package
@@ -199,7 +236,7 @@
       <p>
 	The Debian GNU/Linux system is maintained and distributed as a
 	collection of <em>packages</em>. Since there are so many of them (over
-	2600) they are split into <em>sections</em> and <em>priorities</em> to
+	5000) they are split into <em>sections</em> and <em>priorities</em> to
 	simplify handling of them.
       </p>
       <p>
@@ -208,9 +245,9 @@
 	<em>free</em> in our sense (see Debian Free Software
 	Guidelines, below), or may be imported/exported without
 	restrictions. Thus, the archive is split into the sections
-       <em>main</em>, <em>non-free</em>, <em>contrib</em>,
-       <em>non-US/main</em>, <em>non-US/non-free</em>, and
-       <em>non-US/contrib</em>.</p>
+	<em>main</em>, <em>non-free</em>, <em>contrib</em>,
+	<em>non-US/main</em>, <em>non-US/non-free</em>, and
+	<em>non-US/contrib</em>.</p>
 
       <p>
 	The <em>main</em> and the <em>non-US/main</em> sections form
@@ -238,316 +275,341 @@
 	      <p>We want to encourage everyone to write free software.</p>
 	    </item>
 	    <item>
-		<p> We want to make it easy for people to produce
+	      <p> We want to make it easy for people to produce
 		CD-ROMs of our system without violating any licenses,
 		import/export restrictions, or any other laws.</p>
 	    </item>
 	  </list>
 	</p>
-      <sect1>
-	<heading>The Debian Free Software Guidelines</heading>
-	<p>
-	  The Debian Free Software Guidelines (DFSG) is our
-	  definition of `free' software.
-	  <taglist>
-	    <tag>Free Redistribution
-	    </tag>
-	    <item>
-	      <p>
-		The license of a Debian component may not restrict any
-		party from selling or giving away the software as a
-		component of an aggregate software distribution
-		containing programs from several different
-		sources. The license may not require a royalty or
-		other fee for such sale.
-	      </p>
-	    </item>
-	    <tag>Source Code
-	    </tag>
-	    <item>
-	      <p>
-		The program must include source code, and must allow
-		distribution in source code as well as compiled form.
-	      </p>
-	    </item>
-	    <tag>Derived Works
-	    </tag>
-	    <item>
-	      <p>
-		The license must allow modifications and derived
-		works, and must allow them to be distributed under the
-		same terms as the license of the original software.
-	      </p>
-	    </item>
-	    <tag>Integrity of The Author's Source Code
-	    </tag>
-	    <item>
-	      <p>
-		The license may restrict source-code from being
-		distributed in modified form <em>only</em> if the
-		license allows the distribution of ``patch files''
-		with the source code for the purpose of modifying the
-		program at build time. The license must explicitly
-		permit distribution of software built from modified
-		source code. The license may require derived works to
-		carry a different name or version number from the
-		original software.  (This is a compromise. The Debian
-		group encourages all authors to not restrict any
-		files, source or binary, from being modified.)
-	      </p>
-	    </item>
-	    <tag>No Discrimination Against Persons or Groups
-	    </tag>
-	    <item>
-	      <p>
-		The license must not discriminate against any person
-		or group of persons.
-	      </p>
-	    </item>
-	    <tag>No Discrimination Against Fields of Endeavor
-	    </tag>
-	    <item>
-	      <p>
-		The license must not restrict anyone from making use
-		of the program in a specific field of endeavor. For
-		example, it may not restrict the program from being
-		used in a business, or from being used for genetic
-		research.
-	      </p>
-	    </item>
-	    <tag>Distribution of License
-	    </tag>
-	    <item>
-	      <p>
-		The rights attached to the program must apply to all
-		to whom the program is redistributed without the need
-		for execution of an additional license by those
-		parties.
-	      </p>
-	    </item>
-	    <tag>License Must Not Be Specific to Debian
-	    </tag>
-	    <item>
-	      <p>
-		The rights attached to the program must not depend on
-		the program's being part of a Debian system. If the
-		program is extracted from Debian and used or
-		distributed without Debian but otherwise within the
-		terms of the program's license, all parties to whom
-		the program is redistributed must have the same
-		rights as those that are granted in conjunction with
-		the Debian system.
-	      </p>
-	    </item>
-	    <tag>License Must Not Contaminate Other Software
-	    </tag>
-	    <item>
-	      <p>
-		The license must not place restrictions on other
-		software that is distributed along with the licensed
-		software. For example, the license must not insist
-		that all other programs distributed on the same medium
-		must be free software.
-	      </p>
-	    </item>
-	    <tag>Example Licenses
-	    </tag>
-	    <item>
-	      <p>
-		The ``GPL,'' ``BSD,'' and ``Artistic'' licenses are
-		examples of licenses that we consider <em>free</em>.
-	      </p>
-	    </item>
-	  </taglist>
-	</p>
-      </sect1>
-      <sect1>
-	<heading>The main section</heading>
-	<p>
-	  Every package in "main" must comply with the DFSG (Debian
-	  Free Software Guidelines).</p>
+	<sect1>
+	  <heading>The Debian Free Software Guidelines</heading>
+	  <p>
+	    The Debian Free Software Guidelines (DFSG) is our
+	    definition of `free' software.
+	    <taglist>
+	      <tag>Free Redistribution
+	      </tag>
+	      <item>
+		<p>
+		  The license of a Debian component may not restrict any
+		  party from selling or giving away the software as a
+		  component of an aggregate software distribution
+		  containing programs from several different
+		  sources. The license may not require a royalty or
+		  other fee for such sale.
+		</p>
+	      </item>
+	      <tag>Source Code
+	      </tag>
+	      <item>
+		<p>
+		  The program must include source code, and must allow
+		  distribution in source code as well as compiled form.
+		</p>
+	      </item>
+	      <tag>Derived Works
+	      </tag>
+	      <item>
+		<p>
+		  The license must allow modifications and derived
+		  works, and must allow them to be distributed under the
+		  same terms as the license of the original software.
+		</p>
+	      </item>
+	      <tag>Integrity of The Author's Source Code
+	      </tag>
+	      <item>
+		<p>
+		  The license may restrict source-code from being
+		  distributed in modified form <em>only</em> if the
+		  license allows the distribution of ``patch files''
+		  with the source code for the purpose of modifying the
+		  program at build time. The license must explicitly
+		  permit distribution of software built from modified
+		  source code. The license may require derived works to
+		  carry a different name or version number from the
+		  original software.  (This is a compromise. The Debian
+		  group encourages all authors to not restrict any
+		  files, source or binary, from being modified.)
+		</p>
+	      </item>
+	      <tag>No Discrimination Against Persons or Groups
+	      </tag>
+	      <item>
+		<p>
+		  The license must not discriminate against any person
+		  or group of persons.
+		</p>
+	      </item>
+	      <tag>No Discrimination Against Fields of Endeavor
+	      </tag>
+	      <item>
+		<p>
+		  The license must not restrict anyone from making use
+		  of the program in a specific field of endeavor. For
+		  example, it may not restrict the program from being
+		  used in a business, or from being used for genetic
+		  research.
+		</p>
+	      </item>
+	      <tag>Distribution of License
+	      </tag>
+	      <item>
+		<p>
+		  The rights attached to the program must apply to all
+		  to whom the program is redistributed without the need
+		  for execution of an additional license by those
+		  parties.
+		</p>
+	      </item>
+	      <tag>License Must Not Be Specific to Debian
+	      </tag>
+	      <item>
+		<p>
+		  The rights attached to the program must not depend on
+		  the program's being part of a Debian system. If the
+		  program is extracted from Debian and used or
+		  distributed without Debian but otherwise within the
+		  terms of the program's license, all parties to whom
+		  the program is redistributed must have the same
+		  rights as those that are granted in conjunction with
+		  the Debian system.
+		</p>
+	      </item>
+	      <tag>License Must Not Contaminate Other Software
+	      </tag>
+	      <item>
+		<p>
+		  The license must not place restrictions on other
+		  software that is distributed along with the licensed
+		  software. For example, the license must not insist
+		  that all other programs distributed on the same medium
+		  must be free software.
+		</p>
+	      </item>
+	      <tag>Example Licenses
+	      </tag>
+	      <item>
+		<p>
+		  The ``GPL,'' ``BSD,'' and ``Artistic'' licenses are
+		  examples of licenses that we consider <em>free</em>.
+		</p>
+	      </item>
+	    </taglist>
+	  </p>
+	</sect1>
+	<sect1>
+	  <heading>The main section</heading>
+	  <p>
+	    Every package in "main"  and "non-US/main" must comply with
+	    the DFSG (Debian  Free Software Guidelines).</p>
+	  
+	  <p>
+	    In addition, the packages in "main"
+	    <list compact="compact">
+	      <item>
+		<p>
+		  must not require a package outside of "main" for
+		  compilation or execution (thus, the package must not
+		  declare a "Depends", "Recommends", or "Build-Depends"
+		  relationship on a non-main package),
+		</p>
+	      </item>
+	      <item>
+		<p>
+		  must not be so buggy that we refuse to support them,
+		</p>
+	      </item>
+	      <item>
+		<p>
+		  must meet all policy requirements presented in this
+		  manual.
+		</p>
+	      </item>
+	    </list>
+	  </p>
+	  <p>
+	    Similarly, the packages in "non-US/main"
+	    <list compact="compact">
+	      <item>
+		<p>
+		   must not require a package outside of "main" or
+		   "non-US/main" for compilation or execution,
+		</p>
+	      </item>
+	      <item>
+		<p>
+		  must not be so buggy that we refuse to support them,
+		</p>
+	      </item>
+	      <item>
+		<p>
+		  must meet all policy requirements presented in this
+		  manual.
+		</p>
+	      </item>
+	    </list>
+	  </p>
+	</sect1>
+	<sect1>
+	  <heading>The contrib section</heading>
+	  <p>
+	    Every package in "contrib"  and "non-US/contrib" must
+	    comply with the DFSG. 
+	  </p>
 
-	<p>
-	  In addition, the packages in "main"
-	  <list compact="compact">
-	    <item>
-	      <p>
-		must not require a package outside of "main" for
-		compilation or execution (thus, the package must not
-		declare a "Depends" or "Recommends" relationship on a
-		non-main package),
-	      </p>
-	    </item>
-	    <item>
-	      <p>
-		should not be so buggy that we refuse to support them,
-	      </p>
-	    </item>
-	    <item>
-	      <p>
-		should meet all policy requirements presented in this
-		manual.
-	      </p>
-	    </item>
-	  </list>
-	</p>
-      </sect1>
-      <sect1>
-	<heading>The contrib section</heading>
-	<p>
-	  Every package in "contrib" must comply with the DFSG.
-	</p>
+	  <p>
+	    Examples of packages which would be included in "contrib"
+	    or "non-US/contrib" are
+	    <list compact="compact">
+	      <item>
+		<p>
+		  free packages which require "contrib", "non-free"
+		  packages or packages which are not in our 
+		  archive at all for compilation or execution,
+		</p>
+	      </item>
+	      <item>
+		<p>
+		  wrapper packages or other sorts of free accessories for
+		  non-free programs,
+		</p>
+	      </item>
+	    </list>
+	  </p>
+	</sect1>
+	<sect1>
+	  <heading>The non-free section and non-US/non-free </heading>
+	  <p>
+	    Packages must be placed in "non-free" or "non-US/non-free"
+	    if they are not compliant with the DFSG or are encumbered
+	    by patents or other legal issues that make their
+	    distribution problematic. 
+	  </p>
+	</sect1>
+	<sect1>
+	  <heading>The non-US sections</heading>
+	  <p>
+	    Some programs with cryptographic program code need to be stored
+	    on the "non-US" server because of export restrictions of the
+	    U.S. Such programs must be distributed in the appropriate
+	    non-US section, either non-US/main, non-US/contrib or
+	    non-US/non-free. </p>
+	  <p>
+	    This applies only to packages which contain cryptographic
+	    code. A package containing a program with an interface to a
+	    cryptographic program or a program that's dynamically linked
+	    against a cryptographic library should not be distributed
+	    via the non-us server if it is capable of running without the
+	    cryptography library or program.
+	  </p>
+	</sect1>
+	<sect1>
+	  <heading>Further copyright considerations</heading>
+	  <p>
+	    Every package must be accompanied by a verbatim copy of its
+	    copyright and distribution license in the file
+	    /usr/share/doc/&lt;package-name&gt;/copyright (see 
+	    <ref id="copyrightfile"> for details).</p>
+	  <p>
+	    We reserve the right to restrict files from being included
+	    anywhere in our archives if
+	    <list compact="compact">
+	      <item>
+		<p>
+		  their use or distribution would break a law,
+		</p>
+	      </item>
+	      <item>
+		<p>
+		  there is an ethical conflict in their distribution or
+		  use,
+		</p>
+	      </item>
+	      <item>
+		<p>
+		  we would have to sign a license for them, or
+		</p>
+	      </item>
+	      <item>
+		<p>
+		  their distribution would conflict with other project
+		  policies.
+		</p>
+	      </item>
+	    </list>
+	  </p>
 
-	<p>
-	  Examples of packages which would be included in "contrib" are
-	  <list compact="compact">
-	    <item>
-	      <p>
-		free packages which require "contrib", "non-free", or
-		"non-US" packages or packages which are not in our
-		archive at all for compilation or execution,
-	      </p>
-	    </item>
-	    <item>
-	      <p>
-		wrapper packages or other sorts of free accessories for
-		non-free programs,
-	      </p>
-	    </item>
-	  </list>
-	</p>
-      </sect1>
-      <sect1>
-	<heading>The non-free section</heading>
-	<p>
-	  `Non-free' contains packages which are not compliant with
-	  the DFSG.</p>
-	<p>
-	  All packages in `non-free' must be electronically
-	  distributable across international borders.
-	</p>
-      </sect1>
-      <sect1>
-	<heading>The non-us server</heading>
-	<p>
-	  Some programs with cryptographic program code need to be stored
-	  on the "non-us" server because of export restrictions of the
-	  U.S.</p>
-	<p>
-	  This applies only to packages which contain cryptographic
-	  code. A package containing a program with an interface to a
-	  cryptographic program or a program that's dynamically linked
-	  against a cryptographic library should not be distributed
-	  via the non-us server if it is capable of running without the
-	  cryptography library or program.
-	</p>
-      </sect1>
-      <sect1>
-	<heading>Further copyright considerations</heading>
-	<p>
-	  Every package must be accompanied by a verbatim copy of its
-	  copyright and distribution license in the file
-	  /usr/share/doc/&lt;package-name&gt;/copyright (see <ref
-	  id="copyrightfile"> for details).</p>
-	<p>
-	  We reserve the right to restrict files from being included
-	  anywhere in our archives if
-	  <list compact="compact">
-	    <item>
-	      <p>
-		their use or distribution would break a law,
-	      </p>
-	    </item>
-	    <item>
-	      <p>
-		there is an ethical conflict in their distribution or
-		use,
-	      </p>
-	    </item>
-	    <item>
-	      <p>
-		we would have to sign a license for them, or
-	      </p>
-	    </item>
-	    <item>
-	      <p>
-		their distribution would conflict with other project
-		policies.
-	      </p>
-	    </item>
-	  </list>
-	</p>
+	  <p>
+	    Programs whose authors encourage the user to make donations
+	    are fine for the main distribution, provided that the
+	    authors do not claim that not donating is immoral,
+	    unethical, illegal or something similar; otherwise they must
+	    go in non-free.</p>
 
-	<p>
-	  Programs whose authors encourage the user to make donations
-	  are fine for the main distribution, provided that the
-	  authors do not claim that not donating is immoral,
-	  unethical, illegal or something similar; otherwise they must
-	  go in non-free.</p>
+	  <p>
+	    Packages whose copyright permission notices (or patent
+	    problems) do not allow redistribution even of only binaries,
+	    and where no special permission has been obtained, must not be
+	    placed on the Debian FTP site and its mirrors at all.</p>
 
-	<p>
-	  Packages whose copyright permission notices (or patent
-	  problems) do not allow redistribution even of only binaries,
-	  and where no special permission has been obtained, must not be
-	  placed on the Debian FTP site and its mirrors at all.</p>
+	  <p>
+	    Note, that under international copyright law (this applies
+	    in the United States, too) <em>no</em> distribution or
+	    modification of a work is allowed without an explicit notice
+	    saying so.  Therefore a program without a copyright notice
+	    <em>is</em> copyrighted and you may not do anything to it
+	    without risking being sued! Likewise if a program has a
+	    copyright notice but no statement saying what is permitted
+	    then nothing is permitted.</p>
 
-	<p>
-	  Note, that under international copyright law (this applies
-	  in the United States, too) <em>no</em> distribution or
-	  modification of a work is allowed without an explicit notice
-	  saying so.  Therefore a program without a copyright notice
-	  <em>is</em> copyrighted and you may not do anything to it
-	  without risking being sued! Likewise if a program has a
-	  copyright notice but no statement saying what is permitted
-	  then nothing is permitted.</p>
+	  <p>
+	    Many authors are unaware of the problems that restrictive
+	    copyrights (or lack of copyright notices) can cause for the
+	    users of their supposedly-free software.  It is often
+	    worthwhile contacting such authors diplomatically to ask
+	    them to modify their license terms. However, this is a
+	    politically difficult thing to do and you should ask for
+	    advice on <tt>debian-legal</tt> first.</p>
 
-	<p>
-	  Many authors are unaware of the problems that restrictive
-	  copyrights (or lack of copyright notices) can cause for the
-	  users of their supposedly-free software.  It is often
-	  worthwhile contacting such authors diplomatically to ask
-	  them to modify their license terms. However, this is a
-	  politically difficult thing to do and you should ask for
-	  advice on <tt>debian-legal</tt> first.</p>
+	  <p>
+	    When in doubt, send mail to
+	    <email>debian-legal@lists.debian.org</email>.  Be prepared
+	    to provide us with the copyright statement.  Software
+	    covered by the GPL, public domain software and BSD-like
+	    copyrights are safe; be wary of the phrases `commercial use
+	    prohibited' and `distribution restricted'.</p>
+	</sect1>
+	<sect1>
+	  <heading>Subsections</heading>
 
-	<p>
-	  When in doubt, send mail to
-	  <email>debian-legal@lists.debian.org</email>.  Be prepared
-	  to provide us with the copyright statement.  Software
-	  covered by the GPL, public domain software and BSD-like
-	  copyrights are safe; be wary of the phrases `commercial use
-	  prohibited' and `distribution restricted'.</p>
-      </sect1>
-      <sect1>
-	<heading>Subsections</heading>
+	  <p>
+	    The packages in all the sections (<em>main</em>,
+	    <em>contrib</em>, <em>non-US/main</em>, <em>non-free</em>,
+	    <em>non-US/contrib</em>, and <em>non-US/non-free</em>) are
+	    grouped further into <em>subsections</em> to simplify
+	    handling.</p>
 
-	<p>
-	  The packages in all the sections (<em>main</em>,
-	  <em>contrib</em>, <em>non-US/main</em>, <em>non-free</em>,
-	  <em>non-US/contrib</em>, and <em>non-US/non-free</em>) are
-	  grouped further into <em>subsections</em> to simplify
-	  handling.</p>
+	  <p>
+	    The section for each package should be specified in the
+	    package's <em>control record</em>. However, the maintainer of
+	    the Debian archive may override this selection to assure the
+	    consistency of the Debian distribution. </p>
 
-	<p>
-	  The section for each package should be specified in the
-	  package's <em>control record</em>. However, the maintainer of
-	  the Debian archive may override this selection to assure the
-	  consistency of the Debian distribution. </p>
-
-	<p>
-	  Please check the current Debian distribution to see which
-	  sections are available.</p>
-      </sect1>
+	  <p>
+	    Please check the current Debian distribution to see which
+	    sections are available.</p>
+	</sect1>
       <sect>
 	<heading>Priorities</heading>
-	  
+	
 	<p>
 	  Each package should have a <em>priority</em> value,
 	  which is included in the package's <em>control
-	  record</em>. This information is used in the Debian package
+	    record</em>. This information is used in the Debian package
 	  management tool to separate high-priority packages from
 	  less-important packages.</p>
-	  
+	
 	<p>
 	  The following <em>priority levels</em> are supported by the
 	  Debian package management system, <prgn>dpkg</prgn>.
@@ -618,7 +680,7 @@
 	      </p>
 	    </item>
 	  </taglist></p>
-	  
+	
 	<p>
 	  Packages must not depend on packages with lower priority
 	  values (excluding build-time dependencies).  In order to
@@ -626,44 +688,44 @@
 	  be adjusted.
 	</p>
       </sect>
-	  
+      
       <sect>
 	<heading>Binary packages</heading>
-	  
+	
 	<p>
 	  The Debian GNU/Linux distribution is based on the Debian
 	  package management system, called <prgn>dpkg</prgn>. Thus,
 	  all packages in the Debian distribution must be provided
 	  in the <tt>.deb</tt> file format.</p>
-	  
+	
 	
 	<sect1>
 	  <heading>The package name</heading>
-	    
+	  
 	  <p>
 	    Every package must have a name that's unique within the Debian
 	    archive.</p>
-	    
+	  
 	  <p>
 	    Package names must only consist of lower case letters, digits (0-9),
 	    plus (+) or minus (-) signs, and periods (.).</p>
-	    
+	  
 	  <p>
 	    The package name is part of the file name of the
 	    <tt>.deb</tt> file and is included in the control field
 	    information.
 	  </p>
 	</sect1>
-	        
+	
 	<sect1>
 	  <heading>The maintainer of a package</heading>
-	    
+	  
 	  <p>
 	    Every package should have exactly one maintainer at a
 	    time. This person is responsible that the license of the
 	    package's software complies with the policy of the
 	    distribution this package is included in.</p>
-	    
+	  
 	  <p>
 	    The maintainer must be specified in the
 	    <tt>Maintainer</tt> control field with the correct name
@@ -672,7 +734,7 @@
 	    he/she should try to avoid having different forms of their
 	    name and email address in different <tt>Maintainer</tt>
 	    fields.</p>
-	    
+	  
 	  <p>
 	    If the maintainer of a package quits from the Debian
 	    project the Debian QA Group
@@ -682,15 +744,15 @@
 	    <em>orphaned packages</em>.
 	  </p>
 	</sect1>
-	    
-	    
+	
+	
 	<sect1>
 	  <heading>The description of a package</heading>
-	    
+	  
 	  <p>
 	    Every Debian package must have an extended description
 	    stored in the appropriate field of the control record.</p>
-	    
+	  
 	  <p>
 	    The description should be written so that it tells the user
 	    what they need to know to decide whether to install the
@@ -702,43 +764,43 @@
 	    not be included -- that is what the copyright file is
 	    for.</p>
 	</sect1>
-	    
-	    
+	
+	
 	<sect1>
 	  <heading>Dependencies</heading>
-	    
+	  
 	  <p>
 	    Every package must specify the dependency information
 	    about other packages that are required for the first to
 	    work correctly.</p>
-	    
+	  
 	  <p>
 	    For example, a dependency entry must be provided for any
 	    shared libraries required by a dynamically-linked executable
 	    binary in a package.</p>
-	    
+	  
 	  <p>
 	    Packages are not required to declare any dependencies they
 	    have on other packages which are marked <tt>Essential</tt>
 	    (see below), and should not do so unless they depend on a
 	    particular version of that package.</p>
-	    
+	  
 	  <p>
 	    Sometimes, a package requires another package to be installed
 	    <em>and</em> configured before it can be installed. In this
 	    case, you must specify a <tt>Pre-Depends</tt> entry for
 	    the package.</p>
-	    
+	  
 	  <p>
 	    You should not specify a <tt>Pre-Depends</tt> entry for a
 	    package before this has been discussed on the
 	    <tt>debian-devel</tt> mailing list and a consensus about
 	    doing that has been reached.</p></sect1>
-	    
-	    
+	
+	
 	<sect1>
 	  <heading>Virtual packages</heading>
-	    
+	  
 	  <p>
 	    Sometimes, there are several packages doing more-or-less
 	    the same job. In this case, it's useful to define a
@@ -750,7 +812,7 @@
 	    package. Thus, any other package requiring that function
 	    can simply depend on the virtual package without having to
 	    specify all possible packages individually.</p>
-	    
+	  
 	  <p>
 	    All packages should use virtual package names where
 	    appropriate, and arrange to create new ones if necessary.
@@ -758,7 +820,7 @@
 	    amongst a cooperating group of packages) unless they have
 	    been agreed upon and appear in the list of virtual package
 	    names.</p>
-	    
+	  
 	  <p>
 	    The latest version of the authoritative list of virtual
 	    package names can be found on
@@ -767,11 +829,11 @@
 	    or your local mirror. In addition, it is included in the
 	    <tt>debian-policy</tt> package. The procedure for updating
 	    the list is described at the top of the file.</p></sect1>
-	    
-	    
+	
+	
 	<sect1>
 	  <heading>Base packages</heading>
-	    
+	  
 	  <p>
 	    The packages included in the <tt>base</tt> section have a
 	    special function. They form a minimum subset of the Debian
@@ -779,28 +841,28 @@
 	    on a new system. Thus, only very few packages are allowed
 	    to go into the <tt>base</tt> section to keep the required
 	    disk usage very small.</p>
-	    
+	  
 	  <p>
 	    Most of these packages will have the priority value
 	    <tt>required</tt> or at least <tt>important</tt>, and many
 	    of them will be tagged <tt>essential</tt> (see below).</p>
-	    
+	  
 	  <p>
 	    You must not place any packages into the <tt>base</tt>
 	    section before this has been discussed on the
 	    <tt>debian-devel</tt> mailing list and a consensus about
 	    doing that has been reached.</p></sect1>
-	    
-	    
+	
+	
 	<sect1>
 	  <heading>Essential packages</heading>
-	    
+	  
 	  <p>
 	    Some packages are tagged <tt>essential</tt>. (They have
 	    <tt>Essential: yes</tt> in their package control record.)
 	    This flag is used for packages that are <em>essential</em>
 	    for a system.</p>
-	    
+	  
 	  <p>
 	    Since these packages can not easily be removed (you'll
 	    have to specify an extra <em>force option</em> to
@@ -810,7 +872,7 @@
 	    prevent its premature removal, and we need to be able to
 	    remove it when it has been superseded.
 	  </p>
-	    
+	  
 	  <p>
 	    Since dpkg will not prevent upgrading of other packages
             while an <tt>essential</tt> package is in an unconfigured
@@ -827,11 +889,11 @@
 	    this has been discussed on the <tt>debian-devel</tt>
 	    mailing and a consensus about doing that has been
 	    reached.</p></sect1>
-	    
-	    
+	
+	
 	<sect1>
 	  <heading>Maintainer scripts</heading>
-	    
+	  
 	  <p>
 	    The package installation scripts should avoid producing
 	    output which it is unnecessary for the user to see and
@@ -839,7 +901,7 @@
 	    the part of a user installing many packages.  This means,
 	    amongst other things, using the <tt>--quiet</tt> option on
 	    <prgn>install-info</prgn>.</p>
-	    
+	  
 	  <p>
 	    Packages should try to minimize the amount of prompting
 	    they need to do, and they should ensure that the user will
@@ -848,16 +910,16 @@
 	    configuration files (such as <tt>/etc/papersize</tt> and
 	    <tt>/etc/news/server</tt>), rather than each prompting for
 	    their own list of required pieces of information.</p>
-	    
+	  
 	  <p>
 	    It also means that an upgrade should not ask the same
 	    questions again, unless the user has used <tt>dpkg
-	    --purge</tt> to remove the package's configuration.  The
+	      --purge</tt> to remove the package's configuration.  The
 	    answers to configuration questions should be stored in an
 	    appropriate place in <tt>/etc</tt> so that the user can
 	    modify them, and how this has been done should be
 	    documented.</p>
-	    
+	  
 	  <p>
 	    If a package has a vitally important piece of information
 	    to pass to the user (such as "don't run me as I am, you
@@ -871,7 +933,7 @@
 	    do instructions on how to use a program (these should be
 	    in on line documentation, where all the users can see
 	    them).</p>
-	    
+	  
 	  <p>
 	    Any necessary prompting should almost always be confined
 	    to the post-installation script, and should be protected
@@ -880,21 +942,21 @@
 	    <prgn>postinst</prgn> is called with
 	    <tt>abort-upgrade</tt>, <tt>abort-remove</tt> or
 	    <tt>abort-deconfigure</tt>.</p>
-	    
+	  
 	  <p>
 	    Errors which occur during the execution of an installation
 	    script should be checked and the installation should not
 	    continue after an error.</p>
-	    
+	  
 	  <p>
 	    Note, that <ref id="scripts">, in general applies to
 	    package maintainer scripts, too.</p>
-	    
+	  
 	  <p>
 	    You should not use <prgn>dpkg-divert</prgn> on a file
 	    belonging to another package without consulting the maintainer
 	    of that package first.</p>
-	    
+	  
 	  <p>
 	    All packages which supply an instance of a common command
 	    name (or, in general, filename) should generally use
@@ -911,24 +973,24 @@
       </sect>
       <sect>
 	<heading>Source packages</heading>
-	  
+	
 	<sect1>
 	  <heading>Standards conformance</heading>
-	    
+	  
 	  <p>
 	    You should specify the most recent version of the
 	    packaging standards with which your package complies in
 	    the source package's <tt>Standards-Version</tt> field.</p>
-	    
+	  
 	  <p>
 	    This value will be used to file bug reports automatically
 	    if your package becomes too much out of date.</p>
-	    
+	  
 	  <p>
 	    The value corresponds to a version of the Debian manuals,
 	    as can be found on the title page or page headers and
 	    footers (depending on the format).</p>
-	    
+	  
 	  <p>
 	    The version number has four components--major and minor
 	    number and major and minor patch level.  When the
@@ -958,7 +1020,7 @@
 	      </p>
 	    </footnote>
 	  </p>
-	    
+	  
 	  <p>
 	    You should regularly, and especially if your package has
 	    become out of date, check for the newest Policy Manual
@@ -966,61 +1028,92 @@
 	    package complies with the new standards you should update the
 	    <tt>Standards-Version</tt> source package field and
 	    release it.</p></sect1>
-	    
-	    
-         <sect1>
-           <heading>Package relationships</heading>
- 
-           <p>
-             Source packages should specify which binary packages they
-             require to be installed or not to be installed in order to
-             build correctly.  For example, if building a package
-             requires a certain compiler, then the compiler should be
-             specified as a build-time dependency.
-           </p>
- 
-           <p>
-             It is not be necessary to explicitly specify build-time
-	     relationships on a minimal set of packages that are always
-	     needed to compile, link and put in a Debian package a
-	     standard "Hello World!" program written in C or C++.  The
-	     required packages are called <em>build-essential</em>, and
-	     an informational list can be found in
-	     <tt>/usr/share/doc/build-essential/list</tt> (which is
-	     contained in the <tt>build-essential</tt> package).
-           </p>
- 
-           <p>
-             When specifying the set of build-time dependencies, one
-             should list only those packages explicitly required by the
-             build.  It is not necessary to list packages which are
-             required merely because some other package in the list of
-             build-time dependencies depends on them.  The reason is
-             that dependencies change, and you should list only those
-             <em>you</em> need.  What others need is their business.
-           </p>
- 
-           <p>
-             If build-time dependencies are specified, it must be
-             possible to build the package and produce working binaries
-             on a system with the build-essential packages installed
-             and satisfying the build-time relationships (including any
-             implied relationships).  This
-             means in particular that version clauses should be used
-             rigorously in build-time relationships so that one cannot
-             produce bad or inconsistently configured packages when the
-             relationships are properly satisfied.
-           </p>
- 
+	
+	
+	<sect1>
+	  <heading>Package relationships</heading>
+	  
+	  <p>
+	    Source packages should specify which binary packages they
+	    require to be installed or not to be installed in order to
+	    build correctly.  For example, if building a package
+	    requires a certain compiler, then the compiler should be
+	    specified as a build-time dependency.
+	  </p>
+	  
+	  <p>
+	    It is not necessary to explicitly specify build-time
+	    relationships on a minimal set of packages that are always
+	    needed to compile, link and put in a Debian package a
+	    standard "Hello World!" program written in C or C++.  The
+	    required packages are called <em>build-essential</em>, and
+	    an informational list can be found in
+	    <tt>/usr/share/doc/build-essential/list</tt> (which is
+	    contained in the <tt>build-essential</tt>
+	    package).
+	    <footnote>
+	      <p>Rationale:
+		<list>
+		  <item>
+		    <p>This allows maintaining the list separately
+		      from the policy documents (the list does not
+		      need the kind of control that the policy
+		      documents do)
+		    </p>
+		  </item>
+		  <item>
+		    <p>
+		      Having a separate package allows one to nistall
+		      the build essential packages on a machine, as
+		      well as allowing other packages (think task
+		      packages) to bring in the build-essential
+		      packages using the depends relation
+		    </p>
+		  </item>
+		  <item>
+		    <p>
+		      The separate package allows bug reports against
+		      the package to be categorized separately from
+		      the policy management process that uses the BTS
+		    </p>
+		  </item>
+		</list>
+	      </p>
+	      
+	    </footnote>
+	  </p>
+	  
+	  <p>
+	    When specifying the set of build-time dependencies, one
+	    should list only those packages explicitly required by the
+	    build.  It is not necessary to list packages which are
+	    required merely because some other package in the list of
+	    build-time dependencies depends on them.  The reason is
+	    that dependencies change, and you should list only those
+	    <em>you</em> need.  What others need is their business.
+	  </p>
+	  
+	  <p>
+	    If build-time dependencies are specified, it must be
+	    possible to build the package and produce working binaries
+	    on a system with the build-essential packages installed
+	    and satisfying the build-time relationships (including any
+	    implied relationships).  This
+	    means in particular that version clauses should be used
+	    rigorously in build-time relationships so that one cannot
+	    produce bad or inconsistently configured packages when the
+	    relationships are properly satisfied.
+	  </p>
+	  
 	<sect1>
 	  <heading>Changes to the upstream sources</heading>
-	    
+	  
 	  <p>
 	    If changes to the source code are made that are generally
 	    applicable, they should be sent to the upstream authors
 	    in whatever form they prefer so as to be included in the
 	    upstream version of the package.</p>
-	    
+	  
 	  <p>
 	    If you need to configure the package differently for
 	    Debian or for Linux, and the upstream source doesn't
@@ -1031,12 +1124,12 @@
 	    the way they originally had it.  You can then easily
 	    override the default in your <tt>debian/rules</tt> or
 	    wherever is appropriate.</p>
-	    
+	  
 	  <p>
 	    You should make sure that the <prgn>configure</prgn> utility
 	    detects the correct architecture specification string
 	    (refer to <ref id="arch-spec"> for details).</p>
-	    
+	  
 	  <p>
 	    If you need to edit a <prgn>Makefile</prgn> where
 	    GNU-style <prgn>configure</prgn> scripts are used, you
@@ -1046,23 +1139,23 @@
 	    <em>not</em> configure the package and edit the generated
 	    <prgn>Makefile</prgn>!  This makes it impossible for
 	    someone else to later reconfigure the package.</p></sect1>
-	    
-	    
+	
+	
 	<sect1>
 	  <heading>Documenting your changes</heading>
-	    
+	  
 	  <p>
 	    You should document your changes and updates to the source
 	    package properly in the <tt>debian/changelog</tt> file. (Note
 	    that mistakes in changelogs are usually best rectified by
 	    making  a new changelog entry rather than "rewriting history"
 	    by editing old changelog entries)</p>
-	    
+	  
 	  <p>
 	    A copy of the file which will be installed in
 	    <tt>/usr/share/doc/<var>package</var>/copyright</tt> should be
 	    in <tt>debian/copyright</tt>.</p>
-	    
+	  
 	  <p>
 	    In non-experimental packages you must only use a format for
 	    <tt>debian/changelog</tt> which is supported by the most
@@ -1074,11 +1167,11 @@
 	    the parser and its manpage may be distributed under the
 	    GNU GPL, just as the rest of <prgn>dpkg</prgn>
 	    is.)</p></sect1>
-	    
-	    
+	
+	
 	<sect1>
 	  <heading>Error trapping in makefiles</heading>
-	    
+	  
 	  <p>
 	    When <prgn>make</prgn> invokes a command in a makefile
 	    (including your package's upstream makefiles and the
@@ -1089,7 +1182,7 @@
 	    don't do anything about it then errors are not detected
 	    and <prgn>make</prgn> will blithely continue after
 	    problems.</p>
-	    
+	  
 	  <p>
 	    Every time you put more than one shell command (this
 	    includes using a loop) in a makefile command you
@@ -1101,11 +1194,11 @@
 	    conditionals you should include a separate <tt>set -e</tt>
 	    command at the start of every makefile command that's
 	    actually one of these miniature shell scripts.</p></sect1>
-	    
-	    
+	
+	
 	<sect1>
 	  <heading>Obsolete constructs and libraries</heading>
-	    
+	  
 	  <p>
 	    The include file <prgn>&lt;varargs.h&gt;</prgn> is
 	    provided to support end-users compiling very old software;
@@ -1113,66 +1206,2516 @@
 	    execution of software which has been linked against it
 	    (either old programs or those such as Netscape which are
 	    only available in binary form).</p>
-	    
+	  
 	  <p>
 	    Debian packages should be ported to include
 	    <prgn>&lt;stdarg.h&gt;</prgn> and <tt>ncurses</tt> when
 	    they are built.</p>
 	</sect1>
-      </sect></chapt>
+      </sect>
+    </chapt>
+
+    <chapt id="controlfields"><heading>Control files and their fields</heading>
+
+      <p>	
+	Many of the tools in the package management suite manipulate
+	data in a common format, known as control files.  Binary and
+	source packages have control data as do the <tt>.changes</tt>
+	files which control the installation of uploaded files, and
+	<prgn>dpkg</prgn>'s internal databases are in a similar
+	format.
+      </p>
       
-    <chapt><heading>The Operating System</heading>
+      <sect><heading>Syntax of control files</heading>
+
+	<p>	  
+	  A file consists of one or more paragraphs of fields.  The
+	  paragraphs are separated by blank lines.  Some control files
+	  only allow one paragraph; others allow several, in which
+	  case each paragraph often refers to a different package.
+	</p>
+
+	<p>	  
+	  Each paragraph is a series of fields and values; each field
+	  consists of a name, followed by a colon and the value.  It
+	  ends at the end of the line.  Horizontal whitespace (spaces
+	  and tabs) may occur immediately before or after the value
+	  and is ignored there; it is conventional to put a single
+	  space after the colon.
+	</p>
+
+	<p>	  
+	  Some fields' values may span several lines; in this case
+	  each continuation line <em>must</em> start with a space or
+	  tab.  Any trailing spaces or tabs at the end of individual
+	  lines of a field value are ignored.
+	</p>
+
+	<p>	  
+	  Except where otherwise stated only a single line of data is
+	  allowed and whitespace is not significant in a field body.
+	  Whitespace may never appear inside names (of packages,
+	  architectures, files or anything else), version numbers or
+	  in between the characters of multi-character version
+	  relationships.
+	</p>
+
+	<p>	  
+	  Field names are not case-sensitive, but it is usual to
+	  capitalize the field names using mixed case as shown below.
+	</p>
+
+	<p>	  
+	  Blank lines, or lines consisting only of spaces and tabs,
+	  are not allowed within field values or between fields - that
+	  would mean a new paragraph.
+	</p>
+
+	<p>	  
+	  It is important to note that there are several fields which
+	  are optional as far as <prgn>dpkg</prgn> and the related
+	  tools are concerned, but which must appear in every Debian
+	  package, or whose omission may cause problems.  When writing
+	  the control files for Debian packages you <em>must</em> read
+	  the Debian policy manual in conjunction with the details
+	  below and the list of fields for the particular file.</p>
+      </sect>
+      
+      <sect><heading>List of fields</heading>
+	<p>
+	  This list here is not supposed to be exhaustive. Typically
+	  only fields for whom policy exists are mentioned here.
+	</p>
+	<sect1 id="f-Package"><heading><tt>Package</tt>
+	  </heading>
+
+	  <p>	    
+	    The name of the binary package.  Package names consist of
+	    the alphanumerics and <tt>+</tt> <tt>-</tt> <tt>.</tt>
+	    (plus, minus and full stop).
+	  </p>
+
+	  <p>	    
+	    They must be at least two characters long and must start
+	    with an alphanumeric character.  The use lowercase package
+	    names is strongly recommended unless the package you're
+	    building (or referring to, in other fields) is already
+	    using uppercase.</p>
+	</sect1>
 	
+	<sect1 id="f-Version"><heading><tt>Version</tt>
+	  </heading>
+
+	  <p>	    
+	    This lists the source or binary package's version number -
+	    see <ref id="versions">.
+	  </p>
+
+	</sect1>
+
+	<sect1
+	       id="f-Standards-Version"><heading><tt>Standards-Version</tt>
+	  </heading>
+
+	  <p>	    
+	    The most recent version of the standards (the packaging
+	    and policy manuals and associated texts) with which the
+	    package complies.  This is updated manually when editing
+	    the source package to conform to newer standards; it can
+	    sometimes be used to tell when a package needs attention.
+	  </p>
+
+	  <p>	    
+	    Its format is the same as that of a version number except
+	    that no epoch or Debian revision is allowed - see <ref
+								   id="versions">.</p>
+	</sect1>
+	
+	
+	<sect1 id="f-Distribution"><heading><tt>Distribution</tt>
+	  </heading>
+
+	  <p>	    
+	    In a <tt>.changes</tt> file or parsed changelog output
+	    this contains the (space-separated) name(s) of the
+	    distribution(s) where this version of the package should
+	    be or was installed.  Distribution names follow the rules
+	    for package names.  (See <ref id="f-Package">).
+	  </p>
+
+	  <p>	    
+	    <footnote>
+		Current distribution values are:
+		<taglist>
+		  <tag><em>stable</em></tag>
+		  <item>
+		    <p> 
+		      This is the current `released' version of Debian
+		      GNU/Linux.  Once the
+		      distribution is <em>stable</em> only major bug fixes
+		      are allowed. When changes are made to this
+		      distribution, the release number is increased
+		      (for example: 1.2r1 becomes 1.2r2 then 1.2r3, etc).
+		    </p>
+		  </item>
+		  
+		  <tag><em>unstable</em></tag>
+		  <item>
+		    <p>
+		      This distribution value refers to the
+		      <em>developmental</em> part of the Debian
+		      distribution tree. New packages, new upstream
+		      versions of packages and bug fixes go into the
+		      <em>unstable</em> directory tree. Download from
+		      this distribution at your own risk.
+		    </p>
+		  </item>
+
+		  <tag><em>frozen</em></tag>
+		  <item>
+		    <p>
+		      From time to time, the <em>unstable</em>
+		      distribution enters a state of `code-freeze' in
+		      anticipation of release as a <em>stable</em>
+		      version. During this period of testing only
+		      fixes for existing or newly-discovered bugs will
+		      be allowed.
+		    </p>
+		  </item>
+		  
+		  <tag><em>experimental</em></tag>
+		  <item>
+		    <p>
+		      The packages with this distribution value are deemed
+		      by their maintainers to be high risk. Oftentimes they
+		      represent early beta or developmental packages from
+		      various sources that the maintainers want people to
+		      try, but are not ready to be a part of the other parts
+		      of the Debian distribution tree. Download at your own
+		      risk.
+		    </p>
+		  </item>
+		</taglist>
+		There are several sections in each
+		distribution. Currently, these sections are:
+		
+		<taglist>
+		  <tag><em>contrib</em></tag>
+		  <item>
+		    <p>
+		      The packages in this section do not meet the
+		      criteria for inclusion in the main Debian
+		      distribution as defined by the Policy Manual,
+		      but are otherwise free, as defined by the Debian
+		      free software guidelines.</p>
+		  </item>
+		  
+		  <tag><em>non-free</em></tag>
+		  <item>
+		    <p>
+		      Packages in <em>non-free</em> do not meet the
+		      criteria of free software, as defined by the
+		      Debian free software guidelines. Again, use your
+		      best judgment in downloading from this
+		      Distribution.</p>
+		  </item>
+		  
+		</taglist> You should list <em>all</em> distributions that
+		the package should be installed into. Except in unusual
+		circumstances, installations to <em>stable</em> should also
+		go into <em>frozen</em> (if it exists) and
+		<em>unstable</em>. Likewise, installations into
+		<em>frozen</em> should also go into <em>unstable</em>.
+	    </footnote>
+	  </p>
+	</sect1>
+	
+
+      </sect>
+    </chapt>
+
+    <chapt id="versions"><heading>Version numbering    </heading>
+
+      <p>	
+	Every package has a version number, in its <tt>Version</tt>
+	control file field.
+      </p>
+
+      <p>	
+	The package management system imposes an ordering on version
+	numbers, so that it can tell whether packages are being up- or
+	downgraded and so that package system front end applications
+	can tell whether a package it finds available is newer than
+	the one installed on the system.  The version number format
+	has the most significant parts (as far as comparison is
+	concerned) at the beginning.
+      </p>
+
+      <p>	
+	The version number format is:
+	&lsqb<var>epoch</var><tt>:</tt>&rsqb;<var>upstream-version</var>&lsqb;<tt>-/<var>debian-revision</var>&rsqb;.</tt></var>
+      </p>
+
+      <p>	
+	The three components here are:
+	<taglist>
+	  <tag><var>epoch</var></tag>
+	  <item>
+	    
+	    <p>
+	      This is a single (generally small) unsigned integer.  It
+	      may be omitted, in which case zero is assumed.  If it is
+	      omitted then the <var>upstream-version</var> may not
+	      contain any colons.
+	    </p>
+
+	    <p>	      
+	      It is provided to allow mistakes in the version numbers
+	      of older versions of a package, and also a package's
+	      previous version numbering schemes, to be left behind.
+	    </p>
+
+	  </item>
+	  
+	  <tag><var>upstream-version</var></tag>
+	  <item>
+	    
+	    <p>
+	      This is the main part of the version.  It is usually
+	      version number of the original (`upstream') package of
+	      which the <tt>.deb</tt> file has been made, if this is
+	      applicable.  Usually this will be in the same format as
+	      that specified by the upstream author(s); however, it
+	      may need to be reformatted to fit into the package
+	      management system's format and comparison scheme.
+	    </p>
+
+	    <p>	      
+	      The comparison behavior of the package management system
+	      with respect to the <var>upstream-version</var> is
+	      described below.  The <var>upstream-version</var>
+	      portion of the version number is mandatory.
+	    </p>
+
+	    <p>	      
+	      The <var>upstream-version</var> may contain only
+	      alphanumerics and the characters <tt>.</tt> <tt>+</tt>
+	      <tt>-</tt> <tt>:</tt> (full stop, plus, hyphen, colon)
+	      and should start with a digit.  If there is no
+	      <var>debian-revision</var> then hyphens are not allowed;
+	      if there is no <var>epoch</var> then colons are not
+	      allowed.</p>
+	  </item>
+	  
+	  <tag><var>debian-revision</var></tag>
+	  <item>
+	    
+	    <p>
+	      This part of the version represents the version of the
+	      modifications that were made to the package to make it a
+	      Debian binary package.  It is in the same format as the
+	      <var>upstream-version</var> and is compared in the same
+	      way.
+	    </p>
+
+	    <p>	      
+	      It is optional; if it isn't present then the
+	      <var>upstream-version</var> may not contain a hyphen.
+	      This format represents the case where a piece of
+	      software was written specifically to be turned into a
+	      Debian binary package, and so there is only one
+	      `debianization' of it and therefore no revision
+	      indication is required.
+	    </p>
+
+	    <p>	      
+	      It is conventional to restart the
+	      <var>debian-revision</var> at <tt>1</tt> each time the
+	      <var>upstream-version</var> is increased.
+	    </p>
+
+	    <p>	      
+	      The package management system will break the
+	      <var>upstream-version</var> and
+	      <var>debian-revision</var> apart at the last hyphen in
+	      the string.  The absence of a <var>debian-revision</var>
+	      compares earlier than the presence of one (but note that
+	      the <var>debian-revision</var> is the least significant
+	      part of the version number).
+	    </p>
+
+	    <p>	      
+	      The <var>debian-revision</var> may contain only
+	      alphanumerics and the characters <tt>+</tt> and
+	      <tt>.</tt> (plus and full stop).
+	    </p>
+	  </item>
+	</taglist> 
+	The <var>upstream-version</var> and <var>debian-revision</var>
+	parts are compared by the package management system using the
+	same algorithm:
+      </p>
+
+      <p>	
+	The strings are compared from left to right.
+      </p>
+
+      <p>	
+	First the initial part of each string consisting entirely of
+	non-digit characters is determined.  These two parts (one of
+	which may be empty) are compared lexically.  If a difference
+	is found it is returned.  The lexical comparison is a
+	comparison of ASCII values modified so that all the letters
+	sort earlier than all the non-letters.
+      </p>
+
+      <p>	
+	Then the initial part of the remainder of each string which
+	consists entirely of digit characters is determined.  The
+	numerical values of these two parts are compared, and any
+	difference found is returned as the result of the comparison.
+	For these purposes an empty string (which can only occur at
+	the end of one or both version strings being compared) counts
+	as zero.
+      </p>
+
+      <p>	
+	These two steps are repeated (chopping initial non-digit
+	strings and initial digit strings off from the start) until a
+	difference is found or both strings are exhausted.
+      </p>
+
+      <p>	
+	Note that the purpose of epochs is to allow us to leave behind
+	mistakes in version numbering, and to cope with situations
+	where the version numbering changes.  It is <em>not</em> there
+	to cope with version numbers containing strings of letters
+	which the package management system cannot interpret (such as
+	<tt>ALPHA</tt> or <tt>pre-</tt>), or with silly orderings (the
+	author of this manual has heard of a package whose versions
+	went <tt>1.1</tt>, <tt>1.2</tt>, <tt>1.3</tt>, <tt>1</tt>,
+	<tt>2.1</tt>, <tt>2.2</tt>, <tt>2</tt> and so forth).
+      </p>
+
+      <p>	
+	If an upstream package has problematic version numbers they
+	should be converted to a sane form for use in the
+	<tt>Version</tt> field.
+      </p>
+
+      <sect>
+	<heading>Version numbers based on dates</heading>
+	<p>
+	  In general, Debian packages should use the same version
+	  numbers as the upstream sources.</p>
+
+	<p>
+	  However, in some cases where the upstream version number is
+	  based on a date (e.g., a development `snapshot' release) the
+	  package management system cannot handle these version
+	  numbers without epochs. For example, dpkg will consider
+	  `96May01' to be greater than `96Dec24'.</p>
+
+	<p>
+	  To prevent having to use epochs for every new upstream
+	  version, the version number should be changed to the
+	  following format in such cases: `19960501', `19961224'. It
+	  is up to the maintainer whether he/she wants to bother the
+	  upstream maintainer to change the version numbers upstream,
+	  too.</p>
+
+	<p>
+	  Note, that other version formats based on dates which are
+	  parsed correctly by the package management system should
+	  <em>not</em> be changed.</p>
+
+	<p>
+	  Native Debian packages (i.e., packages which have been
+	  written especially for Debian) whose version numbers include
+	  dates should always use the `YYYYMMDD' format.</p>
+      </sect>
+    </chapt>
+    
+    <chapt id="miscellaneous"><heading>Packaging Considerations</heading>
+
+      <sect id="timestamps"><heading>Time Stamps</heading>
+	<p>
+	  Maintainers are encouraged to preserve the modification
+	  times of the upstream source files in a package, as far as
+	  is reasonably possible. Even though this is optional, this
+	  is still a good idea. 
+	  <footnote>
+	    <p>
+	      The rationale is that there is some information conveyed
+	      by knowing the age of the file, for example, you could
+	      recognize that some documentation is very old by looking
+	      at the modification time, so it would be nice if the
+	      modification time of the upstream source would be
+	      preserved.
+	    </p>
+	  </footnote>
+	</p>
+      </sect>
+      
+      <sect id="debianrules"><heading><tt>debian/rules</tt> - the
+	  main building script	  </heading>
+
+	<p>	    
+	  This file must be an executable makefile, and contains the
+	  package-specific recipes for compiling the package and
+	  building binary package(s) out of the source.
+	</p>
+	
+	<p>	    
+	  It must start with the line <tt>#!/usr/bin/make -f</tt>,
+	  so that it can be invoked by saying its name rather than
+	  invoking <prgn>make</prgn> explicitly.
+	</p>
+	
+	<p>
+	  Since an interactive <tt>debian/rules</tt> script makes it
+	  impossible to auto-compile that package and also makes it
+	  hard for other people to reproduce the same binary
+	  package, all <strong>required targets</strong> MUST be
+	  non-interactive. At a minimum, required targets are the
+	  ones called by <prgn>dpkg-buildpackage</prgn>, namely,
+	  <em>clean</em>, <em>binary</em>, <em>binary-arch</em>, and
+	  <em>build</em>. It also follows that any target that these
+	  targets depend on must also be non-interactive.
+	</p>
+	
+	<p>	    
+	  The targets which must be present are:	    
+	  <taglist>
+	    <tag><tt>build</tt></tag>
+	    <item>
+	      <p>
+		This should perform all non-interactive
+		configuration and compilation of the package.  If a
+		package has an interactive pre-build configuration
+		routine, the Debianised source package should be
+		built after this has taken place, so that it can be
+		built without rerunning the configuration.
+	      </p>
+	      
+	      <p>		  
+		For some packages, notably ones where the same
+		source tree is compiled in different ways to produce
+		two binary packages, the <prgn>build</prgn> target
+		does not make much sense.  For these packages it is
+		good enough to provide two (or more) targets
+		(<tt>build-a</tt> and <tt>build-b</tt> or whatever)
+		for each of the ways of building the package, and a
+		<prgn>build</prgn> target that does nothing.  The
+		<prgn>binary</prgn> target will have to build the
+		package in each of the possible ways and make the
+		binary package out of each.
+	      </p>
+	      
+	      <p>		  
+		The <prgn>build</prgn> target must not do anything
+		that might require root privilege.
+	      </p>
+	      
+	      <p>		  
+		The <prgn>build</prgn> target may need to run
+		<prgn>clean</prgn> first - see below.
+	      </p>
+	      
+	      <p>		  
+		When a package has a configuration routine that
+		takes a long time, or when the makefiles are poorly
+		designed, or when <prgn>build</prgn> needs to run
+		<prgn>clean</prgn> first, it is a good idea to
+		<tt>touch build</tt> when the build process is
+		complete.  This will ensure that if <tt>debian/rules
+		  build</tt> is run again it will not rebuild the
+		whole program.
+	      </p>
+	    </item>
+	    
+	    <tag><tt>binary</tt>, <tt>binary-arch</tt>,
+	      <tt>binary-indep</tt>
+	    </tag> 
+	    <item>
+	      <p>
+		The <prgn>binary</prgn> target must be all that is
+		necessary for the user to build the binary
+		package. All these targets are required to be
+		non-interactive.  It is split into two parts:
+		<prgn>binary-arch</prgn> builds the packages' output
+		files which are specific to a particular
+		architecture, and <prgn>binary-indep</prgn> builds
+		those which are not.
+	      </p>
+	      
+	      <p>		  
+		<prgn>binary</prgn> may be (and commonly is) a target
+		with no commands which simply depends on
+		<prgn>binary-arch</prgn> and
+		<prgn>binary-indep</prgn>.
+	      </p>
+	      
+	      <p>		  
+		Both <prgn>binary-*</prgn> targets should depend on
+		the <prgn>build</prgn> target, above, so that the
+		package is built if it has not been already.  It
+		should then create the relevant binary package(s),
+		using <prgn>dpkg-gencontrol</prgn> to make their
+		control files and <prgn>dpkg-deb</prgn> to build
+		them and place them in the parent of the top level
+		directory.
+	      </p>
+	      
+	      <p>		  
+		If one of the <prgn>binary-*</prgn> targets has
+		nothing to do (this will be always be the case if
+		the source generates only a single binary package,
+		whether architecture-dependent or not) it
+		<em>must</em> still exist, and must always
+		succeed.
+	      </p>
+
+	      <p>		  
+		The <prgn>binary</prgn> targets must be invoked as
+		root.
+	      </p>
+	    </item>
+	    
+	    <tag><tt>clean</tt></tag>
+	    <item>
+	      
+	      <p>
+		This must undo any effects that the
+		<prgn>build</prgn> and <prgn>binary</prgn> targets
+		may have had, except that it should leave alone any
+		output files created in the parent directory by a
+		run of <prgn>binary</prgn>. This target must be
+		non-interactive. 
+	      </p>
+
+	      <p>		  
+		If a <prgn>build</prgn> file is touched at the end
+		of the <prgn>build</prgn> target, as suggested
+		above, it should be removed as the first thing that
+		<prgn>clean</prgn> does, so that running
+		<prgn>build</prgn> again after an interrupted
+		<prgn>clean</prgn> doesn't think that everything is
+		already done.
+	      </p>
+	      
+	      <p>		  
+		The <prgn>clean</prgn> target may need to be
+		invoked as root if <prgn>binary</prgn> has been
+		invoked since the last <prgn>clean</prgn>, or if
+		<prgn>build</prgn> has been invoked as root (since
+		<prgn>build</prgn> may create directories, for
+		example).
+	      </p>
+	    </item>
+	    
+	    <tag><tt>get-orig-source</tt> (optional)</tag>
+	    <item>
+	      
+	      <p> 
+		This target fetches the most recent version of the
+		original source package from a canonical archive site
+		(via FTP or WWW, for example), does any necessary
+		rearrangement to turn it into the original source
+		tar file format described below, and leaves it in the
+		current directory.
+	      </p>
+
+	      <p>		  
+		This target may be invoked in any directory, and
+		should take care to clean up any temporary files it
+		may have left.
+	      </p>
+	      
+	      <p>		  
+		This target is optional, but providing it if
+		possible is a good idea.
+	      </p>
+	    </item>
+	  </taglist>
+	  
+	<p>
+	  The <prgn>build</prgn>, <prgn>binary</prgn> and
+	  <prgn>clean</prgn> targets must be invoked with a current
+	  directory of the package's top-level directory.
+	</p>
+	
+	
+	<p>	    
+	  Additional targets may exist in <tt>debian/rules</tt>,
+	  either as published or undocumented interfaces or for the
+	  package's internal use.
+	</p>
+	
+	<p>
+	  The architecture we build on and build for is determined by
+	  make variables via dpkg-architecture. You can get the Debian
+	  architecture and the GNU style architecture specification
+	  string for the build machine as well as the host
+	  machine. Here is a list of supported make variables:
+	  <list compact="compact">
+	    <item>
+	      <p><tt>DEB_*_ARCH</tt> (the Debian architecture)</p>
+	    </item>
+	    <item>
+	      <p><tt>DEB_*_GNU_TYPE</tt> (the GNU style architecture
+		specification string)</p> 
+	    </item>
+	    <item>
+	      <p><tt>DEB_*_GNU_CPU</tt> (the CPU part of DEB_*_GNU_TYPE)</p>
+	    </item>
+	    <item>
+	      <p><tt>DEB_*_GNU_SYSTEM</tt> (the System part of
+		DEB_*_GNU_TYPE)</p>
+	  </list>
+	</p>
+	
+	<p>
+	  where <tt>*</tt> is either <tt>BUILD</tt> for specification of
+	  the build machine or <tt>HOST</tt> for specification of the machine
+	  we build for.
+	</p>
+	
+	<p>
+	  Backward compatibility can be provided in the rules file
+	  by setting the needed variables to suitable default
+	  values, please refer to the documentation of
+	  dpkg-architecture for details.
+	</p>
+	
+	<p>
+	  It is important to understand that the <tt>DEB_*_ARCH</tt>
+	  string does only determine which Debian architecture we
+	  build on resp. for. It should not be used to get the CPU
+	  or System information, the GNU style variables should be
+	  used for that.
+	</p>
+      </sect>
+      
+      <sect id="dpkgchangelog"><heading><tt>debian/changelog</tt>
+	</heading>
+	
+	<p>	    
+	  This file records the changes to the Debian-specific parts of the
+	  package
+	  <footnote>
+	    <p>
+	      Though there is nothing stopping an author who is also
+	      the Debian maintainer from using it for all their
+	      changes, it will have to be renamed if the Debian and
+	      upstream maintainers become different
+	      people.
+	    </p>
+	  </footnote>.
+	</p>
+	
+	<p>	    
+	  It has a special format which allows the package building
+	  tools to discover which version of the package is being
+	  built and find out other release-specific information.
+	</p>
+	
+	<p>
+	  That format is a series of entries like this:	
+	  <example>
+	    <var>package</var> (<var>version</var>) <var>distribution(s)</var>; urgency=<var>urgency</var>
+	    
+	    * <var>change details</var>
+	    <var>more change details</var>
+	    * <var>even more change details</var>
+	    
+	    -- <var>maintainer name and email address</var>  <var>date</var>
+	  </example>
+	</p>
+	
+	<p>	    
+	  <var>package</var> and <var>version</var> are the source
+	  package name and version number.
+	</p> 
+	
+	<p>	    
+	  <var>distribution(s)</var> lists the distributions where
+	  this version should be installed when it is uploaded - it
+	  is copied to the <tt>Distribution</tt> field in the
+	  <tt>.changes</tt> file.  See <ref id="f-Distribution">.
+	</p>
+	
+	<p>	    
+	  <var>urgency</var> is the value for the <tt>Urgency</tt>
+	  field in the <tt>.changes</tt> file for the upload. It is
+	  not possible to specify an urgency containing commas; commas
+	  are used to separate
+	  <tt><var>keyword</var>=<var>value</var></tt> settings in the
+	  <prgn>dpkg</prgn> changelog format (though there is
+	  currently only one useful <var>keyword</var>,
+	  <tt>urgency</tt>).
+	</p>
+	
+	<p>	    
+	  The change details may in fact be any series of lines
+	  starting with at least two spaces, but conventionally each
+	  change starts with an asterisk and a separating space and
+	  continuation lines are indented so as to bring them in
+	  line with the start of the text above.  Blank lines may be
+	  used here to separate groups of changes, if desired.
+	</p>
+	
+	<p>	    
+	  The maintainer name and email address need <em>not</em>
+	  necessarily be those of the usual package maintainer.
+	  They should be the details of the person doing
+	  <em>this</em> version.  The information here will be
+	  copied to the <tt>.changes</tt> file, and then later used
+	  to send an acknowledgement when the upload has been
+	  installed.
+	</p>
+	
+	<p>	    
+	  The <var>date</var> should be in RFC822 format
+	  <footnote>
+	    <p>
+	      This is generated by the <prgn>822-date</prgn>
+	      program.
+	    </p>
+	  </footnote>; it should include the time zone specified
+	  numerically, with the time zone name or abbreviation
+	  optionally present as a comment.
+	</p>
+	
+	<p>	    
+	  The first `title' line with the package name should start
+	  at the left hand margin; the `trailer' line with the
+	  maintainer and date details should be preceded by exactly
+	  one space.  The maintainer details and the date must be
+	  separated by exactly two spaces.
+	</p>
+	
+	<sect1><heading>Defining alternative changelog formats</heading>
+	  
+	  <p>	      
+	    It is possible to use a different format to the standard
+	    one, by providing a parser for the format you wish to
+	    use.
+	  </p>
+	  <p>	      
+	    A changelog parser must not interact with the user at
+	    all.
+	  </p>
+	</sect1>
+      </sect>
+      
+      <sect id="srcsubstvars"><heading><tt>debian/substvars</tt>
+	  and variable substitutions	  </heading>
+
+	<p>	    
+	  When <prgn>dpkg-gencontrol</prgn>,
+	  <prgn>dpkg-genchanges</prgn> and <prgn>dpkg-source</prgn>
+	  generate control files they do variable substitutions on
+	  their output just before writing it.  Variable
+	  substitutions have the form
+	  <tt>${<var>variable-name</var>}</tt>.  The optional file
+	  <tt>debian/substvars</tt> contains variable substitutions
+	  to be used; variables can also be set directly from
+	  <tt>debian/rules</tt> using the <tt>-V</tt> option to the
+	  source packaging commands, and certain predefined
+	  variables are available.
+	</p>
+
+	<p>	    
+	  The is usually generated and modified dynamically by
+	  <tt>debian/rules</tt> targets; in this case it must be
+	  removed by the <prgn>clean</prgn> target.
+	</p>
+
+	<p>
+	  See <manref name="dpkg-source" section="1"> for full
+	  details about source variable substitutions, including the
+	  format of <tt>debian/substvars</tt>.</p>
+      </sect>
+      
+      <sect id="debianfiles"><heading><tt>debian/files</tt>
+	</heading>
+	
+	<p>	    
+	  This file is not a permanent part of the source tree; it
+	  is used while building packages to record which files are
+	  being generated.  <prgn>dpkg-genchanges</prgn> uses it
+	  when it generates a <tt>.changes</tt> file.
+	</p>
+	
+	<p>	    
+	  It should not exist in a shipped source package, and so it
+	  (and any backup files or temporary files such as
+	  <tt>files.new</tt>
+	  <footnote>
+	    <p>
+	      <tt>files.new</tt> is used as a temporary file by
+	      <prgn>dpkg-gencontrol</prgn> and
+	      <prgn>dpkg-distaddfile</prgn> - they write a new
+	      version of <tt>files</tt> here before renaming it,
+	      to avoid leaving a corrupted copy if an error
+	      occurs
+	    </p>
+	  </footnote>) should be removed by the
+	  <prgn>clean</prgn> target.  It may also be wise to
+	  ensure a fresh start by emptying or removing it at the
+	  start of the <prgn>binary</prgn> target.
+	</p>
+	
+	<p>	    
+	  <prgn>dpkg-gencontrol</prgn> adds an entry to this file
+	  for the <tt>.deb</tt> file that will be created by
+	  <prgn>dpkg-deb</prgn> from the control file that it
+	  generates, so for most packages all that needs to be done
+	  with this file is to delete it in <prgn>clean</prgn>.
+	</p>
+	
+	<p>	    
+	  If a package upload includes files besides the source
+	  package and any binary packages whose control files were
+	  made with <prgn>dpkg-gencontrol</prgn> then they should be
+	  placed in the parent of the package's top-level directory
+	  and <prgn>dpkg-distaddfile</prgn> should be called to add
+	  the file to the list in <tt>debian/files</tt>.</p>
+      </sect>
+
+      <sect id="restrictions"><heading>Restrictions on objects in source packages
+	</heading>
+	
+	<p>	    
+	  The source package may not contain any hard links
+	  <footnote>
+	    <p>
+	      This is not currently detected when building source
+	      packages, but only when extracting
+	      them.
+	    </p>
+	  </footnote>
+	  <footnote>
+	    <p>
+	      Hard links may be permitted at some point in the
+	      future, but would require a fair amount of
+	      work.
+	    </p>
+	  </footnote>, device special files, sockets or setuid or
+	  setgid files.
+	  <footnote>
+	    <p>
+	      Setgid directories are allowed.
+	    </p>
+	  </footnote>
+	</p>
+      </sect>
+      <sect id="descriptions"><heading>Descriptions of packages - the
+	  <tt>Description</tt> field </heading>
+	
+	<p>	
+	  The description is intended to describe the program to a user
+	  who has never met it before so that they know whether they
+	  want to install it.  It should also give information about the
+	  significant dependencies and conflicts between this package
+	  and others, so that the user knows why these dependencies and
+	  conflicts have been declared.
+	</p>
+	
+	<sect1><heading>Notes about writing descriptions
+	  </heading>
+
+	  <p>	  
+	    The single line synopsis should be kept brief - certainly
+	    under 80 characters.  
+	  </p>
+	  
+	  <p>	  
+	    Do not include the package name in the synopsis line.  The
+	    display software knows how to display this already, and you
+	    do not need to state it.  Remember that in many situations
+	    the user may only see the synopsis line - make it as
+	    informative as you can.
+	  </p>
+	  
+	  <p>	  
+	    Do not try to continue the single line synopsis into the
+	    extended description.  This will not work correctly when
+	    the full description is displayed, and makes no sense
+	    where only the summary (the single line synopsis) is
+	    available.
+	  </p>
+
+	  <p>	  
+	    The extended description should describe what the package
+	    does and how it relates to the rest of the system (in terms
+	    of, for example, which subsystem it is which part of).
+	  </p>
+	  
+	  <p>	  
+	    The description field needs to make sense to anyone, even
+	    people who have no idea about any of the things the
+	    package deals with.
+	    <footnote>
+	      <p>
+		The blurb that comes with a program in its
+		announcements and/or <prgn>README</prgn> files is
+		rarely suitable for use in a description.  It is
+		usually aimed at people who are already in the
+		community where the package is used.
+	      </p>
+	    </footnote>
+	  </p>
+	  
+	  <p>	  
+	    Put important information first, both in the synopsis and
+	    extended description.  Sometimes only the first part of the
+	    synopsis or of the description will be displayed.  You can
+	    assume that there will usually be a way to see the whole
+	    extended description.
+	  </p>
+	  
+	  <p>	  
+	    You may include information about dependencies and so forth
+	    in the extended description, if you wish.
+	  </p>
+	  
+	  <p>	  
+	    Do not use tab characters.  Their effect is not predictable.
+	  </p>
+
+	</sect1>
+      </sect>
+    </chapt>
+
+
+    <chapt id="maintainerscripts"><heading>Package maintainer scripts
+	and installation procedure
+      </heading>
+
+      <sect><heading>Introduction to package maintainer scripts
+	</heading>
+
+	<p>	  
+	  It is possible to supply scripts as part of a package which
+	  the package management system will run for you when your
+	  package is installed, upgraded or removed.
+	</p>
+
+	<p>	  
+	  These scripts should be the files <tt>preinst</tt>,
+	  <tt>postinst</tt>, <tt>prerm</tt> and <tt>postrm</tt> in the
+	  control area of the package.  They must be proper executable
+	  files; if they are scripts (which is recommended) they must
+	  start with the usual <tt>#!</tt> convention.  They should be
+	  readable and executable to anyone, and not world-writable.
+	</p>
+
+	<p>	  
+	  the package management system looks at the exit status from
+	  these scripts.  It is important that they exit with a
+	  non-zero status if there is an error, so that the package
+	  management system can stop its processing.  For shell
+	  scripts this means that you <em>almost always</em> need to
+	  use <tt>set -e</tt> (this is usually true when writing shell
+	  scripts, in fact).  It is also important, of course, that
+	  they don't exit with a non-zero status if everything went
+	  well.
+	</p>
+
+	<p>	  
+	  It is necessary for the error recovery procedures that the
+	  scripts be idempotent: i.e., invoking the same script several
+	  times in the same situation should do no harm.  If the first
+	  call failed, or aborted half way through for some reason,
+	  the second call should merely do the things that were left
+	  undone the first time, if any, and exit with a success
+	  status.
+	</p>
+
+	<p>	  
+	  When a package is upgraded a combination of the scripts from
+	  the old and new packages is called in amongst the other
+	  steps of the upgrade procedure.  If your scripts are going
+	  to be at all complicated you need to be aware of this, and
+	  may need to check the arguments to your scripts.
+	</p>
+
+	<p>	  
+	  Broadly speaking the <prgn></prgn> is called before
+	  (a particular version of) a package is installed, and the
+	  <prgn>postinst</prgn> afterwards; the <prgn>prerm</prgn>
+	  before (a version of) a package is removed and the
+	  <prgn>postrm</prgn> afterwards.	
+	</p>
+	<!--
+	next paragraph by Guy Maor to close bug #2481
+	-->
+	
+	<p> Programs called from maintainer scripts should not
+	  normally have a path prepended to them. Before installation
+	  is started the package management system checks to see if
+	  the programs <prgn>ldconfig</prgn>,
+	  <prgn>start-stop-daemon</prgn>, <prgn>install-info</prgn>,
+	  and <prgn>update-rc.d</prgn> can be found via the
+	  <tt>PATH</tt> environment variable. Those programs, and any
+	  other program that one would expect to on the <tt>PATH</tt>,
+	  should thus be invoked without an absolute
+	  pathname. Maintainer scripts should also not reset the
+	  <tt>PATH</tt>, though they might choose to modify it by pre-
+	  or appending package-specific directories. These
+	  considerations really apply to all shell scripts.</p>
+      </sect>
+      <sect>
+	<heading>Maintainer scripts Idempotency</heading>
+
+	<p>
+	  It is very important to make maintainer scripts
+	  idempotent.
+	  <footnote>
+	    <p>
+	      That means that if it runs successfully or fails
+	      and then you call it again it doesn't bomb out,
+	      but just ensures that everything is the way it
+	      ought to be.
+	    </p>
+	  </footnote> This is so that if an error occurs, the
+	  user interrupts <prgn>dpkg</prgn> or some other
+	  unforeseen circumstance happens you don't leave the
+	  user with a badly-broken package.
+	</p>
+      </sect>
+      <sect>
+	<heading>Controlling terminal for maintainer scripts</heading>
+
+	<p>
+	  The maintainer scripts are guaranteed to run with a
+	  controlling terminal and can interact with the user.
+	  If they need to prompt for passwords, do full-screen
+	  interaction or something similar you should do these
+	  things to and from <tt>/dev/tty</tt>, since
+	  <prgn>dpkg</prgn> will at some point redirect scripts'
+	  standard input and output so that it can log the
+	  installation process.  Likewise, because these scripts
+	  may be executed with standard output redirected into a
+	  pipe for logging purposes, Perl scripts should set
+	  unbuffered output by setting <tt>$|=1</tt> so that the
+	  output is printed immediately rather than being
+	  buffered.
+	</p>
+	
+	<p>
+	  Each script should return a zero exit status for
+	  success, or a nonzero one for failure.
+	</p>
+      </sect>
+      
+      <sect id="mscriptsinstact"><heading>Summary of ways maintainer
+	  scripts are called
+	</heading>
+
+	<p>	  
+	  <list compact="compact">
+	    <item>
+	      <p><var>new-preinst</var> <tt>install</tt></p>
+	    </item>
+	    <item>
+	      <p><var>new-preinst</var> <tt>install</tt>
+		<var>old-version</var></p>
+	    </item>
+	    <item>
+	      <p><var>new-preinst</var> <tt>upgrade</tt>
+		<var>old-version</var></p>
+	    </item>
+	    <item>
+	      <p><var>old-preinst</var> <tt>abort-upgrade</tt>
+		<var>new-version</var>
+	      </p>
+	    </item> 
+	  </list>
+
+	<p>	  
+	  <list compact="compact">
+	    <item>
+	      <p><var>postinst</var> <tt>configure</tt>
+		<var>most-recently-configured-version</var></p>
+	    </item>
+	    <item>
+	      <p><var>old-postinst</var> <tt>abort-upgrade</tt>
+		<var>new version</var></p>
+	    </item>
+	    <item>
+	      <p><var>conflictor's-postinst</var> <tt>abort-remove</tt>
+		<tt>in-favour</tt> <var>package</var>
+		<var>new-version</var></p>
+	    </item>
+	    <item>
+	      <p>
+		<var>deconfigured's-postinst</var>
+		<tt>abort-deconfigure</tt> <tt>in-favour</tt>
+		<var>failed-install-package</var> <var>version</var>
+		<tt>removing</tt> <var>conflicting-package</var>
+		<var>version</var>
+	      </p>
+	    </item>
+	  </list>
+
+	<p>	  
+	  <list compact="compact">
+	    <item>
+	      <p><var>prerm</var> <tt>remove</tt></p>
+	    </item>
+	    <item>
+	      <p><var>old-prerm</var> <tt>upgrade</tt>
+		<var>new-version</var></p>
+	    </item>
+	    <item>
+	      <p><var>new-prerm</var> <tt>failed-upgrade</tt>
+		<var>old-version</var></p>
+	    </item>
+	    <item>
+	      <p><var>conflictor's-prerm</var> <tt>remove</tt>
+		<tt>in-favour</tt> <var>package</var>
+		<var>new-version</var></p>
+	    </item>
+	    <item>
+	      <p>
+		<var>deconfigured's-prerm</var> <tt>deconfigure</tt>
+		<tt>in-favour</tt> <var>package-being-installed</var>
+		<var>version</var> <tt>removing</tt>
+		<var>conflicting-package</var>
+		<var>version</var>
+	      </p>
+	    </item>
+	  </list>
+
+	<p>	  
+	  <list compact="compact">
+	    <item>
+	      <p><var>postrm</var> <tt>remove</tt></p>
+	    </item>
+	    <item>
+	      <p><var>postrm</var> <tt>purge</tt></p>
+	    </item>
+	    <item>
+	      <p>
+		<var>old-postrm</var> <tt>upgrade</tt>
+		<var>new-version</var></p>
+	    </item>
+	    <item>
+	      <p><var>new-postrm</var> <tt>failed-upgrade</tt>
+		<var>old-version</var></p>
+	    </item>
+	    <item>
+	      <p><var>new-postrm</var> <tt>abort-install</tt></p>
+	    </item>
+	    <item>
+	      <p><var>new-postrm</var> <tt>abort-install</tt>
+		<var>old-version</var></p>
+	    </item>
+	    <item>
+	      <p><var>new-postrm</var> <tt>abort-upgrade</tt>
+		<var>old-version</var></p>
+	    </item>
+	    <item>
+	      <p>
+		<var>disappearer's-postrm</var> <tt>disappear</tt>
+		<var>overwriter</var>
+		<var>overwriter-version</var></p></item>
+	  </list>
+	</p>
+	
+	
+      <sect id="unpackphase"><heading>Details of unpack phase of
+	  installation or upgrade
+	</heading>
+
+	<p>	  
+	  The procedure on installation/upgrade/overwrite/disappear
+	  (i.e., when running <tt>dpkg --unpack</tt>, or the unpack
+	  stage of <tt>dpkg
+	    --install</tt>) is as follows.  In each case if an error occurs the
+	  actions in are general run backwards - this means that the maintainer
+	  scripts are run with different arguments in reverse order.  These are
+	  the `error unwind' calls listed below.
+	  
+	  <enumlist>
+	    <item>
+	      <p>
+		<enumlist>
+		  <item>
+		    <p>If a version the package is already
+		      installed, call
+		      <example>
+			<var>old-prerm</var> upgrade <var>new-version</var>
+		      </example></p>
+		  </item>
+		  <item>
+		    <p>
+		      If this gives an error (i.e., a non-zero exit
+		      status), dpkg will attempt instead:
+		      <example>
+			<var>new-prerm</var> failed-upgrade <var>old-version</var>
+		      </example>
+		      Error unwind, for both the above cases:
+		      <example>
+			<var>old-postinst</var> abort-upgrade <var>new-version</var>
+		      </example>
+		    </p>
+		  </item>
+		</enumlist>
+	      </p>
+	    </item>
+	    <item>
+	      <p>If a `conflicting' package is being removed at the same time:
+		<enumlist>
+		  <item>
+		    <p>
+		      If any packages depended on that conflicting
+		      package and <tt>--auto-deconfigure</tt> is
+		      specified, call, for each such package:
+		      <example>
+			<var>deconfigured's-prerm</var> deconfigure \
+			in-favour <var>package-being-installed</var> <var>version</var> \
+			removing <var>conflicting-package</var> <var>version</var>
+		      </example>
+		      Error unwind:
+		      <example>
+			<var>deconfigured's-postinst</var> abort-deconfigure \
+			in-favour <var>package-being-installed-but-failed</var> <var>version</var> \
+			removing <var>conflicting-package</var> <var>version</var>
+		      </example> 
+		      The deconfigured packages are marked as
+		      requiring configuration, so that if
+		      <tt>--install</tt> is used they will be
+		      configured again if possible.</p>
+		  </item>
+		  <item>
+		    <p>To prepare for removal of the conflicting package, call:
+		      <example>
+			<var>conflictor's-prerm</var> remove in-favour <var>package</var> <var>new-version</var>
+		      </example>
+		      Error unwind:
+		      <example>
+			<var>conflictor's-postinst</var> abort-remove \
+			in-favour <var>package</var> <var>new-version</var>
+		      </example>
+		    </p>
+		  </item>
+		</enumlist>
+	      </p>
+	    </item>
+	    <item>
+	      <p>
+		<enumlist>
+		  <item>
+		    <p>If the package is being upgraded, call:
+		      <example>
+			<var>new-preinst</var> upgrade <var>old-version</var>
+		      </example></p>
+		  </item>
+		  <item>
+		    <p>
+		      Otherwise, if the package had some configuration
+		      files from a previous version installed (i.e., it
+		      is in the `configuration files only' state):
+		      <example>
+			<var>new-preinst</var> install <var>old-version</var>
+		      </example></p>
+		    
+		  <item>
+		    <p>Otherwise (i.e., the package was completely purged):
+		      <example>
+			<var>new-preinst</var> install
+		      </example>
+		      Error unwind versions, respectively:
+		      <example>
+			<var>new-postrm</var> abort-upgrade <var>old-version</var>
+			<var>new-postrm</var> abort-install <var>old-version</var>
+			<var>new-postrm</var> abort-install
+		      </example>
+		    </p>
+		  </item>
+		</enumlist>
+	      </p>
+	    </item>
+	    <item>
+
+	      <p>
+		The new package's files are unpacked, overwriting any
+		that may be on the system already, for example any
+		from the old version of the same package or from
+		another package (backups of the old files are left
+		around, and if anything goes wrong the package
+		management system will attempt to put them back as
+		part of the error unwind).
+	      </p>
+
+	      <p>		
+		It is an error for a package to contains files which
+		are on the system in another package, unless
+		<tt>Replaces</tt> is used (see <ref id="replaces">).
+		Currently the <tt>--force-overwrite</tt> flag is
+		enabled, downgrading it to a warning, but this may not
+		always be the case.
+	      </p>
+
+	      <p>		
+		It is a more serious error for a package to contain a
+		plain file or other kind of non-directory where another
+		package has a directory (again, unless
+		<tt>Replaces</tt> is used).  This error can be
+		overridden if desired using
+		<tt>--force-overwrite-dir</tt>, but this is not
+		advisable.
+	      </p>
+
+	      <p>		
+		Packages which overwrite each other's files produce
+		behavior which though deterministic is hard for the
+		system administrator to understand.  It can easily
+		lead to `missing' programs if, for example, a package
+		is installed which overwrites a file from another
+		package, and is then removed again.
+		<footnote>
+		  <p>
+		    Part of the problem is due to what is arguably a
+		    bug in <prgn>dpkg</prgn>.
+		  </p>
+		</footnote>
+	      </p>
+
+	      <p>		
+		A directory will never be replaced by a symbolic links
+		to a directory or vice versa; instead, the existing
+		state (symlink or not) will be left alone and
+		<prgn>dpkg</prgn> will follow the symlink if there is
+		one.</p>
+	    </item>
+	    
+	    <item>
+	      
+	      <p><enumlist>
+		  <item>
+		    <p>If the package is being upgraded, call
+		      <example>
+			<var>old-postrm</var> upgrade <var>new-version</var>
+		      </example></p>
+		  </item>
+		  <item>
+		    <p>If this fails, <prgn>dpkg</prgn> will attempt:
+		      <example>
+			<var>new-postrm</var> failed-upgrade <var>old-version</var>
+		      </example>
+		      Error unwind, for both cases:
+		      <example>
+			<var>old-preinst</var> abort-upgrade <var>new-version</var>
+		      </example>
+		    </p>
+		  </item>
+		</enumlist>
+	      <p>
+		This is the point of no return - if
+		<prgn>dpkg</prgn> gets this far, it won't back off
+		past this point if an error occurs.  This will
+		leave the package in a fairly bad state, which
+		will require a successful re-installation to clear
+		up, but it's when <prgn>dpkg</prgn> starts doing
+		things that are irreversible.
+	      </p>
+	    </item>
+	    <item>
+	      <p>		
+		Any files which were in the old version of the package
+		but not in the new are removed.</p>
+	    </item>
+	    <item>
+	      <p>The new file list replaces the old.</p>
+	    </item>
+	    <item>
+	      <p>The new maintainer scripts replace the old.</p>
+	    </item>
+	    
+	    <item>
+	      <p>Any packages all of whose files have been overwritten during the
+		installation, and which aren't required for
+		dependencies, are considered to have been removed.
+		For each such package,
+		<enumlist>
+		  <item>
+		    <p><prgn>dpkg</prgn> calls:
+		      <example>
+			<var>disappearer's-postrm</var> disappear \
+			<var>overwriter</var> <var>overwriter-version</var>
+		      </example>
+		    </p>
+		  </item>
+		  <item>
+		    <p>The package's maintainer scripts are removed.
+		    </p>
+		  </item>
+		  <item>
+		    <p>
+		      It is noted in the status database as being in a
+		      sane state, namely not installed (any conffiles
+		      it may have are ignored, rather than being
+		      removed by <prgn>dpkg</prgn>).  Note that
+		      disappearing packages do not have their prerm
+		      called, because <prgn>dpkg</prgn> doesn't know
+		      in advance that the package is going to
+		      vanish.
+		    </p>
+		  </item>
+		</enumlist>
+	      </p>
+	    </item>
+	    <item>
+	      <p>
+		Any files in the package we're unpacking that are also
+		listed in the file lists of other packages are removed
+		from those lists.  (This will lobotomize the file list
+		of the `conflicting' package if there is one.)
+	      </p>
+	    </item>
+	    <item>
+	      <p>
+		The backup files made during installation, above, are
+		deleted.
+	      </p>
+	    </item>
+	    
+	    <item>
+	      <p>
+		The new package's status is now sane, and recorded as
+		`unpacked'.  Here is another point of no return - if
+		the conflicting package's removal fails we do not
+		unwind the rest of the installation; the conflicting
+		package is left in a half-removed limbo.
+	      </p>
+	    </item>
+	    <item>
+	      <p>
+		If there was a conflicting package we go and do the
+		removal actions (described below), starting with the
+		removal of the conflicting package's files (any that
+		are also in the package being installed have already
+		been removed from the conflicting package's file list,
+		and so do not get removed now).
+	      </p>
+	    </item>
+	  </enumlist>
+	</p>
+      </sect>
+
+      <sect><heading>Details of configuration</heading>
+
+	<p>	  
+	  When we configure a package (this happens with <tt>dpkg
+	    --install</tt>, or with <tt>--configure</tt>), we first
+	  update the conffiles and then call:
+	  <example>
+	    <var>postinst</var> configure <var>most-recently-configured-version</var>
+	  </example>
+	</p>
+
+	<p>	  
+	  No attempt is made to unwind after errors during
+	  configuration.
+	</p>
+
+	<p>	  
+	  If there is no most recently configured version
+	  <prgn>dpkg</prgn> will pass a null argument; older versions
+	  of dpkg may pass <tt>&lt;unknown&gt;</tt> (including the
+	  angle brackets) in this case.  Even older ones do not pass a
+	  second argument at all, under any circumstances.
+	</p>
+      </sect>
+      
+      <sect><heading>Details of removal and/or configuration purging
+	</heading>
+
+	<p>	  
+	  <enumlist>
+	    <item>
+	      <p>
+		<example>
+		  <var>prerm</var> remove
+		</example>
+	      </p>
+	    </item>
+	    <item>
+	      <p>
+		The package's files are removed (except conffiles).
+	      </p>
+	    </item>
+	    <item>
+	      <p><example>
+		  <var>postrm</var> remove
+		</example></p>
+	    </item>
+	    <item>
+	      <p>All the maintainer scripts except the postrm are removed.
+	      </p>
+
+	      <p>		
+		If we aren't purging the package we stop here.  Note
+		that packages which have no postrm and no conffiles
+		are automatically purged when removed, as there is no
+		difference except for the <prgn>dpkg</prgn>
+		status.</p>
+	    </item>
+	    <item>
+	      <p>
+		The conffiles and any backup files (<tt>~</tt>-files,
+		<tt>#*#</tt> files, <tt>%</tt>-files,
+		<tt>.dpkg-{old,new,tmp}</tt>, etc.) are removed.</p>
+	    </item>
+	    <item>
+	      <p><example>
+		  <var>postrm</var> purge
+		</example></p>
+	    </item>
+	    <item>
+	      <p>The package's file list is removed.</p>
+	    </item>
+	  </enumlist>
+	  No attempt is made to unwind after errors during
+	  removal.</p>
+      </sect>
+    </chapt>
+    
+
+    <chapt id="relationships"><heading>Declaring relationships between
+	packages      </heading>
+
+      <p>	
+	Packages can declare in their control file that they have
+	certain relationships to other packages - for example, that
+	they may not be installed at the same time as certain other
+	packages, and/or that they depend on the presence of others,
+	or that they should overwrite files in certain other packages
+	if present.
+      </p>
+
+      <p>	
+	This is done using the <tt>Depends</tt>, <tt>Recommends</tt>,
+	<tt>Suggests</tt>, <tt>Conflicts</tt>, <tt>Provides</tt> and
+	<tt>Replaces</tt> control file fields.
+      </p>
+
+      <p>
+        Source packages may declare relationships to binary packages,
+        saying that they require certain binary packages being
+        installed or absent at the time of building the package.
+      </p>
+      
+      <p>
+        This is done using the <tt>Build-Depends</tt>,
+        <tt>Build-Depends-Indep</tt>, <tt>Build-Conflicts</tt>, and
+        <tt>Build-Conflicts-Indep</tt> control file fields.
+      </p>
+
+      <sect id="depsyntax"><heading>Syntax of relationship fields
+	</heading>
+
+	<p>	  
+	  These fields all have a uniform syntax.  They are a list of
+	  package names separated by commas.
+	</p>
+
+        <p>
+          In <tt>Depends</tt>, <tt>Recommends</tt>, <tt>Suggests</tt>,
+          <tt>Pre-Depends</tt>, <tt>Build-Depends</tt> and
+          <tt>Build-Depends-Indep</tt>(the fields which declare
+          dependencies of the package in which they occur on other
+          packages) these package names may also be lists of
+          alternative package names, separated by vertical bar symbols
+          <tt>|</tt> (pipe symbols).
+	</p>
+
+	<p>	  
+	  All the fields except <tt>Provides</tt> may restrict their
+	  applicability to particular versions of each named package.
+	  This is done in parentheses after each individual package
+	  name; the parentheses should contain a relation from the
+	  list below followed by a version number, in the format
+	  described in <ref id="versions">.
+	</p>
+
+	<p>	  
+	  The relations allowed are <tt>&lt;&lt;</tt>, <tt>&lt;=</tt>,
+	  <tt>=</tt>, <tt>&gt;=</tt> and <tt>&gt;&gt;</tt> for
+	  strictly earlier, earlier or equal, exactly equal, later or
+	  equal and strictly later, respectively.  The forms
+	  <tt>&lt;</tt> and <tt>&gt;</tt> were used to mean
+	  earlier/later or equal, rather than strictly earlier/later,
+	  so they should not appear in new packages (though
+	  <prgn>dpkg</prgn> still supports them).
+	</p>
+
+	<p>	  
+	  Whitespace may appear at any point in the version
+	  specification, and must appear where it's necessary to
+	  disambiguate; it is not otherwise significant.  For
+	  consistency and in case of future changes to
+	  <prgn>dpkg</prgn> it is recommended that a single space be
+	  used after a version relationship and before a version
+	  number; it is usual also to put a single space after each
+	  comma, on either side of each vertical bar, and before each
+	  open parenthesis.
+	</p>
+
+	<p>	  
+	  For example:
+	  <example>
+	    Package: metamail
+	    Version: 2.7-3
+	    Depends: libc5 (>= 5.2.18-4), mime-support, csh | tcsh
+	  </example>
+	</p>
+	
+        <p>
+          All fields that specify build-time relationships
+	  (<tt>Build-Depends</tt>, <tt>Build-Depends-Indep</tt>,
+	  <tt>Build-Conflicts</tt> and <tt>Build-Conflicts-Indep</tt>)
+	  may be restricted to a certain set of architectures.  This
+	  is done in brackets after each individual package name and
+	  the optional version specification.  The brackets enclose a
+	  list of Debian architecture names separated by whitespace.
+	  An exclamation mark may be prepended to each name. If the
+	  current Debian host architecture is not in this list and
+	  there are no exclamation marks in the list, or it is in the
+	  list with a prepended exclamation mark, the package name and
+	  the associated version specification are ignored completely
+	  for the purposes of defining the relationships.
+	</p>
+	
+	<p>
+	  For example:
+	  <example>
+	    Source: glibc
+	    Build-Depends-Indep: texinfo
+	    Build-Depends: kernel-headers-2.2.10 [!hurd-i386],
+	    hurd-dev [hurd-i386], gnumach-dev [hurd-i386]
+	  </example>
+	</p> 
+      </sect>
+      
+      <sect>
+        <heading>Binary Dependencies - <tt>Depends</tt>,
+          <tt>Recommends</tt>, <tt>Suggests</tt>, <tt>Pre-Depends</tt>
+	</heading>
+
+	<p>	  
+	  These four fields are used to declare a dependency by one
+	  package on another.  They appear in the depending package's
+	  control file.
+	</p>
+
+	<p>	  
+	  All but <tt>Pre-Depends</tt> and <tt>Conflicts</tt>
+	  (discussed below) take effect <em>only</em> when a package
+	  is to be configured.  They do not prevent a package being on
+	  the system in an unconfigured state while its dependencies
+	  are unsatisfied, and it is possible to replace a package
+	  whose dependencies are satisfied and which is properly
+	  installed with a different version whose dependencies are
+	  not and cannot be satisfied; when this is done the depending
+	  package will be left unconfigured (since attempts to
+	  configure it will give errors) and will not function
+	  properly.
+	</p>
+
+	<p>	  
+	  For this reason packages in an installation run are usually
+	  all unpacked first and all configured later; this gives
+	  later versions of packages with dependencies on later
+	  versions of other packages the opportunity to have their
+	  dependencies satisfied.
+	</p>
+
+	<p>	  
+	  Thus <tt>Depends</tt> allows package maintainers to impose
+	  an order in which packages should be configured.
+	  <taglist>
+	    <tag><tt>Depends</tt></tag>
+	    <item>
+	      
+	      <p>This declares an absolute dependency.
+	      </p>
+
+	      <p>		
+		The <tt>Depends</tt> field should be used if the
+		depended-on package is required for the depending
+		package to provide a significant amount of
+		functionality.</p>
+	    </item>
+	    
+	    <tag><tt>Recommends</tt></tag>
+	    <item>
+	      <p>This declares a strong, but not absolute, dependency.
+	      </p>
+
+	      <p>		
+		The <tt>Recommends</tt> field should list packages
+		that would be found together with this one in all but
+		unusual installations.</p>
+	    </item>
+	    
+	    <tag><tt>Suggests</tt></tag>
+	    <item>
+	      
+	      <p>
+		This is used to declare that one package may be more
+		useful with one or more others.  Using this field
+		tells the packaging system and the user that the
+		listed packages are related to this one and can
+		perhaps enhance its usefulness, but that installing
+		this one without them is perfectly reasonable.
+	      </p>
+
+	    </item>
+	    
+	    <tag><tt>Pre-Depends</tt></tag>
+	    <item>
+	      
+	      <p>
+		This field is like <tt>Depends</tt>, except that it
+		also forces <prgn>dpkg</prgn> to complete installation
+		of the packages named before even starting the
+		installation of the package which declares the
+		Pre-dependency.
+	      </p>
+
+	      <p>		
+		<tt>Pre-Depends</tt> should be used sparingly,
+		preferably only by packages whose premature upgrade or
+		installation would hamper the ability of the system to
+		continue with any upgrade that might be in progress.
+	      </p>
+
+	      <p>		
+		When the package declaring it is being configured, a
+		<tt>Pre-Dependency</tt> will be considered satisfied
+		only if the depending package has been correctly
+		configured, just as if an ordinary <tt>Depends</tt>
+		had been used.
+	      </p>
+
+	      <p>		
+		However, when a package declaring a Pre-dependency is
+		being unpacked the predependency can be satisfied even
+		if the depended-on package(s) are only unpacked or
+		half-configured, provided that they have been
+		configured correctly at some point in the past (and
+		not removed or partially removed since).  In this case
+		both the previously-configured and currently unpacked
+		or half-configured versions must satisfy any version
+		clause in the <tt>Pre-Depends</tt> field.
+	      </p>
+	    </item>
+	  </taglist>
+	</p>
+	<p> 
+	  When selecting which level of dependency to use you should
+	  consider how important the depended-on package is to the
+	  functionality of the one declaring the dependency.  Some
+	  packages are composed of components of varying degrees of
+	  importance.  Such a package should list using
+	  <tt>Depends</tt> the package(s) which are required by the
+	  more important components.  The other components'
+	  requirements may be mentioned as Suggestions or
+	  Recommendations, as appropriate to the components' relative
+	  importance.
+	</p>
+
+
+      <sect id="conflicts"><heading>Alternative binary packages -
+	  <tt>Conflicts</tt> and <tt>Replaces</tt>
+	</heading>
+
+	<p>	  
+          When one binary package declares a conflict with another
+	  <prgn>dpkg</prgn> will refuse to allow them to be installed
+	  on the system at the same time.
+	</p>
+
+	<p>	  
+	  If one package is to be installed, the other must be removed
+	  first - if the package being installed is marked as
+	  replacing (<ref id="replaces">) the one on the system, or
+	  the one on the system is marked as deselected, or both
+	  packages are marked <tt>Essential</tt>, then
+	  <prgn>dpkg</prgn> will automatically remove the package
+	  which is causing the conflict, otherwise it will halt the
+	  installation of the new package with an error. This
+	  mechanism specifically doesn't work when the installed
+	  package is <tt>Essential</tt>, but the new package is not.
+	</p>
+
+
+	<p>	  
+	  A package will not cause a conflict merely because its
+	  configuration files are still installed; it must be at least
+	  half-installed.
+	</p>
+
+	<p>	  
+	  A special exception is made for packages which declare a
+	  conflict with their own package name, or with a virtual
+	  package which they provide (see below): this does not
+	  prevent their installation, and allows a package to conflict
+	  with others providing a replacement for it.  You use this
+	  feature when you want the package in question to be the only
+	  package providing something.
+	</p>
+
+	<p>	  
+	  A <tt>Conflicts</tt> entry should almost never have an
+	  `earlier than' version clause.  This would prevent
+	  <prgn>dpkg</prgn> from upgrading or installing the package
+	  which declared such a conflict until the upgrade or removal
+	  of the conflicted-with package had been completed. 
+	</p>
+      </sect>
+      
+      <sect id="virtual"><heading>Virtual packages - <tt>Provides</tt>
+	</heading>
+
+        <p> 
+	  As well as the names of actual (`concrete') packages, the
+	  package relationship fields <tt>Depends</tt>,
+	  <tt>Build-Depends</tt>, <tt>Build-Depends-Indep</tt>,
+	  <tt>Recommends</tt>, <tt>Suggests</tt>, <tt>Conflicts</tt>,
+	  <tt>Build-Conflicts</tt> and <tt>Build-Conflicts-Indep</tt> may
+	  mention virtual packages.
+	</p>
+
+	<p>	  
+	  A virtual package is one which appears in the
+	  <tt>Provides</tt> control file field of another package.
+	  The effect is as if the package(s) which provide a
+	  particular virtual package name had been listed by name
+	  everywhere the virtual package name appears.
+	</p>
+
+	<p>	  
+	  If there are both a real and a virtual package of the same
+	  name then the dependency may be satisfied (or the conflict
+	  caused) by either the real package or any of the virtual
+	  packages which provide it.  This is so that, for example,
+	  supposing we have
+	  <example>
+	    Package: vm
+	    Depends: emacs
+	  </example>
+	  and someone else releases an xemacs package they can say
+	  <example>
+	    Package: xemacs
+	    Provides: emacs
+	  </example> and all will work in the interim (until a purely
+	  virtual package name is decided on and the <tt>emacs</tt>
+	  and <tt>vm</tt> packages are changed to use it).
+	</p>
+
+	<p>	  
+	  If a dependency or a conflict has a version number attached
+	  then only real packages will be considered to see whether
+	  the relationship is satisfied (or the prohibition violated,
+	  for a conflict) - it is assumed that a real package which
+	  provides virtual package is not of the `right' version.  So,
+	  a <tt>Provides</tt> field may not contain version numbers,
+	  and the version number of the concrete package which
+	  provides a particular virtual package will not be looked at
+	  when considering a dependency on or conflict with the
+	  virtual package name.
+	</p>
+
+	<p>	  
+	  It is likely that the ability will be added in a future
+	  release of <prgn>dpkg</prgn> to specify a version number for
+	  each virtual package it provides.  This feature is not yet
+	  present, however, and is expected to be used only
+	  infrequently.
+	</p>
+
+	<p>	  
+	  If you want to specify which of a set of real packages should be the
+	  default to satisfy a particular dependency on a virtual package, you
+	  should list the real package as an alternative before the virtual.
+	</p>
+      </sect>
+      
+      
+      <sect id="replaces"><heading><tt>Replaces</tt> - overwriting
+	  files and replacing packages
+	</heading>
+
+	<p>	  
+	  The <tt>Replaces</tt> control file field has two purposes,
+	  which come into play in different situations.
+	</p>
+
+	<p>	  
+	  Virtual packages (<ref id="virtual">) are not considered
+	  when looking at a <tt>Replaces</tt> field - the packages
+	  declared as being replaced must be mentioned by their real
+	  names.
+	</p>
+	
+	<sect1><heading>Overwriting files in other packages
+	  </heading>
+
+	  <p>	    
+	    Firstly, as mentioned before, it is usually an error for a
+	    package to contains files which are on the system in
+	    another package, though currently the
+	    <tt>--force-overwrite</tt> flag is enabled by default,
+	    downgrading the error to a warning,
+	  </p>
+
+	  <p>	    
+	    If the overwriting package declares that it replaces the
+	    one containing the file being overwritten then
+	    <prgn>dpkg</prgn> will proceed, and replace the file from
+	    the old package with that from the new.  The file will no
+	    longer be listed as `owned' by the old package.
+	  </p>
+
+	  <p>	    
+	    If a package is completely replaced in this way, so that
+	    <prgn>dpkg</prgn> does not know of any files it still
+	    contains, it is considered to have disappeared.  It will
+	    be marked as not wanted on the system (selected for
+	    removal) and not installed.  Any conffiles details noted
+	    in the package will be ignored, as they will have been
+	    taken over by the replacing package(s).  The package's
+	    <prgn>postrm</prgn> script will be run to allow the
+	    package to do any final cleanup required.  See <ref
+								id="mscriptsinstact">.
+	  </p>
+
+	  <p>	    
+	    In the future <prgn>dpkg</prgn> will discard files which
+	    overwrite those from another package which declares that
+	    it replaces the one being installed (so that you can
+	    install an older version of a package without problems).
+	  </p>
+
+	  <p>	    
+	    This usage of <tt>Replaces</tt> only takes effect when
+	    both packages are at least partially on the system at
+	    once, so that it can only happen if they do not conflict
+	    or if the conflict has been overridden.</p>
+	</sect1>
+	
+	<sect1><heading>Replacing whole packages, forcing their
+	    removal
+	  </heading>
+
+	  <p>	    
+	    Secondly, <tt>Replaces</tt> allows the packaging system to
+	    resolve which package should be removed when there is a
+	    conflict - see <ref id="conflicts">.  This usage only
+	    takes effect when the two packages <em>do</em> conflict,
+	    so that the two effects do not interfere with each other.
+	  </p>
+	</sect1>
+      </sect>
+
+      <sect><heading>Relationships between source and binary packages -
+	  <tt>Build-Depends</tt>, <tt>Build-Depends-Indep</tt>,
+	  <tt>Build-Conflicts</tt>, <tt>Build-Conflicts-Indep</tt>
+	</heading>
+
+        <p>
+          A source package may declare a dependency or a conflict on a
+          binary package.  This is done with the control file fields
+          <tt>Build-Depends</tt>, <tt>Build-Depends-Indep</tt>,
+          <tt>Build-Conflicts</tt>, and <tt>Build-Conflicts-Indep</tt>.  Their
+          semantics is that the dependencies and conflicts they define
+          must be satisfied (as defined earlier for binary packages),
+          when one of the targets in <tt>debian/rules</tt> that the
+          particular field applies to is invoked.
+
+	  <taglist>
+	    <tag><tt>Build-Depends</tt>, <tt>Build-Conflicts</tt></tag>
+	    <item>
+	      <p>
+                The <tt>Build-Depends</tt> and
+		<tt>Build-Conflicts</tt> fields apply to the targets
+		<tt>build</tt>, <tt>binary</tt>, <tt>binary-arch</tt>
+		and <tt>binary-indep</tt>.
+	      </p>
+	    </item>
+	    <tag><tt>Build-Depends-Indep</tt>, <tt>Build-Conflicts-Indep</tt></tag>
+	    <item>
+	      <p>
+                The <tt>Build-Depends-Indep</tt> and
+		<tt>Build-Conflicts-Indep</tt> fields apply to the
+		targets <tt>binary</tt> and <tt>binary-indep</tt>.
+	      </p>
+	    </item>
+	  </taglist>
+
+	</p>
+
+      </sect>
+    </chapt>
+
+
+    <chapt id="conffiles"><heading>Configuration file handling
+      </heading>
+
+      <p>	
+	<prgn>dpkg</prgn> can do a certain amount of automatic
+	handling of package configuration files.
+      </p>
+
+      <p>	
+	Whether this mechanism is appropriate depends on a number of
+	factors, but basically there are two approaches to any
+	particular configuration file.
+      </p>
+
+      <p>	
+	The easy method is to ship a best-effort configuration in the
+	package, and use <prgn>dpkg</prgn>'s conffile mechanism to
+	handle updates.  If the user is unlikely to want to edit the
+	file, but you need them to be able to without losing their
+	changes, and a new package with a changed version of the file
+	is only released infrequently, this is a good approach.
+      </p>
+
+      <p>	
+	The hard method is to build the configuration file from
+	scratch in the <prgn>postinst</prgn> script, and to take the
+	responsibility for fixing any mistakes made in earlier
+	versions of the package automatically.  This will be
+	appropriate if the file is likely to need to be different on
+	each system.
+      </p>
+      
+
+    <chapt id="sharedlibs"><heading>Shared libraries
+      </heading>
+
+      <p>	
+	Packages containing shared libraries must be constructed with
+	a little care to make sure that the shared library is always
+	available.  This is especially important for packages whose
+	shared libraries are vitally important, such as the libc.
+      </p>
+
+      <p>	
+	Firstly, your package should install the shared libraries
+	under their normal names.  For example, the
+	<prgn>libgdbm1</prgn> package should install
+	<tt>libgdbm.so.1.7.3</tt> as
+	<tt>/usr/lib/libgdbm.so.1.7.3</tt>.  The files should not be
+	renamed or re-linked by any prerm or postrm scripts;
+	<prgn>dpkg</prgn> will take care of renaming things safely
+	without affecting running programs, and attempts to interfere
+	with this are likely to lead to problems.
+      </p>
+
+      <p>	
+	Secondly, your package should include the symlink that
+	<prgn>ldconfig</prgn> would create for the shared libraries.
+	For example, the <prgn>libgdbm1</prgn> package should include
+	a symlink from <tt>/usr/lib/libgdbm.so.1</tt> to
+	<tt>libgdbm.so.1.7.3</tt>.  This is needed so that
+	<prgn>ld.so</prgn> can find the library in between the time
+	<prgn>dpkg</prgn> installs it and <prgn>ldconfig</prgn> is run
+	in the <prgn>postinst</prgn> script.  Furthermore, older
+	versions of the package management system required the library
+	must be placed before the symlink pointing to it in the
+	<tt>.deb</tt> file.  This is so that by the time
+	<prgn>dpkg</prgn> comes to install the symlink (overwriting
+	the previous symlink pointing at an older version of the
+	library) the new shared library is already in place.
+	Unfortunately, this was not not always possible, since it
+	highly depends on the behavior of the file system. Some
+	file systems (such as reiserfs) will reorder the files so it
+	doesn't matter in what order you create them. Starting with
+	release <tt>1.7.0</tt> <prgn>dpkg</prgn> will reorder the
+	files itself when building a package.
+      </p>
+
+      <!--
+      next Paragraph added to close Bug #5299, Guy Maor
+      -->
+      
+      <p>	
+	Thirdly, the development package should contain a symlink for
+	the shared library without a version number.  For example, the
+	<tt>libgdbm1-dev</tt> package should include a symlink from
+	<tt>/usr/lib/libgdm.so</tt> to <tt>libgdm.so.1.7.3</tt>.  This
+	symlink is needed by <prgn>ld</prgn> when compiling packages
+	as it will only look for <tt>libgdm.so</tt> and
+	<tt>libgdm.a</tt> when compiling dynamically or statically,
+	respectively.
+      </p>
+
+      <!--
+      next paragraph changed by Christian Schwarz (see policy weekly #6)
+      -->
+      
+      <p>	
+	Any package installing shared libraries in a directory that's listed
+	in <tt>/etc/ld.so.conf</tt> or in one of the default library
+	directories of <prgn>ld.so</prgn> (currently, these are <tt>/usr/lib</tt>
+	and <tt>/lib</tt>) must call <prgn>ldconfig</prgn> in its <prgn>postinst</prgn>
+	script if and only if the first argument is `configure'. However, it
+	is important not to call <prgn>ldconfig</prgn> in the postrm or preinst
+	scripts in the case where the package is being upgraded (see <ref
+									  id="unpackphase">), as <prgn>ldconfig</prgn> will see the temporary names
+	that <prgn>dpkg</prgn> uses for the files while it is
+	installing them and will make the shared library links point
+	to them, just before <prgn>dpkg</prgn> continues the
+	installation and removes the links!
+      </p>
+
+      <!-- 
+      moved from section 2.2 , DMorris 
+      -->
+      
+      <sect id="shlibs"><heading>The <tt>shlibs</tt> File Format
+	</heading>
+
+	<p>	  
+	  This file is for use by <prgn>dpkg-shlibdeps</prgn> and is
+	  required when your package provides shared libraries.
+	</p>
+
+	<p>	  
+	  Each line is of the form:
+	  <example>
+	    <var>library-name</var> <var>version-or-soname</var> <var>dependencies ...</var>
+	  </example>
+	</p>
+
+	<p>	  
+	  <var>library-name</var> is the name of the shared library,
+	  for example <tt>libc5</tt>.
+	</p>
+
+	<p>	  
+	  <var>version-or-soname</var> is the soname of the library -
+	  i.e., the thing that must exactly match for the library to be
+	  recognized by <prgn>ld.so</prgn>.  Usually this is major
+	  version number of the library.
+	</p>
+
+	<p>	  
+	  <var>dependencies</var> has the same syntax as a dependency
+	  field in a binary package control file.  It should give
+	  details of which package(s) are required to satisfy a binary
+	  built against the version of the library contained in the
+	  package.  See <ref id="depsyntax">.
+	</p>
+
+	<p>	  
+	  For example, if the package <tt>foo</tt> contains
+	  <tt>libfoo.so.1.2.3</tt>, where the soname of the library is
+	  <tt>libfoo.so.1</tt>, and the first version of the package
+	  which contained a minor number of at least <tt>2.3</tt> was
+	  <var>1.2.3-1</var>, then the package's <var>shlibs</var>
+	  could say:
+	  <example>
+	    libfoo 1	foo (>= 1.2.3-1)
+	  </example>
+	</p>
+
+	<p>	  
+	  The version-specific dependency is to avoid warnings from
+	  <prgn>ld.so</prgn> about using older shared libraries with
+	  newer binaries.</p>
+      </sect>
+      
+      <sect><heading>Further Technical information on
+	  <tt>shlibs</tt></heading>
+
+	
+	<!-- 
+	following section mostly provided by Heiko Schlittermann
+	edited by DMorris
+	-->
+	
+	<sect1><heading><em>What</em> are the <tt>shlibs</tt> files?
+	  </heading>
+
+	  <p>	    
+	    The <tt>debian/shlibs</tt> file provides a way of checking
+	    for shared library dependencies on packaged binaries.
+	    They are intended to be used by package maintainers to
+	    make their lives easier.
+	  </p>
+
+	  <p>	    
+	    Other <tt>shlibs</tt> files that exist on a Debian system are
+	    <list>
+	      <item> <p><tt>/etc/dpkg/shlibs.default</tt></p></item>
+	      <item> <p><tt>/etc/dpkg/shlibs.override</tt></p></item>
+	      <item> <p><tt>/var/lib/dpkg/info/*.shlibs</tt></p></item>
+	      <item> <p><tt>debian/shlibs.local</tt></p></item>
+	    </list> 
+	    These files are used by <prgn>dpkg-shlibdeps</prgn> when
+	    creating a binary package.</p>
+	</sect1>
+	
+	<sect1><heading><em>How</em> does <prgn>dpkg-shlibdeps</prgn>
+	    work?
+	  </heading>
+	  <p>	    
+	    <prgn>dpkg-shlibdeps</prgn> 
+	    determines the shared libraries directly
+	    <footnote> 
+	      <p>		
+		Currently, it calls <prgn>ldd</prgn>, but in a
+		forthcoming version it shall call <prgn>objdump</prgn>
+                to to this. This however changes will need a couple of
+		changes in the way that packages are build.
+	      </p>
+	      <p>
+		Suppose a binary <tt>foo</tt> directly use a library
+		<tt>libbar</tt> if it is linked with that
+		library. Other libraries that are needed by
+		<tt>libbar</tt> are linked indirectly to <tt>foo</tt>,
+		and the dynamic linker will load the automatically
+		when it loads <tt>libbar</tt>. Using <prgn>ldd</prgn>
+		lists all the libraries, used directly and indirectly;
+		but <prgn>objdump</prgn> only lists the directly
+		linked libraries. A package only needs to depend on
+		the libraries it is directly linked to, since the
+		dependencies for those libraries should automatically
+		pull in the other libraries.</p>
+
+	      <p>
+		This change does mean a change in the way packages are
+		build though: currently dpkg-shlibdeps is only run on
+		binaries. But since we will now depend on the
+		libraries to depend on the libraries they need the
+		packages containing those libraries will need to run
+		dpkg-shlibdeps on the libraries.
+	      </p>
+	      <p>
+		A good example where this would help us is the current
+		mess with multiple version of the mesa library. With
+		the ldd-based system every package that uses mesa need
+		to add a dependency on svgalib|svgalib-dummy in order
+		to handle the glide mesa variant.  With an
+		objdump-based system this isn't necessary anymore and
+		would have saved everyone a lot of work.
+	      </p>
+	      <p>
+		Another example: we could update libimlib with a new
+		version that supports a new graphics format called
+		dgf. If we use the old ldd method every package that
+		uses libimlib would need to be recompiled so it would
+		also depend on libdgf or it wouldn't run due to
+		missing symbols. However with the new system packages
+		using libimlib can depend on libimlib itself having
+		the dependency on libgdh and wouldn't need to be
+		updated.
+	      </p>
+	    </footnote> 
+	    used by the compiled binaries (and libraries, in a version
+	    of <prgn>dpkg-shlibdeps</prgn> coming soon) passed through
+	    on its command line.
+	  </p>
+
+	  <p>	    
+	    For each shared library, <prgn>dpkg-shlibdeps</prgn> needs to know 
+	    <list compact="compact">
+	      <item><p>the package containing the library, and</p></item>
+	      <item><p>the library version number,</p></item>
+
+	    </list>	  <p>
+	    it scans the following files in this order.
+	    <enumlist compact="compact">
+	      <item><p><tt>debian/shlibs.local</tt></p></item>
+	      <item><p><tt>/etc/dpkg/shlibs.override</tt></p></item>
+	      <item><p><tt>/var/lib/dpkg/info/*.shlibs</tt></p></item>
+	      <item><p><tt>/etc/dpkg/shlibs.default</tt></p></item>
+	    </enumlist></p>
+	</sect1>
+	
+	<sect1><heading><em>Who</em> maintains the various
+	    <tt>shlibs</tt> files?
+	  </heading>
+
+	  <p>	    
+	    <list compact="compact">
+	      <item>
+		<p><tt>/etc/dpkg/shlibs.default</tt> - the maintainer
+		  of dpkg</p>
+	      </item>
+	      <item>
+		<p>
+		  <tt>/var/lib/dpkg/info/<var>package</var>.shlibs</tt>
+		  - the maintainer of each package</p>
+	      </item>
+	      <item>
+		<p>
+		  <tt>/etc/dpkg/shlibs.override</tt> - the local
+		  system administrator</p>
+	      </item>
+	      <item>
+		<p><tt>debian/shlibs.local</tt> - the maintainer of
+		  the package
+		</p>
+	      </item> 
+	    </list> 
+	    The <tt>shlibs.default</tt> file is managed by
+	    <prgn>dpkg</prgn>. The entries in <tt>shlibs.default</tt>
+	    that are provided by <prgn>dpkg</prgn> are just there to
+	    fix things until the shared library packages all have
+	    <tt>shlibs</tt> files.
+	  </p>
+	</sect1>
+
+	<sect1><heading><em>How</em> to use <prgn>dpkg-shlibdeps</prgn> and
+	    the <tt>shlibs</tt> files?
+	  </heading>
+	  
+	  <sect2><heading>If your package doesn't provide a shared
+	      library
+	    </heading>
+
+	    <p>	      
+	      Put a call to <prgn>dpkg-shlibdeps</prgn> into your
+	      <tt>debian/rules</tt> file.  If your package contains
+	      only binaries (e.g. no scripts) use:
+	      <example>
+		dpkg-shlibdeps debian/tmp/usr/bin/* debian/tmp/usr/sbin/*
+	      </example>
+	      If <prgn>dpkg-shlibdeps</prgn> doesn't complain, you're
+	      done. If it does complain you might need to create your
+	      own <tt>debian/shlibs.local</tt> file.</p>
+	  </sect2>
+
+	  <sect2><heading>If your package provides a shared library
+	    </heading>
+
+	    <p>	      
+	      Create a <tt>debian/shlibs</tt> file and let
+	      <tt>debian/rules</tt> install it in the control area:	      
+	      <example>
+		install -m644 debian/shlibs debian/tmp/DEBIAN
+	      </example>
+	      If your package contains additional binaries see above.
+	    </p>
+	  </sect2>
+	</sect1>
+
+	<sect1><heading><em>How</em> to write
+	    <tt>debian/shlibs.local</tt>
+	  </heading>
+
+	  <p>	    
+	    This file is intended only as a <em>temporary</em> fix if
+	    your binaries depend on a library which doesn't provide
+	    its own <tt>/var/lib/dpkg/info/*.shlibs</tt> file yet.
+	  </p>
+
+	  <p>	    
+	    Let's assume you are packaging a binary <tt>foo</tt>. Your
+	    output in building the package might look like this.	    
+	    <example>
+	      $ ldd foo
+	      libbar.so.1 => /usr/X11R6/lib/libbar.so.1.0
+	      libc.so.5 => /lib/libc.so.5.2.18
+	      libX11.so.6 => /usr/X11R6/lib/libX11.so.6.0
+	    </example>
+	    And when you ran <prgn>dpkg-shlibdeps</prgn>
+	    <example>
+	      $ dpkg-shlibdeps -o foo
+	      dpkg-shlibdeps: warning: unable to find dependency information 
+	      for shared library libbar 
+	      (soname 1, path /usr/X11R6/lib/libbar.so.1.0, dependency field Depends)
+	      shlibs:Depends=elf-x11r6lib, libc5 (>= 5.2.18)
+	    </example>
+	    The <prgn>foo</prgn> binary depends on the
+	    <prgn>libbar</prgn> shared library, but no package seems
+	    to provide a <tt>*.shlibs</tt> file in
+	    <tt></tt>var/lib/dpkg/info/.  Let's determine the package
+	    responsible:
+	  </p>
+
+	  <p>
+	    <example>
+	      $ dpkg -S /usr/X11R6/lib/libbar.so.1.0
+	      bar1: /usr/X11R6/lib/libbar.so.1.0
+	      $ dpkg -s bar1 | grep Version
+	      Version: 1.0-1
+	    </example>
+	    This tells us that the <prgn>bar1</prgn> package, version
+	    1.0-1 is the one we are using. Now we can create our own
+	    <tt>debian/shlibs.local</tt> to temporarily fix the above
+	    problem. Include the following line into your
+	    <tt>debian/shlibs.local</tt> file.
+	    <example>
+	      libbar 1 bar1 (>= 1.0-1)
+	    </example>
+	    Now your package build should work. As soon as the
+	    maintainer of <prgn>libbar1</prgn> provides a
+	    <tt>shlibs</tt> file, you can remove your
+	    <tt>debian/shlibs.local</tt> file.
+	  </p>
+	</sect1>
+      </sect>
+    </chapt>
+    
+    <chapt><heading>The Operating System</heading>
+      
       
       <sect>
 	<heading>File system hierarchy</heading>
-	  
+	
 	
 	<sect1>
 	  <heading>Linux File system Structure</heading>
-	    
+	  
 	  <p>
 	    The location of all installed files and directories must
 	    comply  with the Linux File system Hierarchy Standard
 	    (FHS).  The latest version of this document can be found
 	    alongside this manual or on
-	    <url id="http://www.pathname.com/fhs/">.<footnote>
-	      <p>The Debian distribution currently distributes a draft
-		version of FHS 2.1 because several significant details
-		have changed between the currently released 2.0
-		version and the to-be-released 2.1 version.</p>
-	    </footnote>
+	    <url id="http://www.pathname.com/fhs/">.
 	    Specific questions about following the standard may be
 	    asked on <prgn>debian-devel</prgn>, or referred to Daniel
 	    Quinlan, the FHS coordinator, at
 	    <email>quinlan@pathname.com</email>.</p></sect1>
-	    
-	    
+	
+	
 	<sect1>
 	  <heading>Site-specific programs</heading>
-	    
+	  
 	  <p>
 	    As mandated by the FHS, packages must not place any
 	    files in <tt>/usr/local</tt>, either by putting them in
 	    the file system archive to be unpacked by <prgn>dpkg</prgn>
 	    or by manipulating them in their maintainer scripts.</p>
-	    
+	  
 	  <p>
 	    However, the package may create empty directories below
 	    <tt>/usr/local</tt> so that the system administrator knows
 	    where to place site-specific files. These directories
 	    should be removed on package removal if they are
 	    empty.</p>
-	    
+	  
 	  <p>
 	    Note, that this applies only to directories <em>below</em>
 	    <tt>/usr/local</tt>, not <em>in</em>
 	    <tt>/usr/local</tt>. Packages must not create sub-directories 
 	    in the directory <tt>/usr/local</tt> itself, except those listed in
-	    FHS, section 4.6. However, you may create directories
+	    FHS, section 4.5. However, you may create directories
 	    below them as you wish. You must not remove any of the
-	    directories listed in 4.6, even if you created them.</p>
-	    
+	    directories listed in 4.5, even if you created them.</p>
+	  
 	  <p>
 	    Since <tt>/usr/local</tt> can be mounted read-only from a
 	    remote server, these directories must be created and
@@ -1184,7 +3727,7 @@
 	    included in the <tt>.deb</tt> packages and system
 	    administrators who do not wish these directories in
 	    /usr/local do not need to have them.)</p>
-	    
+	  
 	  <p>
 	    For example, the <prgn>emacs</prgn> package will contain
 	    <example>
@@ -1197,7 +3740,7 @@
 	      true
 	    </example>
 	    in the <tt>prerm</tt> script.</p>
-	    
+	  
 	  <p>
 	    If you do create a directory in <tt>/usr/local</tt> for
 	    local additions to a package, you should ensure that
@@ -1209,7 +3752,7 @@
 	    exclusive use of the local administrator, a package must
 	    not rely on the presence or absence of files or
 	    directories in '/usr/local' for normal operation.</p>
-    
+	  
 	  <p>
 	    The <tt>/usr/local</tt> directory itself and all the
 	    subdirectories created by the package should (by default) have
@@ -1217,14 +3760,14 @@
 	    owned by <tt>root.staff</tt>.</p>
 	</sect1>
       </sect>
-	
+      
       <sect>
 	<heading>Users and groups</heading>
-	  
+	
 	<p>
 	  The Debian system can be configured to use either plain or
 	  shadow passwords.</p>
-	  
+	
 	<p>
 	  Some user ids (UIDs) and group ids (GIDs) are reserved
 	  globally for use by certain packages.  Because some packages
@@ -1235,17 +3778,17 @@
 	  we should avoid getting in the way of local administration
 	  policies. In particular, many sites allocate users and/or
 	  local system groups starting at 100.</p>
-	  
+	
 	<p>
 	  Apart from this we should have dynamically allocated ids,
 	  which should by default be arranged in some sensible
 	  order--but the behavior should be configurable.</p>
-	  
+	
 	<p>
 	  Packages other than <tt>base-passwd</tt> must not modify
 	  <tt>/etc/passwd</tt>, <tt>/etc/shadow</tt>,
 	  <tt>/etc/group</tt> or <tt>/etc/gshadow</tt>.</p>
-	  
+	
 	<p>
 	  The UID and GID ranges are as follows:
 	  <taglist>
@@ -1258,14 +3801,14 @@
 		Debian systems, new ids in this range being added
 		automatically as the <tt>base-passwd</tt> package is
 		updated.</p>
-		
+	      
 	      <p>
 		Packages which need a single statically allocated uid
 		or gid should use one of these; their maintainers
 		should ask the <tt>base-passwd</tt> maintainer for
 		ids.</p>
 	    </item>
-		
+	    
 	    <tag>100-999:</tag>
 	    <item>
 	      <p>
@@ -1277,8 +3820,8 @@
 		will check for the existence of the user or group, and
 		if necessary choose an unused id based on the ranged
 		specified in <tt>adduser.conf</tt>.</p></item>
-		
-		
+	    
+	    
 	    <tag>1000-29999:</tag>
 	    <item>
 	      <p>
@@ -1288,12 +3831,12 @@
 		<tt>adduser.conf</tt> may be used to modify this
 		behavior.</p>
 	    </item>
-		
+	    
 	    <tag>30000-59999:</tag>
 	    <item>
 	      <p>Reserved.</p></item>
-		
-		
+	    
+	    
 	    <tag>60000-64999:</tag>
 	    <item>
 	      <p>
@@ -1301,7 +3844,7 @@
 		created on demand. The ids are allocated centrally and
 		statically, but the actual accounts are only created
 		on users' systems on demand.</p>
-		
+	      
 	      <p>
 		These ids are for packages which are obscure or which
 		require many statically-allocated ids.  These packages
@@ -1312,18 +3855,18 @@
 		further allocations should have a `hole' left after
 		them in the allocation, to give them room to
 		grow.</p></item>
-		
-		
+	    
+	    
 	    <tag>65000-65533:</tag>
 	    <item>
 	      <p>Reserved.</p></item>
-		
-		
+	    
+	    
 	    <tag>65534:</tag>
 	    <item>
 	      <p>User `<tt>nobody</tt>.'</p></item>
-		
-		
+	    
+	    
 	    <tag>65535:</tag>
 	    <item>
 	      <p>
@@ -1335,16 +3878,16 @@
       </sect>
       <sect id="sysvinit">
 	<heading>System run levels</heading>
-	  
+	
 	
 	<sect1 id="/etc/init.d">
 	  <heading>Introduction</heading>
-	    
+	  
 	  <p>
 	    The <tt>/etc/init.d</tt> directory contains the scripts
 	    executed by <prgn>init</prgn> at boot time and when init
 	    state (or `runlevel') is changed (see <manref name="init"
-	    section="8">).</p>
+							  section="8">).</p>
 
           <p>
             There are at least two different, yet functionally
@@ -1366,7 +3909,7 @@
 	    directory <tt>/etc/rc<var>n</var>.d</tt> for the scripts
 	    it should execute, where <var>n</var> is the runlevel that
 	    is being changed to, or `S' for the boot-up scripts.</p>
-	    
+	  
           <p>
 	    The names of the links all have the form
 	    <tt>S<var>mm</var><var>script</var></tt> or
@@ -1374,7 +3917,7 @@
 	    <var>mm</var> is a two-digit number and <var>script</var>
 	    is the name of the script (this should be the same as the
 	    name of the actual script in <tt>/etc/init.d</tt>.</p>
-	    
+	  
           <p>
 	    When <prgn>init</prgn> changes runlevel first the targets
 	    of the links whose names starting with a <tt>K</tt> are
@@ -1384,7 +3927,7 @@
 	    links are responsible for killing services and the
 	    <tt>S</tt> link for starting services upon entering the
 	    runlevel.</p>
-	    
+	  
 	  <p>
 	    For example, if we are changing from runlevel 2 to
 	    runlevel 3, init will first execute all of the <tt>K</tt>
@@ -1393,7 +3936,7 @@
 	    starting with <tt>K</tt> will cause the referred-to file
 	    to be executed with an argument of <tt>stop</tt>, and the
 	    <tt>S</tt> links with an argument of <tt>start</tt>.</p>
-	    
+	  
 	  <p>
 	    The two-digit number <var>mm</var> is used to decide which
 	    order to start and stop things in--low-numbered links have
@@ -1412,10 +3955,10 @@
 	    </example>
 	  </p>
 	</sect1>
-	  
+	
 	<sect1>
 	  <heading>Writing the scripts</heading>
-	    
+	  
 	  <p>
 	    Packages that include daemons for system services should
 	    place scripts in <tt>/etc/init.d</tt> to start or stop
@@ -1427,20 +3970,20 @@
 	    <taglist>
 	      <tag><tt>start</tt></tag>
 	      <item><p>start the service,</p></item>
-		  
+	      
 	      <tag><tt>stop</tt></tag>
 	      <item><p>stop the service,</p></item>
-		  
+	      
 	      <tag><tt>restart</tt></tag>
 	      <item><p>stop and restart the service,</p></item>
-		  
+	      
 	      <tag><tt>reload</tt></tag>
 	      <item><p>cause the configuration of the service to be
 		  reloaded without actually stopping and restarting
 		  the service,</p></item>
-		  
+	      
 	      <tag><tt>force-reload</tt></tag> <item><p>cause the
-	      configuration to be reloaded if the service supports
+		  configuration to be reloaded if the service supports
 		  this, otherwise restart the service.</p></item>
 	    </taglist>
 	    
@@ -1448,7 +3991,7 @@
 	    <tt>force-reload</tt> options should be supported by all
 	    scripts in <tt>/etc/init.d</tt>, the <tt>reload</tt>
 	    option is optional.</p>
-	    
+	  
 	  <p>
 	    The <tt>init.d</tt> scripts should ensure that they will
 	    behave sensibly if invoked with <tt>start</tt> when the
@@ -1456,14 +3999,14 @@
 	    isn't, and that they don't kill unfortunately-named user
 	    processes.  The best way to achieve this is usually to use
 	    <prgn>start-stop-daemon</prgn>.</p>
-	    
+	  
 	  <p>
 	    If a service reloads its configuration automatically (as
 	    in the case of <prgn>cron</prgn>, for example), the
 	    <tt>reload</tt> option of the <tt>init.d</tt> script
 	    should behave as if the configuration has been reloaded
 	    successfully.</p>
-	    
+	  
 	  <p>
 	    These scripts should not fail obscurely when the
 	    configuration files remain but the package has been
@@ -1477,13 +4020,13 @@
 	    should include a <tt>test</tt> statement at the top of the
 	    script, like this:
 	    <example>
-  test -f <var>program-executed-later-in-script</var> || exit 0
+	      test -f <var>program-executed-later-in-script</var> || exit 0
 	    </example></p>
 	</sect1>
-	  
+	
 	<sect1>
 	  <heading>Managing the links</heading>
-	    
+	  
 	  <p>
 	    The program <prgn>update-rc.d</prgn> is provided to make
 	    it easier for package maintainers to arrange for the
@@ -1492,7 +4035,7 @@
 	    functional equivalent if another method is being used.
 	    This may be used by maintainers in their packages'
 	    <tt>postinst</tt> and <tt>postrm</tt> scripts.</p>
-	    
+	  
 	  <p>
 	    You must use this script to make changes to
 	    <tt>/etc/rc<var>n</var>.d</tt> and <em>never</em> either
@@ -1501,7 +4044,7 @@
 	    symbolic links in maintainer scripts.  (The latter will
 	    fail if an alternative method of maintaining runlevel
 	    information is being used.)</p>
-	    
+	  
 	  <p>
 	    By default <prgn>update-rc.d</prgn> will start services in
 	    each of the multi-user state runlevels (2, 3, 4, and 5)
@@ -1513,7 +4056,7 @@
 	    <tt>/etc/rc<var>n</var>.d</tt> if symbolic links are being
 	    used, or by modifying <tt>/etc/runlevel.conf</tt> if the
 	    <tt>file-rc</tt> method is being used.</p>
-	    
+	  
 	  <p>
 	    To get the default behavior for your package, put in your
 	    <tt>postinst</tt> script
@@ -1526,7 +4069,7 @@
 	      update-rc.d <var>package</var> remove &gt;/dev/null
 	      fi
 	    </example></p>
-	    
+	  
 	  <p>
 	    This will use a default sequence number of 20.  If it does
 	    not matter when or in which order the script is run, use
@@ -1534,16 +4077,16 @@
 	    maintainer of the <prgn>sysvinit</prgn> package or post to
 	    <tt>debian-devel</tt>, and they will help you choose a
 	    number.</p>
-	    
+	  
 	  <p>
 	    For more information about using <tt>update-rc.d</tt>,
 	    please consult its manpage <manref name="update-rc.d"
-	    section="8">.</p></sect1>
-	    
-	    
+					       section="8">.</p></sect1>
+	
+	
 	<sect1>
 	  <heading>Boot-time initialization</heading>
-	    
+	  
           <p>
             There used to be another directory, <tt>/etc/rc.boot</tt>,
             which contained scripts which were run once per machine
@@ -1554,19 +4097,19 @@
 
 	<sect1 id="init.d notes">
 	  <heading>Notes</heading>
-	    
+	  
 	  <p>
 	    <em>Do not</em> include the
 	    <tt>/etc/rc<var>n</var>.d/*</tt> symbolic links in the
 	    <tt>.deb</tt> file system archive!  <em>This will cause
-	    problems!</em> You must create them with
+	      problems!</em> You must create them with
 	    <prgn>update-rc.d</prgn>, as above.</p>
-	
+	  
 	  <p>
 	    <em>Do not</em> include the
 	    <tt>/etc/rc<var>n</var>.d/*</tt> symbolic links in
 	    <prgn>dpkg</prgn>'s conffiles list!  <em>This will cause
-	    problems!</em> You should, however, treat the
+	      problems!</em> You should, however, treat the
 	    <tt>/etc/init.d</tt> scripts as configuration files,
 	    either by marking them as conffiles or managing them
 	    correctly in the maintainer scripts (see
@@ -1578,10 +4121,10 @@
 	    service--while making sure her changes aren't lost during
 	    the next package upgrade.)</p>
 	</sect1>
-	    
+	
 	<sect1>
 	  <heading>Example</heading>
-	    
+	  
 	  <p>
 	    The <prgn>bind</prgn> DNS (nameserver) package wants to
 	    make sure that the nameserver is running in multiuser
@@ -1593,7 +4136,7 @@
 	    configuration); this way the user can say
 	    <tt>/etc/init.d/bind reload</tt> to reload the name
 	    server.</p>
-	    
+	  
 	  <p>
 	    <example>
 	      #!/bin/sh
@@ -1636,11 +4179,11 @@
 	      
 	      exit 0
 	    </example></p>
-	    
+	  
 	  <p>
 	    Another example on which to base your <tt>/etc/init.d</tt>
 	    scripts is in <tt>/etc/init.d/skeleton</tt>.</p>
-	    
+	  
 	  <p>
 	    If this package is happy with the default setup from
 	    <prgn>update-rc.d</prgn>, namely an ordering number of 20
@@ -1657,15 +4200,15 @@
 	      fi
 	    </example></p>
 	</sect1></sect>
-	
+      
       <sect>
 	<heading>Cron jobs</heading>
-	  
+	
 	<p>
 	  Packages must not modify the configuration file
 	  <tt>/etc/crontab</tt>, and they must not modify the files in
 	  <tt>/var/spool/cron/crontabs</tt>.</p>
-	  
+	
 	<p>
 	  If a package wants to install a job that has to be executed
 	  via cron, it should place a file with the name if the
@@ -1708,32 +4251,32 @@
 
       <sect>
 	<heading>Console messages</heading>
-	  
+	
 	<p>
 	  This section describes different formats for messages
 	  written to standard output by the <tt>/etc/init.d</tt>
 	  scripts. The intent is to improve the consistency of
 	  Debian's startup and shutdown look and feel.</p>
-	  
+	
 	<p>
 	  Please look very careful at the details. We want to get the
 	  messages to look exactly the same way concerning spaces,
 	  punctuation, and case of letters.</p>
-	  
+	
 	<p>
 	  Here is a list of overall rules that you should use when you
 	  create output messages. They can be useful if you have a
 	  non-standard message that isn't covered in the sections
 	  below.</p>
-	  
+	
 	<p>
 	  <list>
 	    <item>
 	      <p>
 		Every message should cover one line, start with a
 		capital letter and end with a period `.'.</p></item>
-		
-		
+	    
+	    
 	    <item>  
 	      <p>
 		If you want to express that the computer is working on
@@ -1742,8 +4285,8 @@
 		three dots `...'. Note that we don't insert spaces in
 		front of or behind the dots.  If the task has been
 		completed we write `done.' and a line feed.</p></item>
-		
-		
+	    
+	    
 	    <item>
 	      <p>
 		Design your messages as if the computer is telling you
@@ -1758,15 +4301,15 @@
 		  Starting network daemons: nfsd mountd.
 		</example></p></item>
 	  </list></p>
-	  
+	
 	<p>
 	  The following formats should be used</p>
-	  
+	
 	<p>
 	  <list>
 	    <item>
 	      <p>when daemons get started.</p>
-		
+	      
 	      <p>
 		Use this format if your script starts one or more
 		daemons.  The output should look like this (a single
@@ -1779,13 +4322,13 @@
 		&lt;daemon-1&gt; up to &lt;daemon-n&gt; denote each
 		daemon's name (typically the file name of the
 		program).</p>
-		
+	      
 	      <p>
 		For example, the output of /etc/init.d/lpd would look like:
 		<example>
 		  Starting printer spooler: lpd.
 		</example></p>
-		
+	      
 	      <p>
 		This can be achieved by saying
 		<example>
@@ -1809,45 +4352,45 @@
 		comment out a line if he don't wants to start a
 		specific daemon, while the displayed message still
 		looks good.</p></item>
-		
-		
+	    
+	    
 	    <item>
 	      <p>when something needs to be configured.</p>
-		
+	      
 	      <p>
 		If you have to set up different parameters of the
 		system upon boot up, you should use this format:
 		<example>
 		  Setting &lt;parameter&gt; to `&lt;value&gt;'.
 		</example></p>
-		
+	      
 	      <p>
 		You can use the following echo statement to get the quotes right:
 		<example>
 		  echo "Setting DNS domainname to \`"value"'."
 		</example></p>
-		
+	      
 	      <p>
 		Note that the left quotation mark (`) is different
 		from the right (').</p></item> 
-	      
+	    
 	    <item>
 	      <p>when a daemon is stopped.</p>
-		
+	      
 	      <p>
 		When you stop a daemon you should issue a message
 		similar to the startup message, except that `Starting'
 		is replaced with `Stopping'.</p>
-		
+	      
 	      <p>
 		So stopping the printer daemon will like like this:
 		<example>
 		  Stopping printer spooler: lpd.
 		</example></p></item>
-	      
+	    
 	    <item>
 	      <p>when something is executed.</p>
-		
+	      
 	      <p>
 		There are several examples where you have to run a
 		program at system startup or shutdown to perform a
@@ -1866,28 +4409,28 @@
 		  echo "done."
 		</example>
 		in your script.</p></item>
-	      
+	    
 	    <item>
 	      <p>when the configuration is reloaded.</p>
-		
+	      
 	      <p>
 		When a daemon is forced to reload its configuration
 		files you should use the following format:
 		<example>
 		  Reloading &lt;daemon's-name&gt; configuration...done.
 		</example></p></item>
-	      
+	    
 	    <item>
 	      <p>when none of the above rules apply.</p>
-		
+	      
 	      <p>
 		If you have to print a message that doesn't fit into
 		the styles described above, you can use something
 		appropriate, but please have a look at the overall
 		rules listed above.</p></item>
 	  </list></p></sect>
-	  
-	  
+      
+      
       <sect>
 	<heading>Menus</heading>
 
@@ -1905,7 +4448,7 @@
 	  documents, and <em>menu programs</em> (either X window
 	  managers or text-based menu programs as
 	  <prgn>pdmenu</prgn>).</p>
-	  
+	
 	<p>
 	  All packages that provide applications that need not be
 	  passed any special command line arguments for normal
@@ -1913,15 +4456,15 @@
 	  applications, so that users of the <tt>menu</tt> package
 	  will automatically get menu entries in their window
 	  managers, as well in shells like <tt>pdmenu</tt>.</p>
-	  
+	
 	<p>
 	  Please refer to the <em>Debian Menu System</em> document
 	  that comes with the <tt>menu</tt> package for information
 	  about how to register your applications and web
 	  documents.</p>
       </sect>
-	  
-	
+      
+      
       <sect>
 	<heading>Multimedia handlers</heading>
 	
@@ -1952,23 +4495,23 @@
 
       <sect>
 	<heading>Keyboard configuration</heading>
-	  
+	
 	<p>
 	  To achieve a consistent keyboard configuration (i.e., all
 	  applications interpret a keyboard event the same way) all
 	  programs in the Debian distribution must be configured to
 	  comply with the following guidelines.</p>
-	  
+	
 	<p>
 	  Here is a list that contains certain keys and their interpretation:
 	  
 	  <taglist>
 	    <tag><tt>&lt;--</tt></tag>
 	    <item><p>delete the character to the left of the cursor</p></item>
-		
+	    
 	    <tag><tt>Delete</tt></tag>
 	    <item><p>delete the character to the right of the cursor</p></item>
-		
+	    
 	    <tag><tt>Control+H</tt></tag>
 	    <item><p>emacs: the help prefix</p></item>
 	  </taglist>
@@ -1976,18 +4519,18 @@
 	  The interpretation of any keyboard events should be independent
 	  of the terminal that's used, be it a virtual console, an X
 	  terminal emulator, an rlogin/telnet session, etc.</p>
-	  
+	
 	<p>
 	  The following list explains how the different programs
 	  should be set up to achieve this:</p>
-	  
+	
 	<p>
 	  <list compact="compact">
 	    <item><p>`<tt>&lt;--</tt>' generates KB_Backspace in
 		X.</p></item> 
-		
+	    
 	    <item><p>`<tt>Delete</tt>' generates KB_Delete in X.</p></item>
-		
+	    
 	    <item>
 	      <p>
 		X translations are set up to make KB_Backspace
@@ -1998,42 +4541,42 @@
 		displays, not using the application defaults, so that
 		the translation resources used correspond to the
 		xmodmap settings.</p></item>
-		
+	    
 	    <item>
 	      <p>
 		The Linux console is configured to make
 		`<tt>&lt;--</tt>' generate DEL, and `Delete' generate
 		<tt>ESC [ 3 ~</tt> (this is the case at the
 		moment).</p></item>
-		
+	    
 	    <item><p>
 		X applications are configured so that Backspace
 		deletes left, and Delete deletes right.  Motif
 		applications already work like this.</p></item>
-		
+	    
 	    <item><p>stty erase <tt>^?</tt> .</p></item>
-		
+	    
 	    <item><p>
 		The `xterm' terminfo entry should have <tt>ESC [ 3
-		~</tt> for kdch1, just like TERM=linux and
+		  ~</tt> for kdch1, just like TERM=linux and
 		TERM=vt220.</p></item>
-		
+	    
 	    <item><p>
 		Emacs is programmed to map KB_Backspace or the `stty
 		erase' character to delete-backward-char, and
 		KB_Delete or kdch1 to delete-forward-char, and
 		<tt>^H</tt> to help as always.</p></item>
-		
+	    
 	    <item><p>
 		Other applications use the `stty erase' character and
 		kdch1 for the two delete keys, with ASCII DEL being
 		`delete previous character' and kdch1 being `delete
 		character under cursor'.</p></item>
 	  </list></p>
-	  
+	
 	<p>
 	  This will solve the problem except for:</p>
-	  
+	
 	<p>
 	  <list compact="compact">
 	    <item><p>
@@ -2044,7 +4587,7 @@
 		takes precedence in Emacs, and has been set
 		correctly).  M-x help or F1 (if available) can be used
 		instead.</p></item>
-		
+	    
 	    <item><p>
 		Some operating systems use <tt>^H</tt> for stty erase.
 		However, modern telnet versions and all rlogin
@@ -2052,7 +4595,7 @@
 		versions honour stty erase.  Where the stty settings
 		are not propagated correctly things can be made to
 		work by using stty manually.</p></item>
-		
+	    
 	    <item><p>
 		Some systems (including previous Debian versions) use
 		xmodmap to arrange for both <tt>&lt;--</tt> and Delete
@@ -2063,7 +4606,7 @@
 		other way around.  On displays configured like this
 		Delete will not work, but <tt>&lt;--</tt>
 		will.</p></item>
-		
+	    
 	    <item><p>
 		Some operating systems have different kdch1 settings
 		in their terminfo for xterm and others.  On these
@@ -2073,18 +4616,18 @@
 	  </list>
 	</p>
       </sect>
-	  
-	  
+      
+      
       <sect>
 	<heading>Environment variables</heading>
-	  
+	
 	<p>
 	  A program must not depend on environment variables to get
 	  reasonable defaults. (That's because these environment
 	  variables would have to be set in a system-wide
 	  configuration file like /etc/profile, which is not supported
 	  by all shells.)</p>
-	  
+	
 	<p>
 	  If a program usually depends on environment variables for its
 	  configuration, the program should be changed to fall back to
@@ -2094,7 +4637,7 @@
 	  available), the program must be replaced by a small
 	  `wrapper' shell script which sets the environment variables
 	  if they are not already defined, and calls the original program.</p>
-	  
+	
 	<p>
 	  Here is an example of a wrapper script for this purpose:
 	  
@@ -2104,7 +4647,7 @@
 	    export BAR
 	    exec /usr/lib/foo/foo "$@"
 	  </example></p>
-	  
+	
 	<p>
 	  Furthermore, as <tt>/etc/profile</tt> is a configuration
 	  file of the <prgn>base-files</prgn> package, other packages must not
@@ -2152,7 +4695,7 @@
 	  The <tt>-N</tt> flag should not be used.  On a.out systems
 	  it may have been useful for some very small binaries, but
 	  for ELF it has no good effect.</p>
-	    
+	
 	<p>
 	  Debugging symbols are useful for error diagnosis,
 	  investigation of core dumps (which may be submitted by users
@@ -2203,62 +4746,62 @@
 	    </p>
 	  </footnote>
 
-           <example>
-             CFLAGS = -O2 -Wall
-             INSTALL = install
+	  <example>
+	    CFLAGS = -O2 -Wall
+	    INSTALL = install
 
-             ifneq (,$(findstring debug,$(DEB_BUILD_OPTIONS)))
-               CFLAGS += -g
-             endif
-             ifeq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
-               INSTALL += -s
-             endif
-           </example></p>
+	    ifneq (,$(findstring debug,$(DEB_BUILD_OPTIONS)))
+	    CFLAGS += -g
+	    endif
+	    ifeq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
+	    INSTALL += -s
+	    endif
+	  </example></p>
 
- 	  <p>
-	    It is up to the package maintainer to decide what
-	    compilation options are best for the package.  Certain
-	    binaries (such as computationally-intensive programs) will
-	    function better with certain flags (<tt>-O3</tt>, for
-	    example); feel free to use them.  Please use good judgment
-	    here.  Don't use flags for the sake of it; only use them
-	    if there is good reason to do so.  Feel free to override
-	    the upstream author's ideas about which compilation
-	    options are best--they are often inappropriate for our
-	    environment.</p></sect>
-	    
-	    
-	<sect>
-	  <heading>Libraries</heading>
-	    
-	  <p>
-	    All libraries must have a shared version in the lib
-	    package and a static version in the lib-dev package. The
-	    shared version must be compiled with <tt>-fPIC</tt>, and
-	    the static version must not be. In other words, each
-	    <tt>*.c</tt> file will need to be compiled twice.</p>
-	    
-	  <p>
-	    You must specify the gcc option <tt>-D_REENTRANT</tt>
-	    when building a library (either static or shared) to make
-	    the library compatible with LinuxThreads.</p>
-	    
-	  <p>
-	    Note that all installed shared libraries should be
-	    stripped with
-	    <example>
-	      strip --strip-unneeded &lt;your-lib&gt;
-	    </example> 
-	    (The option `--strip-unneeded' makes <tt>strip</tt> remove
-	    only the symbols which aren't needed for relocation
-	    processing.)  Shared libraries can function perfectly well
-	    when stripped, since the symbols for dynamic linking are
-	    in a separate part of the ELF object file.</p>
-	    
-	  <p>
-	    Note that under some circumstances it may be useful to
-	    install a shared library unstripped, for example when
-	    building a separate package to support debugging.
+	<p>
+	  It is up to the package maintainer to decide what
+	  compilation options are best for the package.  Certain
+	  binaries (such as computationally-intensive programs) will
+	  function better with certain flags (<tt>-O3</tt>, for
+	  example); feel free to use them.  Please use good judgment
+	  here.  Don't use flags for the sake of it; only use them
+	  if there is good reason to do so.  Feel free to override
+	  the upstream author's ideas about which compilation
+	  options are best--they are often inappropriate for our
+	  environment.</p></sect>
+      
+      
+      <sect>
+	<heading>Libraries</heading>
+	
+	<p>
+	  All libraries must have a shared version in the lib
+	  package and a static version in the lib-dev package. The
+	  shared version must be compiled with <tt>-fPIC</tt>, and
+	  the static version must not be. In other words, each
+	  <tt>*.c</tt> file will need to be compiled twice.</p>
+	
+	<p>
+	  You must specify the gcc option <tt>-D_REENTRANT</tt>
+	  when building a library (either static or shared) to make
+	  the library compatible with LinuxThreads.</p>
+	
+	<p>
+	  Note that all installed shared libraries should be
+	  stripped with
+	  <example>
+	    strip --strip-unneeded &lt;your-lib&gt;
+	  </example> 
+	  (The option `--strip-unneeded' makes <tt>strip</tt> remove
+	  only the symbols which aren't needed for relocation
+	  processing.)  Shared libraries can function perfectly well
+	  when stripped, since the symbols for dynamic linking are
+	  in a separate part of the ELF object file.</p>
+	
+	<p>
+	  Note that under some circumstances it may be useful to
+	  install a shared library unstripped, for example when
+	  building a separate package to support debugging.
 	</p>
 	
 	<p>
@@ -2305,57 +4848,57 @@
 	  idea.
 	</p>
       </sect>
-	    
-	    
-	<sect>
-	  <heading>Shared libraries</heading>
-	    
-	  <p>
-	    Packages involving shared libraries should be split up
-	    into several binary packages.</p>
-	    
-	  <p>
-	    For a straightforward library which has a development
-	    environment and a runtime kit including just shared
-	    libraries you need to create two packages:
-	    <tt><var>libraryname</var><var>soname</var></tt>
-	    (<var>soname</var> is the shared object name of the shared
-	    library--it's the thing that has to match exactly between
-	    building an executable and running it for the dynamic
-	    linker to be able run the program; usually the
-	    <var>soname</var> is the major number of the library) and
-	    <tt><var>libraryname</var><var>soname</var>-dev</tt>.</p>
-	    
-	  <p>
-	    If you prefer only to support one development version at a
-	    time you may name the development package
-	    <tt><var>libraryname</var>-dev</tt>; otherwise you may
-	    wish to use <prgn>dpkg</prgn>'s conflicts mechanism to
-	    ensure that the user only installs one development version
-	    at a time (after all, different development versions are
-	    likely to have the same header files in them, causing a
-	    filename clash if both are installed).  Typically the
-	    development version should  also have an exact version
-	    dependency on the runtime library, to make sure that
-	    compilation and linking happens correctly.</p>
-	    
-	  <p>
-	    Packages which use the shared library should have a
-	    dependency on the name of the shared library package,
-	    <tt><var>libraryname</var><var>soname</var></tt>.  When
-	    the <var>soname</var> changes you can have both versions
-	    of the library installed while moving from the old library
-	    to the new.</p>
-	    
+      
+      
+      <sect>
+	<heading>Shared libraries</heading>
+	
+	<p>
+	  Packages involving shared libraries should be split up
+	  into several binary packages.</p>
+	
+	<p>
+	  For a straightforward library which has a development
+	  environment and a runtime kit including just shared
+	  libraries you need to create two packages:
+	  <tt><var>libraryname</var><var>soname</var></tt>
+	  (<var>soname</var> is the shared object name of the shared
+	  library--it's the thing that has to match exactly between
+	  building an executable and running it for the dynamic
+	  linker to be able run the program; usually the
+	  <var>soname</var> is the major number of the library) and
+	  <tt><var>libraryname</var><var>soname</var>-dev</tt>.</p>
+	
+	<p>
+	  If you prefer only to support one development version at a
+	  time you may name the development package
+	  <tt><var>libraryname</var>-dev</tt>; otherwise you may
+	  wish to use <prgn>dpkg</prgn>'s conflicts mechanism to
+	  ensure that the user only installs one development version
+	  at a time (after all, different development versions are
+	  likely to have the same header files in them, causing a
+	  filename clash if both are installed).  Typically the
+	  development version should  also have an exact version
+	  dependency on the runtime library, to make sure that
+	  compilation and linking happens correctly.</p>
+	
+	<p>
+	  Packages which use the shared library should have a
+	  dependency on the name of the shared library package,
+	  <tt><var>libraryname</var><var>soname</var></tt>.  When
+	  the <var>soname</var> changes you can have both versions
+	  of the library installed while moving from the old library
+	  to the new.</p>
+	
 	<p>
 	  If your package has some run-time support programs which
 	  use the shared library you must not put them in
 	  the shared library package.  If you do that then you won't
-	    be able to install several versions of the shared library
-	    without getting filename clashes.  Instead, either create
-	    a third package for the runtime binaries (this package
-	    might typically be named
-	    <tt><var>libraryname</var>-runtime</tt>--note the absence
+	  be able to install several versions of the shared library
+	  without getting filename clashes.  Instead, either create
+	  a third package for the runtime binaries (this package
+	  might typically be named
+	  <tt><var>libraryname</var>-runtime</tt>--note the absence
 	  of the <var>soname</var> in the package name) or if the
 	  development package is small include them in there.</p>
 	
@@ -2367,14 +4910,14 @@
 	  clashes if you try to install different versions of the
 	  combined shared libraries package).</p>
 	
-	  <p>
+	<p>
 	  You should follow the directions in the <em>Debian Packaging
 	    Manual</em> for putting the shared library in its package,
 	  and you must include a <tt>shlibs</tt> control area
 	  file with details of the dependencies for packages which
 	  use the library.</p>
 	
-	  <p>
+	<p>
 	  Shared libraries should not be installed
 	  executable, since <prgn>ld.so</prgn> does not require this
 	  and trying to execute a shared library results in a core
@@ -2390,7 +4933,7 @@
 	  should have a <tt>#!</tt> line naming the shell to be used
 	  to interpret them.</p>
 	
-	  <p>
+	<p>
 	  In the case of Perl scripts this should be
 	  <tt>#!/usr/bin/perl</tt>.</p>
 	
@@ -2400,7 +4943,7 @@
 	  errors are detected.  Every script should use
 	  <tt>set -e</tt> or check the exit status of <em>every</em>
 	  command.</p>
-	    
+	
 	<p>
 	  The standard shell interpreter `<tt>/bin/sh</tt>' can be a
 	  symbolic link to any POSIX compatible shell, if <tt>echo
@@ -2459,84 +5002,84 @@
 	  mechanism which will fail if a file with the same name
 	  already exists.</p>
 	
-	  <p>
+	<p>
 	  The Debian base distribution provides the
 	  <prgn>tempfile</prgn> and <prgn>mktemp</prgn> utilities
 	  for use by scripts for this purpose.</p></sect>
       
       
-	<sect>
-	  <heading>Symbolic links</heading>
-	    
-	  <p>
-	    In general, symbolic links within a top-level directory
-	    should be relative, and symbolic links pointing from one
-	    top-level directory into another should be absolute. (A
-	    top-level directory is a sub-directory of the root
-	    directory `/'.)</p>
-	    
-	  <p>
-	    In addition, symbolic links should be specified as short
-	    as possible, i.e., link targets like `foo/../bar' are
-	    deprecated.</p>
-	    
-	  <p>
-	    Note that when creating a relative link using
-	    <prgn>ln</prgn> it is not necessary for the target of the
-	    link to exist relative to the working directory you're
-	    running <prgn>ln</prgn> from; nor is it necessary to
-	    change directory to the directory where the link is to be
-	    made.  Simply include the string that should appear as the
-	    target of the link (this will be a pathname relative to
-	    the directory in which the link resides) as the first
-	    argument to <prgn>ln</prgn>.</p>
-	    
-	  <p>
-	    For example, in your <prgn>Makefile</prgn> or
-	    <tt>debian/rules</tt>, do things like:
-	    <example>
-	      ln -fs gcc $(prefix)/bin/cc 
-	      ln -fs gcc debian/tmp/usr/bin/cc 
-	      ln -fs ../sbin/sendmail $(prefix)/bin/runq 
-	      ln -fs ../sbin/sendmail debian/tmp/usr/bin/runq
-	    </example></p>
-	    
-	  <p>
-	    A symbolic link pointing to a compressed file should
-	    always have the same file extension as the referenced
-	    file. (For example, if a file `<tt>foo.gz</tt>' is
-	    referenced by a symbolic link, the filename of the link
-	    has to end with `<tt>.gz</tt>' too, as in
-	    `bar.gz.')</p></sect>
-	    
-	    
-	<sect>
-	  <heading>Device files</heading>
-	    
-	  <p>
-	    Packages must not include device files in the package file
-	    tree.</p>
-	    
-	  <p>
-	    If a package needs any special device files that are not
-	    included in the base system, it must call
-	    <prgn>makedev</prgn> in the <tt>postinst</tt> script,
-	    after asking the user for permission to do so.</p>
-	    
-	  <p>
-	    Packages must not remove any device files in the
-	    <tt>postrm</tt> or any other script. This is left to the
-	    system administrator.</p>
-	    
-	  <p>
-	    Debian uses the serial devices
-	    <tt>/dev/ttyS*</tt>. Programs using the old
-	    <tt>/dev/cu*</tt> devices should be changed to use
-	    <tt>/dev/ttyS*</tt>.</p>
+      <sect>
+	<heading>Symbolic links</heading>
+	
+	<p>
+	  In general, symbolic links within a top-level directory
+	  should be relative, and symbolic links pointing from one
+	  top-level directory into another should be absolute. (A
+	  top-level directory is a sub-directory of the root
+	  directory `/'.)</p>
+	
+	<p>
+	  In addition, symbolic links should be specified as short
+	  as possible, i.e., link targets like `foo/../bar' are
+	  deprecated.</p>
+	
+	<p>
+	  Note that when creating a relative link using
+	  <prgn>ln</prgn> it is not necessary for the target of the
+	  link to exist relative to the working directory you're
+	  running <prgn>ln</prgn> from; nor is it necessary to
+	  change directory to the directory where the link is to be
+	  made.  Simply include the string that should appear as the
+	  target of the link (this will be a pathname relative to
+	  the directory in which the link resides) as the first
+	  argument to <prgn>ln</prgn>.</p>
+	
+	<p>
+	  For example, in your <prgn>Makefile</prgn> or
+	  <tt>debian/rules</tt>, do things like:
+	  <example>
+	    ln -fs gcc $(prefix)/bin/cc 
+	    ln -fs gcc debian/tmp/usr/bin/cc 
+	    ln -fs ../sbin/sendmail $(prefix)/bin/runq 
+	    ln -fs ../sbin/sendmail debian/tmp/usr/bin/runq
+	  </example></p>
+	
+	<p>
+	  A symbolic link pointing to a compressed file should
+	  always have the same file extension as the referenced
+	  file. (For example, if a file `<tt>foo.gz</tt>' is
+	  referenced by a symbolic link, the filename of the link
+	  has to end with `<tt>.gz</tt>' too, as in
+	  `bar.gz.')</p></sect>
+      
+      
+      <sect>
+	<heading>Device files</heading>
+	
+	<p>
+	  Packages must not include device files in the package file
+	  tree.</p>
+	
+	<p>
+	  If a package needs any special device files that are not
+	  included in the base system, it must call
+	  <prgn>makedev</prgn> in the <tt>postinst</tt> script,
+	  after asking the user for permission to do so.</p>
+	
+	<p>
+	  Packages must not remove any device files in the
+	  <tt>postrm</tt> or any other script. This is left to the
+	  system administrator.</p>
+	
+	<p>
+	  Debian uses the serial devices
+	  <tt>/dev/ttyS*</tt>. Programs using the old
+	  <tt>/dev/cu*</tt> devices should be changed to use
+	  <tt>/dev/ttyS*</tt>.</p>
       </sect>
-	    
+      
       <sect id="config files">
-	  <heading>Configuration files</heading>
+	<heading>Configuration files</heading>
 	<sect1>
 	  <heading>Definitions</heading>
 	  <p>
@@ -2818,14 +5361,14 @@
 	  file (for more information see <manref name="logrotate"
 						 section="8">):
 	  <example>
-        /var/log/foo/* {
-                rotate 12
-                weekly
-                compress
-                postrotate
-                        /etc/init.d/foo force-reload
-                endscript
-        }
+	    /var/log/foo/* {
+	    rotate 12
+	    weekly
+	    compress
+	    postrotate
+	    /etc/init.d/foo force-reload
+	    endscript
+	    }
 	  </example> 	  
 	  Which rotates all files under `/var/log/foo', saves 12
 	  compressed generations, and sends a HUP signal at the end of
@@ -2837,118 +5380,118 @@
 	  Log files should be removed when the package is
 	  purged (but not when it is only removed), by checking the
 	  argument to the <tt>postrm</tt> script (see the <em>Debian
-	  Packaging Manual</em> for details).</p>
+	    Packaging Manual</em> for details).</p>
       </sect>
-     	    
-	    
-	<sect>
-	  <heading>Permissions and owners</heading>
-	    
-	  <p>
-	    The rules in this section are guidelines for general use.
-	    If necessary you may deviate from the details below.
-	    However, if you do so you must make sure that what is done
-	    is secure and you should try to be as consistent as possible
-	    with the rest of the system.  You should probably also
-	    discuss it on <prgn>debian-devel</prgn> first.</p>
-	    
-	  <p>
-	    Files should be owned by <tt>root.root</tt>, and made
-	    writable only by the owner and universally readable (and
-	    executable, if appropriate).</p>
-	    
-	  <p>
-	    Directories should be mode 755 or (for group-writability)
-	    mode 2775.  The ownership of the directory should be
-	    consistent with its mode--if a directory is mode 2775, it
-	    should be owned by the group that needs write access to
-	    it.</p>
-	    
-	  <p>
-	    Setuid and setgid executables should be mode 4755 or 2755
-	    respectively, and owned by the appropriate user or group.
-	    They should not be made unreadable (modes like 4711 or
-	    2711 or even 4111); doing so achieves no extra security,
-	    because anyone can find the binary in the freely available
-	    Debian package--it is merely inconvenient.  For the same
-	    reason you should not restrict read or execute permissions
-	    on non-set-id executables.</p>
-	    
-	  <p>
-	    Some setuid programs need to be restricted to particular
-	    sets of users, using file permissions.  In this case they
-	    should be owned by the uid to which they are set-id, and
-	    by the group which should be allowed to execute them.
-	    They should have mode 4754; there is no point in making
-	    them unreadable to those users who must not be allowed to
-	    execute them.</p>
-	    
-	  <p>
-	    You must not arrange that the system administrator can only
-	    reconfigure the package to correspond to their local
-	    security policy by changing the permissions on a binary.
-	    Ordinary files installed by <prgn>dpkg</prgn> (as opposed
-	    to conffiles and other similar objects) have their
-	    permissions reset to the distributed permissions when the
-	    package is reinstalled.  Instead you should consider (for
-	    example) creating a group for people allowed to use the
-	    program(s) and making any setuid executables executable
-	    only by that group.</p>
-	    
-	  <p>
-	    If you need to create a new user or group for your package
-	    there are two possibilities.  Firstly, you may need to
-	    make some files in the binary package be owned by this
-	    user or group, or you may need to compile the user or
-	    group id (rather than just the name) into the binary
-	    (though this latter should be avoided if possible, as in
-	    this case you need a statically allocated id).</p>
-	    
-	  <p>
-	    If you need a statically allocated id, you must ask for a
-	    user or group id from the base system
-	    maintainer, and must not release the package until you
-	    have been allocated one.  Once you have been allocated one
-	    you must make the package depend on a version of the base
-	    system with the id present in <tt>/etc/passwd</tt> or
-	    <tt>/etc/group</tt>, or alternatively arrange for your
-	    package to create the user or group itself with the
-	    correct id (using <tt>adduser</tt>) in its pre- or
-	    post-installation script (the latter is to be preferred if
-	    it is possible).</p>
-	    
-	  <p>
-	    On the other hand, the program might be able to determine the
-	    uid or gid from the group name at runtime, so that a
-	    dynamic id can be used.  In this case you should choose an
-	    appropriate user or group name, discussing this on
-	    <prgn>debian-devel</prgn> and checking with the base
-	    system maintainer that it is unique and that they do not
-	    wish you to use a statically allocated id instead.  When
-	    this has been checked you must arrange for your package to
-	    create the user or group if necessary using
-	    <prgn>adduser</prgn> in the pre- or post-installation
-	    script (again, the latter is to be preferred if it is
-	    possible).</p>
-	    
-	  <p>
-	    Note that changing the numeric value of an id associated with a name
-	    is very difficult, and involves searching the file system for all
-	    appropriate files.  You need to think carefully whether a static or
-	    dynamic id is required, since changing your mind later will cause
-	    problems.</p>
-	</sect>
+      
+      
+      <sect>
+	<heading>Permissions and owners</heading>
+	
+	<p>
+	  The rules in this section are guidelines for general use.
+	  If necessary you may deviate from the details below.
+	  However, if you do so you must make sure that what is done
+	  is secure and you should try to be as consistent as possible
+	  with the rest of the system.  You should probably also
+	  discuss it on <prgn>debian-devel</prgn> first.</p>
+	
+	<p>
+	  Files should be owned by <tt>root.root</tt>, and made
+	  writable only by the owner and universally readable (and
+	  executable, if appropriate).</p>
+	
+	<p>
+	  Directories should be mode 755 or (for group-writability)
+	  mode 2775.  The ownership of the directory should be
+	  consistent with its mode--if a directory is mode 2775, it
+	  should be owned by the group that needs write access to
+	  it.</p>
+	
+	<p>
+	  Setuid and setgid executables should be mode 4755 or 2755
+	  respectively, and owned by the appropriate user or group.
+	  They should not be made unreadable (modes like 4711 or
+	  2711 or even 4111); doing so achieves no extra security,
+	  because anyone can find the binary in the freely available
+	  Debian package--it is merely inconvenient.  For the same
+	  reason you should not restrict read or execute permissions
+	  on non-set-id executables.</p>
+	
+	<p>
+	  Some setuid programs need to be restricted to particular
+	  sets of users, using file permissions.  In this case they
+	  should be owned by the uid to which they are set-id, and
+	  by the group which should be allowed to execute them.
+	  They should have mode 4754; there is no point in making
+	  them unreadable to those users who must not be allowed to
+	  execute them.</p>
+	
+	<p>
+	  You must not arrange that the system administrator can only
+	  reconfigure the package to correspond to their local
+	  security policy by changing the permissions on a binary.
+	  Ordinary files installed by <prgn>dpkg</prgn> (as opposed
+	  to conffiles and other similar objects) have their
+	  permissions reset to the distributed permissions when the
+	  package is reinstalled.  Instead you should consider (for
+	  example) creating a group for people allowed to use the
+	  program(s) and making any setuid executables executable
+	  only by that group.</p>
+	
+	<p>
+	  If you need to create a new user or group for your package
+	  there are two possibilities.  Firstly, you may need to
+	  make some files in the binary package be owned by this
+	  user or group, or you may need to compile the user or
+	  group id (rather than just the name) into the binary
+	  (though this latter should be avoided if possible, as in
+	  this case you need a statically allocated id).</p>
+	
+	<p>
+	  If you need a statically allocated id, you must ask for a
+	  user or group id from the base system
+	  maintainer, and must not release the package until you
+	  have been allocated one.  Once you have been allocated one
+	  you must make the package depend on a version of the base
+	  system with the id present in <tt>/etc/passwd</tt> or
+	  <tt>/etc/group</tt>, or alternatively arrange for your
+	  package to create the user or group itself with the
+	  correct id (using <tt>adduser</tt>) in its pre- or
+	  post-installation script (the latter is to be preferred if
+	  it is possible).</p>
+	
+	<p>
+	  On the other hand, the program might be able to determine the
+	  uid or gid from the group name at runtime, so that a
+	  dynamic id can be used.  In this case you should choose an
+	  appropriate user or group name, discussing this on
+	  <prgn>debian-devel</prgn> and checking with the base
+	  system maintainer that it is unique and that they do not
+	  wish you to use a statically allocated id instead.  When
+	  this has been checked you must arrange for your package to
+	  create the user or group if necessary using
+	  <prgn>adduser</prgn> in the pre- or post-installation
+	  script (again, the latter is to be preferred if it is
+	  possible).</p>
+	
+	<p>
+	  Note that changing the numeric value of an id associated with a name
+	  is very difficult, and involves searching the file system for all
+	  appropriate files.  You need to think carefully whether a static or
+	  dynamic id is required, since changing your mind later will cause
+	  problems.</p>
+      </sect>
     </chapt>
 
     <chapt>
       <heading>Customized programs</heading>
-	
+      
       <sect id="arch-spec">
 	<heading>Architecture specification strings</heading>
-	  
+	
 	<p>
 	  If a program needs to specify an <em>architecture specification
-	  string</em> in some place, the following format should be used:
+	    string</em> in some place, the following format should be used:
 	  <example>
 	    &lt;arch&gt;-&lt;os&gt;
 	  </example>
@@ -2963,30 +5506,30 @@
 	  distributions. Also note, that we don't use
 	  `&lt;arch&gt;-unknown-linux', since the `unknown' does not
 	  look very good.</p></sect>
-	  
-	  
+      
+      
       <sect>
 	<heading>Daemons</heading>
-	  
+	
 	<p>
 	  The configuration files <tt>/etc/services</tt>,
 	  <tt>/etc/protocols</tt>, and <tt>/etc/rpc</tt> are managed
 	  by the <prgn>netbase</prgn> package and may not be modified
 	  by other packages.</p>
-	  
+	
 	<p>
 	  If a package requires a new entry in one of these files, the
 	  maintainer should get in contact with the
 	  <prgn>netbase</prgn> maintainer, who will add the entries
 	  and release a new version of the <prgn>netbase</prgn>
 	  package.</p>
-	  
+	
 	<p>
 	  The configuration file <tt>/etc/inetd.conf</tt> must not be
 	  modified by the package's scripts except via the
 	  <prgn>update-inetd</prgn> script or the
 	  <prgn>DebianNet.pm</prgn> Perl module.</p>
-	  
+	
 	<p>
 	  If a package wants to install an example entry into
 	  <tt>/etc/inetd.conf</tt>, the entry must be preceded with
@@ -2994,11 +5537,11 @@
 	  treated as `commented out by user' by the
 	  <prgn>update-inetd</prgn> script and are not changed or
 	  activated during a package updates.</p></sect>
-	  
-	  
+      
+      
       <sect>
         <heading>Using pseudo-ttys and modifying wtmp, utmp and lastlog</heading>
-	  
+	
 	<p>
 	  Some programs need to create pseudo-ttys. This should be done
 	  using Unix98 ptys if the C library supports it. The resulting
@@ -3016,7 +5559,7 @@
 
       <sect>
 	<heading>Editors and pagers</heading>
-	  
+	
 	<p>
 	  Some programs have the ability to launch an editor or pager
 	  program to edit or display a text document. Since there are
@@ -3024,25 +5567,25 @@
 	  distribution, the system administrator and each user should
 	  have the possibility to choose his/her preferred editor and
 	  pager.</p>
-	  
+	
 	<p>
 	  In addition, every program should choose a good default
 	  editor/pager if none is selected by the user or system
 	  administrator.</p>
-	  
+	
 	<p>
 	  Thus, every program that launches an editor or pager must
 	  use the EDITOR or PAGER environment variables to determine
 	  the editor/pager the user wants to get started. If these
 	  variables are not set, the programs <tt>/usr/bin/editor</tt>
 	  and <tt>/usr/bin/pager</tt> should be used, respectively.</p>
-	  
+	
 	<p>
 	  These two files are managed through `alternatives.' That is,
 	  every package providing an editor or pager must call the
 	  <prgn>update-alternatives</prgn> script to register these
 	  programs.</p>
-	  
+	
 	<p>
 	  If it is very hard to adapt a program to make us of the
 	  EDITOR and PAGER variables, that program may be configured
@@ -3053,7 +5596,7 @@
 	  launch the appropriate program or fall back to
 	  <tt>/usr/bin/editor</tt> and <tt>/usr/bin/pager</tt>,
 	  automatically.</p>
-	  
+	
 	<p>
 	  A program may also use the VISUAL environment variable to
 	  determine the user's choice of editor. If it exists, it
@@ -3065,16 +5608,16 @@
 	  a pager program, it is not required for a package to depend on
 	  `editor' and `pager', nor is it required for a package to
 	  provide such virtual packages.</p></sect>
-	  
-	  
+      
+      
       <sect id="web-appl">
 	<heading>Web servers and applications</heading>
-	  
+	
 	<p>
 	  This section describes the locations and URLs that should
 	  be used by all web servers and web application in the Debian
 	  system.</p>
-	  
+	
 	<p>
 	  <enumlist>
 	    <item>
@@ -3087,24 +5630,24 @@
 		<example>
 		  http://localhost/cgi-bin/&lt;cgi-bin-name&gt;
 		</example></p></item>
-		
-		
+	    
+	    
 	    <item><p>Access to html documents</p>
-		
+	      
 	      <p>
 		Html documents for a package are stored in
                 <tt>/usr/share/doc/<var>package</var></tt> but should
                 be accessed via symlinks as
                 <tt>/usr/doc/<var>package</var></tt><footnote> for
-                backward compatibility, see <ref id="usrdoc"></footnote>
+		    backward compatibility, see <ref id="usrdoc"></footnote>
 		and can be referred to as
 		<example>
 		  http://localhost/doc/&lt;package&gt;/&lt;filename&gt;
 		</example></p></item>
-		
-		
+	    
+	    
 	    <item><p>Web Document Root</p>
-		
+	      
 	      <p>
 		Web Applications should try to avoid storing files in
 		the Web Document Root.  Instead they should use the
@@ -3120,11 +5663,11 @@
 	    </item>
 	    
 	  </enumlist></p></sect>
-	  
-	  
+      
+      
       <sect>
 	<heading>Mail transport agents</heading>
-	  
+	
 	<p>
 	  Debian packages which process electronic mail, whether
 	  mail-user-agents (MUAs) or mail-transport-agents (MTAs),
@@ -3132,13 +5675,13 @@
 	  configuration decisions below.  Failure to do this may
 	  result in lost mail, broken <tt>From:</tt> lines, and other
 	  serious brain damage!</p>
-	  
+	
 	<p>
 	  The mail spool is <tt>/var/spool/mail</tt> and the interface
 	  to send a mail message is <tt>/usr/sbin/sendmail</tt> (as
 	  per the FHS).  The mail spool is part of the base system
 	  and not part of the MTA package.</p>
-	  
+	
 	<p>
 	  All Debian MUAs, MTAs, MDAs and other mailbox accessing
 	  programs (like IMAP daemons) must lock the mailbox in an
@@ -3159,20 +5702,20 @@
 	      <tt>liblockfile</tt> version &gt;&gt;1.01</p>
 	  </footnote> packages is the recommended way to realize this.
 	</p>
-  
+	
 	<p>
 	  Mailboxes are generally 660 <tt><var>user</var>.mail</tt>
 	  unless the user has chosen otherwise.  A MUA may remove a
 	  mailbox (unless it has nonstandard permissions) in which
 	  case the MTA or another MUA must recreate it if needed.
 	  Mailboxes must be writable by group mail.</p>
-	  
+	
 	<p>
 	  The mail spool is 2775 <tt>root.mail</tt>, and MUAs should
 	  be setgid mail to do the locking mentioned above (and
 	  must obviously avoid accessing other users' mailboxes
 	  using this privilege).</p>
-	  
+	
 	<p>
 	  <tt>/etc/aliases</tt> is the source file for the system mail
 	  aliases (e.g., postmaster, usenet, etc.)--it is the one
@@ -3183,19 +5726,19 @@
 	  even if it does nothing, but older MTA packages do not do
 	  this so programs should not fail if <prgn>newaliases</prgn>
 	  cannot be found.</p>
-	  
+	
 	<p>
 	  The convention of writing <tt>forward to
-	  <var>address</var></tt> in the mailbox itself is not
+	    <var>address</var></tt> in the mailbox itself is not
 	  supported.  Use a <tt>.forward</tt> file instead.</p>
-	  
+	
 	<p>
 	  The <prgn>rmail</prgn> program used by UUCP
-	  for incoming mail should be  <tt>/usr/sbin/rmail</tt>, as per the
-	  FHS.  Likewise, <prgn>rsmtp</prgn>, for receiving
+	  for incoming mail should be  <tt>/usr/sbin/rmail</tt>.
+	  Likewise, <prgn>rsmtp</prgn>, for receiving 
 	  batch-SMTP-over-UUCP, should be <tt>/usr/sbin/rsmtp</tt> if it
 	  is supported.</p>
-	  
+	
 	<p>
 	  If you need to know what name to use (for example) on
 	  outgoing news and mail messages which are generated locally,
@@ -3203,7 +5746,7 @@
 	  contain the portion after the username and <tt>@</tt> (at)
 	  sign for email addresses of users on the machine (followed
 	  by a newline).</p>
-	  
+	
 	<p>
 	  A package should check for the existence of this file.  If
 	  it exists it should use it without comment. (An MTA's
@@ -3223,16 +5766,16 @@
 	  </example>
 	  where <var>syshostname</var> is the output of <tt>hostname
 	    --fqdn</tt>.</p></sect> 
-	  
-	  
+      
+      
       <sect>
 	<heading>News system configuration</heading>
-	  
+	
 	<p>
 	  All the configuration files related to the NNTP (news)
 	  servers and clients should be located under
 	  <tt>/etc/news</tt>.</p>
-	  
+	
 	<p>
 	  There are some configuration issues that apply to a number
 	  of news clients and server packages on the machine. These
@@ -3243,7 +5786,7 @@
 	    <item><p>A string which should appear as the
 		organization header for all messages posted
 		by NNTP clients on the machine</p></item>
-		
+	    
 	    <tag>/etc/news/server</tag>
 	    <item><p>Contains the FQDN of the upstream NNTP
 		server, or localhost if the local machine is
@@ -3252,11 +5795,11 @@
 	  
 	  Other global files may be added as required for cross-package news 
 	  configuration.</p></sect>
-	  
-	  
+      
+      
       <sect>
 	<heading>Programs for the X Window System</heading>
-	  
+	
 	<p>
 	  <em>Programs that may be configured with support for the X Window
 	    System</em> must be configured to do so and must declare any
@@ -3289,12 +5832,12 @@
 	    </p>
 	  </footnote>
 	</p>
-  
-	  
+	
+	
 	<p>
-         <em>Packages which provide an X server</em> that, directly or
-         indirectly, communicates with real input and display hardware
-         should declare in their control data that they provide the
+	  <em>Packages which provide an X server</em> that, directly or
+	  indirectly, communicates with real input and display hardware
+	  should declare in their control data that they provide the
 	  virtual package <tt>xserver</tt>.
 	  <footnote>
 	    <p>
@@ -3309,7 +5852,7 @@
 	      change this drastically.
 	    </p>
 	  </footnote>
-       </p>
+	</p>
 
 	<p>
 	  <em>Packages that provide a terminal emulator</em> for the X
@@ -3342,17 +5885,17 @@
 		(without killing the X server) in its default
 		configuration, add 10 points; otherwise add
 		none.</item>
-         </list>
-       </p>
+	  </list>
+	</p>
 
 	<p>
-         <em>Packages that provide fonts for the X Window System</em>
-         must do a number of things to ensure that they are both
-         available without modification of the X or font server
-         configuration, and that they do not corrupt files used by
-         other font packages to register information about themselves.
-         <enumlist>
-           <item>
+	  <em>Packages that provide fonts for the X Window System</em>
+	  must do a number of things to ensure that they are both
+	  available without modification of the X or font server
+	  configuration, and that they do not corrupt files used by
+	  other font packages to register information about themselves.
+	  <enumlist>
+	    <item>
 		Fonts of any type supported by the X Window System
 		should be be in a separate binary package from any
 		executables, libraries, or documentation (except that
@@ -3362,7 +5905,7 @@
 		library should declare a dependency on the package(s)
 		containing the font(s) it requires.
 	    </item>
-           <item>
+	    <item>
 		BDF fonts should be converted to PCF fonts with the
 		<tt>bdftopcf</tt> utility (available in the
 		<tt>xbase-clients</tt> package, <tt>gzip</tt>ped, and
@@ -3469,7 +6012,7 @@
 		Font packages that provide one or more
 		<tt>fonts.alias</tt> files as described above must
 		declare a versioned dependency on <tt>xbase-clients
-		(&gt;= 3.3.3.1-5)</tt> and, in the package
+		  (&gt;= 3.3.3.1-5)</tt> and, in the package
 		post-installation and post-removal scripts, invoke
 		<tt>update-fonts-alias</tt> on each directory into
 		which they installed fonts.
@@ -3511,9 +6054,9 @@
 	      administrator, as to how to manage
 	      /etc/X11/Xresources.</p>
 	  </footnote>
-       </p>
+	</p>
 
-	  
+	
 	<p>
 	  <em>Packages using the X Window System should abide by the FHS
 	    standard whenever possible</em>; they should install binaries,
@@ -3545,7 +6088,7 @@
 	  <tt>/usr/X11R6/include/X11/</tt>, and
 	  <tt>/usr/X11R6/lib/X11/</tt>, if the resources being
 	  referred to have not been moved to FHS-compliant locations.
-       </p>
+	</p>
 
  	<p>
 	  <em>Programs that require the non-DFSG-compliant OSF/Motif
@@ -3570,28 +6113,28 @@
 	  his or her possession.
 	</p>
       </sect>
-	  
-	  
+      
+      
       <sect>
 	<heading>Emacs lisp programs</heading>
-	  
+	
 	<p>
 	  Please refer to the `Debian Emacs Policy' (documented in
 	  <tt>debian-emacs-policy.gz</tt> of the
 	  <prgn>emacsen-common</prgn> package) for details of how to
 	  package emacs lisp programs.</p></sect>
-	  
-	  
+      
+      
       <sect>
 	<heading>Games</heading>
-	  
+	
 	<p>
 	  The permissions on /var/games are 755
 	  <tt>root.root</tt>.</p>
-	  
+	
 	<p>
 	  Each game decides on its own security policy.</p>
-	  
+	
 	<p>
 	  Games which require protected, privileged access to
 	  high-score files, savegames, etc., may be made
@@ -3607,7 +6150,7 @@
 	  important game data, and if they can get at the other
 	  players' accounts at all it will take considerably more
 	  effort.)</p>
-	  
+	
 	<p>
 	  Some packages, for example some fortune cookie programs, are
 	  configured by the upstream authors to install with their
@@ -3619,7 +6162,7 @@
 	  making the files unreadable also means that you don't have
 	  to make so many programs set-id, which reduces the risk of a
 	  security hole.</p>
-	  
+	
 	<p>
 	  As described in the FHS, binaries of games should be
 	  installed in the directory <tt>/usr/games</tt>. This also
@@ -3628,27 +6171,27 @@
 	  <tt>/usr/share/man/man6</tt>.</p>
       </sect>
     </chapt>
-      
+    
     <chapt><heading>Documentation</heading>
-	
+      
       
       <sect>
 	<heading>Manual pages</heading>
-	  
+	
 	<p>
 	  You should install manual pages in <prgn>nroff</prgn> source
 	  form, in appropriate places under <tt>/usr/share/man</tt>.  You
 	  should only use sections 1 to 9 (see the FHS for more
 	  details).  You must not install a preformatted `cat
 	  page'.</p>
-	  
+	
 	<p>
-	  Each program, utiltiy, and function should have an
+	  Each program, utility, and function should have an
 	  associated manpage included in the same package. It is
 	  suggested that all configuration files also have a manual
 	  page included as well.
 	</p>
-	  
+	
 	<p>
 	  If no manual page is available for a particular program,
 	  utility, function or configuration file and this is reported as a bug on
@@ -3664,7 +6207,7 @@
 	  reported as a bug, so you may only do this if it really has
 	  (you can report it yourself, if you like).  Do not close the
 	  bug report until a proper manpage is available.</p>
-	  
+	
 	<p>
 	  You may forward a complaint about a missing manpage to the
 	  upstream authors, and mark the bug as forwarded in the
@@ -3673,11 +6216,11 @@
 	  we do--if they tell you that they don't consider it a bug
 	  you should leave the bug in our bug tracking system open
 	  anyway.</p>
-	  
+	
 	<p>
 	  Manual pages should be installed compressed using <tt>gzip
-	  -9</tt>.</p>
-	  
+	    -9</tt>.</p>
+	
 	<p>
 	  If one manpage needs to be accessible via several names it
 	  is better to use a symbolic link than the <tt>.so</tt>
@@ -3689,15 +6232,15 @@
 	  in a <tt>.so</tt> in a manpage should be relative to the
 	  base of the manpage tree (usually
 	  <tt>/usr/share/man</tt>).</p></sect>
-	  
-	  
+      
+      
       <sect>
 	<heading>Info documents</heading>
-	  
+	
 	<p>
 	  Info documents should be installed in <tt>/usr/share/info</tt>.
 	  They should be compressed with <tt>gzip -9</tt>.</p>
-	  
+	
 	<p>
 	  Your package should call <prgn>install-info</prgn> to update the Info
 	  <tt>dir</tt>
@@ -3706,7 +6249,7 @@
 	    install-info --quiet --section Development Development \
 	    /usr/share/info/foobar.info
 	  </example></p>
-	  
+	
 	<p>
 	  It is a good idea to specify a section for the location of
 	  your program; this is done with the <tt>--section</tt>
@@ -3717,17 +6260,17 @@
 	  flag takes two arguments; the first is a regular expression
 	  to match (case-insensitively) against an existing section,
 	  the second is used when creating a new one.</p>
-	  
+	
 	<p>
 	  You should remove the entries in the pre-removal script:
 	  <example>
 	    install-info --quiet --remove /usr/share/info/foobar.info
 	  </example></p>
-	  
+	
 	<p>
 	  If <prgn>install-info</prgn> cannot find a description entry
 	  in the Info file you must supply one.  See <manref
-	  name="install-info" section="8"> for details.</p>
+							     name="install-info" section="8"> for details.</p>
       </sect>
       
       <sect>
@@ -3756,44 +6299,44 @@
 	  the instructions for building and installing the package, of
 	  course!</p>
       </sect>
- 
+      
       <sect id="usrdoc">
-      <heading>Accessing the documentation</heading>
+	<heading>Accessing the documentation</heading>
 
-       <p>
-         Former Debian releases placed all additional documentation
-         in <tt>/usr/doc/<var>package</var></tt>.  To realize a
-         smooth migration to
-         <tt>/usr/share/doc/<var>package</var></tt>, each package
-         must maintain a symlink <tt>/usr/doc/<var>package</var></tt>
-         that points to the new location of its documentation in
-         <tt>/usr/share/doc/<var>package</var></tt><footnote>These
-         symlinks will be removed in the future, but they have to be
-         there for compatibility reasons until all packages have
-         moved and the policy is changed accordingly.</footnote>.
-         The symlink must be created when the package is installed;
-         it cannot be contained in the package itself due to problems
-         with <prgn>dpkg</prgn>. One reasonable way to accomplish
-         this is to put the following in the package's
-         <prgn>postinst</prgn>:
+	<p>
+	  Former Debian releases placed all additional documentation
+	  in <tt>/usr/doc/<var>package</var></tt>.  To realize a
+	  smooth migration to
+	  <tt>/usr/share/doc/<var>package</var></tt>, each package
+	  must maintain a symlink <tt>/usr/doc/<var>package</var></tt>
+	  that points to the new location of its documentation in
+	  <tt>/usr/share/doc/<var>package</var></tt><footnote>These
+	      symlinks will be removed in the future, but they have to be
+	      there for compatibility reasons until all packages have
+	      moved and the policy is changed accordingly.</footnote>.
+	  The symlink must be created when the package is installed;
+	  it cannot be contained in the package itself due to problems
+	  with <prgn>dpkg</prgn>. One reasonable way to accomplish
+	  this is to put the following in the package's
+	  <prgn>postinst</prgn>:
           <example>
-  if [ "$1" = "configure" ]; then
-        if [ -d /usr/doc -a ! -e /usr/doc/#PACKAGE# \
+	    if [ "$1" = "configure" ]; then
+	    if [ -d /usr/doc -a ! -e /usr/doc/#PACKAGE# \
             -a -d /usr/share/doc/#PACKAGE# ]; then
-                ln -sf ../share/doc/#PACKAGE# /usr/doc/#PACKAGE#
-        fi
-  fi
+	    ln -sf ../share/doc/#PACKAGE# /usr/doc/#PACKAGE#
+	    fi
+	    fi
           </example>
           And the following in the package's <prgn>prerm</prgn>:
           <example>
-  if [ \( "$1" = "upgrade" -o "$1" = "remove" \) \
-       -a -L /usr/doc/#PACKAGE# ]; then
-        rm -f /usr/doc/#PACKAGE#
-  fi
+	    if [ \( "$1" = "upgrade" -o "$1" = "remove" \) \
+	    -a -L /usr/doc/#PACKAGE# ]; then
+	    rm -f /usr/doc/#PACKAGE#
+	    fi
           </example>
 	</p>
       </sect>
-     
+      
       <sect>
 	<heading>Preferred documentation formats</heading>
 	
