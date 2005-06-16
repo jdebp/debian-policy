@@ -5,9 +5,9 @@
 ## Created On	    : Thu Oct 29 15:35:55 1998
 ## Created On Node  : tiamat.datasync.com
 ## Last Modified By : Manoj Srivastava
-## Last Modified On : Tue Jun 29 14:55:15 1999
+## Last Modified On : Wed Jun 30 23:05:51 1999
 ## Last Machine Used: glaurung.green-gryphon.com
-## Update Count	    : 47
+## Update Count	    : 51
 ## Status	    : Unknown, Use with caution!
 ## HISTORY	    :
 ## Description	    :
@@ -114,6 +114,7 @@ stamp-policy:  build
 	# a given that the debian-policy pkg must always comply with
 	# itself...
 	echo "debian-policy:Version=$(version)"	     > debian/substvars
+	echo "packaging-manual:Version=$(version)"   >> debian/substvars
 	$(install_file)	    $(POLICY_FILES)	     $(DOCDIR)/
 	$(install_file)	    $(FSSTND_FILES)	     $(DOCDIR)/fsstnd/
 	$(install_file)	    $(FHS_FILES)	     $(DOCDIR)/fhs/
@@ -149,12 +150,13 @@ stamp-packaging:  build
 	$(make_directory)	$(PTMPTOP)/DEBIAN
 	$(make_directory)	$(PDOCDIR)
 	$(make_directory)	$(PLIBDIR)
-	echo "packaging-manual:Version=$(version)"	     > debian/substvars
+	echo "debian-policy:Version=$(version)"	     > debian/substvars
+	echo "packaging-manual:Version=$(version)"   >> debian/substvars
 
 	$(install_file)	   packaging.sgml	     $(PDOCDIR)/
 	$(install_file)	   version.ent	             $(PDOCDIR)/
 	$(install_file)	   debian/changelog	     $(PDOCDIR)/
-	-gzip -fqr9	   $(DOCDIR)
+	-gzip -fqr9	   $(PDOCDIR)
 	$(install_file)	   packaging.text.gz	     $(PDOCDIR)/
 	$(install_file)	   debian/copyright	     $(PDOCDIR)/
 	$(install_file)	   packaging-manual.desc     $(PLIBDIR)/packaging-manual
