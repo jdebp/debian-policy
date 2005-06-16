@@ -235,6 +235,7 @@
 	</p>
       </sect>
     </chapt>
+
     <chapt>
       <heading>The Debian Archive</heading>
       <p>
@@ -3699,308 +3700,444 @@ Replaces: mail-transport-agent
       </p>
 
       <p>
-	Any package installing shared libraries in a directory that is
-	listed in <tt>/etc/ld.so.conf</tt> or in one of the default
-	library directories of the dynamic linker (currently, these
-	are <tt>/usr/lib</tt> and <tt>/lib</tt>) must call
-	<prgn>ldconfig</prgn> in its <prgn>postinst</prgn> script if
-	and only if the first argument is `configure'. However, it is
-	important not to call <prgn>ldconfig</prgn> in the postrm or
-	preinst scripts in the case where the package is being
-	upgraded (see <ref id="unpackphase">), as
-	<prgn>ldconfig</prgn> will see the temporary names that
-	<prgn>dpkg</prgn> uses for the files while it is installing
-	them and will make the shared library links point to them,
-	just before <prgn>dpkg</prgn> continues the installation and
-	removes the links!
+	Any package installing shared libraries in one of the default
+	library directories of the dynamic linker (which are currently
+	<tt>/usr/lib</tt> and <tt>/lib</tt>) or a directory that is
+	listed in <tt>/etc/ld.so.conf</tt>
+	<footnote>
+	  <p>
+	    These are currently
+	    <list>
+	      <item><p>/usr/X11R6/lib/Xaw3d</p></item>
+	      <item><p>/usr/local/lib</p></item>
+	      <item><p>/usr/lib/libc5-compat</p></item>
+	      <item><p>/lib/libc5-compat</p></item>
+	      <item><p>/usr/X11R6/lib</p></item>
+	    </list>
+	  </p>
+	</footnote>
+	must call <prgn>ldconfig</prgn> in its <prgn>postinst</prgn>
+	script if and only if the first argument is <tt>configure</tt>
+	and should call it in the <prgn>postrm</prgn> script if the
+	first argument is <tt>remove</tt>.
       </p>
+
+      <p>
+	However, <prgn>postrm</prgn> and <prgn>preinst</prgn> scripts
+	<em>must not</em> call <prgn>ldconfig</prgn> in the case where
+	the package is being upgraded (see <ref id="unpackphase"> for
+	details), as <prgn>ldconfig</prgn> will see the temporary
+	names that <prgn>dpkg</prgn> uses for the files while it is
+	installing them and will make the shared library links point
+	to them, just before <prgn>dpkg</prgn> continues the
+	installation and renames the temporary files!
+      </p>
+
+      <sect>
+	<heading>Handling shared library dependencies - the
+	  <tt>shlibs</tt> system</heading>
+
+	<p>
+	  If a package contains a binary or library which links to a
+	  shared library, we must ensure that when the package is
+	  installed on the system, all of the libraries needed are
+	  also installed.  This requirement led to the creation of the
+	  <tt>shlibs</tt> system, which is very simple in its design:
+	  any package which <em>provides</em> a shared library also
+	  provides information on the package dependencies required to
+	  ensure the presence of this library, and any package which
+	  <em>uses</em> a shared library uses this information to
+	  determine the dependencies it requires.  The files which
+	  contain the mapping from shared libraries to the necessary
+	  dependency information are called <tt>shlibs</tt> files.
+	</p>
+
+	<p>
+	  Thus, when a package is built which contains any shared
+	  libraries, it must provide a <tt>shlibs</tt> file for other
+	  packages to use, and when a package is built which contains
+	  any shared libraries or compiled binaries, it must run
+	  <prgn>dpkg-shlibdeps</prgn> on these to determine the
+	  libraries used and hence the dependencies needed by this
+	  package.
+	  <footnote>
+	    <p>
+	      In the past, the shared libraries linked to were
+	      determined by calling <prgn>ldd</prgn>, but now
+	      <prgn>objdump</prgn> to do this.  The only change this
+	      makes to package building is that
+	      <prgn>dpkg-shlibdeps</prgn> must also be run on shared
+	      libraries, whereas in the past this was unnecessary.
+	      The rest of this footnote explains the advantage that
+	      this method gives.
+	    </p>
+
+	    <p>
+	      We say that a binary <tt>foo</tt> <em>directly</em> uses
+	      a library <tt>libbar</tt> if it is explicitly linked
+	      with that library (that is, it uses the flag
+	      <tt>-lbar</tt> during the linking stage).  Other
+	      libraries that are needed by <tt>libbar</tt> are linked
+	      <em>indirectly</em> to <tt>foo</tt>, and the dynamic
+	      linker will load them automatically when it loads
+	      <tt>libbar</tt>.  A package should needs to depend on
+	      the libraries it directly uses, and the dependencies for
+	      those libraries should automatically pull in the other
+	      libraries.
+	    </p>
+
+	    <p>
+	      Unfortunately, the <prgn>ldd</prgn> program shows both
+	      the directly and indirectly used libraries, meaning that
+	      the dependencies determined included both direct and
+	      indirect dependencies.  The use of <prgn>objdump</prgn>
+	      avoids this problem by determining only the directly
+	      used libraries.
+	    </p>
+
+	    <p>
+	      A good example of where this helps is the following.  We
+	      could update <tt>libimlib</tt> with a new version that
+	      supports a new graphics format called dgf (but retaining
+	      the same major version number).  If we used the old
+	      <prgn>ldd</prgn> method, every package that uses
+	      <tt>libimlib</tt> would need to be recompiled so it
+	      would also depend on <tt>libdgf</tt> or it wouldn't run
+	      due to missing symbols.  However with the new system,
+	      packages using <tt>libimlib</tt> can rely on
+	      <tt>libimlib</tt> itself having the dependency on
+	      <tt>libdgf</tt> and so they would not need rebuilding.
+	    </p>
+	  </footnote>
+	</p>
+
+	<p>
+	  In the following sections, we will first describe where the
+	  various <tt>shlibs</tt> files are to be found, then how to
+	  use <prgn>dpkg-shlibdeps</prgn>, and finally the
+	  <tt>shlibs</tt> file format and how to create them if your
+	  package contains a shared library.
+	</p>
+      </sect>
+
+      <sect><heading>The <tt>shlibs</tt> files present on the system
+	</heading>
+
+	<p>
+	  There are several places where <tt>shlibs</tt> files are
+	  found.  The following list gives them in the order in which
+	  they are read by <prgn>dpkg-shlibdeps</prgn>.  (The first
+	  one which gives the required information is used.)
+	</p>
+
+	<p>
+	  <taglist>
+	    <tag><tt>debian/shlibs.local</tt></tag>
+	    <item>
+	      <p>
+		This lists overrides for this package.  Its use is
+		described below (see <ref id="shlibslocal">).
+	      </p>
+	    </item>
+
+	    <tag><tt>/etc/dpkg/shlibs.override</tt></tag>
+	    <item>
+	      <p>
+		This lists global overrides.  This list is normally
+		empty.  It is maintained by the local system
+		administrator.
+	      </p>
+	    </item>
+
+	    <tag><tt>DEBIAN/shlibs</tt> files in the `build directory'</tag>
+	    <item>
+	      <p>
+		When packages are being built, any
+		<tt>debian/shlibs</tt> files are copied into the
+		control file area of the temporary build directory and
+		given the name <tt>shlibs</tt>.  These files give
+		details of any shared libraries included in the
+		package.
+		<footnote>
+		  <p>
+		    An example may help here.  Let us say that the
+		    source package <tt>foo</tt> generates two binary
+		    packages, <tt>libfoo2</tt> and
+		    <tt>foo-runtime</tt>.  When building the binary
+		    packages, the two packages are created in the
+		    directories <tt>debian/libfoo2</tt> and
+		    <tt>debian/foo-runtime</tt> respectively.
+		    (<tt>debian/tmp</tt> could be used instead of one
+		    of these.)  Since <tt>libfoo2</tt> provides the
+		    <tt>libfoo</tt> shared library, it will require a
+		    <tt>shlibs</tt> file, which will be installed in
+		    <tt>debian/libfoo2/DEBIAN/shlibs</tt>, eventually
+		    to become
+		    <tt>/var/lib/dpkg/info/libfoo2.shlibs</tt>.  Then
+		    when <prgn>dpkg-shlibdeps</prgn> is run on the
+		    executable
+		    <tt>debian/foo-runtime/usr/bin/foo-prog</tt>, it
+		    will examine the
+		    <tt>debian/libfoo2/DEBIAN/shlibs</tt> file to
+		    determine whether <tt>foo-prog</tt>'s library
+		    dependencies are satisfied by any of the libraries
+		    provided by <tt>libfoo2</tt>.  For this reason,
+		    <prgn>dpkg-shlibdeps</prgn> must only be run once
+		    all of the individual binary packages'
+		    <tt>shlibs</tt> files have been installed into the
+		    build directory.
+		  </p>
+		</footnote>
+	      </p>
+	    </item>
+
+	    <tag><tt>/var/lib/dpkg/info/*.shlibs</tt></tag>
+	    <item>
+	      <p>
+		These are the <tt>shlibs</tt> files corresponding to
+		all of the packages installed on the system, and are
+		maintained by the relevant package maintainers.
+	      </p>
+	    </item>
+
+	    <tag><tt>/etc/dpkg/shlibs.default</tt></tag>
+	    <item>
+	      <p>
+		This file lists any shared libraries whose packages
+		have failed to provide correct <tt>shlibs</tt> files.
+		It was used when the <tt>shlibs</tt> setup was first
+		introduced, but it is now normally empty.  It is
+		maintained by the <tt>dpkg</tt> maintainer.
+	      </p>
+	    </item>
+	  </taglist>
+	</p>
+      </sect>
+
+      <sect>
+	<heading>How to use <prgn>dpkg-shlibdeps</prgn> and the
+	    <tt>shlibs</tt> files</heading>
+
+	<p>
+	  Put a call to <prgn>dpkg-shlibdeps</prgn> into your
+	  <tt>debian/rules</tt> file.  If your package contains only
+	  compiled binaries and libraries (but no scripts), you can
+	  use a command such as:
+	  <example>
+	    dpkg-shlibdeps debian/tmp/usr/bin/* debian/tmp/usr/sbin/* \
+	       debian/tmp/usr/lib/*
+	  </example>
+	  Otherwise, you will need to explicitly list the compiled
+	  binaries and libraries.
+	  <footnote>
+	    <p>
+	      If you are using <tt>debhelper</tt>, the
+	      <prgn>dh_shlibdeps</prgn> program will do this work for
+	      you.  It will also correctly handle multi-binary
+	      packages.
+	    </p>
+	  </footnote>
+	</p>
+
+	<p>
+	  This command puts the dependency information into the
+	  <tt>debian/substvars</tt> file, which is then used by
+	  <prgn>dpkg-gencontrol</prgn>.  You will need to place a
+	  <tt>${shlib:Depends}</tt> variable in the <tt>Depends</tt>
+	  field in the control file for this to work.
+	</p>
+
+	<p>
+	  If <prgn>dpkg-shlibdeps</prgn> doesn't complain, you're
+	  done.  If it does complain you might need to create your own
+	  <tt>debian/shlibs.local</tt> file, as explained below (see
+	  <ref id="shlibslocal">).
+	</p>
+
+	<p>
+	  If you have multiple binary packages, you will need to call
+	  <prgn>dpkg-shlibdeps</prgn> on each one which contains
+	  compiled libraries or binaries.  In such a case, you will
+	  need to use the <tt>-T</tt> option to the <tt>dpkg</tt>
+	  utilities to specify a different <tt>substvars</tt> file.
+	  For more details on this and other options, see <manref
+	  name="dpkg-shlibdeps" section="1">.
+	</p>
+      </sect>
 
       <sect id="shlibs"><heading>The <tt>shlibs</tt> File Format
 	</heading>
 
 	<p>
-	  This file is for use by <prgn>dpkg-shlibdeps</prgn> and is
-	  required when your package provides shared libraries.
-	</p>
-
-	<p>
-	  Each line is of the form:
+	  Each <tt>shlibs</tt> file has the same format.  Lines
+	  beginning with <tt>#</tt> are considered to be commments and
+	  are ignored.  Each line is of the form:
 	  <example>
-	    <var>library-name</var> <var>version-or-soname</var> <var>dependencies ...</var>
+	    <var>library-name</var> <var>soname-version-number</var> <var>dependencies ...</var>
 	  </example>
 	</p>
 
 	<p>
-	  <var>library-name</var> is the name of the shared library,
-	  for example <tt>libc5</tt>.
+	  We will explain this by reference to the example of the
+	  <tt>zlib1g</tt> package, which (at the time of writing)
+	  installs the shared library <tt>/usr/lib/libz.so.1.1.3</tt>.
 	</p>
 
 	<p>
-	  <var>version-or-soname</var> is the soname of the library -
-	  i.e., the thing that must exactly match for the library to be
-	  recognized by <prgn>ld.so</prgn>.  Usually this is the major
-	  version number of the library.
+	  <var>library-name</var> is the name of the shared library,
+	  in this case <tt>libz</tt>.  (This must match the name part
+	  of the soname, see below.)
+	</p>
+
+	<p>
+	  <var>soname-version-number</var> is the version part of the
+	  soname of the library.  The soname is the thing that must
+	  exactly match for the library to be recognized by the
+	  dynamic linker, and is usually of the form
+	  <tt><var>name</var>.so.<var>major-version</var></tt>, in our
+	  example, <tt>libz.so.1</tt>.
+	  <footnote>
+	    <p>
+	      This can be determined using the command
+	      <example>
+		objdump -p /usr/lib/libz.so.1.1.3 | grep SONAME
+	      </example>
+	    </p>
+	  </footnote>
+	  The version part is the part which comes after
+	  <tt>.so.</tt>, so in our case, it is <tt>1</tt>.
 	</p>
 
 	<p>
 	  <var>dependencies</var> has the same syntax as a dependency
 	  field in a binary package control file.  It should give
-	  details of which package(s) are required to satisfy a binary
+	  details of which packages are required to satisfy a binary
 	  built against the version of the library contained in the
-	  package.  See <ref id="depsyntax">.
+	  package.  See <ref id="depsyntax"> for details.
 	</p>
 
 	<p>
-	  For example, if the package <tt>foo</tt> contains
-	  <tt>libfoo.so.1.2.3</tt>, where the soname of the library is
-	  <tt>libfoo.so.1</tt>, and the first version of the package
-	  which contained a minor number of at least <tt>2.3</tt> was
-	  <var>1.2.3-1</var>, then the package's <var>shlibs</var>
-	  could say:
+	  In our example, if the first version of the <tt>zlib1g</tt>
+	  package which contained a minor number of at least
+	  <tt>1.3</tt> was <var>1:1.1.3-1</var>, then the
+	  <tt>shlibs</tt> entry for this library could say:
 	  <example>
-	    libfoo 1	foo (>= 1.2.3-1)
+	    libz 1 zlib1g (>= 1:1.1.3)
 	  </example>
-	</p>
-
-	<p>
 	  The version-specific dependency is to avoid warnings from
-	  <prgn>ld.so</prgn> about using older shared libraries with
-	  newer binaries.</p>
+	  the dynamic linker about using older shared libraries with
+	  newer binaries.
+	</p>
       </sect>
 
-      <sect><heading>Further Technical information on
-	  <tt>shlibs</tt></heading>
+      <sect>
+	<heading>Providing a <tt>shlibs</tt> file</heading>
 
-	<sect1><heading><em>What</em> are the <tt>shlibs</tt> files?
-	  </heading>
-
-	  <p>
-	    The <tt>debian/shlibs</tt> file provides a way of checking
-	    for shared library dependencies on packaged binaries.
-	    They are intended to be used by package maintainers to
-	    make their lives easier.
-	  </p>
-
-	  <p>
-	    Other <tt>shlibs</tt> files that exist on a Debian system are
-	    <list>
-	      <item> <p><tt>/etc/dpkg/shlibs.default</tt></p></item>
-	      <item> <p><tt>/etc/dpkg/shlibs.override</tt></p></item>
-	      <item> <p><tt>/var/lib/dpkg/info/*.shlibs</tt></p></item>
-	      <item> <p><tt>debian/shlibs.local</tt></p></item>
-	    </list>
-	    These files are used by <prgn>dpkg-shlibdeps</prgn> when
-	    creating a binary package.</p>
-	</sect1>
-
-	<sect1><heading><em>How</em> does <prgn>dpkg-shlibdeps</prgn>
-	    work?
-	  </heading>
-	  <p>
-	    <prgn>dpkg-shlibdeps</prgn>
-	    determines the shared libraries directly
-	    <footnote>
-	      <p>
-		It used to do this by calling <prgn>ldd</prgn>, but it
-		now calls <prgn>objdump</prgn> to do this. This
-		requires a couple of changes in the way that packages
-		are built.
-	      </p>
-	      <p>
-		A binary <tt>foo</tt> directly uses a library
-		<tt>libbar</tt> if it is linked with that
-		library. Other libraries that are needed by
-		<tt>libbar</tt> are linked indirectly to <tt>foo</tt>,
-		and the dynamic linker will load them automatically
-		when it loads <tt>libbar</tt>. Running<prgn>ldd</prgn>
-		lists all of the libraries used, both directly and
-		indirectly; but <prgn>objdump</prgn> only lists the
-		directly linked libraries. A package only needs to
-		depend on the libraries it is directly linked to,
-		since the dependencies for those libraries should
-		automatically pull in the other libraries.
-	      </p>
-	      <p>
-		This change does mean a change in the way packages are
-		build though: currently <prgn>dpkg-shlibdeps</prgn> is
-		only run on binaries. But since we will now rely on the
-		libraries depending on the libraries they themselves
-		need, the packages containing those libraries will
-		need to run <prgn>dpkg-shlibdeps</prgn> on the
-		libraries.
-	      </p>
-	      <p>
-		A good example where this would help us is the current
-		mess with multiple version of the <tt>mesa</tt>
-		library. With the <prgn>ldd</prgn>-based system, every
-		package that uses <tt>mesa</tt> needs to add a
-		dependency on <tt>svgalib|svgalib-dummy</tt> in order
-		to handle the glide <tt>mesa</tt> variant.  With an
-		<prgn>objdump</prgn>-based system this isn't necessary
-		anymore and would have saved everyone a lot of work.
-	      </p>
-	      <p>
-		Another example: we could update <tt>libimlib</tt>
-		with a new version that supports a new graphics format
-		called dgf. If we use the old <prgn>ldd</prgn> method,
-		every package that uses <tt>libimlib</tt> would need
-		to be recompiled so it would also depend on
-		<tt>libdgf</tt> or it wouldn't run due to missing
-		symbols. However with the new system, packages using
-		<tt>libimlib</tt> can rely on <tt>libimlib</tt> itself
-		having the dependency on <tt>libdgf</tt> and wouldn't
-		need to be updated.
-	      </p>
-	    </footnote>
-	    used by the compiled binaries and libraries passed through
-	    on its command line.
-	  </p>
-
-	  <p>
-	    For each shared library linked to,
-	    <prgn>dpkg-shlibdeps</prgn> needs to know
-	    <list compact="compact">
-	      <item><p>the package containing the library, and</p></item>
-	      <item><p>the library version number,</p></item>
-	    </list>
-	    and it scans the following files in this order:
-	    <enumlist compact="compact">
-	      <item><p><tt>debian/shlibs.local</tt></p></item>
-	      <item><p><tt>/etc/dpkg/shlibs.override</tt></p></item>
-	      <item><p><tt>/var/lib/dpkg/info/*.shlibs</tt></p></item>
-	      <item><p><tt>/etc/dpkg/shlibs.default</tt></p></item>
-	    </enumlist>
-	  </p>
-	</sect1>
-
-	<sect1><heading><em>Who</em> maintains the various
-	    <tt>shlibs</tt> files?
-	  </heading>
-
-	  <p>
-	    <list compact="compact">
-	      <item>
-		<p><tt>/etc/dpkg/shlibs.default</tt> - the maintainer
-		  of dpkg</p>
-	      </item>
-	      <item>
-		<p>
-		  <tt>/var/lib/dpkg/info/<var>package</var>.shlibs</tt>
-		  - the maintainer of each package</p>
-	      </item>
-	      <item>
-		<p>
-		  <tt>/etc/dpkg/shlibs.override</tt> - the local
-		  system administrator</p>
-	      </item>
-	      <item>
-		<p><tt>debian/shlibs.local</tt> - the maintainer of
-		  the package
-		</p>
-	      </item>
-	    </list>
-	    The <tt>shlibs.default</tt> file is managed by
-	    <prgn>dpkg</prgn>. The entries in <tt>shlibs.default</tt>
-	    that are provided by <prgn>dpkg</prgn> are just there to
-	    fix things until the shared library packages all have
-	    <tt>shlibs</tt> files.
-	  </p>
-	</sect1>
-
-	<sect1><heading><em>How</em> to use <prgn>dpkg-shlibdeps</prgn> and
-	    the <tt>shlibs</tt> files
-	  </heading>
-
-	  <sect2><heading>If your package doesn't provide a shared
-	      library
-	    </heading>
-
+	<p>
+	  If your package provides a shared library, you should create
+	  a <tt>shlibs</tt> file following the format described above.
+	  It is usual to call this file <tt>debian/shlibs</tt> (but if
+	  you have multiple binary packages, you might want to call it
+	  <tt>debian/shlibs.<var>package</var></tt> instead).  Then
+	  let <tt>debian/rules</tt> install it in the control area:
+	  <example>
+	    install -m644 debian/shlibs debian/tmp/DEBIAN
+	  </example>
+	  or, in the case of a multi-binary package:
+	  <example>
+	    install -m644 debian/shlibs.<var>package</var> debian/<var>package</var>/DEBIAN/shlibs
+	  </example>
+	  An alternative way of doing this is to create the
+	  <tt>shlibs</tt> file in the control area directly from
+	  <tt>debian/rules</tt> without using a <tt>debian/shlibs</tt>
+	  file at all,
+	  <footnote>
 	    <p>
-	      Put a call to <prgn>dpkg-shlibdeps</prgn> into your
-	      <tt>debian/rules</tt> file.  If your package contains
-	      only binaries (e.g. no scripts) use:
-	      <example>
-		dpkg-shlibdeps debian/tmp/usr/bin/* debian/tmp/usr/sbin/*
-	      </example>
-	      If <prgn>dpkg-shlibdeps</prgn> doesn't complain, you're
-	      done. If it does complain you might need to create your
-	      own <tt>debian/shlibs.local</tt> file.</p>
-	  </sect2>
-
-	  <sect2><heading>If your package provides a shared library
-	    </heading>
-
-	    <p>
-	      Create a <tt>debian/shlibs</tt> file and let
-	      <tt>debian/rules</tt> install it in the control area:
-	      <example>
-		install -m644 debian/shlibs debian/tmp/DEBIAN
-	      </example>
-	      If your package contains additional binaries see above.
+	      This is what <prgn>dh_makeshlibs</prgn> in the
+	      <tt>debhelper</tt> suite does.
 	    </p>
-	  </sect2>
-	</sect1>
+	  </footnote>
+	  since the <tt>debian/shlibs</tt> file itself is ignored by
+	  <prgn>dpkg-shlibdeps</prgn>.
+	</p>
 
-	<sect1><heading><em>How</em> to write
-	    <tt>debian/shlibs.local</tt>
-	  </heading>
+	<p>
+	  As <prgn>dpkg-shlibdeps</prgn> reads the
+	  <tt>DEBIAN/shlibs</tt> files in all of the binary packages
+	  being built from this source package, all of the
+	  <tt>DEBIAN/shlibs</tt> files should be installed before
+	  <prgn>dpkg-shlibdeps</prgn> is called on any of the binary
+	  packages.
+	</p>
+      </sect>
 
-	  <p>
-	    This file is intended only as a <em>temporary</em> fix if
-	    your binaries depend on a library which doesn't provide
-	    its own <tt>/var/lib/dpkg/info/*.shlibs</tt> file yet.
-	  </p>
+      <sect id="shlibslocal">
+	<heading>Writing the <tt>debian/shlibs.local</tt> file</heading>
 
-	  <p>
-	    Let's assume you are packaging a binary <tt>foo</tt>. Your
-	    output in building the package might look like this.
-	    <example>
-	      $ ldd foo
-	      libbar.so.1 => /usr/X11R6/lib/libbar.so.1.0 (0x4001e000)
-	      libX11.so.6 => /usr/X11R6/lib/libX11.so.6 (0x4002c000)
-	      libc.so.6 => /lib/libc.so.6 (0x40114000)
-	      /lib/ld-linux.so.2 => /lib/ld-linux.so.2 (0x40000000)
-	    </example>
-	    And when you ran <prgn>dpkg-shlibdeps</prgn>
-	    <example>
-	      $ dpkg-shlibdeps -O foo
-	      dpkg-shlibdeps: warning: unable to find dependency information for shared library libbar
-	      (soname 1, path /usr/X11R6/lib/libbar.so.1.0, dependency field Depends)
-	      shlibs:Depends=libc6 (>= 2.2.1), xlibs (>= 4.0.1-11)
-	    </example>
-	    The <prgn>foo</prgn> binary depends on the
-	    <prgn>libbar</prgn> shared library, but no package seems
-	    to provide a <tt>*.shlibs</tt> file in
-	    <tt>/var/lib/dpkg/info/</tt>.  Let's determine the package
-	    responsible:
-	  </p>
+	<p>
+	  This file is intended only as a <em>temporary</em> fix if
+	  your binaries or libraries depend on a library whose package
+	  does not yet provide a correct <tt>shlibs</tt> file.
+	</p>
 
-	  <p>
-	    <example>
-	      $ dpkg -S /usr/X11R6/lib/libbar.so.1.0
-	      bar1: /usr/X11R6/lib/libbar.so.1.0
-	      $ dpkg -s bar1 | grep Version
-	      Version: 1.0-1
-	    </example>
-	    This tells us that the <prgn>bar1</prgn> package, version
-	    1.0-1 is the one we are using. Now we can create our own
-	    <tt>debian/shlibs.local</tt> to temporarily fix the above
-	    problem. Include the following line into your
-	    <tt>debian/shlibs.local</tt> file.
-	    <example>
-	      libbar 1 bar1 (>= 1.0-1)
-	    </example>
-	    Now your package build should work. As soon as the
-	    maintainer of <prgn>libbar1</prgn> provides a
-	    <tt>shlibs</tt> file, you can remove your
-	    <tt>debian/shlibs.local</tt> file.
-	  </p>
-	</sect1>
+	<p>
+	  We will assume that you are trying to package a binary
+	  <tt>foo</tt>.  When you try running
+	  <prgn>dpkg-shlibdeps</prgn> you get the following error
+	  message (<tt>-O</tt> displays the dependency information on
+	  <tt>stdout</tt> instead of writing it to
+	  <tt>debian/substvars</tt>, and the lines have been wrapped
+	  for ease of reading):
+	  <example>
+	    $ dpkg-shlibdeps -O debian/tmp/usr/bin/foo
+	    dpkg-shlibdeps: warning: unable to find dependency
+	     information for shared library libbar (soname 1,
+	     path /usr/lib/libbar.so.1, dependency field Depends)
+	    shlibs:Depends=libc6 (>= 2.2.2-2)
+	  </example>
+	  You can then run <prgn>ldd</prgn> on the binary to find the
+	  full location of the library concerned:
+	  <example>
+	    $ ldd foo
+	    libbar.so.1 => /usr/lib/libbar.so.1 (0x4001e000)
+	    libc.so.6 => /lib/libc.so.6 (0x40032000)
+	    /lib/ld-linux.so.2 => /lib/ld-linux.so.2 (0x40000000)
+	  </example>
+	  So the <prgn>foo</prgn> binary depends on the
+	  <prgn>libbar</prgn> shared library, but no package seems to
+	  provide a <tt>*.shlibs</tt> file handling
+	  <tt>libbar.so.1</tt> in <tt>/var/lib/dpkg/info/</tt>.  Let's
+	  determine the package responsible:
+	  <example>
+	    $ dpkg -S /usr/lib/libbar.so.1
+	    bar1: /usr/lib/libbar.so.1
+	    $ dpkg -s bar1 | grep Version
+	    Version: 1.0-1
+	  </example>
+	  This tells us that the <tt>bar1</tt> package, version 1.0-1,
+	  is the one we are using.  Now we can file a bug against the
+	  <tt>bar1</tt> package and create our own
+	  <tt>debian/shlibs.local</tt> to locally fix the problem.
+	  Including the following line into your
+	  <tt>debian/shlibs.local</tt> file:
+	  <example>
+	    libbar 1 bar1 (>= 1.0-1)
+	  </example>
+	  should allow the package build to work.
+	</p>
+
+	<p>
+	  As soon as the maintainer of <tt>bar1</tt> provides a
+	  correct <tt>shlibs</tt> file, you should remove this line
+	  from your <tt>debian/shlibs.local</tt> file.  (You should
+	  probably also then have a versioned <tt>Build-Depends</tt>
+	  on <tt>bar1</tt> to help ensure that others do not have the
+	  same problem building your package.)
+	</p>
       </sect>
     </chapt>
 
     <chapt><heading>The Operating System</heading>
-
 
       <sect>
 	<heading>File system hierarchy</heading>
