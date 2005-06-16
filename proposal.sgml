@@ -7,7 +7,7 @@
 	<name>Manoj Srivastava</name>
 	<email>srivasta@debian.org</email>
       </author>
-      <version>$Id: proposal.sgml,v 1.1 1998/08/07 19:22:40 srivasta Exp $</version>
+      <version>Version $Revision: 1.2 $</version>
       <copyright>
 	<copyrightsummary>
 	  This document is copyright 1998 Manoj Srivastava. Anyone is
@@ -27,6 +27,8 @@
 	this team does not act as author or editor of Policy it self,
 	that is the task of the Debian Policy mailing list.
       </p>
+      <p>A copy of this document should also be found at <url
+      id="http://master.debian.org/%7Esrivasta/proposal.html"></p>
       <sect>
 	<heading>Deadline for tabling the discussion</heading>
 	<p>	  
