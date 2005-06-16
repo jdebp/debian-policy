@@ -2,6 +2,8 @@ debian-policy (3.5.5.1) unstable; urgency=low
 
   * Change footnote about urgency values to the now-current list: low,
     medium, high, emergency.
+  * Correct note about /etc/default files being conffiles/config files,
+    which I mucked up (sorry Joey) [10.3.2]
 
  --
 
