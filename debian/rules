@@ -187,7 +187,7 @@ stamp-policy:  build
 	$(install_file)	   version.ent	             $(DOCDIR)/
 	for i in	    $(BYHAND_FILES); do                          \
 	  $(install_file)   $$i		   ..		               ; \
-	  dpkg-distaddfile  -fdebian/files `filename $$i`     byhand - ; \
+	  dpkg-distaddfile  -fdebian/files `basename $$i`     byhand - ; \
 	done
 	touch		   stamp-policy
 
