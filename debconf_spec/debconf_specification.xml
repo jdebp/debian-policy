@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
      "dtd/docbook-xml/4.1.2/docbookx.dtd" [
 <!ENTITY statuscodes_table SYSTEM "include/statuscodes.xml">
 <!ENTITY command_list SYSTEM "include/commands.xml">
@@ -61,7 +61,7 @@
       </para>
     </legalnotice>
   </articleinfo>
-    
+
   <sect1>
     <title>
       Introduction
@@ -93,13 +93,13 @@
 	use a flat space, or divide its space further into
 	sub-hierarchies.  If multiple packages share a common purpose they
 	may use a shared toplevel hierarchy, preferably with the same name
-	as a shared (virtual) package name (for example, both 
+	as a shared (virtual) package name (for example, both
 	<application>mutt</application> and <application>elm</application>
-	can use <literal>mail-reader</literal>, 
+	can use <literal>mail-reader</literal>,
 	<application>strn</application> and <application>nn</application>
 	could use <literal>news-reader</literal>).  This
 	shared tree can also be used as a default, ie a variable
-	<literal>news-reader/nntpserver</literal> can be used by 
+	<literal>news-reader/nntpserver</literal> can be used by
 	<application>strn</application> if <literal>strn/nntpserver</literal>
 	does not exist.
       </para>
@@ -110,7 +110,7 @@
       </para>
     </sect2>
   </sect1>
-  
+
   <sect1>
     <title>
       Templates
@@ -165,7 +165,7 @@
       </para>
       <para>
         This information is stored in a template file that consists of
-	stanzas in a rfc-822 compliant format, separated by blank lines. 
+	stanzas in a rfc-822 compliant format, separated by blank lines.
 	Here is an example:
 	<programlisting>
 Template: hostname
@@ -181,6 +181,15 @@ Description: domain for this computer
   This is the domain your computer is a member of. Typically it is
   something like "mycompany.com" or "myuniversity.edu".
 	</programlisting>
+      </para>
+      <para>
+	For localization, the description field (and also the choices
+	field of a select or multiselect type question, and the
+	default field of a string or password type question) can be
+	supplimented with versions for other languages. These are
+	named <emphasis>Description-ll</emphasis>,
+	<emphasis>Description-ll_LL</emphasis>,
+	<emphasis>Description-ll_LL.encoding</emphasis> and so on.
       </para>
     </sect2>
   </sect1>
@@ -227,7 +236,7 @@ Description: domain for this computer
       exactly one line.
     </para>
     <para>
-      After sending each command to stdout, the client 
+      After sending each command to stdout, the client
       should read one line from stdin. This is the response to the command,
       and it will be in the form of a number followed by whitespace and an
       optional string of text. The number is the status code, while the
@@ -269,7 +278,7 @@ Description: domain for this computer
       configmodule.  This is a program that will determine the
       configuration before the package is unpacked.  This means it is
       usually run <emphasis>before</emphasis> the preinst, and before
-      the package is unpacked! 
+      the package is unpacked!
       <note>
 	<simpara>Plese see debconf-devel(8) for details.</simpara>
       </note>

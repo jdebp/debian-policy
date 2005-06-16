@@ -1,14 +1,30 @@
 debian-policy (3.5.8.0) unstable; urgency=low
 
+  Manoj
   * Added example for why one may call ldconfig anywhere in the
     postsint.                                                closes: Bug#120585
   * Add the modifications about base system, as opposed to the soon to be
-    obsolete base section (I assume it is)                   closes: Bug#53582
-  * Rearranged the virtual packages list.                    closes: bug#72980
+    obsolete base section (I assume it is)                    closes: Bug#53582
+  * Rearranged the virtual packages list.                     closes: Bug#72980
+  * This is basically an attempt to ratify the current practice of using
+    debhelper in the clean target. Currently, policy does not require
+    debhelper to be installed when the clean target is run, even though it
+    is in the build-depends field. This was a simple oversight.  
+                                                             closes: Bug#164035
+  * No longer depend on fileutils.                           closes: Bug#167425
+  * Added the Apps/Science menu section                      closes: Bug#162812
+  * Applied text patch from Joey Hess to the debconf spec simply make it
+    conform to the reality of how some things work now. This is part of an
+    effort to make debconf and cdebconf better substitutes for each
+    other. Since it was not an XML patch, no special markup is present in
+    the new content, except where I made guesses.            closes: Bug#160776
+  * Clarify section 13.3.                                    closes: Bug#160248
+  * Removed the undocumented(7) hack requirement.            closes: Bug#39830
+  Josip
   * Removed the obsolete notion of documenting changes within the copyright
-    file, closes: #65764.
+    file,                                                     closes: Bug#65764
 
- --
+ -- Manoj Srivastava <srivasta@debian.org>  Fri, 15 Nov 2002 00:36:54 -0600
 
 debian-policy (3.5.7.1) unstable; urgency=low
 
@@ -26,7 +42,7 @@ debian-policy (3.5.7.1) unstable; urgency=low
     details.                                                 closes: Bug#133030
   * Added a reference to the local copy of the FHS.          closes: Bug#122928
   * Updated reference to ash (dash). This implements the non controversial
-    parts of Bug#161455.    
+    parts of Bug#161455.
 
  -- Manoj Srivastava <srivasta@debian.org>  Sat, 26 Oct 2002 13:12:49 -0500
 
@@ -50,7 +66,7 @@ debian-policy (3.5.7.0) unstable; urgency=low
   * we no longer have task packages, instead, we define tasks using a
     special field in the control file (and these should be added only
     after discussion on the mailing lists)                    closes: Bug#97755
-  * Clarify wording in the section for packages providing fonts. 
+  * Clarify wording in the section for packages providing fonts.
                                                              closes: Bug#109672
   * Fix the doc base file for policy process     closes: Bug#137521, Bug#147554
                                                              closes: Bug#146756
@@ -81,7 +97,7 @@ debian-policy (3.5.7.0) unstable; urgency=low
   * Permit some libraries to only install static libs.       closes: Bug#100346
   * Remove the debug option, add noopt           closes: Bug#157131, Bug#113525
   * provide dhcp-client virtual package.                     closes: Bug#154142
-  * We do not need bits in policy that ``should not be enforced''. 
+  * We do not need bits in policy that ``should not be enforced''.
                                                              closes: Bug#150456
   * We are building this with the latest debianndoc-sgml.    closes: Bug#146703
   * Finish incorporating all of the accepted changes in Bug#72335, and
@@ -129,7 +145,7 @@ debian-policy (3.5.6.0) unstable; urgency=low
     medium, high, emergency.
   * Correct note about /etc/default files being conffiles/config files,
     which I mucked up (sorry Joey) [10.3.2]
-  * [AMENDMENT 2001/06/26] Downgrade emacs/tex to optional   
+  * [AMENDMENT 2001/06/26] Downgrade emacs/tex to optional
                                                   closes: Bug#102204, Bug#53849
   * [AMENDMENT 2001/06/26] Next stage in usr/doc -> usr/share/doc transition
                                                              closes: Bug#102199
@@ -227,7 +243,7 @@ debian-policy (3.5.3.0) unstable; urgency=low
     the rules file, which broke badly. This shall have to wait for a later
     version.
   * Richard Braakman and Michael Dorman have expressed their resignation
-    from policy maintenance duties. 
+    from policy maintenance duties.
   * fixed the date thinko in upgrading checklist. Thanks to Sébastien
     Montagne <sebastien.montagne@netcourrier.com>        closes: Bug#84236
 
@@ -271,8 +287,8 @@ debian-policy (3.5.0.0) unstable; urgency=low
     updating the policy minor version to reflect the quantity and
     magnitude of changes since 3.2.1
   * More spelling corrections, thanks to "Christian T. Steigies"
-    <cts@nikocity.de> 
-  * Added mention of  DEB_BUILD_OPTIONS in upgrading checklist. 
+    <cts@nikocity.de>
+  * Added mention of  DEB_BUILD_OPTIONS in upgrading checklist.
                                                     closes: Bug#83924
   * Fixed some typos.                               closes: Bug#83960
   * Policy now mentions preinst scripts.            closes: Bug#80342
@@ -305,7 +321,7 @@ debian-policy (3.2.1.2) unstable; urgency=low
   * Fixed a typo, and added the nogroup name, in uid/gid section of
     policy.                                        closes: Bug#53496
   * Fixed a misstatement in policy about not needing to depend on packages
-    in the base system (not true -- the Essential tag is significant) 
+    in the base system (not true -- the Essential tag is significant)
                                                    closes: Bug#53700
   * Clarified update-rc.d stuff                    closes: Bug#55048
 
@@ -345,7 +361,7 @@ debian-policy (3.2.1.1) unstable; urgency=low
 debian-policy (3.2.1.0) unstable; urgency=low
 
   * [AMENDMENT 15/01/2000] revision of the "to build with X support or
-    not" policy.                                        closes: Bug#53759 
+    not" policy.                                        closes: Bug#53759
   * [ACCEPTED 2000/06/06] Must/Should/May in policy  This is only a
     clarifying change, and was not intended to change the intent of
     policy.                                             closes: Bug#64437
@@ -381,34 +397,34 @@ debian-policy (3.2.0.0) unstable; urgency=low
   * [PROPOSAL] Do not make hardlinks to conffiles       closes: Bug#22935
   * [PROPOSED]: clarification needed about diversions.
     fixed usage for dpkg-divert                         closes: Bug#29522
-  * [OLD PROPOSAL] debian-policy has an unclear statement 
+  * [OLD PROPOSAL] debian-policy has an unclear statement
     on dependancies and priorities                      closes: Bug#39398
   * [ACCEPTED 10/26/99] changelog.html.gz sanitization. closes: Bug#40934
   * [AMENDED 07/09/1999] policy on -g, a proposal       closes: Bug#43787
   * Fixed missing </chapt> tag.                         closes: Bug#51091
   * Correct typo in section 2.3.5                       closes: Bug#52225
-  * Documented that the library before the symlink hack 
-    (which dependend on file system specific kinks to work) 
+  * Documented that the library before the symlink hack
+    (which dependend on file system specific kinks to work)
     is no longer required by newer versions of dpkg.    closes: Bug#53405
-  * [ACCEPTED 02/01/2000] policy for usage of "xserver" 
+  * [ACCEPTED 02/01/2000] policy for usage of "xserver"
     alternative                                         closes: Bug#53755
   * [ACCEPTED 02/01/2000] additions to virtual package
     list                                                closes: Bug#53756
-  * [ACCEPTED 02/01/2000] policy for "x-terminal-emulator" 
+  * [ACCEPTED 02/01/2000] policy for "x-terminal-emulator"
      virtual package and alternative                    closes: Bug#53757
   * [ACCEPTED 02/01/2000] policy for "x-window-manager"
-     virtual package and alternative                    closes: Bug#53758 
-  * [ACCEPTED 02/01/2000] revision of X application-defaults 
-    policy                                              closes: Bug#53760 
-  * [ACCEPTED 02/01/2000] revision of the Motif/LessTif 
+     virtual package and alternative                    closes: Bug#53758
+  * [ACCEPTED 02/01/2000] revision of X application-defaults
+    policy                                              closes: Bug#53760
+  * [ACCEPTED 02/01/2000] revision of the Motif/LessTif
     policy                                              closes: Bug#53761
-  * [ACCEPTED 02/01/2000] applying the FHS to packages 
-    that use X                                          closes: Bug#53762 
+  * [ACCEPTED 02/01/2000] applying the FHS to packages
+    that use X                                          closes: Bug#53762
   * [ACCEPTED 02/01/2000] policy for X font packages    closes: Bug#53763
-  * Moved the documents into the Debian/ section, since 
+  * Moved the documents into the Debian/ section, since
     that is where they belong, really.                  closes: Bug#54777
   * Fixed the ftp location in the manuals.              closes: Bug#56407
-  * Fixed missing urlname entity in the sgml docs (where 
+  * Fixed missing urlname entity in the sgml docs (where
     was it defined before anyway?)                      closes: Bug#56692
   * Fixed bugs in packaging-manual package:
   * Fixed typo where dpkg-genchanges was used instead of
@@ -421,7 +437,7 @@ debian-policy (3.2.0.0) unstable; urgency=low
   * Policy recommends packaging manual and vice versa
   * Added FHS details to copyright file
   * Updaed the upgrade checklist. Minor changes to the ./debian/rules
-    file. 
+    file.
   * Added footnotes in the packaging manual warning about the upcoming
     dpkg-shlibdeps change as in Bug#55730
 
@@ -430,7 +446,7 @@ debian-policy (3.2.0.0) unstable; urgency=low
 debian-policy (3.1.1.3) unstable; urgency=low
 
   * Fixed an upgrade bug when /usr/doc happens to be a symlink, and does
-    not point to /usr/share/doc. A couple of people were bitten by this. 
+    not point to /usr/share/doc. A couple of people were bitten by this.
 
  -- Manoj Srivastava <srivasta@debian.org>  Mon, 28 Feb 2000 22:27:05 -0600
 
@@ -511,7 +527,7 @@ debian-policy (3.0.1.0) unstable; urgency=low
 
   * A few typos and omissions corrected
   * Added the pop3-server to the virtual packages list, as decided on the
-    list. 
+    list.
   * Fix the self reference to a location on the web site. closes: Bug#39408
   * Added the clarification that the .la files are essential for the
     packages using libtool's libltdl library, in which case the
@@ -537,14 +553,14 @@ debian-policy (3.0.0.0) unstable; urgency=low
     .deb packages)
   * Multiple minor packaging tweaks.
   * [ACCEPTED 1998/05/01] Policy clarification about Standards-Version
-    Added the clarifying paragraph (and the rationale in a footnote). 
+    Added the clarifying paragraph (and the rationale in a footnote).
     closes: Bug#21969
   * [ACCEPTED 1999/04/05] Policy note that GPL moved to
     /usr/share/common-licenses. Again, also added the rationale as a
     footnote. closes: Bug#28747
-  * [ACCEPTED 1999/05/04] Libtool archive (*.la) files in -dev' packages 
+  * [ACCEPTED 1999/05/04] Libtool archive (*.la) files in -dev' packages
     closes: Bug#37257, Bug#37338
-  * [ACCEPTED 1999/04/28] Logrotation. Standardizer on logrotate. 
+  * [ACCEPTED 1999/04/28] Logrotation. Standardizer on logrotate.
     closes: Bug# 37342
   * [ACCEPTED 1999/05/23] Rewrite of section 5.7 (Programs for the X
     Window System) closes: Bug#38212
@@ -556,7 +572,7 @@ debian-policy (3.0.0.0) unstable; urgency=low
     Changed all references to the proper FHS versions. This was a first
     scan, so some references may still need to be changed. closes: Bug#37345
   * Updated the upgrading checklist.
-  * updated the proposal for policy update to reflect the latest 
+  * updated the proposal for policy update to reflect the latest
 
  -- Manoj Srivastava <srivasta@debian.org>  Wed, 30 Jun 1999 22:49:15 -0500
 
@@ -583,18 +599,18 @@ debian-policy (2.5.0.0) unstable; urgency=low
     to create a new section 4, namely, files. Section 3.3 ("Files") should
     become Section 4.  The Sections that are currently Section 4 and
     Section 5 should be moved down to become Section 5 and Section 6
-    accordingly. 
+    accordingly.
 
     What is now Section 5.5 ("Log files") should be moved to be a
     subsection of the new Section 4 ("Files"), becoming section 4.8,
     placing it after "Configuration files", moving the would-be Section
     4.8 ("Permissions and owners") to Section 4.9.  All subsections of the
     current Section 5 after 5.5 should be accordingly moved down to fill
-    in the number gap. 
+    in the number gap.
 
     This, along with the next amendment, justifies bumping up the version
     number. closes: BUG#25911
-  
+
   * AMENDMENT: Added in changes in Bug #21185, about the naming and
     compression of changelog files. Now, if the upstream changelog file is
     HTML formatted, it should be accessible as
@@ -604,24 +620,24 @@ debian-policy (2.5.0.0) unstable; urgency=low
 
   * AMENDMENT: Added in changes in Bug #7890, to make clear that the HTML
     documents should be supplied in _some_ package, not necessarily in the
-    main binary package (at the discretion of the maintainer). 
+    main binary package (at the discretion of the maintainer).
     closes: BUG#7890
-  
+
   * AMENDMENT: Added in changes in Bug #26461, which corrects the policy
     to refer to /usr/doc/<package>/copyright, rather than
     /usr/doc/copyright/<package>. closes: BUG#26461
-  
+
   * AMENDMENT: Added in changes in Bug #25385, which allow the
     architecture specification strings to be of the form <arch>-<os>,
     where os is one of linux, gnu. Previously, only linux was allowed, now
     we also cater to the hurd. closes: BUG#25385
-  
+
   * The responsibility of the contents of this package has now passed to
     the debian-policy mailing list. The packaging details are now being
-    managed by a group of maintainers that do ot won the contents. 
-  
-  * Make the package optional, not extra. 
-  
+    managed by a group of maintainers that do ot won the contents.
+
+  * Make the package optional, not extra.
+
   * Re did the SGML markup. Normalized the document, and undid the omitted
     and shor tags. Personally, I use too many DTD's in real life to be so
     converssant with each one to be clever with tag omissions, and, since
@@ -630,12 +646,12 @@ debian-policy (2.5.0.0) unstable; urgency=low
     predecessors hasd the unfortunate habit of treating <p> as a "create
     some space here" tag, and more often than not put it at the end of a
     paragraph, rather than using is as a container element (which is what
-    it is, really). 
-  
+    it is, really).
+
   * Re did the control files, making them more robust
-  
+
   * re did the rules file, making it more general, and easier to maintain
-    by putting in a layer of abstractions. 
+    by putting in a layer of abstractions.
 
 
  -- Manoj Srivastava <srivasta@debian.org>  Thu, 29 Oct 1998 15:16:52 -0600
@@ -688,10 +704,10 @@ debian-policy (2.4.1.0) frozen unstable; urgency=low
     - Updated section 3.1.2 Site-specific programs
           and section 3.8 Keyboard configuration:
       + improved wording (fixes:bug#20129)
-  
+
     - Updated section 2.1.7 Subsections:
       + fixed typos (fixes:bug#18145)
-  
+
     - Updated section 3.3.5 Symbolic links:
       + symbolic links within a toplevel directory should be relative,
         symbolic links between toplevel directories should be absolute
@@ -709,11 +725,11 @@ debian-policy (2.4.1.0) frozen unstable; urgency=low
       + Replaced old section about lisp programs with a reference to
         the file debian-emacs-policy.gz, installed by the emacsen-common
         package.
-  
+
     - Updated section 4.9 Games:
       + manpages for games should be installed in /usr/man/man6
         (cf., Policy Weekly Issue#6, topic 3)
-  
+
     - Removed one example reference to the current standards version
     - Include manual's date as plain text in the .sgml source so that
       a recompiled manual uses the same release date
@@ -722,29 +738,29 @@ debian-policy (2.4.1.0) frozen unstable; urgency=low
     - Removed obsolete virtual package `emacs'
 
   * New version numbering scheme:
-  
+
     - The version numbers are independent of dpkg now, but all policy
       manuals (the Debian Policy Manual, the Debian Packaging Manual, and
       the Debian Developer's Reference) share the same version numbering
       scheme.
-    
+
     - The first three digits of the version number specify the
       `Standards-Version.' This number is incremented with each policy
       change. The fourth digit represents the `patch-level,' which may
-      differ between the manuals. 
-  
+      differ between the manuals.
+
       If only the patch-level digit is incremented, no changes in policy
       have been made, except bug fixes and clarifications. Packages only
       have to specify the first three digits of the version number in the
       `Standards-Version' field of their source packages.
-  
+
   * Packaging changes:
-  
+
     - Uploaded to frozen and unstable. This is a documentation-only
       package and the changes to the manual are relevant for hamm.
 
     - Fixed FSF's address in copyright file (detected by Lintian)
-  
+
  -- Christian Schwarz <schwarz@debian.org>  Tue, 14 Apr 1998 10:08:09 +0200
 
 debian-policy (2.4.0.0) unstable; urgency=low
@@ -812,14 +828,14 @@ debian-policy (2.4.0.0) unstable; urgency=low
   * Merged `/usr/doc/debian-policy/changelog-policy.gz' into this
     changelog file
 
-  * Included `Policy checklist for upgrading your packages' from the 
+  * Included `Policy checklist for upgrading your packages' from the
     Policy Home Page as /usr/doc/debian-policy/upgrading-checklist.text.gz
 
   * Added support for doc-base to register the Policy Manual to the
     online documentation systems dwww and dhelp (fixes:#15710)
 
   * Upgraded to standards version 2.4.0.0 (no changes)
-  
+
  -- Christian Schwarz <schwarz@debian.org>  Fri, 30 Jan 1998 21:58:25 +0100
 
 debian-policy (2.3.0.1) unstable; urgency=low
@@ -834,7 +850,7 @@ debian-policy (2.3.0.1) unstable; urgency=low
   * Removed `tentative-opt-draft' from package since people considered
     the draft official policy (which is not the case)
   * Don't use debstd anymore
-  
+
  -- Christian Schwarz <schwarz@debian.org>  Tue, 21 Oct 1997 23:03:52 +0200
 
 debian-policy (2.3.0.0) unstable; urgency=low
@@ -846,53 +862,53 @@ debian-policy (2.3.0.0) unstable; urgency=low
     - refer to license files (GPL, LGPL, etc.) as uncompressed files
     - changed `/etc/news/server' into `/etc/nntpserver' in example of
       maintainer scripts (fixes #11517)
-    - new section about `Daemons' 
-    - updated section about `Configuration files' 
-    - MUAs and MTAs have to use liblockfile 
+    - new section about `Daemons'
+    - updated section about `Configuration files'
+    - MUAs and MTAs have to use liblockfile
     - fixed typos and grammatical errors
   * Changes in the authoritative list of virtual package names:
     - renamed tcl/tk virtual package names to `tclsh' and `wish'
   * Paper about libc6 migration:
-    - fixed typos (fixes #11641), thanks to James Troup for the patch! 
+    - fixed typos (fixes #11641), thanks to James Troup for the patch!
   * SGML source code included in package
   * don't use `2-up' style for PostScript version (fixes #11095)
-  
+
  -- Christian Schwarz <schwarz@debian.org>  Mon,  2 Sep 1997 00:54:31 +0200
 
 debian-policy (2.2.0.0) unstable; urgency=low
 
   * Changes in the Debian Policy Manual:
-    - completely reworked structure 
+    - completely reworked structure
     - moved sections about new maintainers, upload procedure, interim
-      releases, and mailing lists into the Developers Reference Manual 
+      releases, and mailing lists into the Developers Reference Manual
     - moved a few (small) sections into the Debian Packaging Manual
-    - removed all those ugly footnotes 
-    - new example for "reload" in section about console messages 
-    - mention Artistic License (fixes #9793) 
-    - don't mention dpkg's version number in Policy Manual 
-    - rewrote abstract and section introductions 
-    - mention "orphaned packages" 
+    - removed all those ugly footnotes
+    - new example for "reload" in section about console messages
+    - mention Artistic License (fixes #9793)
+    - don't mention dpkg's version number in Policy Manual
+    - rewrote abstract and section introductions
+    - mention "orphaned packages"
     - maintainer is responsible for a package license to comply with the
-      distributions' policy 
-    - putting a package into base section requires discussion on debian-devel 
-    - rewrote sections about "pre-depends", "essential" and, "base" packages 
-    - added note that non-us' maintainers have to live outside the US 
-    - added crypto-hook statement (fixes #7257) 
-    - added section about arch spec strings 
-    - rewrote section about "Site specific programs" (/usr/local) 
-    - included Ian's suggestions for user IDs 
-    - added section about "menus" 
+      distributions' policy
+    - putting a package into base section requires discussion on debian-devel
+    - rewrote sections about "pre-depends", "essential" and, "base" packages
+    - added note that non-us' maintainers have to live outside the US
+    - added crypto-hook statement (fixes #7257)
+    - added section about arch spec strings
+    - rewrote section about "Site specific programs" (/usr/local)
+    - included Ian's suggestions for user IDs
+    - added section about "menus"
     - removed section about "web menus" since this will be superseded with
-      the new documentation policy soon 
-    - incorporated "Debian Free Software Guidelines" (fixes #9024) 
+      the new documentation policy soon
+    - incorporated "Debian Free Software Guidelines" (fixes #9024)
     - removed note that linking with -g produces large a.out binary (fixes
-      #11008)  
-    - added section about editors and pagers 
-    - added note about Package priorities and dependencies 
-    - added section about cron jobs (fixes #8814) 
-    - added section about device files 
-    - don't install shared libraries as executable (fixes #7129) 
-    - app-defaults files may not be conffiles (cf. #2717) 
+      #11008)
+    - added section about editors and pagers
+    - added note about Package priorities and dependencies
+    - added section about cron jobs (fixes #8814)
+    - added section about device files
+    - don't install shared libraries as executable (fixes #7129)
+    - app-defaults files may not be conffiles (cf. #2717)
     - lots of minor changes not worth mentioning here (typos, formulations,
       etc.)
   * Changes in the authoritative list of virtual package names
@@ -901,7 +917,7 @@ debian-policy (2.2.0.0) unstable; urgency=low
     - Added new section about obsolete names
   * Added Helmut Geyer's paper about libc5-libc6 migration
   * Fixed package's description
- 
+
  -- Christian Schwarz <schwarz@debian.org>  Sun, 13 Jul 1997 13:25:51 +0200
 
 debian-policy (2.1.3.3) frozen unstable; urgency=low
@@ -960,26 +976,26 @@ debian-policy (2.1.3.0) unstable; urgency=low
 
 debian-manuals (2.1.2.2) frozen unstable;
 
-  * Fixed even more typographical and grammatical errors in Policy and 
+  * Fixed even more typographical and grammatical errors in Policy and
   Programmer's manual
   * Corrected the contact email addresses again.
   * Added a paragraph to Policy 6.3 on taking over an old package (Guy Maor)
   * Added a paragraph to Programmer 4.2.14 on listing distributions to load
   a package into. (Guy Maor)
-  * Further clarification of use of absolute pathnames in scripts in 
-  Programmer 6.1. 
+  * Further clarification of use of absolute pathnames in scripts in
+  Programmer 6.1.
 
  -- David Morris <bweaver@worf.netins.net>  Tue, 3 Dec 1996 23:28:04 -0600
 
 debian-manuals (2.1.2.1) frozen unstable;
-  
+
   * Many editorial and formatting revisions with suggestions from Ian Jackson,
-  Guy Maor and others	
+  Guy Maor and others
   * correction of chiark address in Policy 6.2
-  * footnote in Programmers chapter 2 pointing to deb(5) manpage for 
+  * footnote in Programmers chapter 2 pointing to deb(5) manpage for
   description of deb file format.
-  * addition of more dpkg examples in Programmer chapter 2 
-  * Replace paragraph in Policy 4.1 outlining compiling parameters for 
+  * addition of more dpkg examples in Programmer chapter 2
+  * Replace paragraph in Policy 4.1 outlining compiling parameters for
   shared libraries.
   * Added paragraph in Programmer 6.1 on paths in maintainer scripts
   (Bug #2481)
@@ -994,11 +1010,11 @@ debian-manuals (2.1.2.0) frozen unstable;
   * Added summary of distribution criteria to Introduction
   * Added section headings for copyright criteria
   * Fixed typos (Bugs #4485, #4622)
-  * Added paragraph in Compilation Options related to use of shared and 
+  * Added paragraph in Compilation Options related to use of shared and
     static libraries. (Bug #5299)
-  * Paragraph added about where to find PGP and other export restricted 
+  * Paragraph added about where to find PGP and other export restricted
     packages in section on Procedure
-  * Change in List administrator and in the contact address for becoming 
+  * Change in List administrator and in the contact address for becoming
     a package maintainer
   * A paragraph added related to who to contact for package maintainer changes.
   * Changed where to send upload announcements: uploads destined for unstable,
@@ -1011,7 +1027,7 @@ debian-manuals (2.1.2.0) frozen unstable;
   * Section 12 on Shared Libraries expanded with further technical information
     on various shlib files
   * Section in 2.2 on format of shlib file moved to new subsection within 12.
-  * Paragraph on adding a symlink without version number added to Shared 
+  * Paragraph on adding a symlink without version number added to Shared
     Library Section (Guy Maor, Bug #5299)
 
  -- David Morris <bweaver@worf.netins.net>  Fri, 22 Nov 1996 23:41:39 -0600
