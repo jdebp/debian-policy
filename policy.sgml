@@ -2198,6 +2198,7 @@ Package: libc6
 	  <list compact="compact">
 	    <item><qref id="f-Source"><tt>Source</tt></qref> (mandatory)</item>
 	    <item><qref id="f-Maintainer"><tt>Maintainer</tt></qref> (mandatory)</item>
+	    <item><qref id="f-Uploaders"><tt>Uploaders</tt></qref></item>
 	    <item><qref id="f-Section"><tt>Section</tt></qref> (recommended)</item>
 	    <item><qref id="f-Priority"><tt>Priority</tt></qref> (recommended)</item>
 	    <item><qref id="sourcebinarydeps"><tt>Build-Depends</tt> et al</qref></item>
@@ -2285,6 +2286,7 @@ Package: libc6
 	  <item><qref id="f-Source"><tt>Source</tt></qref> (mandatory)</item>
 	  <item><qref id="f-Version"><tt>Version</tt></qref> (mandatory)</item>
 	  <item><qref id="f-Maintainer"><tt>Maintainer</tt></qref> (mandatory)</item>
+	  <item><qref id="f-Uploaders"><tt>Uploaders</tt></qref></item>
 	  <item><qref id="f-Binary"><tt>Binary</tt></qref></item>
 	  <item><qref id="f-Architecture"><tt>Architecture</tt></qref></item>
           <item><qref id="sourcebinarydeps"><tt>Build-Depends</tt> et al</qref></item>
@@ -2388,6 +2390,21 @@ Package: libc6
 	    end, and bringing the email address forward).
 	  </p>
 	</sect1>
+
+	<sect1 id="f-Uploaders">
+          <heading><tt>Uploaders</tt></heading>
+
+          <p>
+            List of the names and email addresses of
+            co-maintaintainers of the package, if any. If the package
+            has other maintainers beside the one named in the <qref
+            id="f-Maintainer">Maintainer field</qref>, they their
+            names and email addresses should be listed here. The
+            format is the same as that of the Maintainer tag, and
+            multiple entries should be comma separated. This is an
+            optional field.
+          </p>
+ 	</sect1>
 
 	<sect1 id="f-Changed-By">
 	  <heading><tt>Changed-By</tt></heading>
