@@ -8901,8 +8901,8 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	    <prgn>dpkg-source</prgn>, the <file>debian/rules</file>
 	    targets <tt>clean</tt>, <tt>build</tt> and
 	    <tt>binary</tt>, <prgn>dpkg-genchanges</prgn> and
-	    <prgn>pgp</prgn> to build a signed source and binary
-	    package upload.
+	    <prgn>gpg</prgn> (or <prgn>pgp</prgn>) to build a signed
+	    source and binary package upload.
 	  </p>
 
 	  <p>
@@ -8913,16 +8913,16 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	      <tag><tt>-uc</tt>, <tt>-us</tt></tag>
 	      <item>
 		<p>
-		  Do not PGP-sign the <tt>.changes</tt> file or the
+		  Do not sign the <tt>.changes</tt> file or the
 		  source package <tt>.dsc</tt> file, respectively.</p>
 	      </item>
-	      <tag><tt>-p<var>pgp-command</var></tt></tag>
+	      <tag><tt>-p<var>sign-command</var></tt></tag>
 	      <item>
 		<p>
-		  Invoke <var>pgp-command</var> instead of finding
-		  <tt>pgp</tt> on the <prgn>PATH</prgn>.
-		  <var>pgp-command</var> must behave just like
-		  <prgn>pgp</prgn>.</p>
+		  Invoke <var>sign-command</var> instead of finding
+		  <tt>gpg</tt> or <tt>pgp</tt> on the <prgn>PATH</prgn>.
+		  <var>sign-command</var> must behave just like
+		  <prgn>gpg</prgn> or <tt>pgp</tt>.</p>
 	      </item>
 	      <tag><tt>-r<var>root-command</var></tt></tag>
 	      <item>
