@@ -97,8 +97,8 @@ stamp-binary:  build
 	$(install_file)	    $(FSSTND_FILES)	     $(DOCDIR)/fsstnd/
 	$(install_file)	    debian/changelog	     $(DOCDIR)/
 	-gzip -fqr9	    $(DOCDIR)
-	$(install_file)	    debian-policy.desc	     $(LIBDIR)/
 	$(install_file)	    debian/copyright	     $(DOCDIR)/
+	$(install_file)	    debian-policy.desc	     $(LIBDIR)/debian-policy
 	(tar cf -	    policy.html) |	     (cd $(DOCDIR);   tar xf -)
 	$(install_program)  debian/{postinst,prerm}  debian/tmp/DEBIAN/
 	dpkg-gencontrol	    -isp
