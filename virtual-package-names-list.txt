@@ -68,6 +68,7 @@ dhcp-client             Any package providing a DHCP client
 dotfile-module          Anything that provides a module for the
                         Dotfile Generator
 dict-client             Any package providing clients for the Dictionary Server
+dict-server             Any package providing the Dictionary Server
 emacsen                 Anything providing the GNU emacs or a
                         compatible editor
 foomatic-data           Any package providing PPD printer description files
@@ -223,3 +224,6 @@ Manoj Srivastava
               Added dhcp-client
               Added aspell-dictionary
               Added radius-server
+
+Manoj Srivastava
+   9 Sep 2002 Added dict-server
