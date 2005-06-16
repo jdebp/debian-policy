@@ -66,7 +66,7 @@ picking your way through this list.
      - <tt>Build-Depends</tt>, 	<tt>Build-Conflicts</tt>,
        <tt>Build-Depends-Indep</tt>, and
        <tt>Build-Conflicts-Indep</tt> must also be satisfied when the
-       clean target is called[7.6]
+       clean target is called. [7.6]
      - A new apps/Science menu section is available [menu policy]
      - debconf specification cleared up, various changes. [debconf
        policy]
@@ -80,14 +80,11 @@ picking your way through this list.
        postinst, merely notifying the user ought to be enough. [11.6]
      - cryptographic software may now be included in the main
        archive. [2.1.5]
-     - task packages are now not permitted; tasks are now created by a
+     - task packages are no longer permitted; tasks are now created by a
        special Tasks: field in the control file. [2.3.8]
-     - window managers that support netwm now can added 20 points when
+     - window managers that support netwm can now add 20 points when
        they add themselves as an alternative for
        /usr/bin/x-window-manager [12.8.4]
-     - There are new rules for build-indep/build-arch targets and
-       there is a new Build-Depend-Indep semantic. These were actually
-       introduced in 3.5.6, but I forgot to mention them here. [7]
      - The default compilation options have now changed, one should
        provide debugging symbols in all cases, and optionally step
        back optimization to -O0, depending on the DEB_BUILD_OPTIONS
@@ -98,6 +95,8 @@ picking your way through this list.
        review the new rules.  [7.6, 5.2]
      - Changed rules on how, and when, to invoke ldconfig in maintiner
        scripts. Long rationale. [9]
+     - [Added the last note in 3.5.6 upgrading checklist item regarding
+       build rules, please see below]
 
 3.5.6.0                    Jul 01
 
@@ -106,11 +105,13 @@ picking your way through this list.
      - Programs that access docs need to do so via /usr/share/doc, and
        not via /usr/doc/ as was the policy previously [12.5]
      - Putting documentation in /usr/doc versus /usr/share/doc is now
-       a ``serious'' policy violation
+       a ``serious'' policy violation. [13.3]
      - For web servers, one should not provide non-local access to the
        /usr/share/doc hierarchy. If one can't provide access controls for
        the http://localhost/doc/ directory, then it is preferred that one
-       ask permission to expose that information during the install [12.5]
+       ask permission to expose that information during the install. [12.5]
+     - There are new rules for build-indep/build-arch targets and
+       there is a new Build-Depend-Indep semantic. [7]
 
 
 3.5.5.0                    May 01
