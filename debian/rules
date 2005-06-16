@@ -5,14 +5,27 @@
 ## Created On	    : Thu Oct 29 15:35:55 1998
 ## Created On Node  : tiamat.datasync.com
 ## Last Modified By : Manoj Srivastava
-## Last Modified On : Fri Mar 17 17:01:28 2000
+## Last Modified On : Sat Jul 29 23:17:29 2000
 ## Last Machine Used: glaurung.green-gryphon.com
-## Update Count	    : 53
+## Update Count	    : 55
 ## Status	    : Unknown, Use with caution!
 ## HISTORY	    :
 ## Description	    :
 ## $Id$
 ###############################################################################
+
+# set the dpkg-architecture vars
+export DEB_BUILD_ARCH      := $(shell dpkg-architecture -qDEB_BUILD_ARCH)
+export DEB_BUILD_GNU_CPU   := $(shell dpkg-architecture -qDEB_BUILD_GNU_CPU)
+export DEB_BUILD_GNU_SYSTEM:= $(shell dpkg-architecture -qDEB_BUILD_GNU_SYSTEM)
+export DEB_BUILD_GNU_TYPE  := $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
+export DEB_HOST_ARCH       := $(shell dpkg-architecture -qDEB_HOST_ARCH)
+export DEB_HOST_GNU_CPU    := $(shell dpkg-architecture -qDEB_HOST_GNU_CPU)
+export DEB_HOST_GNU_SYSTEM := $(shell dpkg-architecture -qDEB_HOST_GNU_SYSTEM)
+export DEB_HOST_GNU_TYPE   := $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
+
+
+
 # The name of the package (for example, `emacs').
 package := $(shell grep Source debian/control | sed 's/^Source: //')
 arch	:= $(shell dpkg --print-installation-architecture)
@@ -90,7 +103,7 @@ stamp-build:
 	    cp /usr/share/groff/tmac/tmac.m fhs && \
 	    cd fhs && patch -p1 < ../mm1.32-patch; \
 	fi
-	# The extra '.' in the tmac path doesn't matter if 
+	# The extra '.' in the tmac path doesn't matter if
 	GROFF_TMAC_PATH=. cd fhs && $(MAKE) all
 	lynx -dump fhs-changes-2.1.html > fhs/fhs-changes-2.1.text
 	lynx -dump upgrading-checklist.html > upgrading-checklist.text
