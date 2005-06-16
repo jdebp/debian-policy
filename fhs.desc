@@ -1,0 +1,19 @@
+Document: fhs
+Title: Filesystem Hierarchy Standard (FHS) Version 2.1
+Author: Filesystem Hierarchy Standard Group, edited by Daniel Quinlan
+Abstract: This standard defines where files should exist on UN*X
+ systems; in particular, on Debian systems
+Section: Debian
+
+Format: text
+Files: /usr/share/doc/debian-policy/fhs/fhs.txt.gz
+
+Format: PostScript
+Files: /usr/share/doc/debian-policy/fhs/fhs.ps.gz
+
+Format: PDF
+Files: /usr/share/doc/debian-policy/fhs/fhs.pdf.gz
+
+Format: HTML
+Index: /usr/share/doc/debian-policy/fhs/fhs.html/index.html
+Files: /usr/share/doc/debian-policy/fhs/fhs.html/*.html
