@@ -7653,7 +7653,7 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	  </footnote>.
 	  Any files that are referenced by programs but are also
 	  useful as standalone documentation should be installed under
-	  <file>/usr/share/doc/</file> with symbolic links from
+	  <file>/usr/share/<var>package</var>/</file> with symbolic links from
 	  <file>/usr/share/doc/<var>package</var></file>.
 	</p>
 
