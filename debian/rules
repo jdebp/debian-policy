@@ -170,10 +170,11 @@ stamp-policy:  build
 	-gzip -9	    $(DOCDIR)/*.txt $(DOCDIR)/*.sgml \
 				$(DOCDIR)/fhs/* $(DOCDIR)/changelog
 	$(install_file)	    debian/copyright	     $(DOCDIR)/
-	GZIP=-9 tar -C debconf_spec -zcf debconf_specification.xml.tar.gz *
+	GZIP=-9 cd debconf_spec && \
+	  tar -zcf ../debconf_specification.xml.tar.gz *
 	$(install_file)	    debconf_specification.xml.tar.gz $(DOCDIR)/
 	set -e; \
-	 for file in $(DESC_FILES); do \
+	for file in $(DESC_FILES); do \
 	  $(install_file) $$file.desc $(LIBDIR)/$$file; \
 	done
 	set -e; \
