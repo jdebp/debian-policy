@@ -19,6 +19,17 @@ debian-policy (3.5.4.1) unstable; urgency=low
   * Add a dpkg-statoverride description section      closes: Bug#89473
   * Fix the ldconfig usage description (remove "only if")
                                                      closes: Bug#89674
+  * Clarification of package priority issues vis-a-vis the X Windows
+    system                                           closes: Bug#91249
+  * Enhanced x-terminal-emulator policy              closes: Bug#91252
+  * Minor changes to X app-defaults policy           closes: Bug#91259
+  * Clarification of X policy in respect to FHS      closes: Bug#91260
+  * OpenMotif has the same rules as OSF/Motif        closes: Bug#91261
+  * The X Font policy rewrite                        closes: Bug#91257
+  * The "man" program is no longer guaranteed to read header information
+    to find alternative manpage names                closes: Bug#94995
+  * Correction to meaning of Standards-Version       closes: Bug#97072
+  * Split section 12.8 (X Window System) into subsections for readability
 
  -- 
 
