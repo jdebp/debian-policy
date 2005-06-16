@@ -4,8 +4,8 @@
 ## Author	    : Manoj Srivastava ( srivasta@tiamat.datasync.com )
 ## Created On	    : Thu Oct 29 15:35:55 1998
 ## Created On Node  : tiamat.datasync.com
-## Last Modified By : Manoj Srivastava
-## Last Modified On : Wed Jun 30 23:05:51 1999
+## Last Modified By : Julian Gilbey
+## Last Modified On : Mon Dec 20 21:01:12 GMT 1999
 ## Last Machine Used: glaurung.green-gryphon.com
 ## Update Count	    : 51
 ## Status	    : Unknown, Use with caution!
@@ -45,7 +45,10 @@ PTMPTOP	  := $(SRCTOP)/debian/tmp-packaging
 PDOCDIR	  := $(PTMPTOP)/usr/share/doc/$(ppackage)
 PLIBDIR	  := $(PTMPTOP)/usr/share/doc-base
 
-FHS_ARCHIVE  =$(shell ls -1 fhs*.tar.gz)
+# While we have two versions of the FHS installed in the source package,
+# we need to modify this to handle it.  This is the easiest way to do it.
+# FHS_ARCHIVE  =$(shell ls -1 fhs*.tar.gz)
+FHS_ARCHIVE  =fhs-2.1-pre-03.tar.gz
 FHS_FILES    =fhs/fhs.dvi fhs/fhs.ps fhs/fhs.txt
 FSSTND_FILES =FSSTND-FAQ fsstnd-1.2.dvi.gz fsstnd-1.2.ps.gz fsstnd-1.2.txt.gz
 POLICY_FILES =policy.text.gz policy.sgml virtual-package-names-list.text \
