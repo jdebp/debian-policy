@@ -2164,8 +2164,9 @@
 	      Though there is nothing stopping an author who is also
 	      the Debian maintainer from using it for all their
 	      changes, it will have to be renamed if the Debian and
-	      upstream maintainers become different
-	      people.
+	      upstream maintainers become different people.  In such a
+	      case, however, it might be better to maintain the
+	      package as a non-native package.
 	    </p>
 	  </footnote>.
 	</p>
@@ -2179,13 +2180,13 @@
 	<p>
 	  That format is a series of entries like this:
 	  <example>
-	    <var>package</var> (<var>version</var>) <var>distribution(s)</var>; urgency=<var>urgency</var>
+<var>package</var> (<var>version</var>) <var>distribution(s)</var>; urgency=<var>urgency</var>
 
-	    * <var>change details</var>
-	      <var>more change details</var>
-	    * <var>even more change details</var>
+  * <var>change details</var>
+    <var>more change details</var>
+  * <var>even more change details</var>
 
-	    -- <var>maintainer name and email address</var>  <var>date</var>
+ -- <var>maintainer name and email address</var>  <var>date</var>
 	  </example>
 	</p>
 
@@ -2210,6 +2211,16 @@
 	  <prgn>dpkg</prgn> changelog format (though there is
 	  currently only one useful <var>keyword</var>,
 	  <tt>urgency</tt>).
+	  <footnote>
+	    <p>
+	      Usual urgency values are <tt>low</tt>, <tt>medium</tt>,
+	      <tt>high</tt> and <tt>critical</tt>.  They have an
+	      effect on how quickly a package will be considered for
+	      inclusion into the <tt>testing</tt> distribution, and
+	      give an indication of the importance of any fixes
+	      included in this upload.
+	    </p>
+	  </footnote>
 	</p>
 
 	<p>
@@ -2222,13 +2233,33 @@
 	</p>
 
 	<p>
-	  The maintainer name and email address need <em>not</em>
-	  necessarily be those of the usual package maintainer.
-	  They should be the details of the person doing
-	  <em>this</em> version.  The information here will be
-	  copied to the <tt>.changes</tt> file, and then later used
-	  to send an acknowledgement when the upload has been
-	  installed.
+	  If this upload resolves bugs recorded in the Bug Tracking
+	  System (BTS), they may be automatically closed on the
+	  inclusion of this package into the Debian archive by
+	  including the string: <tt>closes: Bug#<var>nnnnn</var></tt>
+	  in the change details.
+	  <footnote>
+	    <p>
+	      To be precise, the string should match the following
+	      Perl regular expression:
+	      <example>
+<tt>/closes:\s*(?:bug)?\#\s?\d+(?:,\s*(?:bug)?\#\s?\d+)*/i</tt>
+	      </example>
+	      Then all of the bug numbers listed will be closed by the
+	      archive maintenance script (<prgn>katie</prgn>), or in
+	      the case of an NMU, marked as fixed.
+	    </p>
+	  </footnote>
+	</p>
+
+	<p>
+	  The maintainer name and email address used in the changelog
+	  should be the details of the person uploading <em>this</em>
+	  version.  They are <em>not</em> necessarily those of the
+	  usual package maintainer.  The information here will be
+	  copied to the <tt>Changed-By</tt> field in the
+	  <tt>.changes</tt> file, and then later used to send an
+	  acknowledgement when the upload has been installed.
 	</p>
 
 	<p>
@@ -2240,7 +2271,7 @@
 	    </p>
 	  </footnote>; it should include the time zone specified
 	  numerically, with the time zone name or abbreviation
-	  optionally present as a comment.
+	  optionally present as a comment in parentheses.
 	</p>
 
 	<p>
@@ -2271,21 +2302,22 @@
 	<p>
 	  When <prgn>dpkg-gencontrol</prgn>,
 	  <prgn>dpkg-genchanges</prgn> and <prgn>dpkg-source</prgn>
-	  generate control files they do variable substitutions on
-	  their output just before writing it.  Variable
+	  generate control files they perform variable substitutions
+	  on their output just before writing it.  Variable
 	  substitutions have the form
 	  <tt>${<var>variable-name</var>}</tt>.  The optional file
-	  <tt>debian/substvars</tt> contains variable substitutions
-	  to be used; variables can also be set directly from
+	  <tt>debian/substvars</tt> contains variable substitutions to
+	  be used; variables can also be set directly from
 	  <tt>debian/rules</tt> using the <tt>-V</tt> option to the
-	  source packaging commands, and certain predefined
-	  variables are available.
+	  source packaging commands, and certain predefined variables
+	  are also available.
 	</p>
 
 	<p>
-	  The is usually generated and modified dynamically by
-	  <tt>debian/rules</tt> targets; in this case it must be
-	  removed by the <prgn>clean</prgn> target.
+	  The <tt>debian/substvars</tt> file is usually generated and
+	  modified dynamically by <tt>debian/rules</tt> targets; in
+	  this case it must be removed by the <prgn>clean</prgn>
+	  target.
 	</p>
 
 	<p>
@@ -2324,11 +2356,12 @@
 	</p>
 
 	<p>
-	  <prgn>dpkg-gencontrol</prgn> adds an entry to this file
-	  for the <tt>.deb</tt> file that will be created by
-	  <prgn>dpkg-deb</prgn> from the control file that it
-	  generates, so for most packages all that needs to be done
-	  with this file is to delete it in <prgn>clean</prgn>.
+	  When <prgn>dpkg-gencontrol</prgn> is run for a binary
+	  package, it adds an entry to <tt>debian/files</tt> for the
+	  <tt>.deb</tt> file that will be created when <prgn>dpkg-deb
+	  --build</prgn> is run for that binary package.  So for most
+	  packages all that needs to be done with this file is to
+	  delete it in the <prgn>clean</prgn> target.
 	</p>
 
 	<p>
@@ -2351,8 +2384,6 @@
 	      packages, but only when extracting
 	      them.
 	    </p>
-	  </footnote>
-	  <footnote>
 	    <p>
 	      Hard links may be permitted at some point in the
 	      future, but would require a fair amount of
