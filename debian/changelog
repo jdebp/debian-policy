@@ -1,3 +1,11 @@
+debian-policy (3.6.0) unstable; urgency=low
+
+  * Restructured Policy, closes: #189306.
+    XXX write a better description here XXX
+    XXX update the section numbers in the upgrading checklist XXX
+
+ -- 
+
 debian-policy (3.5.10.0) unstable; urgency=low
 
   Josip:
