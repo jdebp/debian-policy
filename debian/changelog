@@ -19,6 +19,16 @@ debian-policy (3.6.2.1) unstable; urgency=low
   * Bug fix: "debian-policy: should not ship generated files in source
     archive, and should clean them from the tree", thanks to Branden
     Robinson                                                 (Closes: #284967).
+  * Bug fix: "debian-policy: Detailed description of maintainer script
+    calls (Section 6.5) is incomplete", thanks to Nikolaus Schulz 
+    and Thomas Hood. What happens when error unwinding itself runs into
+    problems is perhaps not discussed as completely as it should be.
+                                                             (Closes: #286549).
+  * Bug fix: "9.3.3.2 &quot;command -v&quot; example needs tweaking",
+    thanks to Thomas Hood. Instead of the massively complex shenanigans
+    suggested in the bug report, just use which. which lives in an
+    essential package, so can be used in the preinst of packages.
+                                                             (Closes: #291026).
 
  --
 
