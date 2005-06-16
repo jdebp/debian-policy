@@ -38,6 +38,8 @@ debian-policy (3.6.2.1) unstable; urgency=low
   * Bug fix: "[ACCEPTED 2005/02/04]: "libexec", or use of "lib" for
     binaries in lib* packages", thanks to Junichi Uekawa 
                                                               (Closes: #146023). 
+  * Bug fix: "debian-policy: virtual package: flexmem", thanks to Bartosz
+    Fenski aka fEnIo                                          (Closes: #239359).
 
  --
 
