@@ -1761,25 +1761,6 @@
 	</p>
       </sect>
 
-      <sect>
-	<heading>Obsolete constructs and libraries</heading>
-
-	<p>
-	  The include file <tt>&lt;varargs.h&gt;</tt> is
-	  provided to support end-users compiling very old software;
-	  the library <tt>libtermcap</tt> is provided to support the
-	  execution of software which has been linked against it
-	  (either old programs or those such as Netscape which are
-	  only available in binary form).
-	</p>
-
-	<p>
-	  Debian packages should be patched to use
-	  <tt>&lt;stdarg.h&gt;</tt> and <tt>ncurses</tt>
-	  instead.
-	</p>
-      </sect>
-
       <sect id="debianrules">
 	<heading>Main building script: <file>debian/rules</file></heading>
 
