@@ -6,22 +6,56 @@ debian-policy (3.6.1.1) unstable; urgency=low
   * Fix the outdated link for the mime subpolicy.          closes: Bug#212153
   * Fix a missing comma in the list of sections            closes: Bug#215524
   * Fix spelling of sysv-rc                                closes: Bug#215558
+  * [AMENDMENT 28/03/2004] ${perl:Depends} documentation
+    incomplete. Added an informative foot note stating that dependencies
+    caused by versioned uses and on separately packaged modules are not
+    included in this variable and must be explicitly included.
+                                                           closes: Bug#202054
+  * Clarified that section 3.2.1 refers to the date based postion of  the
+    version number, if not already clear from the context. This allows
+    developers leeway in selecting date based version numbers for their
+    packages, without loosing the advantages of the format specified in
+    this section.                                          closes: Bug#248618
+  * Bug fix: "Broken link to virtual-package-names-list.txt in section
+    3.6", thanks to Carlos O'Donell                        (Closes: #248786).
+  * Bug fix: "Broken link to debconf_specification.txt.gz in section
+    3.10.1 of the Debian Policy manual.", thanks to Carlos O'Donell and
+    Scott C.MacCallum <scm@madoshi.com>            (Closes: #248788, 247761).
+  * Bug fix: "missing commas in subsections list", thanks to Filippo
+    Giunchedi                                             (Closes: #236614).
+  * Bug fix: "debian-policy: policy-process, broken URL", thanks to Manoj
+    Srivastava                                           (Closes: #244969).
+  * Bug fix: "bad reference to debconf-devel(8) has to be (7)", thanks to
+    Kevin Price                                          (Closes: #247143).
+  * Bug fix: "debian-policy: Small wording change", thanks to Mike Paul
+                                                          (Closes: #252392).
+  * Bug fix: "debian-policy: broken URL: CSH Programming Considered
+    Harmful", thanks to Steven Augart                     (Closes: #253324).
+  * Bug fix: "New virtual package: cron-daemon", thanks to Adam Byrtek
+                                                          (Closes: #252086).
   Josip:
-  * Fixed detection of invoke-rc.d's existence, closes: #218530.
+  * Fixed detection of invoke-rc.d's existence,            closes: #218530.
   * Generalized the dpkg-shlibdeps example and added a current example in a
     footnote, set proper section ids and linked the d-sd section better,
-    closes: #50565.
+                                                           closes: #50565.
   * Clarified the section about the Architecture field and added footnotes
-    to indicate recommended actions, closes: #51832.
-  * Updated PGP references, closes: #68827.
+    to indicate recommended actions,                       closes: #51832.
+  * Updated PGP references,                                closes: #68827.
   * Linked f-Format in the list of fields of the .dsc file, not mandatory
-    according to my skimming of dpkg-source, closes: #70742.
+    according to my skimming of dpkg-source,               closes: #70742.
   * Fixed the command line required to output the copyright file,
-    closes: #75508.
+                                                           closes: #75508.
   * Removed the long obsolete notion of specific directory names within
-    source tarballs, closes: #79210.
+    source tarballs,                                       closes: #79210.
+  Andi:
+  * sgml-dtd was moved, fix FTBFS.                         Closes: #241683
+  * fix link to WM specification.                          Closes: #235484
+  * manpage -> man page.                          Closes: #232364, #238958
+  * language adjustment.                                   Closes: #227762
+  * added virtual packages stardict-dictionary, inetd-superserver.
+                                                  Closes: #185943, #237049
 
- --
+ -- Manoj Srivastava <srivasta@debian.org>  Fri, 25 Jun 2004 16:07:38 -0500
 
 debian-policy (3.6.1.0) unstable; urgency=low
 

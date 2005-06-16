@@ -80,6 +80,7 @@ System
                          other applications
  time-daemon             anything that serves as a time daemon
  ups-monitor             anything that is capable of controlling an UPS
+ cron-daemon             anything that is capable of executing scheduled commands
 
 Documentation
 -------------
@@ -90,6 +91,7 @@ Documentation
  ispell-dictionary       a dictionary for the ispell system
  myspell-dictionary      a dictionary for the myspell system
  man-browser             something that can read man pages
+ stardict-dictionary     a dictionary for stardict
  wordlist                a /usr/share/dict/words (*)
  www-browser             something that can browse HTML files
 
@@ -99,6 +101,7 @@ Network
  ftp-server              a FTP server
  httpd                   a HTTP server
  ident-server            an identd daemon
+ inetd-superserver       an inetd server
  lambdamoo-core          a lambdamoo-compatible database package  
  lambdamoo-server        anything running a moo using a lambdamoo-core
  radius-server           a RADIUS server for acct/auth
@@ -235,3 +238,10 @@ Manoj Srivastava:
               Added radius-server
    9 Sep 2002 Added dict-server
    3 Aug 2003 Added myspell-dictionary
+
+Andreas Barth:
+  25 Apr 2004 Added stardict-dictionary
+              Added inetd-superserver
+
+Manoj Srivastava:
+  25 Jun 2004 Added cron-daemon

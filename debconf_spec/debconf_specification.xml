@@ -280,7 +280,7 @@ Description: domain for this computer
       usually run <emphasis>before</emphasis> the preinst, and before
       the package is unpacked!
       <note>
-	<simpara>Please see debconf-devel(8) for details.</simpara>
+	<simpara>Please see debconf-devel(7) for details.</simpara>
       </note>
       This is done to make sure that we can
       use the desired configuration in the preinst if necessary.
