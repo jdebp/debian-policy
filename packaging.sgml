@@ -4528,8 +4528,9 @@
 	Unfortunately, this was not not always possible, since it
 	highly depends on the behaviour of the filesystem. Some
 	filesystems (such as reisefs) will reorder the files so it
-	doesn't matter in what order you create them. In newer
-	versions of <prgn>dpkg</prgn>, this is handled automatically. 
+	doesn't matter in what order you create them. Starting with
+	release <tt>1.7.0</tt> <prgn>dpkg</prgn> will reorder the
+	files itself when building a package.
       </p>
 
 	<!--
