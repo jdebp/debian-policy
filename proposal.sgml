@@ -7,18 +7,23 @@
 	<name>Manoj Srivastava</name>
 	<email>srivasta@debian.org</email>
       </author>
-      <version>$Revision: 1.4 $</version>
+      <version>$Revision: 1.5 $</version>
       <copyright>
-	<copyrightsummary>
-	  This document is copyright 1998 Manoj Srivastava. Anyone is
-	  given permission to distribute this under the Freee software
-	  foundations General Public Licence, Version 2, or any later
-	  version, at your convenience.
+	<copyrightsummary>Copyright &#169; 1998 by Manoj Srivastava. 
 	</copyrightsummary>
+	<p>
+	  You are given permission to redistribute this document
+	  and/or modify it under the terms of the GNU General Public
+	  License as published by the Free Software Foundation; either
+	  version 2, or (at your option) any later version.</p>
+	<p>
+	  On Debian GNU/Linux systems, the complete text of the GNU
+	  General Public License can be found in
+	  `<var>/usr/doc/copyright/GPL</var>'. </p>
       </copyright>
     </titlepag>
     <chapt>
-      <heading>Introduction, and adminstrivia</heading>
+      <heading>Introduction, and Administrivia</heading>
       <p>
 	This is a proposal for creating a process through which the
 	Debian Policy documents are to be maintained and updated, it
@@ -38,7 +43,7 @@
 	</p>
       </sect>
       <sect>
-	<heading>People Seconding the proposal</heading>
+	<heading>People Seconding the Proposal</heading>
 	<p>	
 	  Well, since Michael Alan Dorman and Richard Braakman have
 	  volunteered to serve on the policy maintainer team, I think
@@ -54,7 +59,7 @@
       </sect>
     </chapt>
     <chapt>
-      <heading>Archives and personnel</heading>
+      <heading>Archives and Personnel</heading>
       <sect>
 	<heading>The policy maintainers team</heading>
 	<p>
@@ -62,7 +67,7 @@
 	  access to the CVS repository for the Policy documents;
 	  however, this set of people behave more like maintainers
 	  rather than authors/editors. This group does not create
-	  policy, not does it excersice editorial control, Policy is
+	  policy, not does it exercise editorial control, Policy is
 	  decided "upstream".  The group that decides on policy should
 	  be the group of developers on the Debian-policy mailing
 	  lists, which is how it was always done; so the group of
@@ -93,17 +98,17 @@
 	</p>
 	<p>
 	  The repository should contain all the packages under the
-	  control of the team, and also should have anrea where the
-	  weekly status document is kep; once the document is under
+	  control of the team, and also should have an area where the
+	  weekly status document is kept; once the document is under
 	  CVS, it should be a simple matter to script exporting the
 	  document out to a place where the web server can serve it,
 	  as well as create the weekly posting to
-	  <tt>debian-poilcy</tt> and <tt>debian-devel</tt> mailing
+	  <tt>debian-policy</tt> and <tt>debian-devel</tt> mailing
 	  lists. This document could also be kept under CVS then.</p>
       </sect>
     </chapt>
     <chapt>
-      <heading>Procedures and processes</heading>
+      <heading>Procedures and Processes</heading>
       <sect>
 	<heading>Proposing amendments to the Policy</heading>
 	<p>
@@ -115,7 +120,7 @@
 	  policy amendment.
 	</p>
 	<p>
-	  The rationale behind the requirement for senconders is that
+	  The rationale behind the requirement for seconders is that
 	  it would<enumlist>
 	    <item>
 	      <p>
@@ -125,7 +130,7 @@
 	    </item>
 	    <item>
 	      <p>
-		Prevent frivoulous or ill concieved proposals from
+		Prevent frivolous or ill conceived proposals from
 		wasting peoples time (If the proposal does not even
 		convince two developers, surely this is not ready for
 		inclusion in Policy?)</p>
@@ -133,7 +138,7 @@
 	  </enumlist>
 	</p>
 	<sect1>
-	  <heading>Notifications and status reports</heading>
+	  <heading>Notifications and Status Reports</heading>
 	  <p>
 	    Periodically, possibly weekly, a summary of current policy
 	    topics can be posted to the Developers mailing list, as
@@ -151,7 +156,7 @@
 	</sect1>
       </sect>
       <sect>
-	<heading>Deadlines for tabling discussions</heading>
+	<heading>Deadlines for Tabling Discussions</heading>
 	<p>
 	  It has been observed in the past that discussions on the
 	  mailing list devolve into endless arguments. In order to get
@@ -167,17 +172,17 @@
 	</p>
 	<p>
 	  If a consensus is reached by the policy group, then the
-	  maintianers shall enter the amendment into the Policy
+	  maintainers shall enter the amendment into the Policy
 	  document, announce the inclusion in the periodic report, and
 	  release a new version.</p>
 	<sect1>
-	  <heading>Extensions to deadlines?</heading>
+	  <heading>Extensions to Deadlines?</heading>
 	  <p>
 	    If a deadline is approaching, and the discussion s almost
 	    concluded (in other words, it has not reached an impasse),
 	    and the consensus on the policy group is that an extension
 	    of a week would resolve the issues better, a one-time
-	    extention could be granted. Care should be taken in
+	    extension could be granted. Care should be taken in
 	    exercising this option, since abusing this would merely
 	    postpone closures. </p>
 	</sect1>
@@ -187,7 +192,7 @@
 	<p>
 	  Formerly, arriving at a consensus was the only way to amend
 	  Policy. That worked well when the Project was small,
-	  however, we have aparently grown out of that phase, and even
+	  however, we have apparently grown out of that phase, and even
 	  the policy mailing list has grown more fractious than in the
 	  days of yore. We now need a formal process of deadlock
 	  resolution, and we need to recognize that on non-technical
@@ -199,7 +204,7 @@
 	  discussion period is near, then one is faced with a dilemma.
 	</p>
 	<sect1>
-	  <heading>Impasse on technical issues</heading>
+	  <heading>Impasse on Technical Issues</heading>
 	  <p>
 	    On technical issues, popularity is a bad way of arriving
 	    at conclusions. Hopefully, the policy group would arrive
@@ -209,7 +214,7 @@
 	    may be consulted. This should be a rare occurrence. </p>
 	</sect1>
 	<sect1>
-	  <heading>Non technical and subjective disagreements</heading>
+	  <heading>Non Technical and Subjective Disagreements</heading>
 	  <p>
 	    However, if the issue is non-technical and subjective,
 	    then a vote of the developers may be taken (USENET voting
@@ -224,11 +229,11 @@
 	</sect1>
       </sect>
       <sect>
-	<heading>Using the bug tracking system</heading>
+	<heading>Using the Bug Tracking System</heading>
 	<p>
 	  A fascinating sub proposal has been that we use the bug
 	  tracking system to track policy amendments in progress. If
-	  this is used, we may intiate discussions in the policy group
+	  this is used, we may initiate discussions in the policy group
 	  by filing wish-list bugs (note: this should be open to
 	  anyone at all)</p>
 	<p>
@@ -238,7 +243,7 @@
 	  demoted to (forwarded?) wish list bugs. I like them being
 	  demoted to forwarded status, since the upstream authors (the
 	  policy mailing list) has already had a stab at them, and
-	  they have been shelved until furhter notice. </p>
+	  they have been shelved until further notice. </p>
 	<p>
 	  I think that the Policy is critical enough for the project
 	  that any real flaws in the policy be automatically be deemed
