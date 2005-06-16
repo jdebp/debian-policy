@@ -8,7 +8,7 @@
   <book>
     <titlepag>
       <title>Debian Policy Manual</title>
-      <author><ref id="authors"></author>
+      <author><qref id="authors">The Debian Policy Mailing List</qref></author>
       <version>version &version;, &date;</version>
 
       <abstract>
@@ -198,7 +198,8 @@
 
 	<p>
           Since September 1998, the responsibility for the contents of
-          this document lies on the debian-policy mailing list. Proposals
+          this document lies on the <url name="debian-policy mailing list"
+	  id="mailto:debian-policy@lists.debian.org">. Proposals
           are discussed there and inserted into policy after a certain
           consensus is established.
           <!-- insert shameless policy-process plug here eventually -->
