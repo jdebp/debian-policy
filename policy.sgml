@@ -6013,9 +6013,8 @@ Reloading <var>description</var> configuration...done.
 	<p>
 	  The Debian <tt>menu</tt> package provides a standard
 	  interface between packages providing applications and
-	  documents, and <em>menu programs</em> (either X window
-	  managers or text-based menu programs such as
-	  <prgn>pdmenu</prgn>).
+	  <em>menu programs</em> (either X window managers or
+	  text-based menu programs such as <prgn>pdmenu</prgn>).
 	</p>
 
 	<p>
@@ -6041,9 +6040,9 @@ Reloading <var>description</var> configuration...done.
 
 	<p>
 	  Please also refer to the <em>Debian Menu System</em>
-	  documentation that comes with the <tt>menu</tt> package for
-	  information about how to register your applications and web
-	  documents.
+	  documentation that comes with the <package>menu</package>
+	  package for information about how to register your
+	  applications.
 	</p>
       </sect>
 
@@ -6268,6 +6267,27 @@ exec /usr/lib/foo/foo "$@"
 	  file of the <prgn>base-files</prgn> package, other packages must
 	  not put any environment variables or other commands into that
 	  file.
+	</p>
+      </sect>
+
+      <sect id="doc-base">
+	<heading>Registering Documents using doc-base</heading>
+
+	<p>
+	  The <package>doc-base</package> package implements a
+	  flexible mechanism for handling and presenting
+	  documentation. The recommended practice is for every Debian
+	  package that provides online documentation (other than just
+	  manual pages) to register these documents with
+	  <package>doc-base</package> by installing a
+	  <package>doc-base</package> control file via the
+	  <prgn/install-docs/ script at installation time and
+	  de-register the manuals again when the package is removed.
+	</p> 
+	<p>
+	  Please refer to the documentation that comes with the
+	  <package>doc-base</package>  package for information and
+	  details. 
 	</p>
       </sect>
 
@@ -7426,8 +7446,8 @@ http://localhost/doc/<var>package</var>/<var>filename</var>
 		the Web Document Root.  Instead they should use the
 		/usr/share/doc/<var>package</var> directory for
 		documents and register the Web Application via the
-		menu package.  If access to the web document root is
-		unavoidable then use
+		<package>doc-base</package> package.  If access to the
+		web document root is unavoidable then use
 		<example compact="compact">
 /var/www
 		</example>
