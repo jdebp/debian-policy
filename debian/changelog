@@ -10,6 +10,9 @@ debian-policy (3.5.9.0) unstable; urgency=low
     closes: #174048.
   * Fixed several errors reported by Guenther Palfinger, with some help from
     Richard Braakman, closes: #177205, #177206, #177207, #177208, #177209.
+  * Added versions to links and docbook-xml source-dependencies, hopefully
+    fixes the bug with potato, and even if it doesn't, I don't care :)
+    closes #103459.
 
  -- 
 
