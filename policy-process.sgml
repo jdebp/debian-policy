@@ -7,7 +7,7 @@
 	<name>Manoj Srivastava</name>
         <email>srivasta@debian.org</email>
       </author>
-      <version>$Revision: 1.6 $</version>
+      <version>$Revision: 1.7 $</version>
       <copyright>
         <copyrightsummary>Copyright &copy; 2000 by Manoj Srivastava. 
         </copyrightsummary>
@@ -49,7 +49,47 @@
       <p>
 	<em>In the following, the term developer refers to registered
 	  Debian developers.</em>
-      </p>  
+      </p>
+      <sect>
+	<heading>Guideliens for policy change proposals</heading>
+	<p>
+	  Policy does not document all existing practice.  It only
+	  incorporates a minimal ruleset that is required for systems
+	  integration (usually selecting one branch from several
+	  equally viable technical options). It is not a best
+	  practices document.
+	</p>
+	<p>
+	  Policy changes under this procedure also should almost never
+	  (unless directed by the tech-ctte, and perhaps the DPL)
+	  cause a change that would make a significant chunk of
+	  packages instantly buggy; for such changes, it is better to
+	  implement a gradual transition plan, allowing for partial
+	  upgrades (and perhaps using release goals as
+	  motivators). Part of the rationale for this is common sense;
+	  a global change, in the past, has taken time, and having
+	  either a large number of RC bugs, or ignoring a large number
+	  of bugs that would otherwise be RC seems silly; and, anyway,
+	  there are concerns that the policy group does not really
+	  have the power to change policy drastically. This is the
+	  basis of the policy shall not be used as a stick to beat
+	  developers with.
+	</p>
+
+	<p>
+	  Nor does policy <em>always</em> document only existing
+	  practices.  What that oft misquoted statement refers to was
+	  a part of was a larger thesis that is meant to suggest that
+	  policy is not the place for testing out design; if a
+	  complicated technical proposal is to be made into policy, it
+	  should be independently implemented, have all the kinks
+	  worked out, and then have that working model be implemented
+	  as policy.  Having to change policy back and forth while a
+	  design is being worked out needs be avoided.
+	</p>
+
+      </sect>
+  
     </chapt>
     <chapt>
       <heading>Archives and Personnel</heading>
