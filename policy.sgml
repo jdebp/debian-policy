@@ -66,7 +66,6 @@
 	  distribution.
 	</p>
 
-
 	<p>
 	  This manual also describes Debian policy as it relates to
 	  creating Debian packages. It is not a tutorial on how to build
@@ -116,7 +115,13 @@
 	</p>
 
 	<p>
-	  In this manual, the words <em>must</em>, <em>should</em> and
+	  The appendices to this manual are not necessarily normative,
+	  either. Please see <ref id="pkg-scope"> for more information.
+	</p>
+
+	<p>
+	  In the normative part of this manual,
+	  the words <em>must</em>, <em>should</em> and
 	  <em>may</em>, and the adjectives <em>required</em>,
 	  <em>recommended</em> and <em>optional</em>, are used to
 	  distinguish the significance of the various guidelines in
