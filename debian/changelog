@@ -33,6 +33,8 @@ debian-policy (3.6.2.1) unstable; urgency=low
     history", thanks to Frank Küster. Since this was not really a
     directive, but merely an expression of an opinion, moved it into an
     informative footnote.                                    (Closes: #290270).
+  * Bug fix: "debian-policy: virtual package request: mpd-client", thanks
+    to Eric Wong                                             (Closes: #270020).
 
  --
 

@@ -143,6 +143,7 @@ Graphics and MultiMedia
  pdf-viewer              anything that can display PDF files
  postscript-preview      a preprocessor that creates Postscript output
  postscript-viewer       anything that can display Postscript files
+ mpd-client              A client that can control the Music Player Daemon
 
 Java and virtual machines
 -------------------------
@@ -245,3 +246,6 @@ Andreas Barth:
 
 Manoj Srivastava:
   25 Jun 2004 Added cron-daemon
+
+Manoj Srivastava:
+   4 Feb 2005 Added mpd-client
