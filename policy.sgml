@@ -7500,25 +7500,23 @@ name ["<var>syshostname</var>"]:
 
 	<p>
 	  You should install manual pages in <prgn>nroff</prgn> source
-	  form, in appropriate places under <file>/usr/share/man</file>.  You
-	  should only use sections 1 to 9 (see the FHS for more
-	  details).  You must not install a preformatted "cat
-	  page".</p>
-
-	<p>
-	  Each program, utility, and function should have an
-	  associated manpage included in the same package. It is
-	  suggested that all configuration files also have a manual
-	  page included as well.
+	  form, in appropriate places under <file>/usr/share/man</file>.
+	  You should only use sections 1 to 9 (see the FHS for more
+	  details).  You must not install a preformatted "cat page".
 	</p>
 
 	<p>
-          There should be a manual page at for every program at the
-          very least, and possibly one for every configuration file,
-          protocol, utility, and function.  If no manual page is
-          available, this is considered as a bug and should be
-          reported to the Debian Bug Tracking System (the maintainer
-          of the package is allowed to write this bug report
+	  Each program, utility, and function should have an
+	  associated manual page included in the same package. It is
+	  suggested that all configuration files also have a manual
+	  page included as well. Manual pages for protocols and other
+	  auxiliary things are optional.
+	</p>
+
+	<p>
+          If no manual page is available, this is considered as a bug
+          and should be reported to the Debian Bug Tracking System (the
+          maintainer of the package is allowed to write this bug report
           themselves, if they so desire).  Do not close the bug report
           until a proper manpage is available.<footnote>
             <p>
