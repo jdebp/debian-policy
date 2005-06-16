@@ -40,10 +40,10 @@ version := $(shell LC_ALL=C dpkg-parsechangelog | \
 FILES_TO_CLEAN  = debian/files debian/buildinfo  debian/substvars \
 		  debian/postinst debian/prerm \
 		  version.ent  policy.lout policy.lout.ld lout.li \
-		  upgrading-checklist.text policy.text.gz \
-		  menu-policy.text.gz menu-policy.pdf.gz \
-		  policy-process.text.gz policy-process.pdf.gz \
-		  mime-policy.text.gz mime-policy.pdf.gz \
+		  upgrading-checklist.txt policy.txt.gz \
+		  menu-policy.txt.gz menu-policy.pdf.gz \
+		  policy-process.txt.gz policy-process.pdf.gz \
+		  mime-policy.txt.gz mime-policy.pdf.gz \
                   debconf_spec/debconf_specification.html \
                   debconf_spec/debconf_specification.txt.gz \
 
@@ -70,16 +70,16 @@ FHS_HTML     =fhs-2.1.html.tar.gz
 FHS_FILES    =fhs/fhs.ps fhs/fhs.txt fhs/fhs.pdf
 FHS_BYHAND   =fhs-2.1.html.tar.gz fhs/fhs.txt
 # FSSTND_FILES =FSSTND-FAQ fsstnd-1.2.dvi.gz fsstnd-1.2.ps.gz fsstnd-1.2.txt.gz
-POLICY_FILES =policy.text.gz policy.sgml virtual-package-names-list.text \
-	      upgrading-checklist.text libc6-migration.text version.ent \
-	      menu-policy.sgml menu-policy.text.gz \
-	      mime-policy.sgml mime-policy.text.gz \
-              policy-process.text.gz policy-process.sgml \
+POLICY_FILES =policy.txt.gz policy.sgml virtual-package-names-list.txt \
+	      upgrading-checklist.txt libc6-migration.txt version.ent \
+	      menu-policy.sgml menu-policy.txt.gz \
+	      mime-policy.sgml mime-policy.txt.gz \
+              policy-process.txt.gz policy-process.sgml \
               debconf_spec/debconf_specification.html \
               debconf_spec/debconf_specification.txt.gz
-BYHAND_FILES =policy.text.gz libc6-migration.text \
-	      virtual-package-names-list.text menu-policy.text.gz \
-	      mime-policy.text.gz policy.ps.gz policy.pdf.gz \
+BYHAND_FILES =policy.txt.gz libc6-migration.txt \
+	      virtual-package-names-list.txt menu-policy.txt.gz \
+	      mime-policy.txt.gz policy.ps.gz policy.pdf.gz \
               policy.html.tar.gz \
 	      debconf_spec/debconf_specification.txt.gz \
 	      $(FHS_BYHAND)
@@ -100,8 +100,8 @@ stamp-build:
 	  nsgmls -gues $$file.sgml; \
 	  debiandoc2html $$file.sgml; \
 	  debiandoc2text $$file.sgml; \
-	  if [ -f $$file.txt ]; then mv $$file.txt $$file.text; fi; \
-	  gzip -9f $$file.text; \
+	  if [ -f $$file.text ]; then mv $$file.text $$file.txt; fi; \
+	  gzip -9f $$file.txt; \
 	done
 	tar zfx $(FHS_ARCHIVE)
 	# Need to use a patched tmac.m macro file if we're using a pre-1.16
@@ -113,10 +113,10 @@ stamp-build:
 	# The extra '.' in the tmac path doesn't matter if
 	GROFF_TMAC_PATH=. cd fhs && $(MAKE) fhs.ps fhs.pdf fhs.txt
 	links -dump fhs-changes-2.1.html | perl -pe 's/[\r\0]//g' > \
-                    fhs/fhs-changes-2.1.text
+                    fhs/fhs-changes-2.1.txt
 	cd fhs && tar zfx ../$(FHS_HTML)
 	links -dump upgrading-checklist.html | perl -pe 's/[\r\0]//g' > \
-                    upgrading-checklist.text
+                    upgrading-checklist.txt
 	$(MAKE) -C debconf_spec all
 	gzip -9f debconf_spec/debconf_specification.txt
 	touch stamp-build

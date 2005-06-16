@@ -77,7 +77,7 @@
 	  <tt>/usr/share/common-licenses/GPL</tt> in the Debian GNU/Linux
 	  distribution or on the World Wide Web at 
 	  <url id="http://www.gnu.org/copyleft/gpl.html"
-	  name="The GNU Public Licence">. You can also obtain it by writing to the
+	  name="The GNU General Public Licence">. You can also obtain it by writing to the
 	  Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 	  Boston, MA 02111-1307, USA.
 	</p>
@@ -133,7 +133,7 @@
           name="update-mime" section="8">. They should <em>not</em> depend
           on, recommend, or suggest <prgn>mime-support</prgn>. Instead,
           they should just put something like the following in the
-          postinst and postrm scripts:
+          <tt>postinst</tt> and <tt>postrm</tt> scripts:
 
           <example> 
   if [ -x /usr/sbin/update-mime ]; then

@@ -7,7 +7,7 @@
 	<name>Manoj Srivastava</name>
         <email>srivasta@debian.org</email>
       </author>
-      <version>$Revision: 1.2 $</version>
+      <version>$Revision: 1.3 $</version>
       <copyright>
         <copyrightsummary>Copyright &#169; 2000 by Manoj Srivastava. 
         </copyrightsummary>
@@ -19,7 +19,7 @@
         <p>
           On Debian GNU/Linux systems, the complete text of the GNU
           General Public License can be found in
-          `<var>/usr/share/common-licenses/GPL</var>'. </p>
+          <tt>/usr/share/common-licenses/GPL</tt>. </p>
       </copyright>
     </titlepag>
     <chapt>
@@ -50,7 +50,7 @@
 	  Debian developers.</em>
       </p>
       <p>A copy of this document should also be found at <url
-      id="http://master.debian.org/%7Esrivasta/policy/"></p>      
+      id="http://master.debian.org/~srivasta/policy/"></p>      
     </chapt>
     <chapt>
       <heading>Archives and Personnel</heading>
@@ -63,15 +63,15 @@
 	  rather than authors/editors. This group does not create
 	  policy, nor does it exercise editorial control, Policy is
 	  decided "upstream".  The group that decides on policy should
-	  be the group of developers on the Debian-policy mailing
-	  lists, which is how it was always done; so the group of
+	  be the group of developers on the debian-policy mailing
+	  list, which is how it was always done; so the group of
 	  policy maintainers have no real power over policy.
 	</p>
 	<p>
 	  Since the policy maintainers have no special powers, there
 	  is no restriction of their participattion the discussion. It
-	  is preferable to have atleast 4-5 people on the job,
-	  perhapscloser to 8, so that policy does not languish when
+	  is preferable to have at least 4-5 people on the job,
+	  perhaps closer to 8, so that policy does not languish when
 	  any maintainer goes missing (we do need vacations, you know,
 	  once in a while), and since little creative power is vested
 	  in the maintainers, we do not need a central control. And
@@ -85,7 +85,7 @@
 	  There is a repository set up on <tt>cvs.debian.org</tt> for
 	  this, and the people on the policy maintainer team have
 	  write access to it. The Debian policy mailing list gets
-	  copies of all the CVS commit notices
+	  copies of all the CVS commit notices.
 	</p>
       </sect>
     </chapt>
@@ -118,26 +118,28 @@
 	<p>
 	  Any Debian developer can create a proposal by retitling the
 	  wishlist bug in the BTS to have the subject of the form
-	  <strong>"[PROPOSED] ..."</strong>. (Note: The developer may
+	  <strong>"[PROPOSED] ..."</strong> or
+	  <strong>"[PROPOSAL] ..."</strong>. (Note: The developer may
 	  coalesce these steps into one by directly filing a
-	  <em>wishlist</em> bug with the proper seubject format).
+	  <em>wishlist</em> bug with the proper subject format).
 	</p>
 	<p>
-	  This is the pre discussion period, when the idea is kicked
+	  This is the pre-discussion period, when the idea is kicked
 	  around, and polished. There is no preset time limit, but at
 	  some point, if it is stalled, the bug should be closed. A
 	  suggested time period is 6 months, since if the
           proposal has had no action in that period, it is very likely
           dead. If six months have actually passed, the bug should be
           retitled <strong>"[OLD PROPOSAL] ..."</strong>, and have the
-          severity set to fixed. The maintianers shall flush out old
-          proposal after a a sufficiently long period of time
-          (cetainly more than a year or so). 
+          severity set to fixed. The maintainers shall flush out old
+          proposals after a a sufficiently long period of time has
+	  elapsed (certainly more than a year or so after the initial
+	  proposal).
 	</p>
 	<p>
-	  developers may second the issue by emailing "seconded"
-	  to the BTS. Only registered Debian developers may
-	  second proposals. 
+	  Developers may second the issue by emailing a message
+	  containing the text "seconded" to the proposal in the
+	  BTS. Only registered Debian developers may second proposals.
 	</p>
       </sect>
       <sect>
@@ -146,7 +148,7 @@
 	  When a proposal in the BTS has acquired two seconds (apart
 	  from the proposer), it becomes a formal amendment. The bug
 	  severity is raised to "normal" and the bug is retitled to
-	  <strong>"[AMENDMENT DD/MM/YYY] ..."</strong>.  
+	  <strong>"[AMENDMENT DD/MM/YYYY] ..."</strong>.  
 	</p>
 	<p>
 	  The rationale behind the requirement for seconders is that
@@ -160,14 +162,14 @@
 	    <item>
 	      <p>
 		Prevent frivolous or ill conceived proposals from
-		wasting peoples time (If the proposal does not even
+		wasting peoples time (if the proposal does not even
 		convince two developers, surely this is not ready for
 		inclusion in Policy?)</p>
 	    </item>
 	  </enumlist>
 	</p>
 	<p>
-	  The whole discussion process is meant to be light weight; If
+	  The whole discussion process is meant to be lightweight; if
 	  you wish the proposals to be amended, talk to the proposer,
 	  and get the amendment in. Or else, post an alternative, and
 	  let the  group decide which one is better.
@@ -184,8 +186,8 @@
 	</p>
 	<p>
 	  This document is not supposed to supplant the processes
-	  outlined in the constitution, nor is it an end run around
-	  them.
+	  outlined in the constitution, nor is it intended to run
+	  around them.
 	</p>
       </sect>
 
@@ -194,15 +196,16 @@
 	<sect1>
 	  <heading>An accepted amendment</heading>
 	  <p>
-	    if the amendment is accepted, the bug is marked
-	    forwarded and retitled <strong>"[ACCEPTED DD/MM/YYY]..."</strong>.
+	    If the amendment is accepted, the bug is marked
+	    forwarded and retitled
+	    <strong>"[ACCEPTED DD/MM/YYYY] ..."</strong>.
 	  </p>
 	</sect1>
 	<sect1>
 	  <heading>An amendment that stalls or is rejected</heading>
 	  <p>
-	    if the amendment is stalls, or otherwise fails to pass, it
-	    is retitled as <strong>"[REJECTED DD/MM/YYY] ..."</strong>
+	    If the amendment is stalls, or otherwise fails to pass, it
+	    is retitled as <strong>"[REJECTED DD/MM/YYYY] ..."</strong>
 	    and has its severity set to <tt>fixed</tt>. 
 	  </p>
 	</sect1>
@@ -213,10 +216,10 @@
 	<heading>Deadlines for Tabling Discussions</heading>
 	<p>
 	  It has been observed in the past that discussions on the
-	  mailing list devolve into endless arguments. In order to get
-	  away from the debating society aspect, at the time of the
-	  formal proposal, a deadline can be set (probably by the
-	  proposer, since they are likely to have an idea how
+	  mailing list tend to devolve into endless arguments. In
+	  order to get away from the debating society aspect, at the
+	  time of the formal proposal, a deadline can be set (probably
+	  by the proposer, since they are likely to have an idea how
 	  contentious the discussion is likely to be) for ending
 	  discussion on the issue, which should rarely be less than 10
 	  days, and typically two weeks or so. I hope that a hard
@@ -232,7 +235,7 @@
 	<sect1>
 	  <heading>Extensions to Deadlines?</heading>
 	  <p>
-	    If a deadline is approaching, and the discussion s almost
+	    If a deadline is approaching, and the discussion is almost
 	    concluded (in other words, it has not reached an impasse),
 	    and the consensus on the policy group is that an extension
 	    of a week would resolve the issues better, a one-time
@@ -275,7 +278,7 @@
 	  <p>
 	    However, if the issue is non-technical and subjective,
 	    then a vote of the developers may be taken (USENET voting
-	    software should be available all over the place, right?);
+	    software should be available all over the place, right?),
 	    and a super-majority of 75% is needed to carry the
 	    amendment through. Failing the super-majority, the issue
 	    should be shelved. It may be re-submitted as a a fresh
