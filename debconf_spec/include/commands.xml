@@ -266,7 +266,7 @@
     PURGE
   </para>
   <para>
-    Call this in your postinst when your package is
+    Call this in your postrm when your package is
     purged. It removes all templates and questions your
     package has generated.
   </para>
