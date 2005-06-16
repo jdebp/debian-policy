@@ -12,6 +12,8 @@ debian-policy (3.5.4.1) unstable; urgency=low
     debian/rules to do this
   * Add patched versions of debiandoc-sgml stuff to source package until
     patches are incorporated upstream
+  * Versioned Build-Depend on debiandoc-sgml for fixed Text.pm
+  * Improved mkdir example in 10.1.2                 closes: Bug#92744
 
  -- 
 
