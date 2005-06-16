@@ -41,19 +41,17 @@ FILES_TO_CLEAN  = debian/files debian/buildinfo  debian/substvars \
 		  debian/postinst debian/prerm \
 		  version.ent  policy.lout policy.lout.ld lout.li \
 		  upgrading-checklist.text policy.text.gz \
-		  menu-policy.text.gz \
-		  policy-process.text.gz policy-process.pdf.gz  \
-		  proposal.text.gz menu-policy.pdf.gz proposal.pdf.gz \
+		  menu-policy.text.gz menu-policy.pdf.gz \
+		  policy-process.text.gz policy-process.pdf.gz \
 		  mime-policy.text.gz mime-policy.pdf.gz \
                   debconf_spec/debconf_specification.html \
                   debconf_spec/debconf_specification.txt.gz \
 
 STAMPS_TO_CLEAN = stamp-policy stamp-build stamp-configure
 DIRS_TO_CLEAN   = debian/tmp policy.html fhs \
-		   menu-policy.html mime-policy.html \
-		  proposal.html policy-process.html
-SGML_FILES      = policy  menu-policy mime-policy proposal \
-                  policy-process
+		  menu-policy.html mime-policy.html \
+		  policy-process.html
+SGML_FILES      = policy menu-policy mime-policy policy-process
 
 # Location of the source dir
 SRCTOP	  := $(shell if [ "$$PWD" != "" ]; then echo $$PWD; else pwd; fi;)
@@ -68,11 +66,10 @@ LIBDIR	  := $(TMPTOP)/usr/share/doc-base
 # And with version 2.1, we have to build the text and dvi versions
 # ourselves :-(
 FHS_ARCHIVE  =fhs-2.1-source.tar.gz
-FHS_FILES    = fhs/fhs.ps fhs/fhs.txt fhs/fhs.pdf
+FHS_FILES    =fhs/fhs.ps fhs/fhs.txt fhs/fhs.pdf
 FSSTND_FILES =FSSTND-FAQ fsstnd-1.2.dvi.gz fsstnd-1.2.ps.gz fsstnd-1.2.txt.gz
 POLICY_FILES =policy.text.gz policy.sgml virtual-package-names-list.text \
-	      upgrading-checklist.text libc6-migration.text \
-	      version.ent proposal.sgml proposal.text.gz \
+	      upgrading-checklist.text libc6-migration.text version.ent \
 	      menu-policy.sgml menu-policy.text.gz \
 	      mime-policy.sgml mime-policy.text.gz \
               policy-process.text.gz policy-process.sgml \
@@ -172,7 +169,6 @@ stamp-policy:  build
 	(tar cf -	    policy.html) |	     (cd $(DOCDIR);   tar xf -)
 	(tar cf -	    menu-policy.html) |	     (cd $(DOCDIR);   tar xf -)
 	(tar cf -	    mime-policy.html) |	     (cd $(DOCDIR);   tar xf -)
-	(tar cf -	    proposal.html) |	     (cd $(DOCDIR);   tar xf -)
 	(tar cf -	    policy-process.html) |   (cd $(DOCDIR);   tar xf -)
 	sed -e 's/#PACKAGE#/$(package)/g' debian/postinst.in > debian/postinst
 	sed -e 's/#PACKAGE#/$(package)/g' debian/prerm.in > debian/prerm
@@ -186,7 +182,7 @@ stamp-policy:  build
 	debiandoc2latexpdf   policy.sgml
 	gzip -9qfv 	     policy.pdf
 	GZIP=-9v tar zcf     policy.html.tar.gz    policy.html
-	$(install_file)	   version.ent	             $(DOCDIR)/
+	$(install_file)	     version.ent           $(DOCDIR)/
 	for i in	    $(BYHAND_FILES); do                          \
 	  $(install_file)   $$i		   ..		               ; \
 	  dpkg-distaddfile  -fdebian/files `basename $$i`     byhand - ; \

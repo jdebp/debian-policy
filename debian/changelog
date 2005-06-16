@@ -1,4 +1,4 @@
-debian-policy (3.5.0.1) unstable; urgency=low
+debian-policy (3.5.1.0) unstable; urgency=low
 
   * Removed deprecated virtual package names        closes: Bug#84641
   * Changed rmdir postrm example (suggestion on -policy list)
@@ -6,8 +6,20 @@ debian-policy (3.5.0.1) unstable; urgency=low
   * Corrected typos and grammatical errors found by Sean Perry
                             closes: Bug#85501, #85504, #85505, #85506
                             closes: Bug#85508, #85510, #85511, #85514
+                            closes: Bug#84631, #84636, #85497, #85982
+                            closes: Bug#85986, #85993, #86001
+  * No longer include the old proposal document     closes: Bug#84079
+  * Update footnote about dpkg-shlibdeps now that it uses objdump; bump up
+    minor version number for this
+  * Updated dpkg-shlibdeps example to use up-to-date package names (and
+    correct dpkg-shlibdeps command line syntax)
+  * Clarify error conditions for package installation
+                                       (Bug#61801 from packaging-manual)
+  * Add the "main" section of each distribution (got left out by
+    accident!)                 (Bug#64304, #75955 from packaging-manual)
+  * Clean version numbering string     (Bug#73064 from packaging-manual)
 
- --
+ -- Julian Gilbey <jdg@debian.org>  Thu, 15 Feb 2001 10:55:19 +0000
 
 debian-policy (3.5.0.0) unstable; urgency=low
 
@@ -70,8 +82,9 @@ debian-policy (3.2.1.2) unstable; urgency=low
 debian-policy (3.2.1.1) unstable; urgency=low
 
   * Don't compress version.ent in the doc directory (it gets bigger!)
-  * Incorporate the packaging manual. The minimal change in version number
-    i because I suspect that this version is going to be buggy. 
+  * Incorporate the packaging manual into the policy document. The minimal
+    change in version number is because I suspect that this version is
+    going to be buggy.
                                                     closes: Bug#62943, Bug#72949
   * Fixed typo in menu-policy.                      closes: Bug#70442
   * Fixed typo in policy manual                     closes: Bug#70634, Bug#70643
