@@ -108,7 +108,8 @@ binary-arch:	build
 
 binary-indep:	stamp-policy stamp-packaging
 stamp-policy:  build
-	@test root = "`whoami`" || (echo need root priviledges; exit 1)
+	@test $$(id | sed -e 's/(.*$$//' -e 's/^uid=//') || \
+		(echo need root priviledges; exit 1)
 	$(checkdir)
 	test -f stamp-build	|| $(MAKE) -f	     debian/rules build
 	-rm -rf			$(TMPTOP)
@@ -158,7 +159,8 @@ stamp-policy:  build
 	touch		   stamp-policy
 
 stamp-packaging:  build
-	@test root = "`whoami`" || (echo need root priviledges; exit 1)
+	@test $$(id | sed -e 's/(.*$$//' -e 's/^uid=//') || \
+		(echo need root priviledges; exit 1)
 	$(checkdir)
 	test -f stamp-build	|| $(MAKE) -f	     debian/rules build
 	-rm -rf			$(PTMPTOP)
