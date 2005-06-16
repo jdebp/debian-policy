@@ -65,7 +65,7 @@ LIBDIR	  := $(TMPTOP)/usr/share/doc-base
 # And with version 2.1, we have to build the text and dvi versions
 # ourselves :-(
 FHS_ARCHIVE  =fhs-2.1-source.tar.gz
-FHS_FILES    =fhs/fhs.dvi fhs/fhs.ps fhs/fhs.txt fhs/fhs.pdf
+FHS_FILES    = fhs/fhs.ps fhs/fhs.txt fhs/fhs.pdf
 FSSTND_FILES =FSSTND-FAQ fsstnd-1.2.dvi.gz fsstnd-1.2.ps.gz fsstnd-1.2.txt.gz
 POLICY_FILES =policy.text.gz policy.sgml virtual-package-names-list.text \
 	      upgrading-checklist.text libc6-migration.text \
