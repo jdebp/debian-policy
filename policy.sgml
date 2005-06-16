@@ -960,7 +960,7 @@
 	    <tt>required</tt> or at least <tt>important</tt>, and many
 	    of them will be tagged <tt>essential</tt> (see below).</p>
 
-	  
+
 	</sect1>
 
 
@@ -3615,9 +3615,9 @@ Replaces: mail-transport-agent
                 The <tt>Build-Depends</tt> and
 		<tt>Build-Conflicts</tt> fields must be satisfied when
 		any of the following targets is invoked:
-		<tt>build</tt>, <tt>binary</tt>, <tt>binary-arch</tt>,
-		<tt>build-arch</tt>, <tt>build-indep</tt>
-		and <tt>binary-indep</tt>.
+		<tt>build</tt>, <tt>clean</tt>, <tt>binary</tt>,
+		<tt>binary-arch</tt>, <tt>build-arch</tt>,
+		<tt>build-indep</tt> and <tt>binary-indep</tt>.
 	      </p>
 	    </item>
 	    <tag><tt>Build-Depends-Indep</tt>,
@@ -3627,8 +3627,9 @@ Replaces: mail-transport-agent
                 The <tt>Build-Depends-Indep</tt> and
 		<tt>Build-Conflicts-Indep</tt> fields must be
 		satisfied when any of the following targets is
-		invoked: <tt>build</tt>, <tt>build-indep</tt>,
-		<tt>binary</tt> and <tt>binary-indep</tt>.
+		invoked: <tt>build</tt>, <tt>clean</tt>,
+		<tt>build-indep</tt>, <tt>binary</tt> and
+		<tt>binary-indep</tt>.
 	      </p>
 	    </item>
 	  </taglist>
@@ -4731,12 +4732,12 @@ test -f <var>program-executed-later-in-script</var> || exit 0
 	      To get the default behavior for your package, put in your
 	      <prgn>postinst</prgn> script
 	      <example compact="compact">
-		update-rc.d <var>package</var> defaults 
+		update-rc.d <var>package</var> defaults
 	      </example>
 	      and in your <prgn>postrm</prgn>
 	      <example compact="compact">
 		if [ "$1" = purge ]; then
-		update-rc.d <var>package</var> remove 
+		update-rc.d <var>package</var> remove
 		fi
 	      </example>. Note that is your package changes runlevels
 		  or priority, you may have to remove and recreate the
@@ -7452,21 +7453,25 @@ name [`<var>syshostname</var>']:
 	</p>
 
 	<p>
-	  If no manual page is available for a particular program,
-	  utility, function or configuration file and this is reported
-	  as a bug to the Debian Bug Tracking System, a symbolic link
-	  from the requested manual page to the <manref
-	  name="undocumented" section="7"> manual page may be
-	  provided.  This symbolic link can be created from
-	  <file>debian/rules</file> like this:
-	  <example compact="compact">
-ln -s ../man7/undocumented.7.gz \
-  debian/tmp/usr/share/man/man[1-9]/<var>requested_manpage</var>.[1-9].gz
-	  </example>
-	  This manpage claims that the lack of a manpage has been
-	  reported as a bug, so you may only do this if it really has
-	  (you can report it yourself, if you like).  Do not close the
-	  bug report until a proper manpage is available.</p>
+          There should be a manual page at for every program at the
+          very least, and possibly one for every configuration file,
+          protocol, utility, and function.  If no manual page is
+          available, this is considered as a bug and should be
+          reported to the Debian Bug Tracking System (the maintainer
+          of the package is allowed to write this bug report
+          themselves, if they so desire).  Do not close the bug report
+          until a proper manpage is available.<footnote>
+            <p>
+              It is not very hard to write a man page. See the 
+	      <url id="http://www.schweikhardt.net/man_page_howto.html"
+		name="Man-Page-HOWTO">, 
+	      <manref name="man" section="7">, the examples
+              created by <prgn>debmake</prgn> or <prgn>dh_make</prgn>,
+	      the helper programs <prgn>help2man</prgn>, or the
+              directory <file>/usr/share/doc/man-db/examples</file>.
+            </p>
+          </footnote>
+	</p>
 
 	<p>
 	  You may forward a complaint about a missing manpage to the
@@ -7478,8 +7483,8 @@ ln -s ../man7/undocumented.7.gz \
 	  anyway.</p>
 
 	<p>
-	  Manual pages should be installed compressed using <tt>gzip
-	    -9</tt>.</p>
+	  Manual pages should be installed compressed using <prgn>gzip</prgn>
+	  <tt>-9</tt>.</p>
 
 	<p>
 	  If one manpage needs to be accessible via several names it
@@ -7577,20 +7582,26 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	  course!</p>
 
 	<p>
-	  Files in <file>/usr/share/doc</file> should not be referenced by
-	  any program, and the system administrator should be able to
-	  delete them without causing any programs to break. Any files
-	  that are referenced by programs but are also useful as
-	  standalone documentation should be installed under
-	  <file>/usr/share/<var>package</var>/</file> with symbolic links
-	  from <file>/usr/share/doc/<var>package</var>/</file>.
+	  Packages must not require the existance of any files in
+	  <file>/usr/share/doc/</file> in order to function
+	  <footnote id="rationale">
+	    <p>
+	      The system administrator should be able to
+	      delete files in <file>/usr/share/doc/</file> without causing
+	      any programs to break.
+	    </p>
+	  </footnote>.
+	  Any files that are referenced by programs but are also
+	  useful as standalone documentation should be installed under
+	  <file>/usr/share/doc/</file> with symbolic links from
+	  <file>/usr/share/doc/&lt;package&gt;</file>
 	</p>
 
 	<p>
 	  <file>/usr/share/doc/<var>package</var></file> may be a symbolic
 	  link to another directory in <file>/usr/share/doc</file> only if
 	  the two packages both come from the same source and the
-	  first package Depends on the second. 
+	  first package Depends on the second.
 	</p>
 
 	<p>
@@ -7726,10 +7737,10 @@ install-info --quiet --remove /usr/share/info/foobar.info
             If you wish to use an alternative format, you may do so as long
             as you include a parser for it in your source package.  The
             parser must have an API compatible with that expected by
-            <prgn>dpkg-genchanges</prgn> and <prgn>dpkg-gencontrol</prgn>. 
+            <prgn>dpkg-genchanges</prgn> and <prgn>dpkg-gencontrol</prgn>.
             If there is general interest in the new format, you should
             contact the <package>dpkg</package> maintainer to have the
-            parser script for it included in the <prgn>dpkg</prgn> package. 
+            parser script for it included in the <prgn>dpkg</prgn> package.
             (You will need to agree that the parser and its manpage may be
             distributed under the GNU GPL, just as the rest of `dpkg' is.)
             </p>
