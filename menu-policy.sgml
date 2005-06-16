@@ -275,7 +275,7 @@
 	      <p>X window managers</p>
 	      <p>
 		<taglist>
-		  <tagModules></tag>
+		  <tag>Modules></tag>
 		  <item>
 		    <p>window manager modules</p>
 		  </item>
