@@ -5459,7 +5459,7 @@ rmdir /usr/local/share/emacs 2>/dev/null || true
 	    should include a <tt>test</tt> statement at the top of the
 	    script, like this:
 	    <example compact="compact">
-test -f <var>program-executed-later-in-script</var> || exit 0
+test -x <var>program-executed-later-in-script</var> || exit 0
 	    </example>
 	  </p>
 

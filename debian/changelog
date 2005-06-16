@@ -16,10 +16,19 @@ debian-policy (3.6.0) unstable; urgency=low
   * [AMENDMENT 02/05/2003] encourage packagers to systematically prevent
     mis-linked libraries                                   closes: Bug#191369
   * [AMENDMENT 6/6/2003] build-depends-indep should not be satisfied
-    during clean target.                                   closes: Bug#191411
+    during clean target.                       closes: Bug#191411, Bug#178809
   * Fixed the fact that section 7.5.1 does not describe dpkg's true
     behavior. Now added a footnote that explains that replaces is a one
     way relationship.                                      closes: Bug#183195
+  * Could no longer find the misspelling "seciton", thus this must have
+    been fixed in a previous change in the manual.         closes: Bug#193903
+  * Changed a -f to a -x in an example testing for presence of a program
+    executed later in the script.                          closes: Bug#190749
+  * Fixed an incorect /usr/share/common-licences/GPL reference, ensured a
+    consistent spelling across the manuals.                closes: Bug#189516
+  * Removed an extraneous > in menu policy.                closes: Bug#187615
+  * Fixed typos, and part of the report that was deemed valid; the other
+    changes suggested were incorrect, or style issues.     closes: Bug#169744
 
  -- 
 
