@@ -1,4 +1,4 @@
-debian-policy (3.5.9.1) unstable; urgency=low
+debian-policy (3.5.10.0) unstable; urgency=low
 
   Josip:
   * Fixed date, typos and added indentation in the virtual packages list,
@@ -13,16 +13,16 @@ debian-policy (3.5.9.1) unstable; urgency=low
     extention to an informative footnote.                    closes: Bug#165063
   * Add 40 points, not 20, when the window manager is compliant with "The
     Window Manager Specification Project".                   closes: Bug#167004
-  * Fixed reference to the debconf URL (we can change the url as it
+  * Fixed reference to the debconf URL (we can change the URL as it
     changes again, and I don't think any additional load would accrue
     since people using the old URL were redirected to auric anyway).
                                                              closes: Bug#184518
   * Inserted the word only in the package name section.      closes: Bug#184368
   * Amended the section about Prompting in maintainer scripts. Added a
-    footnotre (quoting from the jargon file) to explain what "by hand"
+    footnote (quoting from the Jargon File) to explain what "by hand"
     means in a computer context.                             closes: Bug#184507
 
- -- 
+ -- Josip Rodin <joy-packages@debian.org>  Sat, 10 May 2003 19:13:50 +0200
 
 debian-policy (3.5.9.0) unstable; urgency=low
 
