@@ -44,7 +44,7 @@ Manual.
 <h2>The checklist</h2>
 
 <pre>
-3.2.0.0                    Jun 00
+3.2.0.0                    Aug 00
 
   Policy Manual:
      - By default executables should not be built with the debugging
@@ -70,11 +70,15 @@ Manual.
        has been clarified. Please read the manual for details.
      - Policy for packages providing an X application default has been
        clarified. 
+     - No package may contain or make hard links to conffiles.
 
   Packaging Manual:
      - Noted that newer dpkg versions do not require extreme care in
        always creating theshared lib before the symlink, so the unpack
        order be correct. 
+     - Note that the newer dpkg-shlibdeps use objdump to determine the
+       shared libraries directly, and now should be run on both
+       executables and libraries.
 
 3.1.1.0                    Nov 99
 
