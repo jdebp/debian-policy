@@ -14,6 +14,8 @@ debian-policy (3.6.0) unstable; urgency=low
     machine.  This answers some of the issues mentioned in  Bug#175064
   * [AMENDMENT 02/05/2003] encourage packagers to systematically prevent
     mis-linked libraries                                   closes: Bug#191369
+  * [AMENDMENT 6/6/2003] build-depends-indep should not be satisfied
+    during clean target.                                   closes: Bug#191411
 
  -- 
 
