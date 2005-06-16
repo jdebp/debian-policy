@@ -578,7 +578,7 @@
 	  <p>
 	    Every package must be accompanied by a verbatim copy of
 	    its copyright and distribution license in the file
-	    <tt>/usr/share/doc/<ital>&lt;package-name&gt;</ital>/copyright</tt>
+	    <tt>/usr/share/doc/<em>&lt;package-name&gt;</em>/copyright</tt>
 	    (see <ref id="copyrightfile"> for further details).
 	  </p>
 	  <p>
@@ -673,13 +673,13 @@
 	    <list compact="compact">
 	      <item>
 		<p>
-		  <ital>subsection</ital> if the package is in the
+		  <em>subsection</em> if the package is in the
 		  <em>main</em> section,
 		</p>
 	      </item>
 	      <item>
 		<p>
-		  <ital>section/subsection</ital> if the package is in
+		  <em>section/subsection</em> if the package is in
 		  the <em>contrib</em> or <em>non-free</em> section,
 		  and
 		</p>
