@@ -27,6 +27,7 @@ debian-policy (3.5.9.0) unstable; urgency=low
     script should start it, closes: #60979.
   * Rephrased section on configuration files to remove confusing use of
     "should", closes: #170019.
+  * Rearranged the shared library information properly, closes: #109166.
 
  -- 
 
