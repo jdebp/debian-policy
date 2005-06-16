@@ -3485,15 +3485,15 @@ Package: libc6
 		      Otherwise (i.e., the package was completely purged):
 		      <example compact="compact">
 <var>new-preinst</var> install
-		      </example>
-		      Error unwind actions, respectively:
-		      <example compact="compact">
+		  </item>
+                </enumlist>
+              </example>
+                Error unwind actions, respectively:
+                <example compact="compact">
 <var>new-postrm</var> abort-upgrade <var>old-version</var>
 <var>new-postrm</var> abort-install <var>old-version</var>
 <var>new-postrm</var> abort-install
-		      </example>
-		  </item>
-		</enumlist>
+                </example>
 	    </item>
 
 	    <item>

@@ -15,6 +15,10 @@ debian-policy (3.6.2.1) unstable; urgency=low
   * Bug fix: "debian-policy: please clarify section 12.7.", thanks to
     Adrian Bunk. Added a clarifying footnote that makes it clear that
     section 12.3 does not allow one to ignore section 12.7  (Closes: #276953).
+  * 
+  * Bug fix: "debian-policy: should not ship generated files in source
+    archive, and should clean them from the tree", thanks to Branden
+    Robinson                                                 (Closes: #284967).
 
  --
 
