@@ -3648,10 +3648,18 @@ Package: libc6
 
 	<p>
 	  If there is no most recently configured version
-	  <prgn>dpkg</prgn> will pass a null argument; older versions
-	  of dpkg may pass <tt>&lt;unknown&gt;</tt> (including the
-	  angle brackets) in this case.  Even older ones do not pass a
-	  second argument at all, under any circumstances.
+	  <prgn>dpkg</prgn> will pass a null argument.
+	  <footnote>
+	    <p>
+	      Historical note: Truly ancient (pre-1997) versions of
+	      <prgn>dpkg</prgn> passed <tt>&lt;unknown&gt;</tt>
+	      (including the angle brackets) in this case.  Even older
+	      ones did not pass a second argument at all, under any
+	      circumstance.  Note that upgrades using such an old dpkg
+	      version are unlikely to work for other reasons, even if
+	      this old argument behavior is handled by your postinst script.
+	    </p>
+	  </footnote>	  
 	</p>
       </sect>
 
