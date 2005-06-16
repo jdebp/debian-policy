@@ -503,9 +503,10 @@
 
 	<p>
 	  The packages in all the sections (<em>main</em>,
-	  <em>contrib</em>, <em>non-US</em>, and <em>non-free</em>)
-	  are grouped further into <em>subsections</em> to simplify
-	  handling of them.</p>
+	  <em>contrib</em>, <em>non-US/main</em>, <em>non-free</em>,
+	  <em>non-US/contrib</em>, and <em>non-US/non-free</em>) are
+	  grouped further into <em>subsections</em> to simplify
+	  handling.</p>
 
 	<p>
 	  The section for each package is specified in the package's
@@ -2909,18 +2910,18 @@
 	  <tt>/usr/include/X11/</tt>, or <tt>/usr/lib/X11/</tt>; these
 	  directories are actually symbolic links, which <tt>dpkg</tt>
 	  does not follow when unpacking a package.  Instead, use
-	  <tt>/usr/X11R6/bin/</tt>, <tt>/usr/doc/package/</tt> (i.e.,
-	  place files with the rest of your package's documentation),
-	  <tt>/usr/X11R6/include/</tt>, and
+	  <tt>/usr/X11R6/bin/</tt>, <tt>/usr/share/doc/package/</tt>
+	  (i.e., place files with the rest of your package's
+	  documentation), <tt>/usr/X11R6/include/</tt>, and
 	  <tt>/usr/X11R6/lib/</tt>.  This restriction governs only the
-	  paths used by the package as it is unpacked onto the system; it
-	  is permissible, and even preferable, for files within a package
-	  (shell scripts, for instance) to refer to the
+	  paths used by the package as it is unpacked onto the system;
+	  it is permissible, and even preferable, for files within a
+	  package (shell scripts, for instance) to refer to the
 	  <tt>/usr/{bin,include,lib}/X11/</tt> directories rather than
-	  their <tt>/usr/X11R6/</tt> counterparts -- this way they do not
-	  have to be modified in the event that the X Window System
-	  packages install their files into a different directory in the
-	  future.</p>
+	  their <tt>/usr/X11R6/</tt> counterparts -- this way they do
+	  not have to be modified in the event that the X Window
+	  System packages install their files into a different
+	  directory in the future.</p>
 
  	<p>
 	  If you package a program that requires the (non-free)

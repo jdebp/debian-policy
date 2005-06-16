@@ -8,8 +8,17 @@ debian-policy (3.0.1.0) unstable; urgency=low
     packages using libtool's libltdl library, in which case the
     .la files must go in the run-time library package. (this is why this
     is version 3.0.1.0, and not 3.0.0.1)
+  * The virtual package list has new directions (this has been true for a
+    while, I am just closing the bug now). closes: Bug#26159
+  * Since this package now contains the FHS, this closes: Bug#25533
+  * The General resolution prototcol handling of the logos closes: Bug#26915
+  * Inclusion of the Menu policy in the main policy document closes: Bug#30036
+  * Since proposal submitting guidelines are now in the policy package,
+    this closes: Bug#38612
+  * Changed a /usr/doc reference to /usr/share/doc which had beeen missed
+    before. closes: Bug#40864
 
- -- Manoj Srivastava <srivasta@debian.org>  Thu,  1 Jul 1999 14:48:25 -0500
+ -- Manoj Srivastava <srivasta@debian.org>  Thu, 15 Jul 1999 13:35:11 -0500
 
 debian-policy (3.0.0.0) unstable; urgency=low
 
@@ -586,5 +595,4 @@ debian-manuals (0.2.0.0) experimental;
 
 Local variables:
 mode: debian-changelog
-add-log-mailing-address: "phil@hands.com"
 End:
