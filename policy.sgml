@@ -4200,16 +4200,13 @@ Provides: bar
 	    package's <prgn>postrm</prgn> script will be run with a
 	    special argument to allow the package to do any final
 	    cleanup required.  See <ref id="mscriptsinstact">.
-	  </p>
-
-	  <p>
-	    If an installed package, <tt>foo</tt> say, declares that
-	    it replaces another, <tt>bar</tt>, and an attempt is made
-	    to install <tt>bar</tt>, <prgn>dpkg</prgn> will discard
-	    files in the <tt>bar</tt> package which would overwrite
-	    those already present in <tt>foo</tt>.  This is so that
-	    you can install an older version of a package without
-	    problems.
+	    <footnote>
+	      <p>
+		Replaces is a one way relationship -- you have to              
+		install the replacing package after the replaced
+		package.
+	      </p>
+	    </footnote>
 	  </p>
 
 	  <p>
