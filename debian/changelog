@@ -1,3 +1,9 @@
+debian-policy (3.2.1.1) unstable; urgency=low
+
+  * Don't compress version.ent in the doc directory (it gets bigger!)
+
+ --
+
 debian-policy (3.2.1.0) unstable; urgency=low
 
   * [AMENDMENT 15/01/2000] revision of the "to build with X support or

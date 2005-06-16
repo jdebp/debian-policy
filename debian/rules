@@ -201,9 +201,9 @@ stamp-packaging:  build
 	echo "packaging-manual:Version=$(version)"   >> debian/substvars
 
 	$(install_file)	   packaging.sgml	     $(PDOCDIR)/
-	$(install_file)	   version.ent	             $(PDOCDIR)/
 	$(install_file)	   debian/changelog	     $(PDOCDIR)/
 	-gzip -fqr9	   $(PDOCDIR)
+	$(install_file)	   version.ent	             $(PDOCDIR)/
 	$(install_file)	   packaging.text.gz	     $(PDOCDIR)/
 	$(install_file)	   debian/copyright	     $(PDOCDIR)/
 	$(install_file)	   packaging-manual.desc     $(PLIBDIR)/packaging-manual
