@@ -1,8 +1,12 @@
 debian-policy (3.2.0.0) unstable; urgency=low
 
   * Fixed bugs in debian-policy package:
+  * [PROPOSAL] Do not make hardlinks to conffiles       closes: Bug#22935
+  * [OLD PROPOSAL] debian-policy has an unclear statement on dependancies
+    and priorities                                      closes: Bug#39398
   * [ACCEPTED 10/26/99] changelog.html.gz sanitization. closes: Bug#40934
   * [AMENDED 07/09/1999] policy on -g, a proposal       closes: Bug#43787
+  * Correct typo in section 2.3.5                       closes: Bug#52225
   * [ACCEPTED 02/01/2000] policy for usage of "xserver" 
     alternative                                         closes: Bug#53755
   * [ACCEPTED 02/01/2000] additions to virtual package
@@ -38,25 +42,14 @@ debian-policy (3.2.0.0) unstable; urgency=low
     dpkg-gencontrol.                                    closes: Bug#58771
   . 
   * Other changes:
+  * Fixed an upgrade bug when /usr/doc happens to be a symlink, and does
+    not point to /usr/share/doc. A couple of people were bitten by this. 
   * Added policy-process to document current procedures.
   * Installed FHS version 2.1
   * Policy recommends packaging manual and vice versa
+  * Added FHS details to copyright file
 
  --
-
-debian-policy (3.1.1.3) unstable; urgency=low
-
-  * Fixed an upgrade bug when /usr/doc happens to be a symlink, and does
-    not point to /usr/share/doc. A couple of people were bitten by this. 
-
- -- Manoj Srivastava <srivasta@debian.org>  Mon, 28 Feb 2000 22:27:05 -0600
-
-debian-policy (3.1.1.2) unstable; urgency=low
-
-  * Correct missing </chapt> in packaging.sgml (closes: #51091)
-  * Correct typo in policy 2.3.5 (closes: #52225)
-
- -- Julian Gilbey <jdg@debian.org>  Mon, 20 Dec 1999 20:39:57 +0000
 
 debian-policy (3.1.1.1) unstable; urgency=low
 
