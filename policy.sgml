@@ -6426,21 +6426,18 @@ endif
 	  the library compatible with LinuxThreads.
 	</p>
 
-                                                                                
-         <p>                                                                    
-          Although not enforced by the build tools, shared libraries           
-          must be linked against all libraries that they use symbols from      
-          in the same way that binaries are.  This ensures the correct         
-          functioning of the  <ref id="sharedlibs-shlibdeps">shlibs       
-          system and guarantees that all libraries can be safely opened        
-          with <tt>dlopen()</tt>.  Packagers may wish to use the gcc           
-          option <tt>-Wl,-z,defs</tt> when building a shared library.          
-          Since this option enforces symbol resolution at build time,          
-          a missing library reference will be caught early as a fatal          
-          build error.                                                         
-        </p>                                                                   
-                                                                               
-
+        <p>
+          Although not enforced by the build tools, shared libraries
+          must be linked against all libraries that they use symbols from
+          in the same way that binaries are.  This ensures the correct
+          functioning of the <qref id="sharedlibs-shlibdeps">shlibs</qref>
+          system and guarantees that all libraries can be safely opened
+          with <tt>dlopen()</tt>.  Packagers may wish to use the gcc
+          option <tt>-Wl,-z,defs</tt> when building a shared library.
+          Since this option enforces symbol resolution at build time,
+          a missing library reference will be caught early as a fatal
+          build error.
+        </p>
 
 	<p>
 	  All installed shared libraries should be stripped with
