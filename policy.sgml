@@ -1986,7 +1986,7 @@
 	<p>
 	  The architectures we build on and build for are determined
 	  by <prgn>make</prgn> variables using the utility
-	  <qref id="pkg-dpkgarch"><prgn>dpkg-architecture</prgn></qref>.
+	  <qref id="pkg-dpkg-architecture"><prgn>dpkg-architecture</prgn></qref>.
 	  You can determine the
 	  Debian architecture and the GNU style architecture
 	  specification string for the build machine (the machine type
@@ -4584,9 +4584,9 @@ Replaces: mail-transport-agent
 	  libraries, it must provide a <file>shlibs</file> file for other
 	  packages to use, and when a package is built which contains
 	  any shared libraries or compiled binaries, it must run
-	  <prgn>dpkg-shlibdeps</prgn> on these to determine the
-	  libraries used and hence the dependencies needed by this
-	  package.<footnote>
+	  <qref id="pkg-dpkg-shlibdeps"><prgn>dpkg-shlibdeps</prgn></qref>
+	  on these to determine the libraries used and hence the
+	  dependencies needed by this package.<footnote>
 	    <p>
 	      In the past, the shared libraries linked to were
 	      determined by calling <prgn>ldd</prgn>, but now
@@ -4640,9 +4640,9 @@ Replaces: mail-transport-agent
 	<p>
 	  In the following sections, we will first describe where the
 	  various <tt>shlibs</tt> files are to be found, then how to
-	  use <prgn>dpkg-shlibdeps</prgn>, and finally the
-	  <tt>shlibs</tt> file format and how to create them if your
-	  package contains a shared library.
+	  use <prgn>dpkg-shlibdeps</prgn>, and finally the <tt>shlibs</tt>
+	  file format and how to create them if your package contains a
+	  shared library.
 	</p>
 
       <sect1>
@@ -4651,8 +4651,9 @@ Replaces: mail-transport-agent
 	<p>
 	  There are several places where <tt>shlibs</tt> files are
 	  found.  The following list gives them in the order in which
-	  they are read by <prgn>dpkg-shlibdeps</prgn>.  (The first
-	  one which gives the required information is used.)
+	  they are read by
+	  <qref id="pkg-dpkg-shlibdeps"><prgn>dpkg-shlibdeps</prgn></qref>.
+	  (The first one which gives the required information is used.)
 	</p>
 
 	<p>
@@ -4746,10 +4747,11 @@ Replaces: mail-transport-agent
 	    <file>shlibs</file> files</heading>
 
 	<p>
-	  Put a call to <prgn>dpkg-shlibdeps</prgn> into your
-	  <file>debian/rules</file> file.  If your package contains only
-	  compiled binaries and libraries (but no scripts), you can
-	  use a command such as:
+	  Put a call to
+	  <qref id="pkg-dpkg-shlibdeps"><prgn>dpkg-shlibdeps</prgn></qref>
+	  into your <file>debian/rules</file> file.  If your package
+	  contains only compiled binaries and libraries (but no scripts),
+	  you can use a command such as:
 	  <example compact="compact">
 dpkg-shlibdeps debian/tmp/usr/bin/* debian/tmp/usr/sbin/* \
   debian/tmp/usr/lib/*
@@ -4784,8 +4786,12 @@ dpkg-shlibdeps debian/tmp/usr/bin/* debian/tmp/usr/sbin/* \
 	  compiled libraries or binaries.  In such a case, you will
 	  need to use the <tt>-T</tt> option to the <tt>dpkg</tt>
 	  utilities to specify a different <file>substvars</file> file.
-	  For more details on this and other options, see <manref
-	  name="dpkg-shlibdeps" section="1">.
+	</p>
+
+	<p>
+	  For more details on dpkg-shlibdeps, please see
+	  <ref id="pkg-dpkg-shlibdeps"> and
+	  <manref name="dpkg-shlibdeps" section="1">.
 	</p>
       </sect1>
 
@@ -8812,7 +8818,7 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	  package.
 	</p>
 
-	<sect1>
+	<sect1 id="pkg-dpkg-source">
 	  <heading>
 	    <prgn>dpkg-source</prgn> - packs and unpacks Debian source
 	    packages
@@ -8861,7 +8867,7 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	</sect1>
 
 
-	<sect1>
+	<sect1 id="pkg-dpkg-buildpackage">
 	  <heading>
 	    <prgn>dpkg-buildpackage</prgn> - overall package-building
 	    control script
@@ -8920,7 +8926,7 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	  </p>
 	</sect1>
 
-	<sect1>
+	<sect1 id="pkg-dpkg-gencontrol">
 	  <heading>
 	    <prgn>dpkg-gencontrol</prgn> - generates binary package
 	    control files
@@ -8983,7 +8989,7 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	    <prgn>dpkg-genchanges</prgn>.</p>
 	</sect1>
 
-	<sect1>
+	<sect1 id="pkg-dpkg-shlibdeps">
 	  <heading>
 	    <prgn>dpkg-shlibdeps</prgn> - calculates shared library
 	    dependencies
@@ -9033,19 +9039,24 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	  </p>
 
 	  <p>
-	    For example, the <prgn>procps</prgn> package generates two
-	    kinds of binaries, simple C binaries like <prgn>ps</prgn>
-	    which require a predependency and full-screen ncurses
-	    binaries like <prgn>top</prgn> which require only a
-	    recommendation.  It can say in its <file>debian/rules</file>:
+	    For example, a package that generates an essential part
+	    which requires dependencies, and optional parts that 
+	    which only require a recommendation, would separate those
+	    two sets of dependencies into two different fields.<footnote>
+		At the time of writing, an example for this was the
+		<package/xmms/ package, with Depends used for the xmms
+		executable, Recommends for the plug-ins and Suggests for
+		even more optional features provided by unzip.
+	    </footnote>
+            It can say in its <file>debian/rules</file>:
 	    <example>
-  dpkg-shlibdeps -dPre-Depends ps -dRecommends top
+  dpkg-shlibdeps -dDepends <var>program anotherprogram ...</var> \
+                 -dRecommends <var>optionalpart anotheroptionalpart</var>
 	    </example>
 	    and then in its main control file <file>debian/control</file>:
 	    <example>
   <var>...</var>
-  Package: procps
-  Pre-Depends: ${shlibs:Pre-Depends}
+  Depends: ${shlibs:Pre-Depends}
   Recommends: ${shlibs:Recommends}
   <var>...</var>
 	    </example>
@@ -9066,7 +9077,7 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	</sect1>
 
 
-	<sect1>
+	<sect1 id="pkg-dpkg-distaddfile">
 	  <heading>
 	    <prgn>dpkg-distaddfile</prgn> - adds a file to
 	    <file>debian/files</file>
@@ -9105,8 +9116,10 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	</sect1>
 
 
-	<sect1><heading><prgn>dpkg-genchanges</prgn> - generates a <file>.changes</file> upload
-	    control file
+	<sect1 id="pkg-dpkg-genchanges">
+	  <heading>
+	    <prgn>dpkg-genchanges</prgn> - generates a <file>.changes</file>
+	    upload control file
 	  </heading>
 
 	  <p>
@@ -9127,8 +9140,10 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	</sect1>
 
 
-	<sect1><heading><prgn>dpkg-parsechangelog</prgn> - produces parsed representation of
-	    a changelog
+	<sect1 id="pkg-dpkg-parsechangelog">
+          <heading>
+            <prgn>dpkg-parsechangelog</prgn> - produces parsed
+	    representation of a changelog
 	  </heading>
 
 	  <p>
@@ -9141,8 +9156,10 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	  </p>
 	</sect1>
 
-        <sect1 id="pkg-dpkgarch"><heading><prgn>dpkg-architecture</prgn> -
-	    information about the build and host system
+        <sect1 id="pkg-dpkg-architecture">
+	  <heading>
+	    <prgn>dpkg-architecture</prgn> - information about the build and
+	    host system
           </heading>
 
           <p>
