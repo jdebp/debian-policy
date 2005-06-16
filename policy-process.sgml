@@ -7,7 +7,7 @@
 	<name>Manoj Srivastava</name>
         <email>srivasta@debian.org</email>
       </author>
-      <version>$Revision: 1.3 $</version>
+      <version>$Revision: 1.4 $</version>
       <copyright>
         <copyrightsummary>Copyright &#169; 2000 by Manoj Srivastava. 
         </copyrightsummary>
@@ -22,6 +22,7 @@
           <tt>/usr/share/common-licenses/GPL</tt>. </p>
       </copyright>
     </titlepag>
+    <toc detail="sect">
     <chapt>
       <heading>Introduction, and Administrivia</heading>
       <p>
