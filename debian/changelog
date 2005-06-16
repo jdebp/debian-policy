@@ -9,6 +9,8 @@ debian-policy (3.5.2.1) unstable; urgency=low
   * Also install FHS stuff byhand (as requested by webmasters)
   * Corrected GPL name and location         closes: Bug#88788, #93047
   * Correct bug severities                          closes: Bug#91276
+  * Correct typos etc. in policy-process
+  * Rename all .text files as .txt
 
  --
 
