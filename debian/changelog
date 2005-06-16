@@ -1,3 +1,33 @@
+debian-policy (3.2.1.0) unstable; urgency=low
+
+  * [AMENDMENT 15/01/2000] revision of the "to build with X support or
+    not" policy.                                        closes: Bug#53759 
+  * [ACCEPTED 2000/06/06] Must/Should/May in policy  This is only a
+    clarifying change, and was not intended to change the intent of
+    policy.                                             closes: Bug#64437
+  * [ACCEPTED 03/05/2000] About the use of conffiles.   closes: Bug#61308
+  * [AMENDMENT 10/05/2000] s/mail\.mail/root\.mail/     closes: Bug#62668
+  * [ACCEPTED 04/05/2000] Update for new non-US layout  closes: Bug#62946
+  * [ACCEPTED 04/05/2000] s/debian-devel/debian-legal/  closes: Bug#62947
+  * [ACCEPTED 04/05/2000] s/bash/base-files/            closes: Bug#62948
+  * Typo: 1744s/tty/ttyS/                               closes: Bug#64516
+  * proposal for mp3-encoder virtual package            closes: Bug#64004
+  * proposal for mp3-decoder virtual package            closes: Bug#64006
+  * new virtual package time-daemon                     closes: Bug#69031
+  * [PATCH] typos in menu-policy.sgml                   closes: Bug#69424
+  * [PATCH] typos and awkwardness in policy.sgml        closes: Bug#69426
+  * the example for using nostrip in DEB_BUILD_OPTIONS is
+    incorrect.                                          closes: Bug#69487
+  * [PATCH] more corrections                            closes: Bug#69670
+  * [AMENDMENT 26/10/99] Amend non-free definition      closes: Bug#46522
+  * [AMMENDMENT 29/10/99] /bin/sh needs echo -n         closes: Bug#48247
+  * [AMENDMENT 1999/11/23] Clarify meaning of Essential: yes
+                                                        closes: Bug#50832
+  * [ACCEPTED] Request for new virtual packages: rsh-client and
+    telnet-client                                       closes: Bug#58759
+
+ -- Manoj Srivastava <srivasta@debian.org>  Thu, 24 Aug 2000 02:06:30 -0500
+
 debian-policy (3.2.0.0) unstable; urgency=low
 
   * Fixed bugs in debian-policy package:

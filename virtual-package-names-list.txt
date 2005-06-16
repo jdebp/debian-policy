@@ -88,9 +88,12 @@ pdf-preview             Any preprocessor that creates PDF output
 pdf-viewer              Anything that can display PDF files
 postscript-preview      Any preprocessor that creates Postscript output
 postscript-viewer       Anything that can display Postscript files
+rsh-client              Any package that provides an rsh client
 system-log-daemon       A daemon that provides a logging facility for
                         other applications
 tclsh                   Anything that provides /usr/bin/tclsh (*)
+telent-client           Any package that provides a telnet client
+time-daemon             Anything that servers as a time daemon
 ups-monitor             Anything that is capable of controlling an UPS
 wish                    Anything that provides /usr/bin/wish (*)
 wordlist                Anything that provides /usr/share/dict/words (*)
@@ -107,6 +110,11 @@ news-reader             Any news reader (trn, tin, &c)
 news-transport-system   Local news system (INN, C News or B News)
 pgp                     A version of PGP (International or US)
 pop3-server             Any POP3 Server
+
+Graphics and MultiMedia
+-----------------------
+mp3-encoder             Any MP3 encoder package
+mp3-decoder             Any MP3 decoder package
 
 Old and obsolete virtual package names
 --------------------------------------
@@ -172,3 +180,17 @@ Manoj Srivastava
                Added xserver
                Added linux-kernel-log-daemon
                Added system-log-faemon
+
+Manoj Srivastava
+  24 August 2000 Added mp3-encoder
+                 Added mp3-decoder
+                 Added time-daemon
+                 Added rsh-client
+                 Added telnet-client
+
+
+
+
+
+
+
