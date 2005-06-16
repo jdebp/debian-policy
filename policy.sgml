@@ -1076,7 +1076,7 @@
 	      <prgn>debconf</prgn>, which conforms to the Debian
 	      Configuration management specification, version 2 or
 	      higher.  These are included in the
-	      <file>debconf_specification</file> files in the
+	      <tt>debconf_specification</tt> files in the
 	      <package>debian-policy</package> package.
 	      You may also find this file on the FTP site
 	      <ftpsite>ftp.debian.org</ftpsite> in
@@ -1112,7 +1112,7 @@
 	    <p>
 	      Packages which use the Debian Configuration management
 	      specification may contain an additional
-	      <file>config</file> script and a <file>templates</file>
+	      <prgn>config</prgn> script and a <tt>templates</tt>
 	      file in their control archive. The <prgn>config</prgn>
 	      script might be run before the <prgn>preinst</prgn>
 	      script, and before the package is unpacked or any of its
@@ -5455,6 +5455,34 @@ strip --strip-unneeded <var>your-lib</var>
 	  building a separate package to support debugging.
 	</p>
 
+ 	<p>
+	  Shared object files (often <tt>.so</tt> files) that are not
+	  public libraries, that is, they are not meant to be linked
+	  to by third party executables (binaries of other packages),
+	  should be installed in subdirectories of the
+	  <tt>/usr/lib</tt> directory.  Such files are exempt from the
+	  rules that govern ordinary shared libraries, except that
+	  they must not be installed executable and should be
+	  stripped.<footnote>
+	    <p>
+	      A common example are the so-called ``plug-ins'',
+	      internal shared objects that are dynamically loaded by
+	      programs using <manref name="dlopen" section="3">.
+	    </p>
+	  </footnote>
+	</p>
+ 									     
+	<p>
+	  Packages containing shared libraries that may be linked to
+	  by other packages' binaries, but which for some
+	  <em>compelling</em> reason can not be installed in
+	  <tt>/usr/lib</tt> directory, may install the shared library
+	  files in subdirectories of the <tt>/usr/lib</tt> directory,
+	  in which case they should arrange to add that directory in
+	  <tt>/etc/ld.so.conf</tt> in the package's post-installation
+	  script, and remove it in the package's post-removal script.
+	</p>
+
 	<p>
 	  An ever increasing number of packages are using
 	  <prgn>libtool</prgn> to do their linking.  The latest GNU
@@ -7218,14 +7246,15 @@ name [`<var>syshostname</var>']:
 
 	<p>
 	  If no manual page is available for a particular program,
-	  utility, function or configuration file and this is reported as a bug on
-	  debian-bugs, a symbolic link from the requested manual page
-	  to the <manref name="undocumented" section="7"> manual page
-	  may be provided.  This symbolic link can be created from
+	  utility, function or configuration file and this is reported
+	  as a bug to the Debian Bug Tracking System, a symbolic link
+	  from the requested manual page to the <manref
+	  name="undocumented" section="7"> manual page may be
+	  provided.  This symbolic link can be created from
 	  <tt>debian/rules</tt> like this:
 	  <example compact="compact">
 ln -s ../man7/undocumented.7.gz \
-debian/tmp/usr/share/man/man[1-9]/the_requested_manpage.[1-9].gz
+  debian/tmp/usr/share/man/man[1-9]/<var>requested_manpage</var>.[1-9].gz
 	  </example>
 	  This manpage claims that the lack of a manpage has been
 	  reported as a bug, so you may only do this if it really has
@@ -7281,12 +7310,13 @@ debian/tmp/usr/share/man/man[1-9]/the_requested_manpage.[1-9].gz
 	  They should be compressed with <tt>gzip -9</tt>.</p>
 
 	<p>
-	  Your package should call <prgn>install-info</prgn> to update the Info
-	  <tt>dir</tt>
-	  file, in its <prgn>postinst</prgn> script:
+	  Your package should call <prgn>install-info</prgn> to update
+	  the Info <tt>dir</tt> file in its <prgn>postinst</prgn>
+	  script when called with a <tt>configure</tt> argument, for
+	  example:
 	  <example compact="compact">
 install-info --quiet --section Development Development \
-/usr/share/info/foobar.info
+  /usr/share/info/foobar.info
 	  </example></p>
 
 	<p>
@@ -7301,7 +7331,8 @@ install-info --quiet --section Development Development \
 	  the second is used when creating a new one.</p>
 
 	<p>
-	  You should remove the entries in the <prgn>prerm</prgn> script:
+	  You should remove the entries in the <prgn>prerm</prgn>
+	  script when called with a <tt>remove</tt> argument:
 	  <example compact="compact">
 install-info --quiet --remove /usr/share/info/foobar.info
 	  </example></p>
@@ -7309,7 +7340,7 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	<p>
 	  If <prgn>install-info</prgn> cannot find a description entry
 	  in the Info file you must supply one.  See <manref
-							     name="install-info" section="8"> for details.</p>
+	  name="install-info" section="8"> for details.</p>
       </sect>
 
       <sect>
@@ -7318,7 +7349,7 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	<p>
 	  Any additional documentation that comes with the package may
 	  be installed at the discretion of the package maintainer.
-	  Text documentation should be installed in a directory
+	  Text documentation should be installed in the directory
 	  <tt>/usr/share/doc/<var>package</var></tt>, where
 	  <var>package</var> is the name of the package, and
 	  compressed with <tt>gzip -9</tt> unless it is small.</p>
@@ -7344,8 +7375,8 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	  delete them without causing any programs to break. Any files
 	  that are referenced by programs but are also useful as
 	  standalone documentation should be installed under
-	  <tt>/usr/share/<var>package</var>/</tt> and symlinked in
-	  <tt>/usr/share/doc/<var>package</var>/</tt>.
+	  <tt>/usr/share/<var>package</var>/</tt> with symbolic links
+	  from <tt>/usr/share/doc/<var>package</var>/</tt>.
 	</p>
 
       </sect>
@@ -7368,20 +7399,25 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	  it cannot be contained in the package itself due to problems
 	  with <prgn>dpkg</prgn>. One reasonable way to accomplish
 	  this is to put the following in the package's
-	  <prgn>postinst</prgn>:
+	  <prgn>postinst</prgn><footnote>
+	    <p>
+	      The <tt>debhelper</tt> script
+	      <prgn>dh_installdocs</prgn> does this automatically.
+	    </p>
+	  </footnote>:
           <example compact="compact">
 if [ "$1" = "configure" ]; then
-  if [ -d /usr/doc -a ! -e /usr/doc/#PACKAGE# \
-       -a -d /usr/share/doc/#PACKAGE# ]; then
-    ln -sf ../share/doc/#PACKAGE# /usr/doc/#PACKAGE#
+  if [ -d /usr/doc -a ! -e /usr/doc/<var>package</var> \
+       -a -d /usr/share/doc/<var>package</var> ]; then
+    ln -sf ../share/doc/<var>package</var> /usr/doc/<var>package</var>
   fi
 fi
           </example>
-          And the following in the package's <prgn>prerm</prgn>:
+          and the following in the package's <prgn>prerm</prgn>:
           <example compact="compact">
 if [ \( "$1" = "upgrade" -o "$1" = "remove" \) \
-     -a -L /usr/doc/#PACKAGE# ]; then
-  rm -f /usr/doc/#PACKAGE#
+     -a -L /usr/doc/<var>package</var> ]; then
+  rm -f /usr/doc/<var>package</var>
 fi
           </example>
 	</p>
@@ -7396,20 +7432,23 @@ fi
 
 	<p>
 	  If your package comes with extensive documentation in a
-	  mark up format that can be converted to various other formats
+	  markup format that can be converted to various other formats
 	  you should if possible ship HTML versions in a binary
 	  package, in the directory
-	  <tt>/usr/share/doc/<var>appropriate package</var></tt> or its
-	  subdirectories.<footnote>
-	    <p>The rationale: The important thing here is that HTML
+	  <tt>/usr/share/doc/<var>appropriate-package</var></tt> or
+	  its subdirectories.<footnote>
+	    <p>
+	      The rationale: The important thing here is that HTML
 	      docs should be available in <em>some</em> package, not
-	      necessarily in the main binary package, though. </p>
+	      necessarily in the main binary package.
+	    </p>
 	  </footnote>
 	</p>
 
 	<p>
-	  Other formats such as PostScript may be provided at your
-	  option.</p>
+	  Other formats such as PostScript may be provided at the
+	  package maintainer's discretion.
+	</p>
       </sect>
 
       <sect id="copyrightfile">
@@ -7418,8 +7457,9 @@ fi
 	<p>
 	  Every package must be accompanied by a verbatim copy of its
 	  copyright and distribution license in the file
-	  /usr/share/doc/<var>package</var>/copyright. This file must
-	  neither be compressed nor be a symbolic link.</p>
+	  <tt>/usr/share/doc/<var>package</var>/copyright</tt>. This
+	  file must neither be compressed nor be a symbolic link.
+	</p>
 
 	<p>
 	  In addition, the copyright file must say where the upstream
@@ -7431,44 +7471,27 @@ fi
 
 	<p>
 	  A copy of the file which will be installed in
-	  <tt>/usr/share/doc/<var>package</var>/copyright</tt> should be
-	  in <tt>debian/copyright</tt>.</p>
-
+	  <tt>/usr/share/doc/<var>package</var>/copyright</tt> should
+	  be in <tt>debian/copyright</tt> in the source package.
+	</p>
 
 	<p>
-	  /usr/share/doc/<var>package</var> may be a symbolic link to a
-	  directory in /usr/share/doc only if two packages both come from
-	  the same source and the first package has a "Depends"
-	  relationship on the second.  These rules are important
-	  because copyrights must be extractable by mechanical
-	  means.</p>
+	  <tt>/usr/share/doc/<var>package</var></tt> may be a symbolic
+	  link to another directory in <tt>/usr/share/doc</tt> only if
+	  the two packages both come from the same source and the
+	  first package Depends on the second.  These rules are
+	  important because copyrights must be extractable by
+	  mechanical means.
+	</p>
 
 	<p>
 	  Packages distributed under the UCB BSD license, the Artistic
 	  license, the GNU GPL, and the GNU LGPL should refer to the
-	  files /usr/share/common-licenses/BSD,
-	  /usr/share/common-licenses/Artistic,
-	  /usr/share/common-licenses/GPL, and
-	  /usr/share/common-licenses/LGPL.<footnote>
-	    <p>
-	      Why "licenses" and not "copyright"? Because
-	      <tt>/usr/doc/copyright</tt> used to contain all the
-	      copyright files, plus the four common licenses GPL,
-	      LGPL, Artistic and BSD. Now individual copyright files
-	      for packages are no longer in a common directory. Once
-	      <tt>/usr/doc/copyright</tt> is almost empty it makes
-	      sense to rename "copyright" to "licenses"
-	    </p>
-	    <p>
-	      Why "common-licenses" and not "licenses"? Because if I
-	      put just "licenses" I'm sure I will receive a bug report
-	      saying "license foo is not included in the licenses
-	      directory. They are not all the licenses, just a few
-	      common ones. I could use /usr/share/doc/common-licenses
-	      but I think this is too long, and, after all, the GPL
-	      does not "document" anything, it is merely a license.
-	    </p>
-	  </footnote>
+	  files <tt>/usr/share/common-licenses/BSD</tt>,
+	  <tt>/usr/share/common-licenses/Artistic</tt>,
+	  <tt>/usr/share/common-licenses/GPL</tt>, and
+	  <tt>/usr/share/common-licenses/LGPL</tt> respectively,
+	  rather than quoting them in the copyright file.
 	</p>
 
 	<p>
@@ -7486,46 +7509,49 @@ fi
 	  should be installed in a directory
 	  <tt>/usr/share/doc/<var>package</var>/examples</tt>.  These
 	  files should not be referenced by any program: they're there
-	  for the benefit of the system administrator and users, as
-	  documentation only. Architecture-specific example files
+	  for the benefit of the system administrator and users as
+	  documentation only.  Architecture-specific example files
 	  should be installed in a directory
-	  <tt>/usr/lib/<var>package</var>/examples</tt>, and files in
-	  <tt>/usr/share/doc/<var>package</var>/examples</tt> symlink
-	  to files in it. Or the latter directory may be a symlink to
-	  the former.</p>
+	  <tt>/usr/lib/<var>package</var>/examples</tt> with symbolic
+	  links to them from
+	  <tt>/usr/share/doc/<var>package</var>/examples</tt>, or the
+	  latter directory itself may be a symbolic link to the
+	  former.
+	</p>
       </sect>
 
       <sect id="instchangelog">
 	<heading>Changelog files</heading>
 
 	<p>
-	  Packages that are not Debian-native must contain a copy of
-	  <tt>debian/changelog</tt> file from the Debian source tree
-	  in <tt>/usr/share/doc/<var>package</var></tt> as
-	  <tt>changelog.Debian.gz</tt>. If an upstream changelog is
+	  Packages that are not Debian-native must contain a
+	  compressed copy of the <tt>debian/changelog</tt> file from
+	  the Debian source tree in
+	  <tt>/usr/share/doc/<var>package</var></tt> with the name
+	  <tt>changelog.Debian.gz</tt>.  If an upstream changelog is
 	  available, it should be accessible as
 	  <tt>/usr/share/doc/<var>package</var>/changelog.gz</tt> in
-	  plain text. If the upstream changelog is distributed in
+	  plain text.  If the upstream changelog is distributed in
 	  HTML, it should be made available in that form as
 	  <tt>/usr/share/doc/<var>package</var>/changelog.html.gz</tt>
-	  and the <tt>changelog.gz</tt> should be generated using, eg,
-	  <tt>lynx -dump -nolist</tt>. If the upstream changelog files
-	  do not already conform to this naming convention, then this
-	  may be achieved either by renaming the files, or adding a
-	  symbolic link, at the maintainer's discretion.<footnote>
+	  and a plain text <tt>changelog.gz</tt> should be generated
+	  from it using, for example, <tt>lynx -dump -nolist</tt>.  If
+	  the upstream changelog files do not already conform to this
+	  naming convention, then this may be achieved either by
+	  renaming the files, or by adding a symbolic link, at the
+	  maintainer's discretion.<footnote>
 	    <p>
-	      Rationale: People should not have to look into two
-	      places for upstream changelogs merely because they are
-	      in HTML format.
+	      Rationale: People should not have to look in places for
+	      upstream changelogs merely because they are given
+	      different names or are distributed in HTML format.
 	    </p>
 	  </footnote>
 	</p>
 
-
 	<p>
-	  All these files should be installed compressed using <tt>gzip -9</tt>,
-	  as they will become large with time even if they start out
-	  small.
+	  All of these files should be installed compressed using
+	  <tt>gzip -9</tt>, as they will become large with time even
+	  if they start out small.
 	</p>
 
 	<p>

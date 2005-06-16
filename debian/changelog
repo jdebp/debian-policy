@@ -30,6 +30,7 @@ debian-policy (3.5.4.1) unstable; urgency=low
     to find alternative manpage names                closes: Bug#94995
   * Correction to meaning of Standards-Version       closes: Bug#97072
   * Split section 12.8 (X Window System) into subsections for readability
+  * Plug-ins != shared libraries (at last)           closes: Bug#66023
 
  -- 
 
