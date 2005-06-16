@@ -92,8 +92,8 @@ rsh-server              Any package that provides an rsh server
 system-log-daemon       A daemon that provides a logging facility for
                         other applications
 tclsh                   Anything that provides /usr/bin/tclsh (*)
-telent-client           Any package that provides a telnet client
-telent-server           Any package that provides a telnet server
+telnet-client           Any package that provides a telnet client
+telnet-server           Any package that provides a telnet server
 time-daemon             Anything that servers as a time daemon
 ups-monitor             Anything that is capable of controlling an UPS
 wish                    Anything that provides /usr/bin/wish (*)

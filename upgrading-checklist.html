@@ -1,9 +1,9 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
 <html>
   <head>
- <!--                             -*- Mode: Sgml -*- 
+ <!--                             -*- Mode: Sgml -*-
     upgrading-checklist.html
-    Author           : Manoj Srivastava ( srivasta@tiamat.datasync.com ) 
+    Author           : Manoj Srivastava ( srivasta@tiamat.datasync.com )
     Created On       : Thu Oct 29 20:54:48 1998
     Created On Node  : tiamat.datasync.com
     Last Modified By : Manoj Srivastava
@@ -11,8 +11,8 @@
     Last Machine Used: glaurung.green-gryphon.com
     Update Count     : 15
     Status           : Unknown, Use with caution!
-    HISTORY          : 
-    Description      : 
+    HISTORY          :
+    Description      :
 
     -->
 
@@ -44,14 +44,19 @@ Manual.
 <h2>The checklist</h2>
 
 <pre>
-3.5.0.0                    Jan 28
+3.5.1.0                    Feb 01
+  Policy Manual:
+     - dpkg-shlibdeps now uses objdump, so shared libraries have to be
+       run through dpkg-shlibdeps as well as executables
+
+3.5.0.0                    Jan 01
 
   Policy Manual:
      - If your package had fonts for the X Window System, and you
        converted BDF to PCF formats, the <tt>bdftopcf</tt> utility has
-       moved to the xutils package. 
+       moved to the xutils package.
      - Font packages for the X Window System must now declare a
-       dependency on xutils >= 4.0.2 
+       dependency on xutils >= 4.0.2
 
 3.2.1.1                    Jan 01
 
@@ -66,6 +71,8 @@ Manual.
        program. If such files are needed, they must be placed in
        /usr/share/package-name/, and symbolic links created as required
        in /usr/share/doc/package-name/
+     - Much of the packaging manual has now been imported into the
+       policy document
 
 3.2.1.0                    Aug 00
 
@@ -73,14 +80,13 @@ Manual.
      - A package of priority standard or higher may provide two
        binaries, one compiled with support for the X Window System,
        and the other without.
-     -
 
 3.2.0.0                    Aug 00
 
   Policy Manual:
      - By default executables should not be built with the debugging
        option -g. Instead, it is recommended to support building the
-       package with debugging information optionally. Please look at the 
+       package with debugging information optionally. Please look at the
        examples using  DEB_BUILD_OPTIONS in the policy manual.
      - Policy for packages where the upstream uses html changelog
        files has been expanded. In short, a plain text changelog file
@@ -101,13 +107,13 @@ Manual.
      - Policy for packages using the X Window System and FHS issues
        has been clarified. Please read the manual for details.
      - Policy for packages providing an X application default has been
-       clarified. 
+       clarified.
      - No package may contain or make hard links to conffiles.
 
   Packaging Manual:
      - Noted that newer dpkg versions do not require extreme care in
        always creating the shared lib before the symlink, so the unpack
-       order be correct. 
+       order be correct.
 
 3.1.1.0                    Nov 99
 
@@ -169,7 +175,7 @@ Manual.
       major change, and the implications of this move are probably
       not all known.
     - Only 3 digits of the Standards version need be included in
-      control files, though all four digits are still permitted. 
+      control files, though all four digits are still permitted.
     - The location of the GPL has changed to
       /usr/share/common-licenses. This may require changing the
       copyright files to point to the correct location of the GPL and
@@ -178,9 +184,9 @@ Manual.
       include the .la files in the -dev packages.
     - Use logrotate to rotate log files
     - section 5.8 has been rewritten (Programs for the X Window
-      System) 
+      System)
     - There is now anassociated menu policy, in a separate document,
-      that carries the full weight of Debian policy. 
+      that carries the full weight of Debian policy.
     - The files `/var/run/utmp', `/var/log/wtmp' and
       `/var/log/lastlog' must be installed writeable by group
       utmp. Programs who need to modify those files must be installed
@@ -199,11 +205,11 @@ Manual.
         "Configuration files", moving the Section 4.8 ("Permissions
         and owners") to Section 4.9.  All subsections of the old
         Section 5 after 5.5  were moved down to fill in the number
-        gap. 
+        gap.
     - Modified the section about changelog files to accommodate
       upstream changelogs which were formatted as HTML/ These
       upstream changelog files should now be accessible as
-      /usr/doc/package/changelog.html.gz 
+      /usr/doc/package/changelog.html.gz
       + Symlinks are permissible to link the real, or upstream,
         changelog name to the Debian mandated name.
     - Clarified that HTML documentation should be present in some
@@ -211,7 +217,7 @@ Manual.
     - Corrected all references to the location of the copyright
       files. The correct location is /usr/doc/package/copyright
     - Ratified the architecture specification strings to cater to the
-      HURD. 
+      HURD.
 
 2.4.1.0                         Apr 98
 
@@ -230,7 +236,7 @@ Manual.
       ldconfig must be called in the postinst script if the package
       installs shared libraries
       (cf., Policy Weekly Issue #6, fixes:bug#20515)
-  
+
 2.4.0.0                         Jan 98
 
     - Updated section 3.3.4 Scripts:
@@ -292,7 +298,7 @@ Manual.
 	  /etc/services, /etc/protocols, /etc/rpc, and /etc/inetd.conf
 
 	* updated section about `Configuration files':
-	  packages may not touch other packages' configuration files  
+	  packages may not touch other packages' configuration files
 
 	* MUAs and MTAs have to use liblockfile
 
@@ -300,7 +306,7 @@ Manual.
 
 	* added section 4.1 `Architecture specification strings':
           use
-	       &lt;arch&gt;-linux 
+	       &lt;arch&gt;-linux
           where &lt;arch&gt; is one of the following:
                i386, alpha, arm, m68k, powerpc, sparc.
 
@@ -338,7 +344,7 @@ Manual.
 2.1.1.0				Sep 96
 
 	* No hard links in source packages
-	
+
 	* Do not use dpkg-divert or update-alternatives without consultation
 
 	* Shared libraries must be installed stripped
@@ -352,15 +358,6 @@ Manual.
 
   </body>
 </html>
-
-
-
-
-
-
-
-
-
 
 <!-- Keep this comment at the end of the file
 Local variables:
