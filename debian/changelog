@@ -11,7 +11,9 @@ debian-policy (3.6.0) unstable; urgency=low
                                                            closes: Bug#174982
   * Added LANG=C before the debiandoc2X invocations, this ensures that the
     resulting documents do not get converted to the locale on the building
-    machine.                                               closes: Bug#175064
+    machine.  This answers some of the issues mentioned in  Bug#175064
+  * [AMENDMENT 02/05/2003] encourage packagers to systematically prevent
+    mis-linked libraries                                   closes: Bug#191369
 
  -- 
 
