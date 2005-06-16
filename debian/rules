@@ -130,8 +130,12 @@ stamp-policy:  build
 	chown		    -R root.root debian/tmp
 	chmod		    -R go=rX debian/tmp
 	dpkg		    --build debian/tmp ..
-	debiandoc2latexps   -O policy.sgml | gzip -9v >	 ../policy.ps.gz
-	debiandoc2latexpdf  -O policy.sgml | gzip -9v >	 ../policy.pdf.gz
+	debiandoc2latexps    policy.sgml
+	mv policy.ps         ../
+	gzip -9qvf            ../policy.ps
+	debiandoc2latexpdf  policy.sgml
+	mv policy.pdf        ../
+	gzip -9qfv 	     ../policy.pdf
 	GZIP=-9v tar zcf    ../policy.html.tar.gz    policy.html
 	dpkg-distaddfile    -fdebian/files	     policy.ps.gz	byhand -
 	dpkg-distaddfile    -fdebian/files	     policy.pdf.gz	byhand -
@@ -166,8 +170,12 @@ stamp-packaging:  build
 	chown		   -R root.root debian/tmp-packaging
 	chmod		   -R go=rX debian/tmp-packaging
 	dpkg		   --build debian/tmp-packaging ..
-	debiandoc2latexps  -O packaging.sgml | gzip -9f > ../packaging.ps.gz
-	debiandoc2latexpdf -O packaging.sgml | gzip -9f > ../packaging.pdf.gz
+	debiandoc2latexps  packaging.sgml
+	debiandoc2latexpdf packaging.sgml
+	mv packaging.ps    ../
+	mv packaging.pdf   ../
+	gzip -9vf          ../packaging.ps
+	gzip -9vf          ../packaging.pdf
 	GZIP=-9v tar zcf   ../packaging.html.tar.gz    packaging.html
 	dpkg-distaddfile   -fdebian/files	 packaging.ps.gz       byhand -
 	dpkg-distaddfile   -fdebian/files	 packaging.pdf.gz      byhand -
