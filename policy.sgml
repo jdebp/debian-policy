@@ -1183,6 +1183,7 @@
 
 	<sect1>
 	  <heading>Standards conformance</heading>
+          <sect id="standardsversion">
 
 	  <p>
 	    In the source package's <tt>Standards-Version</tt> control
@@ -1458,29 +1459,40 @@
 
       <p>
 	Many of the tools in the package management suite manipulate
-	data in a common format, known as control files.  Binary and
-	source packages have control data as do the <tt>.changes</tt>
-	files which control the installation of uploaded files, and
-	<prgn>dpkg</prgn>'s internal databases are in a similar
+	data represented in a common format, known as <em>control
+	data</em>.  The data is often stored in <em>control
+	files</em>.  Binary and source packages have control files,
+	and the <tt>.changes</tt> files which control the installation
+	of uploaded files are also in control file format.
+	<prgn>Dpkg</prgn>'s internal databases are in a similar
 	format.
       </p>
 
       <sect><heading>Syntax of control files</heading>
 
 	<p>
-	  A file consists of one or more paragraphs of fields.  The
-	  paragraphs are separated by blank lines.  Some control files
-	  only allow one paragraph; others allow several, in which
-	  case each paragraph often refers to a different package.
+	  A control file consists of one or more paragraphs of fields.
+	  The paragraphs are separated by blank lines.  Some control
+	  files allow only one paragraph; others allow several, in
+	  which case each paragraph usually refers to a different
+	  package.  (For example, in source packages, the first
+	  paragraph refers to the source package, and later paragraphs
+	  refer to binary packages generated from the source.)
 	</p>
 
 	<p>
-	  Each paragraph is a series of fields and values; each field
-	  consists of a name, followed by a colon and the value.  It
-	  ends at the end of the line.  Horizontal whitespace (spaces
-	  and tabs) may occur immediately before or after the value
-	  and is ignored there; it is conventional to put a single
-	  space after the colon.
+	  Each paragraph consists of a series of data fields; each
+	  field consists of the field name, followed by a colon and
+	  then the data/value associated with that field.  It ends at
+	  the end of the line.  Horizontal whitespace (spaces and
+	  tabs) may occur immediately before or after the value and is
+	  ignored there; it is conventional to put a single space
+	  after the colon.  For example, a field might be:
+	  <example>
+	    Package: libc6
+	  </example>
+	  the field name is <tt>Package</tt> and the field value
+	  <tt>libc6</tt>.
 	</p>
 
 	<p>
@@ -1493,9 +1505,9 @@
 	<p>
 	  Except where otherwise stated only a single line of data is
 	  allowed and whitespace is not significant in a field body.
-	  Whitespace may never appear inside names (of packages,
-	  architectures, files or anything else), version numbers or
-	  in between the characters of multi-character version
+	  Whitespace must not appear inside names (of packages,
+	  architectures, files or anything else) or version numbers,
+	  or between the characters of multi-character version
 	  relationships.
 	</p>
 
@@ -1510,21 +1522,12 @@
 	  would mean a new paragraph.
 	</p>
 
-	<p>
-	  It is important to note that there are several fields which
-	  are optional as far as <prgn>dpkg</prgn> and the related
-	  tools are concerned, but which must appear in every Debian
-	  package, or whose omission may cause problems.  When writing
-	  the control files for Debian packages you <em>must</em> read
-	  the Debian policy manual in conjunction with the details
-	  below and the list of fields for the particular file.</p>
       </sect>
 
       <sect><heading>List of fields</heading>
 	<p>
 	  This list here is not supposed to be exhaustive. Most fields
-	  are dealt with elsewhere in this document and in the
-	  dpkg documentation.
+	  are dealt with elsewhere in this document.
 	</p>
 	<sect1 id="f-Package"><heading><tt>Package</tt>
 	  </heading>
@@ -1537,10 +1540,10 @@
 
 	  <p>
 	    They must be at least two characters long and must start
-	    with an alphanumeric character.  The use of lowercase
-	    package names is strongly recommended unless the package
-	    you're building (or referring to, in other fields) is
-	    already using uppercase.</p>
+	    with an alphanumeric character and not be all digits.  The
+	    use of lowercase package names is strongly recommended
+	    unless the package you're building (or referring to, in
+	    other fields) is already using uppercase.</p>
 	</sect1>
 
 	<sect1 id="f-Version"><heading><tt>Version</tt>
@@ -1563,12 +1566,9 @@
 	    complies.  This is updated manually when editing the
 	    source package to conform to newer standards; it can
 	    sometimes be used to tell when a package needs attention.
+	    Its format is described above; see
+	    <ref id="standardsversion">.
 	  </p>
-
-	  <p>
-	    Its format is the same as that of a version number except
-	    that no epoch or Debian revision is allowed - see <ref
-								   id="versions">.</p>
 	</sect1>
 
 
@@ -1579,23 +1579,21 @@
 	    In a <tt>.changes</tt> file or parsed changelog output
 	    this contains the (space-separated) name(s) of the
 	    distribution(s) where this version of the package should
-	    be or was installed.  Distribution names follow the rules
-	    for package names.  (See <ref id="f-Package">).
-	  </p>
-
-	  <p>
+	    be installed.  Valid distributions are determined by the
+	    archive maintainers.
 	    <footnote>
-		Current distribution values are:
+		Current distribution names are:
 		<taglist>
 		  <tag><em>stable</em></tag>
 		  <item>
 		    <p>
 		      This is the current `released' version of Debian
-		      GNU/Linux.  Once the
-		      distribution is <em>stable</em> only major bug fixes
-		      are allowed. When changes are made to this
-		      distribution, the release number is increased
-		      (for example: 1.2r1 becomes 1.2r2 then 1.2r3, etc).
+		      GNU/Linux.  Once the distribution is
+		      <em>stable</em> only security fixes and other
+		      major bug fixes are allowed. When changes are
+		      made to this distribution, the release number is
+		      increased (for example: 2.2r1 becomes 2.2r2 then
+		      2.2r3, etc).
 		    </p>
 		  </item>
 
@@ -1611,71 +1609,51 @@
 		    </p>
 		  </item>
 
+		  <tag><em>testing</em></tag>
+		  <item>
+		    <p>
+		      This distribution value refers to the
+		      <em>testing</em> part of the Debian distribution
+		      tree.  It receives its packages from the
+		      unstable distribution after a short time lag to
+		      ensure that there are no major issues with the
+		      unstable packages.  It is less prone to breakage
+		      than unstable, but still risky.  It is not
+		      possible to upload packages directly to
+		      <em>testing</em>.
+		    </p>
+		  </item>
+
 		  <tag><em>frozen</em></tag>
 		  <item>
 		    <p>
-		      From time to time, the <em>unstable</em>
+		      From time to time, the <em>frozen</em>
 		      distribution enters a state of `code-freeze' in
 		      anticipation of release as a <em>stable</em>
 		      version. During this period of testing only
 		      fixes for existing or newly-discovered bugs will
-		      be allowed.
+		      be allowed.  The exact details of this stage are
+		      determined by the Release Manager.
 		    </p>
 		  </item>
 
 		  <tag><em>experimental</em></tag>
 		  <item>
 		    <p>
-		      The packages with this distribution value are deemed
-		      by their maintainers to be high risk. Oftentimes they
-		      represent early beta or developmental packages from
-		      various sources that the maintainers want people to
-		      try, but are not ready to be a part of the other parts
-		      of the Debian distribution tree. Download at your own
+		      The packages with this distribution value are
+		      deemed by their maintainers to be high
+		      risk. Oftentimes they represent early beta or
+		      developmental packages from various sources that
+		      the maintainers want people to try, but are not
+		      ready to be a part of the other parts of the
+		      Debian distribution tree. Download at your own
 		      risk.
 		    </p>
 		  </item>
 		</taglist>
-		There are several sections in each
-		distribution. Currently, these sections are:
 
-		<taglist>
-		  <tag><em>main</em></tag>
-		  <item>
-		    <p>
-		      The packages in this section are those in the
-		      main Debian distribution.  They are all free
-		      (according to the Debian free software
-		      guidelines) and meet any other criteria for
-		      inclusion described in this manual.</p>
-		  </item>
-
-		  <tag><em>contrib</em></tag>
-		  <item>
-		    <p>
-		      The packages in this section do not meet the
-		      criteria for inclusion in the main Debian
-		      distribution as defined by this manual, but are
-		      otherwise free, as defined by the Debian free
-		      software guidelines.</p>
-		  </item>
-
-		  <tag><em>non-free</em></tag>
-		  <item>
-		    <p>
-		      Packages in <em>non-free</em> do not meet the
-		      criteria of free software, as defined by the
-		      Debian free software guidelines. Again, use your
-		      best judgment in downloading from this
-		      Distribution.</p>
-		  </item>
-
-		</taglist> You should list <em>all</em> distributions that
-		the package should be installed into. Except in unusual
-		circumstances, installations to <em>stable</em> should also
-		go into <em>frozen</em> (if it exists) and
-		<em>unstable</em>. Likewise, installations into
-		<em>frozen</em> should also go into <em>unstable</em>.
+		You should list <em>all</em> distributions that the
+		package should be installed into.
 	    </footnote>
 	  </p>
 	</sect1>

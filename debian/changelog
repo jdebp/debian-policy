@@ -16,10 +16,10 @@ debian-policy (3.5.3.0) unstable; urgency=low
   * [ACCEPTED 14/03/2001] Deprecate confusing        closes: Bug#87828
     Build-Depends arch syntax
   * [AMENDMENT 29/03/2001] Clarification of example  closes: Bug#87711
-    configuration  files  
+    configuration files
   * Undo all renaming to text, since the change had not been propogated to
     the rules file, which broke badly. This shall have to wait for a later
-    version. 
+    version.
 
  -- Manoj Srivastava <srivasta@debian.org>  Sun, 15 Apr 2001 13:36:19 -0500
 

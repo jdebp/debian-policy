@@ -10,7 +10,8 @@
 
   <articleinfo>
     <title>Configuration management</title>
-    <subtitle>revision 7.0</subtitle>
+    <subtitle>Protocol version 2</subtitle>
+    <releaseinfo>Revision 7.0</releaseinfo>
     <author>
       <firstname>
         Wichert
