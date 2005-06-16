@@ -202,12 +202,15 @@
       <sect>
 	<heading>New versions of this document</heading>
 	<p>
-	  The current version of this document is always accessible from the
-	  Debian FTP server <ftpsite>ftp.debian.org</ftpsite> as
-	  <ftppath>/debian/doc/package-developer/debian-policy.html.tar.gz</ftppath>
-	  or from the
-	  <url id="http://www.debian.org/doc/debian-policy/"
-	       name="Debian Policy Manual"> webpage.</p>
+	  The current version of this document is always accessible
+	  from the Debian FTP server <ftpsite>ftp.debian.org</ftpsite>
+	  as
+	  <ftppath>/debian/doc/package-developer/policy.text.gz</ftppath>
+	  (also available from the same directory are several other
+	  formats: <tt>policy.html.tar.gz</tt>, <tt>policy.pdf.gz</tt>
+	  and <tt>policy.ps.gz</tt>) or from the <url
+	  id="http://www.debian.org/doc/debian-policy/" name="Debian
+	  Policy Manual"> webpage.</p>
 
 	<p>
 	  In addition, this manual is distributed via the Debian package
@@ -825,8 +828,11 @@
 	    archive.</p>
 
 	  <p>
-	    Package names must only consist of lower case letters, digits (0-9),
-	    plus (+) or minus (-) signs, and periods (.).</p>
+	    Package names must consist of lower case letters (a-z),
+	    digits (0-9), plus (+) and minus (-) signs, and periods
+	    (.).  They must be at least two characters long and must
+	    contain at least one letter.
+	  </p>
 
 	  <p>
 	    The package name is part of the file name of the
@@ -838,29 +844,42 @@
 	<sect1>
 	  <heading>The maintainer of a package</heading>
 	 <p>
-	    Every package must have a maintainer (the maintainer may
-	    be one person or a group of people reachable from a common
-	    email address, such as a mailing list).  The maintainer is
-	    responsible for ensuring that the  package is placed in
-	    the appropriate distribution
+	    Every package must have a Debian maintainer (the
+	    maintainer may be one person or a group of people
+	    reachable from a common email address, such as a mailing
+	    list).  The maintainer is responsible for ensuring that
+	    the package is placed in the appropriate distributions.
 	  </p>
 
 	  <p>
 	    The maintainer must be specified in the
-	    <tt>Maintainer</tt> control field with the correct name
-	    and a working email address for the Debian maintainer of
-	    the package.  If one person maintains several packages
-	    he/she should try to avoid having different forms of their
-	    name and email address in different <tt>Maintainer</tt>
-	    fields.</p>
+	    <tt>Maintainer</tt> control field with their correct name
+	    and a working email address.  If one person maintains
+	    several packages, he/she should try to avoid having
+	    different forms of their name and email address in
+	    the <tt>Maintainer</tt> fields of those packages.
+	  </p>
 
 	  <p>
 	    If the maintainer of a package quits from the Debian
-	    project the Debian QA Group
-	    <email>debian-qa@lists.debian.org</email> takes over the
+	    project, "Debian QA Group"
+	    <email>packages@qa.debian.org</email> takes over the
 	    maintainership of the package until someone else
 	    volunteers for that task. These packages are called
 	    <em>orphaned packages</em>.
+	    <footnote>
+	      <p>
+		The detailed procedure for doing this gracefully can
+		be found in the Debian Developer's Reference, either
+		in the <tt>developers-reference</tt> package, or on
+		the Debian FTP server
+		<ftpsite>ftp.debian.org</ftpsite> as
+		<ftppath>/debian/doc/package-developer/developers-reference.txt.gz</ftppath>
+		or from the <url
+		id="http://www.debian.org/doc/packaging-manuals/developers-reference/"
+		name="Debian Developer's Reference"> webpage.
+	      </p>
+	    </footnote>
 	  </p>
 	</sect1>
 
@@ -873,15 +892,15 @@
 	    stored in the appropriate field of the control record.</p>
 
 	  <p>
-	    The description should be written so that it tells the user
-	    what they need to know to decide whether to install the
-	    package. This description should not just be copied from
-	    the blurb for the program.  Instructions for configuring
-	    or using the package should not be included -- that is what
-	    installation scripts, manual pages, Info files, etc. are
-	    for.  Copyright statements and other administrivia should
-	    not be included -- that is what the copyright file is
-	    for.</p>
+	    The description should be written so that it gives the
+	    system administrator enough information to decide whether
+	    to install the package. This description should not just
+	    be copied verbatim from the program's documentation.
+	    Instructions for configuring or using the package should
+	    not be included -- that is what installation scripts,
+	    manual pages, info files, etc., are for.  Copyright
+	    statements and other administrivia should not be included
+	    either -- that is what the copyright file is for.</p>
 	</sect1>
 
 
@@ -921,13 +940,13 @@
 	  <heading>Virtual packages</heading>
 
 	  <p>
-	    Sometimes, there are several packages doing more-or-less
-	    the same job. In this case, it's useful to define a
-	    <em>virtual package</em> whose name describes the function
-	    the packages have. (The virtual packages just exist
-	    logically, not physically--that's why they are called
-	    <em>virtual</em>.) The packages with this particular
-	    function will then <em>provide</em> the virtual
+	    Sometimes, there are several packages which offer
+	    more-or-less the same functionality. In this case, it's
+	    useful to define a <em>virtual package</em> whose name
+	    describes that common functionality.  (The virtual
+	    packages only exist logically, not physically--that's why
+	    they are called <em>virtual</em>.) The packages with this
+	    particular function will then <em>provide</em> the virtual
 	    package. Thus, any other package requiring that function
 	    can simply depend on the virtual package without having to
 	    specify all possible packages individually.</p>
@@ -983,11 +1002,11 @@
 	    for a system.</p>
 
 	  <p>
-	    Since these packages can not easily be removed (you'll
-	    have to specify an extra <em>force option</em> to
-	    <prgn>dpkg</prgn>) this flag must not be used unless
-	    absolutely necessary.  A shared library package must not
-	    be tagged <tt>essential</tt>--the dependencies will
+	    Since these packages cannot be easily removed (one has to
+	    specify an extra <em>force option</em> to
+	    <prgn>dpkg</prgn> to do so), this flag must not be used
+	    unless absolutely necessary.  A shared library package
+	    must not be tagged <tt>essential</tt>--dependencies will
 	    prevent its premature removal, and we need to be able to
 	    remove it when it has been superseded.
 	  </p>
@@ -995,7 +1014,7 @@
 	  <p>
 	    Since dpkg will not prevent upgrading of other packages
             while an <tt>essential</tt> package is in an unconfigured
-            state, all <tt>essential</tt> packages must supply all
+            state, all <tt>essential</tt> packages must supply all of
             their core functionality even when unconfigured. If the
             package cannot satisfy this requirement it must not be
             tagged as essential, and any packages depending on this
@@ -1006,9 +1025,10 @@
 	  <p>
 	    You must not tag any packages <tt>essential</tt> before
 	    this has been discussed on the <tt>debian-devel</tt>
-	    mailing and a consensus about doing that has been
-	    reached.</p></sect1>
-
+	    mailing list and a consensus about doing that has been
+	    reached.
+	  </p>
+	</sect1>
 
 	<sect1>
 	  <heading>Maintainer scripts</heading>
@@ -1028,7 +1048,7 @@
 	  </p>
 
 	  <p>
-	    Note, that <ref id="scripts">, in general applies to package
+	    Note that in general <ref id="scripts"> applies to package
 	    maintainer scripts, too.
 	  </p>
 
@@ -1048,7 +1068,8 @@
 	    specify a conflict against earlier versions of something
 	    that previously did not use
 	    <prgn>update-alternatives</prgn> - this is an exception to
-	    the usual rule that this not allowed).
+	    the usual rule that versioned conflicts should be
+	    avoided).
 	  </p>
 
 
@@ -1060,21 +1081,22 @@
 	      communicating with a program, such as
 	      <prgn>debconf</prgn>, which conforms to the Debian
 	      Configuration management specification, version 2 or
-	      higher. (Included in the
+	      higher.  These are included in the
 	      <file>debconf_specification</file> files in the
-	      <package>debian-policy</package> package.)
+	      <package>debian-policy</package> package.
 	      You may also find this file on the FTP site
 	      <ftpsite>ftp.debian.org</ftpsite> in
 	      <ftppath>/debian/doc/package-developer/debconf_specification.txt.gz</ftppath>
-	      or your local mirror.
+	      or on your local mirror.
 	      <footnote>
 		<p>
-		  2.5% of Debian packages
-		  [<url id="http://kitenet.net/programs/debconf/stats/">]
-		  use debconf to prompt the user at install time, and
-		  this number is growing daily. The benefits of using
-		  debconf are briefly explained at
-		  <url id="http://kitenet.net/doc/debconf-doc/introduction.html">;
+		  2.5% of Debian packages [see <url
+		  id="http://kitenet.net/programs/debconf/stats/">]
+		  currently use <package>debconf</package> to prompt
+		  the user at install time, and this number is growing
+		  daily. The benefits of using debconf are briefly
+		  explained at <url
+		  id="http://kitenet.net/doc/debconf-doc/introduction.html">;
 		  they include preconfiguration, (mostly)
 		  noninteractive installation, elimination of
 		  redundant prompting, consistency of user interface,
@@ -1082,12 +1104,13 @@
 		</p>
 		<p>
 		  With this increasing number of packages using
-		  debconf, plus the existance of a nascent second
-		  implementation of the Debian configuration
-		  management system (<package>cdebconf</package>), and
-		  the stabalization of the protocol these things use,
-		  the time has finally come to reflect the use of
-		  these things in policy.
+		  <package>debconf</package>, plus the existance of a
+		  nascent second implementation of the Debian
+		  configuration management system
+		  (<package>cdebconf</package>), and the stabalization
+		  of the protocol these things use, the time has
+		  finally come to reflect the use of these things in
+		  policy.
 
 		</p>
 	      </footnote>
@@ -1097,17 +1120,18 @@
 	      specification may contain an additional
 	      <file>config</file> script and a <file>templates</file>
 	      file in their control archive. The <prgn>config</prgn>
-	      script can be run before the preinst, and before the
-	      package is unpacked or any of its dependancies or
-	      pre-dependancies are satisfied, so it must work using
-	      only the tools present in the <em>Essential</em>
-	      packages.
+	      script might be run before the <prgn>preinst</prgn>
+	      script, and before the package is unpacked or any of its
+	      dependancies or pre-dependancies are satisfied.
+	      Therefore it must work using only the tools present in
+	      <em>essential</em> packages.
 	      <footnote>
 		<p>
-		  Debconf or another tool that implements the Debian
-		  Configuration management specification will also be
-		  installed, and any versioned dependancies on it will
-		  be satisfied before preconfiguration begins.
+		  <package>Debconf</package> or another tool that
+		  implements the Debian Configuration management
+		  specification will also be installed, and any
+		  versioned dependencies on it will be satisfied
+		  before preconfiguration begins.
 		</p>
 	      </footnote>
 	    </p>
@@ -1118,9 +1142,10 @@
 	      will only ever be asked each question once.  This means
 	      that packages should try to use appropriate shared
 	      configuration files (such as <tt>/etc/papersize</tt> and
-	      <tt>/etc/news/server</tt>), and shared debconf variables
-	      rather than each prompting for their own list of
-	      required pieces of information.
+	      <tt>/etc/news/server</tt>), and shared
+	      <package>debconf</package> variables rather than each
+	      prompting for their own list of required pieces of
+	      information.
 	    </p>
 
 	    <p>
@@ -1144,7 +1169,7 @@
 	      important (they belong in
 	      <tt>/usr/share/doc/<var>package</var>/copyright</tt>);
 	      neither do instructions on how to use a program (these
-	      should be in on line documentation, where all the users
+	      should be in on-line documentation, where all the users
 	      can see them).</p>
 
 	  <p>
@@ -1166,22 +1191,21 @@
 	  <heading>Standards conformance</heading>
 
 	  <p>
-	    You should specify the most recent version of the
-	    packaging standards with which your package complies in
-	    the source package's <tt>Standards-Version</tt> field.</p>
+	    In the source package's <tt>Standards-Version</tt> control
+	    field, you must specify the most recent version number of
+	    this policy document with which your package complies.
+	    The current version number is &version;.
+	  </p>
 
 	  <p>
-	    This value will be used to file bug reports automatically
-	    if your package becomes too much out of date.</p>
-
-	  <p>
-	    The value corresponds to a version of the Debian manuals,
-	    as can be found on the title page or page headers and
-	    footers (depending on the format).</p>
+	    This information may be used to file bug reports
+	    automatically if your package becomes too much out of
+	    date.
+	  </p>
 
 	  <p>
 	    The version number has four components--major and minor
-	    number and major and minor patch level.  When the
+	    version number and major and minor patch level.  When the
 	    standards change in a way that requires every package to
 	    change the major number will be changed.  Significant
 	    changes that will require work in many packages will be
@@ -1189,22 +1213,24 @@
 	    level will be changed for any change to the meaning of the
 	    standards, however small; the minor patch level will be
 	    changed when only cosmetic, typographical or other edits
-	    which do not change the meaning are made, or changes which
-	    do not affect the contents of packages.</p>
+	    are made which neither change the meaning of the document
+	    nor affect the contents of packages.</p>
 
 	  <p>
-	    For package maintainers, only the first 3 digits of the
-	    manual version are significant in representing the
-	    <em>Standards-Version</em>, and either these 3 digits or
-	    the complete 4 digits may be specified.
+	    Thus only the first three components of the policy version
+	    are significant in the <em>Standards-Version</em> control
+	    field, and so either these three components or the all
+	    four components may be specified.
 	    <footnote>
 	      <p>
-		In the past, people specified 4 digits in the
-		Standards-Version field, like `2.3.0.0'.  Since any
-		`patch-level changes' don't introduce new policy, it
-		was thought it would be better to relax policy and
-		only require that the first 3 digits are specified. (4
-		digits may still be used if someone wants to do so.)
+		In the past, people specified the full version number
+		in the Standards-Version field, for example `2.3.0.0'.
+		Since minor patch-level changes don't introduce new
+		policy, it was thought it would be better to relax
+		policy and only require the first 3 components to be
+		specified, in this example `2.3.0'.  All four
+		components may still be used if someone wishes to do
+		so.
 	      </p>
 	    </footnote>
 	  </p>
@@ -1215,7 +1241,16 @@
 	    available and update your package, if necessary. When your
 	    package complies with the new standards you should update the
 	    <tt>Standards-Version</tt> source package field and
-	    release it.</p></sect1>
+	    release it.
+	    <footnote>
+	      <p>
+		See the file <tt>upgrading-checklist</tt> for
+		information about policy which has changed between
+		different versions of this document.
+	      </p>
+	    </footnote>
+	  </p>
+	</sect1>
 
 
 	<sect1>
@@ -1246,23 +1281,24 @@
 		    <p>This allows maintaining the list separately
 		      from the policy documents (the list does not
 		      need the kind of control that the policy
-		      documents do)
+		      documents do).
 		    </p>
 		  </item>
 		  <item>
 		    <p>
 		      Having a separate package allows one to install
-		      the build essential packages on a machine, as
-		      well as allowing other packages (think task
-		      packages) to bring in the build-essential
-		      packages using the depends relation
+		      the build-essential packages on a machine, as
+		      well as allowing other packages such as task
+		      packages to require installation of the
+		      build-essential packages using the depends
+		      relation.
 		    </p>
 		  </item>
 		  <item>
 		    <p>
 		      The separate package allows bug reports against
-		      the package to be categorized separately from
-		      the policy management process that uses the BTS
+		      the list to be categorized separately from
+		      the policy management process in the BTS.
 		    </p>
 		  </item>
 		</list>
@@ -1276,42 +1312,56 @@
 	    should list only those packages explicitly required by the
 	    build.  It is not necessary to list packages which are
 	    required merely because some other package in the list of
-	    build-time dependencies depends on them.  The reason is
-	    that dependencies change, and you should list only those
-	    <em>you</em> need.  What others need is their business.
+	    build-time dependencies depends on them.
+	    <footnote>
+	      <p>
+		The reason for this is that dependencies change, and
+		you should list all those packages, and <em>only</em>
+		those packages that <em>you</em> need directly.  What
+		others need is their business.  For example, if you
+		only link against <tt>libimlib</tt>, you will need to
+		build-depend on <package>libimlib2-dev</package> but
+		not against any <tt>libjpeg*</tt> packages, even
+		though <tt>libimlib2-dev</tt> currently depends on
+		them: installation of <package>libimlib2-dev</package>
+		will automatically ensure that all of its run-time
+		dependencies are satisfied.
+	      </p>
+	    </footnote>
 	  </p>
 
 	  <p>
 	    If build-time dependencies are specified, it must be
 	    possible to build the package and produce working binaries
-	    on a system with the build-essential packages installed
-	    and satisfying the build-time relationships (including any
-	    implied relationships).  This
-	    means in particular that version clauses should be used
-	    rigorously in build-time relationships so that one cannot
-	    produce bad or inconsistently configured packages when the
-	    relationships are properly satisfied.
+	    on a system with only essential and build-essential
+	    packages installed and also those required to satisfy the
+	    build-time relationships (including any implied
+	    relationships).  In particular, this means that version
+	    clauses should be used rigorously in build-time
+	    relationships so that one cannot produce bad or
+	    inconsistently configured packages when the relationships
+	    are properly satisfied.
 	  </p>
 
 	<sect1>
 	  <heading>Changes to the upstream sources</heading>
 
 	  <p>
-	    If changes to the source code are made that are generally
-	    applicable, they should be sent to the upstream authors
-	    in whatever form they prefer so as to be included in the
-	    upstream version of the package.</p>
+	    If changes to the source code are made that are not
+	    specific to the needs of the Debian system, they should be
+	    sent to the upstream authors in whatever form they prefer
+	    so as to be included in the upstream version of the
+	    package.</p>
 
 	  <p>
 	    If you need to configure the package differently for
 	    Debian or for Linux, and the upstream source doesn't
-	    provide a way to configure it the way you need to, you
-	    should add such configuration facilities (for example, a new
-	    <prgn>autoconf</prgn> test or <tt>#define</tt>) and send
-	    the patch to the upstream authors, with the default set to
-	    the way they originally had it.  You can then easily
-	    override the default in your <tt>debian/rules</tt> or
-	    wherever is appropriate.</p>
+	    provide a way to do so, you should add such configuration
+	    facilities (for example, a new <prgn>autoconf</prgn> test
+	    or <tt>#define</tt>) and send the patch to the upstream
+	    authors, with the default set to the way they originally
+	    had it.  You can then easily override the default in your
+	    <tt>debian/rules</tt> or wherever is appropriate.</p>
 
 	  <p>
 	    You should make sure that the <prgn>configure</prgn> utility
@@ -1336,20 +1386,31 @@
 	    You should document your changes and updates to the source
 	    package properly in the <tt>debian/changelog</tt> file. (Note
 	    that mistakes in changelogs are usually best rectified by
-	    making  a new changelog entry rather than "rewriting history"
-	    by editing old changelog entries)</p>
+	    making a new changelog entry rather than "rewriting history"
+	    by editing old changelog entries.)</p>
 
 	  <p>
-	    In non-experimental packages you must only use a format for
+	    In non-experimental packages you must use a format for
 	    <tt>debian/changelog</tt> which is supported by the most
-	    recent released version of <prgn>dpkg</prgn>.  If your
-	    format is not supported and there is general support for
-	    it you should contact the <prgn>dpkg</prgn> maintainer to
-	    have the parser script for your format included in the
-	    <prgn>dpkg</prgn> package. (You will need to agree that
-	    the parser and its manpage may be distributed under the
-	    GNU GPL, just as the rest of <prgn>dpkg</prgn>
-	    is.)</p></sect1>
+	    recent released version of <prgn>dpkg</prgn>.
+	    <footnote>
+	      <p>
+		If you wish to use an alternative format, you may do
+		so as long as you include a parser for it in your
+		source package.  The parser must have an API
+		compatible with that expected by
+		<prgn>dpkg-genchanges</prgn> and
+		<prgn>dpkg-gencontrol</prgn>.  If there is general
+		interest in the new format, you should contact the
+		<package>dpkg</package> maintainer to have the parser
+		script for it included in the <prgn>dpkg</prgn>
+		package.  (You will need to agree that the parser and
+		its manpage may be distributed under the GNU GPL, just
+		as the rest of `dpkg' is.)
+	      </p>
+	    </footnote>
+	  </p>
+	</sect1>
 
 
 	<sect1>
@@ -1357,8 +1418,8 @@
 
 	  <p>
 	    When <prgn>make</prgn> invokes a command in a makefile
-	    (including your package's upstream makefiles and the
-	    <tt>debian/rules</tt>) it does so using <tt>sh</tt>.  This
+	    (including your package's upstream makefiles and
+	    <tt>debian/rules</tt>), it does so using <tt>sh</tt>.  This
 	    means that <tt>sh</tt>'s usual bad error handling
 	    properties apply: if you include a miniature script as one
 	    of the commands in your makefile you'll find that if you
@@ -1391,9 +1452,10 @@
 	    only available in binary form).</p>
 
 	  <p>
-	    Debian packages should be ported to include
-	    <prgn>&lt;stdarg.h&gt;</prgn> and <tt>ncurses</tt> when
-	    they are built.</p>
+	    Debian packages should be patched to use
+	    <prgn>&lt;stdarg.h&gt;</prgn> and <tt>ncurses</tt>
+	    instead.
+	  </p>
 	</sect1>
       </sect>
     </chapt>
