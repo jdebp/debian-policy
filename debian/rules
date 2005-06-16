@@ -99,7 +99,6 @@ stamp-build: version.ent $(sanitycheck)
 	links -dump upgrading-checklist.html | perl -pe 's/[\r\0]//g' > \
                     upgrading-checklist.txt
 	$(MAKE) -C debconf_spec all
-	gzip -9f debconf_spec/debconf_specification.txt
 	touch stamp-build
 
 configure: version.ent
