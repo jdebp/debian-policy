@@ -1,6 +1,7 @@
 debian-policy (3.5.2.1) unstable; urgency=low
 
   * Removed recommendation on packaging-manual      closes: Bug#86507
+  * Also now Conflicts and Replaces packaging-manual
 
  --
 
