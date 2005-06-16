@@ -8336,7 +8336,18 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	  <file>/usr/share/doc/<var>package</var></file> may be a symbolic
 	  link to another directory in <file>/usr/share/doc</file> only if
 	  the two packages both come from the same source and the
-	  first package Depends on the second.
+	  first package Depends on the second.<footnote>
+            <p>
+              Please note that this does not override the section on
+              changelog files below, so the file 
+              <file>/usr/share/<var>package</var>/changelog.Debian.gz</file>
+              must refer to the changelog for the current version of
+              <var>package</var> in question. In practice, this means
+              that the sources of the target and the destnation of the
+              symlink must be the same (same source package and
+              version). 
+            </p>
+          </footnote>
 	</p>
 
 	<p>
