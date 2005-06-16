@@ -88,6 +88,7 @@ Documentation
  dict-server             the Dictionary Server
  info-browser            something that can browse GNU Info files
  ispell-dictionary       a dictionary for the ispell system
+ myspell-dictionary      a dictionary for the myspell system
  man-browser             something that can read man pages
  wordlist                a /usr/share/dict/words (*)
  www-browser             something that can browse HTML files
@@ -233,3 +234,4 @@ Manoj Srivastava:
               Added aspell-dictionary
               Added radius-server
    9 Sep 2002 Added dict-server
+   3 Aug 2003 Added myspell-dictionary

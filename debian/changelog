@@ -6,6 +6,10 @@ debian-policy (3.6.1) unstable; urgency=low
   Manoj:
   * Change reference to the debconf introduction from kitenet to a debian
     hosted server.                                         closes: Bug#184518
+  * Added myspell-dictionary to the virtual packages list  closes: Bug#203728
+  * Fix the restart action in the init.d/bind example; it now uses
+    --oknodo so that the action does not fail when the service is not
+    running.                                               closes: Bug#187250
 
  --
 
