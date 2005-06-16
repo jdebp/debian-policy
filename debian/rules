@@ -44,7 +44,10 @@ FILES_TO_CLEAN  = debian/files debian/buildinfo  debian/substvars \
 		  menu-policy.text.gz \
 		  policy-process.text.gz policy-process.pdf.gz  \
 		  proposal.text.gz menu-policy.pdf.gz proposal.pdf.gz \
-		  mime-policy.text.gz mime-policy.pdf.gz
+		  mime-policy.text.gz mime-policy.pdf.gz \
+                  debconf_spec/debconf_specification.html \
+                  debconf_spec/debconf_specification.txt.gz \
+
 STAMPS_TO_CLEAN = stamp-policy stamp-build stamp-configure
 DIRS_TO_CLEAN   = debian/tmp policy.html fhs \
 		   menu-policy.html mime-policy.html \
@@ -72,10 +75,14 @@ POLICY_FILES =policy.text.gz policy.sgml virtual-package-names-list.text \
 	      version.ent proposal.sgml proposal.text.gz \
 	      menu-policy.sgml menu-policy.text.gz \
 	      mime-policy.sgml mime-policy.text.gz \
-              policy-process.text.gz policy-process.sgml
+              policy-process.text.gz policy-process.sgml \
+              debconf_spec/debconf_specification.html \
+              debconf_spec/debconf_specification.txt.gz
 BYHAND_FILES =policy.text.gz libc6-migration.text \
 	      virtual-package-names-list.text menu-policy.text.gz \
-	      mime-policy.text.gz
+	      mime-policy.text.gz policy.ps.gz policy.pdf.gz \
+              policy.html.tar.gz \
+	      debconf_spec/debconf_specification.txt.gz
 
 
 install_file   = /usr/bin/install -p	-o root -g root	 -m  644
@@ -107,6 +114,8 @@ stamp-build:
 	GROFF_TMAC_PATH=. cd fhs && $(MAKE) fhs.ps fhs.pdf fhs.txt
 	lynx -dump fhs-changes-2.1.html > fhs/fhs-changes-2.1.text
 	lynx -dump upgrading-checklist.html > upgrading-checklist.text
+	$(MAKE) -c debconf_spec all
+	gzip -9f debconf_spec/debconf_specification.txt
 	touch stamp-build
 
 configure: stamp-configure
@@ -171,19 +180,14 @@ stamp-policy:  build
 	chmod		    -R go=rX debian/tmp
 	dpkg		    --build debian/tmp ..
 	debiandoc2latexps    policy.sgml
-	mv policy.ps         ../
-	gzip -9qvf            ../policy.ps
-	debiandoc2latexpdf  policy.sgml
-	mv policy.pdf        ../
-	gzip -9qfv 	     ../policy.pdf
-	GZIP=-9v tar zcf    ../policy.html.tar.gz    policy.html
+	gzip -9qvf           policy.ps
+	debiandoc2latexpdf   policy.sgml
+	gzip -9qfv 	     policy.pdf
+	GZIP=-9v tar zcf     policy.html.tar.gz    policy.html
 	$(install_file)	   version.ent	             $(DOCDIR)/
-	dpkg-distaddfile    -fdebian/files	     policy.ps.gz	byhand -
-	dpkg-distaddfile    -fdebian/files	     policy.pdf.gz	byhand -
-	dpkg-distaddfile    -fdebian/files	     policy.html.tar.gz byhand -
-	for i in	    $(BYHAND_FILES); do \
-	  $(install_file)   $$i		   ..		     ; \
-	  dpkg-distaddfile  -fdebian/files $$i	     byhand - ; \
+	for i in	    $(BYHAND_FILES); do                          \
+	  $(install_file)   $$i		   ..		               ; \
+	  dpkg-distaddfile  -fdebian/files `filename $$i`     byhand - ; \
 	done
 	touch		   stamp-policy
 
