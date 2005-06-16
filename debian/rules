@@ -114,7 +114,7 @@ stamp-build:
 	GROFF_TMAC_PATH=. cd fhs && $(MAKE) fhs.ps fhs.pdf fhs.txt
 	lynx -dump fhs-changes-2.1.html > fhs/fhs-changes-2.1.text
 	lynx -dump upgrading-checklist.html > upgrading-checklist.text
-	$(MAKE) -c debconf_spec all
+	$(MAKE) -C debconf_spec all
 	gzip -9f debconf_spec/debconf_specification.txt
 	touch stamp-build
 
