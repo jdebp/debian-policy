@@ -5,9 +5,9 @@
 ## Created On	    : Thu Oct 29 15:35:55 1998
 ## Created On Node  : tiamat.datasync.com
 ## Last Modified By : Manoj Srivastava
-## Last Modified On : Tue Apr 27 10:38:06 1999
+## Last Modified On : Tue Apr 27 11:55:25 1999
 ## Last Machine Used: glaurung.green-gryphon.com
-## Update Count	    : 34
+## Update Count	    : 35
 ## Status	    : Unknown, Use with caution!
 ## HISTORY	    :
 ## Description	    :
@@ -50,6 +50,7 @@ stamp-build:
 	nsgmls -gues policy.sgml	# check SGML syntax
 	debiandoc2html policy.sgml
 	debiandoc2text policy.sgml
+	if [ -f policy.txt ]; then mv policy.txt policy.text; fi
 	lynx -dump upgrading-checklist.html > upgrading-checklist.text
 	gzip -9f policy.text
 	touch stamp-build
