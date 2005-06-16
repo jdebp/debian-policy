@@ -7,7 +7,7 @@
 	<name>Manoj Srivastava</name>
         <email>srivasta@debian.org</email>
       </author>
-      <version>$Revision: 1.1 $</version>
+      <version>$Revision: 1.2 $</version>
       <copyright>
         <copyrightsummary>Copyright &#169; 2000 by Manoj Srivastava. 
         </copyrightsummary>
@@ -131,7 +131,7 @@
           dead. If six months have actually passed, the bug should be
           retitled <strong>"[OLD PROPOSAL] ..."</strong>, and have the
           severity set to fixed. The maintianers shall flush out old
-          proposal after a a suuficiently long period of time
+          proposal after a a sufficiently long period of time
           (cetainly more than a year or so). 
 	</p>
 	<p>
