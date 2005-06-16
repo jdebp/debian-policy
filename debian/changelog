@@ -4,6 +4,7 @@ debian-policy (3.6.0) unstable; urgency=low
     XXX write a better description here XXX
     XXX update the section numbers in the upgrading checklist XXX
   * Added Games/Simulation to menu subpolicy               closes: Bug#194974
+  * Added Apps/Educational to menu subpolicy               closes: Bug#194972
   * [ACCEPTED]: Debian changelogs should be UTF-8 encoded. Changed the
     wording from a should to a may; since a should would make an unknown
     number of packages insta buggy. A reuest makes all these wishlist
