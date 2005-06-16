@@ -877,6 +877,11 @@
 	    statements and other administrivia should not be included
 	    either (that is what the copyright file is for).
 	  </p>
+
+	  <p>
+	    Please refer to <ref id="descriptions"> for more information.
+	  </p>
+
 	</sect1>
 
 
@@ -2369,8 +2374,20 @@ Package: libc6
 	  </footnote>
 	</p>
       </sect>
+
       <sect id="descriptions"><heading>Descriptions of packages - the
-	  <tt>Description</tt> field </heading>
+	  <tt>Description</tt> field</heading>
+
+	<p>
+	  The "Description" control file field consists of two parts,
+	  the synopsis or the short description, and the long description.
+	  The field's format is as follows:
+	</p>
+
+	<p><example>
+	Description: &lt;single line synopsis&gt;
+	 &lt;extended description over several lines&gt;
+</example></p>
 
 	<p>
 	  The description is intended to describe the program to a user
@@ -2381,8 +2398,15 @@ Package: libc6
 	  conflicts have been declared.
 	</p>
 
-	<sect1><heading>Notes about writing descriptions
-	  </heading>
+	<p>
+	  Put important information first, both in the synopsis and
+	  extended description.  Sometimes only the first part of the
+	  synopsis or of the description will be displayed.  You can
+	  assume that there will usually be a way to see the whole
+	  extended description.
+	</p>
+
+        <sect1 id="synopsis"><heading>The single line synopsis</heading>
 
 	  <p>
 	    The single line synopsis should be kept brief - certainly
@@ -2396,6 +2420,10 @@ Package: libc6
 	    the user may only see the synopsis line - make it as
 	    informative as you can.
 	  </p>
+
+	</sect1>
+
+        <sect1 id="extendeddesc"><heading>The extended description</heading>
 
 	  <p>
 	    Do not try to continue the single line synopsis into the
@@ -2415,35 +2443,63 @@ Package: libc6
 	    The description field needs to make sense to anyone, even
 	    people who have no idea about any of the things the
 	    package deals with.<footnote>
-	      <p>
 		The blurb that comes with a program in its
 		announcements and/or <prgn>README</prgn> files is
 		rarely suitable for use in a description.  It is
 		usually aimed at people who are already in the
 		community where the package is used.
-	      </p>
 	    </footnote>
 	  </p>
 
 	  <p>
-	    Put important information first, both in the synopsis and
-	    extended description.  Sometimes only the first part of the
-	    synopsis or of the description will be displayed.  You can
-	    assume that there will usually be a way to see the whole
-	    extended description.
+	    The lines in the extended description can have these formats:
 	  </p>
 
-	  <p>
-	    You may include information about dependencies and so forth
-	    in the extended description, if you wish.
-	  </p>
+	  <p><list>
+
+	    <item>
+	      Those starting with a single space are part of a paragraph.
+	      Successive lines of this form will be word-wrapped when
+	      displayed. The leading space will usually be stripped off.
+	    </item>
+
+	    <item>
+	      Those starting with two or more spaces. These will be
+	      displayed verbatim. If the display cannot be panned
+	      horizontally, the displaying program will linewrap them "hard"
+	      (i.e., without taking account of word breaks). If it can they
+	      will be allowed to trail off to the right. None, one or two
+	      initial spaces may be deleted, but the number of spaces
+	      deleted from each line will be the same (so that you can have
+	      indenting work correctly, for example).
+	    </item>
+
+	    <item>
+	      Those containing a single space followed by a single full stop
+	      character. These are rendered as blank lines. This is the
+	      <em>only</em> way to get a blank line<footnote>
+		Completely empty lines will not be rendered as blank lines. 
+		Instead, they will cause the parser to think you're starting
+		a whole new record in the control file, and will therefore
+		likely abort with an error.
+	      </footnote>.
+	    </item>
+
+	    <item>
+	      Those containing a space, a full stop and some more characters.
+	      These are for future expansion. Do not use them.
+	    </item>
+
+	  </list></p>
 
 	  <p>
 	    Do not use tab characters.  Their effect is not predictable.
 	  </p>
 
 	</sect1>
+
       </sect>
+
     </chapt>
 
 
@@ -6421,7 +6477,7 @@ endscript
 	  that a dynamically allocated id can be used.  In this case
 	  you should choose an appropriate user or group name,
 	  discussing this on <prgn>debian-devel</prgn> and checking
-	  with the base system maintainer that it is unique and that
+	  with the <package/base-passwd/ maintainer that it is unique and that
 	  they do not wish you to use a statically allocated id
 	  instead.  When this has been checked you must arrange for
 	  your package to create the user or group if necessary using
