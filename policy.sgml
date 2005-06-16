@@ -4634,7 +4634,8 @@ rmdir /usr/local/share/emacs 2>/dev/null || true
 	      <item><p>stop the service,</p></item>
 
 	      <tag><tt>restart</tt></tag>
-	      <item><p>stop and restart the service,</p></item>
+	      <item><p>stop and restart the service if it's already
+		  already running, otherwise start the service</p></item>
 
 	      <tag><tt>reload</tt></tag>
 	      <item><p>cause the configuration of the service to be
