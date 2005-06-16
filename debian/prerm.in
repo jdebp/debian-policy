@@ -81,7 +81,7 @@ esac
 
 
 if [ -x /usr/sbin/install-docs ]; then
-    /usr/sbin/install-docs -r $PACKAGE
+    /usr/sbin/install-docs -r $package_name
 fi
 
 exit 0
