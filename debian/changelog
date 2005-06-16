@@ -8,6 +8,8 @@ debian-policy (3.5.9.0) unstable; urgency=low
   * Fixed an accidental change from /usr/share/package to /usr/share/doc in
     the paragraph about not depending on /usr/share/doc/package,
     closes: #174048.
+  * Fixed several errors reported by Guenther Palfinger, with some help from
+    Richard Braakman, closes: #177205, #177206, #177207, #177208, #177209.
 
  -- 
 
