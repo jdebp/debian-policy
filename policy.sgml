@@ -10011,7 +10011,7 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	  </p>
 
 	  <p>
-	    These fields may appear in binary package control files,
+	    These fields can appear in binary package control files,
 	    in which case they provide a default value in case the
 	    <file>Packages</file> files are missing the information.
 	    <prgn>dpkg</prgn> and <prgn>dselect</prgn> will only use
