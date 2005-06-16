@@ -7,9 +7,9 @@
     Created On       : Thu Oct 29 20:54:48 1998
     Created On Node  : tiamat.datasync.com
     Last Modified By : Manoj Srivastava
-    Last Modified On : Thu Jan 18 01:32:14 2001
+    Last Modified On : Fri Jan 19 14:01:36 2001
     Last Machine Used: glaurung.green-gryphon.com
-    Update Count     : 14
+    Update Count     : 15
     Status           : Unknown, Use with caution!
     HISTORY          : 
     Description      : 
@@ -71,7 +71,8 @@ Manual.
   Policy Manual:
      - By default executables should not be built with the debugging
        option -g. Instead, it is recommended to support building the
-       package with debugging information optionally.
+       package with debugging information optionally. Please look at the 
+       examples using  DEB_BUILD_OPTIONS in the policy manual.
      - Policy for packages where the upstream uses html changelog
        files has been expanded. In short, a plain text changelog file
        should always be generated for the upstream changes.
@@ -82,7 +83,7 @@ Manual.
      - Policy for packages providing an X terminal emulator has been
        codified (use virtual package x-terminal-emulator)
      - Policy for packages providing an X window manager has been
-       codified (use virtual package x-window-anager, and also as an
+       codified (use virtual package x-window-manager, and also as an
        alternative for /usr/bin/x-window-manager. The policy has
        guidelines on how to calculate priority)
      - Policy for packages providing an X fonts has been
@@ -163,7 +164,7 @@ Manual.
     - The location of the GPL has changed to
       /usr/share/common-licenses. This may require changing the
       copyright files to point to the correct location of the GPL and
-      other major licences
+      other major licenses
     - Packages that use libtool to create shared libraries must
       include the .la files in the -dev packages.
     - Use logrotate to rotate log files
@@ -190,9 +191,9 @@ Manual.
         and owners") to Section 4.9.  All subsections of the old
         Section 5 after 5.5  were moved down to fill in the number
         gap. 
-    - Modified the section about changelog files to accomodate
+    - Modified the section about changelog files to accommodate
       upstream changelogs which were formatted as HTML/ These
-      upstream chagelog files should now be accessible as
+      upstream changelog files should now be accessible as
       /usr/doc/package/changelog.html.gz 
       + Symlinks are permissible to link the real, or upstream,
         changelog name to the Debian mandated name.

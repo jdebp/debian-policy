@@ -902,17 +902,110 @@
 	    the part of a user installing many packages.  This means,
 	    amongst other things, using the <tt>--quiet</tt> option on
 	    <prgn>install-info</prgn>.</p>
-	  
+
 	  <p>
-	    Packages should try to minimize the amount of prompting
-	    they need to do, and they should ensure that the user will
-	    only ever be asked each question once.  This means that
-	    packages should try to use appropriate shared
-	    configuration files (such as <tt>/etc/papersize</tt> and
-	    <tt>/etc/news/server</tt>), rather than each prompting for
-	    their own list of required pieces of information.</p>
-	  
+	    Errors which occur during the execution of an installation
+	    script must be checked and the installation must not
+	    continue after an error.
+	  </p>
+
 	  <p>
+	    Note, that <ref id="scripts">, in general applies to package
+	    maintainer scripts, too.
+	  </p>
+
+	  <p>
+	    You should not use <tt>dpkg-divert</tt>' on a file
+	    belonging to another package without consulting the
+	    maintainer of that package first.
+	  </p>
+	  <p>
+	    All packages which supply an instance of a common command
+	    name (or, in general, filename) should generally use
+	    <prgn>update-alternatives</prgn>, so that they may be
+	    installed together.  If <prgn>update-alternatives</prgn>
+	    is not used, then each package must use
+	    <var>Conflicts</var> to ensure that other packages are
+	    de-installed.  (In this case, it may be appropriate to
+	    specify a conflict against earlier versions of something
+	    that previously did not use
+	    <prgn>update-alternatives</prgn> - this is an exception to
+	    the usual rule that this not allowed).
+	  </p>
+
+
+	  <sect2>
+	    <heading>Prompting in maintainer scripts</heading>
+	    <p>
+	      Package maintainer scripts may prompt the user if
+	      necessary. Prompting may be accomplished by hand, or by
+	      communicating with a program, such as
+	      <prgn>debconf</prgn>, which conforms to the Debian
+	      Configuration management specification, version 2 or
+	      higher. (Included in the
+	      <file>debconf_specification</file> files in the
+	      <package>debian-policy</package> package.)
+	      You may also find this file on the FTP site 
+	      <ftpsite>ftp.debian.org</ftpsite> in
+	      <ftppath>/debian/doc/package-developer/debconf_specification.txt.gz</ftppath>
+	      or your local mirror. 
+	      <footnote>
+		<p>
+		  2.5% of Debian packages 
+		  [<url id="http://kitenet.net/programs/debconf/stats/">]
+		  use debconf to prompt the user at install time, and
+		  this number is growing daily. The benefits of using
+		  debconf are briefly explained at
+		  <url id="http://kitenet.net/doc/debconf-doc/introduction.html">;
+		  they include preconfiguration, (mostly)
+		  noninteractive installation, elimination of
+		  redundant prompting, consistency of user interface,
+		  etc.
+		</p>
+		<p>
+		  With this increasing number of packages using
+		  debconf, plus the existance of a nascent second
+		  implementation of the Debian configuration
+		  management system (<package>cdebconf</package>), and
+		  the stabalization of the protocol these things use,
+		  the time has finally come to reflect the use of
+		  these things in policy.
+		  
+		</p>
+	      </footnote>
+	    </p>
+	    <p>
+	      Packages which use the Debian Configuration management
+	      specification may contain an additional
+	      <file>config</file> script and a <file>templates</file>
+	      file in their control archive. The <prgn>config</prgn>
+	      script can be run before the preinst, and before the
+	      package is unpacked or any of its dependancies or
+	      pre-dependancies are satisfied, so it must work using
+	      only the tools present in the <em>Essential</em>
+	      packages. 
+	      <footnote>
+		<p>
+		  Debconf or another tool that implements the Debian
+		  Configuration management specification will also be
+		  installed, and any versioned dependancies on it will
+		  be satisfied before preconfiguration begins.
+		</p>
+	      </footnote>
+	    </p>
+
+	    <p>
+	      Packages should try to minimize the amount of prompting
+	      they need to do, and they should ensure that the user
+	      will only ever be asked each question once.  This means
+	      that packages should try to use appropriate shared
+	      configuration files (such as <tt>/etc/papersize</tt> and
+	      <tt>/etc/news/server</tt>), and shared debconf variables
+	      rather than each prompting for their own list of
+	      required pieces of information.
+	    </p>
+	    
+	    <p>
 	    It also means that an upgrade should not ask the same
 	    questions again, unless the user has used <tt>dpkg
 	      --purge</tt> to remove the package's configuration.  The
@@ -922,54 +1015,30 @@
 	    documented.</p>
 	  
 	  <p>
-	    If a package has a vitally important piece of information
-	    to pass to the user (such as "don't run me as I am, you
-	    must edit the following configuration files first or you
-	    risk your system emitting badly-formatted messages"), it
-	    should display this in the <prgn>postinst</prgn> script
-	    and prompt the user to hit return to acknowledge the
-	    message.  Copyright messages do not count as vitally
-	    important (they belong in
-	    <tt>/usr/share/doc/<var>package</var>/copyright</tt>); neither
-	    do instructions on how to use a program (these should be
-	    in on line documentation, where all the users can see
-	    them).</p>
+	      If a package has a vitally important piece of
+	      information to pass to the user (such as "don't run me
+	      as I am, you must edit the following configuration files
+	      first or you risk your system emitting badly-formatted
+	      messages"), it should display this in the
+	      <prgn>config</prgn> or <prgn>postinst</prgn> script and
+	      prompt the user to hit return to acknowledge the
+	      message.  Copyright messages do not count as vitally
+	      important (they belong in
+	      <tt>/usr/share/doc/<var>package</var>/copyright</tt>);
+	      neither do instructions on how to use a program (these
+	      should be in on line documentation, where all the users
+	      can see them).</p>
 	  
 	  <p>
 	    Any necessary prompting should almost always be confined
-	    to the post-installation script, and should be protected
-	    with a conditional so that unnecessary prompting doesn't
-	    happen if a package's installation fails and the
-	    <prgn>postinst</prgn> is called with
+	    to the <prgn>config</prgn> or <prgn>postinst</prgn>
+	    script. If it is done in the <prgn>postinst</prgn>, it
+	    should be protected with a conditional so that unnecessary
+	    prompting doesn't happen if a package's installation fails
+	    and the <prgn>postinst</prgn> is called with
 	    <tt>abort-upgrade</tt>, <tt>abort-remove</tt> or
 	    <tt>abort-deconfigure</tt>.</p>
 	  
-	  <p>
-	    Errors which occur during the execution of an installation
-	    script should be checked and the installation should not
-	    continue after an error.</p>
-	  
-	  <p>
-	    Note, that <ref id="scripts">, in general applies to
-	    package maintainer scripts, too.</p>
-	  
-	  <p>
-	    You should not use <prgn>dpkg-divert</prgn> on a file
-	    belonging to another package without consulting the maintainer
-	    of that package first.</p>
-	  
-	  <p>
-	    All packages which supply an instance of a common command
-	    name (or, in general, filename) should generally use
-	    <prgn>update-alternatives</prgn>, so that they may be
-	    installed together. If <prgn>update-alternatives</prgn>
-	    is not used, then each package must use <tt>Conflicts</tt>
-	    to ensure that other packages are de-installed. (In this
-	    case, it may be appropriate to specify a conflict against
-	    earlier versions of something that previously did not use
-	    <prgn>update-alternatives</prgn> -- this is an exception to
-	    the usual rule that this not allowed).
-          </p>
 	</sect1>
       </sect>
       <sect>
@@ -2239,7 +2308,7 @@
 	</p>
 
 	<p>	  
-	  Broadly speaking the <prgn></prgn> is called before
+	  Broadly speaking the <prgn>preinst</prgn> is called before
 	  (a particular version of) a package is installed, and the
 	  <prgn>postinst</prgn> afterwards; the <prgn>prerm</prgn>
 	  before (a version of) a package is removed and the
@@ -3647,7 +3716,7 @@
 	    The <prgn>foo</prgn> binary depends on the
 	    <prgn>libbar</prgn> shared library, but no package seems
 	    to provide a <tt>*.shlibs</tt> file in
-	    <tt></tt>var/lib/dpkg/info/.  Let's determine the package
+	    <tt>var/lib/dpkg/info/</tt>.  Let's determine the package
 	    responsible:
 	  </p>
 
@@ -4498,7 +4567,7 @@
 	<p>
           Menu entries should follow the current menu policy as
           defined in the file <ftpsite>ftp.debian.org</ftpsite> in
-          <ftppath>/debian/doc/package-developer/menu-policy.txt</ftppath>
+          <ftppath>/debian/doc/package-developer/menu-policy.text.gz</ftppath>
           or your local mirror. In addition, it is included in the
 	  <tt>debian-policy</tt> package.
 	</p>
@@ -4534,7 +4603,7 @@
 	  compose, edit or print MIME types should register themselves
 	  as such following the current MIME support policy as defined
 	  in the file found on <ftpsite>ftp.debian.org</ftpsite> in
-	  <ftppath>/debian/doc/package-developer/mime_policy.txt</ftppath>
+	  <ftppath>/debian/doc/package-developer/mime-policy.text.gz</ftppath>
 	  or your local mirror. In addition, it is included in the
 	  <tt>debian-policy</tt> package. 
 	</p>
@@ -4807,17 +4876,28 @@
 	    </p>
 	  </footnote>
 
+
 	  <example>
 	    CFLAGS = -O2 -Wall
 	    INSTALL = install
+            INSTALL_FILE    = $(INSTALL) -p    -o root -g root  -m  644
+            INSTALL_PROGRAM = $(INSTALL) -p    -o root -g root  -m  755
+	    INSTALL_SCRIPT  = $(INSTALL) -p    -o root -g root  -m  755
+            INSTALL_DIR     = $(INSTALL) -p -d -o root -g root  -m  755
 
 	    ifneq (,$(findstring debug,$(DEB_BUILD_OPTIONS)))
 	    CFLAGS += -g
 	    endif
 	    ifeq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
-	    INSTALL += -s
+	    INSTALL_PROGRAM += -s
 	    endif
-	  </example></p>
+	  </example>
+
+	  Please note that the above example is merely informative,
+	  and is not a policy mandate. You may have to massage this
+	  example in order to make it work for your package.
+
+	</p>
 
 	<p>
 	  It is up to the package maintainer to decide what
@@ -5736,7 +5816,7 @@
       
       
       <sect>
-	<heading>Mail transport agents</heading>
+	<heading>Mail transport, delivery and user agents</heading>
 	
 	<p>
 	  Debian packages which process electronic mail, whether
@@ -5756,7 +5836,7 @@
 	  All Debian MUAs, MTAs, MDAs and other mailbox accessing
 	  programs (like IMAP daemons) must lock the mailbox in an
 	  NFS-safe way. This means that <tt>fcntl()</tt> locking must
-	  to be combined with dot locking.  To avoid dead locks, a
+	  be combined with dot locking.  To avoid deadlocks, a
 	  program should use <tt>fcntl()</tt> first and dot locking
 	  after this or alternatively implement the two locking
 	  methods in a non blocking way<footnote>
@@ -5878,29 +5958,7 @@
 	  in question is of standard or higher priority, in which case
 	  X-specific binaries may be split into a separate package, or
 	  alternative versions of the package with X support may be
-	  provided.<footnote>
-	    <p>
-	      <strong>NOTE</strong> The forthcoming major X Window
-	      System release shall probably change this
-	      drastically.
-	    </p>
-	    <p>
-	      This seems to be more what people want.  It will enable
-	      packages like vim-tty to become legal if they are
-	      promoted to standard priority.  Also, that X client in
-	      mtools can be split into its own package and made
-	      optional.
-	    </p>
-	    <p>
-	      This paves the way for xlib6g and xfree86-common to be
-	      moved from standard to optional, <strong>if</strong> all
-	      Xlib dependent packages are moved from standard to
-	      optional priority (or if non-Xlib-linked versions are
-	      retained in standard).  That, however is up to the
-	      affected package maintainers and the archive
-	      maintainers, and is not mandated by this policy.
-	    </p>
-	  </footnote>
+	  provided.
 	</p>
 	
 	
@@ -5911,15 +5969,12 @@
 	  virtual package <tt>xserver</tt>.
 	  <footnote>
 	    <p>
-	      Rationale: implement current practice, and provide an
-	      actual policy for usage of the "xserver" virtual package
-	      which appears in the virtual packages list.
-	      In a nutshell, X servers that interface directly with
-	      the display and input hardware or via another subsystem
-	      (e.g., GGI) should provide xserver.  Things like Xvfb,
-	      Xnest, and Xprt should not. <strong>NOTE</strong> The
-	      forthcoming major X Window System release shall probably
-	      change this drastically.
+	      This implements current practice, and provides an actual
+	      policy for usage of the "xserver" virtual package which
+	      appears in the virtual packages list.  In a nutshell, X
+	      servers that interface directly with the display and input
+	      hardware or via another subsystem (e.g., GGI) should provide
+	      xserver.  Things like Xvfb, Xnest, and Xprt should not.
 	    </p>
 	  </footnote>
 	</p>
@@ -5978,7 +6033,7 @@
 	    <item>
 		BDF fonts should be converted to PCF fonts with the
 		<tt>bdftopcf</tt> utility (available in the
-		<tt>xbase-clients</tt> package, <tt>gzip</tt>ped, and
+		<tt>xutils</tt> package, <tt>gzip</tt>ped, and
 		placed in a directory that corresponds to their
 		resolution:
 		<list>
@@ -6063,7 +6118,7 @@
 	    </item>
 	    <item>
 		Font packages must declare a dependency on
-		<tt>xbase-clients</tt> and, in the package
+		<tt>xutils</tt> and, in the package
 		post-installation and post-removal scripts, invoke the
 		<tt>mkfontdir</tt> command on each directory into
 		which they installed fonts.
@@ -6071,8 +6126,8 @@
 	    <item>
 		Font packages that provide one or more
 		<tt>fonts.scale</tt> files as described above must declare a
-		versioned dependency on <tt>xbase-clients (&gt;=
-		  3.3.3.1-5)</tt> and invoke <tt>update-fonts-scale</tt> on each
+		versioned dependency on <tt>xutils (&gt;=
+		  4.0.2)</tt> and invoke <tt>update-fonts-scale</tt> on each
 		directory into which they installed fonts
 		<em>before</em> invoking <tt>mkfontdir</tt> on that
 		directory.  This invocation must occur in both the
@@ -6081,8 +6136,8 @@
 	    <item>
 		Font packages that provide one or more
 		<tt>fonts.alias</tt> files as described above must
-		declare a versioned dependency on <tt>xbase-clients
-		  (&gt;= 3.3.3.1-5)</tt> and, in the package
+		declare a versioned dependency on <tt>xutils
+		  (&gt;= 4.0.2)</tt> and, in the package
 		post-installation and post-removal scripts, invoke
 		<tt>update-fonts-alias</tt> on each directory into
 		which they installed fonts.

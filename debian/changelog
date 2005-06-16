@@ -1,3 +1,33 @@
+debian-policy (3.5.0.0) unstable; urgency=low
+
+  * There have been numerous changes since the last major change, and
+    peole have had tiome now to review the recent changes, so I am
+    updating the policy minor version to reflect the quantity and
+    magnitude of changes since 3.2.1
+  * More spelling corrections, thanks to "Christian T. Steigies"
+    <cts@nikocity.de> 
+  * Added mention of  DEB_BUILD_OPTIONS in upgrading checklist. 
+                                                    closes: Bug#83924
+  * Fixed some typos.                               closes: Bug#83960
+  * Policy now mentions preinst scripts.            closes: Bug#80342
+  * [AMENDMENT 2000/12/26] allow/document use of Debian Configuration
+    management system (debconf)                     closes: Bug#80347
+  * Yet more typo fixes                             closes: Bug#82743
+  * document the fact that x font utilities have moved to the package
+    xutils,                                         closes: Bug#82966
+  * Fixed the date in the virtual package list      closes: Bug#83438
+  * Cleaned up some ephemeral informative foornotes of the polic. Thanks
+    to Branden Robinson <branden@debian.org>        closes: Bug#83065
+  * Corrected reference to the mime policy.         closes: Bug#79891
+  * Corrected reference to the menu policy.         closes: Bug#75925
+  * Added a note to the effect that the example make snippet used to
+    illustrate the DEB_BUILD_OPTIONS environment variable is merely
+    informative, and expanded the example to dismiss any confusion about
+    potential failure due to accidentally trying to strip scripts.
+                                                    closes: Bug#80506
+
+ -- Manoj Srivastava <srivasta@debian.org>  Sun, 28 Jan 2001 21:59:16 -0600
+
 debian-policy (3.2.1.2) unstable; urgency=low
 
   * The minimal change in version number is so that people can test and

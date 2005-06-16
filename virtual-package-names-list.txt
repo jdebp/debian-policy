@@ -190,7 +190,7 @@ Manoj Srivastava
                  Added rsh-client
                  Added telnet-client
 Manoj Srivastava
-  16 January 1001 Added rsh server
+  16 January 2001 Added rsh server
                   Added telnet-server
 
 
