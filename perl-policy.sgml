@@ -47,8 +47,8 @@
 	</p>
 	<p>
 	  You can also obtain it by writing to the
-	  Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-	  Boston, MA 02111-1307, USA.
+	  Free Software Foundation, Inc., 51 Franklin St, Fifth Floor,
+	  Boston, MA 02110-1301, USA. 
 	</p>
       </copyright>
     </titlepag>
@@ -370,7 +370,7 @@ $(MAKE) install PREFIX=$(CURDIR)/debian/&lt;tmp&gt;/usr
 	    Rather than hard-coding the dependencies into the control
 	    file, using a substitution such as <tt>${perl:Depends}</tt>
 	    is suggested.  This allows the dependencies to be determined
-	    as build time and written to the <file>substvars</file> file
+	    at build time and written to the <file>substvars</file> file
 	    in the form
 	    <tt>perl:Depends=<var>deps</var></tt>.<footnote>
 	      <p>Please note that dependencies caused by versioned

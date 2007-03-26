@@ -3,8 +3,8 @@ Section: doc
 Priority: optional
 Maintainer: Debian Policy List <debian-policy@lists.debian.org>
 Uploaders: Julian Gilbey <jdg@debian.org>, Manoj Srivastava <srivasta@debian.org>, Josip Rodin <joy-packages@debian.org>
-Standards-Version: 3.6.1.1
-Build-Depends-Indep: sgml-data (>= 2.0), debiandoc-sgml (>= 1.1.47), tetex-extra, groff, bsdmainutils, pstoedit, jade, docbook-xml (>= 3.1.1), docbook-dsssl, tidy, links (>= 0.90) | links-ssl (>= 0.90)
+Standards-Version: 3.6.2.2
+Build-Depends-Indep: sgml-data (>= 2.0), debiandoc-sgml (>= 1.1.47), tetex-extra, groff, bsdmainutils, pstoedit, jade, docbook-xml (>= 3.1.1), docbook-dsssl, tidy, links (>= 0.90) | elinks
 
 Package: debian-policy
 Architecture: all

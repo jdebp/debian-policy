@@ -52,12 +52,12 @@ DESC_FILES := debian-policy debian-menu-policy debian-perl-policy \
 # FHS_ARCHIVE := $(wildcard fhs*.tar.gz)
 # And with version 2.1, we have to build the text and dvi versions
 # ourselves :-(
-FHS_ARCHIVE  := fhs-2.1-source.tar.gz
-FHS_HTML     := fhs-2.1.html.tar.gz
-FHS_FILES    := fhs/fhs.ps fhs/fhs.txt fhs/fhs.pdf
-FHS_NEW_ARCHIVE  := fhs-2.3-source.tar.gz
-FHS_NEW_HTML     := fhs-2.3.html
-FHS_NEW_FILES    := fhs-2.3.ps.gz fhs-2.3.txt.gz fhs-2.3.pdf.gz
+FHS_ARCHIVE  := fhs-2.3-source.tar.gz
+FHS_HTML     := fhs-2.3.html
+FHS_FILES    := fhs-2.3.ps.gz fhs-2.3.txt.gz fhs-2.3.pdf.gz
+FHS_NEW_ARCHIVE  := 
+FHS_NEW_HTML     := 
+FHS_NEW_FILES    := 
 # FSSTND_FILES := FSSTND-FAQ fsstnd-1.2.dvi.gz fsstnd-1.2.ps.gz fsstnd-1.2.txt.gz
 POLICY_FILES = $(SGML_FILES:=.sgml) $(SGML_FILES:=.txt.gz) \
 	       virtual-package-names-list.txt \
@@ -98,9 +98,9 @@ stamp-build: version.ent $(sanitycheck)
 	    cd fhs && patch -p1 < ../mm1.32-patch; \
 	fi
 	# The extra '.' in the tmac path won't harm if unnecessary
-	GROFF_TMAC_PATH=. GROFF_NO_SGR=1 $(MAKE) -C fhs fhs.ps fhs.pdf fhs.txt
-	links -dump fhs-changes-2.1.html | perl -pe 's/[\r\0]//g' > \
-                    fhs/fhs-changes-2.1.txt
+	#GROFF_TMAC_PATH=. GROFF_NO_SGR=1 $(MAKE) -C fhs fhs.ps fhs.pdf fhs.txt
+	#links -dump fhs-changes-2.1.html | perl -pe 's/[\r\0]//g' > \
+        #            fhs/fhs-changes-2.1.txt
 	links -dump upgrading-checklist.html | perl -pe 's/[\r\0]//g' > \
                     upgrading-checklist.txt
 	$(MAKE) -C debconf_spec all
@@ -154,7 +154,8 @@ stamp-policy:  build $(sanitycheck)
 	gzip -f9	    $(DOCDIR)/*.txt $(DOCDIR)/*.sgml \
 				$(DOCDIR)/fhs/* $(DOCDIR)/changelog
 # These are allready compressed
-	$(install_file)	    $(FHS_NEW_FILES)	     $(DOCDIR)/fhs/
+	#$(install_file)    $(FHS_NEW_FILES)	     $(DOCDIR)/fhs/
+	$(install_file)	    $(FHS_FILES)	     $(DOCDIR)/fhs/
 	$(install_file)	    debian/copyright	     $(DOCDIR)/
 	GZIP=-9 cd debconf_spec && \
 	  tar -zcf ../debconf_specification.xml.tar.gz *
@@ -167,8 +168,7 @@ stamp-policy:  build $(sanitycheck)
 	for file in $(SGML_FILES); do \
 	  tar -C $(DOCDIR) -zxf $$file.html.tar.gz; \
 	done
-	tar -C $(DOCDIR)/fhs -zxf $(FHS_HTML)
-	$(install_file)     $(FHS_NEW_HTML)    $(DOCDIR)/fhs
+	$(install_file)     $(FHS_HTML)   $(DOCDIR)/fhs
 	sed -e 's/#PACKAGE#/$(package)/g' debian/postinst.in > debian/postinst
 	sed -e 's/#PACKAGE#/$(package)/g' debian/prerm.in > debian/prerm
 	$(install_program)  debian/postinst          debian/tmp/DEBIAN/
