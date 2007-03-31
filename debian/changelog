@@ -1,4 +1,239 @@
+debian-policy (3.7.2.2) unstable; urgency=low
+
+  * Bug fix: "clarify 12.3 Additional documentation", thanks to Peter
+    Eisentraut                                               (Closes: #367697).
+  * Bug fix: "debian-policy: s/dependcy/dependency/", thanks to Justin
+    Pryzby                                                   (Closes: #375508).
+  * Bug fix: "various spelling mistakes", thanks to Nico Golde
+                                                             (Closes: #375728).
+  * Bug fix: "debian-policy: typo", thanks to Peter Samuelson
+                                                             (Closes: #376104).
+  * Bug fix: "debian-policy: [PROPOSAL] maintainer scripts must not be
+    world writable", thanks to Kari Pahula                   (Closes: #376438).
+  * Bug fix: "policy-process: s/ a a / a /; s/peoples/people's/;
+    s/intiated/initiated/; s/participattion the/participation in the/? add
+    quotes; s/was a larger/a larger/?", thanks to Justin Pryzby 
+                                                             (Closes: #377215).
+  * Bug fix: "[PROPOSAL] Include the GFDL in the set shipped in
+    /usr/share/common-licenses", thanks to Adeodato Simó. However, it is
+    premature to tell packages to use the common licenses file until we
+    actually ship the license in /usr/share/common-licenses/ (Closes: #378386).
+  * Bug fix: "circular dependencies, improved guarantees", thanks to Ian
+    Jackson                                                  (Closes: #379630).
+  * Bug fix: "section on invoke-rc.d doesn't make sense", thanks to Peter
+    Eisentraut                                               (Closes: #380692).
+  * Bug fix: "policy: postinst doesn't document typical abort-remove
+    case", thanks to Justin Pryzby. Removed all such comments. This is not
+    the place to document such material.                     (Closes: #373212).
+  * Bug fix: "use of &quot;invoke-rc.d $PACKAGE stop || exit $?&quot; in
+    prerm scripts", thanks to Lars Wirzenius                 (Closes: #370471).
+  * Bug fix: "debian-policy: Inconsistent requirements wrt bashisms",
+    thanks to Frank Küster                                   (Closes: #367531).
+  * Bug fix: "debian-policy: s/with With/with /", thanks to Justin Pryzby
+                                                             (Closes: #379974).
+  * Bug fix: "debian-policy: "$RET" not "RET"", thanks to Justin Pryzby
+                                                             (Closes: #386178).
+  * Bug fix: "debian-policy: Spelling error in chapter 9.1.1:
+    exceptiions", thanks to Andreas Janssen                  (Closes: #388302).
+  * Bug fix: "[PROPOSAL] Document ~ behavior in version numbers", thanks
+    to Jakob Bohm                                            (Closes: #382612).
+  * Bug fix: "debian-policy: [ACCEPTED] Request for the 'stardict'",
+    thanks to Andrew Lee                                     (Closes: #385935).
+  * Bug fix: "[ACCEPTED] virtual package 'lzh-archiver' -- an LZH archiver
+    package", thanks to Ying-Chun Liu (PaulLiu)              (Closes: #387027).
+
+ -- Manoj Srivastava <srivasta@debian.org>  Mon,  2 Oct 2006 17:31:23 -0500
+
+debian-policy (3.7.2.1) unstable; urgency=low
+
+  * Bug fix: "debian-policy: s/control are/&amp;a/; s/stats/status/;
+    s/and/an/; s/'/&quot;/; s/rewind/unwind/; s/fact/&amp; that/; s/like
+    like/look like/;", thanks to Justin Pryzby                (Closes: #372147).
+  * Bug fix: "debian-policy: Minor typo in footnote 53", thanks to Jordà
+    Polo                                                      (Closes: #372497).
+  * Bug fix: "debian-policy: Typo in 9.1.1: &quot;'..' character&quot;
+    should be &quot;'.' character&quot;", thanks to Matt Zagrabelny
+                                                              (Closes: #372522).
+  * Bug fix: "debian-policy: More typos in upgrading-checklist.txt",
+    thanks to Kevin B. McCarty                                (Closes: #366466).
+  * Bug fix: "typo: package remains in and &quot;Installed' state", thanks
+    to Sam Hocevar \(Debian packages\)                        (Closes: #369413).
+  * Bug fix: "debian-policy: Cleanup build-dependencies", thanks to Stefan
+    Huehner                                                   (Closes: #366032).
+  * Bug fix: "debian-policy: 2.2 should be named 'categories'", thanks to
+    Thomas Weber                                              (Closes: #369912).
+  * Bug fix: "debian-policy: old postinst abort-upgrade, not new", thanks
+    to Justin Pryzby. The fix was thanks to Margarita Manterola 
+                                                              (Closes: #372148).
+  * Bug fix: "policy: please say which control fields can line-wrap",
+    thanks to Peter Samuelson                                 (Closes: #372731).
+  * Bug fix: "debian/copyright should be mentioned in source section",
+    thanks to Ian Jackson                                     (Closes: #369011).
+  * Bug fix: "GNU office not on Temple Place anymore", thanks to Dan
+    Jacobson                                                  (Closes: #366889).
+
+ -- Manoj Srivastava <srivasta@debian.org>  Tue, 20 Jun 2006 00:18:19 -0500
+
+debian-policy (3.7.2.0) unstable; urgency=low
+
+  * Revert the cgi-lib change. 
+  * Bug fix: "Clarification for difference between Build-Depends and
+    Build-Depends-Indep (Section 7.6)", thanks to Christoph Berg
+    Note that this is not part of policy, just an informative footnote.
+                                                             (Closes: #328951).
+  * Bug fix: "debian-policy: Typo in policy 5.6.3: semantic meaning",
+    thanks to Thijs Kinkhorst                                (Closes: #365907).
+
+ -- Manoj Srivastava <srivasta@debian.org>  Wed,  3 May 2006 18:07:19 -0500
+
+debian-policy (3.7.1.0) unstable; urgency=low
+
+  * Bug fix: "[PROPOSAL] 11.9: document handling of directories permission
+    when upgrading", thanks to Bill Allombert               (Closes: #136318).
+  * Bug fix: "[DISCUSS] documentation of the "-fPIC" constraint", thanks
+    to Loïc Minier. Clarified when it may be reasonable to violate the standard
+    directive that shared libraries must be compiled with -fPIC, and
+    static libraries without, added the protocol to be followed  when
+    doing so.                                               (Closes: #329762).
+  * Bug fix: "Minor typo in upgrading checklist", thanks to David
+    Weinehall                                               (Closes: #364982).
+  * Bug fix: "Typo in upgrading-checklist", thanks to David Weinehall
+                                                            (Closes: #364983).
+  * Bug fix: "typo in debian policy section 10.9.1", thanks to Miguel Gea
+    Milvaques                                                (Closes: #365058).
+  * Bug fix: "debian-policy: The section 11.8.5 needs some
+    clarifications", thanks to Robert Luberda                (Closes: #365356).
+  * Bug fix: "11.8.7: X11R7 puts headers in /usr/include/X11", thanks to
+    Drew Parsons                                             (Closes: #365510).
+  * Bug fix: "debian-policy: typo in policy-process:
+    &quot;Guideliens&quot;", thanks to Lars Wirzenius        (Closes: #360518).
+  * Bug fix: "debian-policy: repeated word in section 10.4", thanks to
+    Russ Allbery                                            (Closes: #364985).
+  * Bug fix: "typo in debian-policy", thanks to Miguel Gea Milvaques
+                                                            (Closes: #365323).
+
+ -- Manoj Srivastava <srivasta@debian.org>  Wed,  3 May 2006 11:17:42 -0500
+
+debian-policy (3.7.0.0) unstable; urgency=low
+
+  * Bug fix: "[PENDING AMENDMENT 20/01/2000] Splitting cgi-bin", thanks to
+    Brian White.                                             (Closes: #32263).
+  * Bug fix: "debian-policy: [PROPOSAL] Should update to Filesystem
+    Hierarchy Standard FHS 2.3", thanks to Tobias Burnus
+                                          (Closes: #230217, #212434, #344158).
+  * Bug fix: "[AMENDMENT 11/04/2006] Permit multi-line fields in
+    debian/control", thanks to John R. Daily. Mention that all fields,
+    except the Uploaders, are supposed to be a single logical line, which
+    may be spread over multiple physical lines (newline followed by space
+    is elided). Also mention that anything parsing the control file must
+    allow for a multi-line uploaders field.                (Closes: #148194).
+  * Bug fix: "[AMENDMENT 12/04/2004] frown on programs in PATH with
+    language extentions", thanks to Joey Hess.             (Closes: #190753).
+  * Bug fix: "init script stop example should use --oknodo", thanks to
+    Matt Kraai. Removed the example entirely.              (Closes: #346598).
+  * Bug fix: "policy 12.5: Please recommend a sane practice WRT different
+    gpl versions (was: Re: RFC/RFS: beef - a flexible BrainFuck
+    interpreter)", thanks to Justin Pryzby. The subject leaves something
+    to be desired, but polic should not attempt to enumerate all common
+    licenses.                                               (Closes: #355263).
+  * Bug fix: "debian-policy: Conflicting Architecture definitions", thanks
+    to Hans Ulrich Niedermann. Punt to dpkg-architecture to providing
+    legal architecture strings, since that's what is used by everyone
+    anyway.  The version in policy was wrong, but that s=does not seem to
+    have hindered anyone, which indicates that this policy directive was
+    uneeded. Now the dpkg-architecture list is deemed authoritative, which
+    it is, but the format for the string is defined by policy, and the
+    current list of architecture strings is in an informative foot note.
+                                                           (Closes: #357613).
+  * Bug fix: "[AMENDMENT 06/04/2006] Make use of invoke-rc.d, if
+    available, mandatory", thanks to Lars Wirzenius.        (Closes: #361137).
+  * Bug fix: "no longer current regarding X font paths", thanks to Joey
+    Hess                                                    (Closes: #362247).
+  * Bug fix: "debian-policy: please prohibit circular dependencies, or
+    mention that dependencies won't be respected during prerm remove",
+    thanks to Justin Pryzby. Well, we did not prohibit circular
+    dependencies. But we do now have a warning that In case of circular
+    dependencies, since installation or removal order honoring the
+    dependency order can't be established, dependency loops are broken at
+    some random point, and some packages may not be able to rely on their
+    dependencies being present when being installed or removed, depending
+    on which side of the break of the circular dependcy loop they happen
+    to be on.                                                (Closes: #362975). 
+  * Bug fix: "8.6.4. Providing a `shlibs' file: s/should create/must
+    provide/", thanks to Christoph Berg. Clarified the wording.
+                                                             (Closes: #341232).
+  * Bug fix: "debian-policy: Chapter 6 - Package maintainer scripts:
+    redundant info about exit status", thanks to Daniel Bonniot
+                                                             (Closes: #349010).
+  * Bug fix: "debian-policy: Refers to upgrading-checklist.txt instead of
+    upgrading-checklist.txt.gz", thanks to Matt Kraai         (Closes: #349775).
+  * Bug fix: "debian-policy: dpkg-gencontrol now uses -isp by default",
+    thanks to Guillem Jover                                   (Closes: #359817).
+  * Bug fix: "[PROPOSAL] unclear recommendation for debconf w/
+    dpkg-statoverride", thanks to Eduard Bloch                (Closes: #199849).
+  * debian-policy: please support Watch file as recommendation, thanks to 
+     Bluefuture                                               (Closes: #342611).
+  * Bug fix: "[PROPOSED] Mandate http servers to provide httpd-cgi as
+    relevenat", thanks to Uwe Hermann. This is already supported by the
+    http servers out there.                                   (Closes: #117916).
+
+ -- Manoj Srivastava <srivasta@debian.org>  Tue, 25 Apr 2006 23:56:16 -0500
+
+debian-policy (3.6.2.2) unstable; urgency=low
+
+  [ Manoj ]
+  * Bug fix: "policy is out of date re tasks and tasksel", thanks to Joey
+    Hess. Removed the section from policy.                   (Closes: #344310).
+  * Bug fix: "debian-policy: Please remove virtual package cron-daemon",
+    thanks to Steve Greenland                                (Closes: #257726).
+  * Bug fix: "debian-policy: incorrect tar example deb manipulation",
+    thanks to Bob Proulx                                     (Closes: #224770).
+  * Bug fix: "Probable typo in 10.1 install -s miss INSTALL =", thanks to
+    Bill Allombert                                           (Closes: #341992).
+  * Bug fix: "debian-policy: postinst abort-remove (6.7) not present in
+    summary (6.4)", thanks to Ferenc Wagner                  (Closes: #338493).
+  * Bug fix: "UTF-8 footnote is out of date (pre-sarge)", thanks to Martin
+    Michlmayr                                                (Closes: #337539).
+  * Bug fix: "debian-policy: Typo in perl-policy", thanks to Tibor Csögör
+                                                             (Closes: #334913).
+  * Bug fix: "debian-policy: Outdated FSF postal address in Copyright
+    Notice", thanks to Jean-Marc Ranger                      (Closes: #334819).
+  * Bug fix: "debian-policy: §6.5 (3)(1): missing &quot;Error
+    unwind:&quot; for &quot;new-postrm abort-upgrade&quot;", thanks to
+    Henning Makholm                                          (Closes: #321792).
+  * Bug fix: "debian-policy: typo in §5.6.3: co-maintaintainers", thanks
+    to Henning Makholm                                       (Closes: #321790).
+  * Bug fix: "debian-policy: typos in sect 9.3.1: &quot;ends .sh&quot;,
+    &quot;rather that&quot;", thanks to Thijs Kinkhorst      (Closes: #343933).
+  * Bug fix: "debian-policy: Unclear wording of ldconfig requirements in
+    section 8.1.1", thanks to Ben Finney                      (Closes: #318214).
+  * Bug fix: "debian-policy: Typo in 8.6.2: ${shlib:Depends} must be
+    ${shlibs:Depends}", thanks to Thijs Kinkhorst             (Closes: #318147).
+  * Bug fix: "debian-policy: gzipped fhs-2.3 documentation is corrupt",
+    thanks to Gabor Gombas                                    (Closes: #340189).
+  * Bug fix: "Section 6.3 should reference 3.10.1", thanks to Marc 'HE'
+    Brockschmidt                                              (Closes: #326633).
+  * Bug fix: "debian-policy: section 2.2 refers to no-longer existant
+    non-US repository sections", thanks to Martin-Eric Racine 
+                                                              (Closes: #315470).
+
+ -- Manoj Srivastava <srivasta@debian.org>  Sun, 25 Dec 2005 08:47:52 -0600
+
 debian-policy (3.6.2.1) unstable; urgency=low
+
+  * Bug fix: "debian-policy: Typo in upgrading-checklist.txt.gz", thanks
+    to Romain Francoise. Added the missing /.               (Closes: #314569).
+  * Bug fix: "x-session-manager already in use, so please add to
+    virtual-package-names-list.txt", thanks to Christopher Martin 
+                                                             (Closes: #313626).
+  * Bug fix: "[ACCEPTED] SRFI 22 names for Scheme implementations", thanks
+    to Jorgen Schaefer                                       (Closes: #310113).
+  * Bug fix: "debian-policy: please add x-display-manager to
+    virtual-package-names-list.txt", thanks to Jon Dowland  (Closes:  #294633).
+
+ -- Manoj Srivastava <srivasta@debian.org>  Sat, 18 Jun 2005 00:48:14 -0500
+
+debian-policy (3.6.2.0) unstable; urgency=low
 
   Manoj:
   * Bug fix: "policy 11.5.3 refers to using the menu package to register
@@ -42,8 +277,21 @@ debian-policy (3.6.2.1) unstable; urgency=low
     Fenski aka fEnIo                                          (Closes: #239359).
   * Bug fix: "Please clarify Section 2.5. required <-> essential",
     thanks to Adrian Bunk. Clarified the section.             (Closes: #216104).
+  * Bug fix: "debian-policy: Please remove virtual package
+    aspell-dictionary", thanks to Brian Nelson                (Closes: #295939).
+  * Bug fix: "[AMENDMENT 18/02/2002] Where to place web-accessible
+    images", thanks to Tollef Fog Heen                         (Closes: #89867).
+  * Bug fix: "debian-policy: erroneous enumeration in prebuilt policy.*
+    files", thanks to Nikolaus Schulz. I am hoping that this shall go away
+    when we rebuild.                                          (Closes: #286553).
+  * Bug fix: "please make names of alternate versions links", thanks to
+    Robert Cheramy. Added HTTPPATH elements that should provide the URL's
+    as well as the hyperlinks.                                 (Closes: #308886).
+  * Bug fix: "www.debian.org: Misspelling in Policy Manual", thanks to
+    Roberto C. Sanchez Various spelling errors were also corrected in a
+    spell check run.                                           (Closes: #309162).
 
- --
+ -- Manoj Srivastava <srivasta@debian.org>  Thu, 16 Jun 2005 20:27:17 -0500
 
 debian-policy (3.6.1.1) unstable; urgency=low
 

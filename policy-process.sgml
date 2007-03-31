@@ -51,7 +51,7 @@
 	  Debian developers.</em>
       </p>
       <sect>
-	<heading>Guideliens for policy change proposals</heading>
+	<heading>Guidelines for policy change proposals</heading>
 	<p>
 	  Policy does not document all existing practice.  It only
 	  incorporates a minimal ruleset that is required for systems
@@ -72,14 +72,14 @@
 	  of bugs that would otherwise be RC seems silly; and, anyway,
 	  there are concerns that the policy group does not really
 	  have the power to change policy drastically. This is the
-	  basis of the policy shall not be used as a stick to beat
-	  developers with.
+	  basis of the maxim <em>policy shall not be used as a stick to beat
+            developers with.</em>
 	</p>
 
 	<p>
 	  Nor does policy <em>always</em> document only existing
 	  practices.  What that oft misquoted statement refers to was
-	  a part of was a larger thesis that is meant to suggest that
+	  a part of a larger thesis that is meant to suggest that
 	  policy is not the place for testing out design; if a
 	  complicated technical proposal is to be made into policy, it
 	  should be independently implemented, have all the kinks
@@ -108,7 +108,7 @@
 	</p>
 	<p>
 	  Since the policy maintainers have no special powers, there
-	  is no restriction of their participattion the discussion. It
+	  is no restriction of their participation the discussion. It
 	  is preferable to have at least 4-5 people on the job,
 	  perhaps closer to 8, so that policy does not languish when
 	  any maintainer goes missing (we do need vacations, you know,
@@ -140,7 +140,7 @@
 	  advisable, but by no means mandatory, that the proposer
 	  tries an idea out on the mailing list, which can help flesh
 	  out details rapidly, and test the sentiment and the
-	  collective wisdom of the list. Discussion may be intiated by
+	  collective wisdom of the list. Discussion may be initiated by
 	  any member of the list. 
 	</p>
 	<p>
@@ -171,7 +171,7 @@
           dead. If six months have actually passed, the bug should be
           retitled <strong>"[OLD PROPOSAL] ..."</strong>, and have the
           severity set to fixed. The maintainers shall flush out old
-          proposals after a a sufficiently long period of time has
+          proposals after a sufficiently long period of time has
 	  elapsed (certainly more than a year or so after the initial
 	  proposal).
 	</p>
@@ -201,7 +201,7 @@
 	    <item>
 	      <p>
 		Prevent frivolous or ill conceived proposals from
-		wasting peoples time (if the proposal does not even
+		wasting people's time (if the proposal does not even
 		convince two developers, surely this is not ready for
 		inclusion in Policy?)</p>
 	    </item>

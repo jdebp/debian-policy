@@ -39,8 +39,7 @@ pdf: policy.pdf
 policy: html txt ps pdf
 
 leavealone :=	$(FHS_HTML) $(FHS_FILES) $(FHS_ARCHIVE) \
-		fhs-2.0.tar.gz fhs-changes-2.1.html \
-		fsstnd-1.2.txt.gz libc6-migration.txt \
+		libc6-migration.txt \
 		upgrading-checklist.html virtual-package-names-list.txt
 	      
 .PHONY: distclean

@@ -46,7 +46,7 @@
 	  <url id="http://www.gnu.org/copyleft/gpl.html"
 	       name="the GNU General Public Licence">. You can also
 	  obtain it by writing to the Free Software Foundation, Inc.,
-	  59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+	  51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
 	</p>
       </copyright>
     </titlepag>
@@ -157,7 +157,10 @@
 
 	<p>
 	  This manual is distributed via the Debian package
-	  <package><url name="debian-policy" id="http://packages.debian.org/debian-policy"></package>.
+	  <package><url name="debian-policy"
+              id="http://packages.debian.org/debian-policy"></package> 
+          (<httpsite>packages.debian.org</httpsite> 
+          <httppath>/debian-policy</httppath>).
 	</p>
 
 	<p>
@@ -165,14 +168,21 @@
 	  the Debian web mirrors at
 	  <tt><url name="/doc/debian-policy/"
 		id="http://www.debian.org/doc/debian-policy/"></tt>.
+          (
+          <httpsite>www.debian.org</httpsite>
+          <httppath>/doc/debian-policy/</httppath>)
 	  Also available from the same directory are several other
-	  formats: <file>policy.html.tar.gz</file>, <file>policy.pdf.gz</file>
-	  and <file>policy.ps.gz</file>.
+	  formats: <file>policy.html.tar.gz</file>
+          (<httppath>/doc/debian-policy/policy.html.tar.gz</httppath>),
+          <file>policy.pdf.gz</file> 
+          (<httppath>/doc/debian-policy/policy.pdf.gz</httppath>)
+	  and <file>policy.ps.gz</file>
+          (<httppath>/doc/debian-policy/policy.ps.gz</httppath>).
 	</p>
 
 	<p>
 	  The <package>debian-policy</package> package also includes the file
-	  <file>upgrading-checklist.txt</file> which indicates policy
+	  <file>upgrading-checklist.txt.gz</file> which indicates policy
 	  changes between versions of this document.
         </p>
       </sect>
@@ -272,7 +282,7 @@
       <p>
 	The Debian GNU/Linux system is maintained and distributed as a
 	collection of <em>packages</em>. Since there are so many of
-	them (currently well over 6000), they are split into
+	them (currently well over 15000), they are split into
 	<em>sections</em> and given <em>priorities</em> to simplify
 	the handling of them.
       </p>
@@ -282,8 +292,8 @@
 	system, but not every package we want to make accessible is
 	<em>free</em> in our sense (see the Debian Free Software
 	Guidelines, below), or may be imported/exported without
-	restrictions. Thus, the archive is split into the sections
-	based on their licenses and other restrictions.
+	restrictions. Thus, the archive is split into the distribution
+	areas or categories based on their licenses and other restrictions.
       </p>
 
       <p>
@@ -300,16 +310,17 @@
       </p>
 
       <p>
-	The <em>main</em> and the <em>non-US/main</em> sections
-	together form the <em>Debian GNU/Linux distribution</em>.
+	The <em>main</em> category  forms the
+	<em>Debian GNU/Linux distribution</em>.
       </p>
 
       <p>
-	Packages in the other sections are not considered to be part
-	of the Debian distribution, although we support their use and
-	provide infrastructure for them (such as our bug-tracking
-	system and mailing lists). This Debian Policy Manual applies
-	to these packages as well.
+	Packages in the other distribution areas (<tt>contrib</tt>,
+	<tt>non-free</tt>) are not considered to be part of the Debian
+	distribution, although we support their use and provide
+	infrastructure for them (such as our bug-tracking system and
+	mailing lists). This Debian Policy Manual applies to these
+	packages as well.
       </p>
 
       <sect id="dfsg">
@@ -411,15 +422,14 @@
       </sect>
 
       <sect id="sections">
-	<heading>Sections</heading>
+	<heading>Categories</heading>
 
 	<sect1 id="main">
-	  <heading>The main section</heading>
+	  <heading>The main category</heading>
 
 	  <p>
-	    Every package in <em>main</em> and <em>non-US/main</em>
-	    must comply with the DFSG (Debian Free Software
-	    Guidelines).
+	    Every package in <em>main</em> must comply with the DFSG
+	    (Debian Free Software Guidelines).
 	  </p>
 
 	  <p>
@@ -443,37 +453,17 @@
 	    </list>
 	  </p>
 
-	  <p>
-	    Similarly, the packages in <em>non-US/main</em>
-	    <list compact="compact">
-	      <item>
-		   must not require a package outside of <em>main</em>
-		   or <em>non-US/main</em> for compilation or
-		   execution,
-	      </item>
-	      <item>
-		  must not be so buggy that we refuse to support them,
-	      </item>
-	      <item>
-		  must meet all policy requirements presented in this
-		  manual.
-	      </item>
-	    </list>
-	  </p>
-
 	</sect1>
 
 	<sect1 id="contrib">
-	  <heading>The contrib section</heading>
+	  <heading>The contrib category</heading>
 
 	  <p>
-	    Every package in <em>contrib</em> and
-	    <em>non-US/contrib</em> must comply with the DFSG.
+	    Every package in <em>contrib</em> must comply with the DFSG.
 	  </p>
 
 	  <p>
-	    In addition, the packages in <em>contrib</em> and
-	    <em>non-US/contrib</em>
+	    In addition, the packages in <em>contrib</em>
 	    <list compact="compact">
 	      <item>
 		  must not be so buggy that we refuse to support them,
@@ -486,15 +476,10 @@
 	    </list>
 	  </p>
 
-	  <p>
-	    Furthermore, packages in <em>contrib</em> must not require
-	    a package in a <em>non-US</em> section for compilation or
-	    execution.
-	  </p>
 
 	  <p>
 	    Examples of packages which would be included in
-	    <em>contrib</em> or <em>non-US/contrib</em> are:
+	    <em>contrib</em> are:
 	    <list compact="compact">
 	      <item>
 		  free packages which require <em>contrib</em>,
@@ -511,18 +496,17 @@
 	</sect1>
 
 	<sect1 id="non-free">
-	  <heading>The non-free section</heading>
+	  <heading>The non-free category</heading>
 
 	  <p>
-	    Packages must be placed in <em>non-free</em> or
-	    <em>non-US/non-free</em> if they are not compliant with
-	    the DFSG or are encumbered by patents or other legal
-	    issues that make their distribution problematic.
+	    Packages must be placed in <em>non-free</em> if they are
+	    not compliant with the DFSG or are encumbered by patents
+	    or other legal issues that make their distribution
+	    problematic.
 	  </p>
 
 	  <p>
-	    In addition, the packages in <em>non-free</em> and
-	    <em>non-US/non-free</em>
+	    In addition, the packages in <em>non-free</em>
 	    <list compact="compact">
 	      <item>
 		  must not be so buggy that we refuse to support them,
@@ -543,28 +527,6 @@
 	  </p>
 	</sect1>
 
-	<sect1 id="non-US">
-	  <heading>The non-US sections</heading>
-
-	  <p>
-	    Non-free programs with cryptographic program code need to
-	    be stored on the <em>non-us</em> server because of export
-	    restrictions of the U.S.
-	  </p>
-
-	  <p>
-	    Programs which use patented algorithms that have a
-	    restricted license also need to be stored on "non-us",
-	    since the non-us archive is located in a country where
-	    patenting algorithms is not allowed.
-	  </p>
-
-	  <p>
-	    A package depends on another package which is distributed
-	    via the non-us server has to be stored on the non-us
-	    server as well.
-	  </p>
-	</sect1>
       </sect>
 
       <sect id="pkgcopyright">
@@ -647,44 +609,37 @@
       </sect>
 
       <sect id="subsections">
-	<heading>Subsections</heading>
+	<heading>Sections</heading>
 
 	<p>
-	  The packages in the sections <em>main</em>,
+	  The packages in the categories <em>main</em>,
 	  <em>contrib</em> and <em>non-free</em> are grouped further
-	  into <em>subsections</em> to simplify handling.
+	  into <em>sections</em> to simplify handling.
 	</p>
 
 	<p>
-	  The section and subsection for each package should be
-	  specified in the package's <tt>Section</tt> control
-	  record (see <ref id="f-Section">).
-	  However, the maintainer of the Debian archive
-	  may override this selection to ensure the consistency of
-	  the Debian distribution.  The <tt>Section</tt> field
-	  should be of the form:
+	  The category and section for each package should be
+	  specified in the package's <tt>Section</tt> control record
+	  (see <ref id="f-Section">).  However, the maintainer of the
+	  Debian archive may override this selection to ensure the
+	  consistency of the Debian distribution.  The
+	  <tt>Section</tt> field should be of the form:
 	  <list compact="compact">
 	    <item>
-		  <em>subsection</em> if the package is in the
-		  <em>main</em> section,
+		  <em>section</em> if the package is in the
+		  <em>main</em> category,
 	    </item>
 	    <item>
-		  <em>section/subsection</em> if the package is in
-		  the <em>contrib</em> or <em>non-free</em> section,
-		  and
-	    </item>
-	    <item>
-		  <tt>non-US</tt>, <tt>non-US/contrib</tt> or
-		  <tt>non-US/non-free</tt> if the package is in
-		  <em>non-US/main</em>, <em>non-US/contrib</em> or
-		  <em>non-US/non-free</em> respectively.
+		  <em>segment/section</em> if the package is in
+		  the <em>contrib</em> or <em>non-free</em>
+		  distribution areas.
 	    </item>
 	  </list>
 	</p>
 
 	<p>
 	  The Debian archive maintainers provide the authoritative
-	  list of subsections.  At present, they are:
+	  list of sections.  At present, they are:
 	  <em>admin</em>, <em>base</em>, <em>comm</em>,
 	  <em>contrib</em>, <em>devel</em>, <em>doc</em>,
 	  <em>editors</em>, <em>electronics</em>, <em>embedded</em>,
@@ -692,7 +647,7 @@
 	  <em>hamradio</em>, <em>interpreters</em>, <em>kde</em>,
 	  <em>libs</em>, <em>libdevel</em>, <em>mail</em>,
 	  <em>math</em>, <em>misc</em>, <em>net</em>, <em>news</em>,
-	  <em>non-US</em>, <em>non-free</em>, <em>oldlibs</em>,
+	  <em>non-free</em>, <em>oldlibs</em>,
 	  <em>otherosfs</em>, <em>perl</em>, <em>python</em>,
 	  <em>science</em>, <em>shells</em>,
 	  <em>sound</em>, <em>tex</em>, <em>text</em>,
@@ -712,7 +667,7 @@
 	</p>
 
 	<p>
-	  The following <em>priority levels</em> are recognised by the
+	  The following <em>priority levels</em> are recognized by the
 	  Debian package management tools.
 	  <taglist>
 	    <tag><tt>required</tt></tag>
@@ -771,7 +726,7 @@
 		This contains all packages that conflict with others
 		with required, important, standard or optional
 		priorities, or are only likely to be useful if you
-		already know what they are or have specialised
+		already know what they are or have specialized
 		requirements.
 	    </item>
 	  </taglist>
@@ -909,7 +864,7 @@
 	  If the maintainer of a package quits from the Debian
 	  project, "Debian QA Group"
 	  <email>packages@qa.debian.org</email> takes over the
-	  maintainership of the package until someone else
+	  maintainer-ship of the package until someone else
 	  volunteers for that task. These packages are called
 	  <em>orphaned packages</em>.<footnote>
 		The detailed procedure for doing this gracefully can
@@ -1028,7 +983,33 @@
 	  Packages are not required to declare any dependencies they
 	  have on other packages which are marked <tt>Essential</tt>
 	  (see below), and should not do so unless they depend on a
-	  particular version of that package.
+	  particular version of that package.<footnote>
+            <p>
+              Essential is defined as the minimal set of functionality
+              that must be available and usable on the system even
+              when packages are in an unconfigured (but unpacked)
+              state.  This is needed to avoid unresolvable dependency
+              loops on upgrade.  If packages add unnecessary
+              dependencies on packages in this set, the chances that
+              there <strong>will</strong> be an unresolvable
+              dependency loop caused by forcing these Essential
+              packages to be configured first before they need to be
+              is greatly increased.  It also increases the chances
+              that frontends will be unable to
+              <strong>calculate</strong> an upgrade path, even if one
+              exists.
+            </p>
+            <p>
+              Also, it's pretty unlikely that functionality from
+              Essential shall ever be removed (which is one reason why
+              care must be taken before adding to the Essential
+              packages set), but <em>packages</em> have been removed
+              from the Essential set when the functionality moved to a
+              different package. So depending on these packages
+              <em>just in case</em> they stop being essential does way
+              more harm than good.
+            </p>
+          </footnote>
 	</p>
 
 	<p>
@@ -1148,40 +1129,6 @@
 	</p>
       </sect>
 
-      <sect>
-	<heading>Tasks</heading>
-
-	<p>
-	  The Debian install process allows the user to choose from
-	  a number of common tasks which a Debian system can be used to
-	  perform. Selecting a task with <prgn>tasksel</prgn> causes
-	  a set of packages that are useful in performing that task to be
-	  installed.
-	</p>
-
-	<p>
-	  This set of packages is all available packages which have the
-	  name of the selected task in the <tt>Task</tt> field of their
-	  control file. The format of this field is a list of tasks,
-	  separated by commas.
-	</p>
-
-	<p>
-	  You should not tag any packages as belonging to a task
-	  before this has been discussed on the
-	  <em>debian-devel</em> mailing list and a consensus about
-	  doing that has been reached.
-	</p>
-
-	<p>
-	  For third parties (and historical reasons), tasksel also
-	  supports constructing tasks based on <em>task
-	  packages</em>. These are packages whose names begin with
-	  <em>task-</em>. Task packages should not be included in the
-	  Debian archive.
-	</p>
-      </sect>
-
       <sect id="maintscripts">
 	<heading>Maintainer Scripts</heading>
 
@@ -1262,7 +1209,7 @@
 	    </footnote>.
 	    The <prgn>config</prgn> script might be run before the
 	    <prgn>preinst</prgn> script, and before the package is unpacked
-	    or any of its dependencies or pre-dependancies are satisfied.
+	    or any of its dependencies or pre-dependencies are satisfied.
 	    Therefore it must work using only the tools present in
 	    <em>essential</em> packages.<footnote>
 		  <package>Debconf</package> or another tool that
@@ -1570,7 +1517,7 @@
 	  <prgn>dpkg</prgn> changelog format (though there is
 	  currently only one useful <var>keyword</var>,
 	  <tt>urgency</tt>).<footnote>
-	      Recognised urgency values are <tt>low</tt>,
+	      Recognized urgency values are <tt>low</tt>,
 	      <tt>medium</tt>, <tt>high</tt> and <tt>emergency</tt>.
 	      They have an effect on how quickly a package will be
 	      considered for inclusion into the <tt>testing</tt>
@@ -1666,7 +1613,17 @@
 	  </p>
 	</sect1>
       </sect>
-
+      <sect id="dpkgcopyright">
+	<heading>Copyright: <file>debian/copyright</file></heading>
+        <p>
+          Every package must be accompanied by a verbatim copy of
+	  its copyright and distribution license in the file
+	  <file>/usr/share/doc/<var>package</var>/copyright</file>
+	  (see <ref id="copyrightfile"> for further details). Also see
+	  <ref id="pkgcopyright"> for further considerations relayed
+	  to copyrights for packages.
+        </p>
+      </sect>
       <sect>
 	<heading>Error trapping in makefiles</heading>
 
@@ -2061,6 +2018,21 @@
 	  format of <file>debian/substvars</file>.</p>
       </sect>
 
+      <sect id="debianwatch">
+        <heading>Optional upstream source location: <file>debian/watch</file></heading>
+
+        <p>
+          This is an optional, recommended control file for the
+          <tt>uscan</tt> utility which defines how to automatically
+          scan ftp or http sites for newly available updates of the
+          package. This is used by <url id="
+          http://dehs.alioth.debian.org/"> and other Debian QA tools
+          to help with quality control and maintenance of the
+          distribution as a whole.
+        </p>
+
+      </sect>
+
       <sect id="debianfiles">
 	<heading>Generated files list: <file>debian/files</file></heading>
 
@@ -2143,10 +2115,11 @@
 	  Each paragraph consists of a series of data fields; each
 	  field consists of the field name, followed by a colon and
 	  then the data/value associated with that field.  It ends at
-	  the end of the line.  Horizontal whitespace (spaces and
-	  tabs) may occur immediately before or after the value and is
-	  ignored there; it is conventional to put a single space
-	  after the colon.  For example, a field might be:
+	  the end of the (logical) line.  Horizontal whitespace
+	  (spaces and tabs) may occur immediately before or after the
+	  value and is ignored there; it is conventional to put a
+	  single space after the colon.  For example, a field might
+	  be:
 	  <example compact="compact">
 Package: libc6
 	  </example>
@@ -2155,19 +2128,19 @@ Package: libc6
 	</p>
 
 	<p>
-	  Some fields' values may span several lines; in this case
+	  Many fields' values may span several lines; in this case
 	  each continuation line must start with a space or a tab.
 	  Any trailing spaces or tabs at the end of individual
-	  lines of a field value are ignored.
+	  lines of a field value are ignored. 
 	</p>
 
 	<p>
-	  Except where otherwise stated, only a single line of data is
-	  allowed and whitespace is not significant in a field body.
-	  Whitespace must not appear inside names (of packages,
-	  architectures, files or anything else) or version numbers,
-	  or between the characters of multi-character version
-	  relationships.
+	  In fields where it is specified that lines may not wrap,
+          only a single line of data is allowed and whitespace is not
+          significant in a field body. Whitespace must not appear
+          inside names (of packages, architectures, files or anything
+          else) or version numbers, or between the characters of
+          multi-character version relationships.
 	</p>
 
 	<p>
@@ -2238,8 +2211,13 @@ Package: libc6
 	  generate control files for binary packages (see below), by
 	  <prgn>dpkg-genchanges</prgn> to generate the
 	  <tt>.changes</tt> file to accompany the upload, and by
-	  <prgn>dpkg-source</prgn> when it creates the <file>.dsc</file>
-	  source control file as part of a source archive.
+	  <prgn>dpkg-source</prgn> when it creates the
+	  <file>.dsc</file> source control file as part of a source
+	  archive. Many fields are permitted to span multiple lines in
+	  <file>debian/control</file> but not in any other control
+	  file. These tools are responsible for removing the line
+	  breaks from such fields when using fields from
+	  <file>debian/control</file> to generate other control files.
 	</p>
 
 	<p>
@@ -2289,7 +2267,7 @@ Package: libc6
 	  syntax is described above, in <ref id="pkg-controlfields">.
 
 	<list compact="compact">
-	  <item><qref id="f-Format"><tt>Format</tt></qref></item>
+	  <item><qref id="f-Format"><tt>Format</tt></qref> (mandatory)</item>
 	  <item><qref id="f-Source"><tt>Source</tt></qref> (mandatory)</item>
 	  <item><qref id="f-Version"><tt>Version</tt></qref> (mandatory)</item>
 	  <item><qref id="f-Maintainer"><tt>Maintainer</tt></qref> (mandatory)</item>
@@ -2402,15 +2380,29 @@ Package: libc6
           <heading><tt>Uploaders</tt></heading>
 
           <p>
-            List of the names and email addresses of
-            co-maintaintainers of the package, if any. If the package
-            has other maintainers beside the one named in the <qref
-            id="f-Maintainer">Maintainer field</qref>, they their
+            List of the names and email addresses of co-maintainers of
+            the package, if any. If the package has other maintainers
+            beside the one named in the 
+            <qref id="f-Maintainer">Maintainer field</qref>, their
             names and email addresses should be listed here. The
             format is the same as that of the Maintainer tag, and
-            multiple entries should be comma separated. This is an
-            optional field.
+            multiple entries should be comma separated. Currently,
+            this field is restricted to a single line of data.  This
+            is an optional field.
           </p>
+	  <p>
+	    Any parser that interprets the Uploaders field in
+	    <file>debian/control</file> should permit it to span multiple
+	    lines<footnote>
+              In the future, the Uploaders field in
+		<file>debian/control</file> (but not other control files)
+		will be permitted to span multiple lines and interpreting
+		a multi-line Uploaders field shall be mandatory.
+	    </footnote>. Line breaks in an Uploaders field that spans
+	    multiple lines are not significant and the semantics of
+	    the field are the same as if the line breaks had not been
+	    present.
+	  </p>
  	</sect1>
 
 	<sect1 id="f-Changed-By">
@@ -2438,12 +2430,6 @@ Package: libc6
 	    It also gives the default for the same field in the binary
 	    packages.
 	  </p>
-
-	  <p>
-	    By default, <prgn>dpkg-gencontrol</prgn> does not include this
-	    field in the control file of a binary package - use the
-	    <tt>-is</tt> (or <tt>-isp</tt>) options to achieve this effect.
-	  </p>
 	</sect1>
 
 	<sect1 id="f-Priority">
@@ -2460,12 +2446,6 @@ Package: libc6
 	    the <tt>Files</tt> field of the <file>.changes</file> file.
 	    It also gives the default for the same field in the binary
 	    packages.
-	  </p>
-
-	  <p>
-	    By default, <prgn>dpkg-gencontrol</prgn> does not include this
-	    field in the control file of a binary package - use the
-	    <tt>-ip</tt> (or <tt>-isp</tt>) options to achieve this effect.
 	  </p>
 	</sect1>
 
@@ -2693,7 +2673,7 @@ Package: libc6
 	          <var>upstream_version</var> may not contain a hyphen.
 	          This format represents the case where a piece of
 	          software was written specifically to be turned into a
-	          Debian package, and so there is only one "debianization"
+	          Debian package, and so there is only one "debianisation"
 	          of it and therefore no revision indication is required.
 	        </p>
 
@@ -2798,7 +2778,7 @@ Package: libc6
 	    <item>
 	      Those starting with two or more spaces. These will be
 	      displayed verbatim. If the display cannot be panned
-	      horizontally, the displaying program will linewrap them "hard"
+	      horizontally, the displaying program will line wrap them "hard"
 	      (i.e., without taking account of word breaks). If it can they
 	      will be allowed to trail off to the right. None, one or two
 	      initial spaces may be deleted, but the number of spaces
@@ -2992,7 +2972,7 @@ Package: libc6
 	    There should be nothing in this field before the first
 	    newline; all the subsequent lines must be indented by at
 	    least one space; blank lines must be represented by a line
-	    consiting only of a space and a full stop.
+	    consisting only of a space and a full stop.
 	  </p>
 
 	  <p>
@@ -3192,11 +3172,12 @@ Package: libc6
 
 	<p>
 	  These scripts are the files <prgn>preinst</prgn>,
-	  <prgn>postinst</prgn>, <prgn>prerm</prgn> and <prgn>postrm</prgn> in the
-	  control area of the package.  They must be proper executable
-	  files; if they are scripts (which is recommended), they must
-	  start with the usual <tt>#!</tt> convention.  They should be
-	  readable and executable by anyone, and not world-writable.
+	  <prgn>postinst</prgn>, <prgn>prerm</prgn> and
+	  <prgn>postrm</prgn> in the control area of the package.
+	  They must be proper executable files; if they are scripts
+	  (which is recommended), they must start with the usual
+	  <tt>#!</tt> convention.  They should be readable and
+	  executable by anyone, and must not be not world-writable.
 	</p>
 
 	<p>
@@ -3210,6 +3191,13 @@ Package: libc6
 	  they don't exit with a non-zero status if everything went
 	  well.
 	</p>
+
+        <p>
+          Additionally, packages interacting with users using
+          <tt>debconf</tt> in the <prgn>postinst</prgn> script should
+          install a <prgn>config</prgn> script  in the control area,
+          see <ref id="maintscriptprompt"> for details.
+        </p>
 
 	<p>
 	  When a package is upgraded a combination of the scripts from
@@ -3271,22 +3259,21 @@ Package: libc6
 	<p>
 	  The maintainer scripts are guaranteed to run with a
 	  controlling terminal and can interact with the user.
-	  If they need to prompt for passwords, do full-screen
-	  interaction or something similar you should do these
-	  things to and from <file>/dev/tty</file>, since
-	  <prgn>dpkg</prgn> will at some point redirect scripts'
-	  standard input and output so that it can log the
-	  installation process.  Likewise, because these scripts
-	  may be executed with standard output redirected into a
-	  pipe for logging purposes, Perl scripts should set
-	  unbuffered output by setting <tt>$|=1</tt> so that the
-	  output is printed immediately rather than being
+	  Because these scripts may be executed with standard output
+	  redirected into a pipe for logging purposes, Perl scripts
+	  should set unbuffered output by setting <tt>$|=1</tt> so
+	  that the output is printed immediately rather than being
 	  buffered.
 	</p>
+      </sect>
+      <sect id="exitstatus">
+	<heading>Exit status</heading>
 
 	<p>
-	  Each script should return a zero exit status for
-	  success, or a nonzero one for failure.
+	  Each script must return a zero exit status for
+	  success, or a nonzero one for failure, since the package
+	  management system looks for the exit status of these scripts
+	  and determines what action to take next based on that datum.
 	</p>
       </sect>
 
@@ -3325,6 +3312,9 @@ Package: libc6
 		<var>conflictor's-postinst</var> <tt>abort-remove</tt>
 		<tt>in-favour</tt> <var>package</var>
 		<var>new-version</var>
+	    </item>
+	    <item>
+		<var>postinst</var> <tt>abort-remove</tt>
 	    </item>
 	    <item>
 		<var>deconfigured's-postinst</var>
@@ -3426,10 +3416,14 @@ Package: libc6
 		      <example compact="compact">
 <var>new-prerm</var> failed-upgrade <var>old-version</var>
 		      </example>
-		      Error unwind, for both the above cases:
+                      If this works, the upgrade continues. If this
+                      does not work, the error unwind:
 		      <example compact="compact">
 <var>old-postinst</var> abort-upgrade <var>new-version</var>
 		      </example>
+                      If this works, then the old-version is
+                      "Installed", if not, the old version is in a
+                      "Failed-Config" state.
 		  </item>
 		</enumlist>
 	    </item>
@@ -3479,15 +3473,30 @@ Package: libc6
 		      <example compact="compact">
 <var>new-preinst</var> upgrade <var>old-version</var>
 		      </example>
-                      
+                      If this fails, we call:
                       <example>
 <var>new-postrm</var> abort-upgrade <var>old-version</var>
                       </example>
-                      If that too fails, then
-                      <example>
-<var>old-postinst</var> abort-upgrade <var>old-version</var>
-                      </example>
-                      is called.
+                      <enumlist>
+                        <item>
+                          <p>
+                            If that works, then
+                            <example>
+<var>old-postinst</var> abort-upgrade <var>new-version</var>
+                            </example>
+                            is called. If this works, then the old version
+                            is in an "Installed" state, or else it is left
+                            in an "Unpacked" state.
+                          </p>
+                        </item>
+                        <item>
+                          <p>
+                            If it fails, then the old version is left
+                            in an "Half-Installed" state.
+                          </p>
+                        </item>
+                      </enumlist>
+                      
 		  </item>
 		  <item>
 		      Otherwise, if the package had some configuration
@@ -3500,6 +3509,10 @@ Package: libc6
                       <example>
 <var>new-postrm</var> abort-install <var>old-version</var>
                       </example>
+                      If this fails, the package is left in a
+                      "Half-Installed" state, which requires a
+                      reinstall. If it works, the packages is left in
+                      a "Config Files" state.
 		  </item>
 		  <item>
 		      Otherwise (i.e., the package was completely purged):
@@ -3510,6 +3523,10 @@ Package: libc6
                       <example compact="compact">
 <var>new-postrm</var> abort-install
                       </example>
+                      If the error-unwind fails, the package is in an
+                      "Half Installed" phase, and requires a
+                      reinstall. If the error unwind works, the
+                      package is in an not installed state.
 		  </item>
                 </enumlist>
 	    </item>
@@ -3582,11 +3599,26 @@ Package: libc6
 		      <example compact="compact">
 <var>new-postrm</var> failed-upgrade <var>old-version</var>
 		      </example>
-		      Error unwind, for both cases:
+                      If this works, installation continues. If not, 
+		      Error unwind:
 		      <example compact="compact">
 <var>old-preinst</var> abort-upgrade <var>new-version</var>
 		      </example>
-		  </item>
+                      If this fails, the old version is left in an
+                      "Half Installed" state. If it works, dpkg now
+                      calls:
+		      <example compact="compact">
+<var>new-postrm</var> abort-upgrade <var>old-version</var>
+		      </example>
+                      If this fails, the old version is left in an
+                      "Half Installed" state. If it works, dpkg now
+                      calls:
+		      <example compact="compact">
+<var>old-postinst</var> abort-upgrade <var>new-version</var>
+		      </example>
+                      If this fails, the old version is in an
+                      "Unpacked" state.
+ 		  </item>
 		</enumlist>
 	      </p>
 
@@ -3694,7 +3726,8 @@ Package: libc6
 
 	<p>
 	  No attempt is made to unwind after errors during
-	  configuration.
+	  configuration. If the configuration fails, the package is in
+	  a "Failed Config" state, and an error message is generated.
 	</p>
 
 	<p>
@@ -3720,9 +3753,26 @@ Package: libc6
 	<p>
 	  <enumlist>
 	    <item>
+              <p>
 		<example compact="compact">
 <var>prerm</var> remove
 		</example>
+              </p>
+              <p>
+                If prerm fails during replacement due to conflict
+                <example>
+<var>conflictor's-postinst</var> abort-remove \
+  in-favour <var>package</var> <var>new-version</var>
+                </example>
+                Or else we call:
+                <example>
+<var>postinst</var> abort-remove
+                </example>
+              </p>
+              <p>
+                If this fails, the package is in a "Failed-Config"
+                state, or else it remains "Installed".
+              </p>
 	    </item>
 	    <item>
 		The package's files are removed (except <tt>conffile</tt>s).
@@ -3731,6 +3781,11 @@ Package: libc6
 		<example compact="compact">
 <var>postrm</var> remove
 		</example>
+
+              <p>
+                If it fails, there's no error unwind, and the package is in
+                an "Half-Installed" state.
+              </p>
 	    </item>
 	    <item>
 	      <p>
@@ -3753,19 +3808,21 @@ Package: libc6
 		are removed.
 	    </item>
 	    <item>
+              <p>
 		<example compact="compact">
 <var>postrm</var> purge
 		</example>
+              </p>
+              <p>
+                If this fails, the package remains in a "Config-Files"
+                state.
+              </p>
 	    </item>
 	    <item>
 		The package's file list is removed.
 	    </item>
 	  </enumlist>
 
-	  If there are problems during this process, we call
-           <example  compact="compact">postinst
-           abort-remove</example>. No other attempt is made to unwind
-           after errors during removal. 
 	</p>
       </sect>
     </chapt>
@@ -3927,6 +3984,21 @@ Build-Depends: kernel-headers-2.2.10 [!hurd-i386],
 	  versions of other packages the opportunity to have their
 	  dependencies satisfied.
 	</p>
+
+        <p>
+          In case of circular dependencies, since installation or
+          removal order honoring the dependency order can't be
+          established, dependency loops are broken at some point
+          (based on rules below), and some packages may not be able to
+          rely on their dependencies being present when being
+          installed or removed, depending on which side of the break
+          of the circular dependcy loop they happen to be on.  If one
+          of the packages in the loop has no postinst script, then the
+          cycle will be broken at that package, so as to ensure that
+          all postinst scripts run with the dependencies properly
+          configured if this is possible. Otherwise the breaking point
+          is arbitrary.
+        </p>
 
 	<p>
 	  The <tt>Depends</tt> field thus allows package maintainers
@@ -4137,10 +4209,8 @@ Build-Depends: kernel-headers-2.2.10 [!hurd-i386],
 	  <example compact="compact">
 Package: foo
 Depends: bar
-	  </example>
-	  and someone else releases an enhanced version of the
-	  <tt>bar</tt> package (for example, a non-US variant), they
-	  can say:
+	  </example> and someone else releases an enhanced version of
+	  the <tt>bar</tt> package they can say:
 	  <example compact="compact">
 Package: bar-plus
 Provides: bar
@@ -4303,12 +4373,15 @@ Replaces: mail-transport-agent
 	      you need both.
 	    </p>
 	    <p>
-	      There is no Build-Depends-Arch; the autobuilders will
-	      only need the Build-Depends if they know how to build
-	      only build-arch and binary-arch.  Anyone building the
-	      build-indep/binary-indep targets is basically assumed to
-	      be building the whole package and so installs all build
-	      dependencies.
+	      There is no Build-Depends-Arch; this role is essentially
+              met with Build-Depends.  Anyone building the
+              <tt>build-indep</tt> and binary-indep<tt></tt> targets
+              is basically assumed to be building the whole package
+              anyway and so installs all build dependencies.  The
+              autobuilders use <tt>dpkg-buildpackage -B</tt>, which
+              calls <tt>build</tt> (not <tt>build-arch</tt>, since it
+              does not yet know how to check for its existence) and
+              <tt>binary-arch</tt>.
 	    </p>
 	    <p>
 	      The purpose of the original split, I recall, was so that
@@ -4374,7 +4447,7 @@ Replaces: mail-transport-agent
             <p>
               Since it is common place to install several versions of a
               package that just provides shared libraries, it is a
-              good idea that that the library package should not
+              good idea that the library package should not
               contain any extraneous non-versioned files, unless they
               happen to be in versioned directories.</p>
           </footnote>
@@ -4481,11 +4554,9 @@ Replaces: mail-transport-agent
 	  listed in <file>/etc/ld.so.conf</file><footnote>
 	    These are currently
 	    <list compact="compact">
-	      <item>/usr/X11R6/lib/Xaw3d</item>
 	      <item>/usr/local/lib</item>
 	      <item>/usr/lib/libc5-compat</item>
 	      <item>/lib/libc5-compat</item>
-	      <item>/usr/X11R6/lib</item>
 	    </list>
 	  </footnote>
 	  must use <prgn>ldconfig</prgn> to update the shared library
@@ -4493,15 +4564,20 @@ Replaces: mail-transport-agent
 	</p>
 
 	<p>
-	  The package must call <prgn>ldconfig</prgn> in the
-	  <prgn>postinst</prgn> script if the first argument is
-	  <tt>configure</tt>; the <prgn>postinst</prgn> script may
-	  optionally invoke <prgn>ldconfig</prgn> at other times.  The
-	  package should call <prgn>ldconfig</prgn> in the
-	  <prgn>postrm</prgn> script if the first argument is
-	  <tt>remove</tt>.  The maintainer scripts must not invoke
-	  <prgn>ldconfig</prgn> under any circumstances other than those
-	  described in this paragraph.<footnote>
+            The package maintainer scripts must only call
+            <prgn>ldconfig</prgn> under these circumstances:
+            <list compact="compact">
+              <item>When the <prgn>postinst</prgn> script is run with a
+                  first argument of <tt>configure</tt>, the script must call
+                  <prgn>ldconfig</prgn>, and may optionally invoke
+                  <prgn>ldconfig</prgn> at other times.
+              </item>
+              <item>When the <prgn>postrm</prgn> script is run with a
+                  first argument of <tt>remove</tt>, the script should call
+                  <prgn>ldconfig</prgn>.
+              </item>
+            </list>
+         <footnote>
 	    <p>
 	      During install or upgrade, the preinst is called before
 	      the new files are installed, so calling "ldconfig" is
@@ -4535,16 +4611,16 @@ Replaces: mail-transport-agent
 
 	    <p>
 	      postrm, on the other hand, is called with the "remove"
-	      argument just after the files are removed, so this is the
-	      proper time to call "ldconfig" to notify the system of the
-	      fact shared libraries from the package are removed.
-	      The postrm can be called at several other times.  At the
-	      time of "postrm purge", "postrm abort-install", or "postrm
-	      abort-upgrade", calling "ldconfig" is useless because the
-	      shared lib files are not on-disk.  However, when "postrm"
-	      is invoked with arguments "upgrade", "failed-upgrade", or
-	      "disappear", a shared lib may exist on-disk under a
-	      temporary filename.
+	      argument just after the files are removed, so this is
+	      the proper time to call "ldconfig" to notify the system
+	      of the fact that the shared libraries from the package
+	      are removed.  The postrm can be called at several other
+	      times.  At the time of "postrm purge", "postrm
+	      abort-install", or "postrm abort-upgrade", calling
+	      "ldconfig" is useless because the shared lib files are
+	      not on-disk.  However, when "postrm" is invoked with
+	      arguments "upgrade", "failed-upgrade", or "disappear", a
+	      shared lib may exist on-disk under a temporary filename.
 	    </p>
 	  </footnote>
 	</p>
@@ -4849,7 +4925,7 @@ dpkg-shlibdeps debian/tmp/usr/bin/* debian/tmp/usr/sbin/* \
 	  This command puts the dependency information into the
 	  <file>debian/substvars</file> file, which is then used by
 	  <prgn>dpkg-gencontrol</prgn>.  You will need to place a
-	  <tt>${shlib:Depends}</tt> variable in the <tt>Depends</tt>
+	  <tt>${shlibs:Depends}</tt> variable in the <tt>Depends</tt>
 	  field in the control file for this to work.
 	</p>
 
@@ -4941,7 +5017,7 @@ libz 1 zlib1g (>= 1:1.1.3)
 	<heading>Providing a <file>shlibs</file> file</heading>
 
 	<p>
-	  If your package provides a shared library, you should create
+	  If your package provides a shared library, you need to create
 	  a <file>shlibs</file> file following the format described above.
 	  It is usual to call this file <file>debian/shlibs</file> (but if
 	  you have multiple binary packages, you might want to call it
@@ -5048,20 +5124,78 @@ libbar 1 bar1 (>= 1.0-1)
     <chapt id="opersys"><heading>The Operating System</heading>
 
       <sect>
-	<heading>Filesystem hierarchy</heading>
+	<heading>File system hierarchy</heading>
 
 
 	<sect1 id="fhs">
-	  <heading>Filesystem Structure</heading>
+	  <heading>File system Structure</heading>
 
 	  <p>
 	    The location of all installed files and directories must
-	    comply with the Filesystem Hierarchy Standard (FHS),
-	    version 2.1, except where doing so would violate other
-	    terms of Debian Policy. The version of this document
-	    referred here can be found in the <tt>debian-policy</tt>
-	    package or on
-	    <url id="http://www.debian.org/doc/packaging-manuals/fhs/"
+	    comply with the File system Hierarchy Standard (FHS),
+	    version 2.3, with the exceptions noted below, and except
+	    where doing so would violate other terms of Debian
+	    Policy.  The following exceptions to the FHS apply:
+
+            <enumlist>
+              <item>
+                <p>
+                  Legacy XFree86 servers are permitted to retain the
+                  configuration file location 
+                  <file>/etc/X11/XF86Config-4</file>.
+                </p>
+              </item>
+              <item>
+                <p>
+                  The optional rules related to user specific
+                  configuration files for applications are stored in
+                  the user's home directory are relaxed.  It is
+                  recommended that such files start with the
+                  '<tt>.</tt>' character (a "dot file"), and if an
+                  application needs to create more than one dot file
+                  then the preferred placement is in a subdirectory
+                  with a name starting with a '.' character, (a "dot
+                  directory"). In this case it is recommended the
+                  configuration files not start with the '.'
+                  character.
+                </p>
+              </item>
+              <item>
+                <p>
+                  The requirement for amd64 to use <file>/lib64</file>
+                  for 64 bit binaries is removed.
+                </p>
+              </item>
+              <item>
+                <p>
+                  The requirement that
+                  <file>/usr/local/share/man</file> be "synonymous"
+                  with <file>/usr/local/man</file> is relaxed to a
+                  recommendation</p>
+              </item>
+              <item>
+                <p>
+                  The requirement that windowmanagers with a single
+                  configuration file call it <file>system.*wmrc</file>
+                  is removed, as is the restriction that the window
+                  manager subdirectory be named identically to the
+                  window manager name itself.
+                </p>
+              </item>
+              <item>
+                <p>
+                  The requirement that boot manager configuration
+                  files live in <file>/etc</file>, or at least are
+                  symlinked there, is relaxed to a recommendation.
+                </p>
+              </item>
+            </enumlist>
+
+          </p>
+          <p>
+            The version of this document referred here can be
+	    found in the <tt>debian-policy</tt> package or on <url
+	    id="http://www.debian.org/doc/packaging-manuals/fhs/"
 	      name="FHS (Debian copy)"> alongside this manual (or, if
 	    you have the <package>debian-policy</package> installed,
 	    you can try <url
@@ -5091,7 +5225,10 @@ libbar 1 bar1 (>= 1.0-1)
 	  <p>
 	    However, the package may create empty directories below
 	    <file>/usr/local</file> so that the system administrator knows
-	    where to place site-specific files.  These directories
+	    where to place site-specific files.  These are not
+	    directories <em>in</em> <file>/usr/local</file>, but are
+	    children of directories in <file>/usr/local</file>.  These
+            directories (<file>/usr/local/*/dir/</file>)
 	    should be removed on package removal if they are
 	    empty.
 	  </p>
@@ -5337,7 +5474,7 @@ rmdir /usr/local/share/emacs 2>/dev/null || true
             of simplicity, this document describes only the symbolic
             link method. However, it must not be assumed by maintainer
             scripts that this method is being used, and any automated
-            manipulation of the various runlevel behaviours by
+            manipulation of the various runlevel behaviors by
             maintainer scripts must be performed using
             <prgn>update-rc.d</prgn> as described below and not by
             manually installing or removing symlinks.  For information
@@ -5416,8 +5553,8 @@ rmdir /usr/local/share/emacs 2>/dev/null || true
 	  </p>
 
 	  <p>
-	    Also, if the script name ends <tt>.sh</tt>, the script
-	    will be sourced in runlevel <tt>S</tt> rather that being
+	    Also, if the script name ends in <tt>.sh</tt>, the script
+	    will be sourced in runlevel <tt>S</tt> rather than being
 	    run in a forked subprocess, but will be explicitly run by
 	    <prgn>sh</prgn> in all other runlevels.
 	  </p>
@@ -5463,7 +5600,7 @@ rmdir /usr/local/share/emacs 2>/dev/null || true
 	  </p>
 
 	  <p>
-	    The <file>init.d</file> scripts should ensure that they will
+	    The <file>init.d</file> scripts must ensure that they will
 	    behave sensibly if invoked with <tt>start</tt> when the
 	    service is already running, or with <tt>stop</tt> when it
 	    isn't, and that they don't kill unfortunately-named user
@@ -5513,7 +5650,7 @@ test -f <var>program-executed-later-in-script</var> || exit 0
 
 	  <p>
 	    Often there are some variables in the <file>init.d</file>
-	    scripts whose values control the behaviour of the scripts,
+	    scripts whose values control the behavior of the scripts,
 	    and which a system administrator is likely to want to
 	    change.  As the scripts themselves are frequently
 	    <tt>conffile</tt>s, modifying them requires that the
@@ -5645,14 +5782,10 @@ test -f <var>program-executed-later-in-script</var> || exit 0
 	    </p>
 
 	    <p>
-	      The use of <prgn>invoke-rc.d</prgn> to invoke the
-	      <file>/etc/init.d/*</file> initscripts is strongly
-	      recommended<footnote>
-		  In the future, the use of invoke-rc.d to invoke
-		  initscripts shall be made mandatory. Maintainers are
-		  advised to switch to invoke-rc.d as soon as
-		  possible.
-	      </footnote>, instead of calling them directly.
+	      The package maintainer scripts must use
+	      <prgn>invoke-rc.d</prgn> to invoke the
+	      <file>/etc/init.d/*</file> initscripts, instead of
+	      calling them directly.
 	    </p>
 
 	    <p>
@@ -5709,111 +5842,11 @@ test -f <var>program-executed-later-in-script</var> || exit 0
 	  <heading>Example</heading>
 
 	  <p>
-	    The <prgn>bind</prgn> DNS (nameserver) package wants to
-	    make sure that the nameserver is running in multiuser
-	    runlevels, and is properly shut down with the system.  It
-	    puts a script in <file>/etc/init.d</file>, naming the script
-	    appropriately <tt>bind</tt>.  As you can see, the script
-	    interprets the argument <tt>reload</tt> to send the
-	    nameserver a <tt>HUP</tt> signal (causing it to reload its
-	    configuration); this way the system administrator can say
-	    <tt>/etc/init.d/bind reload</tt> to reload the name
-	    server.  The script has one configurable value, which can
-	    be used to pass parameters to the named program at
-	    startup; this value is read from
-	    <file>/etc/default/bind</file> (see below).
-	  </p>
-
-	  <p>
-	    <example compact="compact">
-#!/bin/sh
-#
-# Original version by Robert Leslie
-# &lt;rob@mars.org&gt;, edited by iwj and cs
-
-test -x /usr/sbin/named || exit 0
-
-# Source defaults file.
-PARAMS=''
-if [ -f /etc/default/bind ]; then
-  . /etc/default/bind
-fi
-
-
-case "$1" in
-start)
-  echo -n "Starting domain name service: named"
-  start-stop-daemon --start --quiet --exec /usr/sbin/named \
-                    -- $PARAMS
-  echo "."
-  ;;
-stop)
-  echo -n "Stopping domain name service: named"
-  start-stop-daemon --stop --quiet  \
-    --pidfile /var/run/named.pid --exec /usr/sbin/named
-  echo "."
-  ;;
-restart)
-  echo -n "Restarting domain name service: named"
-  start-stop-daemon --stop --quiet --oknodo \
-    --pidfile /var/run/named.pid --exec /usr/sbin/named
-  start-stop-daemon --start --verbose --exec /usr/sbin/named \
-                    -- $PARAMS
-  echo "."
-  ;;
-force-reload|reload)
-  echo -n "Reloading configuration of domain name service: named"
-  start-stop-daemon --stop --signal 1 --quiet  \
-    --pidfile /var/run/named.pid --exec /usr/sbin/named
-  echo "."
-  ;;
-*)
-  echo "Usage: /etc/init.d/bind " \
-         " {start|stop|restart|reload|force-reload}" >&2
-  exit 1
-  ;;
-esac
-
-exit 0
-	    </example>
-	  </p>
-
-	  <p>
-	    Complementing the above init script is a configuration
-	    file <file>/etc/default/bind</file>, which contains
-	    configurable parameters used by the script.  This would be
-	    created by the <prgn>postinst</prgn> script if it was not
-	    already present, and removed on purge by the
-	    <prgn>postrm</prgn> script.
-	    <example compact="compact">
-# Specified parameters to pass to named. See named(8).
-# You may uncomment the following line, and edit to taste.
-#PARAMS="-u nobody"
-	    </example>
-	  </p>
-
-	  <p>
-	    Another example on which you can base your
+	    An example on which you can base your
 	    <file>/etc/init.d</file> scripts is found in
 	    <file>/etc/init.d/skeleton</file>.
 	  </p>
 
-	  <p>
-	    If this package is happy with the default setup from
-	    <prgn>update-rc.d</prgn>, namely an ordering number of 20
-	    and having named running in all runlevels, it can say in
-	    its <prgn>postinst</prgn>:
-	    <example compact="compact">
-update-rc.d bind defaults >/dev/null
-	    </example>
-	    And in its <prgn>postrm</prgn>, to remove the links when the
-	    package is purged:
-	    <example compact="compact">
-if [ "$1" = purge ]; then
-  update-rc.d bind remove >/dev/null
-fi
-	    </example>
-	  </p>
 	</sect1>
       </sect>
 
@@ -5962,8 +5995,8 @@ echo "Setting DNS domainname to \"$domainname\"."
 	      </p>
 
 	      <p>
-		For example, stopping the printer daemon will like
-		like this:
+		For example, stopping the printer daemon will look like
+		this:
 		<example compact="compact">
 Stopping printer spooler: lpd.
 		</example>
@@ -6383,7 +6416,7 @@ exec /usr/lib/foo/foo "$@"
 CC = gcc
 CFLAGS = -O2 -g -Wall # sane warning options vary between programs
 LDFLAGS = # none
-install -s # (or use strip on the files in debian/tmp)
+INSTALL = install -s # (or use strip on the files in debian/tmp)
 	  </example>
 	</p>
 
@@ -6470,13 +6503,70 @@ endif
       <sect id="libraries">
 	<heading>Libraries</heading>
 
+        <p>
+          If the package is <strong>architecture: any</strong>, then
+          the shared library compilation and linking flags must have
+          <tt>-fPIC</tt>, or the package shall not build on some of
+          the supported architectures<footnote>
+            <p>
+              If you are using GCC, <tt>-fPIC</tt> produces code with
+              relocatable position independent code, which is required for
+              most architectures to create a shared library, with i386 and
+              perhaps some others where non position independent code is
+              permitted in a shared library.
+            </p>
+            <p>
+              Position independent code may have a performance penalty,
+              especially on <tt>i386</tt>. However, in most cases the
+              speed penalty must be measured against the memory wasted on
+              the few architectures where non position independent code is
+              even possible.
+            </p>
+          </footnote>. Any exception to this rule must be discussed on
+          the mailing list <em>debian-devel@lists.debian.org</em>, and
+          a rough consensus obtained.  The reasons for not compiling
+          with <tt>-fPIC</tt> flag must be recorded in the file
+          <tt>README.Debian</tt>, and care must be taken to either
+          restrict the architecture or arrange for <tt>-fPIC</tt> to
+          be used on architectures where it is required.<footnote>
+            <p>
+              Some of the reasons why this might be required is if the
+              library contains hand crafted assembly code that is not
+              relocatable, the speed penalty is excessive for compute
+              intensive libs, and similar reasons.
+            </p>
+          </footnote>
+        </p>
 	<p>
-	  The shared version of a library must be compiled with
-          <tt>-fPIC</tt>, and the static version must not be. In other
-          words, each source unit (<tt>*.c</tt>, for example, for C files)
-          will need to be compiled twice.
+          As to the static libraries, the common case is not to have
+          relocatable code, since there is no benefit, unless in specific
+          cases; therefore the static version must not be compiled
+          with the <tt>-fPIC</tt> flag. Any exception to this rule
+          should be discussed on the mailing list
+          <em>debian-devel@lists.debian.org</em>,  and the reasons for
+          compiling with the <tt>-fPIC</tt> flag must be recorded in
+          the file <tt>README.Debian</tt>. <footnote>
+            <p>
+              Some of the reasons for linking static libraries with
+              the <tt>-fPIC</tt> flag are if, for example, one needs a
+              Perl API for a library that is under rapid development,
+              and has an unstable API, so shared libraries are
+              pointless at this phase of the library's development. In
+              that case, since Perl needs a library with relocatable
+              code, it may make sense to create a static library with
+              relocatable code. Another reason cited is if you are
+              distilling various libraries into a common shared
+              library, like <tt>mklibs</tt> does in the Debian
+              installer project.
+            </p>
+          </footnote>
 	</p>
-
+        <p>
+          In other words, if both a shared and a static library is
+          being built, each source unit (<tt>*.c</tt>, for example,
+          for C files) will need to be compiled twice, for the normal
+          case. 
+        </p>
 	<p>
 	  You must specify the gcc option <tt>-D_REENTRANT</tt>
 	  when building a library (either static or shared) to make
@@ -6618,6 +6708,12 @@ strip --strip-unneeded <var>your-lib</var>
 	  <tt>#!/usr/bin/perl</tt>.
 	</p>
 
+        <p>
+          When scripts are installed into a directory in the system
+          PATH, the script name should not include an extension such
+          as <tt>.sh</tt> or <tt>.pl</tt> that denotes the scripting
+          language currently used to implement it.
+        </p>
 	<p>
 	  Shell scripts (<prgn>sh</prgn> and <prgn>bash</prgn>)
 	  should almost certainly start with <tt>set -e</tt> so that
@@ -6640,7 +6736,7 @@ strip --strip-unneeded <var>your-lib</var>
 	      the LSB anyway.
 	  </footnote>
 	  Thus, shell scripts specifying <file>/bin/sh</file> as
-	  interpreter should only use POSIX features. If a script
+	  interpreter must only use POSIX features. If a script
 	  requires non-POSIX features from the shell interpreter, the
 	  appropriate shell must be specified in the first line of the
 	  script (e.g., <tt>#!/bin/bash</tt>) and the package must
@@ -6678,8 +6774,8 @@ strip --strip-unneeded <var>your-lib</var>
 	<p>
 	  Any scripts which create files in world-writeable
 	  directories (e.g., in <file>/tmp</file>) must use a
-	  mechanism which will fail if a file with the same name
-	  already exists.
+	  mechanism which will fail atomically if a file with the same
+	  name already exists.
 	</p>
 
 	<p>
@@ -6893,8 +6989,8 @@ ln -fs ../sbin/sendmail debian/tmp/usr/bin/runq
 	    variety of ways <prgn>dpkg</prgn> can call maintainer
 	    scripts, must not overwrite or otherwise mangle the user's
 	    configuration without asking, must not ask unnecessary
-	    questions (particularly during upgrades), and otherwise be
-	    good citizens.
+	    questions (particularly during upgrades), and must
+	    otherwise be good citizens.
 	  </p>
 
 	  <p>
@@ -7027,7 +7123,7 @@ ln -fs ../sbin/sendmail debian/tmp/usr/bin/runq
 	  <p>
 	    Furthermore, programs should be configured by the Debian
 	    default installation to behave as closely to the upstream
-	    default behaviour as possible.
+	    default behavior as possible.
 	  </p>
 
 	  <p>
@@ -7137,8 +7233,24 @@ endscript
 	  mode 2775.  The ownership of the directory should be
 	  consistent with its mode: if a directory is mode 2775, it
 	  should be owned by the group that needs write access to
-	  it.
+	  it.<footnote>
+            <p>
+              When a package is upgraded, and the owner or permissions
+              of a file included in the package has changed, dpkg
+              arranges for the ownership and permissions to be
+              correctly set upon installation. However, this does not
+              extend to directories; the permissions and ownership of
+              directories already on the system does not change on
+              install or upgrade of packages.  This makes sense, since
+              otherwise common directories like <tt>/usr</tt> would
+              always be in flux.  To correctly change permissions of a
+              directory the package owns, explicit action is required,
+              usually in the <tt>postinst</tt> script. Care must be
+              taken to handle downgrades as well, in that case.
+            </p>
+          </footnote>
 	</p>
+
 
 	<p>
 	  Setuid and setgid executables should be mode 4755 or 2755
@@ -7172,7 +7284,7 @@ endscript
 	      normally have their permissions reset to the distributed
 	      permissions when the package is reinstalled.  However,
 	      the use of <prgn>dpkg-statoverride</prgn> overrides this
-	      default behaviour.  If you use this method, you should
+	      default behavior.  If you use this method, you should
 	      remember to describe <prgn>dpkg-statoverride</prgn> in
 	      the package documentation; being a relatively new
 	      addition to Debian, it is probably not yet well-known.
@@ -7264,7 +7376,8 @@ endscript
 	    maintainer can use <tt>debconf</tt> to find out the
 	    preference, and call <prgn>dpkg-statoverride</prgn> in the
 	    maintainer script if necessary to accommodate the system
-	    administrator's choice.
+	    administrator's choice. Care must be taken during
+	    upgrades to not override an existing setting.
 	  </p>
 
 	  <p>
@@ -7281,9 +7394,13 @@ endscript
 	    <example>
 for i in /usr/bin/foo /usr/sbin/bar
 do
-  if ! dpkg-statoverride --list $i >/dev/null
+  # only do something when no setting exists
+  if ! dpkg-statoverride --list $i >/dev/null 2>&1
   then
-    dpkg-statoverride --update --add sysuser root 4755 $i
+    #include: debconf processing, question about foo and bar
+    if [ "$RET" = "true" ] ; then
+      dpkg-statoverride --update --add sysuser root 4755 $i
+    fi
   fi
 done
 	    </example>
@@ -7304,21 +7421,51 @@ done
 
 	<p>
 	  If a program needs to specify an <em>architecture specification
-	    string</em> in some place, the following format should be
-	    used: <var>arch</var>-<var>os</var><footnote>
-	      The following architectures and operating systems are
-	      currently recognised by <prgn>dpkg-architecture</prgn>.
-	      The architecture, <tt><var>arch</var></tt>, is one of
-	      the following: <tt>alpha</tt>, <tt>arm</tt>,
-	      <tt>hppa</tt>, <tt>i386</tt>, <tt>ia64</tt>,
-	      <tt>m68k</tt>, <tt>mips</tt>, <tt>mipsel</tt>,
-	      <tt>powerpc</tt>, <tt>s390</tt>, <tt>sh</tt>,
-	      <tt>sheb</tt>, <tt>sparc</tt> and <tt>sparc64</tt>.  The
-	      operating system, <tt><var>os</var></tt>, is one of:
-	      <tt>linux</tt>, <tt>gnu</tt>, <tt>freebsd</tt> and
-	      <tt>openbsd</tt>.  Use of <tt>gnu</tt> in this string is
-	      reserved for the GNU/Hurd operating system.
-	  </footnote>.
+	    string</em> in some place, it should select one of the
+          strings provided by <tt>dpkg-architecture -L</tt>. The
+          strings are in the format
+          <tt><var>os</var>-<var>arch</var></tt>, though the OS part
+          is sometimes elided, as when the OS is Linux.<footnote>
+            <p>Currently, the strings are:
+              i386 ia64 alpha amd64 armeb arm hppa m32r m68k mips
+              mipsel powerpc ppc64 s390 s390x sh3 sh3eb sh4 sh4eb
+              sparc darwin-i386 darwin-ia64 darwin-alpha darwin-amd64
+              darwin-armeb darwin-arm darwin-hppa darwin-m32r
+              darwin-m68k darwin-mips darwin-mipsel darwin-powerpc
+              darwin-ppc64 darwin-s390 darwin-s390x darwin-sh3
+              darwin-sh3eb darwin-sh4 darwin-sh4eb darwin-sparc
+              freebsd-i386 freebsd-ia64 freebsd-alpha freebsd-amd64
+              freebsd-armeb freebsd-arm freebsd-hppa freebsd-m32r
+              freebsd-m68k freebsd-mips freebsd-mipsel freebsd-powerpc
+              freebsd-ppc64 freebsd-s390 freebsd-s390x freebsd-sh3
+              freebsd-sh3eb freebsd-sh4 freebsd-sh4eb freebsd-sparc
+              kfreebsd-i386 kfreebsd-ia64 kfreebsd-alpha
+              kfreebsd-amd64 kfreebsd-armeb kfreebsd-arm kfreebsd-hppa
+              kfreebsd-m32r kfreebsd-m68k kfreebsd-mips
+              kfreebsd-mipsel kfreebsd-powerpc kfreebsd-ppc64
+              kfreebsd-s390 kfreebsd-s390x kfreebsd-sh3 kfreebsd-sh3eb
+              kfreebsd-sh4 kfreebsd-sh4eb kfreebsd-sparc knetbsd-i386
+              knetbsd-ia64 knetbsd-alpha knetbsd-amd64 knetbsd-armeb
+              knetbsd-arm knetbsd-hppa knetbsd-m32r knetbsd-m68k
+              knetbsd-mips knetbsd-mipsel knetbsd-powerpc
+              knetbsd-ppc64 knetbsd-s390 knetbsd-s390x knetbsd-sh3
+              knetbsd-sh3eb knetbsd-sh4 knetbsd-sh4eb knetbsd-sparc
+              netbsd-i386 netbsd-ia64 netbsd-alpha netbsd-amd64
+              netbsd-armeb netbsd-arm netbsd-hppa netbsd-m32r
+              netbsd-m68k netbsd-mips netbsd-mipsel netbsd-powerpc
+              netbsd-ppc64 netbsd-s390 netbsd-s390x netbsd-sh3
+              netbsd-sh3eb netbsd-sh4 netbsd-sh4eb netbsd-sparc
+              openbsd-i386 openbsd-ia64 openbsd-alpha openbsd-amd64
+              openbsd-armeb openbsd-arm openbsd-hppa openbsd-m32r
+              openbsd-m68k openbsd-mips openbsd-mipsel openbsd-powerpc
+              openbsd-ppc64 openbsd-s390 openbsd-s390x openbsd-sh3
+              openbsd-sh3eb openbsd-sh4 openbsd-sh4eb openbsd-sparc
+              hurd-i386 hurd-ia64 hurd-alpha hurd-amd64 hurd-armeb
+              hurd-arm hurd-hppa hurd-m32r hurd-m68k hurd-mips
+              hurd-mipsel hurd-powerpc hurd-ppc64 hurd-s390 hurd-s390x
+              hurd-sh3 hurd-sh3eb hurd-sh4 hurd-sh4eb hurd-sparc
+            </p>
+          </footnote>
 	</p>
 
 	<p>
@@ -7381,7 +7528,7 @@ done
 
 	<p>
 	  The files <file>/var/run/utmp</file>, <file>/var/log/wtmp</file> and
-	  <file>/var/log/lastlog</file> must be installed writeable by
+	  <file>/var/log/lastlog</file> must be installed writable by
 	  group <tt>utmp</tt>.  Programs which need to modify those
 	  files must be installed setgid <tt>utmp</tt>.
 	</p>
@@ -7471,6 +7618,7 @@ done
 		<example compact="compact">
 http://localhost/cgi-bin/<var>cgi-bin-name</var>
 		</example>
+
 	    </item>
 
 	    <item>
@@ -7494,6 +7642,20 @@ http://localhost/doc/<var>package</var>/<var>filename</var>
 	      </p>
 	    </item>
 
+            <item>
+              <p>Access to images</p>
+              <p>
+                It is recommended that images for a package be stored
+                in <tt>/usr/share/images/<var>package</var></tt> and
+                may be referred to through an alias <tt>/images/</tt>
+                as
+                <example>
+                  http://localhost/images/&lt;package&gt;/&lt;filename&gt;     
+                </example>
+                
+              </p>
+            </item>
+
 	    <item>
 	      <p>Web Document Root</p>
 
@@ -7512,7 +7674,19 @@ http://localhost/doc/<var>package</var>/<var>filename</var>
 		has put the real document root.
 	      </p>
 	    </item>
-
+	    <item><p>Providing httpd and/or httpd-cgi</p>
+	      <p>
+		All web servers should provide the virtual package
+		<tt>httpd</tt>. If a web server has CGI support it should
+		provide <tt>httpd-cgi</tt> additionally.
+	      </p>
+	      <p>
+		All web applications which do not contain CGI scripts should
+		depend on <tt>httpd</tt>, all those web applications which
+		<tt>do</tt> contain CGI scripts, should depend on
+		<tt>httpd-cgi</tt>.
+	      </p>
+	    </item>
 	  </enumlist>
 	</p>
       </sect>
@@ -7741,7 +7915,7 @@ name ["<var>syshostname</var>"]:
 		      "view" in a multiple-document interface (MDI).
 		  </footnote>
 		  and runs the specified <var>command</var>,
-		  interpreting the entirity of the rest of the command
+		  interpreting the entirety of the rest of the command
 		  line as a command to pass straight to exec, in the
 		  manner that <tt>xterm</tt> does.
 	      </item>
@@ -7808,7 +7982,7 @@ name ["<var>syshostname</var>"]:
 		For the purposes of Debian Policy, a "font for the X
 		Window System" is one which is accessed via X protocol
 		requests.  Fonts for the Linux console, for PostScript
-		renderers, or any other purpose, do not fit this
+		renderer, or any other purpose, do not fit this
 		definition.  Any tool which makes such fonts available
 		to the X Window System, however, must abide by this
 		font policy.
@@ -7832,52 +8006,52 @@ name ["<var>syshostname</var>"]:
 		  be used.  Packages must not Depend on font
 		  packages.<footnote>
 		      This is because the X server may retrieve fonts
-		      from the local filesystem or over the network
+		      from the local file system or over the network
 		      from an X font server; the Debian package system
 		      is empowered to deal only with the local
-		      filesystem.
+		      file system.
 		  </footnote>
 	      </item>
 
 	      <item>
 		  BDF fonts must be converted to PCF fonts with the
 		  <prgn>bdftopcf</prgn> utility (available in the
-                  <tt>xutils</tt> package, <prgn>gzip</prgn>ped, and
+                  <tt>xfonts-utils</tt> package, <prgn>gzip</prgn>ped, and
 		  placed in a directory that corresponds to their
 		  resolution:
 		  <list compact="compact">
 		    <item>
 			100 dpi fonts must be placed in
-			<file>/usr/X11R6/lib/X11/fonts/100dpi/</file>.
+			<file>/usr/share/fonts/X11/100dpi/</file>.
 		    </item>
 
 		    <item>
 			75 dpi fonts must be placed in
-			<file>/usr/X11R6/lib/X11/fonts/75dpi/</file>.
+			<file>/usr/share/fonts/X11/75dpi/</file>.
 		    </item>
 
 		    <item>
 			Character-cell fonts, cursor fonts, and other
 			low-resolution fonts must be placed in
-			<file>/usr/X11R6/lib/X11/fonts/misc/</file>.
+			<file>/usr/share/fonts/X11/misc/</file>.
 		    </item>
 		  </list>
 	      </item>
 
 	      <item>
 		  Speedo fonts must be placed in
-		  <file>/usr/X11R6/lib/X11/fonts/Speedo/</file>.
+		  <file>/usr/share/fonts/X11/Speedo/</file>.
 	      </item>
 
 	      <item>
 		  Type 1 fonts must be placed in
-		  <file>/usr/X11R6/lib/X11/fonts/Type1/</file>.  If font
+		  <file>/usr/share/fonts/X11/Type1/</file>.  If font
 		  metric files are available, they must be placed here
 		  as well.
 	      </item>
 
 	      <item>
-		  Subdirectories of <file>/usr/X11R6/lib/X11/fonts/</file>
+		  Subdirectories of <file>/usr/share/fonts/X11/</file>
 		  other than those listed above must be neither
 		  created nor used.  (The <file>PEX</file>, <file>CID</file>,
 		  and <file>cyrillic</file> directories are excepted for
@@ -7926,7 +8100,7 @@ name ["<var>syshostname</var>"]:
 			<file>/etc/X11/fonts/<var>fontdir</var>/<var>package</var>.<var>extension</var></file>,
 			where <var>fontdir</var> is the name of the
 			subdirectory of
-			<file>/usr/X11R6/lib/X11/fonts/</file> where the
+			<file>/usr/share/fonts/X11/</file> where the
 			package's corresponding fonts are stored
 			(e.g., <tt>75dpi</tt> or <tt>misc</tt>),
 			<var>package</var> is the name of the package
@@ -7940,7 +8114,7 @@ name ["<var>syshostname</var>"]:
 
 	      <item>
 		  Font packages must declare a dependency on
-		  <tt>xutils (&gt;&gt; 4.0.3)</tt> in their control
+		  <tt>xfonts-utils</tt> in their control
 		  data.
 	      </item>
 
@@ -8014,7 +8188,7 @@ name ["<var>syshostname</var>"]:
 	    configuration file.<footnote>
 		Note that this mechanism is not the same as using
 		app-defaults; app-defaults are tied to the client
-		binary on the local filesystem, whereas X resources
+		binary on the local file system, whereas X resources
 		are stored in the X server and affect all connecting
 		clients.
 	    </footnote>
@@ -8032,25 +8206,10 @@ name ["<var>syshostname</var>"]:
 
 	  <p>
 	    Packages using the X Window System should not be
-	    configured to install files under the <file>/usr/X11R6/</file>
-	    directory unless they use <prgn>imake</prgn>. The
+	    configured to install files under the
+	    <file>/usr/X11R6/</file> directory. The
 	    <file>/usr/X11R6/</file> directory hierarchy should be
-	    regarded as deprecated for all packages except the X
-	    Window System itself, and those which use the
-	    <prgn>imake</prgn> program it provides, in which case the
-	    packages may transition out of the <file>/usr/X11R6/</file>
-	    directory at the maintainer's discretion.<footnote>
-		<prgn>Imake</prgn>-using programs are exempt because,
-		as long as they are written correctly, the pathnames
-		they use to locate resources and install themselves
-		are derived wholly from the X Window System
-		configuration.  Thus, in the event that the X Window
-		System moves to <file>/usr/X11R7/</file>,
-		<file>/usr/X12/</file>, or just plain <file>/usr/</file>, all
-		that is required for these programs is a recompile
-		against the corresponding X Window System library
-		development packages.
-	    </footnote>
+	    regarded as obsolete.
 	  </p>
 
 	  <p>
@@ -8070,25 +8229,30 @@ name ["<var>syshostname</var>"]:
 	  <p>
 	    The installation of files into subdirectories
 	    of <file>/usr/X11R6/include/X11/</file> and
-	    <file>/usr/X11R6/lib/X11/</file> is permitted but discouraged;
+	    <file>/usr/X11R6/lib/X11/</file> is now prohibited;
 	    package maintainers should determine if subdirectories of
 	    <file>/usr/lib/</file> and <file>/usr/share/</file> can be used
-	    instead.  (The use of symbolic links from the
-	    <file>X11R6</file> directories to other FHS-compliant
-	    locations is encouraged if the program is not easily
-	    configured to look elsewhere for its files.)
+	    instead. 
 	  </p>
 
 	  <p>
-	    Packages must not provide or install files into the directories
-	    <file>/usr/bin/X11/</file>, <file>/usr/include/X11/</file> or
-	    <file>/usr/lib/X11/</file>.  Files within a package should,
-	    however, make reference to these directories, rather than
-	    their <tt>X11R6</tt>-named counterparts
-	    <file>/usr/X11R6/bin/</file>, <file>/usr/X11R6/include/X11/</file>
-	    and <file>/usr/X11R6/lib/X11/</file>, if the resources being
-	    referred to have not been moved to other FHS-compliant
-	    locations.
+            Packages should install any relevant files into the
+	    directories <file>/usr/include/X11/</file> and
+	    <file>/usr/lib/X11/</file>, but if they do so, they must
+	    pre-depend on <tt>x11-common (&gt;=
+	    1:7.0.0)</tt><footnote>
+              <p>
+                These libraries used to be all symbolic
+                links. However, with <tt>X11R7</tt>,
+                <tt>/usr/include/X11</tt> and <tt>/usr/lib/X11</tt>
+                are now real directories, and packages
+                <strong>should</strong> ship their files here instead
+                of in <tt>/usr/X11R6/{include,lib}/X11</tt>.
+                <tt>x11-common (&gt;= 1:7.0.0) </tt> is the package
+                responsible for converting these symlinks into
+                directories.
+              </p>
+            </footnote>
 	  </p>
 	</sect1>
 
@@ -8175,7 +8339,7 @@ name ["<var>syshostname</var>"]:
 
 	<p>
 	  Games which require protected, privileged access to
-	  high-score files, savegames, etc., may be made
+	  high-score files, saved games, etc., may be made
 	  set-<em>group</em>-id (mode 2755) and owned by
 	  <tt>root.games</tt>, and use files and directories with
 	  appropriate permissions (770 <tt>root.games</tt>, for
@@ -8221,7 +8385,7 @@ name ["<var>syshostname</var>"]:
 	  You should install manual pages in <prgn>nroff</prgn> source
 	  form, in appropriate places under <file>/usr/share/man</file>.
 	  You should only use sections 1 to 9 (see the FHS for more
-	  details).  You must not install a preformatted "cat page".
+	  details).  You must not install a pre-formatted "cat page".
 	</p>
 
 	<p>
@@ -8274,14 +8438,14 @@ name ["<var>syshostname</var>"]:
 	  base of the man page tree (usually
 	  <file>/usr/share/man</file>). If you do not create any links
 	  (whether symlinks, hard links, or <tt>.so</tt> directives)
-	  in the filesystem to the alternate names of the man page,
+	  in the file system to the alternate names of the man page,
 	  then you should not rely on <prgn>man</prgn> finding your
 	  man page under those names based solely on the information in
 	  the man page's header.<footnote>
 	      Supporting this in <prgn>man</prgn> often requires
 	      unreasonable processing time to find a manual page or to
 	      report that none exists, and moves knowledge into man's
-	      database that would be better left in the filesystem.
+	      database that would be better left in the file system.
 	      This support is therefore deprecated and will cease to
 	      be present in the future.
  	  </footnote>
@@ -8336,7 +8500,7 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	<p>
 	  Any additional documentation that comes with the package may
 	  be installed at the discretion of the package maintainer.
-	  Text documentation should be installed in the directory
+	  Plain text documentation should be installed in the directory
 	  <file>/usr/share/doc/<var>package</var></file>, where
 	  <var>package</var> is the name of the package, and
           compressed with <tt>gzip -9</tt> unless it is small.
@@ -8366,7 +8530,7 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	      any programs to break.
 	  </footnote>.
 	  Any files that are referenced by programs but are also
-	  useful as standalone documentation should be installed under
+	  useful as stand alone documentation should be installed under
 	  <file>/usr/share/<var>package</var>/</file> with symbolic links from
 	  <file>/usr/share/doc/<var>package</var></file>.
 	</p>
@@ -8382,7 +8546,7 @@ install-info --quiet --remove /usr/share/info/foobar.info
               <file>/usr/share/<var>package</var>/changelog.Debian.gz</file>
               must refer to the changelog for the current version of
               <var>package</var> in question. In practice, this means
-              that the sources of the target and the destnation of the
+              that the sources of the target and the destination of the
               symlink must be the same (same source package and
               version). 
             </p>
@@ -8461,12 +8625,24 @@ install-info --quiet --remove /usr/share/info/foobar.info
 
 	<p>
 	  Packages distributed under the UCB BSD license, the Artistic
-	  license, the GNU GPL, and the GNU LGPL should refer to the
-	  files <file>/usr/share/common-licenses/BSD</file>,
-	  <file>/usr/share/common-licenses/Artistic</file>,
-	  <file>/usr/share/common-licenses/GPL</file>, and
-	  <file>/usr/share/common-licenses/LGPL</file> respectively,
-	  rather than quoting them in the copyright file.
+	  license, the GNU GPL, and the GNU LGPL, should refer to the
+	  corresponding files under
+	  <file>/usr/share/common-licenses</file>,<footnote>
+            <p>
+              For example,
+              <file>/usr/share/common-licenses/Artistic</file>,
+              <file>/usr/share/common-licenses/BSD</file>,
+              <file>/usr/share/common-licenses/GPL</file>,
+              <file>/usr/share/common-licenses/LGPL</file>,
+              <file>/usr/share/common-licenses/GFDL</file>,
+              <file>/usr/share/common-licenses/GPL-2</file>, and
+              <file>/usr/share/common-licenses/LGPL-2.1</file>, and so
+              on. Note that the GFDL is new here, and the license file
+              may not yet be in place in
+              <file>/usr/share/common-licenses/GFDL</file>. 
+            </p>
+          </footnote> rather than quoting them in the copyright
+	  file. 
 	</p>
 
 	<p>
@@ -8591,7 +8767,7 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	<prgn>dpkg</prgn> is a suite of programs for creating binary
 	package files and installing and removing them on Unix
 	systems.<footnote>
-	    <prgn>dpkg</prgn> is targetted primarily at Debian
+	    <prgn>dpkg</prgn> is targeted primarily at Debian
 	    GNU/Linux, but may work on or be ported to other
 	    systems.
 	</footnote>
@@ -8606,7 +8782,7 @@ install-info --quiet --remove /usr/share/info/foobar.info
       <p>
 	This manual describes the technical aspects of creating Debian
 	binary packages (<file>.deb</file> files).  It documents the
-	behaviour of the package management programs
+	behavior of the package management programs
 	<prgn>dpkg</prgn>, <prgn>dselect</prgn> et al. and the way
 	they interact with packages.</p>
 
@@ -8619,7 +8795,7 @@ install-info --quiet --remove /usr/share/info/foobar.info
       <p>
 	This manual does not go into detail about the options and
 	usage of the package building and installation tools.  It
-	should therefore be read in conjuction with those programs'
+	should therefore be read in conjunction with those programs'
 	man pages.
       </p>
 
@@ -8687,7 +8863,7 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	<p>
 	  In order to create a binary package you must make a
 	  directory tree which contains all the files and directories
-	  you want to have in the filesystem data part of the package.
+	  you want to have in the file system data part of the package.
 	  In Debian-format source packages this directory is usually
 	  <file>debian/tmp</file>, relative to the top of the package's
 	  source tree.
@@ -8709,7 +8885,7 @@ install-info --quiet --remove /usr/share/info/foobar.info
 
 	<p>
 	  You need to add one special directory to the root of the
-	  miniature filesystem tree you're creating:
+	  miniature file system tree you're creating:
 	  <prgn>DEBIAN</prgn>.  It should contain the control
 	  information files, notably the binary package control file
 	  (see <ref id="pkg-controlfile">).
@@ -8717,7 +8893,7 @@ install-info --quiet --remove /usr/share/info/foobar.info
 
 	<p>
 	  The <prgn>DEBIAN</prgn> directory will not appear in the
-	  filesystem archive of the package, and so won't be installed
+	  file system archive of the package, and so won't be installed
 	  by <prgn>dpkg</prgn> when the package is installed.
 	</p>
 
@@ -8747,7 +8923,7 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	  </example>
 	  To view the copyright file for a package you could use this command:
 	  <example>
-  dpkg --fsys-tarfile <var>filename</var>.deb | tar xO ./usr/share/doc/\*/copyright | pager
+  dpkg --fsys-tarfile <var>filename</var>.deb | tar xOf - \*/copyright | pager
 	  </example>
 	</p>
       </sect>
@@ -8802,7 +8978,7 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	    </tag>
 	    <item>
 	      <p>
-		These are exectuable files (usually scripts) which
+		These are executable files (usually scripts) which
 		<prgn>dpkg</prgn> runs during installation, upgrade
 		and removal of packages.  They allow the package to
 		deal with matters which are particular to that package
@@ -9311,20 +9487,9 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	    <url id="http://www.unicode.org/"
 	    name="Unicode">.<footnote>
 	      <p>
-		Support for Unicode, and specifically UTF-8, is
-		steadily increasing among popular applications in
-		Debian.  For example, in unstable, GNOME 2 has
-		excellent support (almost level 2) in almost all its
-		applications; the big remaining one is gnome-terminal,
-		of which one requires development versions in order to
-		support UTF-8 (available in Debian experimental now if
-		you want to play).  I think that by the time sarge is
-		released, UTF-8 support will start to hit critical
-		mass. </p>
-	      <p>
 		I think it is fairly obvious that we need to
 		eventually transition to UTF-8 for our package
-		infrastructure; it is really the only sane charset in
+		infrastructure; it is really the only sane char-set in
 		an international environment.  Now, we can't switch to
 		using UTF-8 for package control fields and the like
 		until dpkg has better support, but one thing we can
@@ -9433,7 +9598,7 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	    <p>
 	      If the changelog format does not contain date or package
 	      name information this information should be omitted from
-	      the output.  The parser should not attempt to synthesise
+	      the output.  The parser should not attempt to synthesize
 	      it or find it from other sources.
 	    </p>
 
@@ -9475,7 +9640,7 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	    This is the canonical temporary location for the
 	    construction of binary packages by the <tt>binary</tt>
 	    target.  The directory <file>tmp</file> serves as the root of
-	    the filesystem tree as it is being constructed (for
+	    the file system tree as it is being constructed (for
 	    example, by using the package's upstream makefiles install
 	    targets and redirecting the output there), and it also
 	    contains the <tt>DEBIAN</tt> subdirectory.  See <ref
@@ -9683,7 +9848,7 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	    are handled specially by <prgn>dpkg-source</prgn> - before
 	    applying the changes it will create the <file>debian</file>
 	    directory, and afterwards it will make
-	    <file>debian/rules</file> world-exectuable.
+	    <file>debian/rules</file> world-executable.
 	  </p>
 	</sect1>
       </sect>
@@ -9761,7 +9926,7 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	    This field in <prgn>dpkg</prgn>'s status file records
 	    whether the user wants a package installed, removed or
 	    left alone, whether it is broken (requiring
-	    reinstallation) or not and what its current state on the
+	    re-installation) or not and what its current state on the
 	    system is.  Each of these pieces of information is a
 	    single word.
 	  </p>
@@ -9793,7 +9958,7 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	  <heading>Obsolete fields</heading>
 
 	  <p>
-	    These are still recognised by <prgn>dpkg</prgn> but should
+	    These are still recognized by <prgn>dpkg</prgn> but should
 	    not appear anywhere any more.
 
 	    <taglist compact="compact">
@@ -9907,7 +10072,7 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	  When a package is installed for the first time
 	  <prgn>dpkg</prgn> will install the file that comes with it,
 	  unless that would mean overwriting a file already on the
-	  filesystem.
+	  file system.
 	</p>
 
 	<p>

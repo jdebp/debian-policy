@@ -61,7 +61,7 @@ Miscellaneous
  emacsen                 the GNU emacs or a compatible editor
  tclsh                   a /usr/bin/tclsh (*)
  wish                    a /usr/bin/wish (*)
-
+ lzh-archiver            an LZH archiver package
 Development
 -----------
  c-compiler              a C compiler
@@ -84,7 +84,6 @@ System
 
 Documentation
 -------------
- aspell-dictionary       a dictionary for the aspell system
  dict-client             clients for the Dictionary Server
  dict-server             the Dictionary Server
  info-browser            something that can browse GNU Info files
@@ -92,6 +91,8 @@ Documentation
  myspell-dictionary      a dictionary for the myspell system
  man-browser             something that can read man pages
  stardict-dictionary     a dictionary for stardict
+ stardict                application capable of reading stardict-dictdata                     
+ stardict-dictdata       dictionary data which can be read from stardict    
  wordlist                a /usr/share/dict/words (*)
  www-browser             something that can browse HTML files
 
@@ -100,6 +101,7 @@ Network
  dhcp-client             a DHCP client
  ftp-server              a FTP server
  httpd                   a HTTP server
+ httpd-cgi               A CGI capable HTTP server
  ident-server            an identd daemon
  inetd-superserver       an inetd server
  lambdamoo-core          a lambdamoo-compatible database package  
@@ -130,6 +132,9 @@ X Window System
                          services
  xserver                 an X server that (directly or indirectly) manages
                          physical input and display hardware
+ x-session-manager       a program which starts a desktop environment
+                         or launches a general X session
+ x-display-manager       an X client which manages a collection of X servers
 
 Graphics and MultiMedia
 -----------------------
@@ -153,6 +158,14 @@ Java and virtual machines
  java1-runtime           a Java runtime environment, Java version 1
  java2-runtime           a Java runtime environment, Java version 2
 
+Scheme and interpreters
+-------------------------
+ scheme-r4rs             Scheme interpreter with the R4RS environment                       
+ scheme-r5rs             Scheme interpreter with the R5RS environment                       
+ scheme-ieee-11878-1900  Scheme interpreter with the IEEE-11878-1900 environment            
+ scheme-srfi-0           Scheme interpreter accepting the SRFI 0 language extension         
+ scheme-srfi-7           Scheme interpreter accepting the SRFI 7 language                   
+ scheme-srfi-55          Scheme interpreter accepting the SRFI 55 language extension       
 
 Old and obsolete virtual package names
 --------------------------------------
@@ -250,3 +263,26 @@ Manoj Srivastava:
 Manoj Srivastava:
    4 Feb 2005 Added mpd-client
               Added flexmem
+
+Manoj Srivastava:
+   16 Jun 2005  Removed aspell-dictionary
+
+Manoj Srivastava:
+   18 Jun 2005  Added x-session-manager
+                Added the section on Scheme and interpreters, which
+                includes: 
+                  scheme-r4rs                 
+                  scheme-r5rs                 
+                  scheme-ieee-11878-1900      
+                  scheme-srfi-0               
+                  scheme-srfi-7               
+                  scheme-srfi-55          
+                Added x-display-manager
+
+Manoj Srivastava:
+   26 April 2006 Added httpd-cgi
+
+Manoj Srivastava:
+   02 October 2006 Added stardict
+                   Added stardict-dictdata
+                   Added lzh-archiver
