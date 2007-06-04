@@ -2649,8 +2649,8 @@ Package: libc6
 			Alphanumerics are <tt>A-Za-z0-9</tt> only.
 	          </footnote>
 	          and the characters <tt>.</tt> <tt>+</tt> <tt>-</tt>
-	          <tt>:</tt> (full stop, plus, hyphen, colon) and should
-	          start with a digit.  If there is no
+	          <tt>:</tt> <tt>~</tt> (full stop, plus, hyphen, colon,
+	          tilde) and should start with a digit.  If there is no
 	          <var>debian_revision</var> then hyphens are not allowed;
 	          if there is no <var>epoch</var> then colons are not
 	          allowed.
@@ -2663,8 +2663,8 @@ Package: libc6
 	          This part of the version number specifies the version of
 	          the Debian package based on the upstream version.  It
 	          may contain only alphanumerics and the characters
-	          <tt>+</tt> and <tt>.</tt> (plus and full stop) and is
-	          compared in the same way as the
+	          <tt>+</tt> <tt>.</tt> <tt>~</tt> (plus, full stop,
+	          tilde) and is compared in the same way as the
 	          <var>upstream_version</var> is.
 	        </p>
 
@@ -2713,7 +2713,15 @@ Package: libc6
 	    which may be empty) are compared lexically.  If a difference
 	    is found it is returned.  The lexical comparison is a
 	    comparison of ASCII values modified so that all the letters
-	    sort earlier than all the non-letters.
+	    sort earlier than all the non-letters and so that a tilde
+	    sorts before anything, even the end of a part.  For example,
+	    the following parts are in sorted order from earliest to
+	    latest: <tt>~~</tt>, <tt>~~a</tt>, <tt>~</tt>, the empty part,
+	    <tt>a</tt>.<footnote>
+	      One common use of <tt>~</tt> is for upstream pre-releases.
+	      For example, <tt>1.0~beta1~svn1245</tt> sorts earlier than
+	      <tt>1.0~beta1</tt>, which sorts earlier than <tt>1.0</tt>.
+	    </footnote>
 	  </p>
 
 	  <p>
