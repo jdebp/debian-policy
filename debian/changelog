@@ -2,6 +2,9 @@ debian-policy (3.7.3.0) UNRELEASED; urgency=low
 
   * Bug fix: "[PROPOSAL] Document ~ behavior in version numbers", thanks
     to Nicolas François and Marc Brockschmidt                (Closes: #382612).
+  * Bug fix: "Please add 'local' to list of supra-POSIX features that
+    /bin/sh can be expected to offer". Also add test -a/-o binary logical
+    operators and change references from POSIX to SUSv3      (Closes: #294962)
 
  --
 

@@ -56,6 +56,9 @@ picking your way through this list.
 3.7.3.0                        unreleased
      * Package version numbers may contain tildes, which sort before
        anything, even the end of a part.                         [5.6.12]
+     * Scripts may assume that /bin/sh supports local (at a basic level)
+       and that its test builtin (if any) supports -a and -o binary
+       logical operators.                                        [10.4]
 3.7.2.2                        Oct 2006
      * Maintainer scripts must not be world writeable (up from a
        should to a must)                                         [6.1]

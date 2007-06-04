@@ -5670,7 +5670,7 @@ test -f <var>program-executed-later-in-script</var> || exit 0
 	    <file>/etc/default</file>, which typically will have the same
 	    base name as the <file>init.d</file> script.  This extra file
 	    should be sourced by the script when the script runs.  It
-	    must contain only variable settings and comments in POSIX
+	    must contain only variable settings and comments in SUSv3
 	    <prgn>sh</prgn> format.  It may either be a
 	    <tt>conffile</tt> or a configuration file maintained by
 	    the package maintainer scripts.  See <ref id="config-files">
@@ -6731,34 +6731,54 @@ strip --strip-unneeded <var>your-lib</var>
 	</p>
 
 	<p>
-	  The standard shell interpreter <file>/bin/sh</file> can be a
-	  symbolic link to any POSIX compatible shell, if <tt>echo
-	  -n</tt> does not generate a newline.<footnote>
-	      Debian policy specifies POSIX behavior for
-	      <file>/bin/sh</file>, but <tt>echo -n</tt> has widespread
-	      use in the Linux community (in particular including this
-	      policy, the Linux kernel source, many Debian scripts,
-	      etc.).  This <tt>echo -n</tt> mechanism is valid but not
-	      required under POSIX, hence this explicit addition.
-	      Also, rumour has it that this shall be mandated under
-	      the LSB anyway.
+	  Scripts may assume that <file>/bin/sh</file> implements the
+	  SUSv3 Shell Command Language<footnote>
+	    Single UNIX Specification, version 3, which is also IEEE
+	    1003.1-2004 (POSIX), and is available on the World Wide Web
+	    from <url id="http://www.unix.org/version3/online.html"
+		      name="The Open Group"> after free
+	    registration.</footnote>
+	  plus the following additional features not mandated by
+	  SUSv3:<footnote>
+	    These features are in widespread use in the Linux community
+	    and are implemented in all of bash, dash, and ksh, the most
+	    common shells users may wish to use as <file>/bin/sh</file>.
 	  </footnote>
-	  Thus, shell scripts specifying <file>/bin/sh</file> as
-	  interpreter must only use POSIX features. If a script
-	  requires non-POSIX features from the shell interpreter, the
-	  appropriate shell must be specified in the first line of the
-	  script (e.g., <tt>#!/bin/bash</tt>) and the package must
-	  depend on the package providing the shell (unless the shell
-	  package is marked "Essential", as in the case of
-	  <prgn>bash</prgn>).
+	  <list>
+	    <item><tt>echo -n</tt>, if implemented as a shell built-in,
+	      must not generate a newline.</item>
+	    <item><tt>test</tt>, if implemented as a shell built-in, must
+	      support <tt>-a</tt> and <tt>-o</tt> as binary logical
+	      operators.</item>
+	    <item><tt>local</tt> to create a scoped variable must be
+	      supported; however, <tt>local</tt> may or may not preserve
+	      the variable value from an outer scope and may or may not
+	      support arguments more complex than simple variables.  Only
+	      uses such as:
+<example compact>
+fname () {
+    local a
+    a=''
+    # ... use a ...
+}
+</example>
+              must be supported.
+            </item>
+	  </list>
+	  If a shell script requires non-SUSv3 features from the shell
+	  interpreter other than those listed above, the appropriate shell
+	  must be specified in the first line of the script (e.g.,
+	  <tt>#!/bin/bash</tt>) and the package must depend on the package
+	  providing the shell (unless the shell package is marked
+	  "Essential", as in the case of <prgn>bash</prgn>).
 	</p>
 
 	<p>
-	  You may wish to restrict your script to POSIX features when
-	  possible so that it may use <file>/bin/sh</file> as its
-	  interpreter. If your script works with <prgn>dash</prgn>
-	  (originally called <prgn>ash</prgn>), it's probably POSIX
-	  compliant, but if you are in doubt, use
+	  You may wish to restrict your script to SUSv3 features plus the
+	  above set when possible so that it may use <file>/bin/sh</file>
+	  as its interpreter. If your script works with <prgn>dash</prgn>
+	  (originally called <prgn>ash</prgn>), it probably complies with
+	  the above requirements, but if you are in doubt, use
 	  <file>/bin/bash</file>.
 	</p>
 
