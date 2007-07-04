@@ -3185,7 +3185,7 @@ Package: libc6
 	  They must be proper executable files; if they are scripts
 	  (which is recommended), they must start with the usual
 	  <tt>#!</tt> convention.  They should be readable and
-	  executable by anyone, and must not be not world-writable.
+	  executable by anyone, and must not be world-writable.
 	</p>
 
 	<p>

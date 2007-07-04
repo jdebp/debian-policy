@@ -7,6 +7,8 @@ debian-policy (3.7.3.0) UNRELEASED; urgency=low
     operators and change references from POSIX to SUSv3      (Closes: #294962).
   * Bug fix: "[Proposal] new Debian menu structure", thanks to Bill
     Allombert                                                (Closes: #361418).
+  * Bug fix: "typo: "must not be not world-writable"", thanks to Sam
+    Hocevar                                                  (Closes: #392594).
   
  --
 
