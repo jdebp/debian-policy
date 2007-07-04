@@ -445,12 +445,12 @@
                 <p>Tools for blanking the screen. Entries of screen hacks and
                    configuration GUIs should go to other appropriate sections.
                 </p>
-                <p>Examples: xscreensaver, xlockmore, [fillme]</p>
+                <p>Examples: xscreensaver, xlockmore</p>
               </item>
               <tag>Locking</tag>
               <item>
                 <p>Tools for locking the screen.</p>
-                <p>Examples: xscreensaver, xlockmore, [fillme]</p>
+                <p>Examples: xscreensaver, xlockmore</p>
               </item>
               </taglist>
             </item>
