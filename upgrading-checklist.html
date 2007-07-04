@@ -59,6 +59,9 @@ picking your way through this list.
      * Scripts may assume that /bin/sh supports local (at a basic level)
        and that its test builtin (if any) supports -a and -o binary
        logical operators.                                        [10.4]
+     * The substitution variable ${binary:Version} should be used in place
+       of ${Source-Version} for dependencies between packages of the same
+       library.                                                  [8.5]
      * Substantial reorganization and renaming of sections in the Debian
        menu structure.  Packages with menu entries should be reviewed to
        see if the menu section has been renamed or if one of the new

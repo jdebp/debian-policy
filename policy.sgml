@@ -4719,8 +4719,12 @@ Replaces: mail-transport-agent
 	  Typically the development version should have an exact
 	  version dependency on the runtime library, to make sure that
 	  compilation and linking happens correctly.  The
-	  <tt>${Source-Version}</tt> substitution variable can be
+	  <tt>${binary:Version}</tt> substitution variable can be
 	  useful for this purpose.
+          <footnote>
+            Previously, <tt>${Source-Version}</tt> was used, but its name
+            was confusing and it has been deprecated since dpkg 1.13.19.
+          </footnote>
 	</p>
       </sect>
 

@@ -9,7 +9,9 @@ debian-policy (3.7.3.0) UNRELEASED; urgency=low
     Allombert                                                (Closes: #361418).
   * Bug fix: "typo: "must not be not world-writable"", thanks to Sam
     Hocevar                                                  (Closes: #392594).
-  
+  * Bug fix: "debian-policy: recommend binary:Version substvar instead",
+    thanks to Guillem Jover                                  (Closes: #418444).
+
  --
 
 debian-policy (3.7.2.2) unstable; urgency=low
