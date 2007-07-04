@@ -59,9 +59,10 @@ Miscellaneous
  c-shell                 a suitable /bin/csh (*)
  dotfile-module          a module for the Dotfile Generator
  emacsen                 the GNU emacs or a compatible editor
+ lzh-archiver            an LZH archiver package
  tclsh                   a /usr/bin/tclsh (*)
  wish                    a /usr/bin/wish (*)
- lzh-archiver            an LZH archiver package
+
 Development
 -----------
  c-compiler              a C compiler
@@ -74,13 +75,14 @@ Development
 
 System
 ------
+ flexmem                 anything that can access flexible memory via the
+                         OBEX Protocol
  foomatic-data           PPD printer description files
  linux-kernel-log-daemon a daemon to facilitate logging for the Linux kernel
  system-log-daemon       a daemon that provides a logging facility for
                          other applications
  time-daemon             anything that serves as a time daemon
  ups-monitor             anything that is capable of controlling an UPS
- flexmem                 anything that can  access flexible memory via the OBEX Protocol 
 
 Documentation
 -------------
@@ -91,7 +93,7 @@ Documentation
  myspell-dictionary      a dictionary for the myspell system
  man-browser             something that can read man pages
  stardict-dictionary     a dictionary for stardict
- stardict                application capable of reading stardict-dictdata                     
+ stardict                application capable of reading stardict-dictdata
  stardict-dictdata       dictionary data which can be read from stardict    
  wordlist                a /usr/share/dict/words (*)
  www-browser             something that can browse HTML files
@@ -126,29 +128,29 @@ News and Mail
 
 X Window System
 ---------------
+ x-display-manager       an X client which manages a collection of X servers
+ x-session-manager       a program which starts a desktop environment
+                         or launches a general X session
  x-terminal-emulator     an X client which emulates a terminal with a
                          terminfo description in the ncurses-base package
  x-window-manager        an X client which provides window management
                          services
  xserver                 an X server that (directly or indirectly) manages
                          physical input and display hardware
- x-session-manager       a program which starts a desktop environment
-                         or launches a general X session
- x-display-manager       an X client which manages a collection of X servers
 
 Graphics and MultiMedia
 -----------------------
- mp3-encoder             an MP3 encoder package
- mp3-decoder             an MP3 decoder package
  audio-mixer             a utility to control the input and output levels
                          of a sound card, with a tty interface
  x-audio-mixer           a utility to control the input and output levels
                          of a sound card, X Window System interface
+ mp3-encoder             an MP3 encoder package
+ mp3-decoder             an MP3 decoder package
+ mpd-client              a client that can control the Music Player Daemon
  pdf-preview             a preprocessor that creates PDF output
  pdf-viewer              anything that can display PDF files
  postscript-preview      a preprocessor that creates Postscript output
  postscript-viewer       anything that can display Postscript files
- mpd-client              A client that can control the Music Player Daemon
 
 Java and virtual machines
 -------------------------
@@ -160,12 +162,16 @@ Java and virtual machines
 
 Scheme and interpreters
 -------------------------
- scheme-r4rs             Scheme interpreter with the R4RS environment                       
- scheme-r5rs             Scheme interpreter with the R5RS environment                       
- scheme-ieee-11878-1900  Scheme interpreter with the IEEE-11878-1900 environment            
- scheme-srfi-0           Scheme interpreter accepting the SRFI 0 language extension         
- scheme-srfi-7           Scheme interpreter accepting the SRFI 7 language                   
- scheme-srfi-55          Scheme interpreter accepting the SRFI 55 language extension       
+ scheme-r4rs             Scheme interpreter with the R4RS environment
+ scheme-r5rs             Scheme interpreter with the R5RS environment
+ scheme-ieee-11878-1900  Scheme interpreter with the IEEE-11878-1900
+                         environment            
+ scheme-srfi-0           Scheme interpreter accepting the SRFI 0 language
+                         extension
+ scheme-srfi-7           Scheme interpreter accepting the SRFI 7 language
+                         extension
+ scheme-srfi-55          Scheme interpreter accepting the SRFI 55 language
+                         extension
 
 Old and obsolete virtual package names
 --------------------------------------
