@@ -11,6 +11,8 @@ debian-policy (3.7.3.0) UNRELEASED; urgency=low
     Hocevar                                                  (Closes: #392594).
   * Bug fix: "debian-policy: recommend binary:Version substvar instead",
     thanks to Guillem Jover                                  (Closes: #418444).
+  * Bug fix: "New virtual package: dictd-dictionary", thanks to Tatsuya
+    Kinoshita                                                (Closes: #413575).
   * Wrapped, cleaned up trailing whitespace, and alphabetized the list of
     virtual packages.
 

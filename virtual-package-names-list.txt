@@ -1,7 +1,7 @@
 
               AUTHORITATIVE LIST OF VIRTUAL PACKAGE NAMES
 
-                            September 2002
+                               July 2007
 
 
 Below is an authoritative list of virtual package names currently
@@ -88,6 +88,7 @@ Documentation
 -------------
  dict-client             clients for the Dictionary Server
  dict-server             the Dictionary Server
+ dictd-dictionary        a dictionary for the dictd Dictionary Server
  info-browser            something that can browse GNU Info files
  ispell-dictionary       a dictionary for the ispell system
  myspell-dictionary      a dictionary for the myspell system
@@ -292,3 +293,6 @@ Manoj Srivastava:
    02 October 2006 Added stardict
                    Added stardict-dictdata
                    Added lzh-archiver
+
+Russ Allbery:
+   4 Jul 2007 Added dictd-dictionary
