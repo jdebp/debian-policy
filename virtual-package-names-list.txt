@@ -106,7 +106,7 @@ Network
  httpd                   a HTTP server
  httpd-cgi               A CGI capable HTTP server
  ident-server            an identd daemon
- inetd-superserver       an inetd server
+ inet-superserver        an inetd server
  lambdamoo-core          a lambdamoo-compatible database package  
  lambdamoo-server        anything running a moo using a lambdamoo-core
  radius-server           a RADIUS server for acct/auth
@@ -295,4 +295,5 @@ Manoj Srivastava:
                    Added lzh-archiver
 
 Russ Allbery:
-   4 Jul 2007 Added dictd-dictionary
+   8 Jul 2007 Added dictd-dictionary
+              Rename inetd-superserver to inet-superserver

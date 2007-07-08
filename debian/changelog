@@ -13,6 +13,9 @@ debian-policy (3.7.3.0) UNRELEASED; urgency=low
     thanks to Guillem Jover                                  (Closes: #418444).
   * Bug fix: "New virtual package: dictd-dictionary", thanks to Tatsuya
     Kinoshita                                                (Closes: #413575).
+  * The virtual package in use is inet-superserver, not inetd-superserver.
+    Adjust the virtual package list to match.  Thanks, Tatsuya Kinoshita
+    and Marco d'Itri.
   * Wrapped, cleaned up trailing whitespace, and alphabetized the list of
     virtual packages.
 
