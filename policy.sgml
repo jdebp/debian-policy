@@ -675,7 +675,7 @@
 		Packages which are necessary for the proper
 		functioning of the system (usually, this means that
 		dpkg functionality depends on these packages).
-		Removing an <tt>required</tt> package may cause your
+		Removing a <tt>required</tt> package may cause your
 		system to become totally broken and you may not even
 		be able to use <prgn>dpkg</prgn> to put things back,
 		so only do so if you know what you are doing.  Systems
@@ -3231,7 +3231,7 @@ Package: libc6
 	  <prgn>start-stop-daemon</prgn>, <prgn>install-info</prgn>,
 	  and <prgn>update-rc.d</prgn> can be found via the
 	  <tt>PATH</tt> environment variable. Those programs, and any
-	  other program that one would expect to be on the
+	  other program that one would expect to be in the
 	  <tt>PATH</tt>, should thus be invoked without an absolute
 	  pathname. Maintainer scripts should also not reset the
 	  <tt>PATH</tt>, though they might choose to modify it by
@@ -3531,10 +3531,10 @@ Package: libc6
                       <example compact="compact">
 <var>new-postrm</var> abort-install
                       </example>
-                      If the error-unwind fails, the package is in an
+                      If the error-unwind fails, the package is in a
                       "Half Installed" phase, and requires a
                       reinstall. If the error unwind works, the
-                      package is in an not installed state.
+                      package is in a not installed state.
 		  </item>
                 </enumlist>
 	    </item>
@@ -3911,7 +3911,7 @@ Depends: libc6 (>= 2.2.1), exim | mail-transport-agent
 	  list of Debian architecture names separated by whitespace.
 	  Exclamation marks may be prepended to each of the names.
 	  (It is not permitted for some names to be prepended with
-	  exclamation marks and others not.) If the current Debian
+	  exclamation marks while others aren't.) If the current Debian
 	  host architecture is not in this list and there are no
 	  exclamation marks in the list, or it is in the list with a
 	  prepended exclamation mark, the package name and the
@@ -7817,7 +7817,7 @@ http://localhost/doc/<var>package</var>/<var>filename</var>
 	</p>
 
 	<p>
-	  Such package should check for the existence of this file
+	  Such a package should check for the existence of this file
 	  when it is being configured.  If it exists, it should be
 	  used without comment, although an MTA's configuration script
 	  may wish to prompt the user even if it finds that this file
