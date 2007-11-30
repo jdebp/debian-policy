@@ -23,6 +23,7 @@ debian-policy (3.7.3.0) UNRELEASED; urgency=low
     thanks to Michiel de Boer.                               (Closes: #435207).
   * Bug fix: "Source field of .changes files may contain a version number"
                                                              (Closes: #431813).
+  * Bug fix: "822-date is deprecated (use date -R instead)"  (Closes: #448035).
 
  --
 
