@@ -1,3 +1,28 @@
+debian-policy (3.7.3.0) UNRELEASED; urgency=low
+
+  * Bug fix: "[PROPOSAL] Document ~ behavior in version numbers", thanks
+    to Nicolas François and Marc Brockschmidt                (Closes: #382612).
+  * Bug fix: "Please add 'local' to list of supra-POSIX features that
+    /bin/sh can be expected to offer". Also add test -a/-o binary logical
+    operators and change references from POSIX to SUSv3      (Closes: #294962).
+  * Bug fix: "[Proposal] new Debian menu structure", thanks to Bill
+    Allombert                                                (Closes: #361418).
+  * Bug fix: "typo: "must not be not world-writable"", thanks to Sam
+    Hocevar                                                  (Closes: #392594).
+  * Bug fix: "debian-policy: recommend binary:Version substvar instead",
+    thanks to Guillem Jover                                  (Closes: #418444).
+  * Bug fix: "New virtual package: dictd-dictionary", thanks to Tatsuya
+    Kinoshita                                                (Closes: #413575).
+  * The virtual package in use is inet-superserver, not inetd-superserver.
+    Adjust the virtual package list to match.  Thanks, Tatsuya Kinoshita
+    and Marco d'Itri.
+  * Wrapped, cleaned up trailing whitespace, and alphabetized the list of
+    virtual packages.
+  * Bug fix: "Small spelling errors and erratic sentences in debian-policy",
+    thanks to Michiel de Boer.                               (Closes: #435207).
+
+ --
+
 debian-policy (3.7.2.2) unstable; urgency=low
 
   * Bug fix: "clarify 12.3 Additional documentation", thanks to Peter
