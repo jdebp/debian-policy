@@ -1,5 +1,6 @@
 debian-policy (3.7.3.0) UNRELEASED; urgency=low
 
+  * Bug fix: "FTBFS if built twice in a row"                 (Closes: #424212).
   * Bug fix: "[PROPOSAL] Document ~ behavior in version numbers", thanks
     to Nicolas François and Marc Brockschmidt                (Closes: #382612).
   * Bug fix: "Please add 'local' to list of supra-POSIX features that
