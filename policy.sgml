@@ -2336,14 +2336,14 @@ Package: libc6
 	  </p>
 
 	  <p>
-	    In a main source control information, a <file>.changes</file>
-	    or a <file>.dsc</file> file this may contain only the name
-	    of the source package.
+	    In <file>debian/control</file> or a <file>.dsc</file> file,
+	    this field must contain only the name of the source package.
 	  </p>
 
 	  <p>
-	    In the control file of a binary package it may be followed
-	    by a version number in parentheses<footnote>
+	    In a binary package control file or a <file>.changes</file>
+	    file, the source package name may be followed by a version
+	    number in parentheses<footnote>
 		It is customary to leave a space after the package name
 		if a version number is specified.
 	    </footnote>.

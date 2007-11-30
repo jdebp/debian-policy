@@ -21,6 +21,8 @@ debian-policy (3.7.3.0) UNRELEASED; urgency=low
     virtual packages.
   * Bug fix: "Small spelling errors and erratic sentences in debian-policy",
     thanks to Michiel de Boer.                               (Closes: #435207).
+  * Bug fix: "Source field of .changes files may contain a version number"
+                                                             (Closes: #431813).
 
  --
 
