@@ -1516,14 +1516,7 @@
 	  <tt><var>keyword</var>=<var>value</var></tt> settings in the
 	  <prgn>dpkg</prgn> changelog format (though there is
 	  currently only one useful <var>keyword</var>,
-	  <tt>urgency</tt>).<footnote>
-	      Recognized urgency values are <tt>low</tt>,
-	      <tt>medium</tt>, <tt>high</tt> and <tt>emergency</tt>.
-	      They have an effect on how quickly a package will be
-	      considered for inclusion into the <tt>testing</tt>
-	      distribution, and give an indication of the importance
-	      of any fixes included in this upload.
-	  </footnote>
+	  <tt>urgency</tt>).
 	</p>
 
 	<p>
@@ -2949,10 +2942,19 @@ Package: libc6
 	  <p>
 	    This is a description of how important it is to upgrade to
 	    this version from previous ones.  It consists of a single
-	    keyword usually taking one of the values <tt>low</tt>,
-	    <tt>medium</tt> or <tt>high</tt> (not case-sensitive)
-	    followed by an optional commentary (separated by a space)
-	    which is usually in parentheses.  For example:
+	    keyword taking one of the values <tt>low</tt>,
+	    <tt>medium</tt>, <tt>high</tt>, <tt>emergency</tt>, or
+	    <tt>critical</tt><footnote>
+	      Other urgency values are supported with configuration
+	      changes in the archive software but are not used in Debian.
+	      The urgency affects how quickly a package will be considered
+	      for inclusion into the <tt>testing</tt> distribution and
+	      gives an indication of the importance of any fixes included
+	      in the upload.  <tt>Emergency</tt> and <tt>critical</tt> are
+	      treated as synonymous.
+	    </footnote> (not case-sensitive) followed by an optional
+	    commentary (separated by a space) which is usually in
+	    parentheses.  For example:
 
 	    <example>
   Urgency: low (HIGH for users of diversions)

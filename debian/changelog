@@ -24,7 +24,9 @@ debian-policy (3.7.3.0) UNRELEASED; urgency=low
   * Bug fix: "Source field of .changes files may contain a version number"
                                                              (Closes: #431813).
   * Bug fix: "822-date is deprecated (use date -R instead)"  (Closes: #448035).
-
+  * Bug fix: "5.6.17 (Urgency) should list emergency, maybe a normative
+    list?"                                                   (Closes: #412634).
+  
  --
 
 debian-policy (3.7.2.2) unstable; urgency=low
