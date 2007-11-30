@@ -675,7 +675,7 @@
 		Packages which are necessary for the proper
 		functioning of the system (usually, this means that
 		dpkg functionality depends on these packages).
-		Removing an <tt>required</tt> package may cause your
+		Removing a <tt>required</tt> package may cause your
 		system to become totally broken and you may not even
 		be able to use <prgn>dpkg</prgn> to put things back,
 		so only do so if you know what you are doing.  Systems
@@ -2649,8 +2649,8 @@ Package: libc6
 			Alphanumerics are <tt>A-Za-z0-9</tt> only.
 	          </footnote>
 	          and the characters <tt>.</tt> <tt>+</tt> <tt>-</tt>
-	          <tt>:</tt> (full stop, plus, hyphen, colon) and should
-	          start with a digit.  If there is no
+	          <tt>:</tt> <tt>~</tt> (full stop, plus, hyphen, colon,
+	          tilde) and should start with a digit.  If there is no
 	          <var>debian_revision</var> then hyphens are not allowed;
 	          if there is no <var>epoch</var> then colons are not
 	          allowed.
@@ -2663,8 +2663,8 @@ Package: libc6
 	          This part of the version number specifies the version of
 	          the Debian package based on the upstream version.  It
 	          may contain only alphanumerics and the characters
-	          <tt>+</tt> and <tt>.</tt> (plus and full stop) and is
-	          compared in the same way as the
+	          <tt>+</tt> <tt>.</tt> <tt>~</tt> (plus, full stop,
+	          tilde) and is compared in the same way as the
 	          <var>upstream_version</var> is.
 	        </p>
 
@@ -2713,7 +2713,15 @@ Package: libc6
 	    which may be empty) are compared lexically.  If a difference
 	    is found it is returned.  The lexical comparison is a
 	    comparison of ASCII values modified so that all the letters
-	    sort earlier than all the non-letters.
+	    sort earlier than all the non-letters and so that a tilde
+	    sorts before anything, even the end of a part.  For example,
+	    the following parts are in sorted order from earliest to
+	    latest: <tt>~~</tt>, <tt>~~a</tt>, <tt>~</tt>, the empty part,
+	    <tt>a</tt>.<footnote>
+	      One common use of <tt>~</tt> is for upstream pre-releases.
+	      For example, <tt>1.0~beta1~svn1245</tt> sorts earlier than
+	      <tt>1.0~beta1</tt>, which sorts earlier than <tt>1.0</tt>.
+	    </footnote>
 	  </p>
 
 	  <p>
@@ -3177,7 +3185,7 @@ Package: libc6
 	  They must be proper executable files; if they are scripts
 	  (which is recommended), they must start with the usual
 	  <tt>#!</tt> convention.  They should be readable and
-	  executable by anyone, and must not be not world-writable.
+	  executable by anyone, and must not be world-writable.
 	</p>
 
 	<p>
@@ -3223,7 +3231,7 @@ Package: libc6
 	  <prgn>start-stop-daemon</prgn>, <prgn>install-info</prgn>,
 	  and <prgn>update-rc.d</prgn> can be found via the
 	  <tt>PATH</tt> environment variable. Those programs, and any
-	  other program that one would expect to be on the
+	  other program that one would expect to be in the
 	  <tt>PATH</tt>, should thus be invoked without an absolute
 	  pathname. Maintainer scripts should also not reset the
 	  <tt>PATH</tt>, though they might choose to modify it by
@@ -3523,10 +3531,10 @@ Package: libc6
                       <example compact="compact">
 <var>new-postrm</var> abort-install
                       </example>
-                      If the error-unwind fails, the package is in an
+                      If the error-unwind fails, the package is in a
                       "Half Installed" phase, and requires a
                       reinstall. If the error unwind works, the
-                      package is in an not installed state.
+                      package is in a not installed state.
 		  </item>
                 </enumlist>
 	    </item>
@@ -3903,7 +3911,7 @@ Depends: libc6 (>= 2.2.1), exim | mail-transport-agent
 	  list of Debian architecture names separated by whitespace.
 	  Exclamation marks may be prepended to each of the names.
 	  (It is not permitted for some names to be prepended with
-	  exclamation marks and others not.) If the current Debian
+	  exclamation marks while others aren't.) If the current Debian
 	  host architecture is not in this list and there are no
 	  exclamation marks in the list, or it is in the list with a
 	  prepended exclamation mark, the package name and the
@@ -4711,8 +4719,12 @@ Replaces: mail-transport-agent
 	  Typically the development version should have an exact
 	  version dependency on the runtime library, to make sure that
 	  compilation and linking happens correctly.  The
-	  <tt>${Source-Version}</tt> substitution variable can be
+	  <tt>${binary:Version}</tt> substitution variable can be
 	  useful for this purpose.
+          <footnote>
+            Previously, <tt>${Source-Version}</tt> was used, but its name
+            was confusing and it has been deprecated since dpkg 1.13.19.
+          </footnote>
 	</p>
       </sect>
 
@@ -5662,7 +5674,7 @@ test -f <var>program-executed-later-in-script</var> || exit 0
 	    <file>/etc/default</file>, which typically will have the same
 	    base name as the <file>init.d</file> script.  This extra file
 	    should be sourced by the script when the script runs.  It
-	    must contain only variable settings and comments in POSIX
+	    must contain only variable settings and comments in SUSv3
 	    <prgn>sh</prgn> format.  It may either be a
 	    <tt>conffile</tt> or a configuration file maintained by
 	    the package maintainer scripts.  See <ref id="config-files">
@@ -6723,34 +6735,54 @@ strip --strip-unneeded <var>your-lib</var>
 	</p>
 
 	<p>
-	  The standard shell interpreter <file>/bin/sh</file> can be a
-	  symbolic link to any POSIX compatible shell, if <tt>echo
-	  -n</tt> does not generate a newline.<footnote>
-	      Debian policy specifies POSIX behavior for
-	      <file>/bin/sh</file>, but <tt>echo -n</tt> has widespread
-	      use in the Linux community (in particular including this
-	      policy, the Linux kernel source, many Debian scripts,
-	      etc.).  This <tt>echo -n</tt> mechanism is valid but not
-	      required under POSIX, hence this explicit addition.
-	      Also, rumour has it that this shall be mandated under
-	      the LSB anyway.
+	  Scripts may assume that <file>/bin/sh</file> implements the
+	  SUSv3 Shell Command Language<footnote>
+	    Single UNIX Specification, version 3, which is also IEEE
+	    1003.1-2004 (POSIX), and is available on the World Wide Web
+	    from <url id="http://www.unix.org/version3/online.html"
+		      name="The Open Group"> after free
+	    registration.</footnote>
+	  plus the following additional features not mandated by
+	  SUSv3:<footnote>
+	    These features are in widespread use in the Linux community
+	    and are implemented in all of bash, dash, and ksh, the most
+	    common shells users may wish to use as <file>/bin/sh</file>.
 	  </footnote>
-	  Thus, shell scripts specifying <file>/bin/sh</file> as
-	  interpreter must only use POSIX features. If a script
-	  requires non-POSIX features from the shell interpreter, the
-	  appropriate shell must be specified in the first line of the
-	  script (e.g., <tt>#!/bin/bash</tt>) and the package must
-	  depend on the package providing the shell (unless the shell
-	  package is marked "Essential", as in the case of
-	  <prgn>bash</prgn>).
+	  <list>
+	    <item><tt>echo -n</tt>, if implemented as a shell built-in,
+	      must not generate a newline.</item>
+	    <item><tt>test</tt>, if implemented as a shell built-in, must
+	      support <tt>-a</tt> and <tt>-o</tt> as binary logical
+	      operators.</item>
+	    <item><tt>local</tt> to create a scoped variable must be
+	      supported; however, <tt>local</tt> may or may not preserve
+	      the variable value from an outer scope and may or may not
+	      support arguments more complex than simple variables.  Only
+	      uses such as:
+<example compact>
+fname () {
+    local a
+    a=''
+    # ... use a ...
+}
+</example>
+              must be supported.
+            </item>
+	  </list>
+	  If a shell script requires non-SUSv3 features from the shell
+	  interpreter other than those listed above, the appropriate shell
+	  must be specified in the first line of the script (e.g.,
+	  <tt>#!/bin/bash</tt>) and the package must depend on the package
+	  providing the shell (unless the shell package is marked
+	  "Essential", as in the case of <prgn>bash</prgn>).
 	</p>
 
 	<p>
-	  You may wish to restrict your script to POSIX features when
-	  possible so that it may use <file>/bin/sh</file> as its
-	  interpreter. If your script works with <prgn>dash</prgn>
-	  (originally called <prgn>ash</prgn>), it's probably POSIX
-	  compliant, but if you are in doubt, use
+	  You may wish to restrict your script to SUSv3 features plus the
+	  above set when possible so that it may use <file>/bin/sh</file>
+	  as its interpreter. If your script works with <prgn>dash</prgn>
+	  (originally called <prgn>ash</prgn>), it probably complies with
+	  the above requirements, but if you are in doubt, use
 	  <file>/bin/bash</file>.
 	</p>
 
@@ -7785,7 +7817,7 @@ http://localhost/doc/<var>package</var>/<var>filename</var>
 	</p>
 
 	<p>
-	  Such package should check for the existence of this file
+	  Such a package should check for the existence of this file
 	  when it is being configured.  If it exists, it should be
 	  used without comment, although an MTA's configuration script
 	  may wish to prompt the user even if it finds that this file
