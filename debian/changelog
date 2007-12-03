@@ -28,6 +28,8 @@ debian-policy (3.7.3.0) UNRELEASED; urgency=low
     list?"                                                   (Closes: #412634).
   * Bug fix: "[PROPOSAL] Document support of package types in shlibs
     files", thanks to Franz Pop and Raphaël Hertzog          (Closes: #363133).
+  * Bug fix: "Introduce a requirement for internationalisation of debconf
+    templates", thanks to Christian Perrier                  (Closes: #402975).
   
  --
 

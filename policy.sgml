@@ -1221,6 +1221,13 @@
 	  </p>
 
 	  <p>
+	    Packages which use the Debian Configuration management
+	    specification must allow for translation of their messages
+	    by using a gettext-based system such as the one provided by
+	    the <package>po-debconf</package> package.
+	  </p>
+
+	  <p>
 	    Packages should try to minimize the amount of prompting
 	    they need to do, and they should ensure that the user
 	    will only ever be asked each question once.  This means
