@@ -4958,6 +4958,19 @@ dpkg-shlibdeps debian/tmp/usr/bin/* debian/tmp/usr/sbin/* \
 	</p>
 
 	<p>
+	  If you are creating a udeb for use in the Debian Installer, you
+	  will need to specify that <prgn>dpkg-shlibdeps</prgn> should use
+	  the dependency line of type <tt>udeb</tt> by adding
+	  <tt>-tudeb</tt> as option<footnote>
+	      <prgn>dh_shlibdeps</prgn> from the <tt>debhelper</tt> suite
+	      will automatically add this option if it knows it is
+	      processing a udeb.
+	  </footnote>. If there is no dependency line of type <tt>udeb</tt>
+	  in the <file>shlibs</file> file, <prgn>dpkg-shlibdeps</prgn> will
+	  fall back to the regular dependency line.
+	</p>
+
+	<p>
 	  For more details on dpkg-shlibdeps, please see
 	  <ref id="pkg-dpkg-shlibdeps"> and
 	  <manref name="dpkg-shlibdeps" section="1">.
@@ -4972,7 +4985,7 @@ dpkg-shlibdeps debian/tmp/usr/bin/* debian/tmp/usr/sbin/* \
 	  beginning with <tt>#</tt> are considered to be comments and
 	  are ignored.  Each line is of the form:
 	  <example compact="compact">
-<var>library-name</var> <var>soname-version-number</var> <var>dependencies ...</var>
+[<var>type</var>: ]<var>library-name</var> <var>soname-version</var> <var>dependencies ...</var>
 	  </example>
 	</p>
 
@@ -4983,16 +4996,23 @@ dpkg-shlibdeps debian/tmp/usr/bin/* debian/tmp/usr/sbin/* \
 	</p>
 
 	<p>
+	  <var>type</var> is an optional element that indicates the type
+	  of package for which the line is valid. The only type currently
+	  in use is <tt>udeb</tt>. The colon and space after the type are
+	  required.
+	</p>
+
+	<p>
 	  <var>library-name</var> is the name of the shared library,
 	  in this case <tt>libz</tt>.  (This must match the name part
 	  of the soname, see below.)
 	</p>
 
 	<p>
-	  <var>soname-version-number</var> is the version part of the
-	  soname of the library.  The soname is the thing that must
-	  exactly match for the library to be recognized by the
-	  dynamic linker, and is usually of the form
+	  <var>soname-version</var> is the version part of the soname of
+	  the library.  The soname is the thing that must exactly match
+	  for the library to be recognized by the dynamic linker, and is
+	  usually of the form
 	  <tt><var>name</var>.so.<var>major-version</var></tt>, in our
 	  example, <tt>libz.so.1</tt>.<footnote>
 	      This can be determined using the command
@@ -5024,6 +5044,14 @@ libz 1 zlib1g (>= 1:1.1.3)
 	  the dynamic linker about using older shared libraries with
 	  newer binaries.
 	</p>
+
+	<p>
+	  As zlib1g also provides a udeb containing the shared library,
+	  there would also be a second line:
+	  <example compact="compact">
+udeb: libz 1 zlib1g-udeb (>= 1:1.1.3)
+	  </example>
+	</p>
       </sect1>
 
       <sect1>
@@ -5048,7 +5076,10 @@ install -m644 debian/shlibs.<var>package</var> debian/<var>package</var>/DEBIAN/
 	  <file>debian/rules</file> without using a <file>debian/shlibs</file>
 	  file at all,<footnote>
 	      This is what <prgn>dh_makeshlibs</prgn> in the
-	      <tt>debhelper</tt> suite does.
+	      <tt>debhelper</tt> suite does. If your package also has a udeb
+	      that provides a shared library, <prgn>dh_makeshlibs</prgn> can
+	      automatically generate the <tt>udeb:</tt> lines if you specify
+	      the name of the udeb with the <tt>--add-udeb</tt> option.
 	  </footnote>
 	  since the <file>debian/shlibs</file> file itself is ignored by
 	  <prgn>dpkg-shlibdeps</prgn>.
