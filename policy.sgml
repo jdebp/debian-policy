@@ -8696,21 +8696,21 @@ install-info --quiet --remove /usr/share/info/foobar.info
 
 	<p>
 	  Packages distributed under the UCB BSD license, the Artistic
-	  license, the GNU GPL, and the GNU LGPL, should refer to the
-	  corresponding files under
+	  license, the GNU GPL (version 2 or 3), the GNU LGPL (versions
+	  2, 2.1, or 3), and the GNU FDL (version 1.2) should refer to
+	  the corresponding files under
 	  <file>/usr/share/common-licenses</file>,<footnote>
-            <p>
-              For example,
-              <file>/usr/share/common-licenses/Artistic</file>,
+	    <p>
+	      In particular,
               <file>/usr/share/common-licenses/BSD</file>,
-              <file>/usr/share/common-licenses/GPL</file>,
-              <file>/usr/share/common-licenses/LGPL</file>,
-              <file>/usr/share/common-licenses/GFDL</file>,
-              <file>/usr/share/common-licenses/GPL-2</file>, and
-              <file>/usr/share/common-licenses/LGPL-2.1</file>, and so
-              on. Note that the GFDL is new here, and the license file
-              may not yet be in place in
-              <file>/usr/share/common-licenses/GFDL</file>. 
+              <file>/usr/share/common-licenses/Artistic</file>,
+              <file>/usr/share/common-licenses/GPL-2</file>,
+              <file>/usr/share/common-licenses/GPL-3</file>,
+              <file>/usr/share/common-licenses/LGPL-2</file>,
+              <file>/usr/share/common-licenses/LGPL-2.1</file>,
+              <file>/usr/share/common-licenses/LGPL-3</file>, and
+              <file>/usr/share/common-licenses/GFDL-1.2</file>,
+              respectively.
             </p>
           </footnote> rather than quoting them in the copyright
 	  file. 

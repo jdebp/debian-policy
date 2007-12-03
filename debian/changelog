@@ -30,6 +30,8 @@ debian-policy (3.7.3.0) UNRELEASED; urgency=low
     files", thanks to Franz Pop and Raphaël Hertzog          (Closes: #363133).
   * Bug fix: "Introduce a requirement for internationalisation of debconf
     templates", thanks to Christian Perrier                  (Closes: #402975).
+  * Bug fix: "GFDL is now in common-licenses".  Also add the rest of the
+    specific license versions and the GPLv3                  (Closes: #420701).
   * Remove inactive uploaders and add Russ Allbery.
   
  --
