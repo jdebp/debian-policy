@@ -1,7 +1,7 @@
 
               AUTHORITATIVE LIST OF VIRTUAL PACKAGE NAMES
 
-                               July 2007
+                              December 2007
 
 
 Below is an authoritative list of virtual package names currently
@@ -138,6 +138,11 @@ X Window System
                          services
  xserver                 an X server that (directly or indirectly) manages
                          physical input and display hardware
+
+Fonts
+-----
+ ttf-japanese-gothic     Gothic-style Japanese font
+ ttf-japanese-mincho     Mincho-style Japanese font
 
 Graphics and MultiMedia
 -----------------------
@@ -297,3 +302,5 @@ Manoj Srivastava:
 Russ Allbery:
    8 Jul 2007 Added dictd-dictionary
               Rename inetd-superserver to inet-superserver
+   2 Dec 2007 Added ttf-japanese-gothic
+              Added ttf-japanese-mincho

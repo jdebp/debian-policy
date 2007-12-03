@@ -32,6 +32,9 @@ debian-policy (3.7.3.0) UNRELEASED; urgency=low
     templates", thanks to Christian Perrier                  (Closes: #402975).
   * Bug fix: "GFDL is now in common-licenses".  Also add the rest of the
     specific license versions and the GPLv3                  (Closes: #420701).
+  * Bug fix: "Virtual package for Japanese font packages
+    (ttf-japanese-mincho and ttf-japanese-gothic)", thanks to Nobuhiro
+    Iwamatsu                                                 (Closes: #440931).
   * Remove inactive uploaders and add Russ Allbery.
   
  --
