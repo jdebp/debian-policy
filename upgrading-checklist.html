@@ -66,6 +66,19 @@ picking your way through this list.
        menu structure.  Packages with menu entries should be reviewed to
        see if the menu section has been renamed or if one of the new
        sections would be more appropriate.                       [menu policy]
+     * The Source field in a .changes file may contain a version number
+       in parentheses.                                           [5.6.1]
+     * The acceptable values for the Urgency field are low, medium, high,
+       critical, or emergency.                                   [5.6.17]
+     * The shlibs file now allows an optional type field, indicating the
+       type of package for which the line is valid.  The only currently
+       supported type is udeb, used with packages for the Debian
+       Installer.                                                [8.6]
+     * Packages following the Debian Configuration management
+       specification must allow for translation of their messages by using
+       a gettext-based system such as po-debconf.                [3.9.1]
+     * GFDL 1.2, GPL 3, and LGPL 3 are now in common-licenses and should
+       be referenced rather than quoted in debian/copyright.     [12.5]
 3.7.2.2                        Oct 2006
      * Maintainer scripts must not be world writeable (up from a
        should to a must)                                         [6.1]

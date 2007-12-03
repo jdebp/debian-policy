@@ -1,5 +1,6 @@
-debian-policy (3.7.3.0) UNRELEASED; urgency=low
+debian-policy (3.7.3.0) unstable; urgency=low
 
+  * Bug fix: "FTBFS if built twice in a row"                 (Closes: #424212).
   * Bug fix: "[PROPOSAL] Document ~ behavior in version numbers", thanks
     to Nicolas François and Marc Brockschmidt                (Closes: #382612).
   * Bug fix: "Please add 'local' to list of supra-POSIX features that
@@ -20,8 +21,23 @@ debian-policy (3.7.3.0) UNRELEASED; urgency=low
     virtual packages.
   * Bug fix: "Small spelling errors and erratic sentences in debian-policy",
     thanks to Michiel de Boer.                               (Closes: #435207).
-
- --
+  * Bug fix: "Source field of .changes files may contain a version number"
+                                                             (Closes: #431813).
+  * Bug fix: "822-date is deprecated (use date -R instead)"  (Closes: #448035).
+  * Bug fix: "5.6.17 (Urgency) should list emergency, maybe a normative
+    list?"                                                   (Closes: #412634).
+  * Bug fix: "[PROPOSAL] Document support of package types in shlibs
+    files", thanks to Franz Pop and Raphaël Hertzog          (Closes: #363133).
+  * Bug fix: "Introduce a requirement for internationalisation of debconf
+    templates", thanks to Christian Perrier                  (Closes: #402975).
+  * Bug fix: "GFDL is now in common-licenses".  Also add the rest of the
+    specific license versions and the GPLv3                  (Closes: #420701).
+  * Bug fix: "Virtual package for Japanese font packages
+    (ttf-japanese-mincho and ttf-japanese-gothic)", thanks to Nobuhiro
+    Iwamatsu                                                 (Closes: #440931).
+  * Remove inactive uploaders and add Russ Allbery.
+  
+ -- Russ Allbery <rra@debian.org>  Sun, 02 Dec 2007 21:19:09 -0800
 
 debian-policy (3.7.2.2) unstable; urgency=low
 
