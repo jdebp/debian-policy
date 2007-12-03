@@ -35,9 +35,12 @@ debian-policy (3.7.3.0) unstable; urgency=low
   * Bug fix: "Virtual package for Japanese font packages
     (ttf-japanese-mincho and ttf-japanese-gothic)", thanks to Nobuhiro
     Iwamatsu                                                 (Closes: #440931).
+  * Drop unsupported docbook-xml format from the doc-base file for the
+    debconf specification.
   * Remove inactive uploaders and add Russ Allbery.
+  * Update Standards-Version to 3.7.3 (no changes required).
   
- -- Russ Allbery <rra@debian.org>  Sun, 02 Dec 2007 21:19:09 -0800
+ -- Russ Allbery <rra@debian.org>  Sun, 02 Dec 2007 22:33:55 -0800
 
 debian-policy (3.7.2.2) unstable; urgency=low
 

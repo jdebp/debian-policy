@@ -6,9 +6,6 @@ Abstract: This manual describes the package configuration system used
  config files which are used.
 Section: Debian
 
-Format: docbook-xml
-Files: /usr/share/doc/debian-policy/debconf_specification.xml.tar.gz
-
 Format: text
 Files: /usr/share/doc/debian-policy/debconf_specification.txt.gz
 

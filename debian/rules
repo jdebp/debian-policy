@@ -150,7 +150,7 @@ stamp-policy:  build $(sanitycheck)
 	$(install_file)	    debian/changelog	     $(DOCDIR)/
 	# Be more specific with file compression
 	gzip -f9	    $(DOCDIR)/*.txt $(DOCDIR)/*.sgml \
-				$(DOCDIR)/fhs/* $(DOCDIR)/changelog
+				$(DOCDIR)/changelog
 # These are allready compressed
 	#$(install_file)    $(FHS_NEW_FILES)	     $(DOCDIR)/fhs/
 	$(install_file)	    $(FHS_FILES)	     $(DOCDIR)/fhs/
