@@ -1,3 +1,10 @@
+debian-policy (3.7.4.0) unstable; urgency=low
+
+  * Bug fix: "Examples of dpkg frontends should mention apt now", thanks
+    to Josh Triplett                                         (Closes: #455602).
+
+ --
+
 debian-policy (3.7.3.0) unstable; urgency=low
 
   * Bug fix: "FTBFS if built twice in a row"                 (Closes: #424212).
