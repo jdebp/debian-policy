@@ -2,6 +2,8 @@ debian-policy (3.7.4.0) unstable; urgency=low
 
   * Bug fix: "Examples of dpkg frontends should mention apt now", thanks
     to Josh Triplett                                         (Closes: #455602).
+  * Bug fix: "Minor typos and wording suggestions", thanks to Michael
+    Tautschnig                                               (Closes: #422552).
 
  --
 

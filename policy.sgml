@@ -3248,7 +3248,7 @@ Package: libc6
       </sect>
 
       <sect id="idempotency">
-	<heading>Maintainer scripts Idempotency</heading>
+	<heading>Maintainer scripts idempotency</heading>
 
 	<p>
 	  It is necessary for the error recovery procedures that the
