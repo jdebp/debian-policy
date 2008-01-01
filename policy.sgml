@@ -2391,16 +2391,10 @@ Package: libc6
           </p>
 	  <p>
 	    Any parser that interprets the Uploaders field in
-	    <file>debian/control</file> should permit it to span multiple
-	    lines<footnote>
-              In the future, the Uploaders field in
-		<file>debian/control</file> (but not other control files)
-		will be permitted to span multiple lines and interpreting
-		a multi-line Uploaders field shall be mandatory.
-	    </footnote>. Line breaks in an Uploaders field that spans
-	    multiple lines are not significant and the semantics of
-	    the field are the same as if the line breaks had not been
-	    present.
+	    <file>debian/control</file> must permit it to span multiple
+	    lines.  Line breaks in an Uploaders field that spans multiple
+	    lines are not significant and the semantics of the field are
+	    the same as if the line breaks had not been present.
 	  </p>
  	</sect1>
 
@@ -3891,13 +3885,16 @@ Package: libc6
 	  Whitespace may appear at any point in the version
 	  specification subject to the rules in <ref
 	  id="controlsyntax">, and must appear where it's necessary to
-	  disambiguate; it is not otherwise significant.  For
+	  disambiguate; it is not otherwise significant.  All of the
+	  relationship fields may span multiple lines.	For
 	  consistency and in case of future changes to
 	  <prgn>dpkg</prgn> it is recommended that a single space be
 	  used after a version relationship and before a version
 	  number; it is also conventional to put a single space after
 	  each comma, on either side of each vertical bar, and before
-	  each open parenthesis.
+	  each open parenthesis.  When wrapping a relationship field, it
+	  is conventional to do so after a comma and before the space
+	  following that comma.
 	</p>
 
 	<p>
