@@ -3990,8 +3990,8 @@ Build-Depends: kernel-headers-2.2.10 [!hurd-i386],
 	  in detail below.  (The other three dependency fields,
 	  <tt>Recommends</tt>, <tt>Suggests</tt> and
 	  <tt>Enhances</tt>, are only used by the various front-ends
-	  to <prgn>dpkg</prgn> such as <prgn>apt</prgn>,
-	  <prgn>aptitutde</prgn>, and <prgn>dselect</prgn>.)
+	  to <prgn>dpkg</prgn> such as <prgn>apt-get</prgn>,
+	  <prgn>aptitude</prgn>, and <prgn>dselect</prgn>.)
 	</p>
 
 	<p>
