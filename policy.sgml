@@ -640,14 +640,14 @@
 	<p>
 	  The Debian archive maintainers provide the authoritative
 	  list of sections.  At present, they are:
-	  <em>admin</em>, <em>base</em>, <em>comm</em>,
-	  <em>contrib</em>, <em>devel</em>, <em>doc</em>,
+	  <em>admin</em>, <em>comm</em>,
+	  <em>devel</em>, <em>doc</em>,
 	  <em>editors</em>, <em>electronics</em>, <em>embedded</em>,
 	  <em>games</em>, <em>gnome</em>, <em>graphics</em>,
 	  <em>hamradio</em>, <em>interpreters</em>, <em>kde</em>,
 	  <em>libs</em>, <em>libdevel</em>, <em>mail</em>,
 	  <em>math</em>, <em>misc</em>, <em>net</em>, <em>news</em>,
-	  <em>non-free</em>, <em>oldlibs</em>,
+	  <em>oldlibs</em>,
 	  <em>otherosfs</em>, <em>perl</em>, <em>python</em>,
 	  <em>science</em>, <em>shells</em>,
 	  <em>sound</em>, <em>tex</em>, <em>text</em>,
@@ -1078,15 +1078,15 @@
 	<p>
 	  The <tt>base system</tt> is a minimum subset of the Debian
 	  GNU/Linux system that is installed before everything else
-	  on a new system. Thus, only very few packages are allowed
-	  to go into the <tt>base</tt> section to keep the required
-	  disk usage very small.
+	  on a new system. Only very few packages are allowed to form
+	  part of the base system, in order to keep the required disk
+	  usage very small.
 	</p>
 
 	<p>
-	  Most of these packages will have the priority value
-	  <tt>required</tt> or at least <tt>important</tt>, and many
-	  of them will be tagged <tt>essential</tt> (see below).
+	  The base system consists of all those packages with priority
+	  <tt>required</tt> or <tt>important</tt>. Many of them will
+	  be tagged <tt>essential</tt> (see below).
 	</p>
       </sect>
 

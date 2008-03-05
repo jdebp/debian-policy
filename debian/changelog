@@ -11,6 +11,9 @@ debian-policy (3.7.4.0) unstable; urgency=low
     Kurt Roeckx, and others                                  (Closes: #392362).
   * Bug fix: "Homepage field in debian/control undocumented", thanks to
     Mario Iseli                                              (Closes: #452105).
+  * Bug fix: "Policy inconsistent with reality: base subsection no longer
+    used", thanks to Magnus Holmgren, Bernd Zeimetz, and Colin Watson
+                                                             (Closes: #442070).
   * Bug fix: "Examples of dpkg frontends should mention apt now", thanks
     to Josh Triplett                                         (Closes: #455602).
   * Bug fix: "Minor typos and wording suggestions", thanks to Michael
