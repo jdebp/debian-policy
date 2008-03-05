@@ -4,6 +4,9 @@ debian-policy (3.7.4.0) unstable; urgency=low
     Colin Watson                                             (Closes: #440420).
   * Bug fix: "support for wrapped Uploaders should now be mandatory"
                                                              (Closes: #431813).
+  * Bug fix: "[PROPOSAL] Add should not embed code from other packages",
+    thanks to Neil McGovern, Colin Watson, Bill Allombert, Steve Langasek,
+    Kurt Roeckx, and others                                  (Closes: #392362).
   * Bug fix: "Examples of dpkg frontends should mention apt now", thanks
     to Josh Triplett                                         (Closes: #455602).
   * Bug fix: "Minor typos and wording suggestions", thanks to Michael
