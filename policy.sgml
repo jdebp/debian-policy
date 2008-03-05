@@ -8519,6 +8519,40 @@ name ["<var>syshostname</var>"]:
 	      be present in the future.
  	  </footnote>
  	</p>
+
+	<p>
+	  Manual pages in locale-specific subdirectories of
+	  <file>/usr/share/man</file> should use either UTF-8 or the usual
+	  legacy encoding for that language (normally the one corresponding
+	  to the shortest relevant locale name in
+	  <file>/usr/share/i18n/SUPPORTED</file>). For example, pages under
+	  <file>/usr/share/man/fr</file> should use either UTF-8 or
+	  ISO-8859-1.<footnote>
+	    <prgn>man</prgn> will automatically detect whether UTF-8 is in
+	    use. In future, all manual pages will be required to use
+	    UTF-8.
+	  </footnote>
+	</p>
+
+	<p>
+	  A country name (the <tt>DE</tt> in <tt>de_DE</tt>) should not be
+	  included in the subdirectory name unless it indicates a
+	  significant difference in the language, as this excludes
+	  speakers of the language in other countries.<footnote>
+	    At the time of writing, Chinese and Portuguese are the main
+	    languages with such differences, so <file>pt_BR</file>,
+	    <file>zh_CN</file>, and <file>zh_TW</file> are all allowed.
+	  </footnote>
+	</p>
+
+	<p>
+	  Due to limitations in current implementations, all characters
+	  in the manual page source should be representable in the usual
+	  legacy encoding for that language, even if the file is
+	  actually encoded in UTF-8. Safe alternative ways to write many
+	  characters outside that range may be found in
+	  <manref name="groff_char" section="7">.
+	</p>
       </sect>
 
       <sect>
