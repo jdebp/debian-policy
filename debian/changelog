@@ -2,6 +2,8 @@ debian-policy (3.7.4.0) unstable; urgency=low
 
   * Bug fix: "[AMENDMENT 11/02/2008] Manual page encoding", thanks to
     Colin Watson                                             (Closes: #440420).
+  * Bug fix: "Documentation for Breaks in dpkg", thanks to Ian Jackson
+                                                             (Closes: #379150).
   * Bug fix: "support for wrapped Uploaders should now be mandatory"
                                                              (Closes: #431813).
   * Bug fix: "[PROPOSAL] Add should not embed code from other packages",

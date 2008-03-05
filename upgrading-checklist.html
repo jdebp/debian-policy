@@ -58,6 +58,10 @@ picking your way through this list.
        packages unless the included package is explicitly intended to be
        used that way.                                            [4.13]
      * The Uploaders field in debian/control may be wrapped.     [5.6.3]
+     * The Breaks field declares that this package breaks another and
+       prevents installation of the breaking package unless the package
+       named in Breaks is deconfigured first.  This field should not be
+       used until the dpkg in Debian stable supports it.         [6.5, 6.6, 7]
      * Manual pages in locale-specific directories should use either the
        legacy encoding for that directory or UTF-8.  Country names should
        not be included in locale-specific manual page directories unless

@@ -2567,7 +2567,8 @@ Package: libc6
 	<sect1>
 	  <heading>Package interrelationship fields:
 	    <tt>Depends</tt>, <tt>Pre-Depends</tt>,
-	    <tt>Recommends</tt>, <tt>Suggests</tt>, <tt>Conflicts</tt>,
+	    <tt>Recommends</tt>, <tt>Suggests</tt>,
+	    <tt>Breaks</tt>, <tt>Conflicts</tt>,
 	    <tt>Provides</tt>, <tt>Replaces</tt>, <tt>Enhances</tt>
 	  </heading>
 
@@ -3358,8 +3359,8 @@ Package: libc6
 		<var>deconfigured's-postinst</var>
 		<tt>abort-deconfigure</tt> <tt>in-favour</tt>
 		<var>failed-install-package</var> <var>version</var>
-		<tt>removing</tt> <var>conflicting-package</var>
-		<var>version</var>
+		[<tt>removing</tt> <var>conflicting-package</var>
+		<var>version</var>]
 	    </item>
 	  </list>
 
@@ -3384,9 +3385,9 @@ Package: libc6
 	    <item>
 		<var>deconfigured's-prerm</var> <tt>deconfigure</tt>
 		<tt>in-favour</tt> <var>package-being-installed</var>
-		<var>version</var> <tt>removing</tt>
+		<var>version</var> [<tt>removing</tt>
 		<var>conflicting-package</var>
-		<var>version</var>
+		<var>version</var>]
 	    </item>
 	  </list>
 
@@ -3467,11 +3468,30 @@ Package: libc6
 	    </item>
 
 	    <item>
-		If a "conflicting" package is being removed at the same time:
+		If a "conflicting" package is being removed at the same time,
+		or if any package will be broken (due to <tt>Breaks</tt>):
 		<enumlist>
 		  <item>
-		      If any packages depended on that conflicting
-		      package and <tt>--auto-deconfigure</tt> is
+		      If <tt>--auto-deconfigure</tt> is
+		      specified, call, for each package to be deconfigured
+		      due to <tt>Breaks</tt>:
+		      <example compact="compact">
+<var>deconfigured's-prerm</var> deconfigure \
+  in-favour <var>package-being-installed</var> <var>version</var>
+		      </example>
+		      Error unwind:
+		      <example compact="compact">
+<var>deconfigured's-postinst</var> abort-deconfigure \
+  in-favour <var>package-being-installed-but-failed</var> <var>version</var>
+		      </example>
+		      The deconfigured packages are marked as
+		      requiring configuration, so that if
+		      <tt>--install</tt> is used they will be
+		      configured again if possible.
+		  </item>
+		  <item>
+		      If any packages depended on a conflicting
+		      package being removed and <tt>--auto-deconfigure</tt> is
 		      specified, call, for each such package:
 		      <example compact="compact">
 <var>deconfigured's-prerm</var> deconfigure \
@@ -3490,7 +3510,7 @@ Package: libc6
 		      configured again if possible.
 		  </item>
 		  <item>
-		      To prepare for removal of the conflicting package, call:
+		      To prepare for removal of each conflicting package, call:
 		      <example compact="compact">
 <var>conflictor's-prerm</var> remove \
   in-favour <var>package</var> <var>new-version</var>
@@ -3987,16 +4007,19 @@ Build-Depends: kernel-headers-2.2.10 [!hurd-i386],
 
         <p>
           This is done using the <tt>Depends</tt>, <tt>Pre-Depends</tt>,
-          <tt>Recommends</tt>, <tt>Suggests</tt>, <tt>Enhances</tt> and
-          <tt>Conflicts</tt> control file fields.
+          <tt>Recommends</tt>, <tt>Suggests</tt>, <tt>Enhances</tt>,
+          <tt>Breaks</tt> and <tt>Conflicts</tt> control file fields.
         </p>
 
 	<p>
-	  These six fields are used to declare a dependency
+	  These seven fields are used to declare a dependency
 	  relationship by one package on another.  Except for
-	  <tt>Enhances</tt>, they appear in the depending (binary)
-	  package's control file.  (<tt>Enhances</tt> appears in the
-	  recommending package's control file.)
+	  <tt>Enhances</tt> and <tt>Breaks</tt>, they appear in the
+	  depending (binary) package's control file.
+	  (<tt>Enhances</tt> appears in the recommending package's
+	  control file, and <tt>Breaks</tt> appears in the version of
+	  depended-on package which causes the named package to
+	  break).
 	</p>
 
 	<p>
@@ -4034,7 +4057,7 @@ Build-Depends: kernel-headers-2.2.10 [!hurd-i386],
           (based on rules below), and some packages may not be able to
           rely on their dependencies being present when being
           installed or removed, depending on which side of the break
-          of the circular dependcy loop they happen to be on.  If one
+          of the circular dependency loop they happen to be on.  If one
           of the packages in the loop has no postinst script, then the
           cycle will be broken at that package, so as to ensure that
           all postinst scripts run with the dependencies properly
@@ -4170,6 +4193,53 @@ Build-Depends: kernel-headers-2.2.10 [!hurd-i386],
 	</p>
       </sect>
 
+      <sect id="breaks">
+	<heading>Packages which break other packages - <tt>Breaks</tt></heading>
+
+	<p>
+	  Using <tt>Breaks</tt> may cause problems for upgrades from older
+	  versions of Debian and should not be used until the stable
+	  release of Debian supports <tt>Breaks</tt>.
+	</p>
+
+	<p>
+	  When one binary package declares that it breaks another,
+	  <prgn>dpkg</prgn> will refuse to allow the package which
+	  declares <tt>Breaks</tt> be installed unless the broken
+	  package is deconfigured first, and it will refuse to
+	  allow the broken package to be reconfigured.
+	</p>
+
+	<p>
+	  A package will not be regarded as causing breakage merely
+	  because its configuration files are still installed; it must
+	  be at least half-installed.
+	</p>
+
+	<p>
+	  A special exception is made for packages which declare that
+	  they break their own package name or a virtual package which
+	  they provide (see below): this does not count as a real
+	  breakage.
+	</p>
+
+	<p>
+	  Normally a <tt>Breaks</tt> entry will have an "earlier than"
+	  version clause; such a <tt>Breaks</tt> is introduced in the
+	  version of an (implicit or explicit) dependency which
+	  violates an assumption or reveals a bug in earlier versions
+	  of the broken package.  This use of <tt>Breaks</tt> will
+	  inform higher-level package management tools that broken
+	  package must be upgraded before the new one.
+	</p>
+
+	<p>
+	  If the breaking package also overwrites some files from the
+	  older package, it should use <tt>Replaces</tt> (not
+	  <tt>Conflicts</tt>) to ensure this goes smoothly.
+	</p>
+      </sect>
+
       <sect id="conflicts">
 	<heading>Conflicting binary packages - <tt>Conflicts</tt></heading>
 
@@ -4215,7 +4285,9 @@ Build-Depends: kernel-headers-2.2.10 [!hurd-i386],
 	  "earlier than" version clause.  This would prevent
 	  <prgn>dpkg</prgn> from upgrading or installing the package
 	  which declared such a conflict until the upgrade or removal
-	  of the conflicted-with package had been completed.
+	  of the conflicted-with package had been completed.  Instead,
+	  <tt>Breaks</tt> may be used (once <tt>Breaks</tt> is supported
+	  by the stable release of Debian).
 	</p>
       </sect>
 
@@ -4226,7 +4298,7 @@ Build-Depends: kernel-headers-2.2.10 [!hurd-i386],
 	  As well as the names of actual ("concrete") packages, the
 	  package relationship fields <tt>Depends</tt>,
 	  <tt>Recommends</tt>, <tt>Suggests</tt>, <tt>Enhances</tt>,
-	  <tt>Pre-Depends</tt>, <tt>Conflicts</tt>,
+	  <tt>Pre-Depends</tt>, <tt>Breaks</tt>, <tt>Conflicts</tt>,
 	  <tt>Build-Depends</tt>, <tt>Build-Depends-Indep</tt>,
 	  <tt>Build-Conflicts</tt> and <tt>Build-Conflicts-Indep</tt>
 	  may mention "virtual packages".
@@ -4262,16 +4334,16 @@ Provides: bar
 	</p>
 
 	<p>
-	  If a dependency or a conflict has a version number attached
+	  If a relationship field has a version number attached
 	  then only real packages will be considered to see whether
 	  the relationship is satisfied (or the prohibition violated,
-	  for a conflict) - it is assumed that a real package which
-	  provides the virtual package is not of the "right" version.
-	  So, a <tt>Provides</tt> field may not contain version
-	  numbers, and the version number of the concrete package
-	  which provides a particular virtual package will not be
-	  looked at when considering a dependency on or conflict with
-	  the virtual package name.
+	  for a conflict or breakage) - it is assumed that a real
+	  package which provides the virtual package is not of the
+	  "right" version.  So, a <tt>Provides</tt> field may not
+	  contain version numbers, and the version number of the
+	  concrete package which provides a particular virtual package
+	  will not be looked at when considering a dependency on or
+	  conflict with the virtual package name.
 	</p>
 
 	<p>
@@ -7443,16 +7515,6 @@ endscript
 	  <p>
 	    This section is not intended as policy, but as a
 	    description of the use of <prgn>dpkg-statoverride</prgn>.
-	  </p>
-
-	  <p>
-	    <prgn>dpkg-statoverride</prgn> is a replacement for the
-	    deprecated <tt>suidmanager</tt> package.  Packages which
-	    previously used <tt>suidmanager</tt> should have a
-	    <tt>Conflicts: suidmanager (<< 0.50)</tt> entry (or even
-	    <tt>(<< 0.52)</tt>), and calls to <tt>suidregister</tt>
-	    and <tt>suidunregister</tt> should now be simply removed
-	    from the maintainer scripts.
 	  </p>
 
 	  <p>
