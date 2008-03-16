@@ -23,6 +23,7 @@ debian-policy (3.7.4.0) unstable; urgency=low
     to Josh Triplett                                         (Closes: #455602).
   * Bug fix: "Minor typos and wording suggestions", thanks to Michael
     Tautschnig                                               (Closes: #422552).
+  * Add an md5sums control file.
   * Remove build system support for FHS 2.1 and FSSTND, mostly commented out.
   * Remove the FSSTND license from debian/copyright; no FSSTND files are
     currently part of policy.
