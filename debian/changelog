@@ -1,5 +1,8 @@
 debian-policy (3.7.4.0) unstable; urgency=low
 
+  * Bug fix: "[PROPOSAL] "debian/README.source" file for packages with
+    non-trivial source", thanks to Wouter Verhelst, Jörg Sommer, Colin Watson,
+    and Junichi Uekawa                                       (Closes: #250202).
   * Bug fix: "[AMENDMENT 11/02/2008] Manual page encoding", thanks to
     Colin Watson                                             (Closes: #440420).
   * Bug fix: "[PROPOSAL] common interface for parallel building in

@@ -58,6 +58,9 @@ picking your way through this list.
      * The base section has been removed.  contrib and non-free have been
        removed from the section list; they are only categories.  The base
        system is now defined by priority.                        [2.4, 3.7]
+     * If dpkg-source -x doesn't provide the source that will be compiled,
+       a debian/rules patch target is recommended and should do whatever
+       else is necessary.                                        [4.9]
      * Standardized the format of DEB_BUILD_OPTIONS.  Specified permitted
        characters for tags, required that tags be whitespace-separated,
        allowed packages to assume non-conflicting tags, and required
@@ -68,6 +71,13 @@ picking your way through this list.
      * Debian packages should not use convience copies of code from other
        packages unless the included package is explicitly intended to be
        used that way.                                            [4.13]
+     * If dpkg-source -x doesn't produce source ready for editing and
+       building with dpkg-buildpackage, packages should include a
+       debian/README.source file explaining how to generate the patched
+       source, add a new modification, and remove an existing
+       modification.  This file may also be used to document packaging a
+       new upstream release and any other complexity of the Debian build
+       process.                                                  [4.14]
      * The Uploaders field in debian/control may be wrapped.     [5.6.3]
      * New Homepage field for upstream web sites.                [5.6.23]
      * The Breaks field declares that this package breaks another and

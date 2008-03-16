@@ -1926,6 +1926,19 @@
 		possible is a good idea.
 	      </p>
 	    </item>
+
+	    <tag><tt>patch</tt> (optional)</tag>
+	    <item>
+	      <p>
+		This target performs whatever additional actions are
+		required to make the source ready for editing (unpacking
+		additional upstream archives, applying patches, etc.).
+		It is recommended to be implemented for any package where
+		<tt>dpkg-source -x</tt> does not result in source ready
+		for additional modification.  See
+		<ref id="readmesource">.
+	      </p>
+	    </item>
 	  </taglist>
 
 	<p>
@@ -2203,6 +2216,57 @@ endif
 	</p>
       </sect>
 
+      <sect id="readmesource">
+	<heading>Source package handling:
+	  <file>debian/README.source</file></heading>
+
+	<p>
+	  If running <prgn>dpkg-source -x</prgn> on a source package
+	  doesn't produce the source of the package, ready for editing,
+	  and allow one to make changes and run
+	  <prng>dpkg-buildpackage</prgn> to produce a modified package
+	  without taking any additional steps, creating a
+	  <file>debian/README.source</file> documentation file is
+	  recommended.  This file should explain how to do all of the
+	  following:
+	    <enumlist>
+	      <item>Generate the fully patched source, in a form ready for
+	      editing, that would be built to create Debian
+	      packages.  Doing this with a <tt>patch</tt> target in
+	      <file>debian/rules</file> is recommended; see
+	      <ref id="debianrules">.</item>
+	      <item>Modify the source and save those modifications so that
+	      they will be applied when building the package.</item>
+	      <item>Remove source modifications that are currently being
+	      applied when building the package.</item>
+	      <item>Optionally, document what steps are necessary to
+	      upgrade the Debian source package to a new upstream version,
+	      if applicable.</item>
+	    </enumlist>
+	  This explanation should include specific commands and mention
+	  any additional required Debian packages.  It should not assume
+	  familiarity with any specific Debian packaging system or patch
+	  management tools.
+	</p>
+
+	<p>
+	  This explanation may refer to a documentation file installed by
+	  one of the package's build dependencies provided that the
+	  referenced documentation clearly explains these tasks and is not
+	  a general reference manual.
+	</p>
+
+	<p>
+	  <file>debian/README.source</file> may also include any other
+	  information that would be helpful to someone modifying the
+	  source package.  Even if the package doesn't fit the above
+	  description, maintainers are encouraged to document in a
+	  <file>debian/README.source</file> file any source package with a
+	  particularly complex or unintuitive source layout or build
+	  system (for example, a package that builds the same source
+	  multiple times to generate different binary packages).
+	</p>
+      </sect>
     </chapt>
 
 
