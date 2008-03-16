@@ -54,6 +54,7 @@ picking your way through this list.
 
 <pre>
 3.7.4.0                        unreleased
+
      * The base section has been removed.  contrib and non-free have been
        removed from the section list; they are only categories.  The base
        system is now defined by priority.                        [2.4, 3.7]
@@ -78,7 +79,9 @@ picking your way through this list.
      * Packages in contrib and non-free should state in the copyright file
        that the package is not part of Debian GNU/Linux and briefly
        explain why.                                              [12.5]
+
 3.7.3.0                        Dec 2007
+
      * Package version numbers may contain tildes, which sort before
        anything, even the end of a part.                         [5.6.12]
      * Scripts may assume that /bin/sh supports local (at a basic level)
@@ -104,13 +107,18 @@ picking your way through this list.
        a gettext-based system such as po-debconf.                [3.9.1]
      * GFDL 1.2, GPL 3, and LGPL 3 are now in common-licenses and should
        be referenced rather than quoted in debian/copyright.     [12.5]
+
 3.7.2.2                        Oct 2006
+
      * Maintainer scripts must not be world writeable (up from a
        should to a must)                                         [6.1]
+
 3.7.2.0                        Apr 2006
+
      * Revert the cgi-lib change.                                [11.5]
 
 3.7.1.0                        Apr 2006
+
      * It is now possible to create shared libraries without
        relocatable code (using -fPIC) in certain exceptional cases,
        provided some procedures are followed, and for creating static
@@ -123,6 +131,7 @@ picking your way through this list.
        must  pre-depend on x11-common (>= 1:7.0.0)              [11.8.7] 
 
 3.7.0.0                        Apr 2006
+
      * Packages shipping web server CGI files are expected to install
        them in /usr/lib/cgi-lib/ directories.  This location change
        perhaps should be documented in NEWS                      [11.5]
@@ -150,8 +159,8 @@ picking your way through this list.
        /usr/share/fonts/X11/ now, and /usr/X11R6 is gone.
                                                       [ 11.8.5.2, 11.8.7, etc]
 
-
 3.6.2.0                        2005
+
      * Recommend doc-base, and not menu, for registering package documentation.
      * Run time support programs should live in subdirectories of
        /usr/lib/ or /usr/share, and preferably the shared lib is named
@@ -160,6 +169,7 @@ picking your way through this list.
        allow packages to share image files with the web server [11.5]
 
 3.6.1.0                    Aug 2003
+
      + Prompting the user should be done using debconf. Non debconf
        user prompts are now deprecated. [3.10.1]
 
@@ -202,7 +212,6 @@ picking your way through this list.
      - Window managers compliant with the Window Manager Specification
        Project may add 40 points for ranking in the alternatives [11.8.4]
 
-
 3.5.9.0                    Mar 2003
 
      - The section describing the Description: package field once again has
@@ -215,7 +224,6 @@ picking your way through this list.
      - If the purpose of a package is to provide examples, then the
        example files can be installed into <tt>/usr/share/doc/package</tt>
        (rather than <tt>/usr/share/doc/package/examples</tt>). [12.6]
-
 
 3.5.8.0                    Nov 2002
 
@@ -272,7 +280,6 @@ picking your way through this list.
      - There are new rules for build-indep/build-arch targets and
        there is a new Build-Depend-Indep semantic. [7]
 
-
 3.5.5.0                    May 2001
 
      - Manpages should not rely on header information to have
@@ -299,7 +306,6 @@ picking your way through this list.
        * OpenMotif linked binaries have the same rules as
          OSF/Motif-linked ones [11.8.8]
 
-
 3.5.4.0                    Apr 2001
 
      - The system-wide mail directory is now /var/mail, no longer
@@ -310,7 +316,6 @@ picking your way through this list.
        programs and modules should follow the current Perl policy
        [11.9; perl-policy]
 
-
 3.5.3.0                    Apr 2001
 
      - Build-Depends arch syntax has been changed to be less
@@ -320,24 +325,20 @@ picking your way through this list.
        symbolic links from /usr/share/doc/&lt;package&gt;/examples as
        needed [10.7.3]
 
-
 3.5.2.0                    Feb 2001
 
      - X app-defaults directory has moved from
        /usr/X11R6/lib/X11/app-defaults to /etc/X11/app-defaults [11.8.6]
-
 
 3.5.1.0                    Feb 2001
 
      - dpkg-shlibdeps now uses objdump, so shared libraries have to be
        run through dpkg-shlibdeps as well as executables [8.1]
 
-
 3.5.0.0                    Jan 2001
 
      - Font packages for the X Window System must now declare a
        dependency on xutils (>= 4.0.2) [11.8.5]
-
 
 3.2.1.1                    Jan 2001
 
@@ -351,13 +352,11 @@ picking your way through this list.
      - Much of the packaging manual has now been imported into the
        policy document
 
-
 3.2.1.0                    Aug 00
 
      - A package of priority standard or higher may provide two
        binaries, one compiled with support for the X Window System,
        and the other without [11.8.1]
-
 
 3.2.0.0                    Aug 00
 
@@ -385,12 +384,10 @@ picking your way through this list.
        always creating the shared lib before the symlink, so the unpack
        order be correct [8]
 
-
 3.1.1.0                    Nov 1999
 
      - Correction to semantics of architecture lists in Build-Depends
        etc.  Should not affect many packages [7.1]
-
 
 3.1.0.0                    Oct 1999
 
@@ -422,13 +419,11 @@ picking your way through this list.
      - Description of how to handle version numbers based on dates
        added [3.2.1]
 
-
 3.0.1.0                    Jul 1999
 
     -  Added the clarification that the .la files are essential for the
        packages using libtool's libltdl library, in which case the
        .la files must go in the run-time library package [10.2]
-
 
 3.0.0.0                    Jun 1999
 

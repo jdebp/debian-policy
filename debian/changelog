@@ -27,6 +27,7 @@ debian-policy (3.7.4.0) unstable; urgency=low
   * Remove the FSSTND license from debian/copyright; no FSSTND files are
     currently part of policy.
   * Update FHS copyright dates in debian/copyright.
+  * Standardize the spacing around headings in upgrading-checklist.html.
 
  --
 
