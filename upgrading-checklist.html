@@ -84,6 +84,9 @@ picking your way through this list.
        prevents installation of the breaking package unless the package
        named in Breaks is deconfigured first.  This field should not be
        used until the dpkg in Debian stable supports it.         [6.5, 6.6, 7]
+     * Files in /etc/cron.{hourly,daily,weekly,monthly} must be
+       configuration files (upgraded from should).  Mention the hourly
+       directory.                                                [9.5]
      * Manual pages in locale-specific directories should use either the
        legacy encoding for that directory or UTF-8.  Country names should
        not be included in locale-specific manual page directories unless

@@ -6388,12 +6388,13 @@ Reloading <var>description</var> configuration...done.
 	  via cron, it should place a file with the name of the
 	  package in one or more of the following directories:
 	  <example compact="compact">
+/etc/cron.hourly
 /etc/cron.daily
 /etc/cron.weekly
 /etc/cron.monthly
 	  </example>
 	  As these directory names imply, the files within them are
-	  executed on a daily, weekly, or monthly basis,
+	  executed on an hourly, daily, weekly, or monthly basis,
 	  respectively. The exact times are listed in
 	  <file>/etc/crontab</file>.</p>
 
@@ -6401,13 +6402,12 @@ Reloading <var>description</var> configuration...done.
 	  All files installed in any of these directories must be
 	  scripts (e.g., shell scripts or Perl scripts) so that they
 	  can easily be modified by the local system administrator.
-	  In addition, they should be treated as configuration
-	  files.
+	  In addition, they must be treated as configuration files.
 	</p>
 
 	<p>
-	  If a certain job has to be executed more frequently than
-	  daily, the package should install a file
+	  If a certain job has to be executed at some other frequency or
+	  at a specific time, the package should install a file
 	  <file>/etc/cron.d/<var>package</var></file>. This file uses the
 	  same syntax as <file>/etc/crontab</file> and is processed by
 	  <prgn>cron</prgn> automatically. The file must also be
@@ -7206,10 +7206,13 @@ ln -fs ../sbin/sendmail debian/tmp/usr/bin/runq
 	  </p>
 
 	  <p>
-	    Note that a script that embeds configuration information
-	    (such as most of the files in <file>/etc/default</file> and
-	    <file>/etc/cron.{daily,weekly,monthly}</file>) is de-facto a
-	    configuration file and should be treated as such.
+	    As noted elsewhere, <file>/etc/init.d</file> scripts,
+	    <file>/etc/default</file> files, scripts installed in
+	    <file>/etc/cron.{hourly,daily,weekly,monthly}</file>, and cron
+	    configuration installed in <file>/etc/cron.d</file> must be
+	    treated as configuration files.  In general, any script that
+	    embeds configuration information is de-facto a configuration
+	    file and should be treated as such.
 	  </p>
 	</sect1>
 
