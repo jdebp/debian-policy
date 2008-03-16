@@ -58,6 +58,13 @@ picking your way through this list.
      * The base section has been removed.  contrib and non-free have been
        removed from the section list; they are only categories.  The base
        system is now defined by priority.                        [2.4, 3.7]
+     * Standardized the format of DEB_BUILD_OPTIONS.  Specified permitted
+       characters for tags, required that tags be whitespace-separated,
+       allowed packages to assume non-conflicting tags, and required
+       unknown flags be ignored.                                 [4.9.1, 10.1]
+     * Added parallel=n to the standardized DEB_BUILD_OPTIONS tags,
+       indicating that a package should be built using up to n parallel
+       processes if the package supports it                      [4.9.1]
      * Debian packages should not use convience copies of code from other
        packages unless the included package is explicitly intended to be
        used that way.                                            [4.13]

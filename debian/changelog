@@ -2,6 +2,12 @@ debian-policy (3.7.4.0) unstable; urgency=low
 
   * Bug fix: "[AMENDMENT 11/02/2008] Manual page encoding", thanks to
     Colin Watson                                             (Closes: #440420).
+  * Bug fix: "[PROPOSAL] common interface for parallel building in
+    DEB_BUILD_OPTIONS", thanks to Loïc Minier, Peter Samuelson, and Robert
+    Millan                                                   (Closes: #209008).
+  * Bug fix: "Please clarify splitting/syntax of DEB_BUILD_OPTIONS", thanks to
+    Loïc Minier, Peter Samuelson, Robert Millan, and Guillem Jover
+                                                             (Closes: #430649).
   * Bug fix: "Documentation for Breaks in dpkg", thanks to Ian Jackson
                                                              (Closes: #379150).
   * Bug fix: "support for wrapped Uploaders should now be mandatory"

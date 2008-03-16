@@ -1986,6 +1986,105 @@
 	  or system information; the GNU style variables should be
 	  used for that.
 	</p>
+
+	<sect1 id="debianrules-options">
+	  <heading><file>debian/rules</file> and
+	    <tt>DEB_BUILD_OPTIONS</tt></heading>
+
+	  <p>
+	    Supporting the standardized environment variable
+	    <tt>DEB_BUILD_OPTIONS</tt> is recommended.	This variable can
+	    contain several flags to change how a package is compiled and
+	    built.  Each flag must be in the form <var>flag</var> or
+	    <var>flag</var>=<var>options</var>.	 If multiple flags are
+	    given, they must be separated by whitespace.<footnote>
+	      Some packages support any delimiter, but whitespace is the
+	      easiest to parse inside a makefile and avoids ambiguity with
+	      flag values that contain commas.
+	    </footnote>
+	    <var>flag</var> must start with a lowercase letter
+	    (<tt>a-z</tt>) and consist only of lowercase letters,
+	    numbers (<tt>0-9</tt>), and the characters
+	    <tt>-</tt> and <tt>_</tt> (hyphen and underscore).
+	    <var>options</var> must not contain whitespace.  The same
+	    tag should not be given multiple times with conflicting
+	    values.  Package maintainers may assume that
+	    <tt>DEB_BUILD_OPTIONS</tt> will not contain conflicting tags.
+	  </p>
+
+	  <p>
+	    The meaning of the following tags has been standardized:
+	    <taglist>
+	      <tag>noopt</tag>
+	      <item>
+		  The presence of this tag means that the package should
+		  be compiled with a minimum of optimization.  For C
+		  programs, it is best to add <tt>-O0</tt> to
+		  <tt>CFLAGS</tt> (although this is usually the default).
+		  Some programs might fail to build or run at this level
+		  of optimization; it may be necessary to use
+		  <tt>-O1</tt>, for example.
+	      </item>
+	      <tag>nostrip</tag>
+	      <item>
+		  This tag means that the debugging symbols should not be
+		  stripped from the binary during installation, so that
+		  debugging information may be included in the package.
+	      </item>
+	      <tag>parallel=n</tag>
+	      <item>
+		  This tag means that the package should be built using up
+		  to <tt>n</tt> parallel processes if the package build
+		  system supports this.<footnote>
+		      Packages built with <tt>make</tt> can often implement
+		      this by passing the <tt>-j</tt><var>n</var> option to
+		      <tt>make</tt>.
+		  </footnote>
+		  If the package build system does not support parallel
+		  builds, this string must be ignored.  If the package
+		  build system only supports a lower level of concurrency
+		  than <var>n</var>, the package should be built using as
+		  many parallel processes as the package build system
+		  supports.  It is up to the package maintainer to decide
+		  whether the package build times are long enough and the
+		  package build system is robust enough to make supporting
+		  parallel builds worthwhile.
+	       </item>
+	    </taglist>
+	  </p>
+
+	  <p>
+	    Unknown flags must be ignored by <file>debian/rules</file>.
+	  </p>
+
+	  <p>
+	    The following makefile snippet is an example of how one may
+	    implement the build options; you will probably have to
+	    massage this example in order to make it work for your
+	    package.
+	    <example compact="compact">
+CFLAGS = -Wall -g
+INSTALL = install
+INSTALL_FILE    = $(INSTALL) -p    -o root -g root  -m  644
+INSTALL_PROGRAM = $(INSTALL) -p    -o root -g root  -m  755
+INSTALL_SCRIPT  = $(INSTALL) -p    -o root -g root  -m  755
+INSTALL_DIR     = $(INSTALL) -p -d -o root -g root  -m  755
+
+ifneq (,$(filter noopt,$(DEB_BUILD_OPTIONS)))
+    CFLAGS += -O0
+else
+    CFLAGS += -O2
+endif
+ifeq (,$(filter nostrip,$(DEB_BUILD_OPTIONS)))
+    INSTALL_PROGRAM += -s
+endif
+ifneq (,$(filter parallel=%,$(DEB_BUILD_OPTIONS)))
+    NUMJOBS = $(patsubst parallel=%,%,$(filter parallel=%,$(DEB_BUILD_OPTIONS)))
+    MAKEFLAGS += -j$(NUMJOBS)
+endif
+	    </example>
+	  </p>
+	</sect1>
       </sect>
 
 <!-- FIXME: section pkg-srcsubstvars is the same as substvars -->
@@ -6597,58 +6696,12 @@ INSTALL = install -s # (or use strip on the files in debian/tmp)
 
 	<p>
 	  Although binaries in the build tree should be compiled with
-	  debugging information by default, it can often be difficult
-	  to debug programs if they are also subjected to compiler
-	  optimization.  For this reason, it is recommended to support
-	  the standardized environment
-	  variable <tt>DEB_BUILD_OPTIONS</tt>.  This variable can
-	  contain several flags to change how a package is compiled
-	  and built.
-	</p>
-
-	<p>
-	  <taglist>
-	    <tag>noopt</tag>
-	    <item>
-		The presence of this string means that the package
-		should be compiled with a minimum of optimization.
-		For C programs, it is best to add <tt>-O0</tt>
-		to <tt>CFLAGS</tt> (although this is usually the
-		default).  Some programs might fail to build or run at
-		this level of optimization; it may be necessary to
-		use <tt>-O1</tt>, for example.
-	    </item>
-	    <tag>nostrip</tag>
-	    <item>
-		This string means that the debugging symbols should
-		not be stripped from the binary during installation,
-		so that debugging information may be included in the package.
-	    </item>
-	  </taglist>
-	</p>
-
-	<p>
-	  The following makefile snippet is an example of how one may
-          implement the build options; you will probably have to
-          massage this example in order to make it work for your
-          package.
- 	  <example compact="compact">
-CFLAGS = -Wall -g
-INSTALL = install
-INSTALL_FILE    = $(INSTALL) -p    -o root -g root  -m  644
-INSTALL_PROGRAM = $(INSTALL) -p    -o root -g root  -m  755
-INSTALL_SCRIPT  = $(INSTALL) -p    -o root -g root  -m  755
-INSTALL_DIR     = $(INSTALL) -p -d -o root -g root  -m  755
-
-ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
-CFLAGS += -O0
-else
-CFLAGS += -O2
-endif
-ifeq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
-INSTALL_PROGRAM += -s
-endif
-	  </example>
+	  debugging information by default, it can often be difficult to
+	  debug programs if they are also subjected to compiler
+	  optimization.  For this reason, it is recommended to support the
+	  standardized environment variable <tt>DEB_BUILD_OPTIONS</tt>
+	  (see <ref id="debianrules-options">).  This variable can contain
+	  several flags to change how a package is compiled and built.
 	</p>
 
 	<p>
