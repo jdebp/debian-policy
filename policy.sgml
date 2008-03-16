@@ -8816,7 +8816,14 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	  In addition, the copyright file must say where the upstream
 	  sources (if any) were obtained.  It should name the original
 	  authors of the package and the Debian maintainer(s) who were
-	  involved with its creation.</p>
+	  involved with its creation.
+	</p>
+
+	<p>
+	  Packages in the <em>contrib</em> or <em>non-free</em> categories
+	  should state in the copyright file that the package is not part
+	  of the Debian GNU/Linux distribution and briefly explain why.
+	</p>
 
 	<p>
 	  A copy of the file which will be installed in

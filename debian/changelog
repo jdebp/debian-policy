@@ -16,6 +16,9 @@ debian-policy (3.7.4.0) unstable; urgency=low
                                                              (Closes: #442070).
   * Bug fix: "Inclusion of Apache Software License versions in
     /usr/share/common-licenses", thanks to Barry Hawkins     (Closes: #291460).
+  * Bug fix: "[Amended] copyright should include notice if a package is
+    not a part of Debian distribution", thanks to Taketoshi Sano
+                                                             (Closes: #65577).
   * Bug fix: "Examples of dpkg frontends should mention apt now", thanks
     to Josh Triplett                                         (Closes: #455602).
   * Bug fix: "Minor typos and wording suggestions", thanks to Michael
