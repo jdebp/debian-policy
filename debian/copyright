@@ -4,10 +4,11 @@ documents. It was originally assembled by Christian Schwarz and is now
 maintained by the Debian Policy Group
 <debian-policy@lists.debian.org>.
 
-The FHS and FSSTND documents were downloaded from
+The FHS documents were downloaded from
 http://www.pathname.com/fhs/.
 
 ------------------------------------------------------------------------------
+
 Copyright of the Debian Policy Manual:
 
 Copyright (C) 1996 Ian Jackson.
@@ -32,17 +33,13 @@ MA 02110-1301 USA
 
 Copyright of the Filesystem Hierarchy Standard (FHS)
 
-Copyright (C) 1994-2000 Daniel Quinlan
+Copyright © 1994-2004 Daniel Quinlan
+Copyright © 2001-2004 Paul 'Rusty' Russell
+Copyright © 2003-2004 Christopher Yeoh
 
 Permission is granted to make and distribute verbatim copies of this
 standard provided the copyright and this permission notice are preserved
 on all copies.
-
-[troff source includes the following paragraph:
-Permission is granted to process this file through a typesetter (such as
-troff) and print the results, provided the printed document carries a
-permission notice identical to this one except for the removal of this
-paragraph (this paragraph not being relevant to the printed document).]
 
 Permission is granted to copy and distribute modified versions of this
 standard under the conditions for verbatim copying, provided also that
@@ -56,36 +53,3 @@ Permission is granted to copy and distribute translations of this
 standard into another language, under the above conditions for modified
 versions, except that this permission notice may be stated in a
 translation approved by the copyright holder.
-
-
-------------------------------------------------------------------------------
-
-Copyright of the Linux Filesystem Standard (FSSTND).
-
-
-Copyright (C) 1994, 1995 Daniel Quinlan
-
-Permission is granted to copy and distribute verbatim copies of this
-standard provided the copyright and this permission notice are
-preserved on all copies.
-
-Permission is granted for FSSTND contributors and participants to copy
-and distribute modified versions of this standard under the conditions
-for verbatim copying for purposes of filesystem standardization
-activities only, and subject to those restrictions listed below.
-
-The following restrictions apply to reproducing or transmitting the
-document in any form:
-
-   o All copies or portions thereof must identify the document's title
-     and section, and must be accompanied by this entire notice in a
-     prominent location.
-
-   o No portion of this document may be redistributed in any modified or
-     abridged form without the prior approval of the FSSTND coordinator.
-
-Any entities seeking permission to distribute any material derived
-from this document (other than verbatim copies) must contact the
-FSSTND coordinator for the appropriate license.
-
---------------------------------------------------------------------------

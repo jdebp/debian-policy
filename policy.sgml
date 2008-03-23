@@ -640,14 +640,14 @@
 	<p>
 	  The Debian archive maintainers provide the authoritative
 	  list of sections.  At present, they are:
-	  <em>admin</em>, <em>base</em>, <em>comm</em>,
-	  <em>contrib</em>, <em>devel</em>, <em>doc</em>,
+	  <em>admin</em>, <em>comm</em>,
+	  <em>devel</em>, <em>doc</em>,
 	  <em>editors</em>, <em>electronics</em>, <em>embedded</em>,
 	  <em>games</em>, <em>gnome</em>, <em>graphics</em>,
 	  <em>hamradio</em>, <em>interpreters</em>, <em>kde</em>,
 	  <em>libs</em>, <em>libdevel</em>, <em>mail</em>,
 	  <em>math</em>, <em>misc</em>, <em>net</em>, <em>news</em>,
-	  <em>non-free</em>, <em>oldlibs</em>,
+	  <em>oldlibs</em>,
 	  <em>otherosfs</em>, <em>perl</em>, <em>python</em>,
 	  <em>science</em>, <em>shells</em>,
 	  <em>sound</em>, <em>tex</em>, <em>text</em>,
@@ -1078,15 +1078,15 @@
 	<p>
 	  The <tt>base system</tt> is a minimum subset of the Debian
 	  GNU/Linux system that is installed before everything else
-	  on a new system. Thus, only very few packages are allowed
-	  to go into the <tt>base</tt> section to keep the required
-	  disk usage very small.
+	  on a new system. Only very few packages are allowed to form
+	  part of the base system, in order to keep the required disk
+	  usage very small.
 	</p>
 
 	<p>
-	  Most of these packages will have the priority value
-	  <tt>required</tt> or at least <tt>important</tt>, and many
-	  of them will be tagged <tt>essential</tt> (see below).
+	  The base system consists of all those packages with priority
+	  <tt>required</tt> or <tt>important</tt>. Many of them will
+	  be tagged <tt>essential</tt> (see below).
 	</p>
       </sect>
 
@@ -1926,6 +1926,19 @@
 		possible is a good idea.
 	      </p>
 	    </item>
+
+	    <tag><tt>patch</tt> (optional)</tag>
+	    <item>
+	      <p>
+		This target performs whatever additional actions are
+		required to make the source ready for editing (unpacking
+		additional upstream archives, applying patches, etc.).
+		It is recommended to be implemented for any package where
+		<tt>dpkg-source -x</tt> does not result in source ready
+		for additional modification.  See
+		<ref id="readmesource">.
+	      </p>
+	    </item>
 	  </taglist>
 
 	<p>
@@ -1986,6 +1999,105 @@
 	  or system information; the GNU style variables should be
 	  used for that.
 	</p>
+
+	<sect1 id="debianrules-options">
+	  <heading><file>debian/rules</file> and
+	    <tt>DEB_BUILD_OPTIONS</tt></heading>
+
+	  <p>
+	    Supporting the standardized environment variable
+	    <tt>DEB_BUILD_OPTIONS</tt> is recommended.	This variable can
+	    contain several flags to change how a package is compiled and
+	    built.  Each flag must be in the form <var>flag</var> or
+	    <var>flag</var>=<var>options</var>.	 If multiple flags are
+	    given, they must be separated by whitespace.<footnote>
+	      Some packages support any delimiter, but whitespace is the
+	      easiest to parse inside a makefile and avoids ambiguity with
+	      flag values that contain commas.
+	    </footnote>
+	    <var>flag</var> must start with a lowercase letter
+	    (<tt>a-z</tt>) and consist only of lowercase letters,
+	    numbers (<tt>0-9</tt>), and the characters
+	    <tt>-</tt> and <tt>_</tt> (hyphen and underscore).
+	    <var>options</var> must not contain whitespace.  The same
+	    tag should not be given multiple times with conflicting
+	    values.  Package maintainers may assume that
+	    <tt>DEB_BUILD_OPTIONS</tt> will not contain conflicting tags.
+	  </p>
+
+	  <p>
+	    The meaning of the following tags has been standardized:
+	    <taglist>
+	      <tag>noopt</tag>
+	      <item>
+		  The presence of this tag means that the package should
+		  be compiled with a minimum of optimization.  For C
+		  programs, it is best to add <tt>-O0</tt> to
+		  <tt>CFLAGS</tt> (although this is usually the default).
+		  Some programs might fail to build or run at this level
+		  of optimization; it may be necessary to use
+		  <tt>-O1</tt>, for example.
+	      </item>
+	      <tag>nostrip</tag>
+	      <item>
+		  This tag means that the debugging symbols should not be
+		  stripped from the binary during installation, so that
+		  debugging information may be included in the package.
+	      </item>
+	      <tag>parallel=n</tag>
+	      <item>
+		  This tag means that the package should be built using up
+		  to <tt>n</tt> parallel processes if the package build
+		  system supports this.<footnote>
+		      Packages built with <tt>make</tt> can often implement
+		      this by passing the <tt>-j</tt><var>n</var> option to
+		      <tt>make</tt>.
+		  </footnote>
+		  If the package build system does not support parallel
+		  builds, this string must be ignored.  If the package
+		  build system only supports a lower level of concurrency
+		  than <var>n</var>, the package should be built using as
+		  many parallel processes as the package build system
+		  supports.  It is up to the package maintainer to decide
+		  whether the package build times are long enough and the
+		  package build system is robust enough to make supporting
+		  parallel builds worthwhile.
+	       </item>
+	    </taglist>
+	  </p>
+
+	  <p>
+	    Unknown flags must be ignored by <file>debian/rules</file>.
+	  </p>
+
+	  <p>
+	    The following makefile snippet is an example of how one may
+	    implement the build options; you will probably have to
+	    massage this example in order to make it work for your
+	    package.
+	    <example compact="compact">
+CFLAGS = -Wall -g
+INSTALL = install
+INSTALL_FILE    = $(INSTALL) -p    -o root -g root  -m  644
+INSTALL_PROGRAM = $(INSTALL) -p    -o root -g root  -m  755
+INSTALL_SCRIPT  = $(INSTALL) -p    -o root -g root  -m  755
+INSTALL_DIR     = $(INSTALL) -p -d -o root -g root  -m  755
+
+ifneq (,$(filter noopt,$(DEB_BUILD_OPTIONS)))
+    CFLAGS += -O0
+else
+    CFLAGS += -O2
+endif
+ifeq (,$(filter nostrip,$(DEB_BUILD_OPTIONS)))
+    INSTALL_PROGRAM += -s
+endif
+ifneq (,$(filter parallel=%,$(DEB_BUILD_OPTIONS)))
+    NUMJOBS = $(patsubst parallel=%,%,$(filter parallel=%,$(DEB_BUILD_OPTIONS)))
+    MAKEFLAGS += -j$(NUMJOBS)
+endif
+	    </example>
+	  </p>
+	</sect1>
       </sect>
 
 <!-- FIXME: section pkg-srcsubstvars is the same as substvars -->
@@ -2076,6 +2188,85 @@
 	  the file to the list in <file>debian/files</file>.</p>
       </sect>
 
+      <sect id="embeddedfiles">
+	<heading>Convenience copies of code</heading>
+
+	<p>
+	  Some software packages include in their distribution convenience
+	  copies of code from other software packages, generally so that
+	  users compiling from source don't have to download multiple
+	  packages.  Debian packages should not make use of these
+	  convenience copies unless the included package is explicitly
+	  intended to be used in this way.<footnote>
+	    For example, parts of the GNU build system work like this.
+	  </footnote>
+	  If the included code is already in the Debian archive in the
+	  form of a library, the Debian packaging should ensure that
+	  binary packages reference the libraries already in Debian and
+	  the convenience copy is not used.  If the included code is not
+	  already in Debian, it should be packaged separately as a
+	  prerequisite if possible.
+	  <footnote>
+	    Having multiple copies of the same code in Debian is
+	    inefficient, often creates either static linking or shared
+	    library conflicts, and, most importantly, increases the
+	    difficulty of handling security vulnerabilities in the
+	    duplicated code.
+	  </footnote>
+	</p>
+      </sect>
+
+      <sect id="readmesource">
+	<heading>Source package handling:
+	  <file>debian/README.source</file></heading>
+
+	<p>
+	  If running <prgn>dpkg-source -x</prgn> on a source package
+	  doesn't produce the source of the package, ready for editing,
+	  and allow one to make changes and run
+	  <prng>dpkg-buildpackage</prgn> to produce a modified package
+	  without taking any additional steps, creating a
+	  <file>debian/README.source</file> documentation file is
+	  recommended.  This file should explain how to do all of the
+	  following:
+	    <enumlist>
+	      <item>Generate the fully patched source, in a form ready for
+	      editing, that would be built to create Debian
+	      packages.  Doing this with a <tt>patch</tt> target in
+	      <file>debian/rules</file> is recommended; see
+	      <ref id="debianrules">.</item>
+	      <item>Modify the source and save those modifications so that
+	      they will be applied when building the package.</item>
+	      <item>Remove source modifications that are currently being
+	      applied when building the package.</item>
+	      <item>Optionally, document what steps are necessary to
+	      upgrade the Debian source package to a new upstream version,
+	      if applicable.</item>
+	    </enumlist>
+	  This explanation should include specific commands and mention
+	  any additional required Debian packages.  It should not assume
+	  familiarity with any specific Debian packaging system or patch
+	  management tools.
+	</p>
+
+	<p>
+	  This explanation may refer to a documentation file installed by
+	  one of the package's build dependencies provided that the
+	  referenced documentation clearly explains these tasks and is not
+	  a general reference manual.
+	</p>
+
+	<p>
+	  <file>debian/README.source</file> may also include any other
+	  information that would be helpful to someone modifying the
+	  source package.  Even if the package doesn't fit the above
+	  description, maintainers are encouraged to document in a
+	  <file>debian/README.source</file> file any source package with a
+	  particularly complex or unintuitive source layout or build
+	  system (for example, a package that builds the same source
+	  multiple times to generate different binary packages).
+	</p>
+      </sect>
     </chapt>
 
 
@@ -2182,6 +2373,7 @@ Package: libc6
 	    <item><qref id="f-Priority"><tt>Priority</tt></qref> (recommended)</item>
 	    <item><qref id="sourcebinarydeps"><tt>Build-Depends</tt> et al</qref></item>
 	    <item><qref id="f-Standards-Version"><tt>Standards-Version</tt></qref> (recommended)</item>
+	    <item><qref id="f-Homepage"><tt>Homepage</tt></qref></item>
 	  </list>
 	</p>
 
@@ -2196,6 +2388,7 @@ Package: libc6
 	    <item><qref id="f-Essential"><tt>Essential</tt></qref></item>
 	    <item><qref id="binarydeps"><tt>Depends</tt> et al</qref></item>
 	    <item><qref id="f-Description"><tt>Description</tt></qref> (mandatory)</item>
+	    <item><qref id="f-Homepage"><tt>Homepage</tt></qref></item>
 	  </list>
 	</p>
 
@@ -2252,6 +2445,7 @@ Package: libc6
 	    <item><qref id="f-Installed-Size"><tt>Installed-Size</tt></qref></item>
 	    <item><qref id="f-Maintainer"><tt>Maintainer</tt></qref> (mandatory)</item>
 	    <item><qref id="f-Description"><tt>Description</tt></qref> (mandatory)</item>
+	    <item><qref id="f-Homepage"><tt>Homepage</tt></qref></item>
 	  </list>
 	</p>
       </sect>
@@ -2276,6 +2470,7 @@ Package: libc6
           <item><qref id="sourcebinarydeps"><tt>Build-Depends</tt> et al</qref></item>
 	  <item><qref id="f-Standards-Version"><tt>Standards-Version</tt></qref> (recommended)</item>
 	  <item><qref id="f-Files"><tt>Files</tt></qref> (mandatory)</item>
+	  <item><qref id="f-Homepage"><tt>Homepage</tt></qref></item>
 	</list>
 	</p>
 
@@ -2391,16 +2586,10 @@ Package: libc6
           </p>
 	  <p>
 	    Any parser that interprets the Uploaders field in
-	    <file>debian/control</file> should permit it to span multiple
-	    lines<footnote>
-              In the future, the Uploaders field in
-		<file>debian/control</file> (but not other control files)
-		will be permitted to span multiple lines and interpreting
-		a multi-line Uploaders field shall be mandatory.
-	    </footnote>. Line breaks in an Uploaders field that spans
-	    multiple lines are not significant and the semantics of
-	    the field are the same as if the line breaks had not been
-	    present.
+	    <file>debian/control</file> must permit it to span multiple
+	    lines.  Line breaks in an Uploaders field that spans multiple
+	    lines are not significant and the semantics of the field are
+	    the same as if the line breaks had not been present.
 	  </p>
  	</sect1>
 
@@ -2545,7 +2734,8 @@ Package: libc6
 	<sect1>
 	  <heading>Package interrelationship fields:
 	    <tt>Depends</tt>, <tt>Pre-Depends</tt>,
-	    <tt>Recommends</tt>, <tt>Suggests</tt>, <tt>Conflicts</tt>,
+	    <tt>Recommends</tt>, <tt>Suggests</tt>,
+	    <tt>Breaks</tt>, <tt>Conflicts</tt>,
 	    <tt>Provides</tt>, <tt>Replaces</tt>, <tt>Enhances</tt>
 	  </heading>
 
@@ -3125,6 +3315,19 @@ Package: libc6
 	  </p>
 	</sect1>
 
+	<sect1 id="f-Homepage">
+	  <heading><tt>Homepage</tt></heading>
+
+	  <p>
+	    The URL of the web site for this package, preferably (when
+	    applicable) the site from which the original source can be
+	    obtained and any additional upstream documentation or
+	    information may be found.  The content of this field is a
+	    simple URL without any surrounding characters such as
+	    <tt>&lt;&gt;</tt>.
+	  </p>
+	</sect1>
+
       </sect>
 
       <sect>
@@ -3248,7 +3451,7 @@ Package: libc6
       </sect>
 
       <sect id="idempotency">
-	<heading>Maintainer scripts Idempotency</heading>
+	<heading>Maintainer scripts idempotency</heading>
 
 	<p>
 	  It is necessary for the error recovery procedures that the
@@ -3336,8 +3539,8 @@ Package: libc6
 		<var>deconfigured's-postinst</var>
 		<tt>abort-deconfigure</tt> <tt>in-favour</tt>
 		<var>failed-install-package</var> <var>version</var>
-		<tt>removing</tt> <var>conflicting-package</var>
-		<var>version</var>
+		[<tt>removing</tt> <var>conflicting-package</var>
+		<var>version</var>]
 	    </item>
 	  </list>
 
@@ -3362,9 +3565,9 @@ Package: libc6
 	    <item>
 		<var>deconfigured's-prerm</var> <tt>deconfigure</tt>
 		<tt>in-favour</tt> <var>package-being-installed</var>
-		<var>version</var> <tt>removing</tt>
+		<var>version</var> [<tt>removing</tt>
 		<var>conflicting-package</var>
-		<var>version</var>
+		<var>version</var>]
 	    </item>
 	  </list>
 
@@ -3445,11 +3648,30 @@ Package: libc6
 	    </item>
 
 	    <item>
-		If a "conflicting" package is being removed at the same time:
+		If a "conflicting" package is being removed at the same time,
+		or if any package will be broken (due to <tt>Breaks</tt>):
 		<enumlist>
 		  <item>
-		      If any packages depended on that conflicting
-		      package and <tt>--auto-deconfigure</tt> is
+		      If <tt>--auto-deconfigure</tt> is
+		      specified, call, for each package to be deconfigured
+		      due to <tt>Breaks</tt>:
+		      <example compact="compact">
+<var>deconfigured's-prerm</var> deconfigure \
+  in-favour <var>package-being-installed</var> <var>version</var>
+		      </example>
+		      Error unwind:
+		      <example compact="compact">
+<var>deconfigured's-postinst</var> abort-deconfigure \
+  in-favour <var>package-being-installed-but-failed</var> <var>version</var>
+		      </example>
+		      The deconfigured packages are marked as
+		      requiring configuration, so that if
+		      <tt>--install</tt> is used they will be
+		      configured again if possible.
+		  </item>
+		  <item>
+		      If any packages depended on a conflicting
+		      package being removed and <tt>--auto-deconfigure</tt> is
 		      specified, call, for each such package:
 		      <example compact="compact">
 <var>deconfigured's-prerm</var> deconfigure \
@@ -3468,7 +3690,7 @@ Package: libc6
 		      configured again if possible.
 		  </item>
 		  <item>
-		      To prepare for removal of the conflicting package, call:
+		      To prepare for removal of each conflicting package, call:
 		      <example compact="compact">
 <var>conflictor's-prerm</var> remove \
   in-favour <var>package</var> <var>new-version</var>
@@ -3891,13 +4113,16 @@ Package: libc6
 	  Whitespace may appear at any point in the version
 	  specification subject to the rules in <ref
 	  id="controlsyntax">, and must appear where it's necessary to
-	  disambiguate; it is not otherwise significant.  For
+	  disambiguate; it is not otherwise significant.  All of the
+	  relationship fields may span multiple lines.	For
 	  consistency and in case of future changes to
 	  <prgn>dpkg</prgn> it is recommended that a single space be
 	  used after a version relationship and before a version
 	  number; it is also conventional to put a single space after
 	  each comma, on either side of each vertical bar, and before
-	  each open parenthesis.
+	  each open parenthesis.  When wrapping a relationship field, it
+	  is conventional to do so after a comma and before the space
+	  following that comma.
 	</p>
 
 	<p>
@@ -3962,16 +4187,19 @@ Build-Depends: kernel-headers-2.2.10 [!hurd-i386],
 
         <p>
           This is done using the <tt>Depends</tt>, <tt>Pre-Depends</tt>,
-          <tt>Recommends</tt>, <tt>Suggests</tt>, <tt>Enhances</tt> and
-          <tt>Conflicts</tt> control file fields.
+          <tt>Recommends</tt>, <tt>Suggests</tt>, <tt>Enhances</tt>,
+          <tt>Breaks</tt> and <tt>Conflicts</tt> control file fields.
         </p>
 
 	<p>
-	  These six fields are used to declare a dependency
+	  These seven fields are used to declare a dependency
 	  relationship by one package on another.  Except for
-	  <tt>Enhances</tt>, they appear in the depending (binary)
-	  package's control file.  (<tt>Enhances</tt> appears in the
-	  recommending package's control file.)
+	  <tt>Enhances</tt> and <tt>Breaks</tt>, they appear in the
+	  depending (binary) package's control file.
+	  (<tt>Enhances</tt> appears in the recommending package's
+	  control file, and <tt>Breaks</tt> appears in the version of
+	  depended-on package which causes the named package to
+	  break).
 	</p>
 
 	<p>
@@ -3990,7 +4218,8 @@ Build-Depends: kernel-headers-2.2.10 [!hurd-i386],
 	  in detail below.  (The other three dependency fields,
 	  <tt>Recommends</tt>, <tt>Suggests</tt> and
 	  <tt>Enhances</tt>, are only used by the various front-ends
-	  to <prgn>dpkg</prgn> such as <prgn>dselect</prgn>.)
+	  to <prgn>dpkg</prgn> such as <prgn>apt-get</prgn>,
+	  <prgn>aptitude</prgn>, and <prgn>dselect</prgn>.)
 	</p>
 
 	<p>
@@ -4008,7 +4237,7 @@ Build-Depends: kernel-headers-2.2.10 [!hurd-i386],
           (based on rules below), and some packages may not be able to
           rely on their dependencies being present when being
           installed or removed, depending on which side of the break
-          of the circular dependcy loop they happen to be on.  If one
+          of the circular dependency loop they happen to be on.  If one
           of the packages in the loop has no postinst script, then the
           cycle will be broken at that package, so as to ensure that
           all postinst scripts run with the dependencies properly
@@ -4144,6 +4373,53 @@ Build-Depends: kernel-headers-2.2.10 [!hurd-i386],
 	</p>
       </sect>
 
+      <sect id="breaks">
+	<heading>Packages which break other packages - <tt>Breaks</tt></heading>
+
+	<p>
+	  Using <tt>Breaks</tt> may cause problems for upgrades from older
+	  versions of Debian and should not be used until the stable
+	  release of Debian supports <tt>Breaks</tt>.
+	</p>
+
+	<p>
+	  When one binary package declares that it breaks another,
+	  <prgn>dpkg</prgn> will refuse to allow the package which
+	  declares <tt>Breaks</tt> be installed unless the broken
+	  package is deconfigured first, and it will refuse to
+	  allow the broken package to be reconfigured.
+	</p>
+
+	<p>
+	  A package will not be regarded as causing breakage merely
+	  because its configuration files are still installed; it must
+	  be at least half-installed.
+	</p>
+
+	<p>
+	  A special exception is made for packages which declare that
+	  they break their own package name or a virtual package which
+	  they provide (see below): this does not count as a real
+	  breakage.
+	</p>
+
+	<p>
+	  Normally a <tt>Breaks</tt> entry will have an "earlier than"
+	  version clause; such a <tt>Breaks</tt> is introduced in the
+	  version of an (implicit or explicit) dependency which
+	  violates an assumption or reveals a bug in earlier versions
+	  of the broken package.  This use of <tt>Breaks</tt> will
+	  inform higher-level package management tools that broken
+	  package must be upgraded before the new one.
+	</p>
+
+	<p>
+	  If the breaking package also overwrites some files from the
+	  older package, it should use <tt>Replaces</tt> (not
+	  <tt>Conflicts</tt>) to ensure this goes smoothly.
+	</p>
+      </sect>
+
       <sect id="conflicts">
 	<heading>Conflicting binary packages - <tt>Conflicts</tt></heading>
 
@@ -4189,7 +4465,9 @@ Build-Depends: kernel-headers-2.2.10 [!hurd-i386],
 	  "earlier than" version clause.  This would prevent
 	  <prgn>dpkg</prgn> from upgrading or installing the package
 	  which declared such a conflict until the upgrade or removal
-	  of the conflicted-with package had been completed.
+	  of the conflicted-with package had been completed.  Instead,
+	  <tt>Breaks</tt> may be used (once <tt>Breaks</tt> is supported
+	  by the stable release of Debian).
 	</p>
       </sect>
 
@@ -4200,7 +4478,7 @@ Build-Depends: kernel-headers-2.2.10 [!hurd-i386],
 	  As well as the names of actual ("concrete") packages, the
 	  package relationship fields <tt>Depends</tt>,
 	  <tt>Recommends</tt>, <tt>Suggests</tt>, <tt>Enhances</tt>,
-	  <tt>Pre-Depends</tt>, <tt>Conflicts</tt>,
+	  <tt>Pre-Depends</tt>, <tt>Breaks</tt>, <tt>Conflicts</tt>,
 	  <tt>Build-Depends</tt>, <tt>Build-Depends-Indep</tt>,
 	  <tt>Build-Conflicts</tt> and <tt>Build-Conflicts-Indep</tt>
 	  may mention "virtual packages".
@@ -4236,16 +4514,16 @@ Provides: bar
 	</p>
 
 	<p>
-	  If a dependency or a conflict has a version number attached
+	  If a relationship field has a version number attached
 	  then only real packages will be considered to see whether
 	  the relationship is satisfied (or the prohibition violated,
-	  for a conflict) - it is assumed that a real package which
-	  provides the virtual package is not of the "right" version.
-	  So, a <tt>Provides</tt> field may not contain version
-	  numbers, and the version number of the concrete package
-	  which provides a particular virtual package will not be
-	  looked at when considering a dependency on or conflict with
-	  the virtual package name.
+	  for a conflict or breakage) - it is assumed that a real
+	  package which provides the virtual package is not of the
+	  "right" version.  So, a <tt>Provides</tt> field may not
+	  contain version numbers, and the version number of the
+	  concrete package which provides a particular virtual package
+	  will not be looked at when considering a dependency on or
+	  conflict with the virtual package name.
 	</p>
 
 	<p>
@@ -6110,12 +6388,13 @@ Reloading <var>description</var> configuration...done.
 	  via cron, it should place a file with the name of the
 	  package in one or more of the following directories:
 	  <example compact="compact">
+/etc/cron.hourly
 /etc/cron.daily
 /etc/cron.weekly
 /etc/cron.monthly
 	  </example>
 	  As these directory names imply, the files within them are
-	  executed on a daily, weekly, or monthly basis,
+	  executed on an hourly, daily, weekly, or monthly basis,
 	  respectively. The exact times are listed in
 	  <file>/etc/crontab</file>.</p>
 
@@ -6123,13 +6402,12 @@ Reloading <var>description</var> configuration...done.
 	  All files installed in any of these directories must be
 	  scripts (e.g., shell scripts or Perl scripts) so that they
 	  can easily be modified by the local system administrator.
-	  In addition, they should be treated as configuration
-	  files.
+	  In addition, they must be treated as configuration files.
 	</p>
 
 	<p>
-	  If a certain job has to be executed more frequently than
-	  daily, the package should install a file
+	  If a certain job has to be executed at some other frequency or
+	  at a specific time, the package should install a file
 	  <file>/etc/cron.d/<var>package</var></file>. This file uses the
 	  same syntax as <file>/etc/crontab</file> and is processed by
 	  <prgn>cron</prgn> automatically. The file must also be
@@ -6482,58 +6760,12 @@ INSTALL = install -s # (or use strip on the files in debian/tmp)
 
 	<p>
 	  Although binaries in the build tree should be compiled with
-	  debugging information by default, it can often be difficult
-	  to debug programs if they are also subjected to compiler
-	  optimization.  For this reason, it is recommended to support
-	  the standardized environment
-	  variable <tt>DEB_BUILD_OPTIONS</tt>.  This variable can
-	  contain several flags to change how a package is compiled
-	  and built.
-	</p>
-
-	<p>
-	  <taglist>
-	    <tag>noopt</tag>
-	    <item>
-		The presence of this string means that the package
-		should be compiled with a minimum of optimization.
-		For C programs, it is best to add <tt>-O0</tt>
-		to <tt>CFLAGS</tt> (although this is usually the
-		default).  Some programs might fail to build or run at
-		this level of optimization; it may be necessary to
-		use <tt>-O1</tt>, for example.
-	    </item>
-	    <tag>nostrip</tag>
-	    <item>
-		This string means that the debugging symbols should
-		not be stripped from the binary during installation,
-		so that debugging information may be included in the package.
-	    </item>
-	  </taglist>
-	</p>
-
-	<p>
-	  The following makefile snippet is an example of how one may
-          implement the build options; you will probably have to
-          massage this example in order to make it work for your
-          package.
- 	  <example compact="compact">
-CFLAGS = -Wall -g
-INSTALL = install
-INSTALL_FILE    = $(INSTALL) -p    -o root -g root  -m  644
-INSTALL_PROGRAM = $(INSTALL) -p    -o root -g root  -m  755
-INSTALL_SCRIPT  = $(INSTALL) -p    -o root -g root  -m  755
-INSTALL_DIR     = $(INSTALL) -p -d -o root -g root  -m  755
-
-ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
-CFLAGS += -O0
-else
-CFLAGS += -O2
-endif
-ifeq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
-INSTALL_PROGRAM += -s
-endif
-	  </example>
+	  debugging information by default, it can often be difficult to
+	  debug programs if they are also subjected to compiler
+	  optimization.  For this reason, it is recommended to support the
+	  standardized environment variable <tt>DEB_BUILD_OPTIONS</tt>
+	  (see <ref id="debianrules-options">).  This variable can contain
+	  several flags to change how a package is compiled and built.
 	</p>
 
 	<p>
@@ -6974,10 +7206,13 @@ ln -fs ../sbin/sendmail debian/tmp/usr/bin/runq
 	  </p>
 
 	  <p>
-	    Note that a script that embeds configuration information
-	    (such as most of the files in <file>/etc/default</file> and
-	    <file>/etc/cron.{daily,weekly,monthly}</file>) is de-facto a
-	    configuration file and should be treated as such.
+	    As noted elsewhere, <file>/etc/init.d</file> scripts,
+	    <file>/etc/default</file> files, scripts installed in
+	    <file>/etc/cron.{hourly,daily,weekly,monthly}</file>, and cron
+	    configuration installed in <file>/etc/cron.d</file> must be
+	    treated as configuration files.  In general, any script that
+	    embeds configuration information is de-facto a configuration
+	    file and should be treated as such.
 	  </p>
 	</sect1>
 
@@ -7417,16 +7652,6 @@ endscript
 	  <p>
 	    This section is not intended as policy, but as a
 	    description of the use of <prgn>dpkg-statoverride</prgn>.
-	  </p>
-
-	  <p>
-	    <prgn>dpkg-statoverride</prgn> is a replacement for the
-	    deprecated <tt>suidmanager</tt> package.  Packages which
-	    previously used <tt>suidmanager</tt> should have a
-	    <tt>Conflicts: suidmanager (<< 0.50)</tt> entry (or even
-	    <tt>(<< 0.52)</tt>), and calls to <tt>suidregister</tt>
-	    and <tt>suidunregister</tt> should now be simply removed
-	    from the maintainer scripts.
 	  </p>
 
 	  <p>
@@ -8521,6 +8746,40 @@ name ["<var>syshostname</var>"]:
 	      be present in the future.
  	  </footnote>
  	</p>
+
+	<p>
+	  Manual pages in locale-specific subdirectories of
+	  <file>/usr/share/man</file> should use either UTF-8 or the usual
+	  legacy encoding for that language (normally the one corresponding
+	  to the shortest relevant locale name in
+	  <file>/usr/share/i18n/SUPPORTED</file>). For example, pages under
+	  <file>/usr/share/man/fr</file> should use either UTF-8 or
+	  ISO-8859-1.<footnote>
+	    <prgn>man</prgn> will automatically detect whether UTF-8 is in
+	    use. In future, all manual pages will be required to use
+	    UTF-8.
+	  </footnote>
+	</p>
+
+	<p>
+	  A country name (the <tt>DE</tt> in <tt>de_DE</tt>) should not be
+	  included in the subdirectory name unless it indicates a
+	  significant difference in the language, as this excludes
+	  speakers of the language in other countries.<footnote>
+	    At the time of writing, Chinese and Portuguese are the main
+	    languages with such differences, so <file>pt_BR</file>,
+	    <file>zh_CN</file>, and <file>zh_TW</file> are all allowed.
+	  </footnote>
+	</p>
+
+	<p>
+	  Due to limitations in current implementations, all characters
+	  in the manual page source should be representable in the usual
+	  legacy encoding for that language, even if the file is
+	  actually encoded in UTF-8. Safe alternative ways to write many
+	  characters outside that range may be found in
+	  <manref name="groff_char" section="7">.
+	</p>
       </sect>
 
       <sect>
@@ -8677,7 +8936,14 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	  In addition, the copyright file must say where the upstream
 	  sources (if any) were obtained.  It should name the original
 	  authors of the package and the Debian maintainer(s) who were
-	  involved with its creation.</p>
+	  involved with its creation.
+	</p>
+
+	<p>
+	  Packages in the <em>contrib</em> or <em>non-free</em> categories
+	  should state in the copyright file that the package is not part
+	  of the Debian GNU/Linux distribution and briefly explain why.
+	</p>
 
 	<p>
 	  A copy of the file which will be installed in
@@ -8695,21 +8961,22 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	</p>
 
 	<p>
-	  Packages distributed under the UCB BSD license, the Artistic
-	  license, the GNU GPL (version 2 or 3), the GNU LGPL (versions
-	  2, 2.1, or 3), and the GNU FDL (version 1.2) should refer to
-	  the corresponding files under
-	  <file>/usr/share/common-licenses</file>,<footnote>
+	  Packages distributed under the UCB BSD license, the Apache
+	  license (version 2.0), the Artistic license, the GNU GPL
+	  (version 2 or 3), the GNU LGPL (versions 2, 2.1, or 3), and
+	  the GNU FDL (version 1.2) should refer to the corresponding
+	  files under <file>/usr/share/common-licenses</file>,<footnote>
 	    <p>
 	      In particular,
               <file>/usr/share/common-licenses/BSD</file>,
+              <file>/usr/share/common-licenses/Apache-2.0</file>,
               <file>/usr/share/common-licenses/Artistic</file>,
               <file>/usr/share/common-licenses/GPL-2</file>,
               <file>/usr/share/common-licenses/GPL-3</file>,
               <file>/usr/share/common-licenses/LGPL-2</file>,
               <file>/usr/share/common-licenses/LGPL-2.1</file>,
               <file>/usr/share/common-licenses/LGPL-3</file>, and
-              <file>/usr/share/common-licenses/GFDL-1.2</file>,
+              <file>/usr/share/common-licenses/GFDL-1.2</file>
               respectively.
             </p>
           </footnote> rather than quoting them in the copyright
@@ -10325,4 +10592,7 @@ install-info --quiet --remove /usr/share/info/foobar.info
 
   </book>
 </debiandoc>
+<!-- Local variables: -->
+<!-- indent-tabs-mode: t -->
+<!-- End: -->
 <!-- vim:set ai et sts=2 sw=2 tw=76: -->

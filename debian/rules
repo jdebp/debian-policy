@@ -50,15 +50,13 @@ DESC_FILES := debian-policy debian-menu-policy debian-perl-policy \
 # While we have two versions of the FHS installed in the source package,
 # we need to modify this to handle it.  This is the easiest way to do it.
 # FHS_ARCHIVE := $(wildcard fhs*.tar.gz)
-# And with version 2.1, we have to build the text and dvi versions
-# ourselves :-(
 FHS_ARCHIVE  := fhs-2.3-source.tar.gz
 FHS_HTML     := fhs-2.3.html
 FHS_FILES    := fhs-2.3.ps.gz fhs-2.3.txt.gz fhs-2.3.pdf.gz
 FHS_NEW_ARCHIVE  := 
 FHS_NEW_HTML     := 
 FHS_NEW_FILES    := 
-# FSSTND_FILES := FSSTND-FAQ fsstnd-1.2.dvi.gz fsstnd-1.2.ps.gz fsstnd-1.2.txt.gz
+
 POLICY_FILES = $(SGML_FILES:=.sgml) $(SGML_FILES:=.txt.gz) \
 	       virtual-package-names-list.txt \
 	       upgrading-checklist.txt libc6-migration.txt version.ent \
@@ -90,16 +88,6 @@ stamp-build: version.ent $(sanitycheck)
 		$(SGML_FILES:=.html.tar.gz) \
 		$(SGML_FILES:=.txt.gz) \
 		policy.ps.gz policy.pdf.gz
-	# Need to use a patched tmac.m macro file if we're using a pre-1.16
-	# groff; version 1.16 is apparently fixed
-	if dpkg --compare-versions "$(shell dpkg -s groff | sed -n -e 's/Version: //p')" lt 1.16; then \
-	    cp /usr/share/groff/tmac/tmac.m fhs && \
-	    cd fhs && patch -p1 < ../mm1.32-patch; \
-	fi
-	# The extra '.' in the tmac path won't harm if unnecessary
-	#GROFF_TMAC_PATH=. GROFF_NO_SGR=1 $(MAKE) -C fhs fhs.ps fhs.pdf fhs.txt
-	#links -dump fhs-changes-2.1.html | perl -pe 's/[\r\0]//g' > \
-        #            fhs/fhs-changes-2.1.txt
 	links -dump upgrading-checklist.html | perl -pe 's/[\r\0]//g' > \
                     upgrading-checklist.txt
 	$(MAKE) -C debconf_spec all
@@ -136,7 +124,6 @@ stamp-policy:  build $(sanitycheck)
 #	test -f stamp-build	|| $(MAKE) -f	     debian/rules build
 	rm -rf			$(TMPTOP)
 	$(make_directory)	$(TMPTOP)/DEBIAN
-#	$(make_directory)	$(DOCDIR)/fsstnd
 	$(make_directory)	$(DOCDIR)/fhs
 	$(make_directory)	$(LIBDIR)
 	# create a substvar to reference from debian/control so that
@@ -146,7 +133,6 @@ stamp-policy:  build $(sanitycheck)
 	# itself...
 	echo "debian-policy:Version=$(version)"	     > debian/substvars
 	$(install_file)	    $(POLICY_FILES)	     $(DOCDIR)/
-#	$(install_file)	    $(FSSTND_FILES)	     $(DOCDIR)/fsstnd/
 	$(install_file)	    debian/changelog	     $(DOCDIR)/
 	# Be more specific with file compression
 	gzip -f9	    $(DOCDIR)/*.txt $(DOCDIR)/*.sgml \
@@ -167,6 +153,9 @@ stamp-policy:  build $(sanitycheck)
 	  tar -C $(DOCDIR) -zxf $$file.html.tar.gz; \
 	done
 	$(install_file)     $(FHS_HTML)   $(DOCDIR)/fhs
+	@set -ex; \
+	cd debian/tmp; \
+	find . -type f -printf '%P\0' | xargs -r0 md5sum > DEBIAN/md5sums
 	sed -e 's/#PACKAGE#/$(package)/g' debian/postinst.in > debian/postinst
 	sed -e 's/#PACKAGE#/$(package)/g' debian/prerm.in > debian/prerm
 	$(install_program)  debian/postinst          debian/tmp/DEBIAN/
