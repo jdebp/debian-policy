@@ -4765,21 +4765,6 @@ Replaces: mail-transport-agent
 	instead.
       </p>
 
-        <p>                                                                 
-          If your package includes run-time support programs that            
-          do not need to be invoked manually by users, but are               
-          nevertheless required  for the package to function, then it        
-          is recommended that these programs are placed                      
-          (if they are binary) in a subdirectory of                          
-          <file>/usr/lib</file>, preferably under                            
-          <file>/usr/lib/</file><var>package-name</var>.                     
-          If the program is architecture independent, the                    
-          recommendation is for it to be placed in a subdirectory of         
-          <file>/usr/share</file> instead, preferably under                  
-          <file>/usr/share/</file><var>package-name</var>.                     
-        </p>                                                                 
-                                                                            
-
       <p>
 	If you have several shared libraries built from the same
 	source tree you may lump them all together into a single
@@ -4922,24 +4907,50 @@ Replaces: mail-transport-agent
 
       </sect>
 
-      <sect id="sharedlibs-runtime-progs">
-	<heading>Run-time support programs</heading>
+      <sect id="sharedlibs-support-files">
+	<heading>Shared library support files</heading>
 
-      <p>
-	If your package has some run-time support programs which use
-	the shared library you must not put them in the shared
-	library package.  If you do that then you won't be able to
-	install several versions of the shared library without
-	getting filename clashes.
-      </p>
+	<p>
+	  If your package contains files whose names do not change with
+	  each change in the library shared object version, you must not
+	  put them in the shared library package.  Otherwise, several
+	  versions of the shared library cannot be installed at the same
+	  time without filename clashes, making upgrades and transitions
+	  unnecessarily difficult.
+	</p>
 
-      <p>
-	Instead, either create another package for the runtime binaries
-	(this package might typically be named
-	<package><var>libraryname</var>-runtime</package>; note the absence
-	of the <var>soversion</var> in the package name), or if the
-	development package is small, include them in there.
-      </p>
+	<p>
+	  It is recommended that supporting files and run-time support
+	  programs that do not need to be invoked manually by users, but
+	  are nevertheless required for the package to function, be placed
+	  (if they are binary) in a subdirectory of <file>/usr/lib</file>,
+	  preferably under <file>/usr/lib/</file><var>package-name</var>.
+	  If the program or file is architecture independent, the
+	  recommendation is for it to be placed in a subdirectory of
+	  <file>/usr/share</file> instead, preferably under
+	  <file>/usr/share/</file><var>package-name</var>.  Following the
+	  <var>package-name</var> naming convention ensures that the file
+	  names change when the shared object version changes.
+	</p>
+
+	<p>
+	  Run-time support programs that use the shared library but are
+	  not required for the library to function or files used by the
+	  shared library that can be used by any version of the shared
+	  library package should instead be put in a separate package.
+	  This package might typically be named
+	  <package><var>libraryname</var>-tools</package>; note the
+	  absence of the <var>soversion</var> in the package name.
+	</p>
+
+	<p>
+	  Files and support programs only useful when compiling software
+	  against the library should be included in the development
+	  package for the library.<footnote>
+	    For example, a <file><var>package-name</var>-config</file>
+	    script or <package>pkg-config</package> configuration files.
+	  </footnote>
+	</p>
       </sect>
 
       <sect id="sharedlibs-static">

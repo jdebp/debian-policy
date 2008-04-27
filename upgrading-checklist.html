@@ -84,6 +84,10 @@ picking your way through this list.
        prevents installation of the breaking package unless the package
        named in Breaks is deconfigured first.  This field should not be
        used until the dpkg in Debian stable supports it.         [6.5, 6.6, 7]
+     * Clarify which files should go into a shared library package, into a
+       separate package, or into the -dev package.  Suggest -tools instead
+       of -runtime for runtime support programs, since that naming is more
+       common in Debian.                                         [8.1, 8.2]
      * Files in /etc/cron.{hourly,daily,weekly,monthly} must be
        configuration files (upgraded from should).  Mention the hourly
        directory.                                                [9.5]
