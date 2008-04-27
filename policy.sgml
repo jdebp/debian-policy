@@ -2224,7 +2224,7 @@ endif
 	  If running <prgn>dpkg-source -x</prgn> on a source package
 	  doesn't produce the source of the package, ready for editing,
 	  and allow one to make changes and run
-	  <prng>dpkg-buildpackage</prgn> to produce a modified package
+	  <prgn>dpkg-buildpackage</prgn> to produce a modified package
 	  without taking any additional steps, creating a
 	  <file>debian/README.source</file> documentation file is
 	  recommended.  This file should explain how to do all of the
