@@ -71,7 +71,8 @@ FILES_TO_CLEAN  = debian/files debian/buildinfo  debian/substvars \
 		  $(SGML_FILES:=.txt.gz) $(SGML_FILES:=.html.tar.gz) \
 		  policy.pdf.gz policy.ps.gz \
 		  debconf_specification.xml.tar.gz \
-                  policy.pdf policy.ps policy.txt policy.
+		  policy.pdf policy.ps policy.txt policy. \
+		  body.tmp head.tmp policy.tpt
 
 STAMPS_TO_CLEAN := stamp-policy stamp-build
 DIRS_TO_CLEAN   := debian/tmp fhs $(SGML_FILES:=.html)
