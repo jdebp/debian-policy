@@ -30,6 +30,8 @@ debian-policy (3.7.4.0) unstable; urgency=low
                                                              (Closes: #65577).
   * Bug fix: "scripts as configuration files: should vs. must", thanks to Frank
     Küster                                                   (Closes: #403391).
+  * Bug fix: "debconf specification should allow underscores in template
+    names", thanks to Colin Watson                           (Closes: #473761).
   * Bug fix: "Examples of dpkg frontends should mention apt now", thanks
     to Josh Triplett                                         (Closes: #455602).
   * Bug fix: "Minor typos and wording suggestions", thanks to Michael
