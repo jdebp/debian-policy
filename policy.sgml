@@ -2124,7 +2124,7 @@ endif
 	</p>
 
 	<p>
-	  See <manref name="dpkg-source" section="1"> for full
+	  See <manref name="deb-substvars" section="5"> for full
 	  details about source variable substitutions, including the
 	  format of <file>debian/substvars</file>.</p>
       </sect>
