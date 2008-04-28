@@ -2877,19 +2877,22 @@ Package: libc6
 	          number apart at the last hyphen in the string (if there
 	          is one) to determine the <var>upstream_version</var> and
 	          <var>debian_revision</var>.  The absence of a
-	          <var>debian_revision</var> compares earlier than the
-	          presence of one (but note that the
-	          <var>debian_revision</var> is the least significant part
-	          of the version number).
+	          <var>debian_revision</var> is equivalent to a
+	          <var>debian_revision</var> of <tt>0</tt>.
 	        </p>
 	      </item>
 	    </taglist>
 	  </p>
 
 	  <p>
-	    The <var>upstream_version</var> and <var>debian_revision</var>
+	    When comparing two version numbers, first the <var>epoch</var>
+	    of each are compared, then the <var>upstream_version</var> if
+	    <var>epoch</var> is equal, and then <var>debian_revision</var>
+	    if <var>upstream_version</var> is also equal.
+	    <var>epoch</var> is compared numerically.  The
+	    <var>upstream_version</var> and <var>debian_revision</var>
 	    parts are compared by the package management system using the
-	    same algorithm:
+	    following algorithm:
 	  </p>
 
 	  <p>
