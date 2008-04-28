@@ -40,6 +40,7 @@ debian-policy (3.7.4.0) unstable; urgency=low
     Tautschnig                                               (Closes: #422552).
   * Bug fix: "substvar reference moved from dpkg-source(1) to
     deb-substvars(5)", thanks to Ian Beckwith                (Closes: #475731).
+  * Remove the now-obsolete policy-process document.
   * Add an md5sums control file.
   * Add Vcs-Browser and Vcs-Git control fields.
   * Remove build system support for FHS 2.1 and FSSTND, mostly commented out.
