@@ -1,4 +1,4 @@
-debian-policy (3.7.4.0) unstable; urgency=low
+debian-policy (3.8.0.0) unstable; urgency=low
 
   * Bug fix: "[PROPOSAL] "debian/README.source" file for packages with
     non-trivial source", thanks to Wouter Verhelst, Jörg Sommer, Colin Watson,
