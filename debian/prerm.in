@@ -1,18 +1,4 @@
 #!/bin/sh
-#                               -*- Mode: Sh -*- 
-# prerm --- 
-# Author           : Manoj Srivastava ( srivasta@tiamat.datasync.com ) 
-# Created On       : Thu Oct 29 15:31:03 1998
-# Created On Node  : tiamat.datasync.com
-# Last Modified By : Manoj Srivastava
-# Last Modified On : Fri Mar 17 17:10:23 2000
-# Last Machine Used: glaurung.green-gryphon.com
-# Update Count     : 2
-# Status           : Unknown, Use with caution!
-# HISTORY          : 
-# Description      : 
-# 
-# 
 
 # Abort if any command returns an error value
 set -e

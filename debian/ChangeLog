@@ -1,7 +1,0 @@
-2006-06-19  Manoj Srivastava  <srivasta@debian.org>
-
-	* control (Build-Depends-Indep):
-		  srivasta@debian.org--etch/debian-policy--devel--3.7--patch-20
-		  use elinks as an alternate  build-dependency instead of
-		  links-ssl 
-
