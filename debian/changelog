@@ -34,6 +34,12 @@ debian-policy (3.8.0.0) unstable; urgency=low
     names", thanks to Colin Watson                           (Closes: #473761).
   * Bug fix: "clarify handling of run-time and compile-time support programs",
     thanks to Goswin Brederlow and Raphael Hertzog           (Closes: #367984).
+  * Policy: better document version ranking and empty Debian revisions
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Raphaël Hertzog <hertzog@debian.org>
+    Seconded: Manoj Srivastava <srivasta@debian.org>
+    Seconded: Guillem Jover <guillem@debian.org>
+    Closes: #186700, #458910
   * Bug fix: "Examples of dpkg frontends should mention apt now", thanks
     to Josh Triplett                                         (Closes: #455602).
   * Bug fix: "Minor typos and wording suggestions", thanks to Michael
