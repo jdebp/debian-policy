@@ -1,18 +1,4 @@
 #!/usr/bin/make -f
-############################ -*- Mode: Makefile -*- ###########################
-## rules ---
-## Author	    : Manoj Srivastava ( srivasta@tiamat.datasync.com )
-## Created On	    : Thu Oct 29 15:35:55 1998
-## Created On Node  : tiamat.datasync.com
-## Last Modified By : Manoj Srivastava
-## Last Modified On : Tue Oct 26 15:20:25 2004
-## Last Machine Used: glaurung.internal.golden-gryphon.com
-## Update Count	    : 62
-## Status	    : Unknown, Use with caution!
-## HISTORY	    :
-## Description	    :
-## $Id$
-###############################################################################
 
 ifdef ARCH
   ha:=-a$(ARCH)

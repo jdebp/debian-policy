@@ -49,6 +49,8 @@ debian-policy (3.8.0.0) unstable; urgency=low
     currently part of policy.
   * Update FHS copyright dates in debian/copyright.
   * Standardize the spacing around headings in upgrading-checklist.html.
+  * Remove old ChangeLog files and metadata headers in maintainer scripts
+    and debian/rules.
 
  --
 

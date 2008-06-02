@@ -1,19 +1,4 @@
 #!/bin/sh
-#                               -*- Mode: Sh -*- 
-# postinst --- 
-# Author           : Manoj Srivastava ( srivasta@tiamat.datasync.com ) 
-# Created On       : Thu Oct 29 15:23:36 1998
-# Created On Node  : tiamat.datasync.com
-# Last Modified By : Manoj Srivastava
-# Last Modified On : Fri Mar  7 13:32:56 2003
-# Last Machine Used: glaurung.green-gryphon.com
-# Update Count     : 10
-# Status           : Unknown, Use with caution!
-# HISTORY          : 
-# Description      : 
-# 
-# 
-
 
 # Abort if any command returns an error value
 set -e
