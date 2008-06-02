@@ -9620,13 +9620,8 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	  </p>
 
 	  <p>
-	    Its arguments are executables.
+	    Its arguments are executables and shared libraries
 	    <footnote>
-	      <p>
-		In a forthcoming dpkg version,
-		<prgn>dpkg-shlibdeps</prgn> would be required to be
-		called on shared libraries as well.
-	      </p>
 	      <p>
 		They may be specified either in the locations in the
 		source tree where they are created or in the locations
@@ -9674,7 +9669,7 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	    and then in its main control file <file>debian/control</file>:
 	    <example>
   <var>...</var>
-  Depends: ${shlibs:Pre-Depends}
+  Depends: ${shlibs:Depends}
   Recommends: ${shlibs:Recommends}
   <var>...</var>
 	    </example>
@@ -9783,8 +9778,8 @@ install-info --quiet --remove /usr/share/info/foobar.info
           <p>
             This program can be used manually, but is also invoked by
             <tt>dpkg-buildpackage</tt> or <file>debian/rules</file> to set
-            to set environment or make variables which specify the build and
-            host architecture for the package building process.
+            environment or make variables which specify the build and host
+            architecture for the package building process.
           </p>
         </sect1>
       </sect>

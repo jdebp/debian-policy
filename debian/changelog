@@ -53,6 +53,9 @@ debian-policy (3.8.0.0) unstable; urgency=low
   * Policy: bugs fixed in NMUs are now closed rather than marked fixed
     Wording: Russ Allbery <rra@debian.org> (thanks, Sandro Tosi)
     Closes: #481640
+  * Policy: C.1.4, C.1.8: minor typos
+    Wording: Sandro Tosi <matrixhasu@gmail.com>
+    Closes: #481954
   * Remove the now-obsolete policy-process document.
   * Add an md5sums control file.
   * Add Vcs-Browser and Vcs-Git control fields.
