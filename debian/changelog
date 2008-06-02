@@ -50,6 +50,9 @@ debian-policy (3.8.0.0) unstable; urgency=low
     Tautschnig                                               (Closes: #422552).
   * Bug fix: "substvar reference moved from dpkg-source(1) to
     deb-substvars(5)", thanks to Ian Beckwith                (Closes: #475731).
+  * Policy: bugs fixed in NMUs are now closed rather than marked fixed
+    Wording: Russ Allbery <rra@debian.org> (thanks, Sandro Tosi)
+    Closes: #481640
   * Remove the now-obsolete policy-process document.
   * Add an md5sums control file.
   * Add Vcs-Browser and Vcs-Git control fields.

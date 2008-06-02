@@ -1547,8 +1547,8 @@
 /closes:\s*(?:bug)?\#?\s?\d+(?:,\s*(?:bug)?\#?\s?\d+)*/i
 	      </example>
 	      Then all of the bug numbers listed will be closed by the
-	      archive maintenance script (<prgn>katie</prgn>), or in
-	      the case of an NMU, marked as fixed.
+	      archive maintenance script (<prgn>katie</prgn>) using the
+	      <var>version</var> of the changelog entry.
 	  </footnote>
 	  This information is conveyed via the <tt>Closes</tt> field
 	  in the <tt>.changes</tt> file (see <ref id="f-Closes">).
