@@ -40,6 +40,10 @@ debian-policy (3.8.0.0) unstable; urgency=low
     Seconded: Manoj Srivastava <srivasta@debian.org>
     Seconded: Guillem Jover <guillem@debian.org>
     Closes: #186700, #458910
+  * Policy: remove obsolete app-defaults and Xresources provisions
+    Wording: Julien Cristau <jcristau@debian.org>
+    Seconded: Russ Allbery <rra@debian.org>
+    Closes: #480551
   * Bug fix: "Examples of dpkg frontends should mention apt now", thanks
     to Josh Triplett                                         (Closes: #455602).
   * Bug fix: "Minor typos and wording suggestions", thanks to Michael
