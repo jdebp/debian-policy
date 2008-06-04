@@ -68,7 +68,7 @@ debian-policy (3.8.0.0) unstable; urgency=low
   * Remove old ChangeLog files and metadata headers in maintainer scripts
     and debian/rules.
 
- --
+ -- Russ Allbery <rra@debian.org>  Wed, 04 Jun 2008 15:53:27 -0700
 
 debian-policy (3.7.3.0) unstable; urgency=low
 
