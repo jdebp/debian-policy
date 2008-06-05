@@ -1,3 +1,10 @@
+debian-policy (3.8.0.1) unstable; urgency=low
+
+  * Don't attempt to register the non-existent debian-policy-process
+    document.  Thanks, Adrian von Bidder.  (Closes: #484706)
+
+ -- Russ Allbery <rra@debian.org>  Thu, 05 Jun 2008 13:13:01 -0700
+
 debian-policy (3.8.0.0) unstable; urgency=low
 
   * Bug fix: "[PROPOSAL] "debian/README.source" file for packages with
