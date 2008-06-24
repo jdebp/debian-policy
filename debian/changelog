@@ -1,3 +1,10 @@
+debian-policy (3.8.0.2) UNRELEASED; urgency=low
+
+  * Fix typo in 3.8.0.0 upgrading-checklist entry.  Patch from Kobayashi
+    Noritada.  (Closes: #487701)
+
+ -- Russ Allbery <rra@debian.org>  Mon, 23 Jun 2008 19:23:50 -0700
+
 debian-policy (3.8.0.1) unstable; urgency=low
 
   * Don't attempt to register the non-existent debian-policy-process
