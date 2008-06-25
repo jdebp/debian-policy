@@ -5637,7 +5637,7 @@ rmdir /usr/local/share/emacs 2>/dev/null || true
 	    The <file>/usr/local</file> directory itself and all the
 	    subdirectories created by the package should (by default) have
 	    permissions 2775 (group-writable and set-group-id) and be
-	    owned by <tt>root.staff</tt>.
+	    owned by <tt>root:staff</tt>.
 	  </p>
 	</sect1>
 
@@ -7543,7 +7543,7 @@ endscript
 	</p>
 
 	<p>
-	  Files should be owned by <tt>root.root</tt>, and made
+	  Files should be owned by <tt>root:root</tt>, and made
 	  writable only by the owner and universally readable (and
 	  executable, if appropriate), that is mode 644 or 755.
 	</p>
@@ -8045,7 +8045,7 @@ http://localhost/doc/<var>package</var>/<var>filename</var>
 
 	<p>
 	  Mailboxes are generally mode 660
-	  <tt><var>user</var>.mail</tt> unless the system
+	  <tt><var>user</var>:mail</tt> unless the system
 	  administrator has chosen otherwise.  A MUA may remove a
 	  mailbox (unless it has nonstandard permissions) in which
 	  case the MTA or another MUA must recreate it if needed.
@@ -8053,7 +8053,7 @@ http://localhost/doc/<var>package</var>/<var>filename</var>
 	</p>
 
 	<p>
-	  The mail spool is 2775 <tt>root.mail</tt>, and MUAs should
+	  The mail spool is 2775 <tt>root:mail</tt>, and MUAs should
 	  be setgid mail to do the locking mentioned above (and
 	  must obviously avoid accessing other users' mailboxes
 	  using this privilege).</p>
@@ -8644,8 +8644,8 @@ name ["<var>syshostname</var>"]:
 	  Games which require protected, privileged access to
 	  high-score files, saved games, etc., may be made
 	  set-<em>group</em>-id (mode 2755) and owned by
-	  <tt>root.games</tt>, and use files and directories with
-	  appropriate permissions (770 <tt>root.games</tt>, for
+	  <tt>root:games</tt>, and use files and directories with
+	  appropriate permissions (770 <tt>root:games</tt>, for
 	  example).  They must not be made
 	  set-<em>user</em>-id, as this causes security problems. (If
 	  an attacker can subvert any set-user-id game they can

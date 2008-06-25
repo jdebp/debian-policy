@@ -1,5 +1,7 @@
 debian-policy (3.8.0.2) UNRELEASED; urgency=low
 
+  * Use <user>:<group> notation rather than <user>.<group> notation in
+    multiple places.  Thanks, Kurt Roeckx.  (Closes: #488039)
   * Fix typo in 3.8.0.0 upgrading-checklist entry.  Patch from Kobayashi
     Noritada.  (Closes: #487701)
 
