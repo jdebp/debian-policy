@@ -10564,26 +10564,37 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	supposing that a <prgn>smailwrapper</prgn> package wishes to
 	install a wrapper around <file>/usr/sbin/smail</file>:
 	<example>
-  if [ install = "$1"  ]; then
-     dpkg-divert --package smailwrapper --add --rename \
-        --divert /usr/sbin/smail.real /usr/sbin/smail
-  fi
-	</example> Testing <tt>$1</tt> is necessary so that the script
-	doesn't try to add the diversion again when
-	<prgn>smailwrapper</prgn> is upgraded.  The <tt>--package
-	smailwrapper</tt> ensures that <prgn>smailwrapper</prgn>'s
-	copy of <file>/usr/sbin/smail</file> can bypass the diversion and
-	get installed as the true version.
+   dpkg-divert --package smailwrapper --add --rename \
+      --divert /usr/sbin/smail.real /usr/sbin/smail
+	</example> The <tt>--package smailwrapper</tt> ensures that
+	<prgn>smailwrapper</prgn>'s copy of <file>/usr/sbin/smail</file>
+	can bypass the diversion and get installed as the true version.
+	It's safe to add the diversion unconditionally on upgrades since
+	it will be left unchanged if it already exists, but
+	<prgn>dpkg-divert</prgn> will display a message.  To suppress that
+	message, make the command conditional on the version from which
+	the package is being upgraded:
+	<example>
+   if [ upgrade != "$1" ] || dpkg --compare-versions "$2" lt 1.0-2; then
+      dpkg-divert --package smailwrapper --add --rename \
+         --divert /usr/sbin/smail.real /usr/sbin/smail
+   fi
+	</example> where <tt>1.0-2</tt> is the version at which the
+	diversion was first added to the package.  Running the command
+	during abort-upgrade is pointless but harmless.
       </p>
 
       <p>
 	The postrm has to do the reverse:
 	<example>
-  if [ remove = "$1" ]; then
+  if [ remove = "$1" -o abort-install = "$1" -o disappear = "$1" ]; then
      dpkg-divert --package smailwrapper --remove --rename \
         --divert /usr/sbin/smail.real /usr/sbin/smail
   fi
-	</example>
+	</example> The postrm should not remove the diversion on upgrades
+	both because there's no reason to remove the diversion only to
+	immediately re-add it and since the postrm of the old package is
+	run after unpacking so the removal of the diversion will fail.
       </p>
 
       <p>
