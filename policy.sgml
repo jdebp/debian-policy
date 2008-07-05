@@ -1473,10 +1473,6 @@
 	</p>
 
         <p>
-          
-        </p>
-
-        <p>
           The format of the <file>debian/changelog</file> allows the
 	  package building tools to discover which version of the package
 	  is being built and find out other release-specific information.
@@ -1579,6 +1575,10 @@
 	  maintainer and date details should be preceded by exactly
 	  one space.  The maintainer details and the date must be
 	  separated by exactly two spaces.
+	</p>
+
+	<p>
+	  The entire changelog must be encoded in UTF-8.
 	</p>
 
 	<p>
@@ -9820,36 +9820,6 @@ install-info --quiet --remove /usr/share/info/foobar.info
 
 	  <p>
 	    See <ref id="dpkgchangelog">.
-	  </p>
-
-	  <p>
-	    It is recommended that the entire changelog be encoded in the
-	    <url id="http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc2279.html" name="UTF-8">
-	    encoding of
-	    <url id="http://www.unicode.org/"
-	    name="Unicode">.<footnote>
-	      <p>
-		I think it is fairly obvious that we need to
-		eventually transition to UTF-8 for our package
-		infrastructure; it is really the only sane char-set in
-		an international environment.  Now, we can't switch to
-		using UTF-8 for package control fields and the like
-		until dpkg has better support, but one thing we can
-		start doing today is requesting that Debian changelogs
-		are UTF-8 encoded. At some point in time, we can start
-		requiring them to do so. 
-	      </p>
-	      <p>
-		Checking for non-UTF8 characters in a changelog is
-		trivial.  Dump the file through 
-		<example>iconv -f utf-8 -t ucs-4</example>
-                  discard the output, and check the return
-		value.  If there are any characters in the stream
-		which are invalid UTF-8 sequences, iconv will exit
-		with an error code; and this will be the case for the
-		vast majority of other character sets.
-	      </p>
-	    </footnote>
 	  </p>
 
  	  <sect2><heading>Defining alternative changelog formats
