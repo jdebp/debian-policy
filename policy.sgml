@@ -2344,6 +2344,9 @@ Package: libc6
 	  would mean a new paragraph.
 	</p>
 
+	<p>
+	  All control files must be encoded in UTF-8.
+	</p>
       </sect>
 
       <sect id="sourcecontrolfiles">
