@@ -7040,18 +7040,19 @@ strip --strip-unneeded <var>your-lib</var>
 	      support <tt>-a</tt> and <tt>-o</tt> as binary logical
 	      operators.</item>
 	    <item><tt>local</tt> to create a scoped variable must be
-	      supported; however, <tt>local</tt> may or may not preserve
-	      the variable value from an outer scope and may or may not
-	      support arguments more complex than simple variables.  Only
-	      uses such as:
+	      supported, including listing multiple variables in a single
+	      local command and assigning a value to a variable at the
+	      same time as localizing it.  <tt>local</tt> may or
+	      may not preserve the variable value from an outer scope if
+	      no assignment is present.	 Uses such as:
 <example compact>
 fname () {
-    local a
-    a=''
-    # ... use a ...
+    local a b c=delta d
+    # ... use a, b, c, d ...
 }
 </example>
-              must be supported.
+	      must be supported and must set the value of <tt>c</tt> to
+	      <tt>delta</tt>.
             </item>
 	  </list>
 	  If a shell script requires non-SUSv3 features from the shell
