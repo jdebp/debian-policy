@@ -293,7 +293,13 @@
 	<em>free</em> in our sense (see the Debian Free Software
 	Guidelines, below), or may be imported/exported without
 	restrictions. Thus, the archive is split into the distribution
-	areas or categories based on their licenses and other restrictions.
+	areas or components<footnote>
+	  The Debian archive software uses the term "component" internally
+	  and in the Release file format to refer to the division of an
+	  archive.  The Debian Social Contract refers to distribution
+	  areas.  This document uses the same terminology as the Social
+	  Contract.
+	</footnote> based on their licenses and other restrictions.
       </p>
 
       <p>
@@ -310,8 +316,8 @@
       </p>
 
       <p>
-	The <em>main</em> category  forms the
-	<em>Debian GNU/Linux distribution</em>.
+	The <em>main</em> distribution area forms the <em>Debian GNU/Linux
+	distribution</em>.
       </p>
 
       <p>
@@ -422,10 +428,10 @@
       </sect>
 
       <sect id="sections">
-	<heading>Categories</heading>
+	<heading>Distribution areas</heading>
 
 	<sect1 id="main">
-	  <heading>The main category</heading>
+	  <heading>The main distribution area</heading>
 
 	  <p>
 	    Every package in <em>main</em> must comply with the DFSG
@@ -456,7 +462,7 @@
 	</sect1>
 
 	<sect1 id="contrib">
-	  <heading>The contrib category</heading>
+	  <heading>The contrib distribution area</heading>
 
 	  <p>
 	    Every package in <em>contrib</em> must comply with the DFSG.
@@ -496,7 +502,7 @@
 	</sect1>
 
 	<sect1 id="non-free">
-	  <heading>The non-free category</heading>
+	  <heading>The non-free distribution area</heading>
 
 	  <p>
 	    Packages must be placed in <em>non-free</em> if they are
@@ -612,13 +618,13 @@
 	<heading>Sections</heading>
 
 	<p>
-	  The packages in the categories <em>main</em>,
+	  The packages in the distribution areas <em>main</em>,
 	  <em>contrib</em> and <em>non-free</em> are grouped further
 	  into <em>sections</em> to simplify handling.
 	</p>
 
 	<p>
-	  The category and section for each package should be
+	  The distribution area and section for each package should be
 	  specified in the package's <tt>Section</tt> control record
 	  (see <ref id="f-Section">).  However, the maintainer of the
 	  Debian archive may override this selection to ensure the
@@ -627,10 +633,10 @@
 	  <list compact="compact">
 	    <item>
 		  <em>section</em> if the package is in the
-		  <em>main</em> category,
+		  <em>main</em> distribution area,
 	    </item>
 	    <item>
-		  <em>segment/section</em> if the package is in
+		  <em>area/section</em> if the package is in
 		  the <em>contrib</em> or <em>non-free</em>
 		  distribution areas.
 	    </item>
@@ -8949,9 +8955,10 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	</p>
 
 	<p>
-	  Packages in the <em>contrib</em> or <em>non-free</em> categories
-	  should state in the copyright file that the package is not part
-	  of the Debian GNU/Linux distribution and briefly explain why.
+	  Packages in the <em>contrib</em> or <em>non-free</em>
+	  distribution areas should state in the copyright file that the
+	  package is not part of the Debian GNU/Linux distribution and
+	  briefly explain why.
 	</p>
 
 	<p>
