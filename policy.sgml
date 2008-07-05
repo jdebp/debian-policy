@@ -2028,6 +2028,11 @@
 	  <p>
 	    The meaning of the following tags has been standardized:
 	    <taglist>
+	      <tag>nocheck</tag>
+	      <item>
+		  This tag says to not run any build-time test suite
+		  provided by the package.
+	      </item>
 	      <tag>noopt</tag>
 	      <item>
 		  The presence of this tag means that the package should
@@ -2094,6 +2099,12 @@ endif
 ifneq (,$(filter parallel=%,$(DEB_BUILD_OPTIONS)))
     NUMJOBS = $(patsubst parallel=%,%,$(filter parallel=%,$(DEB_BUILD_OPTIONS)))
     MAKEFLAGS += -j$(NUMJOBS)
+endif
+
+build:
+	# ...
+ifeq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
+	# Code to run the package test suite.
 endif
 	    </example>
 	  </p>
