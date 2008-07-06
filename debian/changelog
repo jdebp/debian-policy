@@ -5,6 +5,11 @@ debian-policy (3.8.1.0) UNRELEASED; urgency=low
     Seconded: Raphaël Hertzog <hertzog@debian.org>
     Seconded: Russ Allbery <rra@debian.org>
     Closes: #426877
+  * Policy: Remove alternative changelog formats from main manual
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Ben Pfaff <blp@cs.stanford.edu>
+    Seconded: Guillem Jover <guillem@debian.org>
+    Closes: #489460
   * Use <user>:<group> notation rather than <user>.<group> notation in
     multiple places.  Thanks, Kurt Roeckx.  (Closes: #488039)
   * Fix typo in 3.8.0.0 upgrading-checklist entry.  Patch from Kobayashi
