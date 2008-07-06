@@ -10577,10 +10577,21 @@ install-info --quiet --remove /usr/share/info/foobar.info
      dpkg-divert --package smailwrapper --remove --rename \
         --divert /usr/sbin/smail.real /usr/sbin/smail
   fi
-	</example> The postrm should not remove the diversion on upgrades
-	both because there's no reason to remove the diversion only to
-	immediately re-add it and since the postrm of the old package is
-	run after unpacking so the removal of the diversion will fail.
+	</example> If the diversion was added at a particular version, the
+	postrm should also handle the failure case of upgrading from an
+	older version (unless the older version is so old that direct
+	upgrades are no longer supported):
+	<example>
+  if [ abort-upgrade = "$1" ] && dpkg --compare-versions "$2" lt 1.0-2; then
+     dpkg-divert --package smailwrapper --remove --rename \
+        --divert /usr/sbin/smail.real /usr/sbin/smail
+  fi
+	</example> where <tt>1.02-2</tt> is the version at which the
+	diversion was first added to the package.  The postrm should not
+	remove the diversion on upgrades both because there's no reason to
+	remove the diversion only to immediately re-add it and since the
+	postrm of the old package is run after unpacking so the removal of
+	the diversion will fail.
       </p>
 
       <p>
