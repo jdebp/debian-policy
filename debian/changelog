@@ -25,6 +25,11 @@ debian-policy (3.8.1.0) UNRELEASED; urgency=low
     Seconded: Guillem Jover <guillem@debian.org>
     Seconded: Raphaël Hertzog <hertzog@debian.org>
     Closes: #416450
+  * Policy: Expand expected capabilities for local in /bin/sh scripts
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Guillem Jover <guillem@debian.org>
+    Seconded: Raphaël Hertzog <hertzog@debian.org>
+    Closes: #473019
   * Use <user>:<group> notation rather than <user>.<group> notation in
     multiple places.  Thanks, Kurt Roeckx.  (Closes: #488039)
   * Fix typo in 3.8.0.0 upgrading-checklist entry.  Patch from Kobayashi
