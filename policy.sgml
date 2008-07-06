@@ -8062,24 +8062,27 @@ http://localhost/doc/<var>package</var>/<var>filename</var>
 	</p>
 
 	<p>
-	  Mailboxes are generally either owned by <var>user</var> and mode
-	  600 or owned by <tt><var>user</var>:mail</tt> and mode 660
-	  unless the system administrator has chosen otherwise<footnote>
+	  Mailboxes are generally either mode 600 and owned by
+	  <var>user</var> or mode 660 and owned by
+	  <tt><var>user</var>:mail</tt><footnote>
 	    There are two traditional permission schemes for mail spools:
 	    mode 600 with all mail delivery done by processes running as
 	    the destination user, or mode 660 and owned by group mail with
 	    mail delivery done by a process running as a system user in
 	    group mail.  Historically, Debian required mode 660 mail
 	    spools to enable the latter model, but that model has become
-	    increasingly uncommon and principal of least privilege
+	    increasingly uncommon and the principle of least privilege
 	    indicates that mail systems that use the first model should
 	    use permissions of 600.  If delivery to programs is permitted,
 	    it's easier to keep the mail system secure if the delivery
 	    agent runs as the destination user.  Debian Policy therefore
 	    permits either scheme.
-	  </footnote>. A MUA may remove a mailbox (unless it has
-	  nonstandard permissions) in which case the MTA or another MUA
-	  must recreate it if needed.
+	  </footnote>. The local system administrator may choose a
+	  different permission scheme; packages should not make
+	  assumptions about the permission and ownership of mailboxes
+	  unless required (such as when creating a new mailbox).  A MUA
+	  may remove a mailbox (unless it has nonstandard permissions) in
+	  which case the MTA or another MUA must recreate it if needed.
 	</p>
 
 	<p>
