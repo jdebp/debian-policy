@@ -5954,11 +5954,13 @@ rmdir /usr/local/share/emacs 2>/dev/null || true
 
 	  <p>
 	    The <file>init.d</file> scripts must ensure that they will
-	    behave sensibly if invoked with <tt>start</tt> when the
-	    service is already running, or with <tt>stop</tt> when it
-	    isn't, and that they don't kill unfortunately-named user
-	    processes.  The best way to achieve this is usually to use
-	    <prgn>start-stop-daemon</prgn>.
+	    behave sensibly (i.e., returning success and not starting
+	    multiple copies of a service) if invoked with <tt>start</tt>
+	    when the service is already running, or with <tt>stop</tt>
+	    when it isn't, and that they don't kill unfortunately-named
+	    user processes.  The best way to achieve this is usually to
+	    use <prgn>start-stop-daemon</prgn> with the <tt>--oknodo</tt>
+	    option.
 	  </p>
 
 	  <p>
