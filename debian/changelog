@@ -10,6 +10,16 @@ debian-policy (3.8.1.0) UNRELEASED; urgency=low
     Seconded: Ben Pfaff <blp@cs.stanford.edu>
     Seconded: Guillem Jover <guillem@debian.org>
     Closes: #489460
+  * Policy: Mandate UTF-8 for changelog files
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Guillem Jover <guillem@debian.org>
+    Seconded: Kurt Roeckx <kurt@roeckx.be>
+    Closes: #241333
+  * Policy: Mandate UTF-8 for control files
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Kurt Roeckx <kurt@roeckx.be>
+    Seconded: Raphaël Hertzog <hertzog@debian.org>
+    Closes: #143941
   * Use <user>:<group> notation rather than <user>.<group> notation in
     multiple places.  Thanks, Kurt Roeckx.  (Closes: #488039)
   * Fix typo in 3.8.0.0 upgrading-checklist entry.  Patch from Kobayashi

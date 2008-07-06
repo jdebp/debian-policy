@@ -273,6 +273,32 @@
 	</p>
       </sect>
 
+      <sect id="definitions">
+	<heading>Definitions</heading>
+
+	<p>
+	  The following terms are used in this Policy Manual:
+	  <taglist>
+	    <tag>ASCII</tag>
+	    <item>
+	      The character encoding specified by ANSI X3.4-1986 and its
+	      predecessor standards, referred to in MIME as US-ASCII, and
+	      corresponding to an encoding in eight bits per character of
+	      the first 128 <url id="http://www.unicode.org/"
+	      name="Unicode"> characters, with the eighth bit always zero.
+	    </item>
+	    <tag>UTF-8</tag>
+	    <item>
+	      The transformation format (sometimes called encoding) of
+	      <url id="http://www.unicode.org/" name="Unicode"> defined by
+	      <url id="http://www.rfc-editor.org/rfc/rfc3629.txt"
+	      name="RFC 3629">.  UTF-8 has the useful property of having
+	      ASCII as a subset, so any text encoded in ASCII is trivially
+	      also valid UTF-8.
+	    </item>
+	  </taglist>
+	</p>
+      </sect>
     </chapt>
 
 
@@ -1578,6 +1604,10 @@
 	</p>
 
 	<p>
+	  The entire changelog must be encoded in UTF-8.
+	</p>
+
+	<p>
 	  For more information on placement of the changelog files
 	  within binary packages, please see <ref id="changelogs">.
 	</p>
@@ -2326,6 +2356,9 @@ Package: libc6
 	  would mean a new paragraph.
 	</p>
 
+	<p>
+	  All control files must be encoded in UTF-8.
+	</p>
       </sect>
 
       <sect id="sourcecontrolfiles">
@@ -9802,36 +9835,6 @@ install-info --quiet --remove /usr/share/info/foobar.info
 
 	  <p>
 	    See <ref id="dpkgchangelog">.
-	  </p>
-
-	  <p>
-	    It is recommended that the entire changelog be encoded in the
-	    <url id="http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc2279.html" name="UTF-8">
-	    encoding of
-	    <url id="http://www.unicode.org/"
-	    name="Unicode">.<footnote>
-	      <p>
-		I think it is fairly obvious that we need to
-		eventually transition to UTF-8 for our package
-		infrastructure; it is really the only sane char-set in
-		an international environment.  Now, we can't switch to
-		using UTF-8 for package control fields and the like
-		until dpkg has better support, but one thing we can
-		start doing today is requesting that Debian changelogs
-		are UTF-8 encoded. At some point in time, we can start
-		requiring them to do so. 
-	      </p>
-	      <p>
-		Checking for non-UTF8 characters in a changelog is
-		trivial.  Dump the file through 
-		<example>iconv -f utf-8 -t ucs-4</example>
-                  discard the output, and check the return
-		value.  If there are any characters in the stream
-		which are invalid UTF-8 sequences, iconv will exit
-		with an error code; and this will be the case for the
-		vast majority of other character sets.
-	      </p>
-	    </footnote>
 	  </p>
 
  	  <sect2><heading>Defining alternative changelog formats
