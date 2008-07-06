@@ -273,6 +273,32 @@
 	</p>
       </sect>
 
+      <sect id="definitions">
+	<heading>Definitions</heading>
+
+	<p>
+	  The following terms are used in this Policy Manual:
+	  <taglist>
+	    <tag>ASCII</tag>
+	    <item>
+	      The character encoding specified by ANSI X3.4-1986 and its
+	      predecessor standards, referred to in MIME as US-ASCII, and
+	      corresponding to an encoding in eight bits per character of
+	      the first 128 <url id="http://www.unicode.org/"
+	      name="Unicode"> characters, with the eighth bit always zero.
+	    </item>
+	    <tag>UTF-8</tag>
+	    <item>
+	      The transformation format (sometimes called encoding) of
+	      <url id="http://www.unicode.org/" name="Unicode"> defined by
+	      <url id="http://www.rfc-editor.org/rfc/rfc3629.txt"
+	      name="RFC 3629">.  UTF-8 has the useful property of having
+	      ASCII as a subset, so any text encoded in ASCII is trivially
+	      also valid UTF-8.
+	    </item>
+	  </taglist>
+	</p>
+      </sect>
     </chapt>
 
 
