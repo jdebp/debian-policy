@@ -30,6 +30,10 @@ debian-policy (3.8.1.0) UNRELEASED; urgency=low
     Seconded: Guillem Jover <guillem@debian.org>
     Seconded: Raphaël Hertzog <hertzog@debian.org>
     Closes: #473019
+  * Improve the documentation of maintainer script actions for diversions
+    in the informative appendix to allow for addition of a new diversion
+    on upgrade and handle error cases correctly.  Thanks to Olivier Berger
+    for the report and Raphaël Hertzog for the review.  (Closes: #483418)
   * Use <user>:<group> notation rather than <user>.<group> notation in
     multiple places.  Thanks, Kurt Roeckx.  (Closes: #488039)
   * Fix typo in 3.8.0.0 upgrading-checklist entry.  Patch from Kobayashi
