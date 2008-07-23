@@ -753,7 +753,8 @@
 		with required, important, standard or optional
 		priorities, or are only likely to be useful if you
 		already know what they are or have specialized
-		requirements.
+		requirements (such as packages containing only detached
+		debugging symbols).
 	    </item>
 	  </taglist>
 	</p>
