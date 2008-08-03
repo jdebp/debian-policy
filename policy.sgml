@@ -273,6 +273,32 @@
 	</p>
       </sect>
 
+      <sect id="definitions">
+	<heading>Definitions</heading>
+
+	<p>
+	  The following terms are used in this Policy Manual:
+	  <taglist>
+	    <tag>ASCII</tag>
+	    <item>
+	      The character encoding specified by ANSI X3.4-1986 and its
+	      predecessor standards, referred to in MIME as US-ASCII, and
+	      corresponding to an encoding in eight bits per character of
+	      the first 128 <url id="http://www.unicode.org/"
+	      name="Unicode"> characters, with the eighth bit always zero.
+	    </item>
+	    <tag>UTF-8</tag>
+	    <item>
+	      The transformation format (sometimes called encoding) of
+	      <url id="http://www.unicode.org/" name="Unicode"> defined by
+	      <url id="http://www.rfc-editor.org/rfc/rfc3629.txt"
+	      name="RFC 3629">.  UTF-8 has the useful property of having
+	      ASCII as a subset, so any text encoded in ASCII is trivially
+	      also valid UTF-8.
+	    </item>
+	  </taglist>
+	</p>
+      </sect>
     </chapt>
 
 
@@ -727,7 +753,8 @@
 		with required, important, standard or optional
 		priorities, or are only likely to be useful if you
 		already know what they are or have specialized
-		requirements.
+		requirements (such as packages containing only detached
+		debugging symbols).
 	    </item>
 	  </taglist>
 	</p>
@@ -1189,8 +1216,8 @@
 	    Package maintainer scripts may prompt the user if
 	    necessary. Prompting should be done by communicating
 	    through a program, such as <prgn>debconf</prgn>, which
-	    conforms to the Debian Configuration management
-	    specification, version 2 or higher.  Prompting the user by
+	    conforms to the Debian Configuration Management
+	    Specification, version 2 or higher.  Prompting the user by
 	    other means, such as by hand<footnote>
                 From the Jargon file: by hand 2. By extension,
                 writing code which does something in an explicit or
@@ -1201,7 +1228,7 @@
 	  </p>
 
 	  <p>
-	    The Debian Configuration management specification is included
+	    The Debian Configuration Management Specification is included
 	    in the <file>debconf_specification</file> files in the
 	    <package>debian-policy</package> package.
 	    It is also available from the Debian web mirrors at
@@ -1210,8 +1237,8 @@
 	  </p>
 
 	  <p>
-	    Packages which use the Debian Configuration management
-	    specification may contain an additional
+	    Packages which use the Debian Configuration Management
+	    Specification may contain an additional
 	    <prgn>config</prgn> script and a <tt>templates</tt>
 	    file in their control archive<footnote>
 		The control.tar.gz inside the .deb.
@@ -1223,18 +1250,18 @@
 	    Therefore it must work using only the tools present in
 	    <em>essential</em> packages.<footnote>
 		  <package>Debconf</package> or another tool that
-		  implements the Debian Configuration management
-		  specification will also be installed, and any
+		  implements the Debian Configuration Management
+		  Specification will also be installed, and any
 		  versioned dependencies on it will be satisfied
 		  before preconfiguration begins.
 	    </footnote>
 	  </p>
 
 	  <p>
-	    Packages which use the Debian Configuration management
-	    specification must allow for translation of their messages
-	    by using a gettext-based system such as the one provided by
-	    the <package>po-debconf</package> package.
+	    Packages which use the Debian Configuration Management
+	    Specification must allow for translation of their user-visible
+	    messages by using a gettext-based system such as the one
+	    provided by the <package>po-debconf</package> package.
 	  </p>
 
 	  <p>
@@ -1585,6 +1612,10 @@
 	  maintainer and date details must be preceded by exactly
 	  one space.  The maintainer details and the date must be
 	  separated by exactly two spaces.
+	</p>
+
+	<p>
+	  The entire changelog must be encoded in UTF-8.
 	</p>
 
 	<p>
@@ -2009,6 +2040,11 @@
 	  <p>
 	    The meaning of the following tags has been standardized:
 	    <taglist>
+	      <tag>nocheck</tag>
+	      <item>
+		  This tag says to not run any build-time test suite
+		  provided by the package.
+	      </item>
 	      <tag>noopt</tag>
 	      <item>
 		  The presence of this tag means that the package should
@@ -2075,6 +2111,12 @@ endif
 ifneq (,$(filter parallel=%,$(DEB_BUILD_OPTIONS)))
     NUMJOBS = $(patsubst parallel=%,%,$(filter parallel=%,$(DEB_BUILD_OPTIONS)))
     MAKEFLAGS += -j$(NUMJOBS)
+endif
+
+build:
+	# ...
+ifeq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
+	# Code to run the package test suite.
 endif
 	    </example>
 	  </p>
@@ -2325,6 +2367,9 @@ Package: libc6
 	  would mean a new paragraph.
 	</p>
 
+	<p>
+	  All control files must be encoded in UTF-8.
+	</p>
       </sect>
 
       <sect id="sourcecontrolfiles">
@@ -7023,18 +7068,19 @@ strip --strip-unneeded <var>your-lib</var>
 	      support <tt>-a</tt> and <tt>-o</tt> as binary logical
 	      operators.</item>
 	    <item><tt>local</tt> to create a scoped variable must be
-	      supported; however, <tt>local</tt> may or may not preserve
-	      the variable value from an outer scope and may or may not
-	      support arguments more complex than simple variables.  Only
-	      uses such as:
+	      supported, including listing multiple variables in a single
+	      local command and assigning a value to a variable at the
+	      same time as localizing it.  <tt>local</tt> may or
+	      may not preserve the variable value from an outer scope if
+	      no assignment is present.	 Uses such as:
 <example compact>
 fname () {
-    local a
-    a=''
-    # ... use a ...
+    local a b c=delta d
+    # ... use a, b, c, d ...
 }
 </example>
-              must be supported.
+	      must be supported and must set the value of <tt>c</tt> to
+	      <tt>delta</tt>.
             </item>
 	  </list>
 	  If a shell script requires non-SUSv3 features from the shell
@@ -9803,36 +9849,6 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	    See <ref id="dpkgchangelog">.
 	  </p>
 
-	  <p>
-	    It is recommended that the entire changelog be encoded in the
-	    <url id="http://www.cis.ohio-state.edu/cgi-bin/rfc/rfc2279.html" name="UTF-8">
-	    encoding of
-	    <url id="http://www.unicode.org/"
-	    name="Unicode">.<footnote>
-	      <p>
-		I think it is fairly obvious that we need to
-		eventually transition to UTF-8 for our package
-		infrastructure; it is really the only sane char-set in
-		an international environment.  Now, we can't switch to
-		using UTF-8 for package control fields and the like
-		until dpkg has better support, but one thing we can
-		start doing today is requesting that Debian changelogs
-		are UTF-8 encoded. At some point in time, we can start
-		requiring them to do so. 
-	      </p>
-	      <p>
-		Checking for non-UTF8 characters in a changelog is
-		trivial.  Dump the file through 
-		<example>iconv -f utf-8 -t ucs-4</example>
-                  discard the output, and check the return
-		value.  If there are any characters in the stream
-		which are invalid UTF-8 sequences, iconv will exit
-		with an error code; and this will be the case for the
-		vast majority of other character sets.
-	      </p>
-	    </footnote>
-	  </p>
-
  	  <sect2><heading>Defining alternative changelog formats
 	    </heading>
 
@@ -10545,26 +10561,48 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	supposing that a <prgn>smailwrapper</prgn> package wishes to
 	install a wrapper around <file>/usr/sbin/smail</file>:
 	<example>
-  if [ install = "$1"  ]; then
-     dpkg-divert --package smailwrapper --add --rename \
-        --divert /usr/sbin/smail.real /usr/sbin/smail
-  fi
-	</example> Testing <tt>$1</tt> is necessary so that the script
-	doesn't try to add the diversion again when
-	<prgn>smailwrapper</prgn> is upgraded.  The <tt>--package
-	smailwrapper</tt> ensures that <prgn>smailwrapper</prgn>'s
-	copy of <file>/usr/sbin/smail</file> can bypass the diversion and
-	get installed as the true version.
+   dpkg-divert --package smailwrapper --add --rename \
+      --divert /usr/sbin/smail.real /usr/sbin/smail
+	</example> The <tt>--package smailwrapper</tt> ensures that
+	<prgn>smailwrapper</prgn>'s copy of <file>/usr/sbin/smail</file>
+	can bypass the diversion and get installed as the true version.
+	It's safe to add the diversion unconditionally on upgrades since
+	it will be left unchanged if it already exists, but
+	<prgn>dpkg-divert</prgn> will display a message.  To suppress that
+	message, make the command conditional on the version from which
+	the package is being upgraded:
+	<example>
+   if [ upgrade != "$1" ] || dpkg --compare-versions "$2" lt 1.0-2; then
+      dpkg-divert --package smailwrapper --add --rename \
+         --divert /usr/sbin/smail.real /usr/sbin/smail
+   fi
+	</example> where <tt>1.0-2</tt> is the version at which the
+	diversion was first added to the package.  Running the command
+	during abort-upgrade is pointless but harmless.
       </p>
 
       <p>
 	The postrm has to do the reverse:
 	<example>
-  if [ remove = "$1" ]; then
+  if [ remove = "$1" -o abort-install = "$1" -o disappear = "$1" ]; then
      dpkg-divert --package smailwrapper --remove --rename \
         --divert /usr/sbin/smail.real /usr/sbin/smail
   fi
-	</example>
+	</example> If the diversion was added at a particular version, the
+	postrm should also handle the failure case of upgrading from an
+	older version (unless the older version is so old that direct
+	upgrades are no longer supported):
+	<example>
+  if [ abort-upgrade = "$1" ] && dpkg --compare-versions "$2" lt 1.0-2; then
+     dpkg-divert --package smailwrapper --remove --rename \
+        --divert /usr/sbin/smail.real /usr/sbin/smail
+  fi
+	</example> where <tt>1.02-2</tt> is the version at which the
+	diversion was first added to the package.  The postrm should not
+	remove the diversion on upgrades both because there's no reason to
+	remove the diversion only to immediately re-add it and since the
+	postrm of the old package is run after unpacking so the removal of
+	the diversion will fail.
       </p>
 
       <p>
