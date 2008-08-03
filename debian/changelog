@@ -40,6 +40,9 @@ debian-policy (3.8.1.0) UNRELEASED; urgency=low
     Noritada.  (Closes: #487701)
   * Mention debugging packages as an explicit example of packages with
     extra priority.  Thanks, Charles Plessy.  (Closes: #491985)
+  * Clarify that translation is only required for user-visible debconf
+    messages.  Capitalize "Debian Configuration Management Specification"
+    uniformly.  Thanks, Julian Andres Klode.  (Closes: #492624)
 
  -- Russ Allbery <rra@debian.org>  Mon, 23 Jun 2008 19:23:50 -0700
 
