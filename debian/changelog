@@ -30,10 +30,19 @@ debian-policy (3.8.1.0) UNRELEASED; urgency=low
     Seconded: Guillem Jover <guillem@debian.org>
     Seconded: Raphaël Hertzog <hertzog@debian.org>
     Closes: #473019
+  * Improve the documentation of maintainer script actions for diversions
+    in the informative appendix to allow for addition of a new diversion
+    on upgrade and handle error cases correctly.  Thanks to Olivier Berger
+    for the report and Raphaël Hertzog for the review.  (Closes: #483418)
   * Use <user>:<group> notation rather than <user>.<group> notation in
     multiple places.  Thanks, Kurt Roeckx.  (Closes: #488039)
   * Fix typo in 3.8.0.0 upgrading-checklist entry.  Patch from Kobayashi
     Noritada.  (Closes: #487701)
+  * Mention debugging packages as an explicit example of packages with
+    extra priority.  Thanks, Charles Plessy.  (Closes: #491985)
+  * Clarify that translation is only required for user-visible debconf
+    messages.  Capitalize "Debian Configuration Management Specification"
+    uniformly.  Thanks, Julian Andres Klode.  (Closes: #492624)
 
  -- Russ Allbery <rra@debian.org>  Mon, 23 Jun 2008 19:23:50 -0700
 
