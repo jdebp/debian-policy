@@ -30,6 +30,11 @@ debian-policy (3.8.1.0) UNRELEASED; urgency=low
     Seconded: Guillem Jover <guillem@debian.org>
     Seconded: Raphaël Hertzog <hertzog@debian.org>
     Closes: #473019
+  * Policy: Clarify Essential definition and caution when adding to it
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Jörg Sommer <joerg@alea.gnuu.de>
+    Seconded: Guillem Jover <guillem@debian.org>
+    Closes: #479080
   * Improve the documentation of maintainer script actions for diversions
     in the informative appendix to allow for addition of a new diversion
     on upgrade and handle error cases correctly.  Thanks to Olivier Berger
