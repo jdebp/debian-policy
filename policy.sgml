@@ -1018,29 +1018,23 @@
 	  (see below), and should not do so unless they depend on a
 	  particular version of that package.<footnote>
             <p>
-              Essential is defined as the minimal set of functionality
-              that must be available and usable on the system even
-              when packages are in an unconfigured (but unpacked)
-              state.  This is needed to avoid unresolvable dependency
-              loops on upgrade.  If packages add unnecessary
-              dependencies on packages in this set, the chances that
-              there <strong>will</strong> be an unresolvable
-              dependency loop caused by forcing these Essential
-              packages to be configured first before they need to be
-              is greatly increased.  It also increases the chances
-              that frontends will be unable to
-              <strong>calculate</strong> an upgrade path, even if one
-              exists.
+	      Essential is needed in part to avoid unresolvable dependency
+	      loops on upgrade.  If packages add unnecessary dependencies
+	      on packages in this set, the chances that there
+	      <strong>will</strong> be an unresolvable dependency loop
+	      caused by forcing these Essential packages to be configured
+	      first before they need to be is greatly increased.  It also
+	      increases the chances that frontends will be unable to
+	      <strong>calculate</strong> an upgrade path, even if one
+	      exists.
             </p>
             <p>
-              Also, it's pretty unlikely that functionality from
-              Essential shall ever be removed (which is one reason why
-              care must be taken before adding to the Essential
-              packages set), but <em>packages</em> have been removed
-              from the Essential set when the functionality moved to a
-              different package. So depending on these packages
-              <em>just in case</em> they stop being essential does way
-              more harm than good.
+	      Also, functionality is rarely ever removed from the
+	      Essential set, but <em>packages</em> have been removed from
+	      the Essential set when the functionality moved to a
+	      different package. So depending on these packages <em>just
+	      in case</em> they stop being essential does way more harm
+	      than good.
             </p>
           </footnote>
 	</p>
@@ -1127,10 +1121,13 @@
 	<heading>Essential packages</heading>
 
 	<p>
-	  Some packages are tagged <tt>essential</tt> for a system
-	  using the <tt>Essential</tt> control file field.
-	  The format of the <tt>Essential</tt> control field is
-	  described in <ref id="f-Essential">.
+	  Essential is defined as the minimal set of functionality that
+	  must be available and usable on the system at all times, even
+	  when packages are in an unconfigured (but unpacked) state.
+	  Packages are tagged <tt>essential</tt> for a system using the
+	  <tt>Essential</tt> control file field.  The format of the
+	  <tt>Essential</tt> control field is described in <ref
+	  id="f-Essential">.
 	</p>
 
 	<p>
@@ -1152,6 +1149,19 @@
             tagged as essential, and any packages depending on this
             package must instead have explicit dependency fields as
             appropriate.
+	</p>
+
+	<p>
+	  Maintainers should take great care in adding any programs,
+	  interfaces, or functionality to <tt>essential</tt> packages.
+	  Packages may assume that functionality provided by
+	  <tt>essential</tt> packages is always available without
+	  declaring explicit dependencies, which means that removing
+	  functionality from the Essential set is very difficult and is
+	  almost never done.  Any capability added to an
+	  <tt>essential</tt> package therefore creates an obligation to
+	  support that capability as part of the Essential set in
+	  perpetuity.
 	</p>
 
 	<p>
