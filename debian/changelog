@@ -48,6 +48,8 @@ debian-policy (3.8.1.0) UNRELEASED; urgency=low
   * Clarify that translation is only required for user-visible debconf
     messages.  Capitalize "Debian Configuration Management Specification"
     uniformly.  Thanks, Julian Andres Klode.  (Closes: #492624)
+  * Reword the requirement that maintainer scripts exit with a zero
+    status on success to avoid double-negatives.
 
  -- Russ Allbery <rra@debian.org>  Mon, 23 Jun 2008 19:23:50 -0700
 

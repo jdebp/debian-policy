@@ -3436,8 +3436,7 @@ Package: libc6
 	  scripts this means that you <em>almost always</em> need to
 	  use <tt>set -e</tt> (this is usually true when writing shell
 	  scripts, in fact).  It is also important, of course, that
-	  they don't exit with a non-zero status if everything went
-	  well.
+	  they exit with a zero status if everything went well.
 	</p>
 
         <p>
