@@ -9296,7 +9296,7 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	  </example>
 	  To view the copyright file for a package you could use this command:
 	  <example>
-  dpkg --fsys-tarfile <var>filename</var>.deb | tar xOf - \*/copyright | pager
+  dpkg --fsys-tarfile <var>filename</var>.deb | tar xOf - --wildcards \*/copyright | pager
 	  </example>
 	</p>
       </sect>
