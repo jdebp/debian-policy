@@ -4188,16 +4188,16 @@ Build-Depends-Indep: texinfo
 Build-Depends: kernel-headers-2.2.10 [!hurd-i386],
   hurd-dev [hurd-i386], gnumach-dev [hurd-i386]
 	  </example>
-	  requires <tt>kernel-headers-2.2.0</tt> on all architectures
+	  requires <tt>kernel-headers-2.2.10</tt> on all architectures
 	  other than hurd-i386 and requires <tt>hurd-dev</tt> and
 	  <tt>gnumach-dev</tt> only on hurd-i386.
 	</p>
 
 	<p>
 	  If the architecture-restricted dependency is part of a set of
-	  alternatives using <tt>|</tt>, that branch of the alternative is
-	  ignored completely on architectures that do not match the
-	  restriction.  For example:
+	  alternatives using <tt>|</tt>, that alternative is ignored
+	  completely on architectures that do not match the restriction.
+	  For example:
 	  <example compact="compact">
 Build-Depends: foo [!i386] | bar [!amd64]
 	  </example>
