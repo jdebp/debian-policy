@@ -62,6 +62,9 @@ debian-policy (3.8.1.0) UNRELEASED; urgency=low
     behavior.  Thanks, Yan Morin.  (Closes: #503685)
   * Reword the requirement that maintainer scripts exit with a zero
     status on success to avoid double-negatives.
+  * Include the full name of each menu category rather than only the
+    portion relative to the parent heading to be clearer in long category
+    lists.  Thanks, Christoph Berg.  (Closes: #511804)
 
  -- Russ Allbery <rra@debian.org>  Mon, 23 Jun 2008 19:23:50 -0700
 
