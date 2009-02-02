@@ -35,6 +35,11 @@ debian-policy (3.8.1.0) UNRELEASED; urgency=low
     Seconded: Jörg Sommer <joerg@alea.gnuu.de>
     Seconded: Guillem Jover <guillem@debian.org>
     Closes: #479080
+  * Policy: Allow user mail spools to be mode 0600 or 0660
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Kurt Roeckx <kurt@roeckx.be>
+    Seconded: Andrew McMillan <awm@debian.org>
+    Closes: #470994
   * Improve the documentation of maintainer script actions for diversions
     in the informative appendix to allow for addition of a new diversion
     on upgrade and handle error cases correctly.  Thanks to Olivier Berger
