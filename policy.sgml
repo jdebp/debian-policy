@@ -3436,8 +3436,7 @@ Package: libc6
 	  scripts this means that you <em>almost always</em> need to
 	  use <tt>set -e</tt> (this is usually true when writing shell
 	  scripts, in fact).  It is also important, of course, that
-	  they don't exit with a non-zero status if everything went
-	  well.
+	  they exit with a zero status if everything went well.
 	</p>
 
         <p>
@@ -4189,6 +4188,22 @@ Build-Depends-Indep: texinfo
 Build-Depends: kernel-headers-2.2.10 [!hurd-i386],
   hurd-dev [hurd-i386], gnumach-dev [hurd-i386]
 	  </example>
+	  requires <tt>kernel-headers-2.2.10</tt> on all architectures
+	  other than hurd-i386 and requires <tt>hurd-dev</tt> and
+	  <tt>gnumach-dev</tt> only on hurd-i386.
+	</p>
+
+	<p>
+	  If the architecture-restricted dependency is part of a set of
+	  alternatives using <tt>|</tt>, that alternative is ignored
+	  completely on architectures that do not match the restriction.
+	  For example:
+	  <example compact="compact">
+Build-Depends: foo [!i386] | bar [!amd64]
+	  </example>
+	  is equivalent to <tt>bar</tt> on the i386 architecture, to
+	  <tt>foo</tt> on the amd64 architecture, and to <tt>foo |
+	  bar</tt> on all other architectures.
 	</p>
 
 	<p>
@@ -9312,7 +9327,7 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	  </example>
 	  To view the copyright file for a package you could use this command:
 	  <example>
-  dpkg --fsys-tarfile <var>filename</var>.deb | tar xOf - \*/copyright | pager
+  dpkg --fsys-tarfile <var>filename</var>.deb | tar xOf - --wildcards \*/copyright | pager
 	  </example>
 	</p>
       </sect>

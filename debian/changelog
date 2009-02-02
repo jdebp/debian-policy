@@ -39,6 +39,10 @@ debian-policy (3.8.1.0) UNRELEASED; urgency=low
     in the informative appendix to allow for addition of a new diversion
     on upgrade and handle error cases correctly.  Thanks to Olivier Berger
     for the report and Raphaël Hertzog for the review.  (Closes: #483418)
+  * Clarify the meaning of architecture restrictions on build dependencies
+    in the presence of alternatives.  Thanks to Guillem Jover for the
+    explanation and review and Emilio Pozuelo Monfort and Don Armstrong
+    for wording review.  (Closes: #163666)
   * Use <user>:<group> notation rather than <user>.<group> notation in
     multiple places.  Thanks, Kurt Roeckx.  (Closes: #488039)
   * Fix typo in 3.8.0.0 upgrading-checklist entry.  Patch from Kobayashi
@@ -48,6 +52,11 @@ debian-policy (3.8.1.0) UNRELEASED; urgency=low
   * Clarify that translation is only required for user-visible debconf
     messages.  Capitalize "Debian Configuration Management Specification"
     uniformly.  Thanks, Julian Andres Klode.  (Closes: #492624)
+  * Add --wildcards to the sample tar command in appendix B.1 for
+    extracting the package copyright file, adjusting for new tar option
+    behavior.  Thanks, Yan Morin.  (Closes: #503685)
+  * Reword the requirement that maintainer scripts exit with a zero
+    status on success to avoid double-negatives.
 
  -- Russ Allbery <rra@debian.org>  Mon, 23 Jun 2008 19:23:50 -0700
 
