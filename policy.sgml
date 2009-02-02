@@ -3442,8 +3442,7 @@ Package: libc6
 	  scripts this means that you <em>almost always</em> need to
 	  use <tt>set -e</tt> (this is usually true when writing shell
 	  scripts, in fact).  It is also important, of course, that
-	  they don't exit with a non-zero status if everything went
-	  well.
+	  they exit with a zero status if everything went well.
 	</p>
 
         <p>
@@ -4195,6 +4194,22 @@ Build-Depends-Indep: texinfo
 Build-Depends: kernel-headers-2.2.10 [!hurd-i386],
   hurd-dev [hurd-i386], gnumach-dev [hurd-i386]
 	  </example>
+	  requires <tt>kernel-headers-2.2.10</tt> on all architectures
+	  other than hurd-i386 and requires <tt>hurd-dev</tt> and
+	  <tt>gnumach-dev</tt> only on hurd-i386.
+	</p>
+
+	<p>
+	  If the architecture-restricted dependency is part of a set of
+	  alternatives using <tt>|</tt>, that alternative is ignored
+	  completely on architectures that do not match the restriction.
+	  For example:
+	  <example compact="compact">
+Build-Depends: foo [!i386] | bar [!amd64]
+	  </example>
+	  is equivalent to <tt>bar</tt> on the i386 architecture, to
+	  <tt>foo</tt> on the amd64 architecture, and to <tt>foo |
+	  bar</tt> on all other architectures.
 	</p>
 
 	<p>
@@ -8079,12 +8094,27 @@ http://localhost/doc/<var>package</var>/<var>filename</var>
 	</p>
 
 	<p>
-	  Mailboxes are generally mode 660
-	  <tt><var>user</var>:mail</tt> unless the system
-	  administrator has chosen otherwise.  A MUA may remove a
-	  mailbox (unless it has nonstandard permissions) in which
-	  case the MTA or another MUA must recreate it if needed.
-	  Mailboxes must be writable by group mail.
+	  Mailboxes are generally either mode 600 and owned by
+	  <var>user</var> or mode 660 and owned by
+	  <tt><var>user</var>:mail</tt><footnote>
+	    There are two traditional permission schemes for mail spools:
+	    mode 600 with all mail delivery done by processes running as
+	    the destination user, or mode 660 and owned by group mail with
+	    mail delivery done by a process running as a system user in
+	    group mail.  Historically, Debian required mode 660 mail
+	    spools to enable the latter model, but that model has become
+	    increasingly uncommon and the principle of least privilege
+	    indicates that mail systems that use the first model should
+	    use permissions of 600.  If delivery to programs is permitted,
+	    it's easier to keep the mail system secure if the delivery
+	    agent runs as the destination user.  Debian Policy therefore
+	    permits either scheme.
+	  </footnote>. The local system administrator may choose a
+	  different permission scheme; packages should not make
+	  assumptions about the permission and ownership of mailboxes
+	  unless required (such as when creating a new mailbox).  A MUA
+	  may remove a mailbox (unless it has nonstandard permissions) in
+	  which case the MTA or another MUA must recreate it if needed.
 	</p>
 
 	<p>
@@ -9304,7 +9334,7 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	  </example>
 	  To view the copyright file for a package you could use this command:
 	  <example>
-  dpkg --fsys-tarfile <var>filename</var>.deb | tar xOf - \*/copyright | pager
+  dpkg --fsys-tarfile <var>filename</var>.deb | tar xOf - --wildcards \*/copyright | pager
 	  </example>
 	</p>
       </sect>
