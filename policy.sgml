@@ -3096,15 +3096,16 @@ Package: libc6
 
 		  <tag><em>testing-proposed-updates</em></tag>
 		  <item>
-		    The <em>testing</em> distribution, which cannot be
-		    uploaded to directly, normally receives its packages
-		    from the <em>unstable</em> distribution after a short
-		    time lag.  However sometimes, such as during release
-		    freezes before a new stable release or when a problem
-		    in the <em>testing</em> distribution requires fixing
-		    before the <em>unstable</em> version can migrate,
-		    direct uploads to <em>testing</em> are useful.  This
-		    distribution value is used for those exceptions.
+		    The <em>testing</em> distribution normally receives
+		    its packages via the <em>unstable</em> distribution
+		    after a short time lag.  However sometimes, such as
+		    during release freezes before a new stable release or
+		    when a problem in the <em>testing</em> distribution
+		    requires fixing before the <em>unstable</em> version
+		    can migrate, direct updates to a package in
+		    <em>testing</em> are useful.  This distribution value
+		    is used for those exceptions, after approval from the
+		    release managers.
 		  </item>
 		</taglist>
 
