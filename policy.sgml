@@ -4273,31 +4273,30 @@ Build-Depends: foo [!i386] | bar [!amd64]
 	</p>
 
 	<p>
-	  For this reason packages in an installation run are usually
-	  all unpacked first and all configured later; this gives
-	  later versions of packages with dependencies on later
-	  versions of other packages the opportunity to have their
-	  dependencies satisfied.
+	  Since <tt>Depends</tt> only places requirements on the
+	  configuration step, packages in an installation run are usually
+	  all unpacked first and all configured later.  This makes it
+	  easier to satisfy all dependencies when multiple packages are
+	  being upgraded.
 	</p>
 
-        <p>
-          In case of circular dependencies, since installation or
-          removal order honoring the dependency order can't be
-          established, dependency loops are broken at some point
-          (based on rules below), and some packages may not be able to
-          rely on their dependencies being unpacked when being
-          unpacked or removed, depending on which side of the break
-          of the circular dependency loop they happen to be on.  If one
-          of the packages in the loop has no postinst script, then the
-          cycle will be broken at that package, so as to ensure that
-          all postinst scripts run with the dependencies properly
-          configured if this is possible. Otherwise the breaking point
-          is arbitrary.
-        </p>
-
 	<p>
-	  The <tt>Depends</tt> field thus allows package maintainers
-	  to impose an order in which packages should be configured.
+	  If there is a circular dependency among packages being installed
+	  or removed, installation or removal order honoring the
+	  dependency order is impossible, requiring the dependency loop be
+	  broken at some point and the dependency requirements violated
+	  for at least one package.  Packages involved in circular
+	  dependencies may not be able to rely on their dependencies being
+	  configured when being configured or removed depending on which
+	  side of the break of the circular dependency loop they happen to
+	  be on.  If one of the packages in the loop has no
+	  <prgn>postinst</prgn> script, then the cycle will be broken at
+	  that package; this ensures that all <prgn>postinst</prgn>
+	  scripts are run with their dependencies properly configured if
+	  this is possible.  Otherwise the breaking point is arbitrary.
+	  Packages should therefore avoid circular dependencies where
+	  possible, particularly if they have <prgn>postinst</prgn>
+	  scripts.
 	</p>
 
 	<p>
@@ -4309,7 +4308,8 @@ Build-Depends: foo [!i386] | bar [!amd64]
 		This declares an absolute dependency.  A package will
 		not be configured unless all of the packages listed in
 		its <tt>Depends</tt> field have been correctly
-		configured.
+		configured (unless there is a circular dependency as
+		described above).
 	      </p>
 
 	      <p>
@@ -4323,10 +4323,17 @@ Build-Depends: foo [!i386] | bar [!amd64]
 		The <tt>Depends</tt> field should also be used if the
 		<prgn>postinst</prgn>, <prgn>prerm</prgn> or
 		<prgn>postrm</prgn> scripts require the package to be
-		present in order to run.  Note, however, that the
-		<prgn>postrm</prgn> cannot rely on any non-essential
-		packages to be present during the <tt>purge</tt>
-		phase.
+		present in order to run.  (If both packages are involved
+		in a dependency loop, this might not work as expected; see
+		the explanation a few paragraphs back.)  In the case of
+		<prgn>postinst</prgn> and <prgn>postrm</prgn>, the
+		depended-on packages will be unpacked and configured
+		first.  (Note, however, that the <prgn>postrm</prgn>
+		cannot rely on any non-essential packages to be present
+		during the <tt>purge</tt> phase.)  In the case of
+		<prgn>prerm</prgn>, the depended-on package will at least
+		be unpacked (it might be configured too, but you can't
+		rely on this unless you use <tt>Pre-Depends</tt>).
 	    </item>
 
 	    <tag><tt>Recommends</tt></tag>
@@ -4389,7 +4396,17 @@ Build-Depends: foo [!i386] | bar [!amd64]
 		to be <em>configured</em>, the pre-dependency will be
 		treated as a normal <tt>Depends</tt>, that is, it will
 		be considered satisfied only if the depended-on
-		package has been correctly configured.
+		package has been correctly configured.  However, unlike
+		with <tt>Depends</tt>, <tt>Pre-Depends</tt> does not
+		permit circular dependencies to be broken.  If a circular
+		dependency is encountered while attempting to honor
+		<tt>Pre-Depends</tt>, the installation will be aborted.
+	      </p>
+
+	      <p>
+		<tt>Pre-Depends</tt> are also required if the
+		<prgn>preinst</prgn> script depends on the named package.
+		It is best to avoid this situation if possible.
 	      </p>
 
 	      <p>
@@ -4397,13 +4414,6 @@ Build-Depends: foo [!i386] | bar [!amd64]
 		preferably only by packages whose premature upgrade or
 		installation would hamper the ability of the system to
 		continue with any upgrade that might be in progress.
-	      </p>
-
-	      <p>
-		<tt>Pre-Depends</tt> are also required if the
-		<prgn>preinst</prgn> script depends on the named
-		package.  It is best to avoid this situation if
-		possible.
 	      </p>
 	    </item>
 	  </taglist>
