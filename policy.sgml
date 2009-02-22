@@ -657,12 +657,12 @@
 	  <list compact="compact">
 	    <item>
 		  <em>section</em> if the package is in the
-		  <em>main</em> distribution area,
+		  <em>main</em> archive area,
 	    </item>
 	    <item>
 		  <em>area/section</em> if the package is in
 		  the <em>contrib</em> or <em>non-free</em>
-		  distribution areas.
+		  archive areas.
 	    </item>
 	  </list>
 	</p>
