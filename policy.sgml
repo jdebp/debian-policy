@@ -660,7 +660,7 @@
 		  <em>main</em> archive area,
 	    </item>
 	    <item>
-		  <em>segment/section</em> if the package is in
+		  <em>area/section</em> if the package is in
 		  the <em>contrib</em> or <em>non-free</em>
 		  archive areas.
 	    </item>
