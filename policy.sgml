@@ -5928,13 +5928,6 @@ rmdir /usr/local/share/emacs 2>/dev/null || true
 	    <tt>K</tt> prefix, but they too are called with the single
 	    argument <tt>stop</tt>.
 	  </p>
-
-	  <p>
-	    Also, if the script name ends in <tt>.sh</tt>, the script
-	    will be sourced in runlevel <tt>S</tt> rather than being
-	    run in a forked subprocess, but will be explicitly run by
-	    <prgn>sh</prgn> in all other runlevels.
-	  </p>
 	</sect1>
 
 	<sect1>

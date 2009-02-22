@@ -54,6 +54,10 @@ picking your way through this list.
      * New nocheck option for DEB_BUILD_OPTIONS indicating any build-time
        test suite provided by the package should not be run.     [4.9.1]
      * All control files must be encoded in UTF-8.               [5.1]
+     * Init scripts ending in .sh are not handled specially.  They are not
+       sourced and are not guaranteed to be run by /bin/sh regardless of
+       the #! line.  This brings Policy in line with the long-standing
+       behavior of the init system in Debian.                    [9.3]
      * The start action of an init script must exit successfully and not
        start the daemon again if it's already running.           [9.3.2]
      * /bin/sh scripts may assume that local can take multiple variable
