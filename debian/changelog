@@ -45,6 +45,11 @@ debian-policy (3.8.1.0) UNRELEASED; urgency=low
     Seconded: Russ Allbery <rra@debian.org>
     Seconded: Henrique de Moraes Holschuh <hmh@debian.org>
     Closes: #513955
+  * Policy: /var/run and /var/lock may be volatile
+    Wording: Colin Watson <cjwatson@debian.org>
+    Seconded: Russ Allbery <rra@debian.org>
+    Seconded: Bill Allombert <Bill.Allombert@math.u-bordeaux1.fr>
+    Closes: #514326
   * Improve the documentation of maintainer script actions for diversions
     in the informative appendix to allow for addition of a new diversion
     on upgrade and handle error cases correctly.  Thanks to Olivier Berger

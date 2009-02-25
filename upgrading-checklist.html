@@ -64,6 +64,9 @@ picking your way through this list.
        arguments and supports assignment.                        [10.4]
      * User mailboxes may be mode 600 and owned by the user rather than
        mode 660, owned by user, and group mail.                  [11.6]
+     * /var/run and /var/lock may be mounted as temporary filesystems, and
+       init scripts must therefore create any necessary subdirectories
+       dynamically.                                              [9.3.2]
 
 3.8.0.0                        Jun 2008
 
