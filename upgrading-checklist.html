@@ -54,6 +54,8 @@ picking your way through this list.
      * New nocheck option for DEB_BUILD_OPTIONS indicating any build-time
        test suite provided by the package should not be run.     [4.9.1]
      * All control files must be encoded in UTF-8.               [5.1]
+     * debian/control allows comment lines starting with # with no
+       preceding whitespace.                                     [5.2]
      * Init scripts ending in .sh are not handled specially.  They are not
        sourced and are not guaranteed to be run by /bin/sh regardless of
        the #! line.  This brings Policy in line with the long-standing
