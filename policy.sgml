@@ -2453,9 +2453,10 @@ Package: libc6
 	<p>
 	  In addition to the control file syntax described <qref
 	  id="controlsyntax">above</qref>, this file may also contain
-	  comment lines starting with <tt>#</tt>.  All such lines are
-	  ignored, even in the middle of continuation lines for a
-	  multiline field, and do not end a multiline field.
+	  comment lines starting with <tt>#</tt> without any preceding
+	  whitespace.  All such lines are ignored, even in the middle of
+	  continuation lines for a multiline field, and do not end a
+	  multiline field.
 	</p>
 
       </sect>
