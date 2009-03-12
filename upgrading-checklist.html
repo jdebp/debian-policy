@@ -2,18 +2,6 @@
 <html>
   <head>
  <!--                             -*- Mode: Sgml -*-
-    upgrading-checklist.html
-    Author           : Manoj Srivastava ( srivasta@tiamat.datasync.com )
-    Created On       : Thu Oct 29 20:54:48 1998
-    Created On Node  : tiamat.datasync.com
-    Last Modified By : Manoj Srivastava
-    Last Modified On : Sat Jun 18 00:16:40 2005
-    Last Machine Used: glaurung.internal.golden-gryphon.com
-    Update Count     : 51
-    Status           : Unknown, Use with caution!
-    HISTORY          :
-    Description      :
-
     -->
 
 
@@ -53,7 +41,36 @@ picking your way through this list.
 <h2>The checklist</h2>
 
 <pre>
-3.7.4.0                        unreleased
+3.8.1.0                        unreleased
+
+     * Care should be taken when adding functionality to essential and
+       such additions create an obligation to support that functionality
+       in essential forever unless significant work is done.     [3.8]
+     * Changelog files must be encoded in UTF-8.                 [4.4]
+     * Tighten some format requirements for changelog files from a should
+       to a must.                                                [4.4]
+     * Remove alternative changelog formats.  Debian only supports one
+       changelog format for the Debian Archive.                  [4.4.1]
+     * New nocheck option for DEB_BUILD_OPTIONS indicating any build-time
+       test suite provided by the package should not be run.     [4.9.1]
+     * All control files must be encoded in UTF-8.               [5.1]
+     * debian/control allows comment lines starting with # with no
+       preceding whitespace.                                     [5.2]
+     * Init scripts ending in .sh are not handled specially.  They are not
+       sourced and are not guaranteed to be run by /bin/sh regardless of
+       the #! line.  This brings Policy in line with the long-standing
+       behavior of the init system in Debian.                    [9.3]
+     * The start action of an init script must exit successfully and not
+       start the daemon again if it's already running.           [9.3.2]
+     * /var/run and /var/lock may be mounted as temporary filesystems, and
+       init scripts must therefore create any necessary subdirectories
+       dynamically.                                              [9.3.2]
+     * /bin/sh scripts may assume that local can take multiple variable
+       arguments and supports assignment.                        [10.4]
+     * User mailboxes may be mode 600 and owned by the user rather than
+       mode 660, owned by user, and group mail.                  [11.6]
+
+3.8.0.0                        Jun 2008
 
      * The base section has been removed.  contrib and non-free have been
        removed from the section list; they are only categories.  The base
@@ -68,7 +85,7 @@ picking your way through this list.
      * Added parallel=n to the standardized DEB_BUILD_OPTIONS tags,
        indicating that a package should be built using up to n parallel
        processes if the package supports it                      [4.9.1]
-     * Debian packages should not use convience copies of code from other
+     * Debian packages should not use convenience copies of code from other
        packages unless the included package is explicitly intended to be
        used that way.                                            [4.13]
      * If dpkg-source -x doesn't produce source ready for editing and
@@ -79,14 +96,22 @@ picking your way through this list.
        new upstream release and any other complexity of the Debian build
        process.                                                  [4.14]
      * The Uploaders field in debian/control may be wrapped.     [5.6.3]
+     * An empty Debian revision is equivalent to a Debian revision of 0 in
+       a version number.                                         [5.6.12]
      * New Homepage field for upstream web sites.                [5.6.23]
      * The Breaks field declares that this package breaks another and
        prevents installation of the breaking package unless the package
        named in Breaks is deconfigured first.  This field should not be
        used until the dpkg in Debian stable supports it.         [6.5, 6.6, 7]
+     * Clarify which files should go into a shared library package, into a
+       separate package, or into the -dev package.  Suggest -tools instead
+       of -runtime for runtime support programs, since that naming is more
+       common in Debian.                                         [8.1, 8.2]
      * Files in /etc/cron.{hourly,daily,weekly,monthly} must be
        configuration files (upgraded from should).  Mention the hourly
        directory.                                                [9.5]
+     * Packages providing /etc/X11/Xresources files need not conflict with
+       xbase (<< 3.3.2.3a-2), which is long-obsolete.            [11.8.6]
      * Manual pages in locale-specific directories should use either the
        legacy encoding for that directory or UTF-8.  Country names should
        not be included in locale-specific manual page directories unless
@@ -99,6 +124,7 @@ picking your way through this list.
      * Packages in contrib and non-free should state in the copyright file
        that the package is not part of Debian GNU/Linux and briefly
        explain why.                                              [12.5]
+     * Underscore (_) is allowed in debconf template names.      [debconf]
 
 3.7.3.0                        Dec 2007
 

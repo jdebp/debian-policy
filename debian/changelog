@@ -1,4 +1,107 @@
-debian-policy (3.7.4.0) unstable; urgency=low
+debian-policy (3.8.1.0) unstable; urgency=low
+
+  * Policy: Clarify what "sensible behavior" is for init scripts
+    Wording: Steve Langasek <vorlon@debian.org>
+    Seconded: Raphaël Hertzog <hertzog@debian.org>
+    Seconded: Russ Allbery <rra@debian.org>
+    Closes: #426877
+  * Policy: Remove alternative changelog formats from main manual
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Ben Pfaff <blp@cs.stanford.edu>
+    Seconded: Guillem Jover <guillem@debian.org>
+    Closes: #489460
+  * Policy: Mandate UTF-8 for changelog files
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Guillem Jover <guillem@debian.org>
+    Seconded: Kurt Roeckx <kurt@roeckx.be>
+    Closes: #241333
+  * Policy: Mandate UTF-8 for control files
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Kurt Roeckx <kurt@roeckx.be>
+    Seconded: Raphaël Hertzog <hertzog@debian.org>
+    Closes: #143941
+  * Policy: New option in DEB_BUILD_OPTIONS to avoid running test-suites
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Guillem Jover <guillem@debian.org>
+    Seconded: Raphaël Hertzog <hertzog@debian.org>
+    Closes: #416450
+  * Policy: Expand expected capabilities for local in /bin/sh scripts
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Guillem Jover <guillem@debian.org>
+    Seconded: Raphaël Hertzog <hertzog@debian.org>
+    Closes: #473019
+  * Policy: Clarify Essential definition and caution when adding to it
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Jörg Sommer <joerg@alea.gnuu.de>
+    Seconded: Guillem Jover <guillem@debian.org>
+    Closes: #479080
+  * Policy: Allow user mail spools to be mode 0600 or 0660
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Kurt Roeckx <kurt@roeckx.be>
+    Seconded: Andrew McMillan <awm@debian.org>
+    Closes: #470994
+  * Policy: Remove special handling of init scripts ending in .sh
+    Wording: Kel Modderman <kel@otaku42.de>
+    Seconded: Russ Allbery <rra@debian.org>
+    Seconded: Henrique de Moraes Holschuh <hmh@debian.org>
+    Closes: #513955
+  * Policy: /var/run and /var/lock may be volatile
+    Wording: Colin Watson <cjwatson@debian.org>
+    Seconded: Russ Allbery <rra@debian.org>
+    Seconded: Bill Allombert <Bill.Allombert@math.u-bordeaux1.fr>
+    Closes: #514326
+  * Policy: debian/control allows comments starting with #
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Julien Cristau <jcristau@debian.org>
+    Seconded: Adeodato Simó <dato@net.com.org.es>
+    Seconded: Guillem Jover <guillem@debian.org>
+    Closes: #446712
+  * Improve the documentation of maintainer script actions for diversions
+    in the informative appendix to allow for addition of a new diversion
+    on upgrade and handle error cases correctly.  Thanks to Olivier Berger
+    for the report and Raphaël Hertzog for the review.  (Closes: #483418)
+  * Clarify the meaning of architecture restrictions on build dependencies
+    in the presence of alternatives.  Thanks to Guillem Jover for the
+    explanation and review and Emilio Pozuelo Monfort and Don Armstrong
+    for wording review.  (Closes: #163666)
+  * Change the term "category" to "archive area" when referring to main,
+    contrib, and non-free.  This is closer to the wording of the Social
+    Contract.  (Closes: #473439)
+  * Use <user>:<group> notation rather than <user>.<group> notation in
+    multiple places.  Thanks, Kurt Roeckx.  (Closes: #488039)
+  * Fix typo in 3.8.0.0 upgrading-checklist entry.  Patch from Kobayashi
+    Noritada.  (Closes: #487701)
+  * Mention debugging packages as an explicit example of packages with
+    extra priority.  Thanks, Charles Plessy.  (Closes: #491985)
+  * Clarify that translation is only required for user-visible debconf
+    messages.  Capitalize "Debian Configuration Management Specification"
+    uniformly.  Thanks, Julian Andres Klode.  (Closes: #492624)
+  * Add --wildcards to the sample tar command in appendix B.1 for
+    extracting the package copyright file, adjusting for new tar option
+    behavior.  Thanks, Yan Morin.  (Closes: #503685)
+  * Reword the requirement that maintainer scripts exit with a zero
+    status on success to avoid double-negatives.
+  * Include the full name of each menu category rather than only the
+    portion relative to the parent heading to be clearer in long category
+    lists.  Thanks, Christoph Berg.  (Closes: #511804)
+  * Build-Depend on texlive rather than tetex-extra.  texlive appears to
+    be sufficient for how Policy uses debiandoc-sgml and pulls in far
+    fewer packages.
+  * Remove the postinst and prerm scripts.  doc-base registration is now
+    handled by triggers and no longer required and removal of /usr/doc
+    links was completed long ago.
+  * Reference GPL-2 rather than the GPL symlink in debian/copyright.
+
+ -- Russ Allbery <rra@debian.org>  Wed, 11 Mar 2009 20:50:52 -0700
+
+debian-policy (3.8.0.1) unstable; urgency=low
+
+  * Don't attempt to register the non-existent debian-policy-process
+    document.  Thanks, Adrian von Bidder.  (Closes: #484706)
+
+ -- Russ Allbery <rra@debian.org>  Thu, 05 Jun 2008 13:13:01 -0700
+
+debian-policy (3.8.0.0) unstable; urgency=low
 
   * Bug fix: "[PROPOSAL] "debian/README.source" file for packages with
     non-trivial source", thanks to Wouter Verhelst, Jörg Sommer, Colin Watson,
@@ -30,18 +133,45 @@ debian-policy (3.7.4.0) unstable; urgency=low
                                                              (Closes: #65577).
   * Bug fix: "scripts as configuration files: should vs. must", thanks to Frank
     Küster                                                   (Closes: #403391).
+  * Bug fix: "debconf specification should allow underscores in template
+    names", thanks to Colin Watson                           (Closes: #473761).
+  * Bug fix: "clarify handling of run-time and compile-time support programs",
+    thanks to Goswin Brederlow and Raphael Hertzog           (Closes: #367984).
+  * Policy: better document version ranking and empty Debian revisions
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Raphaël Hertzog <hertzog@debian.org>
+    Seconded: Manoj Srivastava <srivasta@debian.org>
+    Seconded: Guillem Jover <guillem@debian.org>
+    Closes: #186700, #458910
+  * Policy: remove obsolete app-defaults and Xresources provisions
+    Wording: Julien Cristau <jcristau@debian.org>
+    Seconded: Russ Allbery <rra@debian.org>
+    Closes: #480551
   * Bug fix: "Examples of dpkg frontends should mention apt now", thanks
     to Josh Triplett                                         (Closes: #455602).
   * Bug fix: "Minor typos and wording suggestions", thanks to Michael
     Tautschnig                                               (Closes: #422552).
+  * Bug fix: "substvar reference moved from dpkg-source(1) to
+    deb-substvars(5)", thanks to Ian Beckwith                (Closes: #475731).
+  * Policy: bugs fixed in NMUs are now closed rather than marked fixed
+    Wording: Russ Allbery <rra@debian.org> (thanks, Sandro Tosi)
+    Closes: #481640
+  * Policy: C.1.4, C.1.8: minor typos
+    Wording: Sandro Tosi <matrixhasu@gmail.com>
+    Closes: #481954
+  * Remove the now-obsolete policy-process document.
   * Add an md5sums control file.
+  * Add Vcs-Browser and Vcs-Git control fields.
   * Remove build system support for FHS 2.1 and FSSTND, mostly commented out.
+  * Remove more temporary files created by the build.
   * Remove the FSSTND license from debian/copyright; no FSSTND files are
     currently part of policy.
   * Update FHS copyright dates in debian/copyright.
   * Standardize the spacing around headings in upgrading-checklist.html.
+  * Remove old ChangeLog files and metadata headers in maintainer scripts
+    and debian/rules.
 
- --
+ -- Russ Allbery <rra@debian.org>  Wed, 04 Jun 2008 15:53:27 -0700
 
 debian-policy (3.7.3.0) unstable; urgency=low
 
