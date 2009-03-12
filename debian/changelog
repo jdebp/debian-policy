@@ -87,6 +87,9 @@ debian-policy (3.8.1.0) UNRELEASED; urgency=low
   * Build-Depend on texlive rather than tetex-extra.  texlive appears to
     be sufficient for how Policy uses debiandoc-sgml and pulls in far
     fewer packages.
+  * Remove the postinst and prerm scripts.  doc-base registration is now
+    handled by triggers and no longer required and removal of /usr/doc
+    links was completed long ago.
 
  -- Russ Allbery <rra@debian.org>  Mon, 23 Jun 2008 19:23:50 -0700
 
