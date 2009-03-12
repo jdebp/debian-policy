@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Debian Policy List <debian-policy@lists.debian.org>
 Uploaders: Manoj Srivastava <srivasta@debian.org>, Russ Allbery <rra@debian.org>
 Standards-Version: 3.8.0
-Build-Depends-Indep: sgml-data (>= 2.0), debiandoc-sgml (>= 1.1.47), tetex-extra, groff, bsdmainutils, pstoedit, jade, docbook-xml (>= 3.1.1), docbook-dsssl, tidy, links (>= 0.90) | elinks
+Build-Depends-Indep: sgml-data (>= 2.0), debiandoc-sgml (>= 1.1.47), texlive, groff, bsdmainutils, pstoedit, jade, docbook-xml (>= 3.1.1), docbook-dsssl, tidy, links (>= 0.90) | elinks
 Vcs-Browser: http://git.debian.org/?p=dbnpolicy/policy.git
 Vcs-Git: git://git.debian.org/git/dbnpolicy/policy.git
 

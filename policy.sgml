@@ -318,8 +318,12 @@
 	system, but not every package we want to make accessible is
 	<em>free</em> in our sense (see the Debian Free Software
 	Guidelines, below), or may be imported/exported without
-	restrictions. Thus, the archive is split into the distribution
-	areas or categories based on their licenses and other restrictions.
+	restrictions. Thus, the archive is split into areas<footnote>
+	  The Debian archive software uses the term "component" internally
+	  and in the Release file format to refer to the division of an
+	  archive.  The Debian Social Contract simply refers to "areas."
+	  This document uses terminology similar to the Social Contract.
+	</footnote> based on their licenses and other restrictions.
       </p>
 
       <p>
@@ -336,12 +340,12 @@
       </p>
 
       <p>
-	The <em>main</em> category  forms the
-	<em>Debian GNU/Linux distribution</em>.
+	The <em>main</em> archive area forms the <em>Debian GNU/Linux
+	distribution</em>.
       </p>
 
       <p>
-	Packages in the other distribution areas (<tt>contrib</tt>,
+	Packages in the other archive areas (<tt>contrib</tt>,
 	<tt>non-free</tt>) are not considered to be part of the Debian
 	distribution, although we support their use and provide
 	infrastructure for them (such as our bug-tracking system and
@@ -448,10 +452,10 @@
       </sect>
 
       <sect id="sections">
-	<heading>Categories</heading>
+	<heading>Archive areas</heading>
 
 	<sect1 id="main">
-	  <heading>The main category</heading>
+	  <heading>The main archive area</heading>
 
 	  <p>
 	    Every package in <em>main</em> must comply with the DFSG
@@ -482,7 +486,7 @@
 	</sect1>
 
 	<sect1 id="contrib">
-	  <heading>The contrib category</heading>
+	  <heading>The contrib archive area</heading>
 
 	  <p>
 	    Every package in <em>contrib</em> must comply with the DFSG.
@@ -522,7 +526,7 @@
 	</sect1>
 
 	<sect1 id="non-free">
-	  <heading>The non-free category</heading>
+	  <heading>The non-free archive area</heading>
 
 	  <p>
 	    Packages must be placed in <em>non-free</em> if they are
@@ -638,27 +642,27 @@
 	<heading>Sections</heading>
 
 	<p>
-	  The packages in the categories <em>main</em>,
-	  <em>contrib</em> and <em>non-free</em> are grouped further
-	  into <em>sections</em> to simplify handling.
+	  The packages in the archive areas <em>main</em>,
+	  <em>contrib</em> and <em>non-free</em> are grouped further into
+	  <em>sections</em> to simplify handling.
 	</p>
 
 	<p>
-	  The category and section for each package should be
-	  specified in the package's <tt>Section</tt> control record
-	  (see <ref id="f-Section">).  However, the maintainer of the
-	  Debian archive may override this selection to ensure the
-	  consistency of the Debian distribution.  The
-	  <tt>Section</tt> field should be of the form:
+	  The archive area and section for each package should be
+	  specified in the package's <tt>Section</tt> control record (see
+	  <ref id="f-Section">).  However, the maintainer of the Debian
+	  archive may override this selection to ensure the consistency of
+	  the Debian distribution.  The <tt>Section</tt> field should be
+	  of the form:
 	  <list compact="compact">
 	    <item>
 		  <em>section</em> if the package is in the
-		  <em>main</em> category,
+		  <em>main</em> archive area,
 	    </item>
 	    <item>
-		  <em>segment/section</em> if the package is in
+		  <em>area/section</em> if the package is in
 		  the <em>contrib</em> or <em>non-free</em>
-		  distribution areas.
+		  archive areas.
 	    </item>
 	  </list>
 	</p>
@@ -2444,6 +2448,15 @@ Package: libc6
 	  <prgn>dpkg-genchanges</prgn> or <prgn>dpkg-source</prgn>
 	  when they generate output control files.
 	  See <ref id="substvars"> for details.
+	</p>
+
+	<p>
+	  In addition to the control file syntax described <qref
+	  id="controlsyntax">above</qref>, this file may also contain
+	  comment lines starting with <tt>#</tt> without any preceding
+	  whitespace.  All such lines are ignored, even in the middle of
+	  continuation lines for a multiline field, and do not end a
+	  multiline field.
 	</p>
 
       </sect>
@@ -6051,6 +6064,18 @@ test -f <var>program-executed-later-in-script</var> || exit 0
 	    script must behave sensibly and not fail if the
 	    <file>/etc/default</file> file is deleted.
 	  </p>
+
+	  <p>
+	    <file>/var/run</file> and <file>/var/lock</file> may be mounted
+	    as temporary filesystems<footnote>
+		For example, using the <tt>RAMRUN</tt> and <tt>RAMLOCK</tt>
+		options in <file>/etc/default/rcS</file>.
+	    </footnote>, so the <file>init.d</file> scripts must handle this
+	    correctly. This will typically amount to creating any required
+	    subdirectories dynamically when the <file>init.d</file> script
+	    is run, rather than including them in the package and relying on
+	    <prgn>dpkg</prgn> to create them.
+	  </p>
 	</sect1>
 
 	<sect1>
@@ -8992,9 +9017,10 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	</p>
 
 	<p>
-	  Packages in the <em>contrib</em> or <em>non-free</em> categories
-	  should state in the copyright file that the package is not part
-	  of the Debian GNU/Linux distribution and briefly explain why.
+	  Packages in the <em>contrib</em> or <em>non-free</em> archive
+	  areas should state in the copyright file that the package is not
+	  part of the Debian GNU/Linux distribution and briefly explain
+	  why.
 	</p>
 
 	<p>

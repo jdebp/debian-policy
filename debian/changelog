@@ -1,4 +1,4 @@
-debian-policy (3.8.1.0) UNRELEASED; urgency=low
+debian-policy (3.8.1.0) unstable; urgency=low
 
   * Policy: Clarify what "sensible behavior" is for init scripts
     Wording: Steve Langasek <vorlon@debian.org>
@@ -45,6 +45,17 @@ debian-policy (3.8.1.0) UNRELEASED; urgency=low
     Seconded: Russ Allbery <rra@debian.org>
     Seconded: Henrique de Moraes Holschuh <hmh@debian.org>
     Closes: #513955
+  * Policy: /var/run and /var/lock may be volatile
+    Wording: Colin Watson <cjwatson@debian.org>
+    Seconded: Russ Allbery <rra@debian.org>
+    Seconded: Bill Allombert <Bill.Allombert@math.u-bordeaux1.fr>
+    Closes: #514326
+  * Policy: debian/control allows comments starting with #
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Julien Cristau <jcristau@debian.org>
+    Seconded: Adeodato Simó <dato@net.com.org.es>
+    Seconded: Guillem Jover <guillem@debian.org>
+    Closes: #446712
   * Improve the documentation of maintainer script actions for diversions
     in the informative appendix to allow for addition of a new diversion
     on upgrade and handle error cases correctly.  Thanks to Olivier Berger
@@ -53,6 +64,9 @@ debian-policy (3.8.1.0) UNRELEASED; urgency=low
     in the presence of alternatives.  Thanks to Guillem Jover for the
     explanation and review and Emilio Pozuelo Monfort and Don Armstrong
     for wording review.  (Closes: #163666)
+  * Change the term "category" to "archive area" when referring to main,
+    contrib, and non-free.  This is closer to the wording of the Social
+    Contract.  (Closes: #473439)
   * Use <user>:<group> notation rather than <user>.<group> notation in
     multiple places.  Thanks, Kurt Roeckx.  (Closes: #488039)
   * Fix typo in 3.8.0.0 upgrading-checklist entry.  Patch from Kobayashi
@@ -70,8 +84,15 @@ debian-policy (3.8.1.0) UNRELEASED; urgency=low
   * Include the full name of each menu category rather than only the
     portion relative to the parent heading to be clearer in long category
     lists.  Thanks, Christoph Berg.  (Closes: #511804)
+  * Build-Depend on texlive rather than tetex-extra.  texlive appears to
+    be sufficient for how Policy uses debiandoc-sgml and pulls in far
+    fewer packages.
+  * Remove the postinst and prerm scripts.  doc-base registration is now
+    handled by triggers and no longer required and removal of /usr/doc
+    links was completed long ago.
+  * Reference GPL-2 rather than the GPL symlink in debian/copyright.
 
- -- Russ Allbery <rra@debian.org>  Mon, 23 Jun 2008 19:23:50 -0700
+ -- Russ Allbery <rra@debian.org>  Wed, 11 Mar 2009 20:50:52 -0700
 
 debian-policy (3.8.0.1) unstable; urgency=low
 
