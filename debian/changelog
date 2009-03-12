@@ -84,6 +84,9 @@ debian-policy (3.8.1.0) UNRELEASED; urgency=low
   * Include the full name of each menu category rather than only the
     portion relative to the parent heading to be clearer in long category
     lists.  Thanks, Christoph Berg.  (Closes: #511804)
+  * Build-Depend on texlive rather than tetex-extra.  texlive appears to
+    be sufficient for how Policy uses debiandoc-sgml and pulls in far
+    fewer packages.
 
  -- Russ Allbery <rra@debian.org>  Mon, 23 Jun 2008 19:23:50 -0700
 
