@@ -143,10 +143,6 @@ stamp-policy:  build $(sanitycheck)
 	@set -ex; \
 	cd debian/tmp; \
 	find . -type f -printf '%P\0' | xargs -r0 md5sum > DEBIAN/md5sums
-	sed -e 's/#PACKAGE#/$(package)/g' debian/postinst.in > debian/postinst
-	sed -e 's/#PACKAGE#/$(package)/g' debian/prerm.in > debian/prerm
-	$(install_program)  debian/postinst          debian/tmp/DEBIAN/
-	$(install_program)  debian/prerm             debian/tmp/DEBIAN/
 	dpkg-gencontrol	    -p$(package) -Pdebian/tmp -isp
 	chown		    -R root:root debian/tmp
 	chmod		    -R go=rX debian/tmp

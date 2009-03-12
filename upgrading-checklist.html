@@ -54,12 +54,17 @@ picking your way through this list.
      * New nocheck option for DEB_BUILD_OPTIONS indicating any build-time
        test suite provided by the package should not be run.     [4.9.1]
      * All control files must be encoded in UTF-8.               [5.1]
+     * debian/control allows comment lines starting with # with no
+       preceding whitespace.                                     [5.2]
      * Init scripts ending in .sh are not handled specially.  They are not
        sourced and are not guaranteed to be run by /bin/sh regardless of
        the #! line.  This brings Policy in line with the long-standing
        behavior of the init system in Debian.                    [9.3]
      * The start action of an init script must exit successfully and not
        start the daemon again if it's already running.           [9.3.2]
+     * /var/run and /var/lock may be mounted as temporary filesystems, and
+       init scripts must therefore create any necessary subdirectories
+       dynamically.                                              [9.3.2]
      * /bin/sh scripts may assume that local can take multiple variable
        arguments and supports assignment.                        [10.4]
      * User mailboxes may be mode 600 and owned by the user rather than
