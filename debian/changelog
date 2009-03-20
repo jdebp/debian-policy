@@ -10,6 +10,13 @@ debian-policy (3.8.2.0) UNRELEASED; urgency=low
 
 debian-policy (3.8.1.0) unstable; urgency=low
 
+  * Policy: Mandate debconf or equivalent for user prompting
+    Wording: Andrew McMillan <awm@debian.org>
+    Seconded: Russ Allbery <rra@debian.org>
+    Seconded: Holger Levsen <holger@layer-acht.org>
+    Seconded: Bill Allombert <Bill.Allombert@math.u-bordeaux1.fr>
+    Seconded: Julien Cristau <jcristau@debian.org>
+    Closes: #206684
   * Policy: Clarify what "sensible behavior" is for init scripts
     Wording: Steve Langasek <vorlon@debian.org>
     Seconded: Raphaël Hertzog <hertzog@debian.org>
