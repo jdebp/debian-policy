@@ -1,3 +1,10 @@
+debian-policy (3.8.1.1) UNRELEASED; urgency=low
+
+  * Set the release date of the 3.8.1 upgrading-checklist entry.
+    (Closes: #519706)
+
+ -- Russ Allbery <rra@debian.org>  Fri, 20 Mar 2009 14:45:46 -0700
+
 debian-policy (3.8.1.0) unstable; urgency=low
 
   * Policy: Clarify what "sensible behavior" is for init scripts
