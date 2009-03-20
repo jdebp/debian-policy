@@ -2,6 +2,7 @@ debian-policy (3.8.2.0) UNRELEASED; urgency=low
 
   * Housekeeping (resynchronizing lists maintained elsewhere):
     - Add GFDL 1.3 to the common-licenses list.
+    - Update the list of archive sections.  (Closes: #519835)
   * Set the release date of the 3.8.1 upgrading-checklist entry.
     (Closes: #519706)
 

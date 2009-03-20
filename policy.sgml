@@ -670,18 +670,20 @@
 	<p>
 	  The Debian archive maintainers provide the authoritative
 	  list of sections.  At present, they are:
-	  <em>admin</em>, <em>comm</em>,
-	  <em>devel</em>, <em>doc</em>,
-	  <em>editors</em>, <em>electronics</em>, <em>embedded</em>,
-	  <em>games</em>, <em>gnome</em>, <em>graphics</em>,
-	  <em>hamradio</em>, <em>interpreters</em>, <em>kde</em>,
-	  <em>libs</em>, <em>libdevel</em>, <em>mail</em>,
-	  <em>math</em>, <em>misc</em>, <em>net</em>, <em>news</em>,
-	  <em>oldlibs</em>,
-	  <em>otherosfs</em>, <em>perl</em>, <em>python</em>,
-	  <em>science</em>, <em>shells</em>,
-	  <em>sound</em>, <em>tex</em>, <em>text</em>,
-	  <em>utils</em>, <em>web</em>, <em>x11</em>.
+	  <em>admin</em>, <em>cli-mono</em>, <em>comm</em>, <em>database</em>,
+	  <em>devel</em>, <em>debug</em>, <em>doc</em>, <em>editors</em>,
+	  <em>electronics</em>, <em>embedded</em>, <em>fonts</em>,
+	  <em>games</em>, <em>gnome</em>, <em>graphics</em>, <em>gnu-r</em>,
+	  <em>gnustep</em>, <em>hamradio</em>, <em>haskell</em>,
+	  <em>httpd</em>, <em>interpreters</em>, <em>java</em>, <em>kde</em>,
+	  <em>kernel</em>, <em>libs</em>, <em>libdevel</em>, <em>lisp</em>,
+	  <em>localization</em>, <em>mail</em>, <em>math</em>, <em>misc</em>,
+	  <em>net</em>, <em>news</em>, <em>ocaml</em>, <em>oldlibs</em>,
+	  <em>otherosfs</em>, <em>perl</em>, <em>php</em>, <em>python</em>,
+	  <em>ruby</em>, <em>science</em>, <em>shells</em>, <em>sound</em>,
+	  <em>tex</em>, <em>text</em>, <em>utils</em>, <em>vcs</em>,
+	  <em>video</em>, <em>web</em>, <em>x11</em>, <em>xfce</em>,
+	  <em>zope</em>.
 	</p>
       </sect>
 
