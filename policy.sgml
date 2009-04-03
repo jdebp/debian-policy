@@ -5697,12 +5697,6 @@ rmdir /usr/local/share/emacs 2>/dev/null || true
 	    by any particular mail agents.  The use of the old
 	    location <file>/var/spool/mail</file> is deprecated, even
 	    though the spool may still be physically located there.
-	    To maintain partial upgrade compatibility for systems
-	    which have <file>/var/spool/mail</file> as their physical mail
-	    spool, packages using <file>/var/mail</file> must depend on
-	    either <package>libc6</package> (&gt;= 2.1.3-13), or on
-	    <package>base-files</package> (&gt;= 2.2.0), or on later
-	    versions of either one of these packages.
 	  </p>
 	</sect1>
       </sect>
