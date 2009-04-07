@@ -8414,11 +8414,6 @@ name ["<var>syshostname</var>"]:
 	      </item>
 
 	      <item>
-		  Speedo fonts must be placed in
-		  <file>/usr/share/fonts/X11/Speedo/</file>.
-	      </item>
-
-	      <item>
 		  Type 1 fonts must be placed in
 		  <file>/usr/share/fonts/X11/Type1/</file>.  If font
 		  metric files are available, they must be placed here
@@ -8429,9 +8424,9 @@ name ["<var>syshostname</var>"]:
 		  Subdirectories of <file>/usr/share/fonts/X11/</file>
 		  other than those listed above must be neither
 		  created nor used.  (The <file>PEX</file>, <file>CID</file>,
-		  and <file>cyrillic</file> directories are excepted for
-		  historical reasons, but installation of files into
-		  these directories remains discouraged.)
+		  <file>Speedo</file>, and <file>cyrillic</file> directories
+		  are excepted for historical reasons, but installation of
+		  files into these directories remains discouraged.)
 	      </item>
 
 	      <item>
