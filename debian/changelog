@@ -1,5 +1,6 @@
 debian-policy (3.8.2.0) UNRELEASED; urgency=low
 
+  [ Russ Allbery ]
   * Policy: Mandate debconf or equivalent for user prompting
     Wording: Andrew McMillan <awm@debian.org>
     Seconded: Russ Allbery <rra@debian.org>
@@ -27,6 +28,11 @@ debian-policy (3.8.2.0) UNRELEASED; urgency=low
     - Update the list of archive sections.  (Closes: #519835)
   * Set the release date of the 3.8.1 upgrading-checklist entry.
     (Closes: #519706)
+
+  [ Colin Watson ]
+  * The FHS is the "Filesystem Hierarchy Standard", regardless of our
+    preferred spelling of "file system" elsewhere. Fix this and a nearby
+    search-and-replace capitalisation bug.
 
  -- Russ Allbery <rra@debian.org>  Fri, 20 Mar 2009 14:45:46 -0700
 
