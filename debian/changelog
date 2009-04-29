@@ -23,11 +23,6 @@ debian-policy (3.8.2.0) UNRELEASED; urgency=low
     Seconded: Russ Allbery <rra@debian.org>
     Seconded: Julien Danjou <acid@debian.org>
     Closes: #522218
-  * Policy: State requirements for source package names
-    Wording: Colin Watson <cjwatson@debian.org>
-    Seconded: Russ Allbery <rra@debian.org>
-    Seconded: Julien Cristau <jcristau@debian.org>
-    Closes: #525151
   * Housekeeping (resynchronizing lists maintained elsewhere):
     - Add GFDL 1.3 to the common-licenses list.
     - Update the list of archive sections.  (Closes: #519835)
@@ -40,6 +35,11 @@ debian-policy (3.8.2.0) UNRELEASED; urgency=low
     search-and-replace capitalisation bug.
   * Build-depend on texlive-latex-extra, which is needed by
     debiandoc2latexps and isn't included in texlive's dependencies.
+  * Policy: State requirements for source package names
+    Wording: Colin Watson <cjwatson@debian.org>
+    Seconded: Russ Allbery <rra@debian.org>
+    Seconded: Julien Cristau <jcristau@debian.org>
+    Closes: #525151
 
  -- Russ Allbery <rra@debian.org>  Fri, 20 Mar 2009 14:45:46 -0700
 
