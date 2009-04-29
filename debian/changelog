@@ -23,6 +23,11 @@ debian-policy (3.8.2.0) UNRELEASED; urgency=low
     Seconded: Russ Allbery <rra@debian.org>
     Seconded: Julien Danjou <acid@debian.org>
     Closes: #522218
+  * Policy: State requirements for source package names
+    Wording: Colin Watson <cjwatson@debian.org>
+    Seconded: Russ Allbery <rra@debian.org>
+    Seconded: Julien Cristau <jcristau@debian.org>
+    Closes: #525151
   * Housekeeping (resynchronizing lists maintained elsewhere):
     - Add GFDL 1.3 to the common-licenses list.
     - Update the list of archive sections.  (Closes: #519835)

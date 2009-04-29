@@ -2588,6 +2588,14 @@ Package: libc6
 	    package control file when the source package has the same
 	    name and version as the binary package.
 	  </p>
+
+	  <p>
+	    Package names must consist only of lower case letters
+	    (<tt>a-z</tt>), digits (<tt>0-9</tt>), plus (<tt>+</tt>)
+	    and minus (<tt>-</tt>) signs, and periods (<tt>.</tt>).
+	    They must be at least two characters long and must start
+	    with an alphanumeric character.
+	  </p>
 	</sect1>
 
 	<sect1 id="f-Maintainer">
