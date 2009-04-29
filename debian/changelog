@@ -33,6 +33,8 @@ debian-policy (3.8.2.0) UNRELEASED; urgency=low
   * The FHS is the "Filesystem Hierarchy Standard", regardless of our
     preferred spelling of "file system" elsewhere. Fix this and a nearby
     search-and-replace capitalisation bug.
+  * Build-depend on texlive-latex-extra, which is needed by
+    debiandoc2latexps and isn't included in texlive's dependencies.
 
  -- Russ Allbery <rra@debian.org>  Fri, 20 Mar 2009 14:45:46 -0700
 
