@@ -40,6 +40,7 @@ debian-policy (3.8.2.0) UNRELEASED; urgency=low
     Seconded: Russ Allbery <rra@debian.org>
     Seconded: Julien Cristau <jcristau@debian.org>
     Closes: #525151
+  * Add myself to Uploaders.
 
  -- Russ Allbery <rra@debian.org>  Fri, 20 Mar 2009 14:45:46 -0700
 
