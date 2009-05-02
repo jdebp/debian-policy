@@ -670,18 +670,20 @@
 	<p>
 	  The Debian archive maintainers provide the authoritative
 	  list of sections.  At present, they are:
-	  <em>admin</em>, <em>comm</em>,
-	  <em>devel</em>, <em>doc</em>,
-	  <em>editors</em>, <em>electronics</em>, <em>embedded</em>,
-	  <em>games</em>, <em>gnome</em>, <em>graphics</em>,
-	  <em>hamradio</em>, <em>interpreters</em>, <em>kde</em>,
-	  <em>libs</em>, <em>libdevel</em>, <em>mail</em>,
-	  <em>math</em>, <em>misc</em>, <em>net</em>, <em>news</em>,
-	  <em>oldlibs</em>,
-	  <em>otherosfs</em>, <em>perl</em>, <em>python</em>,
-	  <em>science</em>, <em>shells</em>,
-	  <em>sound</em>, <em>tex</em>, <em>text</em>,
-	  <em>utils</em>, <em>web</em>, <em>x11</em>.
+	  <em>admin</em>, <em>cli-mono</em>, <em>comm</em>, <em>database</em>,
+	  <em>devel</em>, <em>debug</em>, <em>doc</em>, <em>editors</em>,
+	  <em>electronics</em>, <em>embedded</em>, <em>fonts</em>,
+	  <em>games</em>, <em>gnome</em>, <em>graphics</em>, <em>gnu-r</em>,
+	  <em>gnustep</em>, <em>hamradio</em>, <em>haskell</em>,
+	  <em>httpd</em>, <em>interpreters</em>, <em>java</em>, <em>kde</em>,
+	  <em>kernel</em>, <em>libs</em>, <em>libdevel</em>, <em>lisp</em>,
+	  <em>localization</em>, <em>mail</em>, <em>math</em>, <em>misc</em>,
+	  <em>net</em>, <em>news</em>, <em>ocaml</em>, <em>oldlibs</em>,
+	  <em>otherosfs</em>, <em>perl</em>, <em>php</em>, <em>python</em>,
+	  <em>ruby</em>, <em>science</em>, <em>shells</em>, <em>sound</em>,
+	  <em>tex</em>, <em>text</em>, <em>utils</em>, <em>vcs</em>,
+	  <em>video</em>, <em>web</em>, <em>x11</em>, <em>xfce</em>,
+	  <em>zope</em>.
 	</p>
       </sect>
 
@@ -1218,17 +1220,16 @@
 	  <heading>Prompting in maintainer scripts</heading>
 	  <p>
 	    Package maintainer scripts may prompt the user if
-	    necessary. Prompting should be done by communicating
+	    necessary. Prompting must be done by communicating
 	    through a program, such as <prgn>debconf</prgn>, which
 	    conforms to the Debian Configuration Management
-	    Specification, version 2 or higher.  Prompting the user by
-	    other means, such as by hand<footnote>
-                From the Jargon file: by hand 2. By extension,
-                writing code which does something in an explicit or
-                low-level way for which a presupplied library
-                (<em>debconf, in this instance</em>) routine ought
-                to have been available.
-            </footnote>, is now deprecated.
+	    Specification, version 2 or higher.
+	  </p>
+
+	  <p>
+	    Packages which are essential, or which are dependencies of
+	    essential packages, may fall back on another prompting method
+	    if no such interface is available when they are executed.
 	  </p>
 
 	  <p>
@@ -2586,6 +2587,14 @@ Package: libc6
 	    question.  The field itself may be omitted from a binary
 	    package control file when the source package has the same
 	    name and version as the binary package.
+	  </p>
+
+	  <p>
+	    Package names must consist only of lower case letters
+	    (<tt>a-z</tt>), digits (<tt>0-9</tt>), plus (<tt>+</tt>)
+	    and minus (<tt>-</tt>) signs, and periods (<tt>.</tt>).
+	    They must be at least two characters long and must start
+	    with an alphanumeric character.
 	  </p>
 	</sect1>
 
@@ -5525,23 +5534,16 @@ libbar 1 bar1 (>= 1.0-1)
 
 
 	<sect1 id="fhs">
-	  <heading>File system Structure</heading>
+	  <heading>File System Structure</heading>
 
 	  <p>
 	    The location of all installed files and directories must
-	    comply with the File system Hierarchy Standard (FHS),
+	    comply with the Filesystem Hierarchy Standard (FHS),
 	    version 2.3, with the exceptions noted below, and except
 	    where doing so would violate other terms of Debian
 	    Policy.  The following exceptions to the FHS apply:
 
             <enumlist>
-              <item>
-                <p>
-                  Legacy XFree86 servers are permitted to retain the
-                  configuration file location 
-                  <file>/etc/X11/XF86Config-4</file>.
-                </p>
-              </item>
               <item>
                 <p>
                   The optional rules related to user specific
@@ -5703,12 +5705,6 @@ rmdir /usr/local/share/emacs 2>/dev/null || true
 	    by any particular mail agents.  The use of the old
 	    location <file>/var/spool/mail</file> is deprecated, even
 	    though the spool may still be physically located there.
-	    To maintain partial upgrade compatibility for systems
-	    which have <file>/var/spool/mail</file> as their physical mail
-	    spool, packages using <file>/var/mail</file> must depend on
-	    either <package>libc6</package> (&gt;= 2.1.3-13), or on
-	    <package>base-files</package> (&gt;= 2.2.0), or on later
-	    versions of either one of these packages.
 	  </p>
 	</sect1>
       </sect>
@@ -8426,11 +8422,6 @@ name ["<var>syshostname</var>"]:
 	      </item>
 
 	      <item>
-		  Speedo fonts must be placed in
-		  <file>/usr/share/fonts/X11/Speedo/</file>.
-	      </item>
-
-	      <item>
 		  Type 1 fonts must be placed in
 		  <file>/usr/share/fonts/X11/Type1/</file>.  If font
 		  metric files are available, they must be placed here
@@ -8441,9 +8432,9 @@ name ["<var>syshostname</var>"]:
 		  Subdirectories of <file>/usr/share/fonts/X11/</file>
 		  other than those listed above must be neither
 		  created nor used.  (The <file>PEX</file>, <file>CID</file>,
-		  and <file>cyrillic</file> directories are excepted for
-		  historical reasons, but installation of files into
-		  these directories remains discouraged.)
+		  <file>Speedo</file>, and <file>cyrillic</file> directories
+		  are excepted for historical reasons, but installation of
+		  files into these directories remains discouraged.)
 	      </item>
 
 	      <item>
@@ -9048,8 +9039,8 @@ install-info --quiet --remove /usr/share/info/foobar.info
 	<p>
 	  Packages distributed under the UCB BSD license, the Apache
 	  license (version 2.0), the Artistic license, the GNU GPL
-	  (version 2 or 3), the GNU LGPL (versions 2, 2.1, or 3), and
-	  the GNU FDL (version 1.2) should refer to the corresponding
+	  (version 2 or 3), the GNU LGPL (versions 2, 2.1, or 3), and the
+	  GNU FDL (versions 1.2 or 1.3) should refer to the corresponding
 	  files under <file>/usr/share/common-licenses</file>,<footnote>
 	    <p>
 	      In particular,
@@ -9060,8 +9051,9 @@ install-info --quiet --remove /usr/share/info/foobar.info
               <file>/usr/share/common-licenses/GPL-3</file>,
               <file>/usr/share/common-licenses/LGPL-2</file>,
               <file>/usr/share/common-licenses/LGPL-2.1</file>,
-              <file>/usr/share/common-licenses/LGPL-3</file>, and
-              <file>/usr/share/common-licenses/GFDL-1.2</file>
+              <file>/usr/share/common-licenses/LGPL-3</file>,
+              <file>/usr/share/common-licenses/GFDL-1.2</file>, and
+              <file>/usr/share/common-licenses/GFDL-1.3</file>
               respectively.
             </p>
           </footnote> rather than quoting them in the copyright

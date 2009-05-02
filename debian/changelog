@@ -1,3 +1,49 @@
+debian-policy (3.8.2.0) UNRELEASED; urgency=low
+
+  [ Russ Allbery ]
+  * Policy: Mandate debconf or equivalent for user prompting
+    Wording: Andrew McMillan <awm@debian.org>
+    Seconded: Russ Allbery <rra@debian.org>
+    Seconded: Holger Levsen <holger@layer-acht.org>
+    Seconded: Bill Allombert <Bill.Allombert@math.u-bordeaux1.fr>
+    Seconded: Julien Cristau <jcristau@debian.org>
+    Closes: #206684
+  * Policy: Remove /etc/X11/XF86Config-4 FHS exception
+    Wording: Julien Cristau <jcristau@debian.org>
+    Seconded: Russ Allbery <rra@debian.org>
+    Seconded: Bill Allombert <Bill.Allombert@math.u-bordeaux1.fr>
+    Closes: #522219
+  * Policy: Remove obsolete /var/mail transition requirement
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Julien Cristau <jcristau@debian.org>
+    Seconded: Andrew McMillan <andrew@morphoss.com>
+    Closes: #522364
+  * Policy: Move Speedo fonts into the deprecated category
+    Wording: Julien Cristau <jcristau@debian.org>
+    Seconded: Russ Allbery <rra@debian.org>
+    Seconded: Julien Danjou <acid@debian.org>
+    Closes: #522218
+  * Housekeeping (resynchronizing lists maintained elsewhere):
+    - Add GFDL 1.3 to the common-licenses list.
+    - Update the list of archive sections.  (Closes: #519835)
+  * Set the release date of the 3.8.1 upgrading-checklist entry.
+    (Closes: #519706)
+
+  [ Colin Watson ]
+  * The FHS is the "Filesystem Hierarchy Standard", regardless of our
+    preferred spelling of "file system" elsewhere. Fix this and a nearby
+    search-and-replace capitalisation bug.
+  * Build-depend on texlive-latex-extra, which is needed by
+    debiandoc2latexps and isn't included in texlive's dependencies.
+  * Policy: State requirements for source package names
+    Wording: Colin Watson <cjwatson@debian.org>
+    Seconded: Russ Allbery <rra@debian.org>
+    Seconded: Julien Cristau <jcristau@debian.org>
+    Closes: #525151
+  * Add myself to Uploaders.
+
+ -- Russ Allbery <rra@debian.org>  Fri, 20 Mar 2009 14:45:46 -0700
+
 debian-policy (3.8.1.0) unstable; urgency=low
 
   * Policy: Clarify what "sensible behavior" is for init scripts
