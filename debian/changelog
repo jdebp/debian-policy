@@ -1,4 +1,4 @@
-debian-policy (3.8.2.0) UNRELEASED; urgency=low
+debian-policy (3.8.2.0) unstable; urgency=low
 
   [ Russ Allbery ]
   * Policy: Mandate debconf or equivalent for user prompting
@@ -49,7 +49,7 @@ debian-policy (3.8.2.0) UNRELEASED; urgency=low
   * debian/rules: use dpkg --print-architecture instead of
     obsolete form dpkg --print-installation-architecture
 
- -- Bill Allombert <ballombe@debian.org>  Tue, 16 Jun 2009 20:32:29 +0200
+ -- Bill Allombert <ballombe@debian.org>  Tue, 16 Jun 2009 20:46:11 +0200
 
 debian-policy (3.8.1.0) unstable; urgency=low
 
