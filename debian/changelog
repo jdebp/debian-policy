@@ -46,10 +46,12 @@ debian-policy (3.8.2.0) unstable; urgency=low
   [ Bill Allombert ]
   * Add myself to Uploaders.
   * Update Standards-Version to 3.8.1 (no changes required).
-  * debian/rules: use dpkg --print-architecture instead of
-    obsolete form dpkg --print-installation-architecture
+  * debian/rules: 
+    - use `dpkg --print-architecture' instead of obsolete form 
+      `dpkg --print-installation-architecture'.
+    - fix a race condition while generating DEBIAN/md5sums.
 
- -- Bill Allombert <ballombe@debian.org>  Tue, 16 Jun 2009 20:46:11 +0200
+ -- Bill Allombert <ballombe@debian.org>  Tue, 16 Jun 2009 21:42:53 +0200
 
 debian-policy (3.8.1.0) unstable; urgency=low
 
