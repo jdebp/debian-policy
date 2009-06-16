@@ -14,7 +14,7 @@ export DEB_HOST_GNU_CPU    ?= $(shell dpkg-architecture $(ha) -qDEB_HOST_GNU_CPU
 export DEB_HOST_GNU_SYSTEM ?= $(shell dpkg-architecture $(ha) -qDEB_HOST_GNU_SYSTEM)
 export DEB_HOST_GNU_TYPE   ?= $(shell dpkg-architecture $(ha) -qDEB_HOST_GNU_TYPE)
 
-arch	:= $(shell dpkg --print-installation-architecture)
+arch	:= $(shell dpkg --print-architecture)
 
 # Basic information
 package := $(shell grep Source debian/control | sed 's/^Source: //')

@@ -43,7 +43,13 @@ debian-policy (3.8.2.0) UNRELEASED; urgency=low
     Closes: #525151
   * Add myself to Uploaders.
 
- -- Bill Allombert <ballombe@debian.org>  Tue, 16 Jun 2009 17:20:15 +0200
+  [ Bill Allombert ]
+  * Add myself to Uploaders.
+  * Update Standards-Version to 3.8.1 (no changes required).
+  * debian/rules: use dpkg --print-architecture instead of
+    obsolete form dpkg --print-installation-architecture
+
+ -- Bill Allombert <ballombe@debian.org>  Tue, 16 Jun 2009 20:32:29 +0200
 
 debian-policy (3.8.1.0) unstable; urgency=low
 
