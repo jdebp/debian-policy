@@ -35,6 +35,7 @@ debian-policy (3.8.2.0) UNRELEASED; urgency=low
     search-and-replace capitalisation bug.
   * Build-depend on texlive-latex-extra, which is needed by
     debiandoc2latexps and isn't included in texlive's dependencies.
+    Closes: #533257
   * Policy: State requirements for source package names
     Wording: Colin Watson <cjwatson@debian.org>
     Seconded: Russ Allbery <rra@debian.org>
@@ -42,7 +43,7 @@ debian-policy (3.8.2.0) UNRELEASED; urgency=low
     Closes: #525151
   * Add myself to Uploaders.
 
- -- Russ Allbery <rra@debian.org>  Fri, 20 Mar 2009 14:45:46 -0700
+ -- Bill Allombert <ballombe@debian.org>  Tue, 16 Jun 2009 17:20:15 +0200
 
 debian-policy (3.8.1.0) unstable; urgency=low
 
