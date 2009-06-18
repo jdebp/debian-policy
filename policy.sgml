@@ -4532,8 +4532,7 @@ Build-Depends: foo [!i386] | bar [!amd64]
 	  <prgn>dpkg</prgn> from upgrading or installing the package
 	  which declared such a conflict until the upgrade or removal
 	  of the conflicted-with package had been completed.  Instead,
-	  <tt>Breaks</tt> may be used (once <tt>Breaks</tt> is supported
-	  by the stable release of Debian).
+	  <tt>Breaks</tt> may be used.
 	</p>
       </sect>
 
