@@ -1,4 +1,11 @@
-debian-policy (3.8.2.0) UNRELEASED; urgency=low
+debian-policy (3.8.2.1) UNRELEASED; urgency=low
+
+  * Breaks is now supported by the stable release of dpkg, so drop
+    warnings against its use.  Thanks, Steve Langasek.  (Closes: #533577)
+
+ -- Russ Allbery <rra@debian.org>  Thu, 18 Jun 2009 15:59:48 -0700
+
+debian-policy (3.8.2.0) unstable; urgency=low
 
   [ Russ Allbery ]
   * Policy: Mandate debconf or equivalent for user prompting
@@ -35,6 +42,7 @@ debian-policy (3.8.2.0) UNRELEASED; urgency=low
     search-and-replace capitalisation bug.
   * Build-depend on texlive-latex-extra, which is needed by
     debiandoc2latexps and isn't included in texlive's dependencies.
+    Closes: #533257
   * Policy: State requirements for source package names
     Wording: Colin Watson <cjwatson@debian.org>
     Seconded: Russ Allbery <rra@debian.org>
@@ -42,7 +50,15 @@ debian-policy (3.8.2.0) UNRELEASED; urgency=low
     Closes: #525151
   * Add myself to Uploaders.
 
- -- Russ Allbery <rra@debian.org>  Fri, 20 Mar 2009 14:45:46 -0700
+  [ Bill Allombert ]
+  * Add myself to Uploaders.
+  * Update Standards-Version to 3.8.1 (no changes required).
+  * debian/rules: 
+    - use `dpkg --print-architecture' instead of obsolete form 
+      `dpkg --print-installation-architecture'.
+    - fix a race condition while generating DEBIAN/md5sums.
+
+ -- Bill Allombert <ballombe@debian.org>  Tue, 16 Jun 2009 21:42:53 +0200
 
 debian-policy (3.8.1.0) unstable; urgency=low
 

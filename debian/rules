@@ -14,7 +14,7 @@ export DEB_HOST_GNU_CPU    ?= $(shell dpkg-architecture $(ha) -qDEB_HOST_GNU_CPU
 export DEB_HOST_GNU_SYSTEM ?= $(shell dpkg-architecture $(ha) -qDEB_HOST_GNU_SYSTEM)
 export DEB_HOST_GNU_TYPE   ?= $(shell dpkg-architecture $(ha) -qDEB_HOST_GNU_TYPE)
 
-arch	:= $(shell dpkg --print-installation-architecture)
+arch	:= $(shell dpkg --print-architecture)
 
 # Basic information
 package := $(shell grep Source debian/control | sed 's/^Source: //')
@@ -142,7 +142,8 @@ stamp-policy:  build $(sanitycheck)
 	$(install_file)     $(FHS_HTML)   $(DOCDIR)/fhs
 	@set -ex; \
 	cd debian/tmp; \
-	find . -type f -printf '%P\0' | xargs -r0 md5sum > DEBIAN/md5sums
+	find . -path "./DEBIAN" -prune -o -type f -printf '%P\0' \
+           | xargs -r0 md5sum > DEBIAN/md5sums
 	dpkg-gencontrol	    -p$(package) -Pdebian/tmp -isp
 	chown		    -R root:root debian/tmp
 	chmod		    -R go=rX debian/tmp
