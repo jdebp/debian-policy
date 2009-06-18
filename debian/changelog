@@ -1,3 +1,65 @@
+debian-policy (3.8.2.1) UNRELEASED; urgency=low
+
+  * Breaks is now supported by the stable release of dpkg, so drop
+    warnings against its use.  Thanks, Steve Langasek.  (Closes: #533577)
+
+ -- Russ Allbery <rra@debian.org>  Thu, 18 Jun 2009 15:59:48 -0700
+
+debian-policy (3.8.2.0) unstable; urgency=low
+
+  [ Russ Allbery ]
+  * Policy: Mandate debconf or equivalent for user prompting
+    Wording: Andrew McMillan <awm@debian.org>
+    Seconded: Russ Allbery <rra@debian.org>
+    Seconded: Holger Levsen <holger@layer-acht.org>
+    Seconded: Bill Allombert <Bill.Allombert@math.u-bordeaux1.fr>
+    Seconded: Julien Cristau <jcristau@debian.org>
+    Closes: #206684
+  * Policy: Remove /etc/X11/XF86Config-4 FHS exception
+    Wording: Julien Cristau <jcristau@debian.org>
+    Seconded: Russ Allbery <rra@debian.org>
+    Seconded: Bill Allombert <Bill.Allombert@math.u-bordeaux1.fr>
+    Closes: #522219
+  * Policy: Remove obsolete /var/mail transition requirement
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Julien Cristau <jcristau@debian.org>
+    Seconded: Andrew McMillan <andrew@morphoss.com>
+    Closes: #522364
+  * Policy: Move Speedo fonts into the deprecated category
+    Wording: Julien Cristau <jcristau@debian.org>
+    Seconded: Russ Allbery <rra@debian.org>
+    Seconded: Julien Danjou <acid@debian.org>
+    Closes: #522218
+  * Housekeeping (resynchronizing lists maintained elsewhere):
+    - Add GFDL 1.3 to the common-licenses list.
+    - Update the list of archive sections.  (Closes: #519835)
+  * Set the release date of the 3.8.1 upgrading-checklist entry.
+    (Closes: #519706)
+
+  [ Colin Watson ]
+  * The FHS is the "Filesystem Hierarchy Standard", regardless of our
+    preferred spelling of "file system" elsewhere. Fix this and a nearby
+    search-and-replace capitalisation bug.
+  * Build-depend on texlive-latex-extra, which is needed by
+    debiandoc2latexps and isn't included in texlive's dependencies.
+    Closes: #533257
+  * Policy: State requirements for source package names
+    Wording: Colin Watson <cjwatson@debian.org>
+    Seconded: Russ Allbery <rra@debian.org>
+    Seconded: Julien Cristau <jcristau@debian.org>
+    Closes: #525151
+  * Add myself to Uploaders.
+
+  [ Bill Allombert ]
+  * Add myself to Uploaders.
+  * Update Standards-Version to 3.8.1 (no changes required).
+  * debian/rules: 
+    - use `dpkg --print-architecture' instead of obsolete form 
+      `dpkg --print-installation-architecture'.
+    - fix a race condition while generating DEBIAN/md5sums.
+
+ -- Bill Allombert <ballombe@debian.org>  Tue, 16 Jun 2009 21:42:53 +0200
+
 debian-policy (3.8.1.0) unstable; urgency=low
 
   * Policy: Clarify what "sensible behavior" is for init scripts
