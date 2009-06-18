@@ -4443,12 +4443,6 @@ Build-Depends: foo [!i386] | bar [!amd64]
 	<heading>Packages which break other packages - <tt>Breaks</tt></heading>
 
 	<p>
-	  Using <tt>Breaks</tt> may cause problems for upgrades from older
-	  versions of Debian and should not be used until the stable
-	  release of Debian supports <tt>Breaks</tt>.
-	</p>
-
-	<p>
 	  When one binary package declares that it breaks another,
 	  <prgn>dpkg</prgn> will refuse to allow the package which
 	  declares <tt>Breaks</tt> be installed unless the broken
