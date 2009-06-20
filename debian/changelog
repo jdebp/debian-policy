@@ -1,5 +1,10 @@
 debian-policy (3.8.3.0) UNRELEASED; urgency=low
 
+  * Policy: Bring Architecture description in line with dpkg-source
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Raphael Hertzog <hertzog@debian.org>
+    Seconded: Manoj Srivastava <srivasta@debian.org>
+    Closes: #530967
   * Policy: Update information about DEB_*_ARCH variables
     Wording: Guillem Jover <guillem@debian.org>
     Seconded: Russ Allbery <rra@debian.org>
