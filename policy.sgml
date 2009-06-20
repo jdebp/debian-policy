@@ -4255,6 +4255,9 @@ Build-Depends: foo [!i386] | bar [!amd64]
           This is done using the <tt>Depends</tt>, <tt>Pre-Depends</tt>,
           <tt>Recommends</tt>, <tt>Suggests</tt>, <tt>Enhances</tt>,
           <tt>Breaks</tt> and <tt>Conflicts</tt> control file fields.
+          <tt>Breaks</tt> is described in <ref id="breaks">, and
+          <tt>Conflicts</tt> is described in <ref id="conflicts">.  The
+          rest are described below.
         </p>
 
 	<p>

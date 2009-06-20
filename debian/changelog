@@ -2,6 +2,8 @@ debian-policy (3.8.2.1) UNRELEASED; urgency=low
 
   * Breaks is now supported by the stable release of dpkg, so drop
     warnings against its use.  Thanks, Steve Langasek.  (Closes: #533577)
+  * Add references to the sections on Breaks and Conflicts to the section
+    on binary dependencies.  Thanks, Frank Küster.  (Closes: #529771)
 
  -- Russ Allbery <rra@debian.org>  Thu, 18 Jun 2009 15:59:48 -0700
 
