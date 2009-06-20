@@ -3118,7 +3118,7 @@ Package: libc6
 	    distribution(s) where this version of the package should
 	    be installed.  Valid distributions are determined by the
 	    archive maintainers.<footnote>
-	      Current distribution names in the Debian archive used in
+	      Example distribution names in the Debian archive used in
 	      <file>.changes</file> files are:
 		<taglist compact="compact">
 		  <tag><em>unstable</em></tag>
@@ -3139,43 +3139,13 @@ Package: libc6
 		    try, but are not ready to be a part of the other parts
 		    of the Debian distribution tree.
 		  </item>
-
-		  <tag><em>stable-proposed-updates</em></tag>
-		  <item>
-		    Once a distribution of Debian GNU/Linux is released,
-		    it is declared <em>stable</em> and only security fixes
-		    and other major bug fixes are allowed.  Proposed
-		    non-security updates for <em>stable</em> are uploaded
-		    using this distribution value after getting approval
-		    from the stable release managers.
-		  </item>
-
-		  <tag><em>testing-proposed-updates</em></tag>
-		  <item>
-		    The <em>testing</em> distribution normally receives
-		    its packages via the <em>unstable</em> distribution
-		    after a short time lag.  However sometimes, such as
-		    during release freezes before a new stable release or
-		    when a problem in the <em>testing</em> distribution
-		    requires fixing before the <em>unstable</em> version
-		    can migrate, direct updates to a package in
-		    <em>testing</em> are useful.  This distribution value
-		    is used for those exceptions, after approval from the
-		    release managers.
-		  </item>
 		</taglist>
 
 		<p>
-		  Security fixes for the <em>stable</em> or
-		  <em>testing</em> distributions are handled via a
-		  separate upload queue and special
-		  <em>stable-security</em> and <em>testing-security<em>
-		  distribution values.
-		</p>
-
-		<p>
-		  More information is available in the Debian Developer's
-		  Reference, section "The Debian archive".
+		  Others are used for updating stable releases or for
+		  security uploads.  More information is available in the
+		  Debian Developer's Reference, section "The Debian
+		  archive".
 		</p>
 	    </footnote>
 	    The Debian archive software only supports listing a single
