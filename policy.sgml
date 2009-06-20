@@ -8885,6 +8885,15 @@ name ["<var>syshostname</var>"]:
 	  characters outside that range may be found in
 	  <manref name="groff_char" section="7">.
 	</p>
+
+	<p>
+	  If a localized version of a manual page is provided, it should
+	  either be up-to-date or it should be obvious to the reader that
+	  it is outdated and the original manual page should be used
+	  instead.  This can be done either by a note at the beginning of
+	  the manual page or by showing the missing or changed portions in
+	  the original language instead of the target language.
+	</p>
       </sect>
 
       <sect>
