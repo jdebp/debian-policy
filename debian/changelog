@@ -1,5 +1,10 @@
-debian-policy (3.8.2.1) UNRELEASED; urgency=low
+debian-policy (3.8.3.0) UNRELEASED; urgency=low
 
+  * Policy: Update information about DEB_*_ARCH variables
+    Wording: Guillem Jover <guillem@debian.org>
+    Seconded: Russ Allbery <rra@debian.org>
+    Seconded: Andrew McMillan <andrew@morphoss.com>
+    Closes: #527871
   * Breaks is now supported by the stable release of dpkg, so drop
     warnings against its use.  Thanks, Steve Langasek.  (Closes: #533577)
   * Add references to the sections on Breaks and Conflicts to the section
