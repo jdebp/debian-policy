@@ -10,6 +10,11 @@ debian-policy (3.8.3.0) UNRELEASED; urgency=low
     Seconded: Russ Allbery <rra@debian.org>
     Seconded: Andrew McMillan <andrew@morphoss.com>
     Closes: #527871
+  * Perl Policy: Remove obsolete dependency requirements
+    Wording: Cyril Brulebois <kibi@debian.org>
+    Seconded: Russ Allbery <rra@debian.org>
+    Seconded: Manoj Srivastava <srivasta@debian.org>
+    Closes: #525190
   * Breaks is now supported by the stable release of dpkg, so drop
     warnings against its use.  Thanks, Steve Langasek.  (Closes: #533577)
   * Add references to the sections on Breaks and Conflicts to the section
