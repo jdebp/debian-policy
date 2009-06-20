@@ -1986,6 +1986,12 @@
 		<tt>DEB_*_ARCH</tt> (the Debian architecture)
 	    </item>
 	    <item>
+		<tt>DEB_*_ARCH_CPU</tt> (the Debian CPU name)
+	    </item>
+	    <item>
+		<tt>DEB_*_ARCH_OS</tt> (the Debian System name)
+	    </item>
+	    <item>
 		<tt>DEB_*_GNU_TYPE</tt> (the GNU style architecture
 		specification string)
 	    </item>
@@ -2013,8 +2019,10 @@
 	  It is important to understand that the <tt>DEB_*_ARCH</tt>
 	  string only determines which Debian architecture we are
 	  building on or for. It should not be used to get the CPU
-	  or system information; the GNU style variables should be
-	  used for that.
+	  or system information; the <tt>DEB_*_ARCH_CPU</tt> and
+	  <tt>DEB_*_ARCH_OS</tt> variables should be used for that.
+	  GNU style variables should generally only be used with upstream
+	  build systems.
 	</p>
 
 	<sect1 id="debianrules-options">
