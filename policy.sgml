@@ -3291,8 +3291,9 @@ Package: libc6
 	  </p>
 
 	  <p>
-	    The disk space is represented in kilobytes as a simple
-	    decimal number.
+	    The disk space is given as the integer value of the installed
+	    size divided by 1024 and rounded (in other words, the size in
+	    kibibytes).
 	  </p>
 	</sect1>
 
