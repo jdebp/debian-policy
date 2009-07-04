@@ -10,10 +10,25 @@ debian-policy (3.8.3.0) UNRELEASED; urgency=low
     Seconded: Russ Allbery <rra@debian.org>
     Seconded: Andrew McMillan <andrew@morphoss.com>
     Closes: #527871
+  * Policy: Remove support for uploads to multiple distributions
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Raphael Hertzog <hertzog@debian.org>
+    Seconded: Manoj Srivastava <srivasta@debian.org>
+    Closes: #514919
+  * Perl Policy: Remove obsolete dependency requirements
+    Wording: Cyril Brulebois <kibi@debian.org>
+    Seconded: Russ Allbery <rra@debian.org>
+    Seconded: Manoj Srivastava <srivasta@debian.org>
+    Closes: #525190
   * Breaks is now supported by the stable release of dpkg, so drop
     warnings against its use.  Thanks, Steve Langasek.  (Closes: #533577)
   * Add references to the sections on Breaks and Conflicts to the section
     on binary dependencies.  Thanks, Frank Küster.  (Closes: #529771)
+  * Clarify that Installed-Size is in kibibytes.  Thanks, Martin Dorey.
+    (Closes: #534408)
+  * Explain that the copyright dates are for the original Policy manual
+    and that there is no updated list of copyright holders for subsequent
+    revisions available.  (Partly addresses #47438)
 
  -- Russ Allbery <rra@debian.org>  Thu, 18 Jun 2009 15:59:48 -0700
 
