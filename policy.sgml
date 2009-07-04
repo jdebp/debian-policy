@@ -8599,12 +8599,13 @@ name ["<var>syshostname</var>"]:
 	  </p>
 
 	  <p>
-	    Configuration files for window managers and display managers
-	    should be placed in a subdirectory of <file>/etc/X11/</file>
-	    corresponding to the package name due to these programs' tight
-	    integration with the mechanisms of the X Window System.
-	    Application-level programs should use the <file>/etc/</file>
-	    directory unless otherwise mandated by policy.
+	    Configuration files for window, display, or session managers
+	    or other applications that are tightly integrated with the X
+	    Window System may be placed in a subdirectory
+	    of <file>/etc/X11/</file> corresponding to the package name.
+	    Other X Window System applications should use
+	    the <file>/etc/</file> directory unless otherwise mandated by
+	    policy (such as for <ref id="appdefaults">).
 	  </p>
 	</sect1>
 
