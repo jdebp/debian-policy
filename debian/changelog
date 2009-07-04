@@ -26,6 +26,9 @@ debian-policy (3.8.3.0) UNRELEASED; urgency=low
     on binary dependencies.  Thanks, Frank Küster.  (Closes: #529771)
   * Clarify that Installed-Size is in kibibytes.  Thanks, Martin Dorey.
     (Closes: #534408)
+  * Explain that the copyright dates are for the original Policy manual
+    and that there is no updated list of copyright holders for subsequent
+    revisions available.  (Partly addresses #47438)
 
  -- Russ Allbery <rra@debian.org>  Thu, 18 Jun 2009 15:59:48 -0700
 
