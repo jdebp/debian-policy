@@ -25,6 +25,13 @@
 	  and Christian Schwarz.
 	</copyrightsummary>
 	<p>
+	  These are the copyright dates of the original Policy manual.
+	  Since then, this manual has been updated by many others.  No
+	  comprehensive collection of copyright notices for subsequent
+	  work exists.
+	</p>
+
+	<p>
 	  This manual is free software; you may redistribute it and/or
 	  modify it under the terms of the GNU General Public License
 	  as published by the Free Software Foundation; either version
@@ -3118,76 +3125,39 @@ Package: libc6
 	    distribution(s) where this version of the package should
 	    be installed.  Valid distributions are determined by the
 	    archive maintainers.<footnote>
-		Current distribution names are:
+	      Example distribution names in the Debian archive used in
+	      <file>.changes</file> files are:
 		<taglist compact="compact">
-		  <tag><em>stable</em></tag>
-		  <item>
-		      This is the current "released" version of Debian
-		      GNU/Linux.  Once the distribution is
-		      <em>stable</em> only security fixes and other
-		      major bug fixes are allowed. When changes are
-		      made to this distribution, the release number is
-		      increased (for example: 2.2r1 becomes 2.2r2 then
-		      2.2r3, etc).
-		  </item>
-
 		  <tag><em>unstable</em></tag>
 		  <item>
-		      This distribution value refers to the
-		      <em>developmental</em> part of the Debian
-		      distribution tree. New packages, new upstream
-		      versions of packages and bug fixes go into the
-		      <em>unstable</em> directory tree. Download from
-		      this distribution at your own risk.
-		  </item>
-
-		  <tag><em>testing</em></tag>
-		  <item>
-		      This distribution value refers to the
-		      <em>testing</em> part of the Debian distribution
-		      tree.  It receives its packages from the
-		      unstable distribution after a short time lag to
-		      ensure that there are no major issues with the
-		      unstable packages.  It is less prone to breakage
-		      than unstable, but still risky.  It is not
-		      possible to upload packages directly to
-		      <em>testing</em>.
-		  </item>
-
-		  <tag><em>frozen</em></tag>
-		  <item>
-		      From time to time, the <em>testing</em>
-		      distribution enters a state of "code-freeze" in
-		      anticipation of release as a <em>stable</em>
-		      version. During this period of testing only
-		      fixes for existing or newly-discovered bugs will
-		      be allowed.  The exact details of this stage are
-		      determined by the Release Manager.
+		    This distribution value refers to the
+		    <em>developmental</em> part of the Debian distribution
+		    tree.  Most new packages, new upstream versions of
+		    packages and bug fixes go into the <em>unstable</em>
+		    directory tree.
 		  </item>
 
 		  <tag><em>experimental</em></tag>
 		  <item>
-		      The packages with this distribution value are
-		      deemed by their maintainers to be high
-		      risk. Oftentimes they represent early beta or
-		      developmental packages from various sources that
-		      the maintainers want people to try, but are not
-		      ready to be a part of the other parts of the
-		      Debian distribution tree. Download at your own
-		      risk.
+		    The packages with this distribution value are deemed
+		    by their maintainers to be high risk.  Oftentimes they
+		    represent early beta or developmental packages from
+		    various sources that the maintainers want people to
+		    try, but are not ready to be a part of the other parts
+		    of the Debian distribution tree.
 		  </item>
 		</taglist>
 
 		<p>
-		  You should list <em>all</em> distributions that the
-		  package should be installed into.
-		</p>
-
-		<p>
-		  More information is available in the Debian Developer's
-		  Reference, section "The Debian archive".
+		  Others are used for updating stable releases or for
+		  security uploads.  More information is available in the
+		  Debian Developer's Reference, section "The Debian
+		  archive".
 		</p>
 	    </footnote>
+	    The Debian archive software only supports listing a single
+	    distribution.  Migration of packages to other distributions is
+	    handled outside of the upload process.
 	  </p>
 	</sect1>
 
@@ -3321,15 +3291,17 @@ Package: libc6
 	  <heading><tt>Installed-Size</tt></heading>
 
 	  <p>
-	    This field appears in the control files of binary
-	    packages, and in the <file>Packages</file> files.  It gives
-	    the total amount of disk space required to install the
-	    named package.
+	    This field appears in the control files of binary packages,
+	    and in the <file>Packages</file> files.  It gives an
+	    estimation the total amount of disk space required to install
+	    the named package.  Actual installed size may vary based on
+	    block size, file system properties, or actions taken by
+	    package maintainer scripts.
 	  </p>
 
 	  <p>
-	    The disk space is represented in kilobytes as a simple
-	    decimal number.
+	    The disk space is given as the integer value of the estimated
+	    installed size in bytes, divided by 1024 and rounded up.
 	  </p>
 	</sect1>
 
@@ -7008,17 +6980,6 @@ strip --strip-unneeded <var>your-lib</var>
 	      internal shared objects that are dynamically loaded by
 	      programs using <manref name="dlopen" section="3">.
 	  </footnote>
-	</p>
-
-	<p>
-	  Packages containing shared libraries that may be linked to
-	  by other packages' binaries, but which for some
-	  <em>compelling</em> reason can not be installed in
-	  <file>/usr/lib</file> directory, may install the shared library
-	  files in subdirectories of the <file>/usr/lib</file> directory,
-	  in which case they should arrange to add that directory in
-	  <file>/etc/ld.so.conf</file> in the package's post-installation
-	  script, and remove it in the package's post-removal script.
 	</p>
 
 	<p>
