@@ -8825,15 +8825,6 @@ name ["<var>syshostname</var>"]:
 	</p>
 
 	<p>
-	  Due to limitations in current implementations, all characters
-	  in the manual page source should be representable in the usual
-	  legacy encoding for that language, even if the file is
-	  actually encoded in UTF-8. Safe alternative ways to write many
-	  characters outside that range may be found in
-	  <manref name="groff_char" section="7">.
-	</p>
-
-	<p>
 	  If a localized version of a manual page is provided, it should
 	  either be up-to-date or it should be obvious to the reader that
 	  it is outdated and the original manual page should be used
