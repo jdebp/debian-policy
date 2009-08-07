@@ -8577,54 +8577,35 @@ name ["<var>syshostname</var>"]:
 	  <heading>Installation directory issues</heading>
 
 	  <p>
-	    Packages using the X Window System should not be
-	    configured to install files under the
-	    <file>/usr/X11R6/</file> directory. The
-	    <file>/usr/X11R6/</file> directory hierarchy should be
+	    Historically, packages using the X Window System used a
+	    separate set of installation directories from other packages.
+	    This practice has been discontinued and packages using the X
+	    Window System should now generally be installed in the same
+	    directories as any other package.  Specifically, packages must
+	    not install files under the <file>/usr/X11R6/</file> directory
+	    and the <file>/usr/X11R6/</file> directory hierarchy should be
 	    regarded as obsolete.
 	  </p>
 
 	  <p>
-	    Programs that use GNU <prgn>autoconf</prgn> and
-	    <prgn>automake</prgn> are usually easily configured at
-	    compile time to use <file>/usr/</file> instead of
-	    <file>/usr/X11R6/</file>, and this should be done whenever
-	    possible.  Configuration files for window managers and
-	    display managers should be placed in a subdirectory of
-	    <file>/etc/X11/</file> corresponding to the package name due
-	    to these programs' tight integration with the mechanisms
-	    of the X Window System.  Application-level programs should
-	    use the <file>/etc/</file> directory unless otherwise mandated
-	    by policy.
+	    Include files previously installed under
+	    <file>/usr/X11R6/include/X11/</file> should be installed into
+	    <file>/usr/include/X11/</file>.  For files previously
+	    installed into subdirectories of
+	    <file>/usr/X11R6/lib/X11/</file>, package maintainers should
+	    determine if subdirectories of <file>/usr/lib/</file> and
+	    <file>/usr/share/</file> can be used.  If not, a subdirectory
+	    of <file>/usr/lib/X11/</file> should be used.
 	  </p>
 
 	  <p>
-	    The installation of files into subdirectories
-	    of <file>/usr/X11R6/include/X11/</file> and
-	    <file>/usr/X11R6/lib/X11/</file> is now prohibited;
-	    package maintainers should determine if subdirectories of
-	    <file>/usr/lib/</file> and <file>/usr/share/</file> can be used
-	    instead. 
-	  </p>
-
-	  <p>
-            Packages should install any relevant files into the
-	    directories <file>/usr/include/X11/</file> and
-	    <file>/usr/lib/X11/</file>, but if they do so, they must
-	    pre-depend on <tt>x11-common (&gt;=
-	    1:7.0.0)</tt><footnote>
-              <p>
-                These libraries used to be all symbolic
-                links. However, with <tt>X11R7</tt>,
-                <tt>/usr/include/X11</tt> and <tt>/usr/lib/X11</tt>
-                are now real directories, and packages
-                <strong>should</strong> ship their files here instead
-                of in <tt>/usr/X11R6/{include,lib}/X11</tt>.
-                <tt>x11-common (&gt;= 1:7.0.0) </tt> is the package
-                responsible for converting these symlinks into
-                directories.
-              </p>
-            </footnote>
+	    Configuration files for window, display, or session managers
+	    or other applications that are tightly integrated with the X
+	    Window System may be placed in a subdirectory
+	    of <file>/etc/X11/</file> corresponding to the package name.
+	    Other X Window System applications should use
+	    the <file>/etc/</file> directory unless otherwise mandated by
+	    policy (such as for <ref id="appdefaults">).
 	  </p>
 	</sect1>
 
