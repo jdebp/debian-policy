@@ -34,6 +34,11 @@ debian-policy (3.8.3.0) UNRELEASED; urgency=low
     Seconded: Helge Kreutzmann <debian@helgefjell.de>
     Seconded: Julien Cristau <jcristau@debian.org>
     Closes: #493007
+  * Policy: Remove restriction on manual page character encoding
+    Wording: Colin Watson <cjwatson@debian.org>
+    Seconded: Russ Allbery <rra@debian.org>
+    Seconded: Manoj Srivastava <srivasta@golden-gryphon.com>
+    Closes: #537707
   * Perl Policy: Remove obsolete dependency requirements
     Wording: Cyril Brulebois <kibi@debian.org>
     Seconded: Russ Allbery <rra@debian.org>
@@ -50,6 +55,8 @@ debian-policy (3.8.3.0) UNRELEASED; urgency=low
   * Explain that the copyright dates are for the original Policy manual
     and that there is no updated list of copyright holders for subsequent
     revisions available.  (Partly addresses #47438)
+  * Merge the package name syntax requirements between the Package and
+    Source field descriptions.
 
  -- Russ Allbery <rra@debian.org>  Thu, 18 Jun 2009 15:59:48 -0700
 
