@@ -2605,11 +2605,12 @@ Package: libc6
 	  </p>
 
 	  <p>
-	    Package names must consist only of lower case letters
-	    (<tt>a-z</tt>), digits (<tt>0-9</tt>), plus (<tt>+</tt>)
-	    and minus (<tt>-</tt>) signs, and periods (<tt>.</tt>).
-	    They must be at least two characters long and must start
-	    with an alphanumeric character.
+	    Package names (both source and binary,
+	    see <ref id="f-Package">) must consist only of lower case
+	    letters (<tt>a-z</tt>), digits (<tt>0-9</tt>), plus
+	    (<tt>+</tt>) and minus (<tt>-</tt>) signs, and periods
+	    (<tt>.</tt>).  They must be at least two characters long and
+	    must start with an alphanumeric character.
 	  </p>
 	</sect1>
 
@@ -2708,11 +2709,9 @@ Package: libc6
 	  </p>
 
 	  <p>
-	    Package names must consist only of lower case letters
-	    (<tt>a-z</tt>), digits (<tt>0-9</tt>), plus (<tt>+</tt>)
-	    and minus (<tt>-</tt>) signs, and periods (<tt>.</tt>).
-	    They must be at least two characters long and must start
-	    with an alphanumeric character.
+	    Binary package names must follow the same syntax and
+	    restrictions as source package names.  See <ref id="f-Source">
+	    for the details.
 	  </p>
 	</sect1>
 
