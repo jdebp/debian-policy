@@ -8534,7 +8534,7 @@ name ["<var>syshostname</var>"]:
 	  </p>
 	</sect1>
 
-	<sect1>
+	<sect1 id="appdefaults">
 	  <heading>Application defaults files</heading>
 
 	  <p>
