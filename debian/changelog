@@ -15,6 +15,14 @@ debian-policy (3.8.3.0) UNRELEASED; urgency=low
     Seconded: Raphael Hertzog <hertzog@debian.org>
     Seconded: Manoj Srivastava <srivasta@debian.org>
     Closes: #514919
+  * Policy: Remove permission for packages to modify ld.so.conf
+    Wording: Steve Langasek <vorlon@debian.org>
+    Seconded: Russ Allbery <rra@debian.org>
+    Seconded: Kurt Roeckx <kurt@roeckx.be>
+    Seconded: Goswin von Brederlow <goswin-v-b@web.de>
+    Seconded: Adeodato Simó <dato@net.com.org.es>
+    Seconded: Julien Cristau <jcristau@debian.org>
+    Closes: #519941
   * Perl Policy: Remove obsolete dependency requirements
     Wording: Cyril Brulebois <kibi@debian.org>
     Seconded: Russ Allbery <rra@debian.org>

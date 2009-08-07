@@ -6981,17 +6981,6 @@ strip --strip-unneeded <var>your-lib</var>
 	</p>
 
 	<p>
-	  Packages containing shared libraries that may be linked to
-	  by other packages' binaries, but which for some
-	  <em>compelling</em> reason can not be installed in
-	  <file>/usr/lib</file> directory, may install the shared library
-	  files in subdirectories of the <file>/usr/lib</file> directory,
-	  in which case they should arrange to add that directory in
-	  <file>/etc/ld.so.conf</file> in the package's post-installation
-	  script, and remove it in the package's post-removal script.
-	</p>
-
-	<p>
 	  An ever increasing number of packages are using
 	  <prgn>libtool</prgn> to do their linking.  The latest GNU
 	  libtools (>= 1.3a) can take advantage of the metadata in the
