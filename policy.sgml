@@ -7762,9 +7762,17 @@ do
   fi
 done
 	    </example>
-	    The corresponding <tt>dpkg-statoverride --remove</tt>
-	    calls can then be made unconditionally when the package is
-	    purged.
+	    The corresponding code to remove the override when the package
+	    is purged would be:
+	    <example>
+for i in /usr/bin/foo /usr/sbin/bar
+do
+  if dpkg-statoverride --list $i >/dev/null 2>&1
+  then
+    dpkg-statoverride --remove $i
+  fi
+done
+	    </example>
 	  </p>
 	</sect1>
       </sect>
