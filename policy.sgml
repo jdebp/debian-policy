@@ -3291,16 +3291,17 @@ Package: libc6
 	  <heading><tt>Installed-Size</tt></heading>
 
 	  <p>
-	    This field appears in the control files of binary
-	    packages, and in the <file>Packages</file> files.  It gives
-	    the total amount of disk space required to install the
-	    named package.
+	    This field appears in the control files of binary packages,
+	    and in the <file>Packages</file> files.  It gives an
+	    estimation the total amount of disk space required to install
+	    the named package.  Actual installed size may vary based on
+	    block size, file system properties, or actions taken by
+	    package maintainer scripts.
 	  </p>
 
 	  <p>
-	    The disk space is given as the integer value of the installed
-	    size divided by 1024 (in other words, the size in kibibytes)
-	    and rounded up.
+	    The disk space is given as the integer value of the estimated
+	    installed size in bytes, divided by 1024 and rounded up.
 	  </p>
 	</sect1>
 
@@ -6979,17 +6980,6 @@ strip --strip-unneeded <var>your-lib</var>
 	      internal shared objects that are dynamically loaded by
 	      programs using <manref name="dlopen" section="3">.
 	  </footnote>
-	</p>
-
-	<p>
-	  Packages containing shared libraries that may be linked to
-	  by other packages' binaries, but which for some
-	  <em>compelling</em> reason can not be installed in
-	  <file>/usr/lib</file> directory, may install the shared library
-	  files in subdirectories of the <file>/usr/lib</file> directory,
-	  in which case they should arrange to add that directory in
-	  <file>/etc/ld.so.conf</file> in the package's post-installation
-	  script, and remove it in the package's post-removal script.
 	</p>
 
 	<p>
