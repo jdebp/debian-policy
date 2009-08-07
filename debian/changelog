@@ -24,8 +24,8 @@ debian-policy (3.8.3.0) UNRELEASED; urgency=low
     warnings against its use.  Thanks, Steve Langasek.  (Closes: #533577)
   * Add references to the sections on Breaks and Conflicts to the section
     on binary dependencies.  Thanks, Frank Küster.  (Closes: #529771)
-  * Clarify that Installed-Size is in kibibytes.  Thanks, Martin Dorey.
-    (Closes: #534408)
+  * Clarify the units of Installed-Size and document that it is an
+    approximation.  Thanks, Martin Dorey.  (Closes: #534408)
   * Explain that the copyright dates are for the original Policy manual
     and that there is no updated list of copyright holders for subsequent
     revisions available.  (Partly addresses #47438)
