@@ -3291,11 +3291,11 @@ Package: libc6
 
 	  <p>
 	    This field appears in the control files of binary packages,
-	    and in the <file>Packages</file> files.  It gives an
-	    estimate the total amount of disk space required to install
-	    the named package.  Actual installed size may vary based on
-	    block size, file system properties, or actions taken by
-	    package maintainer scripts.
+	    and in the <file>Packages</file> files.  It gives an estimate
+	    of the total amount of disk space required to install the
+	    named package.  Actual installed size may vary based on block
+	    size, file system properties, or actions taken by package
+	    maintainer scripts.
 	  </p>
 
 	  <p>
