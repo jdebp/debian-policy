@@ -29,6 +29,11 @@ debian-policy (3.8.3.0) UNRELEASED; urgency=low
     Seconded: Manoj Srivastava <srivasta@debian.org>
     Seconded: Raphaël Hertzog <hertzog@debian.org>
     Closes: #522217
+  * Policy: Localized man pages should be up-to-date or warn
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Helge Kreutzmann <debian@helgefjell.de>
+    Seconded: Julien Cristau <jcristau@debian.org>
+    Closes: #493007
   * Perl Policy: Remove obsolete dependency requirements
     Wording: Cyril Brulebois <kibi@debian.org>
     Seconded: Russ Allbery <rra@debian.org>
