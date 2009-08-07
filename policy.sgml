@@ -3261,29 +3261,27 @@ Package: libc6
 	  <heading><tt>Binary</tt></heading>
 
 	  <p>
-	    This field is a list of binary packages.
+	    This field is a list of binary packages.  Its syntax and
+	    meaning varies depending on the control file in which it
+	    appears.
 	  </p>
 
 	  <p>
-	    When it appears in the <file>.dsc</file> file it is the list
-	    of binary packages which a source package can produce.  It
-	    does not necessarily produce all of these binary packages
-	    for every architecture.  The source control file doesn't
-	    contain details of which architectures are appropriate for
-	    which of the binary packages.
-	  </p>
-
-	  <p>
-	    When it appears in a <file>.changes</file> file it lists the
-	    names of the binary packages actually being uploaded.
-	  </p>
-
-	  <p>
-	    The syntax is a list of binary packages separated by
+	    When it appears in the <file>.dsc</file> file, it lists binary
+	    packages which a source package can produce, separated by
 	    commas<footnote>
 		A space after each comma is conventional.
-	    </footnote>. Currently the packages must be separated using
-	    only spaces in the <file>.changes</file> file.
+	    </footnote>.  It may span multiple lines.  The source package
+	    does not necessarily produce all of these binary packages for
+	    every architecture.  The source control file doesn't contain
+	    details of which architectures are appropriate for which of
+	    the binary packages.
+	  </p>
+
+	  <p>
+	    When it appears in a <file>.changes</file> file, it lists the
+	    names of the binary packages being uploaded, separated by
+	    whitespace (not commas).  It may span multiple lines.
 	  </p>
 	</sect1>
 
