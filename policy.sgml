@@ -3291,11 +3291,11 @@ Package: libc6
 
 	  <p>
 	    This field appears in the control files of binary packages,
-	    and in the <file>Packages</file> files.  It gives an
-	    estimate the total amount of disk space required to install
-	    the named package.  Actual installed size may vary based on
-	    block size, file system properties, or actions taken by
-	    package maintainer scripts.
+	    and in the <file>Packages</file> files.  It gives an estimate
+	    of the total amount of disk space required to install the
+	    named package.  Actual installed size may vary based on block
+	    size, file system properties, or actions taken by package
+	    maintainer scripts.
 	  </p>
 
 	  <p>
@@ -7772,9 +7772,17 @@ do
   fi
 done
 	    </example>
-	    The corresponding <tt>dpkg-statoverride --remove</tt>
-	    calls can then be made unconditionally when the package is
-	    purged.
+	    The corresponding code to remove the override when the package
+	    is purged would be:
+	    <example>
+for i in /usr/bin/foo /usr/sbin/bar
+do
+  if dpkg-statoverride --list $i >/dev/null 2>&1
+  then
+    dpkg-statoverride --remove $i
+  fi
+done
+	    </example>
 	  </p>
 	</sect1>
       </sect>
@@ -8856,37 +8864,49 @@ name ["<var>syshostname</var>"]:
         </p>
 
 	<p>
-	  Your package should call <prgn>install-info</prgn> to update
-	  the Info <file>dir</file> file in its <prgn>postinst</prgn>
-	  script when called with a <tt>configure</tt> argument, for
-	  example:
-	  <example compact="compact">
-install-info --quiet --section Development Development \
-  /usr/share/info/foobar.info
-	  </example></p>
+	  The <prgn>install-info</prgn> program maintains a directory of
+	  installed info documents in <file>/usr/share/info/dir</file> for
+	  the use of info readers.<footnote>
+	    It was previously necessary for packages installing info
+	    documents to run <prgn>install-info</prgn> from maintainer
+	    scripts.  This is no longer necessary.  The installation
+	    system now uses dpkg hooks.
+	  </footnote>
+	  This file must not be included in packages.
+	</p>
 
 	<p>
-	  It is a good idea to specify a section for the location of
-	  your program; this is done with the <tt>--section</tt>
-	  switch.  To determine which section to use, you should look
-	  at <file>/usr/share/info/dir</file> on your system and choose the most
-	  relevant (or create a new section if none of the current
-	  sections are relevant).  Note that the <tt>--section</tt>
-	  flag takes two arguments; the first is a regular expression
-	  to match (case-insensitively) against an existing section,
-	  the second is used when creating a new one.</p>
-
-	<p>
-	  You should remove the entries in the <prgn>prerm</prgn>
-	  script when called with a <tt>remove</tt> argument:
-	  <example compact="compact">
-install-info --quiet --remove /usr/share/info/foobar.info
-	  </example></p>
-
-	<p>
-	  If <prgn>install-info</prgn> cannot find a description entry
-	  in the Info file you must supply one.  See <manref
-	  name="install-info" section="8"> for details.</p>
+	  Info documents should contain section and directory entry
+	  information in the document for the use
+	  of <prgn>install-info</prgn>.  The section should be specified
+	  via a line starting with <tt>INFO-DIR-SECTION</tt> followed by a
+	  space and the section of this info page.  The directory entry or
+	  entries should be included between
+	  a <tt>START-INFO-DIR-ENTRY</tt> line and
+	  an <tt>END-INFO-DIR-ENTRY</tt> line.  For example:
+	  <example>
+INFO-DIR-SECTION Individual utilities
+START-INFO-DIR-ENTRY
+* example: (example).               An example info directory entry.
+END-INFO-DIR-ENTRY
+	  </example>
+	  To determine which section to use, you should look
+	  at <file>/usr/share/info/dir</file> on your system and choose
+	  the most relevant (or create a new section if none of the
+	  current sections are relevant).<footnote>
+	    Normally, info documents are generated from Texinfo source.
+	    To include this information in the generated info document, if
+	    it is absent, add commands like:
+	    <example>
+@dircategory Individual utilities
+@direntry
+* example: (example).               An example info directory entry.
+@end direntry
+	    </example>
+	  </footnote>
+	  to the Texinfo source of the document and ensure that the info
+	  documents are rebuilt from source during the package build.
+	</p>
       </sect>
 
       <sect>
