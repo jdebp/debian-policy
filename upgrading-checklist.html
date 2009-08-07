@@ -41,6 +41,22 @@ picking your way through this list.
 <h2>The checklist</h2>
 
 <pre>
+3.8.3.0                        unreleased
+
+     * Add DEB_*_ARCH_CPU and DEB_*_ARCH_OS variables and recommend them
+       over GNU-style variables for that information.            [4.9]
+     * Source package Architecture fields may contain "all" in combination
+       with other architectures.  Clarify when "all" and "any" may be used
+       in different versions of the field.                       [5.6.8]
+     * The Debian archive software does not support uploading to multiple
+       distributions with one *.changes file.                    [5.6.14]
+     * Remove the permission for shared library packages to install
+       libraries in a non-standard location and modify ld.so.conf.
+       Packages should either be installed in a standard library directory
+       or packages using them should be built with RPATH.        [10.2]
+     * The requirement for Perl modules to have a versioned Depend and
+       Build-Depend on perl >= 5.6.0-16 has been removed.        [perl]
+
 3.8.2.0                        Jun 2009
 
      * The list of archive sections has been significantly expanded.  See

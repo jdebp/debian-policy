@@ -25,6 +25,13 @@
 	  and Christian Schwarz.
 	</copyrightsummary>
 	<p>
+	  These are the copyright dates of the original Policy manual.
+	  Since then, this manual has been updated by many others.  No
+	  comprehensive collection of copyright notices for subsequent
+	  work exists.
+	</p>
+
+	<p>
 	  This manual is free software; you may redistribute it and/or
 	  modify it under the terms of the GNU General Public License
 	  as published by the Free Software Foundation; either version
@@ -1986,6 +1993,12 @@
 		<tt>DEB_*_ARCH</tt> (the Debian architecture)
 	    </item>
 	    <item>
+		<tt>DEB_*_ARCH_CPU</tt> (the Debian CPU name)
+	    </item>
+	    <item>
+		<tt>DEB_*_ARCH_OS</tt> (the Debian System name)
+	    </item>
+	    <item>
 		<tt>DEB_*_GNU_TYPE</tt> (the GNU style architecture
 		specification string)
 	    </item>
@@ -2013,8 +2026,10 @@
 	  It is important to understand that the <tt>DEB_*_ARCH</tt>
 	  string only determines which Debian architecture we are
 	  building on or for. It should not be used to get the CPU
-	  or system information; the GNU style variables should be
-	  used for that.
+	  or system information; the <tt>DEB_*_ARCH_CPU</tt> and
+	  <tt>DEB_*_ARCH_OS</tt> variables should be used for that.
+	  GNU style variables should generally only be used with upstream
+	  build systems.
 	</p>
 
 	<sect1 id="debianrules-options">
@@ -2710,7 +2725,7 @@ Package: libc6
 	    values:
 	    <list>
 		<item>A unique single word identifying a Debian machine
-		      architecture, see <ref id="arch-spec">.
+		      architecture as described in <ref id="arch-spec">.
 		<item><tt>all</tt>, which indicates an
 		      architecture-independent package.
 		<item><tt>any</tt>, which indicates a package available
@@ -2721,31 +2736,53 @@ Package: libc6
 
 	  <p>
 	    In the main <file>debian/control</file> file in the source
-	    package, or in the source package control file
-	    <file>.dsc</file>, one may specify a list of architectures
-	    separated by spaces, or the special values <tt>any</tt> or
-	    <tt>all</tt>.
+	    package, this field may contain the special value
+	    <tt>any</tt>, the special value <tt>all</tt>, or a list of
+	    architectures separated by spaces.	If <tt>any</tt> or
+	    <tt>all</tt> appear, they must be the entire contents of the
+	    field.  Most packages will use either <tt>any</tt> or
+	    <tt>all</tt>.  Specifying a specific list of architectures is
+	    for the minority of cases where a program is not portable or
+	    is not useful on some architectures, and where possible the
+	    program should be made portable instead.
+	  </p>
+
+	  <p>
+	    In the source package control file <file>.dsc</file>, this
+	    field may contain either the special value <tt>any</tt> or a
+	    list of architectures separated by spaces. If a list is given,
+	    it may include (or consist solely of) the special value
+	    <tt>all</tt>.  In other words, in <file>.dsc</file> files
+	    unlike the <file>debian/control</file>, <tt>all</tt> may occur
+	    in combination with specific architectures.  The
+	    <tt>Architecture</tt> field in the source package control file
+	    <file>.dsc</file> is generally constructed from the
+	    <tt>Architecture</tt> fields in the
+	    <file>debian/control</file> in the source package.
 	  </p>
 
 	  <p>
 	    Specifying <tt>any</tt> indicates that the source package
 	    isn't dependent on any particular architecture and should
 	    compile fine on any one. The produced binary package(s)
-	    will be specific to whatever the current build architecture
-	    is.<footnote>
-		This is the most often used setting, and is recommended
-		for new packages that aren't <tt>Architecture: all</tt>.
-	    </footnote>
+	    will either be specific to whatever the current build
+	    architecture is or will be architecture-independent.
+	  </p>
+
+	  <p>
+	    Specifying only <tt>all</tt> indicates that the source package
+	    will only build architecture-independent packages.  If this is
+	    the case, <tt>all</tt> must be used rather than <tt>any</tt>;
+	    <tt>any</tt> implies that the source package will build at
+	    least one architecture-dependent package.
 	  </p>
 
 	  <p>
 	    Specifying a list of architectures indicates that the source
 	    will build an architecture-dependent package, and will only
-	    work correctly on the listed architectures.<footnote>
-		This is a setting used for a minority of cases where the
-		program is not portable. Generally, it should not be used
-		for new packages.
-	    </footnote>
+	    work correctly on the listed architectures.  If the source
+	    package also builds at least one architecture-independent
+	    package, <tt>all</tt> will also be included in the list.
 	  </p>
 
 	  <p>
@@ -2753,7 +2790,11 @@ Package: libc6
 	    field lists the architecture(s) of the package(s)
 	    currently being uploaded.  This will be a list; if the
 	    source for the package is also being uploaded, the special
-	    entry <tt>source</tt> is also present.
+	    entry <tt>source</tt> is also present.  <tt>all</tt> will be
+	    present if any architecture-independent packages are being
+	    uploaded.  <tt>any</tt> may never occur in the
+	    <tt>Architecture</tt> field in the <file>.changes</file>
+	    file.
 	  </p>
 
 	  <p>
@@ -3084,76 +3125,39 @@ Package: libc6
 	    distribution(s) where this version of the package should
 	    be installed.  Valid distributions are determined by the
 	    archive maintainers.<footnote>
-		Current distribution names are:
+	      Example distribution names in the Debian archive used in
+	      <file>.changes</file> files are:
 		<taglist compact="compact">
-		  <tag><em>stable</em></tag>
-		  <item>
-		      This is the current "released" version of Debian
-		      GNU/Linux.  Once the distribution is
-		      <em>stable</em> only security fixes and other
-		      major bug fixes are allowed. When changes are
-		      made to this distribution, the release number is
-		      increased (for example: 2.2r1 becomes 2.2r2 then
-		      2.2r3, etc).
-		  </item>
-
 		  <tag><em>unstable</em></tag>
 		  <item>
-		      This distribution value refers to the
-		      <em>developmental</em> part of the Debian
-		      distribution tree. New packages, new upstream
-		      versions of packages and bug fixes go into the
-		      <em>unstable</em> directory tree. Download from
-		      this distribution at your own risk.
-		  </item>
-
-		  <tag><em>testing</em></tag>
-		  <item>
-		      This distribution value refers to the
-		      <em>testing</em> part of the Debian distribution
-		      tree.  It receives its packages from the
-		      unstable distribution after a short time lag to
-		      ensure that there are no major issues with the
-		      unstable packages.  It is less prone to breakage
-		      than unstable, but still risky.  It is not
-		      possible to upload packages directly to
-		      <em>testing</em>.
-		  </item>
-
-		  <tag><em>frozen</em></tag>
-		  <item>
-		      From time to time, the <em>testing</em>
-		      distribution enters a state of "code-freeze" in
-		      anticipation of release as a <em>stable</em>
-		      version. During this period of testing only
-		      fixes for existing or newly-discovered bugs will
-		      be allowed.  The exact details of this stage are
-		      determined by the Release Manager.
+		    This distribution value refers to the
+		    <em>developmental</em> part of the Debian distribution
+		    tree.  Most new packages, new upstream versions of
+		    packages and bug fixes go into the <em>unstable</em>
+		    directory tree.
 		  </item>
 
 		  <tag><em>experimental</em></tag>
 		  <item>
-		      The packages with this distribution value are
-		      deemed by their maintainers to be high
-		      risk. Oftentimes they represent early beta or
-		      developmental packages from various sources that
-		      the maintainers want people to try, but are not
-		      ready to be a part of the other parts of the
-		      Debian distribution tree. Download at your own
-		      risk.
+		    The packages with this distribution value are deemed
+		    by their maintainers to be high risk.  Oftentimes they
+		    represent early beta or developmental packages from
+		    various sources that the maintainers want people to
+		    try, but are not ready to be a part of the other parts
+		    of the Debian distribution tree.
 		  </item>
 		</taglist>
 
 		<p>
-		  You should list <em>all</em> distributions that the
-		  package should be installed into.
-		</p>
-
-		<p>
-		  More information is available in the Debian Developer's
-		  Reference, section "The Debian archive".
+		  Others are used for updating stable releases or for
+		  security uploads.  More information is available in the
+		  Debian Developer's Reference, section "The Debian
+		  archive".
 		</p>
 	    </footnote>
+	    The Debian archive software only supports listing a single
+	    distribution.  Migration of packages to other distributions is
+	    handled outside of the upload process.
 	  </p>
 	</sect1>
 
@@ -3287,15 +3291,17 @@ Package: libc6
 	  <heading><tt>Installed-Size</tt></heading>
 
 	  <p>
-	    This field appears in the control files of binary
-	    packages, and in the <file>Packages</file> files.  It gives
-	    the total amount of disk space required to install the
-	    named package.
+	    This field appears in the control files of binary packages,
+	    and in the <file>Packages</file> files.  It gives an
+	    estimation the total amount of disk space required to install
+	    the named package.  Actual installed size may vary based on
+	    block size, file system properties, or actions taken by
+	    package maintainer scripts.
 	  </p>
 
 	  <p>
-	    The disk space is represented in kilobytes as a simple
-	    decimal number.
+	    The disk space is given as the integer value of the estimated
+	    installed size in bytes, divided by 1024 and rounded up.
 	  </p>
 	</sect1>
 
@@ -4255,6 +4261,9 @@ Build-Depends: foo [!i386] | bar [!amd64]
           This is done using the <tt>Depends</tt>, <tt>Pre-Depends</tt>,
           <tt>Recommends</tt>, <tt>Suggests</tt>, <tt>Enhances</tt>,
           <tt>Breaks</tt> and <tt>Conflicts</tt> control file fields.
+          <tt>Breaks</tt> is described in <ref id="breaks">, and
+          <tt>Conflicts</tt> is described in <ref id="conflicts">.  The
+          rest are described below.
         </p>
 
 	<p>
@@ -6981,17 +6990,6 @@ strip --strip-unneeded <var>your-lib</var>
 	      internal shared objects that are dynamically loaded by
 	      programs using <manref name="dlopen" section="3">.
 	  </footnote>
-	</p>
-
-	<p>
-	  Packages containing shared libraries that may be linked to
-	  by other packages' binaries, but which for some
-	  <em>compelling</em> reason can not be installed in
-	  <file>/usr/lib</file> directory, may install the shared library
-	  files in subdirectories of the <file>/usr/lib</file> directory,
-	  in which case they should arrange to add that directory in
-	  <file>/etc/ld.so.conf</file> in the package's post-installation
-	  script, and remove it in the package's post-removal script.
 	</p>
 
 	<p>
