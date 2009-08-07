@@ -23,6 +23,12 @@ debian-policy (3.8.3.0) UNRELEASED; urgency=low
     Seconded: Adeodato Simó <dato@net.com.org.es>
     Seconded: Julien Cristau <jcristau@debian.org>
     Closes: #519941
+  * Policy: Clarify X installation directory handling
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Julien Cristau <jcristau@debian.org>
+    Seconded: Manoj Srivastava <srivasta@debian.org>
+    Seconded: Raphaël Hertzog <hertzog@debian.org>
+    Closes: #522217
   * Perl Policy: Remove obsolete dependency requirements
     Wording: Cyril Brulebois <kibi@debian.org>
     Seconded: Russ Allbery <rra@debian.org>
