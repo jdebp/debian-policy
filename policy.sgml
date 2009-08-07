@@ -2605,11 +2605,12 @@ Package: libc6
 	  </p>
 
 	  <p>
-	    Package names must consist only of lower case letters
-	    (<tt>a-z</tt>), digits (<tt>0-9</tt>), plus (<tt>+</tt>)
-	    and minus (<tt>-</tt>) signs, and periods (<tt>.</tt>).
-	    They must be at least two characters long and must start
-	    with an alphanumeric character.
+	    Package names (both source and binary,
+	    see <ref id="f-Package">) must consist only of lower case
+	    letters (<tt>a-z</tt>), digits (<tt>0-9</tt>), plus
+	    (<tt>+</tt>) and minus (<tt>-</tt>) signs, and periods
+	    (<tt>.</tt>).  They must be at least two characters long and
+	    must start with an alphanumeric character.
 	  </p>
 	</sect1>
 
@@ -2708,11 +2709,9 @@ Package: libc6
 	  </p>
 
 	  <p>
-	    Package names must consist only of lower case letters
-	    (<tt>a-z</tt>), digits (<tt>0-9</tt>), plus (<tt>+</tt>)
-	    and minus (<tt>-</tt>) signs, and periods (<tt>.</tt>).
-	    They must be at least two characters long and must start
-	    with an alphanumeric character.
+	    Binary package names must follow the same syntax and
+	    restrictions as source package names.  See <ref id="f-Source">
+	    for the details.
 	  </p>
 	</sect1>
 
@@ -3291,7 +3290,7 @@ Package: libc6
 	  <p>
 	    This field appears in the control files of binary packages,
 	    and in the <file>Packages</file> files.  It gives an
-	    estimation the total amount of disk space required to install
+	    estimate the total amount of disk space required to install
 	    the named package.  Actual installed size may vary based on
 	    block size, file system properties, or actions taken by
 	    package maintainer scripts.
@@ -8532,7 +8531,7 @@ name ["<var>syshostname</var>"]:
 	  </p>
 	</sect1>
 
-	<sect1>
+	<sect1 id="appdefaults">
 	  <heading>Application defaults files</heading>
 
 	  <p>
@@ -8824,6 +8823,15 @@ name ["<var>syshostname</var>"]:
 	  actually encoded in UTF-8. Safe alternative ways to write many
 	  characters outside that range may be found in
 	  <manref name="groff_char" section="7">.
+	</p>
+
+	<p>
+	  If a localized version of a manual page is provided, it should
+	  either be up-to-date or it should be obvious to the reader that
+	  it is outdated and the original manual page should be used
+	  instead.  This can be done either by a note at the beginning of
+	  the manual page or by showing the missing or changed portions in
+	  the original language instead of the target language.
 	</p>
       </sect>
 
