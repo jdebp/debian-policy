@@ -39,6 +39,11 @@ debian-policy (3.8.3.0) UNRELEASED; urgency=low
     Seconded: Russ Allbery <rra@debian.org>
     Seconded: Manoj Srivastava <srivasta@golden-gryphon.com>
     Closes: #537707
+  * Policy: Allow Binary field to span multiple lines
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Julien Cristau <jcristau@debian.org>
+    Seconded: Guillem Jover <guillem@debian.org>
+    Closes: #533852
   * Perl Policy: Remove obsolete dependency requirements
     Wording: Cyril Brulebois <kibi@debian.org>
     Seconded: Russ Allbery <rra@debian.org>
