@@ -3529,15 +3529,17 @@ Package: libc6
 	<heading>Controlling terminal for maintainer scripts</heading>
 
 	<p>
-	  The maintainer scripts are guaranteed to run with a
-	  controlling terminal and can interact with the user.
-	  Because these scripts may be executed with standard output
-	  redirected into a pipe for logging purposes, Perl scripts
-	  should set unbuffered output by setting <tt>$|=1</tt> so
-	  that the output is printed immediately rather than being
-	  buffered.
+	  Maintainer scripts are not guaranteed to run with a controlling
+	  terminal and may not be able to interact with the user.  They
+	  must be able to fall back to noninteractive behavior if no
+	  controlling terminal is available.  Maintainer scripts that
+	  prompt via a program conforming to the Debian Configuration
+	  Management Specification (see <ref id="maintscriptprompt">) may
+	  assume that program will handle falling back to noninteractive
+	  behavior.
 	</p>
       </sect>
+
       <sect id="exitstatus">
 	<heading>Exit status</heading>
 
@@ -9397,9 +9399,9 @@ END-INFO-DIR-ENTRY
 	      </p>
 
 	      <p>
-		The maintainer scripts are guaranteed to run with a
-		controlling terminal and can interact with the user.
-		See <ref id="controllingterminal">.
+		The maintainer scripts are not guaranteed to run with a
+		controlling terminal and may not be able to interact with
+		the user.  See <ref id="controllingterminal">.
 	      </p>
 	    </item>
 
