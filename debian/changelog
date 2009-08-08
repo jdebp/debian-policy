@@ -61,6 +61,10 @@ debian-policy (3.8.3.0) UNRELEASED; urgency=low
     and that there is no updated list of copyright holders for subsequent
     revisions available.  (Partly addresses #47438)
   * Clarify the description of the Files control field and add examples.
+  * Change the wording of the Description and Changes field specifications
+    for *.changes files to more closely match the wording for Files and
+    add more details about the contents of the Description field in
+    a *.changes file.
   * Merge the package name syntax requirements between the Package and
     Source field descriptions.
 
