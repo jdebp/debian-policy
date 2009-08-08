@@ -6376,10 +6376,10 @@ echo "Setting DNS domainname to \"$domainname\"."
 	      </p>
 
 	      <p>
-                Note that the same symbol (<tt>"</tt>) is used for the left
-                and right quotation marks.  A grave accent (<tt>`</tt>) is
-                not a quote character; neither is an apostrophe
-                (<tt>'</tt>).
+                Note that the same symbol (<tt>"</tt>) <!-- " --> is used
+                for the left and right quotation marks.  A grave accent
+                (<tt>`</tt>) is not a quote character; neither is an
+                apostrophe (<tt>'</tt>).
 	      </p>
 	    </item>
 
