@@ -3103,7 +3103,7 @@ Package: libc6
 	  <p>
 	    In a <file>.changes</file> file, the <tt>Description</tt>
 	    field contains a summary of the descriptions for the packages
-	    being uploaded.  For this caes, the first line of the field
+	    being uploaded.  For this case, the first line of the field
 	    value (the part on the same line as <tt>Description:</tt>) is
 	    always empty.  The content of the field is expressed as
 	    continuation lines, one line per package.  Each line is
