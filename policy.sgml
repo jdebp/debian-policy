@@ -8849,7 +8849,7 @@ name ["<var>syshostname</var>"]:
 	    It was previously necessary for packages installing info
 	    documents to run <prgn>install-info</prgn> from maintainer
 	    scripts.  This is no longer necessary.  The installation
-	    system now uses dpkg hooks.
+	    system now uses dpkg triggers.
 	  </footnote>
 	  This file must not be included in packages.
 	</p>
