@@ -8882,9 +8882,9 @@ END-INFO-DIR-ENTRY
 * example: (example).               An example info directory entry.
 @end direntry
 	    </example>
+	    to the Texinfo source of the document and ensure that the info
+	    documents are rebuilt from source during the package build.
 	  </footnote>
-	  to the Texinfo source of the document and ensure that the info
-	  documents are rebuilt from source during the package build.
 	</p>
       </sect>
 
