@@ -3101,18 +3101,16 @@ Package: libc6
 	  </p>
 
 	  <p>
-	    In a <file>.changes</file> file, the <tt>Description</tt> field
-	    contains a summary of the descriptions for the packages being
-	    uploaded.
+	    In a <file>.changes</file> file, the <tt>Description</tt>
+	    field contains a summary of the descriptions for the packages
+	    being uploaded.  For this case, the first line of the field
+	    value (the part on the same line as <tt>Description:</tt>) is
+	    always empty.  The content of the field is expressed as
+	    continuation lines, one line per package.  Each line is
+	    indented by one space and contains the name of a binary
+	    package, a space, a hyphen (<tt>-</tt>), a space, and the
+	    short description line from that package.
 	  </p>
-
-	  <p>
-	    The part of the field before the first newline is empty;
-	    thereafter each line has the name of a binary package and
-	    the summary description line from that binary package.
-	    Each line is indented by one space.
-	  </p>
-
 	</sect1>
 
 	<sect1 id="f-Distribution">
@@ -3229,10 +3227,12 @@ Package: libc6
 	  </p>
 
 	  <p>
-	    There should be nothing in this field before the first
-	    newline; all the subsequent lines must be indented by at
-	    least one space; blank lines must be represented by a line
-	    consisting only of a space and a full stop.
+	    The first line of the field value (the part on the same line
+	    as <tt>Changes:</tt>) is always empty.  The content of the
+	    field is expressed as continuation lines, with each line
+	    indented by at least one space.  Blank lines must be
+	    represented by a line consisting only of a space and a full
+	    stop (<tt>.</tt>).
 	  </p>
 
 	  <p>
@@ -3308,20 +3308,30 @@ Package: libc6
 	  <p>
 	    This field contains a list of files with information about
 	    each one.  The exact information and syntax varies with
-	    the context.  In all cases the part of the field
-	    contents on the same line as the field name is empty.  The
-	    remainder of the field is one line per file, each line
-	    being indented by one space and containing a number of
-	    sub-fields separated by spaces.
+	    the context.
+	  </p>
+
+	  <p>
+	    In all cases, Files is a multiline field.  The first line of
+	    the field value (the part on the same line as <tt>Files:</tt>)
+	    is always empty.  The content of the field is expressed as
+	    continuation lines, one line per file.  Each line must be
+	    indented by one space and contain a number of sub-fields,
+	    separated by spaces, as described below.
 	  </p>
 
 	  <p>
 	    In the <file>.dsc</file> file, each line contains the MD5
-	    checksum, size and filename of the tar file and (if applicable)
-	    diff file which make up the remainder of the source
-	    package<footnote>
-		That is, the parts which are not the <tt>.dsc</tt>.
-	    </footnote>.
+	    checksum, size and filename of the tar file and (if
+	    applicable) diff file which make up the remainder of the
+	    source package<footnote>
+	      That is, the parts which are not the <tt>.dsc</tt>.
+	    </footnote>.  For example:
+	    <example>
+Files:
+ c6f698f19f2a2aa07dbb9bbda90a2754 571925 example_1.2.orig.tar.gz
+ 938512f08422f3509ff36f125f5873ba 6220 example_1.2-1.diff.gz
+	    </example>
 	    The exact forms of the filenames are described
 	    in <ref id="pkg-sourcearchives">.
 	  </p>
@@ -3329,14 +3339,20 @@ Package: libc6
 	  <p>
 	    In the <file>.changes</file> file this contains one line per
 	    file being uploaded.  Each line contains the MD5 checksum,
-	    size, section and priority and the filename.
+	    size, section and priority and the filename.  For example:
+	    <example>
+Files:
+ 4c31ab7bfc40d3cf49d7811987390357 1428 text extra example_1.2-1.dsc
+ c6f698f19f2a2aa07dbb9bbda90a2754 571925 text extra example_1.2.orig.tar.gz
+ 938512f08422f3509ff36f125f5873ba 6220 text extra example_1.2-1.diff.gz
+ 7c98fe853b3bbb47a00e5cd129b6cb56 703542 text extra example_1.2-1_i386.deb
+	    </example>
 	    The <qref id="f-Section">section</qref>
-	    and <qref id="f-Priority">priority</qref>
-	    are the values of the corresponding fields in
-	    the main source control file.  If no section or priority is
-	    specified then <tt>-</tt> should be used, though section
-	    and priority values must be specified for new packages to
-	    be installed properly.
+	    and <qref id="f-Priority">priority</qref> are the values of
+	    the corresponding fields in the main source control file.  If
+	    no section or priority is specified then <tt>-</tt> should be
+	    used, though section and priority values must be specified for
+	    new packages to be installed properly.
 	  </p>
 
 	  <p>
@@ -8851,7 +8867,7 @@ name ["<var>syshostname</var>"]:
 	    It was previously necessary for packages installing info
 	    documents to run <prgn>install-info</prgn> from maintainer
 	    scripts.  This is no longer necessary.  The installation
-	    system now uses dpkg hooks.
+	    system now uses dpkg triggers.
 	  </footnote>
 	  This file must not be included in packages.
 	</p>
@@ -8884,9 +8900,9 @@ END-INFO-DIR-ENTRY
 * example: (example).               An example info directory entry.
 @end direntry
 	    </example>
+	    to the Texinfo source of the document and ensure that the info
+	    documents are rebuilt from source during the package build.
 	  </footnote>
-	  to the Texinfo source of the document and ensure that the info
-	  documents are rebuilt from source during the package build.
 	</p>
       </sect>
 

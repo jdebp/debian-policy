@@ -44,6 +44,11 @@ debian-policy (3.8.3.0) UNRELEASED; urgency=low
     Seconded: Julien Cristau <jcristau@debian.org>
     Seconded: Guillem Jover <guillem@debian.org>
     Closes: #533852
+  * Policy: Revise info requirements for triggerized install-info
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Guillem Jover <guillem@debian.org>
+    Seconded: Raphaël Hertzog <hertzog@debian.org>
+    Closes: #538665
   * Perl Policy: Remove obsolete dependency requirements
     Wording: Cyril Brulebois <kibi@debian.org>
     Seconded: Russ Allbery <rra@debian.org>
@@ -60,6 +65,11 @@ debian-policy (3.8.3.0) UNRELEASED; urgency=low
   * Explain that the copyright dates are for the original Policy manual
     and that there is no updated list of copyright holders for subsequent
     revisions available.  (Partly addresses #47438)
+  * Clarify the description of the Files control field and add examples.
+  * Change the wording of the Description and Changes field specifications
+    for *.changes files to more closely match the wording for Files and
+    add more details about the contents of the Description field in
+    a *.changes file.
   * Merge the package name syntax requirements between the Package and
     Source field descriptions.
 
