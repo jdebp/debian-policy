@@ -44,6 +44,11 @@ debian-policy (3.8.3.0) UNRELEASED; urgency=low
     Seconded: Julien Cristau <jcristau@debian.org>
     Seconded: Guillem Jover <guillem@debian.org>
     Closes: #533852
+  * Policy: Revise info requirements for triggerized install-info
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Guillem Jover <guillem@debian.org>
+    Seconded: Raphaël Hertzog <hertzog@debian.org>
+    Closes: #538665
   * Perl Policy: Remove obsolete dependency requirements
     Wording: Cyril Brulebois <kibi@debian.org>
     Seconded: Russ Allbery <rra@debian.org>
