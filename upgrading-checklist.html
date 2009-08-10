@@ -64,6 +64,9 @@ picking your way through this list.
        original version or warn that they're not up-to-date, either with
        warning text or by showing missing or changed portions in the
        original language.                                        [12.1]
+     * install-info is now handled via triggers so packages no longer need
+       to invoke it in maintainer scripts.  Info documents should now have
+       directory sections and entries in the document.           [12.2]
      * The requirement for Perl modules to have a versioned Depend and
        Build-Depend on perl >= 5.6.0-16 has been removed.        [perl]
 
