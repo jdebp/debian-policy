@@ -8867,7 +8867,11 @@ name ["<var>syshostname</var>"]:
 	    scripts.  This is no longer necessary.  The installation
 	    system now uses dpkg triggers.
 	  </footnote>
-	  This file must not be included in packages.
+	  This file must not be included in packages.  Packages containing
+	  info documents should depend on <tt>dpkg (>= 1.15.4) |
+	  install-info</tt> to ensure that the directory file is properly
+	  rebuilt during partial upgrades from Debian 5.0 (lenny) and
+	  earlier.
 	</p>
 
 	<p>
