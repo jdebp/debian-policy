@@ -7954,10 +7954,10 @@ done
 	  use <file>/usr/bin/sensible-editor</file> and
 	  <file>/usr/bin/sensible-pager</file> as the editor or pager
 	  program respectively.  These are two scripts provided in the
-	  Debian base system that check the EDITOR and PAGER variables
-	  and launch the appropriate program, and fall back to
-	  <file>/usr/bin/editor</file> and <file>/usr/bin/pager</file> if the
-	  variable is not set.
+	  <package>sensible-utils</package> package that check the EDITOR
+	  and PAGER variables and launch the appropriate program, and fall
+	  back to <file>/usr/bin/editor</file>
+	  and <file>/usr/bin/pager</file> if the variable is not set.
 	</p>
 
 	<p>
