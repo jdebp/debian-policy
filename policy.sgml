@@ -2379,6 +2379,8 @@ Package: libc6
 	<p>
 	  Field names are not case-sensitive, but it is usual to
 	  capitalize the field names using mixed case as shown below.
+	  Field values are case-sensitive unless the description of the
+	  field says otherwise.
 	</p>
 
 	<p>

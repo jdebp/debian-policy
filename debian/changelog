@@ -74,6 +74,8 @@ debian-policy (3.8.3.0) UNRELEASED; urgency=low
   * Say that sensible-editor and sensible-pager are provided by the
     sensible-utils package, not by the base system.  Thanks, Clint Adams
     and Steve Langasek.  (Closes: #541537)
+  * Document that control field values are case-sensitive unless the field
+    description says otherwise.
 
  -- Russ Allbery <rra@debian.org>  Thu, 18 Jun 2009 15:59:48 -0700
 
