@@ -1,4 +1,4 @@
-debian-policy (3.8.3.0) UNRELEASED; urgency=low
+debian-policy (3.8.3.0) unstable; urgency=low
 
   * Policy: Bring Architecture description in line with dpkg-source
     Wording: Russ Allbery <rra@debian.org>
@@ -19,7 +19,6 @@ debian-policy (3.8.3.0) UNRELEASED; urgency=low
     Wording: Steve Langasek <vorlon@debian.org>
     Seconded: Russ Allbery <rra@debian.org>
     Seconded: Kurt Roeckx <kurt@roeckx.be>
-    Seconded: Goswin von Brederlow <goswin-v-b@web.de>
     Seconded: Adeodato Simó <dato@net.com.org.es>
     Seconded: Julien Cristau <jcristau@debian.org>
     Closes: #519941
@@ -31,8 +30,8 @@ debian-policy (3.8.3.0) UNRELEASED; urgency=low
     Closes: #522217
   * Policy: Localized man pages should be up-to-date or warn
     Wording: Russ Allbery <rra@debian.org>
-    Seconded: Helge Kreutzmann <debian@helgefjell.de>
     Seconded: Julien Cristau <jcristau@debian.org>
+    Seconded: Raphaël Hertzog <hertzog@debian.org>
     Closes: #493007
   * Policy: Remove restriction on manual page character encoding
     Wording: Colin Watson <cjwatson@debian.org>
@@ -72,8 +71,13 @@ debian-policy (3.8.3.0) UNRELEASED; urgency=low
     a *.changes file.
   * Merge the package name syntax requirements between the Package and
     Source field descriptions.
+  * Say that sensible-editor and sensible-pager are provided by the
+    sensible-utils package, not by the base system.  Thanks, Clint Adams
+    and Steve Langasek.  (Closes: #541537)
+  * Document that control field values are case-sensitive unless the field
+    description says otherwise.
 
- -- Russ Allbery <rra@debian.org>  Thu, 18 Jun 2009 15:59:48 -0700
+ -- Russ Allbery <rra@debian.org>  Sat, 15 Aug 2009 17:13:26 -0700
 
 debian-policy (3.8.2.0) unstable; urgency=low
 

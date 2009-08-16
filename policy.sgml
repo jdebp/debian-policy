@@ -2379,6 +2379,8 @@ Package: libc6
 	<p>
 	  Field names are not case-sensitive, but it is usual to
 	  capitalize the field names using mixed case as shown below.
+	  Field values are case-sensitive unless the description of the
+	  field says otherwise.
 	</p>
 
 	<p>
@@ -7956,10 +7958,10 @@ done
 	  use <file>/usr/bin/sensible-editor</file> and
 	  <file>/usr/bin/sensible-pager</file> as the editor or pager
 	  program respectively.  These are two scripts provided in the
-	  Debian base system that check the EDITOR and PAGER variables
-	  and launch the appropriate program, and fall back to
-	  <file>/usr/bin/editor</file> and <file>/usr/bin/pager</file> if the
-	  variable is not set.
+	  <package>sensible-utils</package> package that check the EDITOR
+	  and PAGER variables and launch the appropriate program, and fall
+	  back to <file>/usr/bin/editor</file>
+	  and <file>/usr/bin/pager</file> if the variable is not set.
 	</p>
 
 	<p>
@@ -8869,7 +8871,11 @@ name ["<var>syshostname</var>"]:
 	    scripts.  This is no longer necessary.  The installation
 	    system now uses dpkg triggers.
 	  </footnote>
-	  This file must not be included in packages.
+	  This file must not be included in packages.  Packages containing
+	  info documents should depend on <tt>dpkg (>= 1.15.4) |
+	  install-info</tt> to ensure that the directory file is properly
+	  rebuilt during partial upgrades from Debian 5.0 (lenny) and
+	  earlier.
 	</p>
 
 	<p>
