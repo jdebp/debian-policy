@@ -1,3 +1,11 @@
+debian-policy (3.8.3.1) unstable; urgency=low
+
+  * Also provide documents in single-file HTML format.
+    Proposed by Jari Aalto.
+    Closes: #544353
+
+ -- Bill Allombert <ballombe@debian.org>  Fri, 04 Sep 2009 14:32:42 +0200
+
 debian-policy (3.8.3.0) unstable; urgency=low
 
   * Policy: Bring Architecture description in line with dpkg-source

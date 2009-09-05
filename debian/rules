@@ -55,6 +55,7 @@ FILES_TO_CLEAN  = debian/files debian/buildinfo  debian/substvars \
 		  debian/postinst debian/prerm \
 		  version.ent upgrading-checklist.txt \
 		  $(SGML_FILES:=.txt.gz) $(SGML_FILES:=.html.tar.gz) \
+                  $(SGML_FILES:=-1.html) \
 		  policy.pdf.gz policy.ps.gz \
 		  debconf_specification.xml.tar.gz \
 		  policy.pdf policy.ps policy.txt policy. \
@@ -73,6 +74,7 @@ all build: stamp-build
 stamp-build: version.ent $(sanitycheck)
 	$(MAKE) $(SGML_FILES:=.sgml.validate) \
 		$(SGML_FILES:=.html.tar.gz) \
+                $(SGML_FILES:=-1.html) \
 		$(SGML_FILES:=.txt.gz) \
 		policy.ps.gz policy.pdf.gz
 	links -dump upgrading-checklist.html | perl -pe 's/[\r\0]//g' > \
@@ -138,6 +140,9 @@ stamp-policy:  build $(sanitycheck)
 	@set -ex; \
 	for file in $(SGML_FILES); do \
 	  tar -C $(DOCDIR) -zxf $$file.html.tar.gz; \
+	done
+	for file in $(SGML_FILES); do \
+	  $(install_file) $${file}-1.html $(DOCDIR); \
 	done
 	$(install_file)     $(FHS_HTML)   $(DOCDIR)/fhs
 	@set -ex; \
