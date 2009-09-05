@@ -5584,6 +5584,40 @@ libbar 1 bar1 (>= 1.0-1)
               </item>
               <item>
                 <p>
+                  The requirement for object files, internal binaries, and
+                  libraries, including <file>libc.so.*</file>, to be located
+                  directly under <file>/lib{,32}</file> and
+                  <file>/usr/lib{,32}</file> is amended, permitting files
+                  to instead be installed to
+                  <file>/lib/<var>triplet</var></file> and
+                  <file>/usr/lib/<var>triplet</var></file>, where
+                  <tt><var>triplet</var></tt> is the value returned by
+                  <tt>dpkg-architecture -qDEB_HOST_GNU_TYPE</tt> for the
+                  architecture of the package.  Packages may <em>not</em>
+                  install files to any <var>triplet</var> path other
+                  than the one matching the architecture of that package;
+                  for instance, an <tt>Architecture: amd64</tt> package
+                  containing 32-bit x86 libraries may not install these
+                  libraries to <file>/usr/lib/i486-linux-gnu</file>.
+                  <footnote>
+                    This is necessary in order to reserve the directories for
+                    use in cross-installation of library packages from other
+                    architectures, as part of the planned deployment of
+                    <tt>multiarch</tt>.
+                  </footnote>
+                </p>
+                <p>
+                  Applications may also use a single subdirectory under
+                  <file>/usr/lib/<var>triplet</var></file>.
+                </p>
+                <p>
+                  The execution time linker/loader, ld*, must still be made
+                  available in the existing location under /lib or /lib64
+                  since this is part of the ELF ABI for the architecture.
+                </p>
+              </item>
+              <item>
+                <p>
                   The requirement that
                   <file>/usr/local/share/man</file> be "synonymous"
                   with <file>/usr/local/man</file> is relaxed to a
