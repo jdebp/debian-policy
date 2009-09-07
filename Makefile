@@ -10,6 +10,11 @@ mime-policy.sgml: version.ent
 %.html/index.html: %.sgml
 	LANG=C debiandoc2html $<
 
+%-1.html: %.sgml
+	LANG=C debiandoc2html -1 -b $*-1d $< && \
+        mv $*-1d.html/index.html $*-1.html && \
+        rmdir $*-1d.html
+
 %.html.tar.gz: %.html/index.html
 	tar -czf $(<:/index.html=.tar.gz) $(<:/index.html=)
 
@@ -33,6 +38,7 @@ mime-policy.sgml: version.ent
 
 # convenience aliases :)
 html: policy.html/index.html
+html-1: policy-1.html
 txt text: policy.txt
 ps: policy.ps
 pdf: policy.pdf

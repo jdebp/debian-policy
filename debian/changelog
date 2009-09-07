@@ -1,4 +1,93 @@
-debian-policy (3.8.2.0) UNRELEASED; urgency=low
+debian-policy (3.8.3.1) unstable; urgency=low
+
+  * Also provide documents in single-file HTML format.
+    Proposed by Jari Aalto.
+    Closes: #544353
+
+ -- Bill Allombert <ballombe@debian.org>  Fri, 04 Sep 2009 14:32:42 +0200
+
+debian-policy (3.8.3.0) unstable; urgency=low
+
+  * Policy: Bring Architecture description in line with dpkg-source
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Raphael Hertzog <hertzog@debian.org>
+    Seconded: Manoj Srivastava <srivasta@debian.org>
+    Closes: #530967
+  * Policy: Update information about DEB_*_ARCH variables
+    Wording: Guillem Jover <guillem@debian.org>
+    Seconded: Russ Allbery <rra@debian.org>
+    Seconded: Andrew McMillan <andrew@morphoss.com>
+    Closes: #527871
+  * Policy: Remove support for uploads to multiple distributions
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Raphael Hertzog <hertzog@debian.org>
+    Seconded: Manoj Srivastava <srivasta@debian.org>
+    Closes: #514919
+  * Policy: Remove permission for packages to modify ld.so.conf
+    Wording: Steve Langasek <vorlon@debian.org>
+    Seconded: Russ Allbery <rra@debian.org>
+    Seconded: Kurt Roeckx <kurt@roeckx.be>
+    Seconded: Adeodato Simó <dato@net.com.org.es>
+    Seconded: Julien Cristau <jcristau@debian.org>
+    Closes: #519941
+  * Policy: Clarify X installation directory handling
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Julien Cristau <jcristau@debian.org>
+    Seconded: Manoj Srivastava <srivasta@debian.org>
+    Seconded: Raphaël Hertzog <hertzog@debian.org>
+    Closes: #522217
+  * Policy: Localized man pages should be up-to-date or warn
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Julien Cristau <jcristau@debian.org>
+    Seconded: Raphaël Hertzog <hertzog@debian.org>
+    Closes: #493007
+  * Policy: Remove restriction on manual page character encoding
+    Wording: Colin Watson <cjwatson@debian.org>
+    Seconded: Russ Allbery <rra@debian.org>
+    Seconded: Manoj Srivastava <srivasta@golden-gryphon.com>
+    Closes: #537707
+  * Policy: Allow Binary field to span multiple lines
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Julien Cristau <jcristau@debian.org>
+    Seconded: Guillem Jover <guillem@debian.org>
+    Closes: #533852
+  * Policy: Revise info requirements for triggerized install-info
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Guillem Jover <guillem@debian.org>
+    Seconded: Raphaël Hertzog <hertzog@debian.org>
+    Closes: #538665
+  * Perl Policy: Remove obsolete dependency requirements
+    Wording: Cyril Brulebois <kibi@debian.org>
+    Seconded: Russ Allbery <rra@debian.org>
+    Seconded: Manoj Srivastava <srivasta@debian.org>
+    Closes: #525190
+  * Breaks is now supported by the stable release of dpkg, so drop
+    warnings against its use.  Thanks, Steve Langasek.  (Closes: #533577)
+  * Add references to the sections on Breaks and Conflicts to the section
+    on binary dependencies.  Thanks, Frank Küster.  (Closes: #529771)
+  * Clarify the units of Installed-Size and document that it is an
+    approximation.  Thanks, Martin Dorey.  (Closes: #534408)
+  * Don't suggest calling dpkg-statoverride --remove unconditionally in
+    the postrm script.  Thanks, Patrick Schoenfeld.  (Closes: #539389)
+  * Explain that the copyright dates are for the original Policy manual
+    and that there is no updated list of copyright holders for subsequent
+    revisions available.  (Partly addresses #47438)
+  * Clarify the description of the Files control field and add examples.
+  * Change the wording of the Description and Changes field specifications
+    for *.changes files to more closely match the wording for Files and
+    add more details about the contents of the Description field in
+    a *.changes file.
+  * Merge the package name syntax requirements between the Package and
+    Source field descriptions.
+  * Say that sensible-editor and sensible-pager are provided by the
+    sensible-utils package, not by the base system.  Thanks, Clint Adams
+    and Steve Langasek.  (Closes: #541537)
+  * Document that control field values are case-sensitive unless the field
+    description says otherwise.
+
+ -- Russ Allbery <rra@debian.org>  Sat, 15 Aug 2009 17:13:26 -0700
+
+debian-policy (3.8.2.0) unstable; urgency=low
 
   [ Russ Allbery ]
   * Policy: Mandate debconf or equivalent for user prompting
@@ -35,6 +124,7 @@ debian-policy (3.8.2.0) UNRELEASED; urgency=low
     search-and-replace capitalisation bug.
   * Build-depend on texlive-latex-extra, which is needed by
     debiandoc2latexps and isn't included in texlive's dependencies.
+    Closes: #533257
   * Policy: State requirements for source package names
     Wording: Colin Watson <cjwatson@debian.org>
     Seconded: Russ Allbery <rra@debian.org>
@@ -42,7 +132,15 @@ debian-policy (3.8.2.0) UNRELEASED; urgency=low
     Closes: #525151
   * Add myself to Uploaders.
 
- -- Russ Allbery <rra@debian.org>  Fri, 20 Mar 2009 14:45:46 -0700
+  [ Bill Allombert ]
+  * Add myself to Uploaders.
+  * Update Standards-Version to 3.8.1 (no changes required).
+  * debian/rules: 
+    - use `dpkg --print-architecture' instead of obsolete form 
+      `dpkg --print-installation-architecture'.
+    - fix a race condition while generating DEBIAN/md5sums.
+
+ -- Bill Allombert <ballombe@debian.org>  Tue, 16 Jun 2009 21:42:53 +0200
 
 debian-policy (3.8.1.0) unstable; urgency=low
 

@@ -41,7 +41,38 @@ picking your way through this list.
 <h2>The checklist</h2>
 
 <pre>
-3.8.2.0                        unreleased
+3.8.3.0                        Aug 2009
+
+     * Add DEB_*_ARCH_CPU and DEB_*_ARCH_OS variables and recommend them
+       over GNU-style variables for that information.            [4.9]
+     * Source package Architecture fields may contain "all" in combination
+       with other architectures.  Clarify when "all" and "any" may be used
+       in different versions of the field.                       [5.6.8]
+     * The Debian archive software does not support uploading to multiple
+       distributions with one *.changes file.                    [5.6.14]
+     * The Binary field may span multiple lines.                 [5.6.19]
+     * Remove the permission for shared library packages to install
+       libraries in a non-standard location and modify ld.so.conf.
+       Packages should either be installed in a standard library directory
+       or packages using them should be built with RPATH.        [10.2]
+     * Clarify installation directories for X programs and remove the
+       requirement to pre-depend on x11-common before installing into
+       /usr/include/X11 and /usr/lib/X11.                        [11.8.7]
+     * Remove the requirement that all characters in a manual page be
+       representable in the legacy encoding for that language.   [12.1]
+     * Localized man pages should either be kept up-to-date with the
+       original version or warn that they're not up-to-date, either with
+       warning text or by showing missing or changed portions in the
+       original language.                                        [12.1]
+     * install-info is now handled via triggers so packages no longer need
+       to invoke it in maintainer scripts.  Info documents should now have
+       directory sections and entries in the document.  Packages
+       containing info documents should add a dependency to support
+       partial upgrades.                                         [12.2]
+     * The requirement for Perl modules to have a versioned Depend and
+       Build-Depend on perl >= 5.6.0-16 has been removed.        [perl]
+
+3.8.2.0                        Jun 2009
 
      * The list of archive sections has been significantly expanded.  See
        http://lists.debian.org/debian-devel-announce/2009/03/msg00010.html
@@ -50,6 +81,8 @@ picking your way through this list.
      * All packages must use debconf or equivalent for user prompting,
        though essential packages or their dependencies may also fall
        back on other methods.                                    [3.9.1]
+     * The requirements for source package names are now explicitly
+       spelled out.                                              [5.6.1]
      * Legacy XFree86 servers no longer get a special exception from the
        FHS permitting /etc/X11/XF86Config-4.                     [9.1]
      * Removed obsolete dependency requirements for packages that use
@@ -58,8 +91,6 @@ picking your way through this list.
        starting in lenny.                                        [11.8.5]
      * The GNU Free Documentation License version 1.3 is included in
        common-licenses and should be referenced from there.      [12.5]
-     * The requirements for source package names are now explicitly
-       spelled out.                                              [5.6.1]
 
 3.8.1.0                        Mar 2009
 

@@ -319,10 +319,6 @@ $(MAKE) install PREFIX=$(CURDIR)/debian/&lt;tmp&gt;/usr
 	    (nominally just tmp)</p>
 	  </footnote>
 	</p>
-	<p>
-	  A <tt>Build-Depends</tt> on <tt>perl (>= 5.6.0-16)</tt> is
-	  required.
-	</p>
       </sect>
 
       <sect id="module_deps">
@@ -341,13 +337,6 @@ $(MAKE) install PREFIX=$(CURDIR)/debian/&lt;tmp&gt;/usr
 	    <package>perl</package> or <package>perl-base</package> with
 	    the minimum required version, or more simply the current
 	    version.
-	  </p>
-	  <p>
-	    In the absence of an explicit requirement,
-	    architecture-independent modules must depend on a minimum
-	    <package>perl</package> or <package>perl-base</package>
-	    version of <tt>5.6.0-16</tt> due to the changes in
-	    <tt>@INC</tt> introduced by that version.
 	  </p>
 	</sect1>
 

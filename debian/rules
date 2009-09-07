@@ -14,7 +14,7 @@ export DEB_HOST_GNU_CPU    ?= $(shell dpkg-architecture $(ha) -qDEB_HOST_GNU_CPU
 export DEB_HOST_GNU_SYSTEM ?= $(shell dpkg-architecture $(ha) -qDEB_HOST_GNU_SYSTEM)
 export DEB_HOST_GNU_TYPE   ?= $(shell dpkg-architecture $(ha) -qDEB_HOST_GNU_TYPE)
 
-arch	:= $(shell dpkg --print-installation-architecture)
+arch	:= $(shell dpkg --print-architecture)
 
 # Basic information
 package := $(shell grep Source debian/control | sed 's/^Source: //')
@@ -55,6 +55,7 @@ FILES_TO_CLEAN  = debian/files debian/buildinfo  debian/substvars \
 		  debian/postinst debian/prerm \
 		  version.ent upgrading-checklist.txt \
 		  $(SGML_FILES:=.txt.gz) $(SGML_FILES:=.html.tar.gz) \
+                  $(SGML_FILES:=-1.html) \
 		  policy.pdf.gz policy.ps.gz \
 		  debconf_specification.xml.tar.gz \
 		  policy.pdf policy.ps policy.txt policy. \
@@ -73,6 +74,7 @@ all build: stamp-build
 stamp-build: version.ent $(sanitycheck)
 	$(MAKE) $(SGML_FILES:=.sgml.validate) \
 		$(SGML_FILES:=.html.tar.gz) \
+                $(SGML_FILES:=-1.html) \
 		$(SGML_FILES:=.txt.gz) \
 		policy.ps.gz policy.pdf.gz
 	links -dump upgrading-checklist.html | perl -pe 's/[\r\0]//g' > \
@@ -139,10 +141,14 @@ stamp-policy:  build $(sanitycheck)
 	for file in $(SGML_FILES); do \
 	  tar -C $(DOCDIR) -zxf $$file.html.tar.gz; \
 	done
+	for file in $(SGML_FILES); do \
+	  $(install_file) $${file}-1.html $(DOCDIR); \
+	done
 	$(install_file)     $(FHS_HTML)   $(DOCDIR)/fhs
 	@set -ex; \
 	cd debian/tmp; \
-	find . -type f -printf '%P\0' | xargs -r0 md5sum > DEBIAN/md5sums
+	find . -path "./DEBIAN" -prune -o -type f -printf '%P\0' \
+           | xargs -r0 md5sum > DEBIAN/md5sums
 	dpkg-gencontrol	    -p$(package) -Pdebian/tmp -isp
 	chown		    -R root:root debian/tmp
 	chmod		    -R go=rX debian/tmp
