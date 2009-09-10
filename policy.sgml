@@ -2726,7 +2726,12 @@ Package: libc6
 	    values:
 	    <list>
 		<item>A unique single word identifying a Debian machine
-		      architecture as described in <ref id="arch-spec">.
+                architecture as described in <ref id="arch-spec">.
+                </item>
+                <item>
+                  An architecture wildcard identifying a set of Debian
+                  machine architectures, see <ref id="arch-wildcard-spec">.
+                </item>
 		<item><tt>all</tt>, which indicates an
 		      architecture-independent package.
 		<item><tt>any</tt>, which indicates a package available
@@ -2739,13 +2744,14 @@ Package: libc6
 	    In the main <file>debian/control</file> file in the source
 	    package, this field may contain the special value
 	    <tt>any</tt>, the special value <tt>all</tt>, or a list of
-	    architectures separated by spaces.	If <tt>any</tt> or
-	    <tt>all</tt> appear, they must be the entire contents of the
-	    field.  Most packages will use either <tt>any</tt> or
-	    <tt>all</tt>.  Specifying a specific list of architectures is
-	    for the minority of cases where a program is not portable or
-	    is not useful on some architectures, and where possible the
-	    program should be made portable instead.
+	    specific and wildcard architectures separated by
+	    spaces. If the special value <tt>any</tt> appears, it must
+	    be the entire contents of the field.  Most packages will
+	    use either <tt>any</tt> or <tt>all</tt>.  Specifying a
+	    specific list of architectures is for the minority of
+	    cases where a program is not portable or is not useful on
+	    some architectures, and where possible the program should
+	    be made portable instead.
 	  </p>
 
 	  <p>
@@ -2784,6 +2790,24 @@ Package: libc6
 	    work correctly on the listed architectures.  If the source
 	    package also builds at least one architecture-independent
 	    package, <tt>all</tt> will also be included in the list.
+	  </p>
+
+ 	  <p>
+	    Specifying a list of architecture wildcards indicates that
+            the source will build an architecture-dependent package on
+            the union of the lists of architectures from the expansion
+            of each specified architecture wildcard, and will only
+            work correctly on the architectures in the union of the
+            lists.<footnote> As mentioned in the footnote for
+            specifying a list of architectures, this is for a minority
+            of cases where the program is not portable. Generally, it
+            should not be used for new packages.  Wildcards are not
+            expanded into a list of known architectures before
+            comparing to the build architecutre.  Instead, the build
+            architecture is matched against wildcards and this package
+            is built if the wildcard matches.</footnote> If the source
+            package also builds at least one architecture-independent
+            package, <tt>all</tt> will also be included in the list.
 	  </p>
 
 	  <p>
@@ -4257,6 +4281,23 @@ Build-Depends: foo [!i386] | bar [!amd64]
 	  source package section of the control file (which is the
 	  first section).
 	</p>
+        <p>
+          All fields that specify build-time relationships
+          (<tt>Build-Depends</tt>, <tt>Build-Depends-Indep</tt>,
+          <tt>Build-Conflicts</tt> and <tt>Build-Conflicts-Indep</tt>) may also
+          be restricted to a certain set of architectures using architecture
+          wildcards. The syntax for declaring such restrictions is the same as
+          declaring restrictions using a certain set of architectures without
+          architecture wildcards.
+          For example:
+          <example compact="compact">
+Build-Depends: foo [linux-any], bar [any-i386], baz [!linux-any]
+          </example>
+          is equivalent to <tt>foo</tt> on architectures using the
+          Linux kernel and any cpu, <tt>bar</tt> on architectures
+          using any kernel and an i386 cpu, and <tt>baz</tt> on
+          on any architecture using a kernel other than Linux.
+        </p>
       </sect>
 
       <sect id="binarydeps">
@@ -7893,6 +7934,27 @@ done
 	  <tt><var>arch</var>-unknown-linux</tt>, since the
 	  <tt>unknown</tt> does not look very good.
 	</p>
+      </sect>
+
+      <sect id="arch-wildcard-spec">
+        <heading>Architecture Wildcards</heading>
+
+        <p>
+          A package may specify an architecture wildcard. Architecture
+          wildcards are in the format <tt><var>os</var></tt>-any and
+          any-<tt><var>cpu</var></tt>. <footnote>Internally, the package
+          system normalizes the GNU triplets and the Debian
+          arches into Debian arch triplets (which are kind of inverted GNU
+          triplets). So when matching two Debian arch triplets, whenever an
+          <var>any</var> is found it matches with anything on the other side,
+          like in:
+          <example>
+  gnu-linux-i386     is matched by gnu-linux-any
+  gnu-kfreebsd-amd64 is matched by any-any-amd64
+          </example>
+          And for example <var>any</var> is normalized to <var>any-any-any</var>.
+        </footnote>
+        </p>
       </sect>
 
       <sect>
