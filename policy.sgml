@@ -1643,7 +1643,7 @@
 	  its copyright and distribution license in the file
 	  <file>/usr/share/doc/<var>package</var>/copyright</file>
 	  (see <ref id="copyrightfile"> for further details). Also see
-	  <ref id="pkgcopyright"> for further considerations relayed
+	  <ref id="pkgcopyright"> for further considerations related
 	  to copyrights for packages.
         </p>
       </sect>
