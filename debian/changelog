@@ -1,10 +1,15 @@
-debian-policy (3.8.3.1) unstable; urgency=low
+debian-policy (3.8.3.1) UNRELEASED; urgency=low
 
+  [ Bill Allombert ]
   * Also provide documents in single-file HTML format.
     Proposed by Jari Aalto.
     Closes: #544353
 
- -- Bill Allombert <ballombe@debian.org>  Fri, 04 Sep 2009 14:32:42 +0200
+  [ Manoj Srivastava ]
+  * [b270d2d]: Typo fix: relayed -> related. Thanks to Matt Kraai for
+    pointing this out.
+
+ -- Manoj Srivastava <srivasta@debian.org>  Wed, 09 Sep 2009 22:58:35 -0500
 
 debian-policy (3.8.3.0) unstable; urgency=low
 
