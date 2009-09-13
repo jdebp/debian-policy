@@ -53,7 +53,7 @@ FHS_NEW_HTML     :=
 FHS_NEW_FILES    := 
 
 POLICY_FILES = $(SGML_FILES:=.sgml) $(SGML_FILES:=.txt.gz) \
-	       virtual-package-names-list.txt \
+	       virtual-package-names-list.txt upgrading-checklist.html \
 	       upgrading-checklist.txt libc6-migration.txt version.ent \
                debconf_spec/debconf_specification.html \
                debconf_spec/debconf_specification.txt.gz \
@@ -63,7 +63,7 @@ POLICY_FILES = $(SGML_FILES:=.sgml) $(SGML_FILES:=.txt.gz) \
 # policy.{pdf,ps,tpt,txt} are generated files
 FILES_TO_CLEAN  = debian/files debian/buildinfo  debian/substvars \
 		  debian/postinst debian/prerm \
-		  version.ent upgrading-checklist.txt \
+		  version.ent \
 		  $(SGML_FILES:=.txt.gz) $(SGML_FILES:=.html.tar.gz) \
                   $(SGML_FILES:=-1.html) \
 		  policy.pdf.gz policy.ps.gz \
@@ -92,8 +92,6 @@ stamp-build: version.ent $(sanitycheck)
 ifneq (,$(strip $(HAVE_ORG_EMACS)))
 	$(MAKE) $(FILES_FROM_ORG)
 endif
-	links -dump upgrading-checklist.html | perl -pe 's/[\r\0]//g' > \
-                    upgrading-checklist.txt
 	$(MAKE) -C debconf_spec all
 	touch stamp-build
 
