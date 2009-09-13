@@ -51,7 +51,7 @@
 Debian Policy uses a formal procedure and a set of user tags to manage
 the lifecycle of change proposals. For definitions of those tags and
 proposal states and information about what the next step is for each
-phase, see PolicyChangesProcess.
+phase, see [[./Process.org][Policy changes process]].
 
 Once the wording for a change has been finalized, please send a patch
 against the current Git master branch to the bug report, if you're not
@@ -140,7 +140,7 @@ In addition to the main technical manual, the team currently also maintains:
 + [[http://www.debian.org/doc/packaging-manuals/debconf_specification.html][Debconf Specification]]
 + [[http://www.debian.org/doc/packaging-manuals/virtual-package-names-list.txt][Authoritative list of virtual package names ]]
 
-These documents are maintained using the [[http://wiki.debian.org/PolicyChangesProcess][Policy changes process]], and
+These documents are maintained using the [[./Process.org][Policy changes process]], and
 the current state of all change proposals is tracked using the
 [[http://bugs.debian.org/src:debian-policy][debian-policy BTS]].
 
@@ -154,7 +154,7 @@ will involve guiding the discussion, seeking additional input
 (particularly from experts in the area being discussed), possibly
 raising the issue on other mailing lists, proposing or getting other
 people to propose specific wording changes, and writing diffs against
-the current Policy document. All of the steps of [[http://wiki.debian.org/PolicyChangesProcess][Policy changes process]] 
+the current Policy document. All of the steps of [[./Process.org][Policy changes process]] 
 can be done by people other than Policy team members except
 the final acceptance steps and almost every change can be worked on
 independently, so there's a lot of opportunity for people to help.
@@ -319,11 +319,10 @@ useful, when trying to find a place to start, to pick a manageable set
 of bugs and set as a target resolving them completely before the next
 Policy release. Resolving a bug means one of the following:
 
-+ Proposing new language to address the bug that's seconded and
-  approved by the readers of the Policy list following the
-  PolicyChangesProcess (or that's accepted by one of the Policy
-  delegates if the change isn't normative; i.e., doesn't change the
-  technical meaning of the document).
++ Proposing new language to address the bug that's seconded and approved by
+  the readers of the Policy list following the [[./Progress.org][Policy changes process]] (or
+  that's accepted by one of the Policy delegates if the change isn't
+  normative; i.e., doesn't change the technical meaning of the document).
 + Determining that the bug is not relevant to Policy and closing it.
 + Determining that either there is no consensus that the bug indicates
   a problem, that the solutions that we can currently come up with are

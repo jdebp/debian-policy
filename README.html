@@ -13,22 +13,19 @@ lang="en" xml:lang="en">
 <title>Debian Policy</title>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2009-09-12 17:30:48 CDT"/>
-<meta name="author" content="Manoj Srivastava"/>
+<meta name="generated" content="2009-09-15 15:48:45 CDT"/>
+<meta name="author" content="Manoj Srivastava And Russ Allbery"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
 
-<link href="/styles/simple_screen.css" type="text/css" rel="stylesheet" media="screen" />
-<link href="/styles/simple_print.css"  type="text/css" rel="stylesheet" media="print" />
-<link href="/styles/common.css"        type="text/css" rel="stylesheet" />
 <style type="text/css">
   html { font-family: Times, serif; font-size: 12pt; }
   .title  { text-align: center; }
   p.verse { margin-left: 3% }
   pre {
         border: 1pt solid #AEBDCC;
-        color: gainsboro;
-        background-color: DarkSlateGrey;
+        color: #000000;
+        background-color: LightSlateGray;
         padding: 5pt;
         font-family: "Courier New", courier, monospace;
         font-size: 90%;
@@ -46,8 +43,8 @@ lang="en" xml:lang="en">
                                  font-weight:bold; }
 
   body {
-    color: LightSlateGray;
-    background-color: #000000;
+   color: DarkSlateGrey;
+   background-color: gainsboro;
    font-family: Palatino, "Palatino Linotype", "Hoefler Text", "Times New Roman", Times, Georgia, Utopia, serif;
   }
   .org-agenda-date          { color: #87cefa;    }
@@ -179,7 +176,7 @@ Request tracker:: <a href="http://bugs.debian.org/src:debian-policy">http://bugs
 <p>Debian Policy uses a formal procedure and a set of user tags to manage
 the lifecycle of change proposals. For definitions of those tags and
 proposal states and information about what the next step is for each
-phase, see PolicyChangesProcess.
+phase, see <a href="./Process.html">Policy changes process</a>.
 </p>
 <p>
 Once the wording for a change has been finalized, please send a patch
@@ -215,7 +212,7 @@ git checkout &lt;local-branch-name&gt;
 dir=$(mktemp -d)
 git format-patch -o $dir -s master
 # check out the patches created in $dir
-git send-email --from <span style="color: #ffc1c1;">"you &lt;<a href="mailto:your&#64;email">your&#64;email</a>&gt;"</span>             \
+git send-email --from <span style="font-style: italic;">"you &lt;<a href="mailto:your&#64;email">your&#64;email</a>&gt;"</span>             \
                --to debian-policy@lists.debian.org   \
                $dir/
 </pre>
@@ -328,7 +325,7 @@ In addition to the main technical manual, the team currently also maintains:
 </li>
 </ul>
 
-<p>These documents are maintained using the <a href="http://wiki.debian.org/PolicyChangesProcess">Policy changes process</a>, and
+<p>These documents are maintained using the <a href="./Process.html">Policy changes process</a>, and
 the current state of all change proposals is tracked using the
 <a href="http://bugs.debian.org/src:debian-policy">debian-policy BTS</a>.
 </p>
@@ -350,7 +347,7 @@ will involve guiding the discussion, seeking additional input
 (particularly from experts in the area being discussed), possibly
 raising the issue on other mailing lists, proposing or getting other
 people to propose specific wording changes, and writing diffs against
-the current Policy document. All of the steps of <a href="http://wiki.debian.org/PolicyChangesProcess">Policy changes process</a> 
+the current Policy document. All of the steps of <a href="./Process.html">Policy changes process</a> 
 can be done by people other than Policy team members except
 the final acceptance steps and almost every change can be worked on
 independently, so there's a lot of opportunity for people to help.
@@ -563,7 +560,7 @@ branches. The equivalent of the following commands should do that:
 
 <pre class="src src-Sh">for i in `git show-ref --heads | awk '{print $2}'`; do
     j=$(basename $i)
-    if [ <span style="color: #ffc1c1;">"$j"</span> != <span style="color: #ffc1c1;">"master"</span> ]; then
+    if [ <span style="font-style: italic;">"$j"</span> != <span style="font-style: italic;">"master"</span> ]; then
         git checkout $j &amp;&amp; git merge master
     fi
 done
@@ -633,11 +630,10 @@ Policy release. Resolving a bug means one of the following:
 </p>
 <ul>
 <li>
-Proposing new language to address the bug that's seconded and
-approved by the readers of the Policy list following the
-PolicyChangesProcess (or that's accepted by one of the Policy
-delegates if the change isn't normative; i.e., doesn't change the
-technical meaning of the document).
+Proposing new language to address the bug that's seconded and approved by
+the readers of the Policy list following the <a href="./Progress.html">Policy changes process</a> (or
+that's accepted by one of the Policy delegates if the change isn't
+normative; i.e., doesn't change the technical meaning of the document).
 </li>
 <li>
 Determining that the bug is not relevant to Policy and closing it.
@@ -672,10 +668,10 @@ reach one of the resolution states above.
 </div>
 </div>
 <div id="postamble">
-<p class="author"> Author: Manoj Srivastava
+<p class="author"> Author: Manoj Srivastava And Russ Allbery
 <a href="mailto:srivasta@debian.org">&lt;srivasta@debian.org&gt;</a>
 </p>
-<p class="date"> Date: 2009-09-12 17:30:48 CDT</p>
+<p class="date"> Date: 2009-09-15 15:48:45 CDT</p>
 <p class="creator">HTML generated by org-mode 6.30trans in emacs 23</p>
 </div>
 </div>

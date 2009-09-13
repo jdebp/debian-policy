@@ -83,7 +83,9 @@ make_directory  := install -p -d	-o root -g root	 -m  755
 
 
 all build: stamp-build
-stamp-build: version.ent $(sanitycheck)
+stamp-build: version.ent $(sanitycheck) upgrading-checklist.html \
+              upgrading-checklist.txt README.txt README.html \
+              Process.txt Process.html
 	$(MAKE) $(SGML_FILES:=.sgml.validate) \
 		$(SGML_FILES:=.html.tar.gz) \
                 $(SGML_FILES:=-1.html) \

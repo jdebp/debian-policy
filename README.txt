@@ -1,8 +1,8 @@
                             Debian Policy
                             =============
 
-Author: Manoj Srivastava <srivasta@debian.org>
-Date: 2009-09-13 00:31:16 CDT
+Author: Manoj Srivastava And Russ Allbery <srivasta@debian.org>
+Date: 2009-09-15 15:48:35 CDT
 
 
 Infrastructure 
@@ -26,7 +26,7 @@ Interacting with the team
 Debian Policy uses a formal procedure and a set of user tags to manage
 the lifecycle of change proposals. For definitions of those tags and
 proposal states and information about what the next step is for each
-phase, see PolicyChangesProcess.
+phase, see [Policy changes process].
 
 Once the wording for a change has been finalized, please send a patch
 against the current Git master branch to the bug report, if you're not
@@ -67,6 +67,9 @@ familiar with Git, the following commands are the basic process:
 changes. You may want to use some common prefix like local-. You can
 use git format-patch and git send-email if you want, but usually it's
 overkill.
+
+
+[Policy changes process]: Process.txt
 
 Usual Roles 
 ~~~~~~~~~~~~
@@ -126,7 +129,7 @@ the current state of all change proposals is tracked using the
 [Debian MIME support sub-policy]: http://www.debian.org/doc/packaging-manuals/mime-policy/
 [Debconf Specification]: http://www.debian.org/doc/packaging-manuals/debconf_specification.html
 [Authoritative list of virtual package names ]: http://www.debian.org/doc/packaging-manuals/virtual-package-names-list.txt
-[Policy changes process]: http://wiki.debian.org/PolicyChangesProcess
+[Policy changes process]: Process.txt
 [debian-policy BTS]: http://bugs.debian.org/src:debian-policy
 
 Get involved 
@@ -179,7 +182,7 @@ help you get started.
 
 [current open bugs]: http://bugs.debian.org/src:debian-policy
 [debian-policy@lists.debian.org]: mailto:debian-policy@lists.debian.org
-[Policy changes process]: http://wiki.debian.org/PolicyChangesProcess
+[Policy changes process]: Process.txt
 [debian-policy@lists.debian.org ]: mailto:debian-policy@lists.debian.org
 
 Maintenance procedures 
@@ -312,11 +315,10 @@ useful, when trying to find a place to start, to pick a manageable set
 of bugs and set as a target resolving them completely before the next
 Policy release. Resolving a bug means one of the following:
 
-+ Proposing new language to address the bug that's seconded and
-  approved by the readers of the Policy list following the
-  PolicyChangesProcess (or that's accepted by one of the Policy
-  delegates if the change isn't normative; i.e., doesn't change the
-  technical meaning of the document).
++ Proposing new language to address the bug that's seconded and approved by
+  the readers of the Policy list following the [Policy changes process] (or
+  that's accepted by one of the Policy delegates if the change isn't
+  normative; i.e., doesn't change the technical meaning of the document).
 + Determining that the bug is not relevant to Policy and closing it.
 + Determining that either there is no consensus that the bug indicates
   a problem, that the solutions that we can currently come up with are
@@ -339,3 +341,6 @@ One of the best ways to help out is to pick one or two bugs (checking
 on the Policy list first), say that you'll make resolving them a goal
 for the next release, and guide the discussion until the bugs can
 reach one of the resolution states above.
+
+[Policy changes process]: ./Progress.org
+
