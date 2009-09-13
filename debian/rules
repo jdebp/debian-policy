@@ -21,6 +21,15 @@ package := $(shell grep Source debian/control | sed 's/^Source: //')
 date	:= $(shell date +"%Y-%m-%d")
 version := $(shell awk -F '[()]' '/^$(package)/{ print $$2; exit }' debian/changelog)
 
+# either /usr/bin/emacs-snampshot or /usr/bin/emacs23
+EMACS:=$(shell if [ -x /usr/bin/emacs-snapshot ]; then \
+                 echo /usr/bin/emacs-snapshot;         \
+               elif [ -x /usr/bin/emacs23 ]; then      \
+                 echo /usr/bin/emacs23;                \
+               fi)
+HAVE_ORG_EMACS:=$(strip $(EMACS))
+
+
 # Location of the source dir
 SRCTOP	  := $(CURDIR)
 TMPTOP	  := $(SRCTOP)/debian/tmp
@@ -48,7 +57,8 @@ POLICY_FILES = $(SGML_FILES:=.sgml) $(SGML_FILES:=.txt.gz) \
 	       upgrading-checklist.txt libc6-migration.txt version.ent \
                debconf_spec/debconf_specification.html \
                debconf_spec/debconf_specification.txt.gz \
-               policy.ps.gz policy.pdf.gz
+               policy.ps.gz policy.pdf.gz README.txt README.html \
+               Process.txt Process.html
 
 # policy.{pdf,ps,tpt,txt} are generated files
 FILES_TO_CLEAN  = debian/files debian/buildinfo  debian/substvars \
@@ -60,6 +70,8 @@ FILES_TO_CLEAN  = debian/files debian/buildinfo  debian/substvars \
 		  debconf_specification.xml.tar.gz \
 		  policy.pdf policy.ps policy.txt policy. \
 		  body.tmp head.tmp policy.tpt
+
+FILES_FROM_ORG := README.txt README.html
 
 STAMPS_TO_CLEAN := stamp-policy stamp-build
 DIRS_TO_CLEAN   := debian/tmp fhs $(SGML_FILES:=.html)
@@ -77,6 +89,9 @@ stamp-build: version.ent $(sanitycheck)
                 $(SGML_FILES:=-1.html) \
 		$(SGML_FILES:=.txt.gz) \
 		policy.ps.gz policy.pdf.gz
+ifneq (,$(strip $(HAVE_ORG_EMACS)))
+	$(MAKE) $(FILES_FROM_ORG)
+endif
 	links -dump upgrading-checklist.html | perl -pe 's/[\r\0]//g' > \
                     upgrading-checklist.txt
 	$(MAKE) -C debconf_spec all
