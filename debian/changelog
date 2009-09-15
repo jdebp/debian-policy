@@ -8,8 +8,15 @@ debian-policy (3.8.3.1) UNRELEASED; urgency=low
   [ Manoj Srivastava ]
   * [b270d2d]: Typo fix: relayed -> related. Thanks to Matt Kraai for
     pointing this out.
+  * [c74ac74]: 
+    Policy: Grant an FHS exception for the multiarch library directories
+    Wording: Steve Langasek.
+    Seconded: Aurelien Jarno
+    Seconded: Julien Cristau
+    Seconded: Kurt Roeckx
+    Closes: #542865
 
- -- Manoj Srivastava <srivasta@debian.org>  Wed, 09 Sep 2009 22:58:35 -0500
+ -- Manoj Srivastava <srivasta@debian.org>  Tue, 15 Sep 2009 16:00:18 -0500
 
 debian-policy (3.8.3.0) unstable; urgency=low
 
