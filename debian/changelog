@@ -15,8 +15,14 @@ debian-policy (3.8.3.1) UNRELEASED; urgency=low
     Seconded: Julien Cristau
     Seconded: Kurt Roeckx
     Closes: #542865
-
- -- Manoj Srivastava <srivasta@debian.org>  Tue, 15 Sep 2009 16:00:18 -0500
+  * [7ac3ee6]: 
+    virtual package list: Added Doom virtual packages
+    Wording: Manoj Srivastava
+    Seconded: Russ Allbery 
+    Seconded: Giacomo A. Catenazzi
+    Closes: #518199
+  
+ -- Manoj Srivastava <srivasta@debian.org>  Mon, 05 Oct 2009 00:02:00 -0500
 
 debian-policy (3.8.3.0) unstable; urgency=low
 
