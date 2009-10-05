@@ -70,14 +70,18 @@ git commit
 git checkout master
 git pull
 
-# If there are changes in master that make the branch not apply cleanly:
- : git checkout -b temp master; git merge <local-branch-name>
-# If error, reset temp, merge master into local; else skip these three lines
- : git reset --hard HEAD;
- : git checkout <local-branch-name>; 
+git checkout master
+git merge --no-commit <local-branch-name>
+git reset --hard HEAD;
+git checkout <local-branch-name>; 
+
+# If there are changes in master that make the branch not apply cleanly, there
+# should have been en error during the merge step above. If there was an
+# error, merge the master branch into the local branch, fix the conflicts, and
+# commit the new version of the local branch.
  : git merge master
-# get rid of the temp branch:
- : git branch -D temp
+# Edit files to remove conflict
+ : git commit -s 
 
 # Checkout the local branch, to create the patch to send to the policy
 git checkout <local-branch-name>
@@ -235,12 +239,20 @@ git push origin bug12345-rra
 # update your local master branch
 git checkout master
 git pull
-# If there are changes in master that make the branch not apply cleanly:
-: git checkout -b temp master; git merge bug12345-rra
-# If error;
-: git reset --hard HEAD;
-: git checkout bug12345-rra; git branch -D temp
-: git merge master
+
+git checkout master
+git merge --no-commit bug12345-rra
+git reset --hard HEAD;
+
+# If there are changes in master that make the branch not apply cleanly, there
+# should have been en error during the merge step above. If there was an
+# error, merge the master branch into the local branch, fix the conflicts, and
+# commit the new version of the local branch.
+ : git checkout bug12345-rra
+ : git merge master
+# Edit files to remove conflict
+ : git commit -s 
+
 git checkout master
 git merge bug12345-rra
 # edit debian/changelog and upgrading-checklist.html
