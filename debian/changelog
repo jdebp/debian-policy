@@ -4,7 +4,9 @@ debian-policy (3.8.3.1) UNRELEASED; urgency=low
   * Also provide documents in single-file HTML format.
     Proposed by Jari Aalto.
     Closes: #544353
-
+  * Number the DFSG points like in the social_contract document.
+    Proposed by Enrico Zini.
+    Closes: #550192
   [ Manoj Srivastava ]
   * [b270d2d]: Typo fix: relayed -> related. Thanks to Matt Kraai for
     pointing this out.

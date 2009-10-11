@@ -366,7 +366,7 @@
 	  The Debian Free Software Guidelines (DFSG) form our
 	  definition of "free software".  These are:
 	    <taglist>
-	      <tag>Free Redistribution
+	      <tag>1. Free Redistribution
 	      </tag>
 	      <item>
 		  The license of a Debian component may not restrict any
@@ -376,20 +376,20 @@
 		  sources. The license may not require a royalty or
 		  other fee for such sale.
 	      </item>
-	      <tag>Source Code
+	      <tag>2. Source Code
 	      </tag>
 	      <item>
 		  The program must include source code, and must allow
 		  distribution in source code as well as compiled form.
 	      </item>
-	      <tag>Derived Works
+	      <tag>3. Derived Works
 	      </tag>
 	      <item>
 		  The license must allow modifications and derived
 		  works, and must allow them to be distributed under the
 		  same terms as the license of the original software.
 	      </item>
-	      <tag>Integrity of The Author's Source Code
+	      <tag>4. Integrity of The Author's Source Code
 	      </tag>
 	      <item>
 		  The license may restrict source-code from being
@@ -404,13 +404,13 @@
 		  Project encourages all authors to not restrict any
 		  files, source or binary, from being modified.)
 	      </item>
-	      <tag>No Discrimination Against Persons or Groups
+	      <tag>5. No Discrimination Against Persons or Groups
 	      </tag>
 	      <item>
 		  The license must not discriminate against any person
 		  or group of persons.
 	      </item>
-	      <tag>No Discrimination Against Fields of Endeavor
+	      <tag>6. No Discrimination Against Fields of Endeavor
 	      </tag>
 	      <item>
 		  The license must not restrict anyone from making use
@@ -419,7 +419,7 @@
 		  used in a business, or from being used for genetic
 		  research.
 	      </item>
-	      <tag>Distribution of License
+	      <tag>7. Distribution of License
 	      </tag>
 	      <item>
 		  The rights attached to the program must apply to all
@@ -427,7 +427,7 @@
 		  for execution of an additional license by those
 		  parties.
 	      </item>
-	      <tag>License Must Not Be Specific to Debian
+	      <tag>8. License Must Not Be Specific to Debian
 	      </tag>
 	      <item>
 		  The rights attached to the program must not depend on
@@ -439,7 +439,7 @@
 		  rights as those that are granted in conjunction with
 		  the Debian system.
 	      </item>
-	      <tag>License Must Not Contaminate Other Software
+	      <tag>9. License Must Not Contaminate Other Software
 	      </tag>
 	      <item>
 		  The license must not place restrictions on other
@@ -448,7 +448,7 @@
 		  that all other programs distributed on the same medium
 		  must be free software.
 	      </item>
-	      <tag>Example Licenses
+	      <tag>10. Example Licenses
 	      </tag>
 	      <item>
                   The "GPL," "BSD," and "Artistic" licenses are examples of
