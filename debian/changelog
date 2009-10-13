@@ -23,8 +23,13 @@ debian-policy (3.8.3.1) UNRELEASED; urgency=low
     Seconded: Russ Allbery 
     Seconded: Giacomo A. Catenazzi
     Closes: #518199
+  * [8fd91a0]
+    README Process upgrading-checklist: Created/converted to org-mode
+    Wording: Manoj Srivastava
+    Seconded: Russ Allbery 
+    Closes: #545548
   
- -- Manoj Srivastava <srivasta@debian.org>  Mon, 05 Oct 2009 00:02:00 -0500
+ -- Manoj Srivastava <srivasta@debian.org>  Tue, 13 Oct 2009 11:11:26 -0500
 
 debian-policy (3.8.3.0) unstable; urgency=low
 
