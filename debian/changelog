@@ -28,8 +28,12 @@ debian-policy (3.8.3.1) UNRELEASED; urgency=low
     Wording: Manoj Srivastava
     Seconded: Russ Allbery 
     Closes: #545548
-  
- -- Manoj Srivastava <srivasta@debian.org>  Tue, 13 Oct 2009 11:11:26 -0500
+  * [4da0692]: [typo-fixes]: 
+    policy: Fix a number of grammatical or typographical errors
+    wording: Eric Dantan Rzewnicki
+    Seconded: Manoj Srivastava
+
+ -- Manoj Srivastava <srivasta@debian.org>  Wed, 21 Oct 2009 15:46:35 -0500
 
 debian-policy (3.8.3.0) unstable; urgency=low
 

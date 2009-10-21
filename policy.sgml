@@ -90,11 +90,10 @@
 		    is used by, a significant number of packages, and
 		    therefore should not be changed without peer
 		    review. Package maintainers can then rely on this
-		    interfaces not changing, and the package
-		    management software authors need to ensure
-		    compatibility with these interface
-		    definitions. (Control file and changelog file
-		    formats are examples.)
+		    interface not changing, and the package management
+		    software authors need to ensure compatibility with
+		    this interface definition. (Control file and
+		    changelog file formats are examples.)
 		</item>
 		<tag>Chosen Convention</tag>
 		<item>
@@ -2690,7 +2689,7 @@ Package: libc6
 	  <heading><tt>Priority</tt></heading>
 
 	  <p>
-	    This field represents how important that it is that the user
+	    This field represents how important it is that the user
 	    have the package installed. See <ref id="priorities">.
 	  </p>
 
@@ -2799,8 +2798,8 @@ Package: libc6
 	  </p>
 
 	  <p>
-	    See <ref id="debianrules"> for information how to get the
-	    architecture for the build process.
+	    See <ref id="debianrules"> for information on how to get
+	    the architecture for the build process.
 	  </p>
 	</sect1>
 
@@ -2861,8 +2860,8 @@ Package: libc6
 	  <p>
 	    Thus only the first three components of the policy version
 	    are significant in the <em>Standards-Version</em> control
-	    field, and so either these three components or the all
-	    four components may be specified.<footnote>
+	    field, and so either these three components or all four
+	    components may be specified.<footnote>
 	  	In the past, people specified the full version number
 	  	in the Standards-Version field, for example "2.3.0.0".
 	  	Since minor patch-level changes don't introduce new
@@ -3254,7 +3253,7 @@ Package: libc6
 	    for the most recent version should be returned first, and
 	    entries should be separated by the representation of a
 	    blank line (the "title" line may also be followed by the
-	    representation of blank line).
+	    representation of a blank line).
 	  </p>
 	</sect1>
 
@@ -3913,13 +3912,13 @@ Files:
 		      <example compact="compact">
 <var>old-preinst</var> abort-upgrade <var>new-version</var>
 		      </example>
-                      If this fails, the old version is left in an
+                      If this fails, the old version is left in a
                       "Half Installed" state. If it works, dpkg now
                       calls:
 		      <example compact="compact">
 <var>new-postrm</var> abort-upgrade <var>old-version</var>
 		      </example>
-                      If this fails, the old version is left in an
+                      If this fails, the old version is left in a
                       "Half Installed" state. If it works, dpkg now
                       calls:
 		      <example compact="compact">
@@ -5337,10 +5336,10 @@ dpkg-shlibdeps debian/tmp/usr/bin/* debian/tmp/usr/sbin/* \
 	</p>
 
 	<p>
-	  If you are creating a udeb for use in the Debian Installer, you
-	  will need to specify that <prgn>dpkg-shlibdeps</prgn> should use
-	  the dependency line of type <tt>udeb</tt> by adding
-	  <tt>-tudeb</tt> as option<footnote>
+	  If you are creating a udeb for use in the Debian Installer,
+	  you will need to specify that <prgn>dpkg-shlibdeps</prgn>
+	  should use the dependency line of type <tt>udeb</tt> by
+	  adding the <tt>-tudeb</tt> option<footnote>
 	      <prgn>dh_shlibdeps</prgn> from the <tt>debhelper</tt> suite
 	      will automatically add this option if it knows it is
 	      processing a udeb.
@@ -5684,13 +5683,15 @@ libbar 1 bar1 (>= 1.0-1)
 	  </p>
 
 	  <p>
-	    Note, that this applies only to directories <em>below</em>
-	    <file>/usr/local</file>, not <em>in</em> <file>/usr/local</file>.
-	    Packages must not create sub-directories in the directory
-	    <file>/usr/local</file> itself, except those listed in FHS,
-	    section 4.5.  However, you may create directories below
-	    them as you wish. You must not remove any of the
-	    directories listed in 4.5, even if you created them.
+	    Note that this applies only to
+	    directories <em>below</em> <file>/usr/local</file>,
+	    not <em>in</em> <file>/usr/local</file>.  Packages must
+	    not create sub-directories in the
+	    directory <file>/usr/local</file> itself, except those
+	    listed in FHS, section 4.5.  However, you may create
+	    directories below them as you wish. You must not remove
+	    any of the directories listed in 4.5, even if you created
+	    them.
 	  </p>
 
 	  <p>
@@ -5751,9 +5752,10 @@ rmdir /usr/local/share/emacs 2>/dev/null || true
 	<sect1>
 	  <heading>The system-wide mail directory</heading>
 	  <p>
-	    The system-wide mail directory is <file>/var/mail</file>. This
-	    directory is part of the base system and should not owned
-	    by any particular mail agents.  The use of the old
+	    The system-wide mail directory
+	    is <file>/var/mail</file>. This directory is part of the
+	    base system and should not be owned by any particular mail
+	    agents.  The use of the old
 	    location <file>/var/spool/mail</file> is deprecated, even
 	    though the spool may still be physically located there.
 	  </p>
@@ -8607,9 +8609,9 @@ name ["<var>syshostname</var>"]:
 	  <p>
 	    Customization of programs' X resources may also be
 	    supported with the provision of a file with the same name
-	    as that of the package placed in the
-	    <file>/etc/X11/Xresources/</file> directory, which must
-	    registered as a <tt>conffile</tt> or handled as a
+	    as that of the package placed in
+	    the <file>/etc/X11/Xresources/</file> directory, which
+	    must be registered as a <tt>conffile</tt> or handled as a
 	    configuration file.<footnote>
 		Note that this mechanism is not the same as using
 		app-defaults; app-defaults are tied to the client
