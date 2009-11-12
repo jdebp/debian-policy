@@ -7256,8 +7256,8 @@ ln -fs ../sbin/sendmail debian/tmp/usr/bin/runq
 	<heading>Device files</heading>
 
 	<p>
-	  Packages must not include device files in the package file
-	  tree.
+	  Packages must not include device files or named pipes in the
+	  package file tree.
 	</p>
 
 	<p>
@@ -7281,6 +7281,18 @@ ln -fs ../sbin/sendmail debian/tmp/usr/bin/runq
 	  <file>/dev/ttyS*</file>. Programs using the old
 	  <file>/dev/cu*</file> devices should be changed to use
 	  <file>/dev/ttyS*</file>.
+	</p>
+
+	<p>
+	  Named pipes needed by the package must be created in
+	  the <prgn>postinst</prgn> script<footnote>
+	    It's better to use <prgn>mkfifo</prgn> rather
+	    than <prgn>mknod</prgn> to create named pipes so that
+	    automated checks for packages incorrectly creating device
+	    files with <prgn>mknod</prgn> won't have false positives.
+	  </footnote> and removed in
+	  the <prgn>prerm</prgn> or <prgn>postrm</prgn> script as
+	  appropriate.
 	</p>
       </sect>
 
