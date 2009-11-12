@@ -1732,7 +1732,7 @@
 	  Since an interactive <file>debian/rules</file> script makes it
 	  impossible to auto-compile that package and also makes it
 	  hard for other people to reproduce the same binary
-	  package, all <em>required targets</em> MUST be
+	  package, all <em>required targets</em> must be
 	  non-interactive. At a minimum, required targets are the
 	  ones called by <prgn>dpkg-buildpackage</prgn>, namely,
 	  <em>clean</em>, <em>binary</em>, <em>binary-arch</em>,

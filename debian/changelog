@@ -7,6 +7,7 @@ debian-policy (3.8.3.1) UNRELEASED; urgency=low
   * Number the DFSG points like in the social_contract document.
     Proposed by Enrico Zini.
     Closes: #550192
+
   [ Manoj Srivastava ]
   * [b270d2d]: Typo fix: relayed -> related. Thanks to Matt Kraai for
     pointing this out.
@@ -32,6 +33,11 @@ debian-policy (3.8.3.1) UNRELEASED; urgency=low
     policy: Fix a number of grammatical or typographical errors
     wording: Eric Dantan Rzewnicki
     Seconded: Manoj Srivastava
+
+  [ Russ Allbery ]
+  * Change the sole occurrence of MUST to must for consistency and to
+    avoid confusion with IETF RFC keywords.  Thanks, Jakub Wilk.
+    (Closes: #552757)
 
  -- Manoj Srivastava <srivasta@debian.org>  Wed, 21 Oct 2009 15:46:35 -0500
 
