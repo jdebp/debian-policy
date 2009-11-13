@@ -6,7 +6,7 @@ mime-policy.sgml: version.ent
 
 ifneq (,$(strip $(HAVE_ORG_EMACS)))
 %.txt: %.org
-	$(EMACS) --batch -Q -l ./README-css.el -l org --visit $^ \
+	$(EMACS) --batch -Q -l ./README-css.el -l org -l org-ascii --visit $^ \
           --funcall org-export-as-ascii >/dev/null 2>&1
 	test "$@" != "README.txt"  ||                            \
            perl -pli -e 's,./Process.org,Process.txt,g' $@
