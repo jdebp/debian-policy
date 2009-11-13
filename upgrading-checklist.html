@@ -13,7 +13,7 @@ lang="en" xml:lang="en">
 <title>Policy checklist for upgrading your packages</title>
 <meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2009-10-13 11:05:38 CDT"/>
+<meta name="generated" content="2009-11-12 17:10:20 PST"/>
 <meta name="author" content="Bill Allombert, Josip Rodin, Julian Gilbey, Russ Allbery, and Manoj Srivastava"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -164,13 +164,33 @@ picking your way through this list.
 </div>
 
 <div id="outline-container-2.1" class="outline-4">
-<h4 id="sec-2.1"><a name="v3.8.3.0" id="v3.8.3.0"></a>3.8.3.0 </h4>
+<h4 id="sec-2.1"><a name="v3.8.4.0" id="v3.8.4.0"></a>3.8.4.0 </h4>
 <div class="outline-text-4" id="text-2.1">
 
 
 <p>
-Released Aug, 2009.
-</p><ul>
+Unreleased.
+</p>
+<ul>
+<li>
+<b>10.6</b> : Explicitly state that packages may not contain named pipes and
+should instead create them in postinst and remove them in prerm or postrm.
+
+</li>
+</ul>
+</div>
+
+</div>
+
+<div id="outline-container-2.2" class="outline-4">
+<h4 id="sec-2.2"><a name="v3.8.3.0" id="v3.8.3.0"></a>3.8.3.0 </h4>
+<div class="outline-text-4" id="text-2.2">
+
+
+<p>
+Released Aug 2009.
+</p>
+<ul>
 <li>
 <b>4.9</b> : Add DEB_*_ARCH_CPU and DEB_*_ARCH_OS variables and
 recommend them over GNU-style variables for that information.
@@ -225,9 +245,9 @@ Depend and Build-Depend on perl &gt;= 5.6.0-16 has been removed.
 
 </div>
 
-<div id="outline-container-2.2" class="outline-4">
-<h4 id="sec-2.2"><a name="v3.8.2.0" id="v3.8.2.0"></a>3.8.2.0 </h4>
-<div class="outline-text-4" id="text-2.2">
+<div id="outline-container-2.3" class="outline-4">
+<h4 id="sec-2.3"><a name="v3.8.2.0" id="v3.8.2.0"></a>3.8.2.0 </h4>
+<div class="outline-text-4" id="text-2.3">
 
 
 <p>
@@ -271,9 +291,9 @@ common-licenses and should be referenced from there.
 
 </div>
 
-<div id="outline-container-2.3" class="outline-4">
-<h4 id="sec-2.3"><a name="v3.8.1.0" id="v3.8.1.0"></a>3.8.1.0 </h4>
-<div class="outline-text-4" id="text-2.3">
+<div id="outline-container-2.4" class="outline-4">
+<h4 id="sec-2.4"><a name="v3.8.1.0" id="v3.8.1.0"></a>3.8.1.0 </h4>
+<div class="outline-text-4" id="text-2.4">
 
 
 <p>
@@ -336,9 +356,9 @@ mode 660, owned by user, and group mail.
 
 </div>
 
-<div id="outline-container-2.4" class="outline-4">
-<h4 id="sec-2.4"><a name="v3.8.0.0" id="v3.8.0.0"></a>3.8.0.0 </h4>
-<div class="outline-text-4" id="text-2.4">
+<div id="outline-container-2.5" class="outline-4">
+<h4 id="sec-2.5"><a name="v3.8.0.0" id="v3.8.0.0"></a>3.8.0.0 </h4>
+<div class="outline-text-4" id="text-2.5">
 
 
 <p>
@@ -438,9 +458,9 @@ explain why.
 
 </div>
 
-<div id="outline-container-2.5" class="outline-4">
-<h4 id="sec-2.5"><a name="v3.7.3.0" id="v3.7.3.0"></a>3.7.3.0 </h4>
-<div class="outline-text-4" id="text-2.5">
+<div id="outline-container-2.6" class="outline-4">
+<h4 id="sec-2.6"><a name="v3.7.3.0" id="v3.7.3.0"></a>3.7.3.0 </h4>
+<div class="outline-text-4" id="text-2.6">
 
 
 <p>
@@ -496,9 +516,9 @@ be referenced rather than quoted in debian/copyright.
 
 </div>
 
-<div id="outline-container-2.6" class="outline-4">
-<h4 id="sec-2.6"><a name="v3.7.2.2" id="v3.7.2.2"></a>3.7.2.2 </h4>
-<div class="outline-text-4" id="text-2.6">
+<div id="outline-container-2.7" class="outline-4">
+<h4 id="sec-2.7"><a name="v3.7.2.2" id="v3.7.2.2"></a>3.7.2.2 </h4>
+<div class="outline-text-4" id="text-2.7">
 
 
 <p>
@@ -515,9 +535,9 @@ should to a must)
 
 </div>
 
-<div id="outline-container-2.7" class="outline-4">
-<h4 id="sec-2.7"><a name="v3.7.2.0" id="v3.7.2.0"></a>3.7.2.0 </h4>
-<div class="outline-text-4" id="text-2.7">
+<div id="outline-container-2.8" class="outline-4">
+<h4 id="sec-2.8"><a name="v3.7.2.0" id="v3.7.2.0"></a>3.7.2.0 </h4>
+<div class="outline-text-4" id="text-2.8">
 
 
 <p>
@@ -533,9 +553,9 @@ Released  Apr 2006.
 
 </div>
 
-<div id="outline-container-2.8" class="outline-4">
-<h4 id="sec-2.8"><a name="v3.7.1.0" id="v3.7.1.0"></a>3.7.1.0 </h4>
-<div class="outline-text-4" id="text-2.8">
+<div id="outline-container-2.9" class="outline-4">
+<h4 id="sec-2.9"><a name="v3.7.1.0" id="v3.7.1.0"></a>3.7.1.0 </h4>
+<div class="outline-text-4" id="text-2.9">
 
 
 <p>
@@ -562,9 +582,9 @@ must  pre-depend on x11-common (&gt;= 1:7.0.0)
 
 </div>
 
-<div id="outline-container-2.9" class="outline-4">
-<h4 id="sec-2.9"><a name="v3.7.0.0" id="v3.7.0.0"></a>3.7.0.0 </h4>
-<div class="outline-text-4" id="text-2.9">
+<div id="outline-container-2.10" class="outline-4">
+<h4 id="sec-2.10"><a name="v3.7.0.0" id="v3.7.0.0"></a>3.7.0.0 </h4>
+<div class="outline-text-4" id="text-2.10">
 
 
 <p>
@@ -617,9 +637,9 @@ live in <i>usr/share/fonts/X11</i> now, and /usr/X11R6 is gone.
 
 </div>
 
-<div id="outline-container-2.10" class="outline-4">
-<h4 id="sec-2.10"><a name="v3.6.2.0" id="v3.6.2.0"></a>3.6.2.0 </h4>
-<div class="outline-text-4" id="text-2.10">
+<div id="outline-container-2.11" class="outline-4">
+<h4 id="sec-2.11"><a name="v3.6.2.0" id="v3.6.2.0"></a>3.6.2.0 </h4>
+<div class="outline-text-4" id="text-2.11">
 
 
 <p>
@@ -644,9 +664,9 @@ allow packages to share image files with the web server
 
 </div>
 
-<div id="outline-container-2.11" class="outline-4">
-<h4 id="sec-2.11"><a name="v3.6.1.0" id="v3.6.1.0"></a>3.6.1.0 </h4>
-<div class="outline-text-4" id="text-2.11">
+<div id="outline-container-2.12" class="outline-4">
+<h4 id="sec-2.12"><a name="v3.6.1.0" id="v3.6.1.0"></a>3.6.1.0 </h4>
+<div class="outline-text-4" id="text-2.12">
 
 
 <p>
@@ -663,9 +683,9 @@ user prompts are now deprecated.
 
 </div>
 
-<div id="outline-container-2.12" class="outline-4">
-<h4 id="sec-2.12"><a name="v3.6.0.0" id="v3.6.0.0"></a>3.6.0 </h4>
-<div class="outline-text-4" id="text-2.12">
+<div id="outline-container-2.13" class="outline-4">
+<h4 id="sec-2.13"><a name="v3.6.0.0" id="v3.6.0.0"></a>3.6.0 </h4>
+<div class="outline-text-4" id="text-2.13">
 
 
 <p>
@@ -722,9 +742,9 @@ target.
 
 </div>
 
-<div id="outline-container-2.13" class="outline-4">
-<h4 id="sec-2.13"><a name="v3.5.10.0" id="v3.5.10.0"></a>3.5.10 </h4>
-<div class="outline-text-4" id="text-2.13">
+<div id="outline-container-2.14" class="outline-4">
+<h4 id="sec-2.14"><a name="v3.5.10.0" id="v3.5.10.0"></a>3.5.10 </h4>
+<div class="outline-text-4" id="text-2.14">
 
 
 <p>
@@ -746,9 +766,9 @@ Project may add 40 points for ranking in the alternatives
 
 </div>
 
-<div id="outline-container-2.14" class="outline-4">
-<h4 id="sec-2.14"><a name="v3.5.9.0" id="v3.5.9.0"></a>3.5.9.0 </h4>
-<div class="outline-text-4" id="text-2.14">
+<div id="outline-container-2.15" class="outline-4">
+<h4 id="sec-2.15"><a name="v3.5.9.0" id="v3.5.9.0"></a>3.5.9.0 </h4>
+<div class="outline-text-4" id="text-2.15">
 
 
 <p>
@@ -779,9 +799,9 @@ than <code>/usr/share/doc/package/examples</code>).
 
 </div>
 
-<div id="outline-container-2.15" class="outline-4">
-<h4 id="sec-2.15"><a name="v3.5.8.0" id="v3.5.8.0"></a>3.5.8.0 </h4>
-<div class="outline-text-4" id="text-2.15">
+<div id="outline-container-2.16" class="outline-4">
+<h4 id="sec-2.16"><a name="v3.5.8.0" id="v3.5.8.0"></a>3.5.8.0 </h4>
+<div class="outline-text-4" id="text-2.16">
 
 
 <p>
@@ -815,9 +835,9 @@ are still a bug.
 
 </div>
 
-<div id="outline-container-2.16" class="outline-4">
-<h4 id="sec-2.16"><a name="v3.5.7.0" id="v3.5.7.0"></a>3.5.7.0 </h4>
-<div class="outline-text-4" id="text-2.16">
+<div id="outline-container-2.17" class="outline-4">
+<h4 id="sec-2.17"><a name="v3.5.7.0" id="v3.5.7.0"></a>3.5.7.0 </h4>
+<div class="outline-text-4" id="text-2.17">
 
 
 <p>
@@ -866,9 +886,9 @@ scripts. Long rationale.
 
 </div>
 
-<div id="outline-container-2.17" class="outline-4">
-<h4 id="sec-2.17"><a name="v3.5.6.0" id="v3.5.6.0"></a>3.5.6.0 </h4>
-<div class="outline-text-4" id="text-2.17">
+<div id="outline-container-2.18" class="outline-4">
+<h4 id="sec-2.18"><a name="v3.5.6.0" id="v3.5.6.0"></a>3.5.6.0 </h4>
+<div class="outline-text-4" id="text-2.18">
 
 
 <p>
@@ -902,9 +922,9 @@ there is a new Build-Depend-Indep semantic.
 
 </div>
 
-<div id="outline-container-2.18" class="outline-4">
-<h4 id="sec-2.18"><a name="v3.5.5.0" id="v3.5.5.0"></a>3.5.5.0 </h4>
-<div class="outline-text-4" id="text-2.18">
+<div id="outline-container-2.19" class="outline-4">
+<h4 id="sec-2.19"><a name="v3.5.5.0" id="v3.5.5.0"></a>3.5.5.0 </h4>
+<div class="outline-text-4" id="text-2.19">
 
 
 <p>
@@ -966,9 +986,9 @@ OSF/Motif-linked ones
 
 </div>
 
-<div id="outline-container-2.19" class="outline-4">
-<h4 id="sec-2.19"><a name="v3.5.4.0" id="v3.5.4.0"></a>3.5.4.0 </h4>
-<div class="outline-text-4" id="text-2.19">
+<div id="outline-container-2.20" class="outline-4">
+<h4 id="sec-2.20"><a name="v3.5.4.0" id="v3.5.4.0"></a>3.5.4.0 </h4>
+<div class="outline-text-4" id="text-2.20">
 
 
 <p>
@@ -993,9 +1013,9 @@ policy
 
 </div>
 
-<div id="outline-container-2.20" class="outline-4">
-<h4 id="sec-2.20"><a name="v3.5.3.0" id="v3.5.3.0"></a>3.5.3.0 </h4>
-<div class="outline-text-4" id="text-2.20">
+<div id="outline-container-2.21" class="outline-4">
+<h4 id="sec-2.21"><a name="v3.5.3.0" id="v3.5.3.0"></a>3.5.3.0 </h4>
+<div class="outline-text-4" id="text-2.21">
 
 
 <p>
@@ -1018,9 +1038,9 @@ needed
 
 </div>
 
-<div id="outline-container-2.21" class="outline-4">
-<h4 id="sec-2.21"><a name="v3.5.2.0" id="v3.5.2.0"></a>3.5.2.0 </h4>
-<div class="outline-text-4" id="text-2.21">
+<div id="outline-container-2.22" class="outline-4">
+<h4 id="sec-2.22"><a name="v3.5.2.0" id="v3.5.2.0"></a>3.5.2.0 </h4>
+<div class="outline-text-4" id="text-2.22">
 
 
 <p>
@@ -1037,9 +1057,9 @@ Released Feb 2001.
 
 </div>
 
-<div id="outline-container-2.22" class="outline-4">
-<h4 id="sec-2.22"><a name="v3.5.1.0" id="v3.5.1.0"></a>3.5.1.0 </h4>
-<div class="outline-text-4" id="text-2.22">
+<div id="outline-container-2.23" class="outline-4">
+<h4 id="sec-2.23"><a name="v3.5.1.0" id="v3.5.1.0"></a>3.5.1.0 </h4>
+<div class="outline-text-4" id="text-2.23">
 
 
 <p>
@@ -1056,9 +1076,9 @@ run through dpkg-shlibdeps as well as executables
 
 </div>
 
-<div id="outline-container-2.23" class="outline-4">
-<h4 id="sec-2.23"><a name="v3.5.0.0" id="v3.5.0.0"></a>3.5.0.0 </h4>
-<div class="outline-text-4" id="text-2.23">
+<div id="outline-container-2.24" class="outline-4">
+<h4 id="sec-2.24"><a name="v3.5.0.0" id="v3.5.0.0"></a>3.5.0.0 </h4>
+<div class="outline-text-4" id="text-2.24">
 
 
 <p>
@@ -1075,9 +1095,9 @@ dependency on xutils (&gt;= 4.0.2)
 
 </div>
 
-<div id="outline-container-2.24" class="outline-4">
-<h4 id="sec-2.24"><a name="v3.2.1.1" id="v3.2.1.1"></a>3.2.1.1 </h4>
-<div class="outline-text-4" id="text-2.24">
+<div id="outline-container-2.25" class="outline-4">
+<h4 id="sec-2.25"><a name="v3.2.1.1" id="v3.2.1.1"></a>3.2.1.1 </h4>
+<div class="outline-text-4" id="text-2.25">
 
 
 <p>
@@ -1102,9 +1122,9 @@ policy document
 
 </div>
 
-<div id="outline-container-2.25" class="outline-4">
-<h4 id="sec-2.25"><a name="v3.2.1.0" id="v3.2.1.0"></a>3.2.1.0 </h4>
-<div class="outline-text-4" id="text-2.25">
+<div id="outline-container-2.26" class="outline-4">
+<h4 id="sec-2.26"><a name="v3.2.1.0" id="v3.2.1.0"></a>3.2.1.0 </h4>
+<div class="outline-text-4" id="text-2.26">
 
 
 <p>
@@ -1122,9 +1142,9 @@ and the other without
 
 </div>
 
-<div id="outline-container-2.26" class="outline-4">
-<h4 id="sec-2.26"><a name="v3.2.0.0" id="v3.2.0.0"></a>3.2.0.0 </h4>
-<div class="outline-text-4" id="text-2.26">
+<div id="outline-container-2.27" class="outline-4">
+<h4 id="sec-2.27"><a name="v3.2.0.0" id="v3.2.0.0"></a>3.2.0.0 </h4>
+<div class="outline-text-4" id="text-2.27">
 
 
 <p>
@@ -1186,9 +1206,9 @@ order be correct
 
 </div>
 
-<div id="outline-container-2.27" class="outline-4">
-<h4 id="sec-2.27"><a name="v3.1.1.0" id="v3.1.1.0"></a>3.1.1.0 </h4>
-<div class="outline-text-4" id="text-2.27">
+<div id="outline-container-2.28" class="outline-4">
+<h4 id="sec-2.28"><a name="v3.1.1.0" id="v3.1.1.0"></a>3.1.1.0 </h4>
+<div class="outline-text-4" id="text-2.28">
 
 
 <p>
@@ -1205,9 +1225,9 @@ etc.  Should not affect many packages
 
 </div>
 
-<div id="outline-container-2.28" class="outline-4">
-<h4 id="sec-2.28"><a name="v3.1.0.0" id="v3.1.0.0"></a>3.1.0.0 </h4>
-<div class="outline-text-4" id="text-2.28">
+<div id="outline-container-2.29" class="outline-4">
+<h4 id="sec-2.29"><a name="v3.1.0.0" id="v3.1.0.0"></a>3.1.0.0 </h4>
+<div class="outline-text-4" id="text-2.29">
 
 
 <p>
@@ -1269,9 +1289,9 @@ added
 
 </div>
 
-<div id="outline-container-2.29" class="outline-4">
-<h4 id="sec-2.29"><a name="v3.0.1.0" id="v3.0.1.0"></a>3.0.1.0 </h4>
-<div class="outline-text-4" id="text-2.29">
+<div id="outline-container-2.30" class="outline-4">
+<h4 id="sec-2.30"><a name="v3.0.1.0" id="v3.0.1.0"></a>3.0.1.0 </h4>
+<div class="outline-text-4" id="text-2.30">
 
 
 <p>
@@ -1289,9 +1309,9 @@ files must go in the run-time library package
 
 </div>
 
-<div id="outline-container-2.30" class="outline-4">
-<h4 id="sec-2.30"><a name="v3.0.0.0" id="v3.0.0.0"></a>3.0.0.0 </h4>
-<div class="outline-text-4" id="text-2.30">
+<div id="outline-container-2.31" class="outline-4">
+<h4 id="sec-2.31"><a name="v3.0.0.0" id="v3.0.0.0"></a>3.0.0.0 </h4>
+<div class="outline-text-4" id="text-2.31">
 
 
 <p>
@@ -1343,9 +1363,9 @@ that carries the full weight of Debian policy
 
 </div>
 
-<div id="outline-container-2.31" class="outline-4">
-<h4 id="sec-2.31"><a name="v2.5.0.0" id="v2.5.0.0"></a>2.5.0.0 </h4>
-<div class="outline-text-4" id="text-2.31">
+<div id="outline-container-2.32" class="outline-4">
+<h4 id="sec-2.32"><a name="v2.5.0.0" id="v2.5.0.0"></a>2.5.0.0 </h4>
+<div class="outline-text-4" id="text-2.32">
 
 
 <p>
@@ -1402,16 +1422,16 @@ HURD.
 
 </div>
 
-<div id="outline-container-2.32" class="outline-4">
-<h4 id="sec-2.32"><a name="v2.4.1.0" id="v2.4.1.0"></a>2.4.1.0 </h4>
-<div class="outline-text-4" id="text-2.32">
+<div id="outline-container-2.33" class="outline-4">
+<h4 id="sec-2.33"><a name="v2.4.1.0" id="v2.4.1.0"></a>2.4.1.0 </h4>
+<div class="outline-text-4" id="text-2.33">
 
 
 <p>
 Released Apr 1998.
 </p>
 <ul>
-<li id="sec-2.32.1">Policy Manual: <br/>
+<li id="sec-2.33.1">Policy Manual: <br/>
 <ul>
 <li>
 Updated section 3.3.5 Symbolic links:
@@ -1436,7 +1456,7 @@ manpages for games should be installed in /usr/man/man6
 </li>
 </ul>
 </li>
-<li id="sec-2.32.2">Packaging Manual: <br/>
+<li id="sec-2.33.2">Packaging Manual: <br/>
 <ul>
 <li>
 Updated prefix of chapter 12, Shared Libraries:
@@ -1452,9 +1472,9 @@ installs shared libraries
 
 </div>
 
-<div id="outline-container-2.33" class="outline-4">
-<h4 id="sec-2.33"><a name="v2.4.0.0" id="v2.4.0.0"></a>2.4.0.0 </h4>
-<div class="outline-text-4" id="text-2.33">
+<div id="outline-container-2.34" class="outline-4">
+<h4 id="sec-2.34"><a name="v2.4.0.0" id="v2.4.0.0"></a>2.4.0.0 </h4>
+<div class="outline-text-4" id="text-2.34">
 
 
 <p>
@@ -1593,9 +1613,9 @@ non-X games
 
 </div>
 
-<div id="outline-container-2.34" class="outline-4">
-<h4 id="sec-2.34"><a name="v2.3.0" id="v2.3.0"></a>2.3.0.1, 2.3.0.0 </h4>
-<div class="outline-text-4" id="text-2.34">
+<div id="outline-container-2.35" class="outline-4">
+<h4 id="sec-2.35"><a name="v2.3.0" id="v2.3.0"></a>2.3.0.1, 2.3.0.0 </h4>
+<div class="outline-text-4" id="text-2.35">
 
 
 <p>
@@ -1621,9 +1641,9 @@ MUAs and MTAs have to use liblockfile
 
 </div>
 
-<div id="outline-container-2.35" class="outline-4">
-<h4 id="sec-2.35"><a name="v2.2.0.0" id="v2.2.0.0"></a>2.2.0.0 </h4>
-<div class="outline-text-4" id="text-2.35">
+<div id="outline-container-2.36" class="outline-4">
+<h4 id="sec-2.36"><a name="v2.2.0.0" id="v2.2.0.0"></a>2.2.0.0 </h4>
+<div class="outline-text-4" id="text-2.36">
 
 
 <p>
@@ -1671,9 +1691,9 @@ app-defaults files may not be conffiles
 
 </div>
 
-<div id="outline-container-2.36" class="outline-4">
-<h4 id="sec-2.36"><a name="v2.1.3" id="v2.1.3"></a>2.1.3.2, 2.1.3.1, 2.1.3.0 </h4>
-<div class="outline-text-4" id="text-2.36">
+<div id="outline-container-2.37" class="outline-4">
+<h4 id="sec-2.37"><a name="v2.1.3" id="v2.1.3"></a>2.1.3.2, 2.1.3.1, 2.1.3.0 </h4>
+<div class="outline-text-4" id="text-2.37">
 
 
 <p>
@@ -1706,9 +1726,9 @@ Libraries should be stripped with "strip &ndash;strip-unneeded"
 
 </div>
 
-<div id="outline-container-2.37" class="outline-4">
-<h4 id="sec-2.37"><a name="v2.1.2" id="v2.1.2"></a>2.1.2.2, 2.1.2.1, 2.1.2.0 </h4>
-<div class="outline-text-4" id="text-2.37">
+<div id="outline-container-2.38" class="outline-4">
+<h4 id="sec-2.38"><a name="v2.1.2" id="v2.1.2"></a>2.1.2.2, 2.1.2.1, 2.1.2.0 </h4>
+<div class="outline-text-4" id="text-2.38">
 
 
 <p>
@@ -1724,9 +1744,9 @@ Some changes WRT shared libraries
 
 </div>
 
-<div id="outline-container-2.38" class="outline-4">
-<h4 id="sec-2.38"><a name="v2.1.1" id="v2.1.1"></a>2.1.1.0 </h4>
-<div class="outline-text-4" id="text-2.38">
+<div id="outline-container-2.39" class="outline-4">
+<h4 id="sec-2.39"><a name="v2.1.1" id="v2.1.1"></a>2.1.1.0 </h4>
+<div class="outline-text-4" id="text-2.39">
 
 
 <p>
@@ -1750,9 +1770,9 @@ Shared libraries must be installed stripped
 
 </div>
 
-<div id="outline-container-2.39" class="outline-4">
-<h4 id="sec-2.39"><a name="v2.1.0.0" id="v2.1.0.0"></a>2.1.0.0 </h4>
-<div class="outline-text-4" id="text-2.39">
+<div id="outline-container-2.40" class="outline-4">
+<h4 id="sec-2.40"><a name="v2.1.0.0" id="v2.1.0.0"></a>2.1.0.0 </h4>
+<div class="outline-text-4" id="text-2.40">
 
 
 <p>
@@ -1770,8 +1790,8 @@ Upstream changelog must be installed too
 <p class="author"> Author: Bill Allombert, Josip Rodin, Julian Gilbey, Russ Allbery, and Manoj Srivastava
 <a href="mailto:srivasta@debian.org">&lt;srivasta@debian.org&gt;</a>
 </p>
-<p class="date"> Date: 2009-10-13 11:05:38 CDT</p>
-<p class="creator">HTML generated by org-mode 6.31trans in emacs 23</p>
+<p class="date"> Date: 2009-11-12 17:10:20 PST</p>
+<p class="creator">HTML generated by org-mode 6.32b in emacs 23</p>
 </div>
 </div>
 </body>

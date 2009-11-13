@@ -1,4 +1,4 @@
-debian-policy (3.8.3.1) UNRELEASED; urgency=low
+debian-policy (3.8.4.0) UNRELEASED; urgency=low
 
   [ Bill Allombert ]
   * Also provide documents in single-file HTML format.
@@ -35,6 +35,10 @@ debian-policy (3.8.3.1) UNRELEASED; urgency=low
     Seconded: Manoj Srivastava
 
   [ Russ Allbery ]
+  * Policy: Clarify policy on named pipes in packages
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Manoj Srivastava <srivasta@debian.org>
+    Seconded: Andrew McMillan <andrew@morphoss.com>
   * Change the sole occurrence of MUST to must for consistency and to
     avoid confusion with IETF RFC keywords.  Thanks, Jakub Wilk.
     (Closes: #552757)
