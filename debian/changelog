@@ -33,6 +33,14 @@ debian-policy (3.8.4.0) UNRELEASED; urgency=low
     policy: Fix a number of grammatical or typographical errors
     wording: Eric Dantan Rzewnicki
     Seconded: Manoj Srivastava
+  * [112c4bc]: FHS Exceptions
+    policy: Explicitly allow /selinux and /sys as FHS exceptions
+    Wording: Manoj Srivastava
+    Seconded: Russ Allbery <rra@debian.org>
+    Seconded: Kurt Roeckx  <kurt@roeckx.be>
+    Closes: #556972
+    This patch explicitly allows /sys and /selinux as additional
+    directories in the root file system allowed under the policy.
 
   [ Russ Allbery ]
   * Policy: Clarify policy on named pipes in packages
@@ -43,7 +51,7 @@ debian-policy (3.8.4.0) UNRELEASED; urgency=low
     avoid confusion with IETF RFC keywords.  Thanks, Jakub Wilk.
     (Closes: #552757)
 
- -- Manoj Srivastava <srivasta@debian.org>  Wed, 21 Oct 2009 15:46:35 -0500
+ -- Manoj Srivastava <srivasta@debian.org>  Fri, 20 Nov 2009 16:36:04 -0600
 
 debian-policy (3.8.3.0) unstable; urgency=low
 

@@ -64,8 +64,13 @@ picking your way through this list.
 
 Unreleased.
 
++ *9.1.1* : An FHS exception has been granted for multiarch libraries.
+  Permitting files to instead be installed to ~/lib/triplet~ and
+  ~/usr/lib/triplet~ directories.
 + *10.6* : Explicitly state that packages may not contain named pipes and
   should instead create them in postinst and remove them in prerm or postrm.
++ *9.1.1* : /sys and /selinux directories are explicitly allowed as an
+  exception to the FHS.
 
 *** 3.8.3.0
 :PROPERTIES:

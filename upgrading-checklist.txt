@@ -2,7 +2,7 @@
              ============================================
 
 Author: Bill Allombert, Josip Rodin, Julian Gilbey, Russ Allbery, and Manoj Srivastava <srivasta@debian.org>
-Date: 2009-11-12 17:12:18 PST
+Date: 2009-11-20 16:47:07 CST
 
 
 About the checklist 
@@ -37,8 +37,13 @@ The checklist
 
 Unreleased.
 
++ *9.1.1* : An FHS exception has been granted for multiarch libraries.
+  Permitting files to instead be installed to `/lib/triplet' and
+  `/usr/lib/triplet' directories.
 + *10.6* : Explicitly state that packages may not contain named pipes and
   should instead create them in postinst and remove them in prerm or postrm.
++ *9.1.1* : /sys and /selinux directories are explicitly allowed as an
+  exception to the FHS.
 
 3.8.3.0 
 --------
