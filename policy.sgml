@@ -5638,6 +5638,15 @@ libbar 1 bar1 (>= 1.0-1)
                   symlinked there, is relaxed to a recommendation.
                 </p>
               </item>
+              <item>
+                <p>
+                  The following directories in the root filesystem are
+                  additionally allowed: <file>/sys</file> and
+                  <file>/selinux</file>. <footnote>These directories
+                  are used as mount points to mount virtual filesystems
+                  to get access to kernel information.</footnote>
+                </p>
+              </item>
             </enumlist>
 
           </p>
