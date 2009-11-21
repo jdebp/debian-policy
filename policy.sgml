@@ -6552,13 +6552,48 @@ Reloading <var>description</var> configuration...done.
 	  <prgn>anacron</prgn>. Thus, you should only use this
 	  directory for jobs which may be skipped if the system is not
 	  running.)</p>
+	<p>
+          Unlike <file>crontab</file> files described in the IEEE Std
+          1003.1-2008 (POSIX.1) available from
+          <url id="http://www.opengroup.org/onlinepubs/9699919799/"
+               name="The Open Group">, the files in
+          <file>/etc/cron.d</file> and the file
+          <file>/etc/crontab</file> have seven fields; namely:
+          <enumlist>
+            <item>Minute [0,59]</item>
+            <item>Hour [0,23]</item>
+            <item>Day of the month [1,31]</item>
+            <item>Month of the year [1,12]</item>
+            <item>Day of the week ([0,6] with 0=Sunday)</item>
+            <item>Username</item>
+            <item>Command to be run</item>
+          </enumlist>
+          Ranges of numbers are allowed.  Ranges are two numbers
+          separated with a hyphen.  The specified range is inclusive.
+          Lists are allowed.  A list is a set of numbers (or ranges)
+          separated by commas. Step values can be used in conjunction
+          with ranges.
+        </p>
 
 	<p>
-	  The scripts or crontab entries in these directories should
+	  The scripts or <tt>crontab</tt> entries in these directories should
 	  check if all necessary programs are installed before they
 	  try to execute them. Otherwise, problems will arise when a
 	  package was removed but not purged since configuration files
-	  are kept on the system in this situation.</p>
+	  are kept on the system in this situation.
+        </p>
+
+        <p>
+          Any <tt>cron</tt> daemon must provide
+          <file>/usr/bin/crontab</file> and support normal
+          <tt>crontab</tt> entries as specified in POSIX. The daemon
+          must also support names for days and months, ranges, and
+          step values. It has to support <file>/etc/crontab</file>,
+          and correctly execute the scripts in
+          <file>/etc/cron.d</file>. The daemon must also correctly
+          execute scripts in
+          <file>/etc/cron.{hourly,daily,weekly,monthly}</file>.
+        </p>
       </sect>
 
       <sect id="menus">
