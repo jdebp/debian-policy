@@ -4417,12 +4417,12 @@ Build-Depends: foo [!i386] | bar [!amd64]
 		be <em>unpacked</em> the pre-dependency can be
 		satisfied if the depended-on package is either fully
 		configured, <em>or even if</em> the depended-on
-		package(s) are only unpacked or half-configured,
-		provided that they have been configured correctly at
-		some point in the past (and not removed or partially
-		removed since).  In this case, both the
+		package(s) are only unpacked or in the "Failed-Config"
+		state, provided that they have been configured
+		correctly at some point in the past (and not removed
+		or partially removed since).  In this case, both the
 		previously-configured and currently unpacked or
-		half-configured versions must satisfy any version
+		"Failed-Config" versions must satisfy any version
 		clause in the <tt>Pre-Depends</tt> field.
 	      </p>
 
