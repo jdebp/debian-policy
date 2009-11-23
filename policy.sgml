@@ -3715,7 +3715,7 @@ Files:
 		      </example>
                       If this works, then the old-version is
                       "Installed", if not, the old version is in a
-                      "Failed-Config" state.
+                      "Half-Configured" state.
 		  </item>
 		</enumlist>
 	    </item>
@@ -3823,7 +3823,7 @@ Files:
                       If this fails, the package is left in a
                       "Half-Installed" state, which requires a
                       reinstall. If it works, the packages is left in
-                      a "Config Files" state.
+                      a "Config-Files" state.
 		  </item>
 		  <item>
 		      Otherwise (i.e., the package was completely purged):
@@ -3835,7 +3835,7 @@ Files:
 <var>new-postrm</var> abort-install
                       </example>
                       If the error-unwind fails, the package is in a
-                      "Half Installed" phase, and requires a
+                      "Half-Installed" phase, and requires a
                       reinstall. If the error unwind works, the
                       package is in a not installed state.
 		  </item>
@@ -3916,13 +3916,13 @@ Files:
 <var>old-preinst</var> abort-upgrade <var>new-version</var>
 		      </example>
                       If this fails, the old version is left in a
-                      "Half Installed" state. If it works, dpkg now
+                      "Half-Installed" state. If it works, dpkg now
                       calls:
 		      <example compact="compact">
 <var>new-postrm</var> abort-upgrade <var>old-version</var>
 		      </example>
                       If this fails, the old version is left in a
-                      "Half Installed" state. If it works, dpkg now
+                      "Half-Installed" state. If it works, dpkg now
                       calls:
 		      <example compact="compact">
 <var>old-postinst</var> abort-upgrade <var>new-version</var>
@@ -4081,7 +4081,7 @@ Files:
                 </example>
               </p>
               <p>
-                If this fails, the package is in a "Failed-Config"
+                If this fails, the package is in a "Half-Configured"
                 state, or else it remains "Installed".
               </p>
 	    </item>
@@ -4417,12 +4417,12 @@ Build-Depends: foo [!i386] | bar [!amd64]
 		be <em>unpacked</em> the pre-dependency can be
 		satisfied if the depended-on package is either fully
 		configured, <em>or even if</em> the depended-on
-		package(s) are only unpacked or in the "Failed-Config"
+		package(s) are only unpacked or in the "Half-Configured"
 		state, provided that they have been configured
 		correctly at some point in the past (and not removed
 		or partially removed since).  In this case, both the
 		previously-configured and currently unpacked or
-		"Failed-Config" versions must satisfy any version
+		Half-Configured versions must satisfy any version
 		clause in the <tt>Pre-Depends</tt> field.
 	      </p>
 
@@ -4479,7 +4479,7 @@ Build-Depends: foo [!i386] | bar [!amd64]
 	<p>
 	  A package will not be regarded as causing breakage merely
 	  because its configuration files are still installed; it must
-	  be at least half-installed.
+	  be at least Half-Installed.
 	</p>
 
 	<p>
@@ -4533,7 +4533,7 @@ Build-Depends: foo [!i386] | bar [!amd64]
 	<p>
 	  A package will not cause a conflict merely because its
 	  configuration files are still installed; it must be at least
-	  half-installed.
+	  Half-Installed.
 	</p>
 
 	<p>
