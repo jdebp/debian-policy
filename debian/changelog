@@ -50,7 +50,21 @@ debian-policy (3.8.4.0) UNRELEASED; urgency=low
     Explicitly state that  "make -f debian/rules" and "./debian/rules"
     must behave  identically, to prevent confusion, and to promote
     reproducibility, and conform to the principle of least surprise.
-
+  * [dab93b2]: Add a cron-daemon virtual package
+    policy, virtual package list: New virtual package: cron-daemon
+    wording: Javier Fernández-Sanguino Peña, Manoj Srivastava
+    Seconded: Russ Allbery <rra@debian.org>
+    Seconded: Kurt Roeckx  <kurt@roeckx.be>
+    Closes: #391836
+    Create a virtual cron daemon package that:
+     - Has to provide /usr/bin/crontab and support crontab entries
+     - Correct execution of /etc/cron.d
+     - Correct support of /etc/crontab
+     - Support of crontab entries with names for days and months,
+       ranges, step values
+     - Correct execution of /etc/cron.{hourly,daily,weekly,monthly}
+    
+  
   [ Russ Allbery ]
   * Policy: Clarify policy on named pipes in packages
     Wording: Russ Allbery <rra@debian.org>
