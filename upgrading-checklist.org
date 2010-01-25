@@ -613,9 +613,9 @@ Released Jan 2001.
 
 Released Jan 2001.
 
-+ Daemon startup scripts in /etc/init.d/ should not contain
++ *9.3.2*: Daemon startup scripts in /etc/init.d/ should not contain
   modifiable parameters; these should be moved to a file in
-  /etc/default/; see *9.3.2] for details
+  /etc/default/
 + *12.3*: Files in /usr/share/doc must not be referenced by any
   program.  If such files are needed, they must be placed in
   /usr/share/<package>/, and symbolic links created as required
@@ -661,7 +661,7 @@ Released Aug 00.
   - *12.8.5*: X fonts (this section has been written from scratch) 
   - *11.8.6*: X application defaults 
 + *11.8.7*: Policy for packages using the X Window System and FHS issues
-  has been clarified; see 
+  has been clarified
 + *11.7.3*: No package may contain or make hard links to conffiles 
 + *8*: Noted that newer dpkg versions do not require extreme care in
   always creating the shared lib before the symlink, so the unpack
@@ -694,7 +694,7 @@ Released Oct 1999.
   (Packages should not be touching this directory, but should use
   update-rc.d instead) 
 + *9.3.3*: update-rc.d is now the *only* allowable way of accessing the
-  /etc/rc?.d/*SK]??* links.  Any scripts which manipulate them
+  /etc/rc?.d/[SK]??* links.  Any scripts which manipulate them
   directly must be changed to use update-rc.d instead.  (This is
   because the file-rc package handles this information in an
   incompatible way.) 
@@ -746,7 +746,7 @@ Released Jun 1999.
 + *10.2*: Packages that use libtool to create shared libraries must
   include the .la files in the -dev packages 
 + *10.8*: Use logrotate to rotate log files 
-+ *now 11.8*: section 5.8 has been rewritten (Programs for the X Window
++ *11.8*: section 5.8 (now 11.8) has been rewritten (Programs for the X Window
   System) 
 + *9.6; menu-policy*: There is now an associated menu policy, in a separate document,
   that carries the full weight of Debian policy 
