@@ -2,7 +2,7 @@
              ============================================
 
 Author: Bill Allombert, Josip Rodin, Julian Gilbey, Russ Allbery, and Manoj Srivastava <srivasta@debian.org>
-Date: 2009-11-20 16:47:07 CST
+Date: 2010-01-25 09:30:46 PST
 
 
 About the checklist 
@@ -35,7 +35,7 @@ The checklist
 3.8.4.0 
 --------
 
-Unreleased.
+Released Jan 2010.
 
 + *9.1.1* : An FHS exception has been granted for multiarch libraries.
   Permitting files to instead be installed to `/lib/triplet' and

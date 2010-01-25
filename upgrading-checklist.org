@@ -62,7 +62,7 @@ picking your way through this list.
 :END:
 #<<v3.8.4.0>>
 
-Unreleased.
+Released Jan 2010.
 
 + *9.1.1* : An FHS exception has been granted for multiarch libraries.
   Permitting files to instead be installed to ~/lib/triplet~ and
