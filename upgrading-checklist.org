@@ -568,8 +568,8 @@ Released  Apr 2001.
 + *7.1*: Build-Depends arch syntax has been changed to be less
   ambiguous. This should not affect any current packages 
 + *10.7.3*: Examples and templates files for use by scripts should now live
-  in /usr/share/&lt;package&gt; or /usr/lib/&lt;package&gt;, with
-  symbolic links from /usr/share/doc/&lt;package&gt;/examples as
+  in /usr/share/<package> or /usr/lib/<package>, with
+  symbolic links from /usr/share/doc/<package>/examples as
   needed
 
 *** 3.5.2.0
@@ -618,8 +618,8 @@ Released Jan 2001.
   /etc/default/; see *9.3.2] for details
 + *12.3*: Files in /usr/share/doc must not be referenced by any
   program.  If such files are needed, they must be placed in
-  /usr/share/&lt;package&gt;/, and symbolic links created as required
-  in /usr/share/doc/&lt;package&gt;/ 
+  /usr/share/<package>/, and symbolic links created as required
+  in /usr/share/doc/<package>/ 
 + Much of the packaging manual has now been imported into the
   policy document
 
@@ -686,8 +686,8 @@ Released Nov 1999.
 
 Released Oct 1999.
 
-+ /usr/doc/&lt;package&gt; has to be a symlink pointing to
-  /usr/share/doc/&lt;package&gt;, to be maintained by postinst
++ /usr/doc/<package> has to be a symlink pointing to
+  /usr/share/doc/<package>, to be maintained by postinst
   and prerm scripts.  Details are in *defunct*
 + *7.1, 7.6*: Introduced source dependencies (Build-Depends, etc.) 
 + *9.3.4*: /etc/rc.boot has been deprecated in favour of /etc/rcS.d.
@@ -698,9 +698,9 @@ Released Oct 1999.
   directly must be changed to use update-rc.d instead.  (This is
   because the file-rc package handles this information in an
   incompatible way.) 
-+ *12.7*: Architecture-specific examples go in /usr/lib/&lt;package&gt;/examples
-  with symlinks from /usr/share/doc/&lt;package&gt;/examples/* or from
-  /usr/share/doc/&lt;package&gt;/examples itself 
++ *12.7*: Architecture-specific examples go in /usr/lib/<package>/examples
+  with symlinks from /usr/share/doc/<package>/examples/* or from
+  /usr/share/doc/<package>/examples itself 
 + *9.1.1*: Updated FHS to a 2.1 draft; this reverts /var/state to
   /var/lib 
 + *9.7; mime-policy*: Added MIME sub-policy document 
