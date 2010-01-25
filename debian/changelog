@@ -41,7 +41,7 @@ debian-policy (3.8.4.0) UNRELEASED; urgency=low
     Closes: #556972
     This patch explicitly allows /sys and /selinux as additional
     directories in the root file system allowed under the policy.
-  * [16afbcb]: Clarigy ./debian/rules #! line
+  * [16afbcb]: Clarify ./debian/rules #! line
     policy: Clarify rule for debian/rules shebang line
     Wording: Ben Finney <ben+debian@benfinney.id.au>
     Seconded: Kurt Roeckx <kurt@roeckx.be>
@@ -64,7 +64,6 @@ debian-policy (3.8.4.0) UNRELEASED; urgency=low
        ranges, step values
      - Correct execution of /etc/cron.{hourly,daily,weekly,monthly}
     
-  
   [ Russ Allbery ]
   * Policy: Clarify policy on named pipes in packages
     Wording: Russ Allbery <rra@debian.org>
