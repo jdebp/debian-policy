@@ -7,7 +7,7 @@ lang="en" xml:lang="en">
 <title>Policy checklist for upgrading your packages</title>
 <meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2010-01-25 21:41:30 CET"/>
+<meta name="generated" content="2010-01-26 13:43:10 CET"/>
 <meta name="author" content="Bill Allombert, Josip Rodin, Julian Gilbey, Russ Allbery, and Manoj Srivastava"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -182,7 +182,7 @@ Permitting files to instead be installed to <code>/lib/triplet</code> and
 should instead create them in postinst and remove them in prerm or postrm.
 </li>
 <li>
-<b>9.1.1</b> : /sys and /selinux directories are explicitly allowed as an
+<b>9.1.1</b> : <code>/sys</code> and <code>/selinux</code> directories are explicitly allowed as an
 exception to the FHS.
 
 </li>
@@ -211,7 +211,7 @@ may be used in different versions of the field.
 </li>
 <li>
 <b>5.6.14</b> : The Debian archive software does not support uploading
-to multiple distributions with one \*.changes file.
+to multiple distributions with one <code>*.changes</code> file.
 </li>
 <li>
 <b>5.6.19</b> : The Binary field may span multiple lines. 
@@ -225,7 +225,7 @@ or packages using them should be built with RPATH.
 <li>
 <b>11.8.7</b> : Clarify installation directories for X programs and
 remove the requirement to pre-depend on x11-common before installing
-into /usr/include/X11 and /usr/lib/X11.
+into <code>/usr/include/X11</code> and <code>/usr/lib/X11</code>.
 </li>
 <li>
 <b>12.1</b> : Remove the requirement that all characters in a manual
@@ -280,11 +280,11 @@ spelled out.
 </li>
 <li>
 <b>9.1</b>: Legacy XFree86 servers no longer get a special exception from the
-FHS permitting /etc/X11/XF86Config-4. 
+FHS permitting <code>/etc/X11/XF86Config-4</code>. 
 </li>
 <li>
 <b>9.1.3</b>: Removed obsolete dependency requirements for packages that use
-/var/mail. 
+<code>/var/mail</code>. 
 </li>
 <li>
 <b>11.8.5</b>: Speedo fonts are now deprecated.  The X backend was disabled
@@ -333,12 +333,12 @@ test suite provided by the package should not be run.
 <b>5.1</b>: All control files must be encoded in UTF-8.               
 </li>
 <li>
-<b>5.2</b>: debian/control allows comment lines starting with # with no
+<b>5.2</b>: <code>debian/control</code> allows comment lines starting with # with no
 preceding whitespace.                                     
 </li>
 <li>
 <b>9.3</b>: Init scripts ending in .sh are not handled specially.  They are not
-sourced and are not guaranteed to be run by /bin/sh regardless of
+sourced and are not guaranteed to be run by <code>/bin/sh</code> regardless of
 the #! line.  This brings Policy in line with the long-standing
 behavior of the init system in Debian.                    
 </li>
@@ -347,12 +347,12 @@ behavior of the init system in Debian.
 start the daemon again if it's already running.           
 </li>
 <li>
-<b>9.3.2</b>: /var/run and /var/lock may be mounted as temporary filesystems, and
-init scripts must therefore create any necessary subdirectories
+<b>9.3.2</b>: <code>/var/run</code> and <code>/var/lock</code> may be mounted as temporary filesystems,
+and init scripts must therefore create any necessary subdirectories
 dynamically.                                              
 </li>
 <li>
-<b>10.4</b>: /bin/sh scripts may assume that local can take multiple variable
+<b>10.4</b>: <code>/bin/sh</code> scripts may assume that local can take multiple variable
 arguments and supports assignment.                        
 </li>
 <li>
@@ -403,14 +403,14 @@ used that way.
 <li>
 <b>4.14</b>: If dpkg-source -x doesn't produce source ready for editing and
 building with dpkg-buildpackage, packages should include a
-debian/README.source file explaining how to generate the patched
+<code>debian/README.source</code> file explaining how to generate the patched
 source, add a new modification, and remove an existing
 modification.  This file may also be used to document packaging a
 new upstream release and any other complexity of the Debian build
 process.                                                  
 </li>
 <li>
-<b>5.6.3</b>: The Uploaders field in debian/control may be wrapped.     
+<b>5.6.3</b>: The Uploaders field in <code>debian/control</code> may be wrapped.     
 </li>
 <li>
 <b>5.6.12</b>: An empty Debian revision is equivalent to a Debian revision of 0 in
@@ -432,13 +432,13 @@ of -runtime for runtime support programs, since that naming is more
 common in Debian.                                         
 </li>
 <li>
-<b>9.5</b>: Files in /etc/cron.{hourly,daily,weekly,monthly} must be
+<b>9.5</b>: Files in <code>/etc/cron.{hourly,daily,weekly,monthly}</code> must be
 configuration files (upgraded from should).  Mention the hourly
 directory.                                                
 </li>
 <li>
-<b>11.8.6</b>: Packages providing /etc/X11/Xresources files need not conflict with
-xbase (&lt;&lt; 3.3.2.3a-2), which is long-obsolete.            
+<b>11.8.6</b>: Packages providing <code>/etc/X11/Xresources</code> files need not conflict
+with xbase (&lt;&lt; 3.3.2.3a-2), which is long-obsolete.            
 </li>
 <li>
 <b>12.1</b>: Manual pages in locale-specific directories should use either the
@@ -451,7 +451,7 @@ UTF-8.
 </li>
 <li>
 <b>12.5</b>: The Apache 2.0 license is now in common-licenses and should be
-referenced rather than quoted in debian/copyright.        
+referenced rather than quoted in <code>debian/copyright</code>.        
 </li>
 <li>
 <b>12.5</b>: Packages in contrib and non-free should state in the copyright file
@@ -481,7 +481,7 @@ Released  Dec 2007.
 anything, even the end of a part.                         
 </li>
 <li>
-<b>10.4</b>: Scripts may assume that /bin/sh supports local (at a basic level)
+<b>10.4</b>: Scripts may assume that <code>/bin/sh</code> supports local (at a basic level)
 and that its test builtin (if any) supports -a and -o binary
 logical operators.                                        
 </li>
@@ -517,7 +517,7 @@ a gettext-based system such as po-debconf.
 </li>
 <li>
 <b>12.5</b>: GFDL 1.2, GPL 3, and LGPL 3 are now in common-licenses and should
-be referenced rather than quoted in debian/copyright.
+be referenced rather than quoted in <code>debian/copyright</code>.
 
 </li>
 </ul>
@@ -582,7 +582,7 @@ of the process.
 </li>
 <li>
 <b>11.8.7</b>: Packages should install any relevant files into the directories
-<i>usr/include/X11/and /usr/lib/X11</i>, but if they do so, they
+<code>/usr/include/X11/</code> and <code>/usr/lib/X11/</code>, but if they do so, they
 must  pre-depend on x11-common (&gt;= 1:7.0.0)              
 
 </li>
@@ -602,17 +602,17 @@ Released  Apr 2006.
 <ul>
 <li>
 <b>11.5</b>: Packages shipping web server CGI files are expected to install
-them in <i>usr/lib/cgi-lib</i> directories.  This location change
+them in <code>/usr/lib/cgi-lib/</code> directories.  This location change
 perhaps should be documented in NEWS                      
 </li>
 <li>
 <b>11.5</b>: Web server packages should include a standard scriptAlias of
-cgi-lib to /usr/lib/cgi-lib.                              
+cgi-lib to <code>/usr/lib/cgi-lib</code>.                              
 </li>
 <li>
 <b>9.1.1</b>: The version of FHS mandated by policy has been upped to
 2.3. There should be no changes required for most packages,
-though new top level directories /media, /srv, etc may be of
+though new top level directories <code>/media</code>, <code>/srv</code>, etc may be of
 interest.                                                 
 </li>
 <li>
@@ -635,9 +635,9 @@ so since it also pays attention to run levels and other local
 constraints.                                                
 </li>
 <li>
-<b>11.8.5.2, 11.8.7, etc</b>: We no longer use /usr/X11R6, since we have
+<b>11.8.5.2, 11.8.7, etc</b>: We no longer use <code>/usr/X11R6</code>, since we have
 migrated away to using Xorg paths. This means, for one thing, fonts
-live in <i>usr/share/fonts/X11</i> now, and /usr/X11R6 is gone.
+live in <code>/usr/share/fonts/X11/</code> now, and <code>/usr/X11R6</code> is gone.
 
 
 </li>
@@ -660,11 +660,11 @@ Recommend. doc-base, and not menu, for registering package documentation.
 </li>
 <li>
 <b>8.1</b>: Run time support programs should live in subdirectories of
-<i>usr/lib</i> or /usr/share, and preferably the shared lib is named
+<code>/usr/lib/</code> or <code>/usr/share</code>, and preferably the shared lib is named
 the same as the package name (to avoid name collisions). 
 </li>
 <li>
-<b>11.5</b>: It is recommended that HTTP servers provide an alias /images to
+<b>11.5</b>: It is recommended that HTTP servers provide an alias <code>/images</code> to
 allow packages to share image files with the web server 
 
 </li>
@@ -868,7 +868,7 @@ special Tasks: field in the control file.
 <li>
 <b>11.8.4</b>: window managers that support netwm can now add 20 points when
 they add themselves as an alternative for
-/usr/bin/x-window-manager 
+<code>/usr/bin/x-window-manager</code>
 </li>
 <li>
 <b>10.1</b>: The default compilation options have now changed, one should
@@ -909,15 +909,16 @@ Released  Jul 2001.
 standard packages 
 </li>
 <li>
-<b>11.5</b>: Programs that access docs need to do so via <i>usr/share/doc, and   not via /usr/doc</i> as was the policy previously 
+<b>11.5</b>: Programs that access docs need to do so via <code>/usr/share/doc</code>, and
+not via <code>/usr/doc/</code> as was the policy previously 
 </li>
 <li>
-<b>12.3</b>: Putting documentation in /usr/doc versus /usr/share/doc is now
+<b>12.3</b>: Putting documentation in <code>/usr/doc</code> versus <code>/usr/share/doc</code> is now
 a ``serious'' policy violation. 
 </li>
 <li>
 <b>11.5</b>: For web servers, one should not provide non-local access to the
-/usr/share/doc hierarchy. If one can't provide access controls for
+<code>/usr/share/doc</code> hierarchy. If one can't provide access controls for
 the <a href="http://localhost/doc/">http://localhost/doc/</a> directory, then it is preferred that one
 ask permission to expose that information during the install. 
 </li>
@@ -977,7 +978,7 @@ packages
 fonts for the X Window System 
 </li>
 <li>
-<b>11.8.6</b>: Packages must not ship <i>usr/X11R6/lib/X11/app-defaults</i>
+<b>11.8.6</b>: Packages must not ship <code>/usr/X11R6/lib/X11/app-defaults/</code>
 </li>
 <li>
 <b>11.8.7</b>: X-related packages should usually use the regular FHS
@@ -1005,9 +1006,9 @@ Released  Apr 2001.
 </p>
 <ul>
 <li>
-<b>11.6</b>: The system-wide mail directory is now /var/mail, no longer
-/var/spool/mail.  Any packages accessing the mail spool should
-access it via /var/mail and include a suitable Depends field;
+<b>11.6</b>: The system-wide mail directory is now <code>/var/mail</code>, no longer
+<code>/var/spool/mail</code>.  Any packages accessing the mail spool should
+access it via <code>/var/mail</code> and include a suitable Depends field;
 details in 
 </li>
 <li>
@@ -1037,8 +1038,8 @@ ambiguous. This should not affect any current packages
 </li>
 <li>
 <b>10.7.3</b>: Examples and templates files for use by scripts should now live
-in /usr/share/&lt;package&gt; or /usr/lib/&lt;package&gt;, with
-symbolic links from /usr/share/doc/&lt;package&gt;/examples as
+in <code>/usr/share/&lt;package&gt;</code> or <code>/usr/lib/&lt;package&gt;</code>, with
+symbolic links from <code>/usr/share/doc/&lt;package&gt;/examples</code> as
 needed
 
 </li>
@@ -1058,7 +1059,7 @@ Released Feb 2001.
 <ul>
 <li>
 <b>11.8.6</b>: X app-defaults directory has moved from
-/usr/X11R6/lib/X11/app-defaults to /etc/X11/app-defaults 
+<code>/usr/X11R6/lib/X11/app-defaults</code> to <code>/etc/X11/app-defaults</code>
 
 </li>
 </ul>
@@ -1114,15 +1115,15 @@ Released Jan 2001.
 </p>
 <ul>
 <li>
-<b>9.3.2</b>: Daemon startup scripts in <i>etc/init.d</i> should not contain
+<b>9.3.2</b>: Daemon startup scripts in <code>/etc/init.d/</code> should not contain
 modifiable parameters; these should be moved to a file in
-<i>etc/default</i>
+<code>/etc/default/</code>
 </li>
 <li>
-<b>12.3</b>: Files in /usr/share/doc must not be referenced by any
+<b>12.3</b>: Files in <code>/usr/share/doc</code> must not be referenced by any
 program.  If such files are needed, they must be placed in
-<i>usr/share/&lt;package&gt;</i>, and symbolic links created as required
-in <i>usr/share/doc/&lt;package&gt;</i> 
+<code>/usr/share/&lt;package&gt;/</code>, and symbolic links created as required
+in <code>/usr/share/doc/&lt;package&gt;/</code>
 </li>
 <li>
 Much of the packaging manual has now been imported into the
@@ -1189,7 +1190,7 @@ has been codified:
 </li>
 <li>
 <b>11.8.4</b>: X window manager (virtual package x-window-manager, and
-/usr/bin/x-window-manager alternative, with priority
+<code>/usr/bin/x-window-manager</code> alternative, with priority
 calculation guidelines) 
 </li>
 <li>
@@ -1247,33 +1248,33 @@ Released Oct 1999.
 </p>
 <ul>
 <li>
-/usr/doc/&lt;package&gt; has to be a symlink pointing to
-/usr/share/doc/&lt;package&gt;, to be maintained by postinst
+<code>/usr/doc/&lt;package&gt;</code> has to be a symlink pointing to
+<code>/usr/share/doc/&lt;package&gt;</code>, to be maintained by postinst
 and prerm scripts.  Details are in <b>defunct</b>
 </li>
 <li>
 <b>7.1, 7.6</b>: Introduced source dependencies (Build-Depends, etc.) 
 </li>
 <li>
-<b>9.3.4</b>: /etc/rc.boot has been deprecated in favour of /etc/rcS.d.
+<b>9.3.4</b>: <code>/etc/rc.boot</code> has been deprecated in favour of <code>/etc/rcS.d</code>.
 (Packages should not be touching this directory, but should use
 update-rc.d instead) 
 </li>
 <li>
 <b>9.3.3</b>: update-rc.d is now the <b>only</b> allowable way of accessing the
-/etc/rc?.d/[SK]??* links.  Any scripts which manipulate them
+<code>/etc/rc?.d/[SK]??*</code> links.  Any scripts which manipulate them
 directly must be changed to use update-rc.d instead.  (This is
 because the file-rc package handles this information in an
 incompatible way.) 
 </li>
 <li>
-<b>12.7</b>: Architecture-specific examples go in /usr/lib/&lt;package&gt;/examples
-with symlinks from /usr/share/doc/&lt;package&gt;/examples/* or from
-/usr/share/doc/&lt;package&gt;/examples itself 
+<b>12.7</b>: Architecture-specific examples go in <code>/usr/lib/&lt;package&gt;/examples</code>
+with symlinks from <code>/usr/share/doc/&lt;package&gt;/examples/*</code> or from
+<code>/usr/share/doc/&lt;package&gt;/examples</code> itself 
 </li>
 <li>
-<b>9.1.1</b>: Updated FHS to a 2.1 draft; this reverts /var/state to
-/var/lib 
+<b>9.1.1</b>: Updated FHS to a 2.1 draft; this reverts <code>/var/state</code> to
+<code>/var/lib</code>
 </li>
 <li>
 <b>9.7; mime-policy</b>: Added MIME sub-policy document 
@@ -1341,7 +1342,7 @@ control files, though all four digits are still permitted.
 </li>
 <li>
 <b>12.6</b>: The location of the GPL has changed to
-/usr/share/common-licenses. This may require changing the
+<code>/usr/share/common-licenses</code>. This may require changing the
 copyright files to point to the correct location of the GPL and
 other major licenses 
 </li>
@@ -1361,8 +1362,8 @@ System)
 that carries the full weight of Debian policy 
 </li>
 <li>
-<b>11.3</b>: Programs which need to modify the files /var/run/utmp,
-/var/log/wtmp and /var/log/lastlog must be installed setgid utmp 
+<b>11.3</b>: Programs which need to modify the files <code>/var/run/utmp</code>,
+<code>/var/log/wtmp</code> and <code>/var/log/lastlog</code> must be installed setgid utmp 
 
 
 <p>
@@ -1406,9 +1407,9 @@ gap.
 </li>
 <li>
 Modified the section about changelog files to accommodate
-upstream changelogs which were formatted as HTML/ These
+upstream changelogs which were formatted as HTML. These
 upstream changelog files should now be accessible as
-/usr/doc/package/changelog.html.gz
+<code>/usr/doc/package/changelog.html.gz</code>
 <ul>
 <li>
 Symlinks are permissible to link the real, or upstream,
@@ -1422,7 +1423,7 @@ package, though not necessarily the main binary package.
 </li>
 <li>
 Corrected all references to the location of the copyright
-files. The correct location is /usr/doc/package/copyright
+files. The correct location is <code>/usr/doc/package/copyright</code>
 </li>
 <li>
 Ratified the architecture specification strings to cater to the
@@ -1460,7 +1461,7 @@ symbolic links between toplevel directories should be absolute
 Updated section 4.9 Games:
 <ul>
 <li>
-manpages for games should be installed in /usr/man/man6
+manpages for games should be installed in <code>/usr/man/man6</code>
 (cf., Policy Weekly Issue#6, topic 3)
 
 </li>
@@ -1497,15 +1498,15 @@ Released Jan 1998
 Updated section 3.3.4 Scripts:
 <ul>
 <li>
-/bin/sh may be any POSIX compatible shell
+<code>/bin/sh</code> may be any POSIX compatible shell
 </li>
 <li>
-scripts including bashisms have to specify /bin/bash as
+scripts including bashisms have to specify <code>/bin/bash</code> as
 interpreter
 </li>
 <li>
 scripts which create files in world-writable directories
-(e.g., in /tmp) should use tempfile or mktemp for creating
+(e.g., in <code>/tmp</code>) should use tempfile or mktemp for creating
 the directory
 
 </li>
@@ -1525,16 +1526,16 @@ file extension as the referenced file
 Updated section 3.3.6 Device files:
 <ul>
 <li>
-/dev/tty* serial devices should be used instead of /dev/cu*
+<code>/dev/tty*</code> serial devices should be used instead of <code>/dev/cu*</code>
 
 </li>
 </ul>
 </li>
 <li>
-Updated section 3.4.2 Writing the scripts in /etc/init.d:
+Updated section 3.4.2 Writing the scripts in <code>/etc/init.d</code>:
 <ul>
 <li>
-all /etc/init.d scripts have to provide the following options:
+all <code>/etc/init.d</code> scripts have to provide the following options:
 start, stop, restart, force-reload
 </li>
 <li>
@@ -1549,7 +1550,7 @@ Updated section 3.5 Cron jobs:
 <ul>
 <li>
 cron jobs that need to be executed more often than daily should
-be installed into /etc/cron.d
+be installed into <code>/etc/cron.d</code>
 
 </li>
 </ul>
@@ -1590,7 +1591,7 @@ reasonable default configuration
 New section 4.6 News system configuration:
 <ul>
 <li>
-/etc/news/organization and /etc/news/server should be supported
+<code>/etc/news/organization</code> and <code>/etc/news/server</code> should be supported
 by all news servers and clients
 
 </li>
@@ -1614,7 +1615,7 @@ against lesstif and not against a non-free Motif library
 Updated section 4.9 Games:
 <ul>
 <li>
-games for X Windows have to be installed in /usr/games, just as
+games for X Windows have to be installed in <code>/usr/games</code>, just as
 non-X games
 
 </li>
@@ -1636,7 +1637,7 @@ Released Sep 1997.
 <ul>
 <li>
 new section `4.2 Daemons' including rules for
-/etc/services, /etc/protocols, /etc/rpc, and /etc/inetd.conf
+<code>/etc/services</code>, <code>/etc/protocols</code>, <code>/etc/rpc</code>, and <code>/etc/inetd.conf</code>
 
 </li>
 <li>
@@ -1671,7 +1672,7 @@ i386, alpha, arm, m68k, powerpc, sparc.
 
 </li>
 <li>
-detailed rules for /usr/local
+detailed rules for <code>/usr/local</code>
 
 </li>
 <li>
@@ -1802,7 +1803,7 @@ Upstream changelog must be installed too
 <p class="author"> Author: Bill Allombert, Josip Rodin, Julian Gilbey, Russ Allbery, and Manoj Srivastava
 <a href="mailto:srivasta@debian.org">&lt;srivasta@debian.org&gt;</a>
 </p>
-<p class="date"> Date: 2010-01-25 21:41:30 CET</p>
+<p class="date"> Date: 2010-01-26 13:43:10 CET</p>
 <p class="creator">HTML generated by org-mode 6.33f in emacs 23</p>
 </div>
 </div>
