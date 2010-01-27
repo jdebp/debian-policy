@@ -1,4 +1,4 @@
-debian-policy (3.8.4.0) UNRELEASED; urgency=low
+debian-policy (3.8.4.0) unstable; urgency=low
 
   [ Bill Allombert ]
   * Also provide documents in single-file HTML format.
@@ -73,7 +73,7 @@ debian-policy (3.8.4.0) UNRELEASED; urgency=low
     avoid confusion with IETF RFC keywords.  Thanks, Jakub Wilk.
     (Closes: #552757)
 
- -- Manoj Srivastava <srivasta@debian.org>  Fri, 20 Nov 2009 16:36:04 -0600
+ -- Bill Allombert <ballombe@debian.org>  Wed, 27 Jan 2010 19:22:43 +0100
 
 debian-policy (3.8.3.0) unstable; urgency=low
 
