@@ -9,13 +9,21 @@ debian-policy (3.8.4.1) UNRELEASED; urgency=low
     Closes: #567845
   * Fix typo in package_upstream-version.orig.tar.gz.
     Thanks, Salvatore Bonaccorso. (Closes: #558430)
+  * Replace 'copyright and distribution license' by 'copyright information
+    and distribution license' (three times).
+    Proposed by Jonathan Nieder.
+    Seconded:  Steve Langasek  <vorlon@debian.org>
+    Seconded:  Thijs Kinkhorst <thijs@debian.org>
+    Seconded:  Julien Cristau  <jcristau@debian.org>
+    Seconded:  Gregor Herrmann <gregoa@debian.org>
+    Closes: #566220
 
   [ Russ Allbery ]
   * Standardize dpkg state wording and bring it in line with dpkg,
     renaming Failed-Config to Half-Configured and use uniform
     capitalization and punctuation.  (Closes: #442134)
 
- -- Bill Allombert <ballombe@debian.org>  Fri, 21 May 2010 21:02:34 +0200
+ -- Bill Allombert <ballombe@debian.org>  Mon, 31 May 2010 20:00:28 +0200
 
 debian-policy (3.8.4.0) unstable; urgency=low
 
