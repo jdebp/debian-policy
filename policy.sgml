@@ -569,8 +569,8 @@
 	<heading>Copyright considerations</heading>
 
 	<p>
-	  Every package must be accompanied by a verbatim copy of
-	  its copyright and distribution license in the file
+	  Every package must be accompanied by a verbatim copy of its
+	  copyright information and distribution license in the file
 	  <file>/usr/share/doc/<var>package</var>/copyright</file>
 	  (see <ref id="copyrightfile"> for further details).
 	</p>
@@ -1638,8 +1638,8 @@
       <sect id="dpkgcopyright">
 	<heading>Copyright: <file>debian/copyright</file></heading>
         <p>
-          Every package must be accompanied by a verbatim copy of
-	  its copyright and distribution license in the file
+	  Every package must be accompanied by a verbatim copy of its
+	  copyright information and distribution license in the file
 	  <file>/usr/share/doc/<var>package</var>/copyright</file>
 	  (see <ref id="copyrightfile"> for further details). Also see
 	  <ref id="pkgcopyright"> for further considerations related
@@ -9177,7 +9177,7 @@ END-INFO-DIR-ENTRY
 
 	<p>
 	  Every package must be accompanied by a verbatim copy of its
-	  copyright and distribution license in the file
+	  copyright information and distribution license in the file
 	  <file>/usr/share/doc/<var>package</var>/copyright</file>. This
 	  file must neither be compressed nor be a symbolic link.
 	</p>
