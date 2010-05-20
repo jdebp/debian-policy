@@ -9054,7 +9054,7 @@ END-INFO-DIR-ENTRY
             <p>
               Please note that this does not override the section on
               changelog files below, so the file 
-              <file>/usr/share/<var>package</var>/changelog.Debian.gz</file>
+              <file>/usr/share/doc/<var>package</var>/changelog.Debian.gz</file>
               must refer to the changelog for the current version of
               <var>package</var> in question. In practice, this means
               that the sources of the target and the destination of the

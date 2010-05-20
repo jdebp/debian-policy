@@ -1,3 +1,9 @@
+debian-policy (3.8.4.1) UNRELEASED; urgency=low
+
+  * Fix path to changelog.Debian.gz in footnote on documentation symlinks.
+
+ -- Colin Watson <cjwatson@debian.org>  Fri, 12 Feb 2010 17:45:37 +0000
+
 debian-policy (3.8.4.0) unstable; urgency=low
 
   [ Bill Allombert ]
