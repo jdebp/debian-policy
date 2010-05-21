@@ -7,8 +7,10 @@ debian-policy (3.8.4.1) UNRELEASED; urgency=low
   * Convert upgrading-checklist to debiandoc-sgml. This generates a better
     looking .txt file.
     Closes: #567845
+  * Fix typo in package_upstream-version.orig.tar.gz.
+    Thanks, Salvatore Bonaccorso. (Closes: #558430)
 
- -- Bill Allombert <ballombe@debian.org>  Fri, 21 May 2010 00:36:29 +0200
+ -- Bill Allombert <ballombe@debian.org>  Fri, 21 May 2010 21:02:34 +0200
 
 debian-policy (3.8.4.0) unstable; urgency=low
 

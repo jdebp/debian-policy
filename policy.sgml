@@ -3372,7 +3372,7 @@ Files:
 	    no new original source archive is being distributed the
 	    <tt>.dsc</tt> must still contain the <tt>Files</tt> field
 	    entry for the original source archive
-	    <file><var>package</var>-<var>upstream-version</var>.orig.tar.gz</file>,
+	    <file><var>package</var>_<var>upstream-version</var>.orig.tar.gz</file>,
 	    but the <file>.changes</file> file should leave it out.  In
 	    this case the original source archive on the distribution
 	    site must match exactly, byte-for-byte, the original
