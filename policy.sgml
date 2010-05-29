@@ -2535,6 +2535,11 @@ Package: libc6
 	</p>
 
 	<p>
+	  The structure of the Debian changes files is versionned, and
+	  this document describes the format 1.8.
+	</p>
+
+	<p>
 	  The fields in this file are:
 
 	  <list compact="compact">
@@ -2615,10 +2620,10 @@ Package: libc6
 	    <item><qref id="f-Version"><tt>Version</tt></qref> (mandatory)</item>
 	    <item><qref id="f-Distribution"><tt>Distribution</tt></qref> (mandatory)</item>
 	    <item><qref id="f-Urgency"><tt>Urgency</tt></qref> (recommended)</item>
-	    <item><qref id="f-Maintainer"><tt>Maintainer</tt></qref> (mandatory)</item>
-	    <item><qref id="f-Changed-By"><tt>Changed-By</tt></qref></item>
+	    <item><qref id="f-Maintainer"><tt>Maintainer</tt></qref> (mandatory) <footnote>The meaning of that field changed in version 1.7.</footnote></item>
+	    <item><qref id="f-Changed-By"><tt>Changed-By</tt></qref> <footnote>Introduced in format 1.7.</footnote></item>
 	    <item><qref id="f-Description"><tt>Description</tt></qref> (mandatory)</item>
-	    <item><qref id="f-Closes"><tt>Closes</tt></qref></item>
+	    <item><qref id="f-Closes"><tt>Closes</tt></qref> <footnote>Introduced in format 1.6.</footnote></item>
 	    <item><qref id="f-Changes"><tt>Changes</tt></qref> (mandatory)</item>
 	    <item><qref id="f-Checksums"><tt>Checksums-Sha1</tt>
 		and <tt>Checksums-Sha256</tt></qref> (recommended)</item>
@@ -3259,13 +3264,25 @@ Package: libc6
 	  <heading><tt>Format</tt></heading>
 
 	  <p>
-	    This field specifies a format revision for the file.
-	    The most current format described in the Policy Manual
-	    is version <strong>1.5</strong>.  The syntax of the
+	    In <qref id="debianchangesfiles">changes</qref> files, this field
+	    specifies a format revision for the file. The syntax of the
 	    format value is the same as that of a package version
 	    number except that no epoch or Debian revision is allowed
 	    - see <ref id="f-Version">.
 	  </p>
+
+	  <p>
+	    In <qref id="debiansourcecontrolfiles"> Debian source control</qref>
+	    files, this field specifies a format revision for the source package.
+	    The syntax of the format value is the same as that of a package version
+	    number, except that no epoch or Debian revision is allowed
+	    and that it can optionally be followed by a parenthesis with a name
+	    <footnote>dpkg-source uses the major number and the content of the
+	    parenthesis to decide which perl module to use to build or unpack
+	    the source package. For instance, Dpkg::Source::Package::V1 for format
+	    1.0 and Dpkg::Source::Package::V3::quilt for format 3.0 (quilt)
+	    </footnote>.
+	  <p>
 	</sect1>
 
 	<sect1 id="f-Urgency">
@@ -3523,6 +3540,26 @@ Checksums-Sha256:
 	    the <file>.changes</file> file, these fields should list all
 	    files being uploaded.  The list of files in these fields
 	    must match the list of files in the <tt>Files</tt> field.
+	  </p>
+	</sect1>
+
+	<sect1 id="f-Checksums-Sha1">
+	  <heading><tt>Checksums-Sha1</tt></heading>
+
+	  <p>
+	    This field is similar to the <qref id="f-Files">Files</qref>
+	    field, except that it uses the Sha1 algorithm instead of MD5
+	    for the checksums.
+	  </p>
+	</sect1>
+
+	<sect1 id="f-Checksums-Sha256">
+	  <heading><tt>Checksums-Sha256</tt></heading>
+
+	  <p>
+	    This field is similar to the <qref id="f-Files">Files</qref>
+	    field, except that it uses the Sha1 algorithm instead of MD5
+	    for the checksums.
 	  </p>
 	</sect1>
 
