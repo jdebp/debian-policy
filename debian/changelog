@@ -10,6 +10,11 @@ debian-policy (3.8.4.1) UNRELEASED; urgency=low
   * Fix typo in package_upstream-version.orig.tar.gz.
     Thanks, Salvatore Bonaccorso. (Closes: #558430)
 
+  [ Russ Allbery ]
+  * Standardize dpkg state wording and bring it in line with dpkg,
+    renaming Failed-Config to Half-Configured and use uniform
+    capitalization and punctuation.  (Closes: #442134)
+
  -- Bill Allombert <ballombe@debian.org>  Fri, 21 May 2010 21:02:34 +0200
 
 debian-policy (3.8.4.0) unstable; urgency=low
