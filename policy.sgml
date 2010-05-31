@@ -2746,14 +2746,14 @@ Package: libc6
 	    In the main <file>debian/control</file> file in the source
 	    package, this field may contain the special value
 	    <tt>any</tt>, the special value <tt>all</tt>, or a list of
-	    specific and wildcard architectures separated by
-	    spaces. If the special value <tt>any</tt> appears, it must
-	    be the entire contents of the field.  Most packages will
-	    use either <tt>any</tt> or <tt>all</tt>.  Specifying a
-	    specific list of architectures is for the minority of
-	    cases where a program is not portable or is not useful on
-	    some architectures, and where possible the program should
-	    be made portable instead.
+	    specific and wildcard architectures separated by spaces.  If
+	    <tt>any</tt> or <tt>all</tt> appear, that value must be the
+	    entire contents of the field.  Most packages will use
+	    either <tt>any</tt> or <tt>all</tt>.  Specifying a specific
+	    list of architectures is for the minority of cases where a
+	    program is not portable or is not useful on some
+	    architectures, and where possible the program should be made
+	    portable instead.
 	  </p>
 
 	  <p>
@@ -2800,16 +2800,19 @@ Package: libc6
             the union of the lists of architectures from the expansion
             of each specified architecture wildcard, and will only
             work correctly on the architectures in the union of the
-            lists.<footnote> As mentioned in the footnote for
-            specifying a list of architectures, this is for a minority
-            of cases where the program is not portable. Generally, it
-            should not be used for new packages.  Wildcards are not
-            expanded into a list of known architectures before
-            comparing to the build architecutre.  Instead, the build
-            architecture is matched against wildcards and this package
-            is built if the wildcard matches.</footnote> If the source
-            package also builds at least one architecture-independent
-            package, <tt>all</tt> will also be included in the list.
+	    lists.<footnote>
+	      As mentioned in the footnote for specifying a list of
+	      architectures, this is for a minority of cases where the
+	      program is not portable.	It should not be used for most
+	      packages.	 Wildcards are not expanded into a list of known
+	      architectures before comparing to the build architecutre.
+	      Instead, the build architecture is matched against any
+	      wildcards and this package is built if any wildcard
+	      matches.
+	    </footnote>
+	    If the source package also builds at least one
+	    architecture-independent package, <tt>all</tt> will also be
+	    included in the list.
 	  </p>
 
 	  <p>
@@ -8003,17 +8006,19 @@ done
         <p>
           A package may specify an architecture wildcard. Architecture
           wildcards are in the format <tt><var>os</var></tt>-any and
-          any-<tt><var>cpu</var></tt>. <footnote>Internally, the package
-          system normalizes the GNU triplets and the Debian
-          arches into Debian arch triplets (which are kind of inverted GNU
-          triplets). So when matching two Debian arch triplets, whenever an
-          <var>any</var> is found it matches with anything on the other side,
-          like in:
-          <example>
+          any-<tt><var>cpu</var></tt>. <footnote>
+	    Internally, the package system normalizes the GNU triplets and
+	    the Debian arches into Debian arch triplets (which are kind of
+	    inverted GNU triplets), with the first component of the
+	    triplet representing the libc in use.  When matching two
+	    Debian arch triplets, whenever an <var>any</var> is found it
+	    matches with anything on the other side, like in:
+	  <example>
   gnu-linux-i386     is matched by gnu-linux-any
   gnu-kfreebsd-amd64 is matched by any-any-amd64
           </example>
-          And for example <var>any</var> is normalized to <var>any-any-any</var>.
+          And, for example, <var>any</var> is normalized to
+          <var>any-any-any</var>.
         </footnote>
         </p>
       </sect>
