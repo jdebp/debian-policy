@@ -4,6 +4,17 @@ policy.sgml: version.ent
 menu-policy.sgml: version.ent
 mime-policy.sgml: version.ent
 
+ifneq (,$(strip $(HAVE_ORG_EMACS)))
+%.txt: %.org
+	$(EMACS) --batch -Q -l ./README-css.el -l org -l org-ascii --visit $^ \
+          --funcall org-export-as-ascii >/dev/null 2>&1
+	test "$@" != "README.txt"  ||                            \
+           perl -pli -e 's,./Process.org,Process.txt,g' $@
+%.html: %.org
+	$(EMACS) --batch -Q -l ./README-css.el -l org --visit $^ \
+          --funcall org-export-as-html-batch >/dev/null 2>&1
+endif
+
 %.validate: %
 	nsgmls -wall -gues $<
 
@@ -45,8 +56,7 @@ pdf: policy.pdf
 policy: html txt ps pdf
 
 leavealone :=	$(FHS_HTML) $(FHS_FILES) $(FHS_ARCHIVE) \
-		libc6-migration.txt \
-		upgrading-checklist.html virtual-package-names-list.txt
+		libc6-migration.txt
 	      
 .PHONY: distclean
 distclean:
