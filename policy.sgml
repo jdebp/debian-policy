@@ -4422,7 +4422,7 @@ Build-Depends: foo [!i386] | bar [!amd64]
 		correctly at some point in the past (and not removed
 		or partially removed since).  In this case, both the
 		previously-configured and currently unpacked or
-		Half-Configured versions must satisfy any version
+		"Half-Configured" versions must satisfy any version
 		clause in the <tt>Pre-Depends</tt> field.
 	      </p>
 
@@ -4479,7 +4479,7 @@ Build-Depends: foo [!i386] | bar [!amd64]
 	<p>
 	  A package will not be regarded as causing breakage merely
 	  because its configuration files are still installed; it must
-	  be at least Half-Installed.
+	  be at least "Half-Installed".
 	</p>
 
 	<p>
@@ -4533,7 +4533,7 @@ Build-Depends: foo [!i386] | bar [!amd64]
 	<p>
 	  A package will not cause a conflict merely because its
 	  configuration files are still installed; it must be at least
-	  Half-Installed.
+	  "Half-Installed".
 	</p>
 
 	<p>
