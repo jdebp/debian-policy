@@ -2747,8 +2747,8 @@ Package: libc6
 
 	  <p>
 	    In the main <file>debian/control</file> file in the source
-	    package, this field may contain special value <tt>all</tt> or
-	    a list of specific and wildcard architectures separated by
+	    package, this field may contain the special value <tt>all</tt>
+	    or a list of specific and wildcard architectures separated by
 	    spaces.  If <tt>all</tt> appears, that value must be the
 	    entire contents of the field.  Most packages will use
 	    either <tt>any</tt> or <tt>all</tt>.  Specifying a specific
@@ -2803,14 +2803,13 @@ Package: libc6
 	    of each specified architecture wildcard, and will only
 	    work correctly on the architectures in the union of the
 	    lists.<footnote>
-	      As mentioned in the footnote for specifying a list of
-	      architectures, this is for a minority of cases where the
-	      program is not portable.	It should not be used for most
-	      packages.	 Wildcards are not expanded into a list of known
-	      architectures before comparing to the build architecutre.
-	      Instead, the build architecture is matched against any
-	      wildcards and this package is built if any wildcard
-	      matches.
+	      Use of architecture wildcards other than <tt>all</tt> is for
+	      a minority of cases where the program is not portable and
+	      should not be used for most packages.  Wildcards are not
+	      expanded into a list of known architectures before comparing
+	      to the build architecutre.  Instead, the build architecture
+	      is matched against any wildcards and this package is built
+	      if any wildcard matches.
 	    </footnote>
 	    If the source package also builds at least one
 	    architecture-independent package, <tt>all</tt> will also be
@@ -4300,10 +4299,10 @@ Build-Depends: foo [!i386] | bar [!amd64]
           <example compact="compact">
 Build-Depends: foo [linux-any], bar [any-i386], baz [!linux-any]
           </example>
-          is equivalent to <tt>foo</tt> on architectures using the
-          Linux kernel and any cpu, <tt>bar</tt> on architectures
-          using any kernel and an i386 cpu, and <tt>baz</tt> on
-          on any architecture using a kernel other than Linux.
+	  is equivalent to <tt>foo</tt> on architectures using the Linux
+	  kernel and any cpu, <tt>bar</tt> on architectures using any
+	  kernel and an i386 cpu, and <tt>baz</tt> on any architecture
+	  using a kernel other than Linux.
         </p>
       </sect>
 
@@ -8006,15 +8005,16 @@ done
         <heading>Architecture Wildcards</heading>
 
         <p>
-          A package may specify an architecture wildcard. Architecture
-          wildcards are in the format <tt><var>os</var></tt>-any and
-          any-<tt><var>cpu</var></tt>. <footnote>
+	  A package may specify an architecture wildcard. Architecture
+	  wildcards are in the format <tt>any</tt> (which matches every
+	  architecture), <tt><var>os</var></tt>-any, or
+	  any-<tt><var>cpu</var></tt>. <footnote>
 	    Internally, the package system normalizes the GNU triplets and
 	    the Debian arches into Debian arch triplets (which are kind of
 	    inverted GNU triplets), with the first component of the
-	    triplet representing the libc in use.  When matching two
-	    Debian arch triplets, whenever an <var>any</var> is found it
-	    matches with anything on the other side, like in:
+	    triplet representing the libc and ABI in use.  When matching
+	    two Debian arch triplets, whenever an <var>any</var> is found
+	    it matches with anything on the other side, like in:
 	  <example>
   gnu-linux-i386     is matched by gnu-linux-any
   gnu-kfreebsd-amd64 is matched by any-any-amd64
