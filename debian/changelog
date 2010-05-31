@@ -1,4 +1,18 @@
-debian-policy (3.8.4.0) UNRELEASED; urgency=low
+debian-policy (3.8.4.1) UNRELEASED; urgency=low
+
+  [ Colin Watson ]
+  * Fix path to changelog.Debian.gz in footnote on documentation symlinks.
+
+  [ Bill Allombert ]
+  * Convert upgrading-checklist to debiandoc-sgml. This generates a better
+    looking .txt file.
+    Closes: #567845
+  * Fix typo in package_upstream-version.orig.tar.gz.
+    Thanks, Salvatore Bonaccorso. (Closes: #558430)
+
+ -- Bill Allombert <ballombe@debian.org>  Fri, 21 May 2010 21:02:34 +0200
+
+debian-policy (3.8.4.0) unstable; urgency=low
 
   [ Bill Allombert ]
   * Also provide documents in single-file HTML format.
@@ -41,7 +55,7 @@ debian-policy (3.8.4.0) UNRELEASED; urgency=low
     Closes: #556972
     This patch explicitly allows /sys and /selinux as additional
     directories in the root file system allowed under the policy.
-  * [16afbcb]: Clarigy ./debian/rules #! line
+  * [16afbcb]: Clarify ./debian/rules #! line
     policy: Clarify rule for debian/rules shebang line
     Wording: Ben Finney <ben+debian@benfinney.id.au>
     Seconded: Kurt Roeckx <kurt@roeckx.be>
@@ -50,7 +64,20 @@ debian-policy (3.8.4.0) UNRELEASED; urgency=low
     Explicitly state that  "make -f debian/rules" and "./debian/rules"
     must behave  identically, to prevent confusion, and to promote
     reproducibility, and conform to the principle of least surprise.
-
+  * [dab93b2]: Add a cron-daemon virtual package
+    policy, virtual package list: New virtual package: cron-daemon
+    wording: Javier Fernández-Sanguino Peña, Manoj Srivastava
+    Seconded: Russ Allbery <rra@debian.org>
+    Seconded: Kurt Roeckx  <kurt@roeckx.be>
+    Closes: #391836
+    Create a virtual cron daemon package that:
+     - Has to provide /usr/bin/crontab and support crontab entries
+     - Correct execution of /etc/cron.d
+     - Correct support of /etc/crontab
+     - Support of crontab entries with names for days and months,
+       ranges, step values
+     - Correct execution of /etc/cron.{hourly,daily,weekly,monthly}
+    
   [ Russ Allbery ]
   * Policy: Clarify policy on named pipes in packages
     Wording: Russ Allbery <rra@debian.org>
@@ -60,7 +87,7 @@ debian-policy (3.8.4.0) UNRELEASED; urgency=low
     avoid confusion with IETF RFC keywords.  Thanks, Jakub Wilk.
     (Closes: #552757)
 
- -- Manoj Srivastava <srivasta@debian.org>  Fri, 20 Nov 2009 16:36:04 -0600
+ -- Bill Allombert <ballombe@debian.org>  Wed, 27 Jan 2010 19:22:43 +0100
 
 debian-policy (3.8.3.0) unstable; urgency=low
 
