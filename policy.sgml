@@ -2727,27 +2727,29 @@ Package: libc6
 	    <tt>Architecture</tt> field can include the following sets of
 	    values:
 	    <list>
-		<item>A unique single word identifying a Debian machine
-                architecture as described in <ref id="arch-spec">.
-                </item>
-                <item>
-                  An architecture wildcard identifying a set of Debian
-                  machine architectures, see <ref id="arch-wildcard-spec">.
-                </item>
-		<item><tt>all</tt>, which indicates an
-		      architecture-independent package.
-		<item><tt>any</tt>, which indicates a package available
-		      for building on any architecture.
-		<item><tt>source</tt>, which indicates a source package.
+		<item>
+		  A unique single word identifying a Debian machine
+		  architecture as described in <ref id="arch-spec">.
+		</item>
+		<item>
+		  An architecture wildcard identifying a set of Debian
+		  machine architectures, see <ref id="arch-wildcard-spec">.
+		</item>
+		<item>
+		  <tt>all</tt>, which indicates an
+		  architecture-independent package.
+		</item>
+		<item>
+		  <tt>source</tt>, which indicates a source package.
+		</item>
 	    </list>
 	  </p>
 
 	  <p>
 	    In the main <file>debian/control</file> file in the source
-	    package, this field may contain the special value
-	    <tt>any</tt>, the special value <tt>all</tt>, or a list of
-	    specific and wildcard architectures separated by spaces.  If
-	    <tt>any</tt> or <tt>all</tt> appear, that value must be the
+	    package, this field may contain special value <tt>all</tt> or
+	    a list of specific and wildcard architectures separated by
+	    spaces.  If <tt>all</tt> appears, that value must be the
 	    entire contents of the field.  Most packages will use
 	    either <tt>any</tt> or <tt>all</tt>.  Specifying a specific
 	    list of architectures is for the minority of cases where a
@@ -2794,7 +2796,7 @@ Package: libc6
 	    package, <tt>all</tt> will also be included in the list.
 	  </p>
 
- 	  <p>
+	  <p>
 	    Specifying a list of architecture wildcards indicates that
             the source will build an architecture-dependent package on
             the union of the lists of architectures from the expansion
