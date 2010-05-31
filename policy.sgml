@@ -2798,10 +2798,10 @@ Package: libc6
 
 	  <p>
 	    Specifying a list of architecture wildcards indicates that
-            the source will build an architecture-dependent package on
-            the union of the lists of architectures from the expansion
-            of each specified architecture wildcard, and will only
-            work correctly on the architectures in the union of the
+	    the source will build an architecture-dependent package on
+	    the union of the lists of architectures from the expansion
+	    of each specified architecture wildcard, and will only
+	    work correctly on the architectures in the union of the
 	    lists.<footnote>
 	      As mentioned in the footnote for specifying a list of
 	      architectures, this is for a minority of cases where the
