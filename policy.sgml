@@ -5849,7 +5849,7 @@ rmdir /usr/local/share/emacs 2>/dev/null || true
 		</p>
 	      </item>
 
-	      <tag>1000-29999:</tag>
+	      <tag>1000-59999:</tag>
 	      <item>
 		<p>
 		  Dynamically allocated user accounts.  By default
@@ -5858,11 +5858,6 @@ rmdir /usr/local/share/emacs 2>/dev/null || true
 		  <file>adduser.conf</file> may be used to modify this
 		  behavior.
 		</p>
-	      </item>
-
-	      <tag>30000-59999:</tag>
-	      <item>
-		<p>Reserved.</p>
 	      </item>
 
 	      <tag>60000-64999:</tag>

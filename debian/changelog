@@ -1,4 +1,4 @@
-debian-policy (3.8.4.1) UNRELEASED; urgency=low
+debian-policy (3.8.5.0) UNRELEASED; urgency=low
 
   [ Colin Watson ]
   * Fix path to changelog.Debian.gz in footnote on documentation symlinks.
@@ -17,6 +17,14 @@ debian-policy (3.8.4.1) UNRELEASED; urgency=low
     Seconded:  Julien Cristau  <jcristau@debian.org>
     Seconded:  Gregor Herrmann <gregoa@debian.org>
     Closes: #566220
+  * extend UID range of user accounts by removing the 30000-59999 reserved 
+    ranges.
+    Proposed by Santiago Vila  
+    Seconded:  Russ Allbery    <rra@debian.org>
+    Seconded:  Luk Claes       <luk@debian.org>
+    Seconded:  Raphael Hertzog <hertzog@debian.org>
+    Seconded:  Steve Langasek  <vorlon@debian.org>
+    Closes: #582495
 
   [ Russ Allbery ]
   * Standardize dpkg state wording and bring it in line with dpkg,
