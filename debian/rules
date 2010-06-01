@@ -21,6 +21,15 @@ package := $(shell grep Source debian/control | sed 's/^Source: //')
 date	:= $(shell date +"%Y-%m-%d")
 version := $(shell awk -F '[()]' '/^$(package)/{ print $$2; exit }' debian/changelog)
 
+# either /usr/bin/emacs-snampshot or /usr/bin/emacs23
+EMACS:=$(shell if [ -x /usr/bin/emacs-snapshot ]; then \
+                 echo /usr/bin/emacs-snapshot;         \
+               elif [ -x /usr/bin/emacs23 ]; then      \
+                 echo /usr/bin/emacs23;                \
+               fi)
+HAVE_ORG_EMACS:=$(strip $(EMACS))
+
+
 # Location of the source dir
 SRCTOP	  := $(CURDIR)
 TMPTOP	  := $(SRCTOP)/debian/tmp
@@ -29,7 +38,7 @@ LIBDIR	  := $(TMPTOP)/usr/share/doc-base
 
 sanitycheck := debian/rules policy.sgml
 
-SGML_FILES := policy menu-policy mime-policy perl-policy
+SGML_FILES := policy menu-policy mime-policy perl-policy upgrading-checklist
 DESC_FILES := debian-policy debian-menu-policy debian-perl-policy \
               debian-mime-policy debconf-spec fhs
 
@@ -45,20 +54,24 @@ FHS_NEW_FILES    :=
 
 POLICY_FILES = $(SGML_FILES:=.sgml) $(SGML_FILES:=.txt.gz) \
 	       virtual-package-names-list.txt \
-	       upgrading-checklist.txt libc6-migration.txt version.ent \
+	       libc6-migration.txt version.ent \
                debconf_spec/debconf_specification.html \
                debconf_spec/debconf_specification.txt.gz \
-               policy.ps.gz policy.pdf.gz
+               policy.ps.gz policy.pdf.gz README.txt README.html \
+               Process.txt Process.html
 
 # policy.{pdf,ps,tpt,txt} are generated files
 FILES_TO_CLEAN  = debian/files debian/buildinfo  debian/substvars \
 		  debian/postinst debian/prerm \
-		  version.ent upgrading-checklist.txt \
+		  version.ent \
 		  $(SGML_FILES:=.txt.gz) $(SGML_FILES:=.html.tar.gz) \
+                  $(SGML_FILES:=-1.html) \
 		  policy.pdf.gz policy.ps.gz \
 		  debconf_specification.xml.tar.gz \
 		  policy.pdf policy.ps policy.txt policy. \
 		  body.tmp head.tmp policy.tpt
+
+FILES_FROM_ORG := README.txt README.html
 
 STAMPS_TO_CLEAN := stamp-policy stamp-build
 DIRS_TO_CLEAN   := debian/tmp fhs $(SGML_FILES:=.html)
@@ -70,13 +83,16 @@ make_directory  := install -p -d	-o root -g root	 -m  755
 
 
 all build: stamp-build
-stamp-build: version.ent $(sanitycheck)
+stamp-build: version.ent $(sanitycheck) README.txt README.html \
+              Process.txt Process.html
 	$(MAKE) $(SGML_FILES:=.sgml.validate) \
 		$(SGML_FILES:=.html.tar.gz) \
+                $(SGML_FILES:=-1.html) \
 		$(SGML_FILES:=.txt.gz) \
 		policy.ps.gz policy.pdf.gz
-	links -dump upgrading-checklist.html | perl -pe 's/[\r\0]//g' > \
-                    upgrading-checklist.txt
+ifneq (,$(strip $(HAVE_ORG_EMACS)))
+	$(MAKE) $(FILES_FROM_ORG)
+endif
 	$(MAKE) -C debconf_spec all
 	touch stamp-build
 
@@ -138,6 +154,9 @@ stamp-policy:  build $(sanitycheck)
 	@set -ex; \
 	for file in $(SGML_FILES); do \
 	  tar -C $(DOCDIR) -zxf $$file.html.tar.gz; \
+	done
+	for file in $(SGML_FILES); do \
+	  $(install_file) $${file}-1.html $(DOCDIR); \
 	done
 	$(install_file)     $(FHS_HTML)   $(DOCDIR)/fhs
 	@set -ex; \

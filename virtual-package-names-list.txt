@@ -83,6 +83,7 @@ System
                          other applications
  time-daemon             anything that serves as a time daemon
  ups-monitor             anything that is capable of controlling an UPS
+ cron-daemon             Any cron daemon that correctly follows policy requirements
 
 Documentation
 -------------
@@ -178,6 +179,17 @@ Scheme and interpreters
                          extension
  scheme-srfi-55          Scheme interpreter accepting the SRFI 55 language
                          extension
+
+Games and Game-related
+----------------------
+
+ doom-engine             An executable Doom engine
+ boom-engine             An executable Doom engine supporting the 'boom'
+                         feature-set
+ doom-wad                The data component of a Doom game, compatible with
+                         the original Doom engine
+ boom-wad                The data component of a Doom game, using features
+                         from the "boom" engine family
 
 Old and obsolete virtual package names
 --------------------------------------
@@ -304,3 +316,6 @@ Russ Allbery:
               Rename inetd-superserver to inet-superserver
    2 Dec 2007 Added ttf-japanese-gothic
               Added ttf-japanese-mincho
+
+Manoj Srivastava:
+  21 Nov 2009 (Re)Added cron-daemon

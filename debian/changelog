@@ -1,3 +1,115 @@
+debian-policy (3.8.5.0) UNRELEASED; urgency=low
+
+  [ Colin Watson ]
+  * Fix path to changelog.Debian.gz in footnote on documentation symlinks.
+
+  [ Bill Allombert ]
+  * Convert upgrading-checklist to debiandoc-sgml. This generates a better
+    looking .txt file.
+    Closes: #567845
+  * Fix typo in package_upstream-version.orig.tar.gz.
+    Thanks, Salvatore Bonaccorso. (Closes: #558430)
+  * Replace 'copyright and distribution license' by 'copyright information
+    and distribution license' (three times).
+    Proposed by Jonathan Nieder.
+    Seconded:  Steve Langasek  <vorlon@debian.org>
+    Seconded:  Thijs Kinkhorst <thijs@debian.org>
+    Seconded:  Julien Cristau  <jcristau@debian.org>
+    Seconded:  Gregor Herrmann <gregoa@debian.org>
+    Closes: #566220
+  * extend UID range of user accounts by removing the 30000-59999 reserved 
+    ranges.
+    Proposed by Santiago Vila  
+    Seconded:  Russ Allbery    <rra@debian.org>
+    Seconded:  Luk Claes       <luk@debian.org>
+    Seconded:  Raphael Hertzog <hertzog@debian.org>
+    Seconded:  Steve Langasek  <vorlon@debian.org>
+    Closes: #582495
+
+  [ Russ Allbery ]
+  * Standardize dpkg state wording and bring it in line with dpkg,
+    renaming Failed-Config to Half-Configured and use uniform
+    capitalization and punctuation.  (Closes: #442134)
+
+ -- Bill Allombert <ballombe@debian.org>  Mon, 31 May 2010 20:00:28 +0200
+
+debian-policy (3.8.4.0) unstable; urgency=low
+
+  [ Bill Allombert ]
+  * Also provide documents in single-file HTML format.
+    Proposed by Jari Aalto.
+    Closes: #544353
+  * Number the DFSG points like in the social_contract document.
+    Proposed by Enrico Zini.
+    Closes: #550192
+
+  [ Manoj Srivastava ]
+  * [b270d2d]: Typo fix: relayed -> related. Thanks to Matt Kraai for
+    pointing this out.
+  * [c74ac74]: 
+    Policy: Grant an FHS exception for the multiarch library directories
+    Wording: Steve Langasek.
+    Seconded: Aurelien Jarno
+    Seconded: Julien Cristau
+    Seconded: Kurt Roeckx
+    Closes: #542865
+  * [7ac3ee6]: 
+    virtual package list: Added Doom virtual packages
+    Wording: Manoj Srivastava
+    Seconded: Russ Allbery 
+    Seconded: Giacomo A. Catenazzi
+    Closes: #518199
+  * [8fd91a0]
+    README Process upgrading-checklist: Created/converted to org-mode
+    Wording: Manoj Srivastava
+    Seconded: Russ Allbery 
+    Closes: #545548
+  * [4da0692]: [typo-fixes]: 
+    policy: Fix a number of grammatical or typographical errors
+    wording: Eric Dantan Rzewnicki
+    Seconded: Manoj Srivastava
+  * [112c4bc]: FHS Exceptions
+    policy: Explicitly allow /selinux and /sys as FHS exceptions
+    Wording: Manoj Srivastava
+    Seconded: Russ Allbery <rra@debian.org>
+    Seconded: Kurt Roeckx  <kurt@roeckx.be>
+    Closes: #556972
+    This patch explicitly allows /sys and /selinux as additional
+    directories in the root file system allowed under the policy.
+  * [16afbcb]: Clarify ./debian/rules #! line
+    policy: Clarify rule for debian/rules shebang line
+    Wording: Ben Finney <ben+debian@benfinney.id.au>
+    Seconded: Kurt Roeckx <kurt@roeckx.be>
+    Seconded: Russ Allbery <rra@debian.org>
+    Seconded: Manoj Srivastava <srivasta@debian.org>
+    Explicitly state that  "make -f debian/rules" and "./debian/rules"
+    must behave  identically, to prevent confusion, and to promote
+    reproducibility, and conform to the principle of least surprise.
+  * [dab93b2]: Add a cron-daemon virtual package
+    policy, virtual package list: New virtual package: cron-daemon
+    wording: Javier Fernández-Sanguino Peña, Manoj Srivastava
+    Seconded: Russ Allbery <rra@debian.org>
+    Seconded: Kurt Roeckx  <kurt@roeckx.be>
+    Closes: #391836
+    Create a virtual cron daemon package that:
+     - Has to provide /usr/bin/crontab and support crontab entries
+     - Correct execution of /etc/cron.d
+     - Correct support of /etc/crontab
+     - Support of crontab entries with names for days and months,
+       ranges, step values
+     - Correct execution of /etc/cron.{hourly,daily,weekly,monthly}
+    
+  [ Russ Allbery ]
+  * Policy: Clarify policy on named pipes in packages
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Manoj Srivastava <srivasta@debian.org>
+    Seconded: Andrew McMillan <andrew@morphoss.com>
+  * Change the sole occurrence of MUST to must for consistency and to
+    avoid confusion with IETF RFC keywords.  Thanks, Jakub Wilk.
+    (Closes: #552757)
+
+ -- Bill Allombert <ballombe@debian.org>  Wed, 27 Jan 2010 19:22:43 +0100
+
 debian-policy (3.8.3.0) unstable; urgency=low
 
   * Policy: Bring Architecture description in line with dpkg-source
