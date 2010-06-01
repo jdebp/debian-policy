@@ -90,11 +90,10 @@
 		    is used by, a significant number of packages, and
 		    therefore should not be changed without peer
 		    review. Package maintainers can then rely on this
-		    interfaces not changing, and the package
-		    management software authors need to ensure
-		    compatibility with these interface
-		    definitions. (Control file and changelog file
-		    formats are examples.)
+		    interface not changing, and the package management
+		    software authors need to ensure compatibility with
+		    this interface definition. (Control file and
+		    changelog file formats are examples.)
 		</item>
 		<tag>Chosen Convention</tag>
 		<item>
@@ -366,7 +365,7 @@
 	  The Debian Free Software Guidelines (DFSG) form our
 	  definition of "free software".  These are:
 	    <taglist>
-	      <tag>Free Redistribution
+	      <tag>1. Free Redistribution
 	      </tag>
 	      <item>
 		  The license of a Debian component may not restrict any
@@ -376,20 +375,20 @@
 		  sources. The license may not require a royalty or
 		  other fee for such sale.
 	      </item>
-	      <tag>Source Code
+	      <tag>2. Source Code
 	      </tag>
 	      <item>
 		  The program must include source code, and must allow
 		  distribution in source code as well as compiled form.
 	      </item>
-	      <tag>Derived Works
+	      <tag>3. Derived Works
 	      </tag>
 	      <item>
 		  The license must allow modifications and derived
 		  works, and must allow them to be distributed under the
 		  same terms as the license of the original software.
 	      </item>
-	      <tag>Integrity of The Author's Source Code
+	      <tag>4. Integrity of The Author's Source Code
 	      </tag>
 	      <item>
 		  The license may restrict source-code from being
@@ -404,13 +403,13 @@
 		  Project encourages all authors to not restrict any
 		  files, source or binary, from being modified.)
 	      </item>
-	      <tag>No Discrimination Against Persons or Groups
+	      <tag>5. No Discrimination Against Persons or Groups
 	      </tag>
 	      <item>
 		  The license must not discriminate against any person
 		  or group of persons.
 	      </item>
-	      <tag>No Discrimination Against Fields of Endeavor
+	      <tag>6. No Discrimination Against Fields of Endeavor
 	      </tag>
 	      <item>
 		  The license must not restrict anyone from making use
@@ -419,7 +418,7 @@
 		  used in a business, or from being used for genetic
 		  research.
 	      </item>
-	      <tag>Distribution of License
+	      <tag>7. Distribution of License
 	      </tag>
 	      <item>
 		  The rights attached to the program must apply to all
@@ -427,7 +426,7 @@
 		  for execution of an additional license by those
 		  parties.
 	      </item>
-	      <tag>License Must Not Be Specific to Debian
+	      <tag>8. License Must Not Be Specific to Debian
 	      </tag>
 	      <item>
 		  The rights attached to the program must not depend on
@@ -439,7 +438,7 @@
 		  rights as those that are granted in conjunction with
 		  the Debian system.
 	      </item>
-	      <tag>License Must Not Contaminate Other Software
+	      <tag>9. License Must Not Contaminate Other Software
 	      </tag>
 	      <item>
 		  The license must not place restrictions on other
@@ -448,7 +447,7 @@
 		  that all other programs distributed on the same medium
 		  must be free software.
 	      </item>
-	      <tag>Example Licenses
+	      <tag>10. Example Licenses
 	      </tag>
 	      <item>
                   The "GPL," "BSD," and "Artistic" licenses are examples of
@@ -570,8 +569,8 @@
 	<heading>Copyright considerations</heading>
 
 	<p>
-	  Every package must be accompanied by a verbatim copy of
-	  its copyright and distribution license in the file
+	  Every package must be accompanied by a verbatim copy of its
+	  copyright information and distribution license in the file
 	  <file>/usr/share/doc/<var>package</var>/copyright</file>
 	  (see <ref id="copyrightfile"> for further details).
 	</p>
@@ -1639,11 +1638,11 @@
       <sect id="dpkgcopyright">
 	<heading>Copyright: <file>debian/copyright</file></heading>
         <p>
-          Every package must be accompanied by a verbatim copy of
-	  its copyright and distribution license in the file
+	  Every package must be accompanied by a verbatim copy of its
+	  copyright information and distribution license in the file
 	  <file>/usr/share/doc/<var>package</var>/copyright</file>
 	  (see <ref id="copyrightfile"> for further details). Also see
-	  <ref id="pkgcopyright"> for further considerations relayed
+	  <ref id="pkgcopyright"> for further considerations related
 	  to copyrights for packages.
         </p>
       </sect>
@@ -1726,14 +1725,17 @@
 	<p>
 	  It must start with the line <tt>#!/usr/bin/make -f</tt>,
 	  so that it can be invoked by saying its name rather than
-	  invoking <prgn>make</prgn> explicitly.
+	  invoking <prgn>make</prgn> explicitly. That is, invoking
+          either of <tt>make -f debian/rules <em>args...</em></tt>
+          or <tt>./debian/rules <em>args...</em></tt> must result in
+          identical behavior.
 	</p>
 
 	<p>
 	  Since an interactive <file>debian/rules</file> script makes it
 	  impossible to auto-compile that package and also makes it
 	  hard for other people to reproduce the same binary
-	  package, all <em>required targets</em> MUST be
+	  package, all <em>required targets</em> must be
 	  non-interactive. At a minimum, required targets are the
 	  ones called by <prgn>dpkg-buildpackage</prgn>, namely,
 	  <em>clean</em>, <em>binary</em>, <em>binary-arch</em>,
@@ -2690,7 +2692,7 @@ Package: libc6
 	  <heading><tt>Priority</tt></heading>
 
 	  <p>
-	    This field represents how important that it is that the user
+	    This field represents how important it is that the user
 	    have the package installed. See <ref id="priorities">.
 	  </p>
 
@@ -2799,8 +2801,8 @@ Package: libc6
 	  </p>
 
 	  <p>
-	    See <ref id="debianrules"> for information how to get the
-	    architecture for the build process.
+	    See <ref id="debianrules"> for information on how to get
+	    the architecture for the build process.
 	  </p>
 	</sect1>
 
@@ -2861,8 +2863,8 @@ Package: libc6
 	  <p>
 	    Thus only the first three components of the policy version
 	    are significant in the <em>Standards-Version</em> control
-	    field, and so either these three components or the all
-	    four components may be specified.<footnote>
+	    field, and so either these three components or all four
+	    components may be specified.<footnote>
 	  	In the past, people specified the full version number
 	  	in the Standards-Version field, for example "2.3.0.0".
 	  	Since minor patch-level changes don't introduce new
@@ -3254,7 +3256,7 @@ Package: libc6
 	    for the most recent version should be returned first, and
 	    entries should be separated by the representation of a
 	    blank line (the "title" line may also be followed by the
-	    representation of blank line).
+	    representation of a blank line).
 	  </p>
 	</sect1>
 
@@ -3370,7 +3372,7 @@ Files:
 	    no new original source archive is being distributed the
 	    <tt>.dsc</tt> must still contain the <tt>Files</tt> field
 	    entry for the original source archive
-	    <file><var>package</var>-<var>upstream-version</var>.orig.tar.gz</file>,
+	    <file><var>package</var>_<var>upstream-version</var>.orig.tar.gz</file>,
 	    but the <file>.changes</file> file should leave it out.  In
 	    this case the original source archive on the distribution
 	    site must match exactly, byte-for-byte, the original
@@ -3715,7 +3717,7 @@ Files:
 		      </example>
                       If this works, then the old-version is
                       "Installed", if not, the old version is in a
-                      "Failed-Config" state.
+                      "Half-Configured" state.
 		  </item>
 		</enumlist>
 	    </item>
@@ -3823,7 +3825,7 @@ Files:
                       If this fails, the package is left in a
                       "Half-Installed" state, which requires a
                       reinstall. If it works, the packages is left in
-                      a "Config Files" state.
+                      a "Config-Files" state.
 		  </item>
 		  <item>
 		      Otherwise (i.e., the package was completely purged):
@@ -3835,7 +3837,7 @@ Files:
 <var>new-postrm</var> abort-install
                       </example>
                       If the error-unwind fails, the package is in a
-                      "Half Installed" phase, and requires a
+                      "Half-Installed" phase, and requires a
                       reinstall. If the error unwind works, the
                       package is in a not installed state.
 		  </item>
@@ -3915,14 +3917,14 @@ Files:
 		      <example compact="compact">
 <var>old-preinst</var> abort-upgrade <var>new-version</var>
 		      </example>
-                      If this fails, the old version is left in an
-                      "Half Installed" state. If it works, dpkg now
+                      If this fails, the old version is left in a
+                      "Half-Installed" state. If it works, dpkg now
                       calls:
 		      <example compact="compact">
 <var>new-postrm</var> abort-upgrade <var>old-version</var>
 		      </example>
-                      If this fails, the old version is left in an
-                      "Half Installed" state. If it works, dpkg now
+                      If this fails, the old version is left in a
+                      "Half-Installed" state. If it works, dpkg now
                       calls:
 		      <example compact="compact">
 <var>old-postinst</var> abort-upgrade <var>new-version</var>
@@ -4081,7 +4083,7 @@ Files:
                 </example>
               </p>
               <p>
-                If this fails, the package is in a "Failed-Config"
+                If this fails, the package is in a "Half-Configured"
                 state, or else it remains "Installed".
               </p>
 	    </item>
@@ -4417,12 +4419,12 @@ Build-Depends: foo [!i386] | bar [!amd64]
 		be <em>unpacked</em> the pre-dependency can be
 		satisfied if the depended-on package is either fully
 		configured, <em>or even if</em> the depended-on
-		package(s) are only unpacked or half-configured,
-		provided that they have been configured correctly at
-		some point in the past (and not removed or partially
-		removed since).  In this case, both the
+		package(s) are only unpacked or in the "Half-Configured"
+		state, provided that they have been configured
+		correctly at some point in the past (and not removed
+		or partially removed since).  In this case, both the
 		previously-configured and currently unpacked or
-		half-configured versions must satisfy any version
+		"Half-Configured" versions must satisfy any version
 		clause in the <tt>Pre-Depends</tt> field.
 	      </p>
 
@@ -4479,7 +4481,7 @@ Build-Depends: foo [!i386] | bar [!amd64]
 	<p>
 	  A package will not be regarded as causing breakage merely
 	  because its configuration files are still installed; it must
-	  be at least half-installed.
+	  be at least "Half-Installed".
 	</p>
 
 	<p>
@@ -4533,7 +4535,7 @@ Build-Depends: foo [!i386] | bar [!amd64]
 	<p>
 	  A package will not cause a conflict merely because its
 	  configuration files are still installed; it must be at least
-	  half-installed.
+	  "Half-Installed".
 	</p>
 
 	<p>
@@ -5339,10 +5341,10 @@ dpkg-shlibdeps debian/tmp/usr/bin/* debian/tmp/usr/sbin/* \
 	</p>
 
 	<p>
-	  If you are creating a udeb for use in the Debian Installer, you
-	  will need to specify that <prgn>dpkg-shlibdeps</prgn> should use
-	  the dependency line of type <tt>udeb</tt> by adding
-	  <tt>-tudeb</tt> as option<footnote>
+	  If you are creating a udeb for use in the Debian Installer,
+	  you will need to specify that <prgn>dpkg-shlibdeps</prgn>
+	  should use the dependency line of type <tt>udeb</tt> by
+	  adding the <tt>-tudeb</tt> option<footnote>
 	      <prgn>dh_shlibdeps</prgn> from the <tt>debhelper</tt> suite
 	      will automatically add this option if it knows it is
 	      processing a udeb.
@@ -5586,6 +5588,40 @@ libbar 1 bar1 (>= 1.0-1)
               </item>
               <item>
                 <p>
+                  The requirement for object files, internal binaries, and
+                  libraries, including <file>libc.so.*</file>, to be located
+                  directly under <file>/lib{,32}</file> and
+                  <file>/usr/lib{,32}</file> is amended, permitting files
+                  to instead be installed to
+                  <file>/lib/<var>triplet</var></file> and
+                  <file>/usr/lib/<var>triplet</var></file>, where
+                  <tt><var>triplet</var></tt> is the value returned by
+                  <tt>dpkg-architecture -qDEB_HOST_GNU_TYPE</tt> for the
+                  architecture of the package.  Packages may <em>not</em>
+                  install files to any <var>triplet</var> path other
+                  than the one matching the architecture of that package;
+                  for instance, an <tt>Architecture: amd64</tt> package
+                  containing 32-bit x86 libraries may not install these
+                  libraries to <file>/usr/lib/i486-linux-gnu</file>.
+                  <footnote>
+                    This is necessary in order to reserve the directories for
+                    use in cross-installation of library packages from other
+                    architectures, as part of the planned deployment of
+                    <tt>multiarch</tt>.
+                  </footnote>
+                </p>
+                <p>
+                  Applications may also use a single subdirectory under
+                  <file>/usr/lib/<var>triplet</var></file>.
+                </p>
+                <p>
+                  The execution time linker/loader, ld*, must still be made
+                  available in the existing location under /lib or /lib64
+                  since this is part of the ELF ABI for the architecture.
+                </p>
+              </item>
+              <item>
+                <p>
                   The requirement that
                   <file>/usr/local/share/man</file> be "synonymous"
                   with <file>/usr/local/man</file> is relaxed to a
@@ -5605,6 +5641,15 @@ libbar 1 bar1 (>= 1.0-1)
                   The requirement that boot manager configuration
                   files live in <file>/etc</file>, or at least are
                   symlinked there, is relaxed to a recommendation.
+                </p>
+              </item>
+              <item>
+                <p>
+                  The following directories in the root filesystem are
+                  additionally allowed: <file>/sys</file> and
+                  <file>/selinux</file>. <footnote>These directories
+                  are used as mount points to mount virtual filesystems
+                  to get access to kernel information.</footnote>
                 </p>
               </item>
             </enumlist>
@@ -5652,13 +5697,15 @@ libbar 1 bar1 (>= 1.0-1)
 	  </p>
 
 	  <p>
-	    Note, that this applies only to directories <em>below</em>
-	    <file>/usr/local</file>, not <em>in</em> <file>/usr/local</file>.
-	    Packages must not create sub-directories in the directory
-	    <file>/usr/local</file> itself, except those listed in FHS,
-	    section 4.5.  However, you may create directories below
-	    them as you wish. You must not remove any of the
-	    directories listed in 4.5, even if you created them.
+	    Note that this applies only to
+	    directories <em>below</em> <file>/usr/local</file>,
+	    not <em>in</em> <file>/usr/local</file>.  Packages must
+	    not create sub-directories in the
+	    directory <file>/usr/local</file> itself, except those
+	    listed in FHS, section 4.5.  However, you may create
+	    directories below them as you wish. You must not remove
+	    any of the directories listed in 4.5, even if you created
+	    them.
 	  </p>
 
 	  <p>
@@ -5719,9 +5766,10 @@ rmdir /usr/local/share/emacs 2>/dev/null || true
 	<sect1>
 	  <heading>The system-wide mail directory</heading>
 	  <p>
-	    The system-wide mail directory is <file>/var/mail</file>. This
-	    directory is part of the base system and should not owned
-	    by any particular mail agents.  The use of the old
+	    The system-wide mail directory
+	    is <file>/var/mail</file>. This directory is part of the
+	    base system and should not be owned by any particular mail
+	    agents.  The use of the old
 	    location <file>/var/spool/mail</file> is deprecated, even
 	    though the spool may still be physically located there.
 	  </p>
@@ -5803,7 +5851,7 @@ rmdir /usr/local/share/emacs 2>/dev/null || true
 		</p>
 	      </item>
 
-	      <tag>1000-29999:</tag>
+	      <tag>1000-59999:</tag>
 	      <item>
 		<p>
 		  Dynamically allocated user accounts.  By default
@@ -5812,11 +5860,6 @@ rmdir /usr/local/share/emacs 2>/dev/null || true
 		  <file>adduser.conf</file> may be used to modify this
 		  behavior.
 		</p>
-	      </item>
-
-	      <tag>30000-59999:</tag>
-	      <item>
-		<p>Reserved.</p>
 	      </item>
 
 	      <tag>60000-64999:</tag>
@@ -6506,13 +6549,48 @@ Reloading <var>description</var> configuration...done.
 	  <prgn>anacron</prgn>. Thus, you should only use this
 	  directory for jobs which may be skipped if the system is not
 	  running.)</p>
+	<p>
+          Unlike <file>crontab</file> files described in the IEEE Std
+          1003.1-2008 (POSIX.1) available from
+          <url id="http://www.opengroup.org/onlinepubs/9699919799/"
+               name="The Open Group">, the files in
+          <file>/etc/cron.d</file> and the file
+          <file>/etc/crontab</file> have seven fields; namely:
+          <enumlist>
+            <item>Minute [0,59]</item>
+            <item>Hour [0,23]</item>
+            <item>Day of the month [1,31]</item>
+            <item>Month of the year [1,12]</item>
+            <item>Day of the week ([0,6] with 0=Sunday)</item>
+            <item>Username</item>
+            <item>Command to be run</item>
+          </enumlist>
+          Ranges of numbers are allowed.  Ranges are two numbers
+          separated with a hyphen.  The specified range is inclusive.
+          Lists are allowed.  A list is a set of numbers (or ranges)
+          separated by commas. Step values can be used in conjunction
+          with ranges.
+        </p>
 
 	<p>
-	  The scripts or crontab entries in these directories should
+	  The scripts or <tt>crontab</tt> entries in these directories should
 	  check if all necessary programs are installed before they
 	  try to execute them. Otherwise, problems will arise when a
 	  package was removed but not purged since configuration files
-	  are kept on the system in this situation.</p>
+	  are kept on the system in this situation.
+        </p>
+
+        <p>
+          Any <tt>cron</tt> daemon must provide
+          <file>/usr/bin/crontab</file> and support normal
+          <tt>crontab</tt> entries as specified in POSIX. The daemon
+          must also support names for days and months, ranges, and
+          step values. It has to support <file>/etc/crontab</file>,
+          and correctly execute the scripts in
+          <file>/etc/cron.d</file>. The daemon must also correctly
+          execute scripts in
+          <file>/etc/cron.{hourly,daily,weekly,monthly}</file>.
+        </p>
       </sect>
 
       <sect id="menus">
@@ -7222,8 +7300,8 @@ ln -fs ../sbin/sendmail debian/tmp/usr/bin/runq
 	<heading>Device files</heading>
 
 	<p>
-	  Packages must not include device files in the package file
-	  tree.
+	  Packages must not include device files or named pipes in the
+	  package file tree.
 	</p>
 
 	<p>
@@ -7247,6 +7325,18 @@ ln -fs ../sbin/sendmail debian/tmp/usr/bin/runq
 	  <file>/dev/ttyS*</file>. Programs using the old
 	  <file>/dev/cu*</file> devices should be changed to use
 	  <file>/dev/ttyS*</file>.
+	</p>
+
+	<p>
+	  Named pipes needed by the package must be created in
+	  the <prgn>postinst</prgn> script<footnote>
+	    It's better to use <prgn>mkfifo</prgn> rather
+	    than <prgn>mknod</prgn> to create named pipes so that
+	    automated checks for packages incorrectly creating device
+	    files with <prgn>mknod</prgn> won't have false positives.
+	  </footnote> and removed in
+	  the <prgn>prerm</prgn> or <prgn>postrm</prgn> script as
+	  appropriate.
 	</p>
       </sect>
 
@@ -8575,9 +8665,9 @@ name ["<var>syshostname</var>"]:
 	  <p>
 	    Customization of programs' X resources may also be
 	    supported with the provision of a file with the same name
-	    as that of the package placed in the
-	    <file>/etc/X11/Xresources/</file> directory, which must
-	    registered as a <tt>conffile</tt> or handled as a
+	    as that of the package placed in
+	    the <file>/etc/X11/Xresources/</file> directory, which
+	    must be registered as a <tt>conffile</tt> or handled as a
 	    configuration file.<footnote>
 		Note that this mechanism is not the same as using
 		app-defaults; app-defaults are tied to the client
@@ -8961,7 +9051,7 @@ END-INFO-DIR-ENTRY
             <p>
               Please note that this does not override the section on
               changelog files below, so the file 
-              <file>/usr/share/<var>package</var>/changelog.Debian.gz</file>
+              <file>/usr/share/doc/<var>package</var>/changelog.Debian.gz</file>
               must refer to the changelog for the current version of
               <var>package</var> in question. In practice, this means
               that the sources of the target and the destination of the
@@ -9015,7 +9105,7 @@ END-INFO-DIR-ENTRY
 
 	<p>
 	  Every package must be accompanied by a verbatim copy of its
-	  copyright and distribution license in the file
+	  copyright information and distribution license in the file
 	  <file>/usr/share/doc/<var>package</var>/copyright</file>. This
 	  file must neither be compressed nor be a symbolic link.
 	</p>

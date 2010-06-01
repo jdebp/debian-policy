@@ -4,11 +4,27 @@ policy.sgml: version.ent
 menu-policy.sgml: version.ent
 mime-policy.sgml: version.ent
 
+ifneq (,$(strip $(HAVE_ORG_EMACS)))
+%.txt: %.org
+	$(EMACS) --batch -Q -l ./README-css.el -l org -l org-ascii --visit $^ \
+          --funcall org-export-as-ascii >/dev/null 2>&1
+	test "$@" != "README.txt"  ||                            \
+           perl -pli -e 's,./Process.org,Process.txt,g' $@
+%.html: %.org
+	$(EMACS) --batch -Q -l ./README-css.el -l org --visit $^ \
+          --funcall org-export-as-html-batch >/dev/null 2>&1
+endif
+
 %.validate: %
 	nsgmls -wall -gues $<
 
 %.html/index.html: %.sgml
 	LANG=C debiandoc2html $<
+
+%-1.html: %.sgml
+	LANG=C debiandoc2html -1 -b $*-1d $< && \
+        mv $*-1d.html/index.html $*-1.html && \
+        rmdir $*-1d.html
 
 %.html.tar.gz: %.html/index.html
 	tar -czf $(<:/index.html=.tar.gz) $(<:/index.html=)
@@ -33,14 +49,14 @@ mime-policy.sgml: version.ent
 
 # convenience aliases :)
 html: policy.html/index.html
+html-1: policy-1.html
 txt text: policy.txt
 ps: policy.ps
 pdf: policy.pdf
 policy: html txt ps pdf
 
 leavealone :=	$(FHS_HTML) $(FHS_FILES) $(FHS_ARCHIVE) \
-		libc6-migration.txt \
-		upgrading-checklist.html virtual-package-names-list.txt
+		libc6-migration.txt
 	      
 .PHONY: distclean
 distclean:

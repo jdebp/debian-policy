@@ -8,6 +8,7 @@
 /policy.html/
 /stamp-build
 /version.ent
+*-1.html
 *.html.tar.gz
 *.pdf
 *.pdf.gz
