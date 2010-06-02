@@ -7753,15 +7753,12 @@ endscript
 	  security policy by changing the permissions on a binary:
 	  they can do this by using <prgn>dpkg-statoverride</prgn>, as
 	  described below.<footnote>
-	      Ordinary files installed by <prgn>dpkg</prgn> (as
-	      opposed to <tt>conffile</tt>s and other similar objects)
-	      normally have their permissions reset to the distributed
-	      permissions when the package is reinstalled.  However,
-	      the use of <prgn>dpkg-statoverride</prgn> overrides this
-	      default behavior.  If you use this method, you should
-	      remember to describe <prgn>dpkg-statoverride</prgn> in
-	      the package documentation; being a relatively new
-	      addition to Debian, it is probably not yet well-known.
+	    Ordinary files installed by <prgn>dpkg</prgn> (as
+	    opposed to <tt>conffile</tt>s and other similar objects)
+	    normally have their permissions reset to the distributed
+	    permissions when the package is reinstalled.  However,
+	    the use of <prgn>dpkg-statoverride</prgn> overrides this
+	    default behavior.
 	  </footnote>
 	  Another method you should consider is to create a group for
 	  people allowed to use the program(s) and make any setuid
