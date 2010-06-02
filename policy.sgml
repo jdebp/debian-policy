@@ -2777,7 +2777,7 @@ Package: libc6
 	      a minority of cases where the program is not portable and
 	      should not be used for most packages.  Wildcards are not
 	      expanded into a list of known architectures before comparing
-	      to the build architecutre.  Instead, the build architecture
+	      to the build architecture.  Instead, the build architecture
 	      is matched against any wildcards and this package is built
 	      if any wildcard matches.
 	    </footnote>
