@@ -30,6 +30,10 @@ debian-policy (3.8.5.0) UNRELEASED; urgency=low
   * Standardize dpkg state wording and bring it in line with dpkg,
     renaming Failed-Config to Half-Configured and use uniform
     capitalization and punctuation.  (Closes: #442134)
+  * Remove documentation of alternative changelog formats.  This feature
+    is not allowed in the Debian archive and will be documented in the
+    dpkg-dev documentation instead.  The documentation that was in Policy
+    was also somewhat outdated.  (Closes: #555009, see #584141)
 
  -- Bill Allombert <ballombe@debian.org>  Mon, 31 May 2010 20:00:28 +0200
 
