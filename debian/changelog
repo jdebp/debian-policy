@@ -38,6 +38,9 @@ debian-policy (3.8.5.0) UNRELEASED; urgency=low
     new feature and not well-known.  (Closes: #563425)
   * Clarify in the Perl Policy that perl-base is essential, not perl, and
     don't imply packages need to depend on perl-base.  (Closes: #576594)
+  * Document the special debian-installer section in the list of current
+    sections and add a link to the list of sections in unstable, which
+    contains longer descriptions.  (Closes: #577666)
 
  -- Bill Allombert <ballombe@debian.org>  Mon, 31 May 2010 20:00:28 +0200
 

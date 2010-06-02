@@ -689,7 +689,15 @@
 	  <em>ruby</em>, <em>science</em>, <em>shells</em>, <em>sound</em>,
 	  <em>tex</em>, <em>text</em>, <em>utils</em>, <em>vcs</em>,
 	  <em>video</em>, <em>web</em>, <em>x11</em>, <em>xfce</em>,
-	  <em>zope</em>.
+	  <em>zope</em>.  The additional section <em>debian-installer</em>
+	  contains special packages used by the installer and is not used
+	  for normal Debian packages.
+	</p>
+
+	<p>
+	  For more information about the sections and their definitions,
+	  see the <url id="http://packages.debian.org/unstable/"
+		       name="list of sections in unstable">.
 	</p>
       </sect>
 
