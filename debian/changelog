@@ -36,6 +36,8 @@ debian-policy (3.8.5.0) UNRELEASED; urgency=low
     was also somewhat outdated.  (Closes: #555009, see #584141)
   * Remove obsolete footnote sentence saying that dpkg-statoverride is a
     new feature and not well-known.  (Closes: #563425)
+  * Clarify in the Perl Policy that perl-base is essential, not perl, and
+    don't imply packages need to depend on perl-base.  (Closes: #576594)
 
  -- Bill Allombert <ballombe@debian.org>  Mon, 31 May 2010 20:00:28 +0200
 
