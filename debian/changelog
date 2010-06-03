@@ -27,6 +27,11 @@ debian-policy (3.8.5.0) UNRELEASED; urgency=low
     Closes: #582495
 
   [ Russ Allbery ]
+  * Policy: Except init.d scripts from the normal set -e requirement
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Raphael Hertzog <hertzog@debian.org>
+    Seconded: Guillem Jover <guillem@debian.org>
+    Closes: #562506
   * Standardize dpkg state wording and bring it in line with dpkg,
     renaming Failed-Config to Half-Configured and use uniform
     capitalization and punctuation.  (Closes: #442134)
