@@ -6055,7 +6055,7 @@ rmdir /usr/local/share/emacs 2>/dev/null || true
 	  </p>
 	</sect1>
 
-	<sect1>
+	<sect1 id="writing-init">
 	  <heading>Writing the scripts</heading>
 
 	  <p>
@@ -6103,6 +6103,23 @@ rmdir /usr/local/share/emacs 2>/dev/null || true
 	    user processes.  The best way to achieve this is usually to
 	    use <prgn>start-stop-daemon</prgn> with the <tt>--oknodo</tt>
 	    option.
+	  </p>
+
+	  <p>
+	    Be careful of using <tt>set -e</tt> in <file>init.d</file>
+	    scripts.  Writing correct <file>init.d</file> scripts requires
+	    accepting various error exit statuses when daemons are already
+	    running or already stopped without aborting
+	    the <file>init.d</file> script, and common <file>init.d</file>
+	    function libraries are not safe to call with <tt>set -e</tt>
+	    in effect<footnote>
+	      <tt>/lib/lsb/init-functions</tt>, which assists in writing
+	      LSB-compliant init scripts, may fail if <tt>set -e</tt> is
+	      in effect and echoing status messages to the console fails,
+	      for example.
+	    </footnote>.  For <tt>init.d</tt> scripts, it's often easier
+	    to not use <tt>set -e</tt> and instead check the result of
+	    each command separately.
 	  </p>
 
 	  <p>
@@ -7202,13 +7219,19 @@ strip --strip-unneeded <var>your-lib</var>
           language currently used to implement it.
         </p>
 	<p>
-	  Shell scripts (<prgn>sh</prgn> and <prgn>bash</prgn>)
-	  should almost certainly start with <tt>set -e</tt> so that
-	  errors are detected.  Every script should use
-	  <tt>set -e</tt> or check the exit status of <em>every</em>
-	  command.
+	  Shell scripts (<prgn>sh</prgn> and <prgn>bash</prgn>) other than
+	  <file>init.d</file> scripts should almost certainly start
+	  with <tt>set -e</tt> so that errors are detected.
+	  <file>init.d</file> scripts are something of a special case, due
+	  to how frequently they need to call commands that are allowed to
+	  fail, and it may instead be easier to check the exit status of
+	  commands directly.  See <ref id="writing-init"> for more
+	  information about writing <file>init.d</file> scripts.
 	</p>
-
+	<p>
+	  Every script should use <tt>set -e</tt> or check the exit status
+	  of <em>every</em> command.
+	</p>
 	<p>
 	  Scripts may assume that <file>/bin/sh</file> implements the
 	  SUSv3 Shell Command Language<footnote>

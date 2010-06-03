@@ -41,7 +41,11 @@ Release Jun 2010.
 
 </p><p><taglist>
 <tag>9.2.2</tag>
-  <item> The UID range of user accounts is extended to 1000-59999.
+  <item>The UID range of user accounts is extended to 1000-59999.
+  </item>
+<tag>9.3.2, 10.4</tag>
+  <item><file>init.d</file> scripts are a possible exception from the
+  normal requirement to use <code>set -e</code> in each shell script.
   </item>
 </taglist></p>
 
