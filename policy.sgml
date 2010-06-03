@@ -2767,19 +2767,15 @@ Package: libc6
 	  </p>
 
 	  <p>
-	    Specifying a list of architecture wildcards indicates that
-	    the source will build an architecture-dependent package on
-	    the union of the lists of architectures from the expansion
-	    of each specified architecture wildcard, and will only
-	    work correctly on the architectures in the union of the
-	    lists.<footnote>
+	    Specifying a list of architecture wildcards indicates that the
+	    source will build an architecture-dependent package on only
+	    those architectures that match any of the specified
+	    architecture wildcards.<footnote>
 	      Use of architecture wildcards other than <tt>all</tt> is for
 	      a minority of cases where the program is not portable and
-	      should not be used for most packages.  Wildcards are not
-	      expanded into a list of known architectures before comparing
-	      to the build architecture.  Instead, the build architecture
-	      is matched against any wildcards and this package is built
-	      if any wildcard matches.
+	      should not be used for most packages, such as packages that
+	      are only useful on systems with a particular kernel
+	      implementation.
 	    </footnote>
 	  </p>
 
@@ -8031,16 +8027,13 @@ done
 	    Internally, the package system normalizes the GNU triplets and
 	    the Debian arches into Debian arch triplets (which are kind of
 	    inverted GNU triplets), with the first component of the
-	    triplet representing the libc and ABI in use.  When matching
-	    two Debian arch triplets, whenever an <var>any</var> is found
-	    it matches with anything on the other side, like in:
-	  <example>
-  gnu-linux-i386     is matched by gnu-linux-any
-  gnu-kfreebsd-amd64 is matched by any-any-amd64
-          </example>
-          And, for example, <var>any</var> is normalized to
-          <var>any-any-any</var>.
-        </footnote>
+	    triplet representing the libc and ABI in use, and then does
+	    matching against those triplets.  However, such triplets are
+	    an internal implementation detail that should not be used by
+	    packages directly.  The libc and ABI portion is handled
+	    internally by the package system based on the <var>os</var>
+	    and <var>cpu</var>.
+          </footnote>
         </p>
       </sect>
 
