@@ -103,18 +103,18 @@
 	  the binary and a basic set of modules.
 	</p>
 	<p>
-	  As Perl is currently used by such things as
-	  <file>update-alternatives</file> and some package maintainer
-	  scripts, it must be priority <em>required</em> and marked as
-	  <em>essential</em>.
+	  As Perl has been part of the essential set for some time and is
+	  used without dependencies by such things as package maintainer
+	  scripts, <package>perl-base</package> must be
+	  priority <em>required</em> and marked as <em>essential</em>.
 	</p>
 	<p>
 	  Note that the <package>perl-base</package> package is intended
 	  only to provide for exceptional circumstances and the contents
-	  may change.  In general only packages which form part of the
-	  base system should declare a dependency on
-	  <package>perl-base</package> rather than
-	  <package>perl</package>.
+	  may change.  In general, only packages which form part of the
+	  base system should use only the facilities
+	  of <package>perl-base</package> rather than declaring a
+	  dependency on <package>perl</package>.
 	</p>
       </sect>
 

@@ -689,7 +689,15 @@
 	  <em>ruby</em>, <em>science</em>, <em>shells</em>, <em>sound</em>,
 	  <em>tex</em>, <em>text</em>, <em>utils</em>, <em>vcs</em>,
 	  <em>video</em>, <em>web</em>, <em>x11</em>, <em>xfce</em>,
-	  <em>zope</em>.
+	  <em>zope</em>.  The additional section <em>debian-installer</em>
+	  contains special packages used by the installer and is not used
+	  for normal Debian packages.
+	</p>
+
+	<p>
+	  For more information about the sections and their definitions,
+	  see the <url id="http://packages.debian.org/unstable/"
+		       name="list of sections in unstable">.
 	</p>
       </sect>
 
@@ -7776,15 +7784,12 @@ endscript
 	  security policy by changing the permissions on a binary:
 	  they can do this by using <prgn>dpkg-statoverride</prgn>, as
 	  described below.<footnote>
-	      Ordinary files installed by <prgn>dpkg</prgn> (as
-	      opposed to <tt>conffile</tt>s and other similar objects)
-	      normally have their permissions reset to the distributed
-	      permissions when the package is reinstalled.  However,
-	      the use of <prgn>dpkg-statoverride</prgn> overrides this
-	      default behavior.  If you use this method, you should
-	      remember to describe <prgn>dpkg-statoverride</prgn> in
-	      the package documentation; being a relatively new
-	      addition to Debian, it is probably not yet well-known.
+	    Ordinary files installed by <prgn>dpkg</prgn> (as
+	    opposed to <tt>conffile</tt>s and other similar objects)
+	    normally have their permissions reset to the distributed
+	    permissions when the package is reinstalled.  However,
+	    the use of <prgn>dpkg-statoverride</prgn> overrides this
+	    default behavior.
 	  </footnote>
 	  Another method you should consider is to create a group for
 	  people allowed to use the program(s) and make any setuid
@@ -10004,120 +10009,6 @@ END-INFO-DIR-ENTRY
 	  <p>
 	    See <ref id="debianrules">.
 	  </p>
-	</sect1>
-
-
-	<sect1 id="pkg-dpkgchangelog">
-	  <heading><file>debian/changelog</file></heading>
-
-	  <p>
-	    See <ref id="dpkgchangelog">.
-	  </p>
-
- 	  <sect2><heading>Defining alternative changelog formats
-	    </heading>
-
-	    <p>
-	      It is possible to use a different format to the standard
-	      one, by providing a parser for the format you wish to
-	      use.
-	    </p>
-
-	    <p>
-	      In order to have <tt>dpkg-parsechangelog</tt> run your
-	      parser, you must include a line within the last 40 lines
-	      of your file matching the Perl regular expression:
-	      <tt>\schangelog-format:\s+([0-9a-z]+)\W</tt> The part in
-	      parentheses should be the name of the format.  For
-	      example, you might say:
-	      <example>
-  @@@ changelog-format: joebloggs @@@
-	      </example>
-	      Changelog format names are non-empty strings of alphanumerics.
-	    </p>
-
-	    <p>
-	      If such a line exists then <tt>dpkg-parsechangelog</tt>
-	      will look for the parser as
-	      <file>/usr/lib/dpkg/parsechangelog/<var>format-name</var></file>
-	      or
-	      <file>/usr/local/lib/dpkg/parsechangelog/<var>format-name</var></file>;
-	      it is an error for it not to find it, or for it not to
-	      be an executable program.  The default changelog format
-	      is <tt>dpkg</tt>, and a parser for it is provided with
-	      the <tt>dpkg</tt> package.
-	    </p>
-
-	    <p>
-	      The parser will be invoked with the changelog open on
-	      standard input at the start of the file.  It should read
-	      the file (it may seek if it wishes) to determine the
-	      information required and return the parsed information
-	      to standard output in the form of a series of control
-	      fields in the standard format.  By default it should
-	      return information about only the most recent version in
-	      the changelog; it should accept a
-	      <tt>-v<var>version</var></tt> option to return changes
-	      information from all versions present <em>strictly
-	      after</em> <var>version</var>, and it should then be an
-	      error for <var>version</var> not to be present in the
-	      changelog.
-	    </p>
-
-	    <p>
-	      The fields are:
-	      <list compact="compact">
-		<item><qref id="f-Source"><tt>Source</tt></qref></item>
-		<item><qref id="f-Version"><tt>Version</tt></qref> (mandatory)</item>
-		<item><qref id="f-Distribution"><tt>Distribution</tt></qref> (mandatory)</item>
-		<item><qref id="f-Urgency"><tt>Urgency</tt></qref> (mandatory)</item>
-		<item><qref id="f-Maintainer"><tt>Maintainer</tt></qref> (mandatory)</item>
-		<item><qref id="f-Date"><tt>Date</tt></qref></item>
-		<item><qref id="f-Changes"><tt>Changes</tt></qref> (mandatory)</item>
-	      </list>
-	    </p>
-
-	    <p>
-	      If several versions are being returned (due to the use
-	      of <tt>-v</tt>), the urgency value should be of the
-	      highest urgency code listed at the start of any of the
-	      versions requested followed by the concatenated
-	      (space-separated) comments from all the versions
-	      requested; the maintainer, version, distribution and
-	      date should always be from the most recent version.
-	    </p>
-
-	    <p>
-	      For the format of the <tt>Changes</tt> field see
-	      <ref id="f-Changes">.
-	    </p>
-
-	    <p>
-	      If the changelog format which is being parsed always or
-	      almost always leaves a blank line between individual
-	      change notes these blank lines should be stripped out,
-	      so as to make the resulting output compact.
-	    </p>
-
-	    <p>
-	      If the changelog format does not contain date or package
-	      name information this information should be omitted from
-	      the output.  The parser should not attempt to synthesize
-	      it or find it from other sources.
-	    </p>
-
-	    <p>
-	      If the changelog does not have the expected format the
-	      parser should exit with a nonzero exit status, rather
-	      than trying to muddle through and possibly generating
-	      incorrect output.
-	    </p>
-
-	    <p>
-	      A changelog parser may not interact with the user at
-	      all.
-	    </p>
-	  </sect2>
 	</sect1>
 
 	<sect1 id="pkg-srcsubstvars">
