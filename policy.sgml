@@ -3566,6 +3566,15 @@ Files:
 	  assume that program will handle falling back to noninteractive
 	  behavior.
 	</p>
+
+	<p>
+	  For high-priority prompts without a reasonable default answer,
+	  maintainer scripts may abort if there is no controlling
+	  terminal.  However, this situation should be avoided if at all
+	  possible, since it prevents automated or unattended installs.
+	  In most cases, users will consider this to be a bug in the
+	  package.
+	</p>
       </sect>
 
       <sect id="exitstatus">
