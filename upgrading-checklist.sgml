@@ -47,6 +47,13 @@ Release Jun 2010.
   <item><file>init.d</file> scripts are a possible exception from the
   normal requirement to use <code>set -e</code> in each shell script.
   </item>
+<tag>perl</tag>
+  <item><package>perl-base</package> now
+  provides <package>perlapi-<var>abiname</var></package> instead of a
+  package based solely on the Perl version.  Perl packages must now depend
+  on <package>perlapi-$Config{debian_abi}</package>, falling back
+  on <tt>$Config{version}</tt> if <tt>$Config{debian_abi}</tt> is not set.
+  </item>
 </taglist></p>
 
 <sect> Version 3.8.4.0
