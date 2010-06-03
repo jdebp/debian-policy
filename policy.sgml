@@ -2742,6 +2742,8 @@ Package: libc6
 		<item>
 		  An architecture wildcard identifying a set of Debian
 		  machine architectures, see <ref id="arch-wildcard-spec">.
+		  <tt>any</tt> matches all Debian machine architectures
+		  and is the most frequently used.
 		</item>
 		<item>
 		  <tt>all</tt>, which indicates an
@@ -2759,38 +2761,36 @@ Package: libc6
 	    or a list of specific and wildcard architectures separated by
 	    spaces.  If <tt>all</tt> appears, that value must be the
 	    entire contents of the field.  Most packages will use
-	    either <tt>any</tt> or <tt>all</tt>.  Specifying a specific
-	    list of architectures is for the minority of cases where a
+	    either <tt>any</tt> or <tt>all</tt>.
+	  </p>
+
+	  <p>
+	    Specifying a specific list of architectures indicates that the
+	    source will build an architecture-dependent package only on
+	    architectures included in the list.  Specifying a list of
+	    architecture wildcards indicates that the source will build an
+	    architecture-dependent package on only those architectures
+	    that match any of the specified architecture wildcards.
+	    Specifying a list of architectures or architecture wildcards
+	    other than <tt>any</tt> is for the minority of cases where a
 	    program is not portable or is not useful on some
-	    architectures, and where possible the program should be made
+	    architectures.  Where possible, the program should be made
 	    portable instead.
 	  </p>
 
 	  <p>
-	    Specifying a list of architecture wildcards indicates that the
-	    source will build an architecture-dependent package on only
-	    those architectures that match any of the specified
-	    architecture wildcards.<footnote>
-	      Use of architecture wildcards other than <tt>all</tt> is for
-	      a minority of cases where the program is not portable and
-	      should not be used for most packages, such as packages that
-	      are only useful on systems with a particular kernel
-	      implementation.
-	    </footnote>
-	  </p>
-
-	  <p>
 	    In the source package control file <file>.dsc</file>, this
-	    field may contain either the special value <tt>any</tt> or a
-	    list of architectures separated by spaces. If a list is given,
-	    it may include (or consist solely of) the special value
-	    <tt>all</tt>.  In other words, in <file>.dsc</file> files
-	    unlike the <file>debian/control</file>, <tt>all</tt> may occur
-	    in combination with specific architectures.  The
-	    <tt>Architecture</tt> field in the source package control file
-	    <file>.dsc</file> is generally constructed from the
-	    <tt>Architecture</tt> fields in the
-	    <file>debian/control</file> in the source package.
+	    field may contain either the architecture
+	    wildcard <tt>any</tt> or a list of architectures and
+	    architecture wildcards separated by spaces. If a list is
+	    given, it may include (or consist solely of) the special
+	    value <tt>all</tt>.  In other words, in <file>.dsc</file>
+	    files unlike the <file>debian/control</file>, <tt>all</tt> may
+	    occur in combination with specific architectures.
+	    The <tt>Architecture</tt> field in the source package control
+	    file <file>.dsc</file> is generally constructed from
+	    the <tt>Architecture</tt> fields in
+	    the <file>debian/control</file> in the source package.
 	  </p>
 
 	  <p>
@@ -2825,7 +2825,7 @@ Package: libc6
 	    package is also being uploaded, the special
 	    entry <tt>source</tt> is also present.  <tt>all</tt> will be
 	    present if any architecture-independent packages are being
-	    uploaded.  Architecture wildcards such as <tt>any</tt> may
+	    uploaded.  Architecture wildcards such as <tt>any</tt> must
 	    never occur in the <tt>Architecture</tt> field in
 	    the <file>.changes</file> file.
 	  </p>
