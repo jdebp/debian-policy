@@ -27,9 +27,25 @@ debian-policy (3.8.5.0) UNRELEASED; urgency=low
     Closes: #582495
 
   [ Russ Allbery ]
+  * Policy: Except init.d scripts from the normal set -e requirement
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Raphael Hertzog <hertzog@debian.org>
+    Seconded: Guillem Jover <guillem@debian.org>
+    Closes: #562506
   * Standardize dpkg state wording and bring it in line with dpkg,
     renaming Failed-Config to Half-Configured and use uniform
     capitalization and punctuation.  (Closes: #442134)
+  * Remove documentation of alternative changelog formats.  This feature
+    is not allowed in the Debian archive and will be documented in the
+    dpkg-dev documentation instead.  The documentation that was in Policy
+    was also somewhat outdated.  (Closes: #555009, see #584141)
+  * Remove obsolete footnote sentence saying that dpkg-statoverride is a
+    new feature and not well-known.  (Closes: #563425)
+  * Clarify in the Perl Policy that perl-base is essential, not perl, and
+    don't imply packages need to depend on perl-base.  (Closes: #576594)
+  * Document the special debian-installer section in the list of current
+    sections and add a link to the list of sections in unstable, which
+    contains longer descriptions.  (Closes: #577666)
 
  -- Bill Allombert <ballombe@debian.org>  Mon, 31 May 2010 20:00:28 +0200
 
