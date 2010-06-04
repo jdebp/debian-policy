@@ -27,6 +27,13 @@ debian-policy (3.8.5.0) UNRELEASED; urgency=low
     Closes: #582495
 
   [ Russ Allbery ]
+  * Policy: Support for architecture wildcards
+    Wording: Manoj Srivastava <srivasta@debian.org>
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Guillem Jover <guillem@debian.org>
+    Seconded: Andrew McMillan <andrew@morphoss.com>
+    Seconded: Steve Langasek <vorlon@debian.org>
+    Closes: #530687
   * Policy: Except init.d scripts from the normal set -e requirement
     Wording: Russ Allbery <rra@debian.org>
     Seconded: Raphael Hertzog <hertzog@debian.org>

@@ -40,6 +40,12 @@ picking your way through this list.
 Release Jun 2010.
 
 </p><p><taglist>
+<tag>5.6.8, 7.1, 11.1.1</tag>
+  <item>Architecture wildcards may be used in addition to specific
+  architectures in <file>debian/control</file> and <file>*.dsc</file>
+  Architecture fields, and in architecture restrictions in build
+  relationships.
+  </item>
 <tag>9.2.2</tag>
   <item>The UID range of user accounts is extended to 1000-59999.
   </item>
