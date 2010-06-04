@@ -46,6 +46,13 @@ Release Jun 2010.
   Architecture fields, and in architecture restrictions in build
   relationships.
   </item>
+<tag>6.3</tag>
+  <item>Maintainer scripts are no longer guaranteed to run with a
+  controlling terminal and must be able to fall back to noninteractive
+  behavior (debconf handles this).  Maintainer scripts may abort if there
+  is no controlling terminal and no reasonable default for a high-priority
+  question, but should avoid this if possible.
+  </item>
 <tag>9.2.2</tag>
   <item>The UID range of user accounts is extended to 1000-59999.
   </item>
