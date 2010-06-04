@@ -98,7 +98,7 @@ What needs to happen next: Reach a conclusion and consensus in the
 discussion and make a final proposal for what should be changed (if
 anything), moving to the proposal tag.
 
-** State D: Proposal
+** State C: Proposal
 
 A final proposal has emerged from the discussion, and there is a rough
 consensus on how to proceed to resolve the issue. 
@@ -110,7 +110,7 @@ wording of the change. Often this is done in conjunction with the
 proposal, in which case one may skip this step and move directly to
 patch tag.
 
-** State E: Wording proposed
+** State D: Wording proposed
 
 A patch against the Policy document reflecting the consensus has been
 created and is waiting for formal seconds. The standard patch tag is
@@ -123,7 +123,7 @@ seconded. Any Debian developer who agrees with the change and the
 conclusion of rough consensus from the discussion should say so in the
 bug log by seconding the proposal.
 
-** State F: Seconded
+** State E: Seconded
 
 The proposal is signed off on by N Debian Developers. To start with,
 we're going with N=3, meaning that if three Debian Developers agree,
@@ -145,7 +145,7 @@ This tag is not used very much because normally a Policy maintainer
 applies the patch and moves the proposal to the next state once enough
 seconds are reached.
 
-** State G: Accepted
+** State F: Accepted
 
 Change accepted, will be in next upload. The standard pending tag is
 used for this state since it matches the regular meaning of
@@ -156,7 +156,7 @@ What needs to happen next: The bug is now in the waiting queue for the
 next Policy release, and there's nothing left to do except for upload
 a new version of Policy.
 
-** State H: Reject
+** State G: Reject
 
 Rejected proposals. The standard wontfix is used for this
 state. Normally, bugs in this state will not remain open; instead, a

@@ -1,8 +1,8 @@
                     Debian Policy changes process
                     =============================
 
-Author: Margarita Manterola, Clint Adams, Russ Allbery, and Manoj Srivastava <srivasta@debian.org>
-Date: 2009-09-13 01:17:13 CDT
+Author: Margarita Manterola, Clint Adams, Russ Allbery, and Manoj Srivastava
+Date: 2010-06-04 09:41:23 PDT
 
 
 Change Goals 
@@ -83,7 +83,7 @@ anything), moving to the proposal tag.
 
 [TAG: discussion]: http://bugs.debian.org/cgi-bin/pkgreport.cgi?src=debian-policy&pend-exc=done&tag=discussion
 
-State D: Proposal 
+State C: Proposal 
 ==================
 
 A final proposal has emerged from the discussion, and there is a rough
@@ -99,7 +99,7 @@ patch tag.
 
 [TAG: proposal]: http://bugs.debian.org/cgi-bin/pkgreport.cgi?src=debian-policy&pend-exc=done&tag=proposal
 
-State E: Wording proposed 
+State D: Wording proposed 
 ==========================
 
 A patch against the Policy document reflecting the consensus has been
@@ -116,7 +116,7 @@ bug log by seconding the proposal.
 
 [TAG: patch]: http://bugs.debian.org/cgi-bin/pkgreport.cgi?src=debian-policy&pend-exc=done&tag=patch
 
-State F: Seconded 
+State E: Seconded 
 ==================
 
 The proposal is signed off on by N Debian Developers. To start with,
@@ -142,7 +142,7 @@ seconds are reached.
 
 [TAG: seconded]: http://bugs.debian.org/cgi-bin/pkgreport.cgi?src=debian-policy&pend-exc=done&tag=seconded
 
-State G: Accepted 
+State F: Accepted 
 ==================
 
 Change accepted, will be in next upload. The standard pending tag is
@@ -157,7 +157,7 @@ a new version of Policy.
 
 [TAG: pending]: http://bugs.debian.org/cgi-bin/pkgreport.cgi?src=debian-policy&pend-exc=done&tag=pending
 
-State H: Reject 
+State G: Reject 
 ================
 
 Rejected proposals. The standard wontfix is used for this

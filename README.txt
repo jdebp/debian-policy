@@ -1,8 +1,8 @@
                             Debian Policy
                             =============
 
-Author: Manoj Srivastava And Russ Allbery <srivasta@debian.org>
-Date: 2009-09-15 15:48:35 CDT
+Author: Manoj Srivastava And Russ Allbery
+Date: 2010-06-04 09:42:57 PDT
 
 
 Infrastructure 
@@ -32,6 +32,7 @@ Once the wording for a change has been finalized, please send a patch
 against the current Git master branch to the bug report, if you're not
 familiar with Git, the following commands are the basic process:
 
+
   git clone git://git.debian.org/git/dbnpolicy/policy.git
   git checkout -b <local-branch-name>
   
@@ -44,14 +45,18 @@ familiar with Git, the following commands are the basic process:
   git checkout master
   git pull
   
-  # If there are changes in master that make the branch not apply cleanly:
-   git checkout -b temp master; git merge <local-branch-name>
-  # If error, reset temp, merge master into local; else skip these three lines
-   git reset --hard HEAD;
-   git checkout <local-branch-name>; 
+  git checkout master
+  git merge --no-commit <local-branch-name>
+  git reset --hard HEAD;
+  git checkout <local-branch-name>; 
+  
+  # If there are changes in master that make the branch not apply cleanly, there
+  # should have been en error during the merge step above. If there was an
+  # error, merge the master branch into the local branch, fix the conflicts, and
+  # commit the new version of the local branch.
    git merge master
-  # get rid of the temp branch:
-   git branch -D temp
+  # Edit files to remove conflict
+   git commit -s 
   
   # Checkout the local branch, to create the patch to send to the policy
   git checkout <local-branch-name>
@@ -61,7 +66,6 @@ familiar with Git, the following commands are the basic process:
   git send-email --from "you <your@email>"             \
                  --to debian-policy@lists.debian.org   \
                  $dir/
-
 
 <local-branch-name> is some convenient name designating your local
 changes. You may want to use some common prefix like local-. You can
@@ -223,6 +227,7 @@ proposed wording, is:
 + Delete the now-merged branch.
 
 The Git commands used for this workflow are:
+
   git checkout -b bug12345-rra master
   # edit files
   # git add files
@@ -232,12 +237,20 @@ The Git commands used for this workflow are:
   # update your local master branch
   git checkout master
   git pull
-  # If there are changes in master that make the branch not apply cleanly:
-  git checkout -b temp master; git merge bug12345-rra
-  # If error;
+  
+  git checkout master
+  git merge --no-commit bug12345-rra
   git reset --hard HEAD;
-  git checkout bug12345-rra; git branch -D temp
-  git merge master
+  
+  # If there are changes in master that make the branch not apply cleanly, there
+  # should have been en error during the merge step above. If there was an
+  # error, merge the master branch into the local branch, fix the conflicts, and
+  # commit the new version of the local branch.
+   git checkout bug12345-rra
+   git merge master
+  # Edit files to remove conflict
+   git commit -s 
+  
   git checkout master
   git merge bug12345-rra
   # edit debian/changelog and upgrading-checklist.html
@@ -247,23 +260,22 @@ The Git commands used for this workflow are:
   git branch -d bug12345-rra
   git push origin :bug12345-rra
 
-
 For the debian/changelog entry, use the following format:
+
   * <document>: <brief change description>
     Wording: <author of wording>
     Seconded: <seconder>
     Seconded: <seconder>
     Closes: <bug numbers>
 
-
 For example:
+
   * Policy: better document version ranking and empty Debian revisions
     Wording: Russ Allbery <rra@debian.org>
     Seconded: Raphaël Hertzog <hertzog@debian.org>
     Seconded: Manoj Srivastava <srivasta@debian.org>
     Seconded: Guillem Jover <guillem@debian.org>
     Closes: #186700, #458910
-
 
 Updating branches 
 ==================
@@ -272,6 +284,7 @@ After commits to master have been pushed, either by you or by another
 Policy team member, you will generally want to update your working bug
 branches. The equivalent of the following commands should do that:
 
+
   for i in `git show-ref --heads | awk '{print $2}'`; do
       j=$(basename $i)
       if [ "$j" != "master" ]; then
@@ -279,7 +292,6 @@ branches. The equivalent of the following commands should do that:
       fi
   done
   git push --all origin
-
 
 assuming that you haven't packed the refs in your repository.
 
@@ -295,10 +307,10 @@ that it builds and installs.
 
 Then, tag the repository and push the final changes to Alioth:
 
+
   git tag -s v3.8.0.0
   git push origin
   git push --tags origin
-
 
 replacing the version number with the version of the release, of course.
 

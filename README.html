@@ -4,16 +4,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 lang="en" xml:lang="en">
 <head>
-<div style="text-align:right;font-size:70%;white-space:nowrap;">
- <a accesskey="h" href="http://www.debian.org/"> UP </a>
- |
- <a accesskey="H" href="http://wiki.debian.org/Teams/Policy"> HOME </a>
-</div>
-
 <title>Debian Policy</title>
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
 <meta name="generator" content="Org-mode"/>
-<meta name="generated" content="2009-10-05 00:20:29 CDT"/>
+<meta name="generated" content="2010-06-04 09:42:57 PDT"/>
 <meta name="author" content="Manoj Srivastava And Russ Allbery"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
@@ -43,8 +37,8 @@ lang="en" xml:lang="en">
                                  font-weight:bold; }
 
   body {
-   color: DarkSlateGrey;
-   background-color: gainsboro;
+   color: black;
+   background-color: white;
    font-family: Palatino, "Palatino Linotype", "Hoefler Text", "Times New Roman", Times, Georgia, Utopia, serif;
   }
   .org-agenda-date          { color: #87cefa;    }
@@ -58,12 +52,6 @@ lang="en" xml:lang="en">
     font-weight: bold;
   }
  
-  a {
-    color: inherit;
-    background-color: inherit;
-    font: inherit;
-    text-decoration: inherit;
-  }
   a:hover { text-decoration: underline; }
   .todo  { font-weight:bold; }
   .done { font-weight:bold; }
@@ -120,6 +108,12 @@ org_html_manager.setup ();
 </head>
 <body>
 <div id="content">
+<div id="org-div-home-and-up" style="text-align:right;font-size:70%;white-space:nowrap;">
+ <a accesskey="h" href="http://www.debian.org/"> UP </a>
+ |
+ <a accesskey="H" href="http://wiki.debian.org/Teams/Policy"> HOME </a>
+</div>
+
 <h1 class="title">Debian Policy</h1>
 
 
@@ -158,9 +152,9 @@ to manage the repository but not otherwise used)
 
 </div>
 
-<div id="outline-container-1.1" class="outline-3">
-<h3 id="sec-1.1">Interacting with the team </h3>
-<div class="outline-text-3" id="text-1.1">
+<div id="outline-container-1_1" class="outline-3">
+<h3 id="sec-1_1">Interacting with the team </h3>
+<div class="outline-text-3" id="text-1_1">
 
 
 <ul>
@@ -220,7 +214,6 @@ git send-email --from <span style="font-style: italic;">"you &lt;<a href="mailto
                --to debian-policy@lists.debian.org   \
                $dir/
 </pre>
-
 
 
 
@@ -400,18 +393,18 @@ help you get started.
 
 </div>
 
-<div id="outline-container-4.1" class="outline-3">
-<h3 id="sec-4.1">Maintenance procedures </h3>
-<div class="outline-text-3" id="text-4.1">
+<div id="outline-container-4_1" class="outline-3">
+<h3 id="sec-4_1">Maintenance procedures </h3>
+<div class="outline-text-3" id="text-4_1">
 
 
 </div>
 
 </div>
 
-<div id="outline-container-4.2" class="outline-3">
-<h3 id="sec-4.2">Repository layout </h3>
-<div class="outline-text-3" id="text-4.2">
+<div id="outline-container-4_2" class="outline-3">
+<h3 id="sec-4_2">Repository layout </h3>
+<div class="outline-text-3" id="text-4_2">
 
 
 <p>
@@ -436,9 +429,9 @@ The Git repository used for Debian Policy has the following branches:
 
 </div>
 
-<div id="outline-container-4.3" class="outline-3">
-<h3 id="sec-4.3">Managing a bug </h3>
-<div class="outline-text-3" id="text-4.3">
+<div id="outline-container-4_3" class="outline-3">
+<h3 id="sec-4_3">Managing a bug </h3>
+<div class="outline-text-3" id="text-4_3">
 
 
 <p>
@@ -521,7 +514,6 @@ git push origin :bug12345-rra
 
 
 
-
 <p>
 For the debian/changelog entry, use the following format:
 </p>
@@ -533,7 +525,6 @@ For the debian/changelog entry, use the following format:
   Seconded: &lt;seconder&gt;
   Closes: &lt;bug numbers&gt;
 </pre>
-
 
 
 
@@ -552,14 +543,13 @@ For example:
 
 
 
-
 </div>
 
 </div>
 
-<div id="outline-container-4.4" class="outline-3">
-<h3 id="sec-4.4">Updating branches </h3>
-<div class="outline-text-3" id="text-4.4">
+<div id="outline-container-4_4" class="outline-3">
+<h3 id="sec-4_4">Updating branches </h3>
+<div class="outline-text-3" id="text-4_4">
 
 
 <p>
@@ -581,7 +571,6 @@ git push --all origin
 
 
 
-
 <p>
 assuming that you haven't packed the refs in your repository.
 </p>
@@ -589,9 +578,9 @@ assuming that you haven't packed the refs in your repository.
 
 </div>
 
-<div id="outline-container-4.5" class="outline-3">
-<h3 id="sec-4.5">Making a release </h3>
-<div class="outline-text-3" id="text-4.5">
+<div id="outline-container-4_5" class="outline-3">
+<h3 id="sec-4_5">Making a release </h3>
+<div class="outline-text-3" id="text-4_5">
 
 
 <p>
@@ -615,7 +604,6 @@ git push --tags origin
 
 
 
-
 <p>
 replacing the version number with the version of the release, of course.
 </p>
@@ -628,9 +616,9 @@ new release.
 
 </div>
 
-<div id="outline-container-4.6" class="outline-3">
-<h3 id="sec-4.6">Setting release goals </h3>
-<div class="outline-text-3" id="text-4.6">
+<div id="outline-container-4_6" class="outline-3">
+<h3 id="sec-4_6">Setting release goals </h3>
+<div class="outline-text-3" id="text-4_6">
 
 
 <p>
@@ -681,10 +669,9 @@ reach one of the resolution states above.
 </div>
 <div id="postamble">
 <p class="author"> Author: Manoj Srivastava And Russ Allbery
-<a href="mailto:srivasta@debian.org">&lt;srivasta@debian.org&gt;</a>
 </p>
-<p class="date"> Date: 2009-10-05 00:20:29 CDT</p>
-<p class="creator">HTML generated by org-mode 6.31trans in emacs 23</p>
+<p class="date"> Date: 2010-06-04 09:42:57 PDT</p>
+<p class="creator">HTML generated by org-mode 6.36c in emacs 23</p>
 </div>
 </div>
 </body>

@@ -27,8 +27,8 @@
                                  font-weight:bold; }
 
   body {
-   color: DarkSlateGrey;
-   background-color: gainsboro;
+   color: black;
+   background-color: white;
    font-family: Palatino, \"Palatino Linotype\", \"Hoefler Text\", \"Times New Roman\", Times, Georgia, Utopia, serif;
   }
   .org-agenda-date          { color: #87cefa;    }
@@ -42,12 +42,6 @@
     font-weight: bold;
   }
  
-  a {
-    color: inherit;
-    background-color: inherit;
-    font: inherit;
-    text-decoration: inherit;
-  }
   a:hover { text-decoration: underline; }
   .todo  { font-weight:bold; }
   .done { font-weight:bold; }

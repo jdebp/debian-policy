@@ -74,6 +74,9 @@ debian-policy (3.8.5.0) UNRELEASED; urgency=low
     list can be trivially produced by dpkg-architecture -L (already
     noted), is very long, and quickly becomes out-of-date.
   * Move silly version ordering example to a footnote.  (Closes: #560839)
+  * Reletter the process steps to not skip State C and use more
+    traditional foreground and background colors for Process.html and
+    README.html.  (Closes: #584521)
 
  -- Bill Allombert <ballombe@debian.org>  Mon, 31 May 2010 20:00:28 +0200
 
