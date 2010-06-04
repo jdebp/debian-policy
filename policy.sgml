@@ -8016,27 +8016,27 @@ done
 	  <tt><var>arch</var>-unknown-linux</tt>, since the
 	  <tt>unknown</tt> does not look very good.
 	</p>
-      </sect>
 
-      <sect id="arch-wildcard-spec">
-        <heading>Architecture Wildcards</heading>
+	<sect1 id="arch-wildcard-spec">
+          <heading>Architecture wildcards</heading>
 
-        <p>
-	  A package may specify an architecture wildcard. Architecture
-	  wildcards are in the format <tt>any</tt> (which matches every
-	  architecture), <tt><var>os</var></tt>-any, or
-	  any-<tt><var>cpu</var></tt>. <footnote>
-	    Internally, the package system normalizes the GNU triplets and
-	    the Debian arches into Debian arch triplets (which are kind of
-	    inverted GNU triplets), with the first component of the
-	    triplet representing the libc and ABI in use, and then does
-	    matching against those triplets.  However, such triplets are
-	    an internal implementation detail that should not be used by
-	    packages directly.  The libc and ABI portion is handled
-	    internally by the package system based on the <var>os</var>
-	    and <var>cpu</var>.
-          </footnote>
-        </p>
+          <p>
+	    A package may specify an architecture wildcard. Architecture
+	    wildcards are in the format <tt>any</tt> (which matches every
+	    architecture), <tt><var>os</var></tt>-any, or
+	    any-<tt><var>cpu</var></tt>. <footnote>
+	      Internally, the package system normalizes the GNU triplets
+	      and the Debian arches into Debian arch triplets (which are
+	      kind of inverted GNU triplets), with the first component of
+	      the triplet representing the libc and ABI in use, and then
+	      does matching against those triplets.  However, such
+	      triplets are an internal implementation detail that should
+	      not be used by packages directly.  The libc and ABI portion
+	      is handled internally by the package system based on
+	      the <var>os</var> and <var>cpu</var>.
+            </footnote>
+          </p>
+	</sect1>
       </sect>
 
       <sect>
