@@ -2757,11 +2757,13 @@ Package: libc6
 
 	  <p>
 	    In the main <file>debian/control</file> file in the source
-	    package, this field may contain the special value <tt>all</tt>
-	    or a list of specific and wildcard architectures separated by
-	    spaces.  If <tt>all</tt> appears, that value must be the
-	    entire contents of the field.  Most packages will use
-	    either <tt>any</tt> or <tt>all</tt>.
+	    package, this field may contain the special
+	    value <tt>all</tt>, the special architecture
+	    wildcard <tt>any</tt>, or a list of specific and wildcard
+	    architectures separated by spaces.  If <tt>all</tt>
+	    or <tt>any</tt> appears, that value must be the entire
+	    contents of the field.  Most packages will use
+	    either <tt>all</tt> or <tt>any</tt>.
 	  </p>
 
 	  <p>
