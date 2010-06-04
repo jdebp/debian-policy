@@ -2735,41 +2735,64 @@ Package: libc6
 	    <tt>Architecture</tt> field can include the following sets of
 	    values:
 	    <list>
-		<item>A unique single word identifying a Debian machine
-		      architecture as described in <ref id="arch-spec">.
-		<item><tt>all</tt>, which indicates an
-		      architecture-independent package.
-		<item><tt>any</tt>, which indicates a package available
-		      for building on any architecture.
-		<item><tt>source</tt>, which indicates a source package.
+		<item>
+		  A unique single word identifying a Debian machine
+		  architecture as described in <ref id="arch-spec">.
+		</item>
+		<item>
+		  An architecture wildcard identifying a set of Debian
+		  machine architectures, see <ref id="arch-wildcard-spec">.
+		  <tt>any</tt> matches all Debian machine architectures
+		  and is the most frequently used.
+		</item>
+		<item>
+		  <tt>all</tt>, which indicates an
+		  architecture-independent package.
+		</item>
+		<item>
+		  <tt>source</tt>, which indicates a source package.
+		</item>
 	    </list>
 	  </p>
 
 	  <p>
 	    In the main <file>debian/control</file> file in the source
-	    package, this field may contain the special value
-	    <tt>any</tt>, the special value <tt>all</tt>, or a list of
-	    architectures separated by spaces.	If <tt>any</tt> or
-	    <tt>all</tt> appear, they must be the entire contents of the
-	    field.  Most packages will use either <tt>any</tt> or
-	    <tt>all</tt>.  Specifying a specific list of architectures is
-	    for the minority of cases where a program is not portable or
-	    is not useful on some architectures, and where possible the
-	    program should be made portable instead.
+	    package, this field may contain the special
+	    value <tt>all</tt>, the special architecture
+	    wildcard <tt>any</tt>, or a list of specific and wildcard
+	    architectures separated by spaces.  If <tt>all</tt>
+	    or <tt>any</tt> appears, that value must be the entire
+	    contents of the field.  Most packages will use
+	    either <tt>all</tt> or <tt>any</tt>.
+	  </p>
+
+	  <p>
+	    Specifying a specific list of architectures indicates that the
+	    source will build an architecture-dependent package only on
+	    architectures included in the list.  Specifying a list of
+	    architecture wildcards indicates that the source will build an
+	    architecture-dependent package on only those architectures
+	    that match any of the specified architecture wildcards.
+	    Specifying a list of architectures or architecture wildcards
+	    other than <tt>any</tt> is for the minority of cases where a
+	    program is not portable or is not useful on some
+	    architectures.  Where possible, the program should be made
+	    portable instead.
 	  </p>
 
 	  <p>
 	    In the source package control file <file>.dsc</file>, this
-	    field may contain either the special value <tt>any</tt> or a
-	    list of architectures separated by spaces. If a list is given,
-	    it may include (or consist solely of) the special value
-	    <tt>all</tt>.  In other words, in <file>.dsc</file> files
-	    unlike the <file>debian/control</file>, <tt>all</tt> may occur
-	    in combination with specific architectures.  The
-	    <tt>Architecture</tt> field in the source package control file
-	    <file>.dsc</file> is generally constructed from the
-	    <tt>Architecture</tt> fields in the
-	    <file>debian/control</file> in the source package.
+	    field may contain either the architecture
+	    wildcard <tt>any</tt> or a list of architectures and
+	    architecture wildcards separated by spaces. If a list is
+	    given, it may include (or consist solely of) the special
+	    value <tt>all</tt>.  In other words, in <file>.dsc</file>
+	    files unlike the <file>debian/control</file>, <tt>all</tt> may
+	    occur in combination with specific architectures.
+	    The <tt>Architecture</tt> field in the source package control
+	    file <file>.dsc</file> is generally constructed from
+	    the <tt>Architecture</tt> fields in
+	    the <file>debian/control</file> in the source package.
 	  </p>
 
 	  <p>
@@ -2789,23 +2812,24 @@ Package: libc6
 	  </p>
 
 	  <p>
-	    Specifying a list of architectures indicates that the source
-	    will build an architecture-dependent package, and will only
-	    work correctly on the listed architectures.  If the source
-	    package also builds at least one architecture-independent
-	    package, <tt>all</tt> will also be included in the list.
+	    Specifying a list of architectures or architecture wildcards
+	    indicates that the source will build an architecture-dependent
+	    package, and will only work correctly on the listed or
+	    matching architectures.  If the source package also builds at
+	    least one architecture-independent package, <tt>all</tt> will
+	    also be included in the list.
 	  </p>
 
 	  <p>
 	    In a <file>.changes</file> file, the <tt>Architecture</tt>
-	    field lists the architecture(s) of the package(s)
-	    currently being uploaded.  This will be a list; if the
-	    source for the package is also being uploaded, the special
+	    field lists the architecture(s) of the package(s) currently
+	    being uploaded.  This will be a list; if the source for the
+	    package is also being uploaded, the special
 	    entry <tt>source</tt> is also present.  <tt>all</tt> will be
 	    present if any architecture-independent packages are being
-	    uploaded.  <tt>any</tt> may never occur in the
-	    <tt>Architecture</tt> field in the <file>.changes</file>
-	    file.
+	    uploaded.  Architecture wildcards such as <tt>any</tt> must
+	    never occur in the <tt>Architecture</tt> field in
+	    the <file>.changes</file> file.
 	  </p>
 
 	  <p>
@@ -4269,6 +4293,21 @@ Build-Depends: foo [!i386] | bar [!amd64]
 	  <tt>foo</tt> on the amd64 architecture, and to <tt>foo |
 	  bar</tt> on all other architectures.
 	</p>
+
+        <p>
+	  All fields that specify build-time relationships may also be
+	  restricted to a certain set of architectures using architecture
+	  wildcards.  The syntax for declaring such restrictions is the
+	  same as declaring restrictions using a certain set of
+	  architectures without architecture wildcards.  For example:
+          <example compact="compact">
+Build-Depends: foo [linux-any], bar [any-i386], baz [!linux-any]
+          </example>
+	  is equivalent to <tt>foo</tt> on architectures using the Linux
+	  kernel and any cpu, <tt>bar</tt> on architectures using any
+	  kernel and an i386 cpu, and <tt>baz</tt> on any architecture
+	  using a kernel other than Linux.
+        </p>
 
 	<p>
 	  Note that the binary package relationship fields such as
@@ -7988,6 +8027,27 @@ done
 	  <tt><var>arch</var>-unknown-linux</tt>, since the
 	  <tt>unknown</tt> does not look very good.
 	</p>
+
+	<sect1 id="arch-wildcard-spec">
+          <heading>Architecture wildcards</heading>
+
+          <p>
+	    A package may specify an architecture wildcard. Architecture
+	    wildcards are in the format <tt>any</tt> (which matches every
+	    architecture), <tt><var>os</var></tt>-any, or
+	    any-<tt><var>cpu</var></tt>. <footnote>
+	      Internally, the package system normalizes the GNU triplets
+	      and the Debian arches into Debian arch triplets (which are
+	      kind of inverted GNU triplets), with the first component of
+	      the triplet representing the libc and ABI in use, and then
+	      does matching against those triplets.  However, such
+	      triplets are an internal implementation detail that should
+	      not be used by packages directly.  The libc and ABI portion
+	      is handled internally by the package system based on
+	      the <var>os</var> and <var>cpu</var>.
+            </footnote>
+          </p>
+	</sect1>
       </sect>
 
       <sect>

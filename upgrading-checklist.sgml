@@ -40,12 +40,25 @@ picking your way through this list.
 Release Jun 2010.
 
 </p><p><taglist>
+<tag>5.6.8, 7.1, 11.1.1</tag>
+  <item>Architecture wildcards may be used in addition to specific
+  architectures in <file>debian/control</file> and <file>*.dsc</file>
+  Architecture fields, and in architecture restrictions in build
+  relationships.
+  </item>
 <tag>9.2.2</tag>
   <item>The UID range of user accounts is extended to 1000-59999.
   </item>
 <tag>9.3.2, 10.4</tag>
   <item><file>init.d</file> scripts are a possible exception from the
-  normal requirement to use <code>set -e</code> in each shell script.
+  normal requirement to use <tt>set -e</tt> in each shell script.
+  </item>
+<tag>perl</tag>
+  <item><package>perl-base</package> now
+  provides <package>perlapi-<var>abiname</var></package> instead of a
+  package based solely on the Perl version.  Perl packages must now depend
+  on <package>perlapi-$Config{debian_abi}</package>, falling back
+  on <tt>$Config{version}</tt> if <tt>$Config{debian_abi}</tt> is not set.
   </item>
 </taglist></p>
 
