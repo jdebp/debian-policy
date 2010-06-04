@@ -51,6 +51,11 @@ debian-policy (3.8.5.0) UNRELEASED; urgency=low
     Seconded: Brendan O'Dea <bod@debian.org>
     Seconded: Damyan Ivanov <dmn@debian.org>
     Closes: #579457
+  * Perl Policy: Recommend DESTDIR instead of PREFIX with Makefile.PL
+    Wording: Niko Tyni <ntyni@debian.org>
+    Seconded: Russ Allbery <rra@debian.org>
+    Seconded: Raphael Hertzog <hertzog@debian.org>
+    Closes: #579461
   * Standardize dpkg state wording and bring it in line with dpkg,
     renaming Failed-Config to Half-Configured and use uniform
     capitalization and punctuation.  (Closes: #442134)

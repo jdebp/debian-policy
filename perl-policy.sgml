@@ -316,7 +316,7 @@ $(MAKE) OPTIMIZE="-O2 -g -Wall"
 	  </example>
 	  and this one to install the results into the temporary tree:
 	  <example>
-$(MAKE) install PREFIX=$(CURDIR)/debian/&lt;tmp&gt;/usr
+$(MAKE) install DESTDIR=$(CURDIR)/debian/&lt;tmp&gt;
 	  </example><footnote>
 	    <p>Replace &lt;tmp&gt; with the appropriate directory
 	    (nominally just tmp)</p>

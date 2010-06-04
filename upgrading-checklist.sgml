@@ -67,6 +67,11 @@ Release Jun 2010.
   on <package>perlapi-$Config{debian_abi}</package>, falling back
   on <tt>$Config{version}</tt> if <tt>$Config{debian_abi}</tt> is not set.
   </item>
+<tag>perl</tag>
+  <item>Packages using <file>Makefile.PL</file> should use
+  <tt>DESTDIR</tt> rather than <tt>PREFIX</tt> to install into the package
+  staging area.  <tt>PREFIX</tt> only worked due to a Debian-local patch.
+  </item>
 </taglist></p>
 
 <sect> Version 3.8.4.0
