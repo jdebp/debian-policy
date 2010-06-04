@@ -40,6 +40,10 @@ picking your way through this list.
 Release Jun 2010.
 
 </p><p><taglist>
+<tag>4.4, 5.6.15</tag>
+  <item>The required format for the date in a changelog entry and in the
+  Date control field is now precisely specified.
+  </item>
 <tag>5.6.8, 7.1, 11.1.1</tag>
   <item>Architecture wildcards may be used in addition to specific
   architectures in <file>debian/control</file> and <file>*.dsc</file>
