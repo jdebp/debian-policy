@@ -65,6 +65,9 @@ debian-policy (3.8.5.0) UNRELEASED; urgency=low
   * Document the special debian-installer section in the list of current
     sections and add a link to the list of sections in unstable, which
     contains longer descriptions.  (Closes: #577666)
+  * Remove the footnote listing every architecture known to dpkg.  This
+    list can be trivially produced by dpkg-architecture -L (already
+    noted), is very long, and quickly becomes out-of-date.
 
  -- Bill Allombert <ballombe@debian.org>  Mon, 31 May 2010 20:00:28 +0200
 
