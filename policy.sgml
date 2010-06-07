@@ -8952,7 +8952,7 @@ name ["<var>syshostname</var>"]:
 		name="Man-Page-HOWTO">,
 	      <manref name="man" section="7">, the examples
               created by <prgn>debmake</prgn> or <prgn>dh_make</prgn>,
-	      the helper programs <prgn>help2man</prgn>, or the
+	      the helper program <prgn>help2man</prgn>, or the
               directory <file>/usr/share/doc/man-db/examples</file>.
           </footnote>
 	</p>
