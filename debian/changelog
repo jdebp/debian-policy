@@ -27,9 +27,63 @@ debian-policy (3.8.5.0) UNRELEASED; urgency=low
     Closes: #582495
 
   [ Russ Allbery ]
+  * Policy: Support for architecture wildcards
+    Wording: Manoj Srivastava <srivasta@debian.org>
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Guillem Jover <guillem@debian.org>
+    Seconded: Andrew McMillan <andrew@morphoss.com>
+    Seconded: Steve Langasek <vorlon@debian.org>
+    Closes: #530687
+  * Policy: Except init.d scripts from the normal set -e requirement
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Raphael Hertzog <hertzog@debian.org>
+    Seconded: Guillem Jover <guillem@debian.org>
+    Closes: #562506
+  * Policy: Maintainer scripts might not have a controlling terminal
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Guillem Jover <guillem@debian.org>
+    Seconded: Andrew McMillan <andrew@morphoss.com>
+    Seconded: Steve Langasek <vorlon@debian.org>
+    Closes: #224509
+  * Policy: Fully specify the date format for changelog entries
+    Wording: Charles Plessy <plessy@debian.org>
+    Seconded: Russ Allbery <rra@debian.org>
+    Seconded: Andrew McMillan <andrew@morphoss.com>
+    Seconded: Giacomo A. Catenazzi <cate@debian.org>
+    Closes: #569174
+  * Perl Policy: Change perlapi provides to use an ABI version
+    Wording: Niko Tyni <ntyni@debian.org>
+    Seconded: Russ Allbery <rra@debian.org>
+    Seconded: Brendan O'Dea <bod@debian.org>
+    Seconded: Damyan Ivanov <dmn@debian.org>
+    Closes: #579457
+  * Perl Policy: Recommend DESTDIR instead of PREFIX with Makefile.PL
+    Wording: Niko Tyni <ntyni@debian.org>
+    Seconded: Russ Allbery <rra@debian.org>
+    Seconded: Raphael Hertzog <hertzog@debian.org>
+    Closes: #579461
   * Standardize dpkg state wording and bring it in line with dpkg,
     renaming Failed-Config to Half-Configured and use uniform
     capitalization and punctuation.  (Closes: #442134)
+  * Remove documentation of alternative changelog formats.  This feature
+    is not allowed in the Debian archive and will be documented in the
+    dpkg-dev documentation instead.  The documentation that was in Policy
+    was also somewhat outdated.  (Closes: #555009, see #584141)
+  * Remove obsolete footnote sentence saying that dpkg-statoverride is a
+    new feature and not well-known.  (Closes: #563425)
+  * Clarify in the Perl Policy that perl-base is essential, not perl, and
+    don't imply packages need to depend on perl-base.  (Closes: #576594)
+  * Document the special debian-installer section in the list of current
+    sections and add a link to the list of sections in unstable, which
+    contains longer descriptions.  (Closes: #577666)
+  * Remove the footnote listing every architecture known to dpkg.  This
+    list can be trivially produced by dpkg-architecture -L (already
+    noted), is very long, and quickly becomes out-of-date.
+  * Move silly version ordering example to a footnote.  (Closes: #560839)
+  * Reletter the process steps to not skip State C and use more
+    traditional foreground and background colors for Process.html and
+    README.html.  (Closes: #584521)
+  * Fix typo in footnote about help2man.  (Closes: #584796)
 
  -- Bill Allombert <ballombe@debian.org>  Mon, 31 May 2010 20:00:28 +0200
 

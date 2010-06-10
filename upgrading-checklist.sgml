@@ -40,8 +40,41 @@ picking your way through this list.
 Release Jun 2010.
 
 </p><p><taglist>
+<tag>4.4, 5.6.15</tag>
+  <item>The required format for the date in a changelog entry and in the
+  Date control field is now precisely specified.
+  </item>
+<tag>5.6.8, 7.1, 11.1.1</tag>
+  <item>Architecture wildcards may be used in addition to specific
+  architectures in <file>debian/control</file> and <file>*.dsc</file>
+  Architecture fields, and in architecture restrictions in build
+  relationships.
+  </item>
+<tag>6.3</tag>
+  <item>Maintainer scripts are no longer guaranteed to run with a
+  controlling terminal and must be able to fall back to noninteractive
+  behavior (debconf handles this).  Maintainer scripts may abort if there
+  is no controlling terminal and no reasonable default for a high-priority
+  question, but should avoid this if possible.
+  </item>
 <tag>9.2.2</tag>
-  <item> The UID range of user accounts is extended to 1000-59999.
+  <item>The UID range of user accounts is extended to 1000-59999.
+  </item>
+<tag>9.3.2, 10.4</tag>
+  <item><file>init.d</file> scripts are a possible exception from the
+  normal requirement to use <tt>set -e</tt> in each shell script.
+  </item>
+<tag>perl</tag>
+  <item><package>perl-base</package> now
+  provides <package>perlapi-<var>abiname</var></package> instead of a
+  package based solely on the Perl version.  Perl packages must now depend
+  on <package>perlapi-$Config{debian_abi}</package>, falling back
+  on <tt>$Config{version}</tt> if <tt>$Config{debian_abi}</tt> is not set.
+  </item>
+<tag>perl</tag>
+  <item>Packages using <file>Makefile.PL</file> should use
+  <tt>DESTDIR</tt> rather than <tt>PREFIX</tt> to install into the package
+  staging area.  <tt>PREFIX</tt> only worked due to a Debian-local patch.
   </item>
 </taglist></p>
 

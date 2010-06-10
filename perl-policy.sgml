@@ -89,8 +89,11 @@
 	</p>
 	<p>
 	  The <package>perl-base</package> package must provide
-	  <package>perlapi-<var>version</var></package> for all released
-	  versions it is compatible with.
+	  <package>perlapi-<var>abiname</var></package> for all released
+	  package versions it is compatible with. The choice of
+	  <var>abiname</var> is arbitrary, but if it differs from
+	  <tt>$Config{version}</tt>, it must be specified in
+	  <tt>$Config{debian_abi}</tt>.
 	</p>
       </sect>
 
@@ -103,18 +106,18 @@
 	  the binary and a basic set of modules.
 	</p>
 	<p>
-	  As Perl is currently used by such things as
-	  <file>update-alternatives</file> and some package maintainer
-	  scripts, it must be priority <em>required</em> and marked as
-	  <em>essential</em>.
+	  As Perl has been part of the essential set for some time and is
+	  used without dependencies by such things as package maintainer
+	  scripts, <package>perl-base</package> must be
+	  priority <em>required</em> and marked as <em>essential</em>.
 	</p>
 	<p>
 	  Note that the <package>perl-base</package> package is intended
 	  only to provide for exceptional circumstances and the contents
-	  may change.  In general only packages which form part of the
-	  base system should declare a dependency on
-	  <package>perl-base</package> rather than
-	  <package>perl</package>.
+	  may change.  In general, only packages which form part of the
+	  base system should use only the facilities
+	  of <package>perl-base</package> rather than declaring a
+	  dependency on <package>perl</package>.
 	</p>
       </sect>
 
@@ -313,7 +316,7 @@ $(MAKE) OPTIMIZE="-O2 -g -Wall"
 	  </example>
 	  and this one to install the results into the temporary tree:
 	  <example>
-$(MAKE) install PREFIX=$(CURDIR)/debian/&lt;tmp&gt;/usr
+$(MAKE) install DESTDIR=$(CURDIR)/debian/&lt;tmp&gt;
 	  </example><footnote>
 	    <p>Replace &lt;tmp&gt; with the appropriate directory
 	    (nominally just tmp)</p>
@@ -348,8 +351,9 @@ $(MAKE) install PREFIX=$(CURDIR)/debian/&lt;tmp&gt;/usr
 	    a minimum version of the <package>perl</package> package
 	    used to build the module, and must additionally depend on
 	    the expansion of
-	    <package>perlapi-$Config{version}</package> using
-	    the <tt>Config</tt> module.
+	    <package>perlapi-$Config{debian_abi}</package> using
+	    the <tt>Config</tt> module. If <tt>$Config{debian_abi}</tt>
+	    is empty or not set, <tt>$Config{version}</tt> must be used.
 	  </p>
 	</sect1>
 
