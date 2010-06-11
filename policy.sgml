@@ -2398,6 +2398,11 @@ Package: libc6
 	</p>
 
 	<p>
+	  Each paragraph may contain at most one instance of a particular
+	  field name.
+	</p>
+
+	<p>
 	  Many fields' values may span several lines; in this case
 	  each continuation line must start with a space or a tab.
 	  Any trailing spaces or tabs at the end of individual
