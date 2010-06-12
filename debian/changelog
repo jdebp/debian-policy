@@ -90,6 +90,8 @@ debian-policy (3.8.5.0) UNRELEASED; urgency=low
     traditional foreground and background colors for Process.html and
     README.html.  (Closes: #584521)
   * Fix typo in footnote about help2man.  (Closes: #584796)
+  * Add an example for Replaces when a package is split.  Thanks, Uwe
+    Kleine-König.  (Closes: #572253)
 
  -- Bill Allombert <ballombe@debian.org>  Mon, 31 May 2010 20:00:28 +0200
 

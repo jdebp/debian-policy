@@ -4744,6 +4744,20 @@ Provides: bar
 	  </p>
 
 	  <p>
+	    For example, if a package <package>foo</package> is split
+	    into <package>foo</package> and <package>foo-data</package>
+	    starting at version 1.2-3, <package>foo-data</package> should
+	    have the field
+	    <example compact="compact">
+Replaces: foo (&lt;&lt; 1.2-3)
+	    </example>
+	    in its control file.  The package <package>foo</package>
+	    doesn't need any special control fields in this example,
+	    although would generally depend on or
+	    recommend <package>foo-data</package>.
+	  </p>
+
+	  <p>
 	    If a package is completely replaced in this way, so that
 	    <prgn>dpkg</prgn> does not know of any files it still
 	    contains, it is considered to have "disappeared".  It will
