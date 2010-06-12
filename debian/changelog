@@ -92,6 +92,8 @@ debian-policy (3.8.5.0) UNRELEASED; urgency=low
   * Fix typo in footnote about help2man.  (Closes: #584796)
   * Add an example for Replaces when a package is split.  Thanks, Uwe
     Kleine-König.  (Closes: #572253)
+  * Explicitly state that packages may remove unmodified, obsolete
+    configuration files during  upgrade.  (Closes: #470633)
 
  -- Bill Allombert <ballombe@debian.org>  Mon, 31 May 2010 20:00:28 +0200
 

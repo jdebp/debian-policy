@@ -7546,6 +7546,8 @@ ln -fs ../sbin/sendmail debian/tmp/usr/bin/runq
 		  package is purged.
 	      </item>
 	    </list>
+	    Obsolete configuration files without local changes may be
+	    removed by the package during upgrade.
 	  </p>
 
 	  <p>
