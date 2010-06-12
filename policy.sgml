@@ -9256,7 +9256,7 @@ END-INFO-DIR-ENTRY
 	      also included in <package>base-files</package> as
 	      <file>/usr/share/common-licenses/BSD</file>, but given the
 	      brevity of this license, its specificity to code whose
-	      copyright is held by the Regents of the Univesrity of
+	      copyright is held by the Regents of the University of
 	      California, and the frequency of minor wording changes, its
 	      text should be included in the copyright file rather than
 	      referencing this file.
