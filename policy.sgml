@@ -2488,8 +2488,6 @@ Package: libc6
 	  The syntax and semantics of the fields are described below.
 	</p>
 
-<!-- stuff -->
-
 	<p>
 	  These fields are used by <prgn>dpkg-gencontrol</prgn> to
 	  generate control files for binary packages (see below), by
@@ -2563,15 +2561,17 @@ Package: libc6
 	<list compact="compact">
 	  <item><qref id="f-Format"><tt>Format</tt></qref> (mandatory)</item>
 	  <item><qref id="f-Source"><tt>Source</tt></qref> (mandatory)</item>
+	  <item><qref id="f-Binary"><tt>Binary</tt></qref></item>
+	  <item><qref id="f-Architecture"><tt>Architecture</tt></qref></item>
 	  <item><qref id="f-Version"><tt>Version</tt></qref> (mandatory)</item>
 	  <item><qref id="f-Maintainer"><tt>Maintainer</tt></qref> (mandatory)</item>
 	  <item><qref id="f-Uploaders"><tt>Uploaders</tt></qref></item>
-	  <item><qref id="f-Binary"><tt>Binary</tt></qref></item>
-	  <item><qref id="f-Architecture"><tt>Architecture</tt></qref></item>
-          <item><qref id="sourcebinarydeps"><tt>Build-Depends</tt> et al</qref></item>
-	  <item><qref id="f-Standards-Version"><tt>Standards-Version</tt></qref> (recommended)</item>
-	  <item><qref id="f-Files"><tt>Files</tt></qref> (mandatory)</item>
 	  <item><qref id="f-Homepage"><tt>Homepage</tt></qref></item>
+	  <item><qref id="f-Standards-Version"><tt>Standards-Version</tt></qref> (recommended)</item>
+	  <item><qref id="sourcebinarydeps"><tt>Build-Depends</tt> et al</qref></item>
+	  <item><qref id="f-Checksums"><tt>Checksums-Sha1</tt>
+	      and <tt>Checksums-Sha256</tt> (recommended)</item>
+	  <item><qref id="f-Files"><tt>Files</tt></qref> (mandatory)</item>
 	</list>
 	</p>
 
@@ -2615,6 +2615,8 @@ Package: libc6
 	    <item><qref id="f-Description"><tt>Description</tt></qref> (mandatory)</item>
 	    <item><qref id="f-Closes"><tt>Closes</tt></qref></item>
 	    <item><qref id="f-Changes"><tt>Changes</tt></qref> (mandatory)</item>
+	    <item><qref id="f-Checksums"><tt>Checksums-Sha1</tt>
+		and <tt>Checksums-Sha256</tt> (recommended)</item>
 	    <item><qref id="f-Files"><tt>Files</tt></qref> (mandatory)</item>
 	  </list>
 	</p>
@@ -3469,6 +3471,51 @@ Files:
 	    information may be found.  The content of this field is a
 	    simple URL without any surrounding characters such as
 	    <tt>&lt;&gt;</tt>.
+	  </p>
+	</sect1>
+
+	<sect1 id="f-Checksums">
+	  <heading><tt>Checksums-Sha1</tt>
+	    and <tt>Checksums-Sha256</tt></heading>
+
+	  <p>
+	    These fields contain a list of files with a checksum and size
+	    for each one.  Both <tt>Checksums-Sha1</tt>
+	    and <tt>Checksums-Sha256</tt> have the same syntax and differ
+	    only in the checksum algorithm used: SHA-1
+	    for <tt>Checksums-Sha1</tt> and SHA-256
+	    for <tt>Checksums-Sha256</tt>.
+	  </p>
+
+	  <p>
+	    <tt>Checksums-Sha1</tt> and <tt>Checksums-Sha256</tt> are
+	    multiline field.  The first line of the field value (the part
+	    on the same line as <tt>Checksums-Sha1:</tt>
+	    or <tt>Checksums-Sha256:</tt>) is always empty.  The content
+	    of the field is expressed as continuation lines, one line per
+	    file.  Each line consists of the checksum, a space, the file
+	    size, a space, and the file name.  For example (from
+	    a <file>.changes</file> file):
+	    <example>
+Checksums-Sha1:
+ 1f418afaa01464e63cc1ee8a66a05f0848bd155c 1276 example_1.0-1.dsc
+ a0ed1456fad61116f868b1855530dbe948e20f06 171602 example_1.0.orig.tar.gz
+ 5e86ecf0671e113b63388dac81dd8d00e00ef298 6137 example_1.0-1.debian.tar.gz
+ 71a0ff7da0faaf608481195f9cf30974b142c183 548402 example_1.0-1_i386.deb
+Checksums-Sha256:
+ ac9d57254f7e835bed299926fd51bf6f534597cc3fcc52db01c4bffedae81272 1276 example_1.0-1.dsc
+ 0d123be7f51e61c4bf15e5c492b484054be7e90f3081608a5517007bfb1fd128 171602 example_1.0.orig.tar.gz
+ f54ae966a5f580571ae7d9ef5e1df0bd42d63e27cb505b27957351a495bc6288 6137 example_1.0-1.debian.tar.gz
+ 3bec05c03974fdecd11d020fc2e8250de8404867a8a2ce865160c250eb723664 548402 example_1.0-1_i386.deb
+	    </example>
+	  </p>
+
+	  <p>
+	    In the <file>.dsc</file> file, these fields should list all
+	    files that make up the source package.  In
+	    the <file>.changes</file> file, these fields should list all
+	    files being uploaded.  The list of files in these fields
+	    must match the list of files in the <tt>Files</tt> field.
 	  </p>
 	</sect1>
 
