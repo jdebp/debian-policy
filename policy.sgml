@@ -3489,7 +3489,7 @@ Files:
 
 	  <p>
 	    <tt>Checksums-Sha1</tt> and <tt>Checksums-Sha256</tt> are
-	    multiline field.  The first line of the field value (the part
+	    multiline fields.  The first line of the field value (the part
 	    on the same line as <tt>Checksums-Sha1:</tt>
 	    or <tt>Checksums-Sha256:</tt>) is always empty.  The content
 	    of the field is expressed as continuation lines, one line per
