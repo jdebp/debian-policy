@@ -1854,21 +1854,28 @@
 		A package may also provide both of the targets
 		<tt>build-arch</tt> and <tt>build-indep</tt>.
 		The <tt>build-arch</tt> target, if provided, should
-		perform all the configuration and compilation required
-		for producing all architecture-dependant binary packages
+		perform all the configuration and compilation required for
+		producing all architecture-dependant binary packages
 		(those packages for which the body of the
-		<tt>Architecture</tt> field in <tt>debian/control</tt>
-		is not <tt>all</tt>).
-		Similarly, the <tt>build-indep</tt> target, if
-		provided, should perform all the configuration and
-		compilation required for producing all
-		architecture-independent binary packages
-		(those packages for which the body of the
-		<tt>Architecture</tt> field in <tt>debian/control</tt>
-		is <tt>all</tt>).
+		<tt>Architecture</tt> field in <tt>debian/control</tt> is
+		not <tt>all</tt>).  Similarly, the <tt>build-indep</tt>
+		target, if provided, should perform all the configuration
+		and compilation required for producing all
+		architecture-independent binary packages (those packages
+		for which the body of the <tt>Architecture</tt> field
+		in <tt>debian/control</tt> is <tt>all</tt>).
 		The <tt>build</tt> target should depend on those of the
 		targets <tt>build-arch</tt> and <tt>build-indep</tt> that
-		are provided in the rules file.
+		are provided in the rules file.<footnote>
+		  The intent of this split is so that binary-only builds
+		  need not install the dependencies required for
+		  the <tt>build-indep</tt> target.  However, this is not
+		  yet used in practice since <tt>dpkg-buildpackage
+		  -B</tt>, and therefore the autobuilders,
+		  invoke <tt>build</tt> rather than <tt>build-arch</tt>
+		  due to the difficulties in determining whether the
+		  optional <tt>build-arch</tt> target exists.
+		</footnote>
 	      </p>
 
 	      <p>
@@ -4848,57 +4855,43 @@ Replaces: mail-transport-agent
           (as defined earlier for binary packages) in order to invoke
           the targets in <tt>debian/rules</tt>, as follows:<footnote>
 	    <p>
-	      If you make "build-arch" or "binary-arch", you need
-	      Build-Depends.  If you make "build-indep" or
-	      "binary-indep", you need Build-Depends and
-	      Build-Depends-Indep.  If you make "build" or "binary",
-	      you need both.
-	    </p>
-	    <p>
 	      There is no Build-Depends-Arch; this role is essentially
-              met with Build-Depends.  Anyone building the
-              <tt>build-indep</tt> and binary-indep<tt></tt> targets
-              is basically assumed to be building the whole package
-              anyway and so installs all build dependencies.  The
-              autobuilders use <tt>dpkg-buildpackage -B</tt>, which
-              calls <tt>build</tt> (not <tt>build-arch</tt>, since it
-              does not yet know how to check for its existence) and
-              <tt>binary-arch</tt>.
+	      met with Build-Depends.  Anyone building the
+	      <tt>build-indep</tt> and binary-indep<tt></tt> targets is
+	      assumed to be building the whole package, and therefore
+	      installation of all build dependencies is required.
 	    </p>
 	    <p>
-	      The purpose of the original split, I recall, was so that
-	      the autobuilders wouldn't need to install extra packages
-	      needed only for the binary-indep targets.  But without a
-	      build-arch/build-indep split, this didn't work, since
-	      most of the work is done in the build target, not in the
-	      binary target.
+	      The autobuilders use <tt>dpkg-buildpackage -B</tt>, which
+	      calls <tt>build</tt>, not <tt>build-arch</tt> since it does
+	      not yet know how to check for its existence, and
+	      <tt>binary-arch</tt>.  The purpose of the original split
+	      between <tt>Build-Depends</tt> and
+	      <tt>Build-Depends-Indep</tt> was so that the autobuilders
+	      wouldn't need to install extra packages needed only for the
+	      binary-indep targets.  But without a build-arch/build-indep
+	      split, this didn't work, since most of the work is done in
+	      the build target, not in the binary target.
 	    </p>
 	  </footnote>
-
 	  <taglist>
-	    <tag><tt>Build-Depends</tt>, <tt>Build-Conflicts</tt></tag>
+	    <tag><tt>clean</tt>, <tt>build-arch</tt>, and
+	      <tt>binary-arch</tt></tag>
 	    <item>
-                The <tt>Build-Depends</tt> and
-		<tt>Build-Conflicts</tt> fields must be satisfied when
-		any of the following targets is invoked:
-		<tt>build</tt>, <tt>clean</tt>, <tt>binary</tt>,
-		<tt>binary-arch</tt>, <tt>build-arch</tt>,
-		<tt>build-indep</tt> and <tt>binary-indep</tt>.
+	      Only the <tt>Build-Depends</tt> and <tt>Build-Conflicts</tt>
+	      fields must be satisfied when these targets are invoked.
 	    </item>
-	    <tag><tt>Build-Depends-Indep</tt>,
-	      <tt>Build-Conflicts-Indep</tt></tag>
+	    <tag><tt>build</tt>, <tt>build-indep</tt>, <tt>binary</tt>,
+	      and <tt>binary-indep</tt></tag>
 	    <item>
-                The <tt>Build-Depends-Indep</tt> and
-		<tt>Build-Conflicts-Indep</tt> fields must be
-		satisfied when any of the following targets is
-		invoked: <tt>build</tt>, <tt>build-indep</tt>,
-		<tt>binary</tt> and <tt>binary-indep</tt>.
+	      The <tt>Build-Depends</tt>, <tt>Build-Conflicts</tt>,
+	      <tt>Build-Depends-Indep</tt>, and
+	      <tt>Build-Conflicts-Indep</tt> fields must be satisfied when
+	      these targets are invoked.
 	    </item>
 	  </taglist>
 	</p>
-
       </sect>
-
     </chapt>
 
 

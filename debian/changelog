@@ -94,6 +94,10 @@ debian-policy (3.8.5.0) UNRELEASED; urgency=low
     Kleine-König.  (Closes: #572253)
   * Explicitly state that packages may remove unmodified, obsolete
     configuration files during  upgrade.  (Closes: #470633)
+  * Clarify the wording around which build dependencies must be satisfied
+    for different debian/rules targets and add a footnote to the
+    description of the build-arch and build-indep targets explaining why
+    this split does not currently work as desired.  (Closes: #328951)
 
  -- Bill Allombert <ballombe@debian.org>  Mon, 31 May 2010 20:00:28 +0200
 
