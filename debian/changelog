@@ -51,6 +51,12 @@ debian-policy (3.8.5.0) UNRELEASED; urgency=low
     Seconded: Andrew McMillan <andrew@morphoss.com>
     Seconded: Giacomo A. Catenazzi <cate@debian.org>
     Closes: #569174
+  * Policy: Deprecate /usr/share/common-licenses/BSD
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Emilio Pozuelo Monfort <pochu@debian.org>
+    Seconded: Jakub Wilk <jwilk@debian.org>
+    Seconded: gregor herrmann <gregoa@debian.org>
+    Closes: #284340
   * Perl Policy: Change perlapi provides to use an ABI version
     Wording: Niko Tyni <ntyni@debian.org>
     Seconded: Russ Allbery <rra@debian.org>

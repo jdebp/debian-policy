@@ -64,6 +64,13 @@ Release Jun 2010.
   <item><file>init.d</file> scripts are a possible exception from the
   normal requirement to use <tt>set -e</tt> in each shell script.
   </item>
+<tag>12.5</tag>
+  <item>The UCB BSD license was removed from the list of licenses that
+  should be referenced from <file>/usr/share/common-licenses/BSD</file>.
+  It should instead be included directly
+  in <file>debian/copyright</file>, although it will still be in
+  common-licenses for the time being.
+  </item>
 <tag>perl</tag>
   <item><package>perl-base</package> now
   provides <package>perlapi-<var>abiname</var></package> instead of a
