@@ -2398,8 +2398,8 @@ Package: libc6
 	</p>
 
 	<p>
-	  Each paragraph may contain at most one instance of a particular
-	  field name.
+	  A paragraph must not contain more than one instance of a
+	  particular field name.
 	</p>
 
 	<p>
