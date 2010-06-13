@@ -2672,7 +2672,7 @@ Package: libc6
 
 	  <p>
 	    The package maintainer's name and email address.  The name
-	    should come first, then the email address inside angle
+	    must come first, then the email address inside angle
 	    brackets <tt>&lt;&gt</tt> (in RFC822 format).
 	  </p>
 
@@ -2690,17 +2690,16 @@ Package: libc6
 	<sect1 id="f-Uploaders">
           <heading><tt>Uploaders</tt></heading>
 
-          <p>
-            List of the names and email addresses of co-maintainers of
-            the package, if any. If the package has other maintainers
-            beside the one named in the 
-            <qref id="f-Maintainer">Maintainer field</qref>, their
-            names and email addresses should be listed here. The
-            format is the same as that of the Maintainer tag, and
-            multiple entries should be comma separated. Currently,
-            this field is restricted to a single line of data.  This
-            is an optional field.
-          </p>
+	  <p>
+	    List of the names and email addresses of co-maintainers of
+	    the package, if any. If the package has other maintainers
+	    beside the one named in the
+	    <qref id="f-Maintainer">Maintainer field</qref>, their names
+	    and email addresses should be listed here. The format is the
+	    same as that of the Maintainer tag, and multiple entries must
+	    be comma separated.  This is an optional field.
+	  </p>
+
 	  <p>
 	    Any parser that interprets the Uploaders field in
 	    <file>debian/control</file> must permit it to span multiple
@@ -2714,9 +2713,10 @@ Package: libc6
 	  <heading><tt>Changed-By</tt></heading>
 
 	  <p>
-	    The name and email address of the person who changed the
-	    said package. Usually the name of the maintainer.
-	    All the rules for the Maintainer field apply here, too.
+	    The name and email address of the person who prepared this
+	    version of the package, usually a maintainer.  The syntax is
+	    the same as for the <qref id="f-Maintainer">Maintainer
+	    field</qref>.
 	  </p>
 	</sect1>
 
