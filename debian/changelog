@@ -57,6 +57,11 @@ debian-policy (3.8.5.0) UNRELEASED; urgency=low
     Seconded: Jakub Wilk <jwilk@debian.org>
     Seconded: gregor herrmann <gregoa@debian.org>
     Closes: #284340
+  * Policy: Document Checksums-Sha1 and Checksums-Sha256
+    Wording: Russ Allbery <rra@stanford.edu>
+    Seconded: Julien Cristau <jcristau@debian.org>
+    Seconded: Emilio Pozuelo Monfort <pochu@debian.org>
+    Closes: #478295
   * Perl Policy: Change perlapi provides to use an ABI version
     Wording: Niko Tyni <ntyni@debian.org>
     Seconded: Russ Allbery <rra@debian.org>

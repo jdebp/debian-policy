@@ -44,6 +44,11 @@ Release Jun 2010.
   <item>The required format for the date in a changelog entry and in the
   Date control field is now precisely specified.
   </item>
+<tag>5.4, 5.5, 5.6.24</tag>
+  <item>Document and recommend the <tt>Checksums-Sha1</tt>
+  and <tt>Checksums-Sha256</tt> fields in <file>*.dsc</file>
+  and <file>*.changes</file> files.
+  </item>
 <tag>5.6.8, 7.1, 11.1.1</tag>
   <item>Architecture wildcards may be used in addition to specific
   architectures in <file>debian/control</file> and <file>*.dsc</file>
