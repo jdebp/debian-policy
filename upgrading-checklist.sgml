@@ -53,6 +53,14 @@ Release Jun 2010.
   and <tt>Checksums-Sha256</tt> fields in <file>*.dsc</file>
   and <file>*.changes</file> files.
   </item>
+<tag>5.6.2</tag>
+  <item>The syntax of the <tt>Maintainer</tt> field is now must rather
+  than should.
+  </item>
+<tag>5.6.3</tag>
+  <item>The comma separating entries in <tt>Uploaders</tt> is now must
+  rather than should.
+  </item>
 <tag>5.6.8, 7.1, 11.1.1</tag>
   <item>Architecture wildcards may be used in addition to specific
   architectures in <file>debian/control</file> and <file>*.dsc</file>

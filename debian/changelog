@@ -68,6 +68,11 @@ debian-policy (3.8.5.0) UNRELEASED; urgency=low
     Seconded: Steve Langasek <vorlon@debian.org>
     Seconded: Emilio Pozuelo Monfort <pochu@debian.org>
     Closes: #555978
+  * Policy: Tighten requirements for maintainer-like fields
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Emilio Pozuelo Monfort <pochu@debian.org>
+    Seconded: Andrew McMillan <andrew@morphoss.com>
+    Closes: #575639
   * Perl Policy: Change perlapi provides to use an ABI version
     Wording: Niko Tyni <ntyni@debian.org>
     Seconded: Russ Allbery <rra@debian.org>
