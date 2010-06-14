@@ -2673,7 +2673,7 @@ Package: libc6
 	  <p>
 	    The package maintainer's name and email address.  The name
 	    must come first, then the email address inside angle
-	    brackets <tt>&lt;&gt</tt> (in RFC822 format).
+	    brackets <tt>&lt;&gt;</tt> (in RFC822 format).
 	  </p>
 
 	  <p>
@@ -2695,9 +2695,10 @@ Package: libc6
 	    the package, if any. If the package has other maintainers
 	    beside the one named in the
 	    <qref id="f-Maintainer">Maintainer field</qref>, their names
-	    and email addresses should be listed here. The format is the
-	    same as that of the Maintainer tag, and multiple entries must
-	    be comma separated.  This is an optional field.
+	    and email addresses should be listed here. The format of each
+	    entry is the same as that of the Maintainer field, and
+	    multiple entries must be comma separated.  This is an optional
+	    field.
 	  </p>
 
 	  <p>
