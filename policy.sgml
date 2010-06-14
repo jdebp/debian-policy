@@ -2405,6 +2405,11 @@ Package: libc6
 	</p>
 
 	<p>
+	  A paragraph must not contain more than one instance of a
+	  particular field name.
+	</p>
+
+	<p>
 	  Many fields' values may span several lines; in this case
 	  each continuation line must start with a space or a tab.
 	  Any trailing spaces or tabs at the end of individual
@@ -2488,8 +2493,6 @@ Package: libc6
 	  The syntax and semantics of the fields are described below.
 	</p>
 
-<!-- stuff -->
-
 	<p>
 	  These fields are used by <prgn>dpkg-gencontrol</prgn> to
 	  generate control files for binary packages (see below), by
@@ -2563,15 +2566,17 @@ Package: libc6
 	<list compact="compact">
 	  <item><qref id="f-Format"><tt>Format</tt></qref> (mandatory)</item>
 	  <item><qref id="f-Source"><tt>Source</tt></qref> (mandatory)</item>
+	  <item><qref id="f-Binary"><tt>Binary</tt></qref></item>
+	  <item><qref id="f-Architecture"><tt>Architecture</tt></qref></item>
 	  <item><qref id="f-Version"><tt>Version</tt></qref> (mandatory)</item>
 	  <item><qref id="f-Maintainer"><tt>Maintainer</tt></qref> (mandatory)</item>
 	  <item><qref id="f-Uploaders"><tt>Uploaders</tt></qref></item>
-	  <item><qref id="f-Binary"><tt>Binary</tt></qref></item>
-	  <item><qref id="f-Architecture"><tt>Architecture</tt></qref></item>
-          <item><qref id="sourcebinarydeps"><tt>Build-Depends</tt> et al</qref></item>
-	  <item><qref id="f-Standards-Version"><tt>Standards-Version</tt></qref> (recommended)</item>
-	  <item><qref id="f-Files"><tt>Files</tt></qref> (mandatory)</item>
 	  <item><qref id="f-Homepage"><tt>Homepage</tt></qref></item>
+	  <item><qref id="f-Standards-Version"><tt>Standards-Version</tt></qref> (recommended)</item>
+	  <item><qref id="sourcebinarydeps"><tt>Build-Depends</tt> et al</qref></item>
+	  <item><qref id="f-Checksums"><tt>Checksums-Sha1</tt>
+	      and <tt>Checksums-Sha256</tt> (recommended)</item>
+	  <item><qref id="f-Files"><tt>Files</tt></qref> (mandatory)</item>
 	</list>
 	</p>
 
@@ -2615,6 +2620,8 @@ Package: libc6
 	    <item><qref id="f-Description"><tt>Description</tt></qref> (mandatory)</item>
 	    <item><qref id="f-Closes"><tt>Closes</tt></qref></item>
 	    <item><qref id="f-Changes"><tt>Changes</tt></qref> (mandatory)</item>
+	    <item><qref id="f-Checksums"><tt>Checksums-Sha1</tt>
+		and <tt>Checksums-Sha256</tt> (recommended)</item>
 	    <item><qref id="f-Files"><tt>Files</tt></qref> (mandatory)</item>
 	  </list>
 	</p>
@@ -2665,8 +2672,8 @@ Package: libc6
 
 	  <p>
 	    The package maintainer's name and email address.  The name
-	    should come first, then the email address inside angle
-	    brackets <tt>&lt;&gt</tt> (in RFC822 format).
+	    must come first, then the email address inside angle
+	    brackets <tt>&lt;&gt;</tt> (in RFC822 format).
 	  </p>
 
 	  <p>
@@ -2683,17 +2690,17 @@ Package: libc6
 	<sect1 id="f-Uploaders">
           <heading><tt>Uploaders</tt></heading>
 
-          <p>
-            List of the names and email addresses of co-maintainers of
-            the package, if any. If the package has other maintainers
-            beside the one named in the 
-            <qref id="f-Maintainer">Maintainer field</qref>, their
-            names and email addresses should be listed here. The
-            format is the same as that of the Maintainer tag, and
-            multiple entries should be comma separated. Currently,
-            this field is restricted to a single line of data.  This
-            is an optional field.
-          </p>
+	  <p>
+	    List of the names and email addresses of co-maintainers of
+	    the package, if any. If the package has other maintainers
+	    beside the one named in the
+	    <qref id="f-Maintainer">Maintainer field</qref>, their names
+	    and email addresses should be listed here. The format of each
+	    entry is the same as that of the Maintainer field, and
+	    multiple entries must be comma separated.  This is an optional
+	    field.
+	  </p>
+
 	  <p>
 	    Any parser that interprets the Uploaders field in
 	    <file>debian/control</file> must permit it to span multiple
@@ -2707,9 +2714,10 @@ Package: libc6
 	  <heading><tt>Changed-By</tt></heading>
 
 	  <p>
-	    The name and email address of the person who changed the
-	    said package. Usually the name of the maintainer.
-	    All the rules for the Maintainer field apply here, too.
+	    The name and email address of the person who prepared this
+	    version of the package, usually a maintainer.  The syntax is
+	    the same as for the <qref id="f-Maintainer">Maintainer
+	    field</qref>.
 	  </p>
 	</sect1>
 
@@ -3469,6 +3477,51 @@ Files:
 	    information may be found.  The content of this field is a
 	    simple URL without any surrounding characters such as
 	    <tt>&lt;&gt;</tt>.
+	  </p>
+	</sect1>
+
+	<sect1 id="f-Checksums">
+	  <heading><tt>Checksums-Sha1</tt>
+	    and <tt>Checksums-Sha256</tt></heading>
+
+	  <p>
+	    These fields contain a list of files with a checksum and size
+	    for each one.  Both <tt>Checksums-Sha1</tt>
+	    and <tt>Checksums-Sha256</tt> have the same syntax and differ
+	    only in the checksum algorithm used: SHA-1
+	    for <tt>Checksums-Sha1</tt> and SHA-256
+	    for <tt>Checksums-Sha256</tt>.
+	  </p>
+
+	  <p>
+	    <tt>Checksums-Sha1</tt> and <tt>Checksums-Sha256</tt> are
+	    multiline fields.  The first line of the field value (the part
+	    on the same line as <tt>Checksums-Sha1:</tt>
+	    or <tt>Checksums-Sha256:</tt>) is always empty.  The content
+	    of the field is expressed as continuation lines, one line per
+	    file.  Each line consists of the checksum, a space, the file
+	    size, a space, and the file name.  For example (from
+	    a <file>.changes</file> file):
+	    <example>
+Checksums-Sha1:
+ 1f418afaa01464e63cc1ee8a66a05f0848bd155c 1276 example_1.0-1.dsc
+ a0ed1456fad61116f868b1855530dbe948e20f06 171602 example_1.0.orig.tar.gz
+ 5e86ecf0671e113b63388dac81dd8d00e00ef298 6137 example_1.0-1.debian.tar.gz
+ 71a0ff7da0faaf608481195f9cf30974b142c183 548402 example_1.0-1_i386.deb
+Checksums-Sha256:
+ ac9d57254f7e835bed299926fd51bf6f534597cc3fcc52db01c4bffedae81272 1276 example_1.0-1.dsc
+ 0d123be7f51e61c4bf15e5c492b484054be7e90f3081608a5517007bfb1fd128 171602 example_1.0.orig.tar.gz
+ f54ae966a5f580571ae7d9ef5e1df0bd42d63e27cb505b27957351a495bc6288 6137 example_1.0-1.debian.tar.gz
+ 3bec05c03974fdecd11d020fc2e8250de8404867a8a2ce865160c250eb723664 548402 example_1.0-1_i386.deb
+	    </example>
+	  </p>
+
+	  <p>
+	    In the <file>.dsc</file> file, these fields should list all
+	    files that make up the source package.  In
+	    the <file>.changes</file> file, these fields should list all
+	    files being uploaded.  The list of files in these fields
+	    must match the list of files in the <tt>Files</tt> field.
 	  </p>
 	</sect1>
 
@@ -5163,11 +5216,20 @@ Replaces: mail-transport-agent
 	<heading>Development files</heading>
 
       <p>
-	The development files associated to a shared library need to be
-	placed in a package called
-	<package><var>libraryname</var><var>soversion</var>-dev</package>,
+	If there are development files associated with a shared library,
+	the source package needs to generate a binary development package
+	named <package><var>libraryname</var><var>soversion</var>-dev</package>,
 	or if you prefer only to support one development version at a
-	time, <package><var>libraryname</var>-dev</package>.
+	time, <package><var>libraryname</var>-dev</package>.  Installing
+	the development package must result in installation of all the
+	development files necessary for compiling programs against that
+	shared library.<footnote>
+	  This wording allows the development files to be split into
+	  several packages, such as a separate architecture-independent
+	  <package><var>libraryname</var>-headers</package>, provided that
+	  the development package depends on all the required additional
+	  packages.
+	</footnote>
       </p>
 
       <p>
@@ -9258,7 +9320,7 @@ END-INFO-DIR-ENTRY
 	      also included in <package>base-files</package> as
 	      <file>/usr/share/common-licenses/BSD</file>, but given the
 	      brevity of this license, its specificity to code whose
-	      copyright is held by the Regents of the Univesrity of
+	      copyright is held by the Regents of the University of
 	      California, and the frequency of minor wording changes, its
 	      text should be included in the copyright file rather than
 	      referencing this file.

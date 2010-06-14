@@ -57,6 +57,27 @@ debian-policy (3.8.5.0) UNRELEASED; urgency=low
     Seconded: Jakub Wilk <jwilk@debian.org>
     Seconded: gregor herrmann <gregoa@debian.org>
     Closes: #284340
+  * Policy: Document Checksums-Sha1 and Checksums-Sha256
+    Wording: Russ Allbery <rra@stanford.edu>
+    Seconded: Julien Cristau <jcristau@debian.org>
+    Seconded: Emilio Pozuelo Monfort <pochu@debian.org>
+    Closes: #478295
+  * Policy: Prohibit duplicate field names in a control paragraph
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Charles Plessy <plessy@debian.org>
+    Seconded: Steve Langasek <vorlon@debian.org>
+    Seconded: Emilio Pozuelo Monfort <pochu@debian.org>
+    Closes: #555978
+  * Policy: Relax requirement that library dev files be in one package
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Julien Cristau <jcristau@debian.org>
+    Seconded: Andrew McMillan <andrew@morphoss.com>
+    Closes: #347581
+  * Policy: Tighten requirements for maintainer-like fields
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Emilio Pozuelo Monfort <pochu@debian.org>
+    Seconded: Andrew McMillan <andrew@morphoss.com>
+    Closes: #575639
   * Perl Policy: Change perlapi provides to use an ABI version
     Wording: Niko Tyni <ntyni@debian.org>
     Seconded: Russ Allbery <rra@debian.org>

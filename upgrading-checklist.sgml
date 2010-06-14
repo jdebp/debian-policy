@@ -44,6 +44,23 @@ Release Jun 2010.
   <item>The required format for the date in a changelog entry and in the
   Date control field is now precisely specified.
   </item>
+<tag>5.1</tag>
+  <item>A control paragraph must not contain more than one instance of a
+  particular field name.
+  </item>
+<tag>5.4, 5.5, 5.6.24</tag>
+  <item>Document and recommend the <tt>Checksums-Sha1</tt>
+  and <tt>Checksums-Sha256</tt> fields in <file>*.dsc</file>
+  and <file>*.changes</file> files.
+  </item>
+<tag>5.6.2</tag>
+  <item>The syntax of the <tt>Maintainer</tt> field is now must rather
+  than should.
+  </item>
+<tag>5.6.3</tag>
+  <item>The comma separating entries in <tt>Uploaders</tt> is now must
+  rather than should.
+  </item>
 <tag>5.6.8, 7.1, 11.1.1</tag>
   <item>Architecture wildcards may be used in addition to specific
   architectures in <file>debian/control</file> and <file>*.dsc</file>
@@ -56,6 +73,12 @@ Release Jun 2010.
   behavior (debconf handles this).  Maintainer scripts may abort if there
   is no controlling terminal and no reasonable default for a high-priority
   question, but should avoid this if possible.
+  </item>
+<tag>8.4</tag>
+  <item>All shared library development files are no longer required to be
+  in the <tt>-dev</tt> package, only be available when the <tt>-dev</tt>
+  package is installed.  This allows the <tt>-dev</tt> package to be split
+  as long as it depends on the additional packages.
   </item>
 <tag>9.2.2</tag>
   <item>The UID range of user accounts is extended to 1000-59999.
