@@ -5216,11 +5216,20 @@ Replaces: mail-transport-agent
 	<heading>Development files</heading>
 
       <p>
-	The development files associated to a shared library need to be
-	placed in a package called
-	<package><var>libraryname</var><var>soversion</var>-dev</package>,
+	If there are development files associated with a shared library,
+	the source package needs to generate a binary development package
+	named <package><var>libraryname</var><var>soversion</var>-dev</package>,
 	or if you prefer only to support one development version at a
-	time, <package><var>libraryname</var>-dev</package>.
+	time, <package><var>libraryname</var>-dev</package>.  Installing
+	the development package must result in installation of all the
+	development files necessary for compiling programs against that
+	shared library.<footnote>
+	  This wording allows the development files to be split into
+	  several packages, such as a separate architecture-independent
+	  <package><var>libraryname</var>-headers</package>, provided that
+	  the development package depends on all the required additional
+	  packages.
+	</footnote>
       </p>
 
       <p>
