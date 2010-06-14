@@ -66,6 +66,12 @@ Release Jun 2010.
   is no controlling terminal and no reasonable default for a high-priority
   question, but should avoid this if possible.
   </item>
+<tag>8.4</tag>
+  <item>All shared library development files are no longer required to be
+  in the <tt>-dev</tt> package, only be available when the <tt>-dev</tt>
+  package is installed.  This allows the <tt>-dev</tt> package to be split
+  as long as it depends on the additional packages.
+  </item>
 <tag>9.2.2</tag>
   <item>The UID range of user accounts is extended to 1000-59999.
   </item>
