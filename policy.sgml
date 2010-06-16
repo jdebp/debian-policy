@@ -4645,8 +4645,8 @@ Build-Depends: foo [linux-any], bar [any-i386], baz [!linux-any]
 	  an assumption or reveals a bug in earlier versions of the broken
 	  package, or which takes over a file from earlier versions of the
 	  broken package.  This use of <tt>Breaks</tt> will inform
-	  higher-level package management tools that broken package must
-	  be upgraded before the new one.
+	  higher-level package management tools that the broken package
+	  must be upgraded before the new one.
 	</p>
 
 	<p>
