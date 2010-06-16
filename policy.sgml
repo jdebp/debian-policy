@@ -2575,7 +2575,7 @@ Package: libc6
 	  <item><qref id="f-Standards-Version"><tt>Standards-Version</tt></qref> (recommended)</item>
 	  <item><qref id="sourcebinarydeps"><tt>Build-Depends</tt> et al</qref></item>
 	  <item><qref id="f-Checksums"><tt>Checksums-Sha1</tt>
-	      and <tt>Checksums-Sha256</tt> (recommended)</item>
+	      and <tt>Checksums-Sha256</tt></qref> (recommended)</item>
 	  <item><qref id="f-Files"><tt>Files</tt></qref> (mandatory)</item>
 	</list>
 	</p>
@@ -2621,7 +2621,7 @@ Package: libc6
 	    <item><qref id="f-Closes"><tt>Closes</tt></qref></item>
 	    <item><qref id="f-Changes"><tt>Changes</tt></qref> (mandatory)</item>
 	    <item><qref id="f-Checksums"><tt>Checksums-Sha1</tt>
-		and <tt>Checksums-Sha256</tt> (recommended)</item>
+		and <tt>Checksums-Sha256</tt></qref> (recommended)</item>
 	    <item><qref id="f-Files"><tt>Files</tt></qref> (mandatory)</item>
 	  </list>
 	</p>
