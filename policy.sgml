@@ -4644,9 +4644,9 @@ Build-Depends: foo [linux-any], bar [any-i386], baz [!linux-any]
 	  version of an (implicit or explicit) dependency which violates
 	  an assumption or reveals a bug in earlier versions of the broken
 	  package, or which takes over a file from earlier versions of the
-	  broken package.  This use of <tt>Breaks</tt> will inform
-	  higher-level package management tools that the broken package
-	  must be upgraded before the new one.
+	  package named in <tt>Breaks</tt>.  This use of <tt>Breaks</tt>
+	  will inform higher-level package management tools that the
+	  broken package must be upgraded before the new one.
 	</p>
 
 	<p>
@@ -4729,9 +4729,7 @@ Build-Depends: foo [linux-any], bar [any-i386], baz [!linux-any]
 	  <tt>Conflicts</tt> should be used
 	  <list>
 	    <item>when two packages provide the same file and will
-	      continue to do so (but be aware that this is often an error
-	      that should be fixed rather than using <tt>Conflicts</tt> --
-	      see, for example, <ref id="binaries">),</item>
+	      continue to do so,</item>
 	    <item>in conjunction with <tt>Provides</tt> when only one
 	      package providing a given virtual facility may be installed
 	      at a time (see <ref id="virtual">),</item>
@@ -4741,6 +4739,11 @@ Build-Depends: foo [linux-any], bar [any-i386], baz [!linux-any]
 	      that must prevent both packages from being unpacked at the
 	      same time, not just configured.</item>
 	  </list>
+	  Be aware that adding <tt>Conflicts</tt> is normally not the best
+	  solution when two packages provide the same files.  Depending on
+	  the reason for that conflict, using alternatives or renaming the
+	  files is often a better approach.  See, for
+	  example, <ref id="binaries">.
 	</p>
 
 	<p>
@@ -4806,13 +4809,12 @@ Provides: bar
 	  breakage).  In other words, if a version number is specified,
 	  this is a request to ignore all <tt>Provides</tt> for that
 	  package name and consider only real packages.  The package
-	  manager will assume that a package which package which provides
-	  that virtual package is not of the "right" version.
-	  A <tt>Provides</tt> field may not contain version numbers, and
-	  the version number of the concrete package which provides a
-	  particular virtual package will not be considered when
-	  considering a dependency on or conflict with the virtual package
-	  name.<footnote>
+	  manager will assume that a package providing that virtual
+	  package is not of the "right" version.  A <tt>Provides</tt>
+	  field may not contain version numbers, and the version number of
+	  the concrete package which provides a particular virtual package
+	  will not be considered when considering a dependency on or
+	  conflict with the virtual package name.<footnote>
 	    It is possible that a future release of <prgn>dpkg</prgn> may
 	    add the ability to specify a version number for each virtual
 	    package it provides.  This feature is not yet present,
@@ -4862,10 +4864,10 @@ Provides: bar
 	    package and will be taken over by the new package.
 	    Normally, <tt>Breaks</tt> should be used in conjunction
 	    with <tt>Replaces</tt>.<footnote>
-	      To see why <tt>Breaks</tt> is required in addition
-	      to <tt>Provides</tt>, consider the
-	      case of a file in the package <package>foo</package> being
-	      taken over by the package <package>foo-data</package>.
+	      To see why <tt>Breaks</tt> is normally needed in addition
+	      to <tt>Replaces</tt>, consider the case of a file in the
+	      package <package>foo</package> being taken over by the
+	      package <package>foo-data</package>.
 	      <tt>Replaces</tt> will allow <package>foo-data</package> to
 	      be installed and take over that file.  However,
 	      without <tt>Breaks</tt>, nothing
@@ -4889,10 +4891,10 @@ Provides: bar
 	    <example compact="compact">
 Replaces: foo (&lt;&lt; 1.2-3)
 Breaks: foo (&lt;&lt; 1.2-3)
-	    </example compact="compact">
+	    </example>
 	    in its control file.  The new version of the
 	    package <package>foo</package> would normally have the field
-	    <example>
+	    <example compact="compact">
 Depends: foo-data (&gt;= 1.2-3)
 	    </example>
 	    (or possibly <tt>Recommends</tt> or even <tt>Suggests</tt> if
