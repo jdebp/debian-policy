@@ -78,6 +78,11 @@ debian-policy (3.8.5.0) UNRELEASED; urgency=low
     Seconded: Emilio Pozuelo Monfort <pochu@debian.org>
     Seconded: Andrew McMillan <andrew@morphoss.com>
     Closes: #575639
+  * Debconf: Add SETTITLE, like title but uses a template
+    Wording: Frans Pop <elendil@planet.nl>
+    Seconded: Russ Allbery <rra@debian.org>
+    Seconded: Ben Pfaff <blp@cs.stanford.edu>
+    Closes: #560411
   * Perl Policy: Change perlapi provides to use an ABI version
     Wording: Niko Tyni <ntyni@debian.org>
     Seconded: Russ Allbery <rra@debian.org>
@@ -119,6 +124,9 @@ debian-policy (3.8.5.0) UNRELEASED; urgency=low
     for different debian/rules targets and add a footnote to the
     description of the build-arch and build-indep targets explaining why
     this split does not currently work as desired.  (Closes: #328951)
+  * Avoid "Debianised" or "Debianized" in favor of just "Debian" or
+    "Debian package" as appropriate.  Patch from Ben Finney.
+    (Closes: #586163)
 
  -- Bill Allombert <ballombe@debian.org>  Mon, 31 May 2010 20:00:28 +0200
 

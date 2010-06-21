@@ -69,6 +69,13 @@
         as is possible.
       </entry>
     </row>
+    <row>
+      <entry>title</entry>
+      <entry>
+        Holds a (short) string that can be displayed using the SETTITLE
+        command. Only the value of the short description will be used.
+      </entry>
+    </row>
   </tbody>
 </tgroup>
 </table>
