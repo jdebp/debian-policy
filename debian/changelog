@@ -82,6 +82,7 @@ debian-policy (3.8.5.0) UNRELEASED; urgency=low
     Wording: Frans Pop <elendil@planet.nl>
     Seconded: Russ Allbery <rra@debian.org>
     Seconded: Ben Pfaff <blp@cs.stanford.edu>
+    Closes: #560411
   * Perl Policy: Change perlapi provides to use an ABI version
     Wording: Niko Tyni <ntyni@debian.org>
     Seconded: Russ Allbery <rra@debian.org>
