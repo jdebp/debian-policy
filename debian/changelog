@@ -78,6 +78,10 @@ debian-policy (3.8.5.0) UNRELEASED; urgency=low
     Seconded: Emilio Pozuelo Monfort <pochu@debian.org>
     Seconded: Andrew McMillan <andrew@morphoss.com>
     Closes: #575639
+  * Debconf: Add SETTITLE, like title but uses a template
+    Wording: Frans Pop <elendil@planet.nl>
+    Seconded: Russ Allbery <rra@debian.org>
+    Seconded: Ben Pfaff <blp@cs.stanford.edu>
   * Perl Policy: Change perlapi provides to use an ABI version
     Wording: Niko Tyni <ntyni@debian.org>
     Seconded: Russ Allbery <rra@debian.org>

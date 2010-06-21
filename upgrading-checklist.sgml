@@ -94,6 +94,11 @@ Release Jun 2010.
   in <file>debian/copyright</file>, although it will still be in
   common-licenses for the time being.
   </item>
+<tag>debconf</tag>
+  <item>Add <tt>SETTITLE</tt> (which has been supported for some time).
+  Like <tt>TITLE</tt> but takes a template instead of a string to allow
+  translation.
+  </item>
 <tag>perl</tag>
   <item><package>perl-base</package> now
   provides <package>perlapi-<var>abiname</var></package> instead of a
