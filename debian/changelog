@@ -1,4 +1,4 @@
-debian-policy (3.8.5.0) UNRELEASED; urgency=low
+debian-policy (3.9.0.0) UNRELEASED; urgency=low
 
   [ Colin Watson ]
   * Fix path to changelog.Debian.gz in footnote on documentation symlinks.
