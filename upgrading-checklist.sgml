@@ -74,6 +74,19 @@ Release Jun 2010.
   is no controlling terminal and no reasonable default for a high-priority
   question, but should avoid this if possible.
   </item>
+<tag>7.3, 7.6.1</tag>
+  <item><tt>Breaks</tt> should be used with <tt>Replaces</tt> for moving
+  files between packages.
+  </item>
+<tag>7.4</tag>
+  <item><tt>Breaks</tt> should normally be used instead
+  of <tt>Conflicts</tt> for transient issues and moving files between
+  packages.  New documentation of when each should be used.
+  </item>
+<tag>7.5</tag>
+  <item>Use <tt>Conflicts</tt> with <tt>Provides</tt> if only one provider
+  of a virtual facility can ge installed at a time.
+  </item>
 <tag>8.4</tag>
   <item>All shared library development files are no longer required to be
   in the <tt>-dev</tt> package, only be available when the <tt>-dev</tt>
