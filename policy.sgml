@@ -2600,12 +2600,18 @@ Package: libc6
 	<heading>Debian changes files -- <file>.changes</file></heading>
 
 	<p>
-	  The .changes files are used by the Debian archive maintenance
-	  software to process updates to packages. They contain one
-	  paragraph which contains information from the
+	  The <file>.changes</file> files are used by the Debian archive
+	  maintenance software to process updates to packages. They
+	  contain one paragraph which contains information from the
 	  <tt>debian/control</tt> file and other data about the
 	  source package gathered via <tt>debian/changelog</tt>
 	  and <tt>debian/rules</tt>.
+	</p>
+
+	<p>
+	  <file>.changes</file> files have a format version that is
+	  incremented whenever the documented fields or their meaning
+	  change.  This document describes format 1.8.
 	</p>
 
 	<p>
@@ -2620,10 +2626,10 @@ Package: libc6
 	    <item><qref id="f-Version"><tt>Version</tt></qref> (mandatory)</item>
 	    <item><qref id="f-Distribution"><tt>Distribution</tt></qref> (mandatory)</item>
 	    <item><qref id="f-Urgency"><tt>Urgency</tt></qref> (recommended)</item>
-	    <item><qref id="f-Maintainer"><tt>Maintainer</tt></qref> (mandatory) <footnote>The meaning of that field changed in version 1.7.</footnote></item>
-	    <item><qref id="f-Changed-By"><tt>Changed-By</tt></qref> <footnote>Introduced in format 1.7.</footnote></item>
+	    <item><qref id="f-Maintainer"><tt>Maintainer</tt></qref> (mandatory)</item>
+	    <item><qref id="f-Changed-By"><tt>Changed-By</tt></qref></item>
 	    <item><qref id="f-Description"><tt>Description</tt></qref> (mandatory)</item>
-	    <item><qref id="f-Closes"><tt>Closes</tt></qref> <footnote>Introduced in format 1.6.</footnote></item>
+	    <item><qref id="f-Closes"><tt>Closes</tt></qref></item>
 	    <item><qref id="f-Changes"><tt>Changes</tt></qref> (mandatory)</item>
 	    <item><qref id="f-Checksums"><tt>Checksums-Sha1</tt>
 		and <tt>Checksums-Sha256</tt></qref> (recommended)</item>
@@ -3264,25 +3270,30 @@ Package: libc6
 	  <heading><tt>Format</tt></heading>
 
 	  <p>
-	    In <qref id="debianchangesfiles">changes</qref> files, this field
-	    specifies a format revision for the file. The syntax of the
-	    format value is the same as that of a package version
-	    number except that no epoch or Debian revision is allowed
-	    - see <ref id="f-Version">.
+	    In <qref id="debianchangesfiles"><file>.changes</file></qref>
+	    files, this field declares the format version of that file.
+	    The syntax of the field value is the same as that of
+	    a <qref id="f-Version">package version number</qref> except
+	    that no epoch or Debian revision is allowed.  The format
+	    described in this document is <tt>1.8</tt>.
 	  </p>
 
 	  <p>
-	    In <qref id="debiansourcecontrolfiles"> Debian source control</qref>
-	    files, this field specifies a format revision for the source package.
-	    The syntax of the format value is the same as that of a package version
-	    number, except that no epoch or Debian revision is allowed
-	    and that it can optionally be followed by a parenthesis with a name
-	    <footnote>dpkg-source uses the major number and the content of the
-	    parenthesis to decide which perl module to use to build or unpack
-	    the source package. For instance, Dpkg::Source::Package::V1 for format
-	    1.0 and Dpkg::Source::Package::V3::quilt for format 3.0 (quilt)
-	    </footnote>.
-	  <p>
+	    In <qref id="debiansourcecontrolfiles"> Debian source
+	    control</qref> files, this field declares the format of the
+	    source package.  The field value is used by programs acting on
+	    a source package to interpret the list of files in the source
+	    package and determine how to unpack it.  The syntax of the
+	    field value is a numeric major revision, a period, a numeric
+	    minor revision, and then an optional subtype after whitespace,
+	    which if specified is an alphanumeric word in parentheses.
+	    The subtype is optional in the syntax but may be mandatory for
+	    particular source format revisions.<footnote>
+	      The source formats currently supported by the Debian archive
+	      software are <tt>1.0</tt>, <tt>3.0 (native)</tt>,
+	      and <tt>3.0 (quilt)</tt>.
+	    </footnote>
+	  </p>
 	</sect1>
 
 	<sect1 id="f-Urgency">
@@ -3542,27 +3553,6 @@ Checksums-Sha256:
 	    must match the list of files in the <tt>Files</tt> field.
 	  </p>
 	</sect1>
-
-	<sect1 id="f-Checksums-Sha1">
-	  <heading><tt>Checksums-Sha1</tt></heading>
-
-	  <p>
-	    This field is similar to the <qref id="f-Files">Files</qref>
-	    field, except that it uses the Sha1 algorithm instead of MD5
-	    for the checksums.
-	  </p>
-	</sect1>
-
-	<sect1 id="f-Checksums-Sha256">
-	  <heading><tt>Checksums-Sha256</tt></heading>
-
-	  <p>
-	    This field is similar to the <qref id="f-Files">Files</qref>
-	    field, except that it uses the Sha1 algorithm instead of MD5
-	    for the checksums.
-	  </p>
-	</sect1>
-
       </sect>
 
       <sect>
