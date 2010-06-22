@@ -2535,11 +2535,6 @@ Package: libc6
 	</p>
 
 	<p>
-	  The structure of the Debian changes files is versionned, and
-	  this document describes the format 1.8.
-	</p>
-
-	<p>
 	  The fields in this file are:
 
 	  <list compact="compact">
