@@ -2,6 +2,8 @@
 <!-- include version information so we don't have to hard code it
      within the document -->
 <!entity % versiondata SYSTEM "version.ent"> %versiondata;
+<!-- current Debian changes file format -->
+<!entity changesversion "1.8">
 ]>
 <debiandoc>
 
@@ -2497,7 +2499,7 @@ Package: libc6
 	  These fields are used by <prgn>dpkg-gencontrol</prgn> to
 	  generate control files for binary packages (see below), by
 	  <prgn>dpkg-genchanges</prgn> to generate the
-	  <tt>.changes</tt> file to accompany the upload, and by
+	  <file>.changes</file> file to accompany the upload, and by
 	  <prgn>dpkg-source</prgn> when it creates the
 	  <file>.dsc</file> source control file as part of a source
 	  archive. Many fields are permitted to span multiple lines in
@@ -2531,7 +2533,8 @@ Package: libc6
 
 	<p>
 	  The <file>DEBIAN/control</file> file contains the most vital
-	  (and version-dependent) information about a binary package.
+	  (and version-dependent) information about a binary package.  It
+	  consists of a single paragraph.
 	</p>
 
 	<p>
@@ -2558,10 +2561,9 @@ Package: libc6
 	<heading>Debian source control files -- <tt>.dsc</tt></heading>
 
 	<p>
-	  This file contains a series of fields, identified and
-	  separated just like the fields in the control file of
-	  a binary package.  The fields are listed below; their
-	  syntax is described above, in <ref id="pkg-controlfields">.
+	  This file consists of a single paragraph, possibly surrounded by
+	  a PGP signature. The fields of that paragraph are listed below.
+	  Their syntax is described above, in <ref id="pkg-controlfields">.
 
 	<list compact="compact">
 	  <item><qref id="f-Format"><tt>Format</tt></qref> (mandatory)</item>
@@ -2597,16 +2599,17 @@ Package: libc6
 	<p>
 	  The <file>.changes</file> files are used by the Debian archive
 	  maintenance software to process updates to packages. They
-	  contain one paragraph which contains information from the
-	  <tt>debian/control</tt> file and other data about the
-	  source package gathered via <tt>debian/changelog</tt>
-	  and <tt>debian/rules</tt>.
+	  consist of a single paragraph, possibly surrounded by a PGP
+	  signature. That paragraph contains information from the
+	  <file>debian/control</file> file and other data about the
+	  source package gathered via <file>debian/changelog</file>
+	  and <file>debian/rules</file>.
 	</p>
 
 	<p>
 	  <file>.changes</file> files have a format version that is
 	  incremented whenever the documented fields or their meaning
-	  change.  This document describes format 1.8.
+	  change.  This document describes format &changesversion;.
 	</p>
 
 	<p>
@@ -3270,20 +3273,21 @@ Package: libc6
 	    The syntax of the field value is the same as that of
 	    a <qref id="f-Version">package version number</qref> except
 	    that no epoch or Debian revision is allowed.  The format
-	    described in this document is <tt>1.8</tt>.
+	    described in this document is <tt>&changesversion;</tt>.
 	  </p>
 
 	  <p>
-	    In <qref id="debiansourcecontrolfiles"> Debian source
-	    control</qref> files, this field declares the format of the
-	    source package.  The field value is used by programs acting on
-	    a source package to interpret the list of files in the source
-	    package and determine how to unpack it.  The syntax of the
-	    field value is a numeric major revision, a period, a numeric
-	    minor revision, and then an optional subtype after whitespace,
-	    which if specified is an alphanumeric word in parentheses.
-	    The subtype is optional in the syntax but may be mandatory for
-	    particular source format revisions.<footnote>
+	    In <qref id="debiansourcecontrolfiles"><file>.dsc</file>
+	    Debian source control</qref> files, this field declares the
+	    format of the source package.  The field value is used by
+	    programs acting on a source package to interpret the list of
+	    files in the source package and determine how to unpack it.
+	    The syntax of the field value is a numeric major revision, a
+	    period, a numeric minor revision, and then an optional subtype
+	    after whitespace, which if specified is an alphanumeric word
+	    in parentheses.  The subtype is optional in the syntax but may
+	    be mandatory for particular source format revisions.
+	    <footnote>
 	      The source formats currently supported by the Debian archive
 	      software are <tt>1.0</tt>, <tt>3.0 (native)</tt>,
 	      and <tt>3.0 (quilt)</tt>.
