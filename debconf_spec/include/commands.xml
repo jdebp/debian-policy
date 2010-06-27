@@ -6,7 +6,7 @@
   <para>
     This exchanges with the frontend the protocol version
     number that is being used. The current version is
-    2.0. Versions in the 2.x series will be
+    2.1. Versions in the 2.x series will be
     backwards-compatible. You may specify the protocol version
     number you are speaking. The frontend will return the version
     of the protocol it speaks. If the version you specify is too
@@ -53,10 +53,10 @@
     </table>
   </para>
 </listitem>
-<listitem id="command_title">
+<listitem id="command_settitle">
   <para>
-    TITLE
-    <parameter>string</parameter>
+    SETTITLE
+    <parameter>template</parameter>
   </para>
   <para>
     You can use this command to set a title in the
@@ -64,6 +64,22 @@
     frontend being used, for example it might change the title
     of the frontend's window. If you don't specify anything, a
     title will automatically be generated.
+  </para>
+  <para>
+    Using a template has the advantage that titles are translatable
+    and that they can be maintained in the same place as other text
+    displayed to users.
+  </para> 
+</listitem>
+<listitem id="command_title">
+  <para>
+    TITLE
+    <parameter>string</parameter>
+  </para>
+  <para>
+    Similar to SETTITLE, but takes a string instead of a template as
+    parameter. Consequence is that the title will not be translatable,
+    unless some other mechanism (like gettext) is used.
   </para>
 </listitem>
 <listitem id="command_stop">
