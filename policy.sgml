@@ -1788,7 +1788,7 @@
 		The <tt>build</tt> target should perform all the
 		configuration and compilation of the package.
 		If a package has an interactive pre-build
-		configuration routine, the Debianized source package
+		configuration routine, the Debian source package
 		must either be built after this has taken place (so
 		that the binary package can be built without rerunning
 		the configuration) or the configuration routine
@@ -2575,7 +2575,7 @@ Package: libc6
 	  <item><qref id="f-Standards-Version"><tt>Standards-Version</tt></qref> (recommended)</item>
 	  <item><qref id="sourcebinarydeps"><tt>Build-Depends</tt> et al</qref></item>
 	  <item><qref id="f-Checksums"><tt>Checksums-Sha1</tt>
-	      and <tt>Checksums-Sha256</tt> (recommended)</item>
+	      and <tt>Checksums-Sha256</tt></qref> (recommended)</item>
 	  <item><qref id="f-Files"><tt>Files</tt></qref> (mandatory)</item>
 	</list>
 	</p>
@@ -2621,7 +2621,7 @@ Package: libc6
 	    <item><qref id="f-Closes"><tt>Closes</tt></qref></item>
 	    <item><qref id="f-Changes"><tt>Changes</tt></qref> (mandatory)</item>
 	    <item><qref id="f-Checksums"><tt>Checksums-Sha1</tt>
-		and <tt>Checksums-Sha256</tt> (recommended)</item>
+		and <tt>Checksums-Sha256</tt></qref> (recommended)</item>
 	    <item><qref id="f-Files"><tt>Files</tt></qref> (mandatory)</item>
 	  </list>
 	</p>
@@ -3027,9 +3027,10 @@ Package: libc6
 	          It is optional; if it isn't present then the
 	          <var>upstream_version</var> may not contain a hyphen.
 	          This format represents the case where a piece of
-	          software was written specifically to be turned into a
-	          Debian package, and so there is only one "debianisation"
-	          of it and therefore no revision indication is required.
+	          software was written specifically to be a Debian
+	          package, where the Debian package source must always
+	          be identical to the pristine source and therefore no
+	          revision indication is required.
 	        </p>
 
 	        <p>
@@ -4641,17 +4642,29 @@ Build-Depends: foo [linux-any], bar [any-i386], baz [!linux-any]
 	<p>
 	  Normally a <tt>Breaks</tt> entry will have an "earlier than"
 	  version clause; such a <tt>Breaks</tt> is introduced in the
-	  version of an (implicit or explicit) dependency which
-	  violates an assumption or reveals a bug in earlier versions
-	  of the broken package.  This use of <tt>Breaks</tt> will
-	  inform higher-level package management tools that broken
-	  package must be upgraded before the new one.
+	  version of an (implicit or explicit) dependency which violates
+	  an assumption or reveals a bug in earlier versions of the broken
+	  package, or which takes over a file from earlier versions of the
+	  package named in <tt>Breaks</tt>.  This use of <tt>Breaks</tt>
+	  will inform higher-level package management tools that the
+	  broken package must be upgraded before the new one.
 	</p>
 
 	<p>
 	  If the breaking package also overwrites some files from the
-	  older package, it should use <tt>Replaces</tt> (not
-	  <tt>Conflicts</tt>) to ensure this goes smoothly.
+	  older package, it should use <tt>Replaces</tt> to ensure this
+	  goes smoothly.  See <ref id="replaces"> for a full discussion
+	  of taking over files from other packages, including how to
+	  use <tt>Breaks</tt> in those cases.
+	</p>
+
+	<p>
+	  Many of the cases where <tt>Breaks</tt> should be used were
+	  previously handled with <tt>Conflicts</tt>
+	  because <tt>Breaks</tt> did not yet exist.
+	  Many <tt>Conflicts</tt> fields should now be <tt>Breaks</tt>.
+	  See <ref id="conflicts"> for more information about the
+	  differences.
 	</p>
       </sect>
 
@@ -4662,21 +4675,24 @@ Build-Depends: foo [linux-any], bar [any-i386], baz [!linux-any]
           When one binary package declares a conflict with another
 	  using a <tt>Conflicts</tt> field, <prgn>dpkg</prgn> will
 	  refuse to allow them to be installed on the system at the
-	  same time.
+	  same time.  This is a stronger restriction than <tt>Breaks</tt>,
+	  which just prevents both packages from being configured at the
+	  same time.  Conflicting packages cannot be unpacked on the
+	  system at the same time.
 	</p>
 
 	<p>
 	  If one package is to be installed, the other must be removed
-	  first - if the package being installed is marked as
-	  replacing (see <ref id="replaces">) the one on the system,
-	  or the one on the system is marked as deselected, or both
-	  packages are marked <tt>Essential</tt>, then
-	  <prgn>dpkg</prgn> will automatically remove the package
-	  which is causing the conflict, otherwise it will halt the
-	  installation of the new package with an error.  This
-	  mechanism is specifically designed to produce an error when
-	  the installed package is <tt>Essential</tt>, but the new
-	  package is not.
+	  first.  If the package being installed is marked as replacing
+	  (see <ref id="replaces">, but note that <tt>Breaks</tt> should
+	  normally be used in this case) the one on the system, or the one
+	  on the system is marked as deselected, or both packages are
+	  marked <tt>Essential</tt>, then <prgn>dpkg</prgn> will
+	  automatically remove the package which is causing the conflict.
+	  Otherwise, it will halt the installation of the new package with
+	  an error.  This mechanism is specifically designed to produce an
+	  error when the installed package is <tt>Essential</tt>, but the
+	  new package is not.
 	</p>
 
 	<p>
@@ -4696,12 +4712,52 @@ Build-Depends: foo [linux-any], bar [any-i386], baz [!linux-any]
 	</p>
 
 	<p>
-	  A <tt>Conflicts</tt> entry should almost never have an
-	  "earlier than" version clause.  This would prevent
-	  <prgn>dpkg</prgn> from upgrading or installing the package
-	  which declared such a conflict until the upgrade or removal
-	  of the conflicted-with package had been completed.  Instead,
-	  <tt>Breaks</tt> may be used.
+	  Normally, <tt>Breaks</tt> should be used instead
+	  of <tt>Conflicts</tt> since <tt>Conflicts</tt> imposes a
+	  stronger restriction on the ordering of package installation or
+	  upgrade and can make it more difficult for the package manager
+	  to find a correct solution to an upgrade or installation
+	  problem.  <tt>Breaks</tt> should be used
+	  <list>
+	    <item>when moving a file from one package to another (see
+	      <ref id="replaces">),</item>
+	    <item>when splitting a package (a special case of the previous
+	      one), or</item>
+	    <item>when the breaking package exposes a bug in or interacts
+	      badly with particular versions of the broken
+	      package.</item>
+	  </list>
+	  <tt>Conflicts</tt> should be used
+	  <list>
+	    <item>when two packages provide the same file and will
+	      continue to do so,</item>
+	    <item>in conjunction with <tt>Provides</tt> when only one
+	      package providing a given virtual facility may be installed
+	      at a time (see <ref id="virtual">),</item>
+	    <item>in other cases where one must prevent simultaneous
+	      installation of two packages for reasons that are ongoing
+	      (not fixed in a later version of one of the packages) or
+	      that must prevent both packages from being unpacked at the
+	      same time, not just configured.</item>
+	  </list>
+	  Be aware that adding <tt>Conflicts</tt> is normally not the best
+	  solution when two packages provide the same files.  Depending on
+	  the reason for that conflict, using alternatives or renaming the
+	  files is often a better approach.  See, for
+	  example, <ref id="binaries">.
+	</p>
+
+	<p>
+	  A <tt>Conflicts</tt> entry may have an "earlier than" version
+	  clause if the reason for the conflict is corrected in a later
+	  version of one of the packages.  However, normally the presence
+	  of an "earlier than" version clause is a sign
+	  that <tt>Breaks</tt> should have been used instead.  An "earlier
+	  than" version clause in <tt>Conflicts</tt>
+	  prevents <prgn>dpkg</prgn> from upgrading or installing the
+	  package which declares such a conflict until the upgrade or
+	  removal of the conflicted-with package has been completed, which
+	  is a strong restriction.
 	</p>
       </sect>
 
@@ -4748,34 +4804,44 @@ Provides: bar
 	</p>
 
 	<p>
-	  If a relationship field has a version number attached
-	  then only real packages will be considered to see whether
-	  the relationship is satisfied (or the prohibition violated,
-	  for a conflict or breakage) - it is assumed that a real
-	  package which provides the virtual package is not of the
-	  "right" version.  So, a <tt>Provides</tt> field may not
-	  contain version numbers, and the version number of the
-	  concrete package which provides a particular virtual package
-	  will not be looked at when considering a dependency on or
-	  conflict with the virtual package name.
+	  If a relationship field has a version number attached, only real
+	  packages will be considered to see whether the relationship is
+	  satisfied (or the prohibition violated, for a conflict or
+	  breakage).  In other words, if a version number is specified,
+	  this is a request to ignore all <tt>Provides</tt> for that
+	  package name and consider only real packages.  The package
+	  manager will assume that a package providing that virtual
+	  package is not of the "right" version.  A <tt>Provides</tt>
+	  field may not contain version numbers, and the version number of
+	  the concrete package which provides a particular virtual package
+	  will not be considered when considering a dependency on or
+	  conflict with the virtual package name.<footnote>
+	    It is possible that a future release of <prgn>dpkg</prgn> may
+	    add the ability to specify a version number for each virtual
+	    package it provides.  This feature is not yet present,
+	    however, and is expected to be used only infrequently.
+	  </footnote>
 	</p>
 
 	<p>
-	  It is likely that the ability will be added in a future
-	  release of <prgn>dpkg</prgn> to specify a version number for
-	  each virtual package it provides.  This feature is not yet
-	  present, however, and is expected to be used only
-	  infrequently.
+	  To specify which of a set of real packages should be the default
+	  to satisfy a particular dependency on a virtual package, list
+	  the real package as an alternative before the virtual one.
 	</p>
 
 	<p>
-	  If you want to specify which of a set of real packages
-	  should be the default to satisfy a particular dependency on
-	  a virtual package, you should list the real package as an
-	  alternative before the virtual one.
+	  If the virtual package represents a facility that can only be
+	  provided by one real package at a time, such as
+	  the <package>mail-transport-agent</package> virtual package that
+	  requires installation of a binary that would conflict with all
+	  other providers of that virtual package (see
+	  <ref id="mail-transport-agents">), all packages providing that
+	  virtual package should also declare a conflict with it
+	  using <tt>Conflicts</tt>.  This will ensure that at most one
+	  provider of that virtual package is unpacked or installed at a
+	  time.
 	</p>
       </sect>
-
 
       <sect id="replaces"><heading>Overwriting files and replacing
 	  packages - <tt>Replaces</tt></heading>
@@ -4790,31 +4856,51 @@ Provides: bar
 	<sect1><heading>Overwriting files in other packages</heading>
 
 	  <p>
-	    Firstly, as mentioned before, it is usually an error for a
-	    package to contain files which are on the system in
-	    another package.
-	  </p>
-
-	  <p>
-	    However, if the overwriting package declares that it
-	    <tt>Replaces</tt> the one containing the file being
-	    overwritten, then <prgn>dpkg</prgn> will replace the file
-	    from the old package with that from the new.  The file
-	    will no longer be listed as "owned" by the old package.
+	    It is usually an error for a package to contain files which
+	    are on the system in another package.  However, if the
+	    overwriting package declares that it <tt>Replaces</tt> the one
+	    containing the file being overwritten, then <prgn>dpkg</prgn>
+	    will replace the file from the old package with that from the
+	    new.  The file will no longer be listed as "owned" by the old
+	    package and will be taken over by the new package.
+	    Normally, <tt>Breaks</tt> should be used in conjunction
+	    with <tt>Replaces</tt>.<footnote>
+	      To see why <tt>Breaks</tt> is normally needed in addition
+	      to <tt>Replaces</tt>, consider the case of a file in the
+	      package <package>foo</package> being taken over by the
+	      package <package>foo-data</package>.
+	      <tt>Replaces</tt> will allow <package>foo-data</package> to
+	      be installed and take over that file.  However,
+	      without <tt>Breaks</tt>, nothing
+	      requires <package>foo</package> to be upgraded to a newer
+	      version that knows it does not include that file and instead
+	      depends on <package>foo-data</package>.  Nothing would
+	      prevent the new <package>foo-data</package> package from
+	      being installed and then removed, removing the file that it
+	      took over from <package>foo</package>.  After that
+	      operation, the package manager would think the system was in
+	      a consistent state, but the <package>foo</package> package
+	      would be missing one of its files.
+	    </footnote>
 	  </p>
 
 	  <p>
 	    For example, if a package <package>foo</package> is split
 	    into <package>foo</package> and <package>foo-data</package>
-	    starting at version 1.2-3, <package>foo-data</package> should
-	    have the field
+	    starting at version 1.2-3, <package>foo-data</package> would
+	    have the fields
 	    <example compact="compact">
 Replaces: foo (&lt;&lt; 1.2-3)
+Breaks: foo (&lt;&lt; 1.2-3)
 	    </example>
-	    in its control file.  The package <package>foo</package>
-	    doesn't need any special control fields in this example,
-	    although would generally depend on or
-	    recommend <package>foo-data</package>.
+	    in its control file.  The new version of the
+	    package <package>foo</package> would normally have the field
+	    <example compact="compact">
+Depends: foo-data (&gt;= 1.2-3)
+	    </example>
+	    (or possibly <tt>Recommends</tt> or even <tt>Suggests</tt> if
+	    the files moved into <package>foo-data</package> are not
+	    required for normal operation).
 	  </p>
 
 	  <p>
@@ -4829,40 +4915,35 @@ Replaces: foo (&lt;&lt; 1.2-3)
 	    special argument to allow the package to do any final
 	    cleanup required.  See <ref id="mscriptsinstact">.
 	    <footnote>
-	      <p>
-		Replaces is a one way relationship -- you have to              
-		install the replacing package after the replaced
-		package.
-	      </p>
+	      Replaces is a one way relationship.  You have to install
+	      the replacing package after the replaced package.
 	    </footnote>
 	  </p>
 
 	  <p>
 	    For this usage of <tt>Replaces</tt>, virtual packages (see
 	    <ref id="virtual">) are not considered when looking at a
-	    <tt>Replaces</tt> field - the packages declared as being
+	    <tt>Replaces</tt> field.  The packages declared as being
 	    replaced must be mentioned by their real names.
 	  </p>
 
 	  <p>
-	    Furthermore, this usage of <tt>Replaces</tt> only takes
-	    effect when both packages are at least partially on the
-	    system at once, so that it can only happen if they do not
-	    conflict or if the conflict has been overridden.
+	    This usage of <tt>Replaces</tt> only takes effect when both
+	    packages are at least partially on the system at once.  It is
+	    not relevant if the packages conflict unless the conflict has
+	    been overridden.
 	  </p>
-
 	</sect1>
 
 	<sect1><heading>Replacing whole packages, forcing their
 	    removal</heading>
 
 	  <p>
-	    Secondly, <tt>Replaces</tt> allows the packaging system to
+	    Second, <tt>Replaces</tt> allows the packaging system to
 	    resolve which package should be removed when there is a
-	    conflict - see <ref id="conflicts">.  This usage only
-	    takes effect when the two packages <em>do</em> conflict,
-	    so that the two usages of this field do not interfere with
-	    each other.
+	    conflict (see <ref id="conflicts">).  This usage only takes
+	    effect when the two packages <em>do</em> conflict, so that the
+	    two usages of this field do not interfere with each other.
 	  </p>
 
 	  <p>
@@ -4876,7 +4957,8 @@ Conflicts: mail-transport-agent
 Replaces: mail-transport-agent
 	    </example>
 	    ensuring that only one MTA can be installed at any one
-	    time.
+	    time.  See <ref id="virtual"> for more information about this
+	    example.
 	</sect1>
       </sect>
 
@@ -7056,7 +7138,7 @@ exec /usr/lib/foo/foo "$@"
     <chapt id="files">
       <heading>Files</heading>
 
-      <sect>
+      <sect id="binaries">
 	<heading>Binaries</heading>
 
 	<p>
@@ -10124,23 +10206,23 @@ END-INFO-DIR-ENTRY
       </sect>
 
       <sect id="pkg-sourcetree">
-	<heading>The Debianised source tree</heading>
+	<heading>The Debian package source tree</heading>
 
 	<p>
 	  The source archive scheme described later is intended to
-	  allow a Debianised source tree with some associated control
-	  information to be reproduced and transported easily.  The
-	  Debianised source tree is a version of the original program
-	  with certain files added for the benefit of the
-	  Debianisation process, and with any other changes required
+	  allow a Debian package source tree with some associated
+	  control information to be reproduced and transported easily.
+	  The Debian package source tree is a version of the original
+	  program with certain files added for the benefit of the
+	  packaging process, and with any other changes required
 	  made to the rest of the source code and installation
 	  scripts.
 	</p>
 
 	<p>
 	  The extra files created for Debian are in the subdirectory
-	  <file>debian</file> of the top level of the Debianised source
-	  tree.  They are described below.
+	  <file>debian</file> of the top level of the Debian package
+	  source tree. They are described below.
 	</p>
 
 	<sect1 id="pkg-debianrules">
@@ -10230,7 +10312,7 @@ END-INFO-DIR-ENTRY
 	    </item>
 
 	    <tag>
-	      Debianisation diff -
+	      Debian package diff -
 	      <file>
 		<var>package</var>_<var>upstream_version-revision</var>.diff.gz
 	      </file>
@@ -10299,7 +10381,7 @@ END-INFO-DIR-ENTRY
 	  <item><p>Apply the diff using <tt>patch -p0</tt>.</p>
 	  </item>
 	  <item><p>Untar the tarfile again if you want a copy of the original
-	      source code alongside the Debianised version.</p>
+	      source code alongside the Debian version.</p>
 	  </item>
 	</enumlist>
 
@@ -10333,10 +10415,10 @@ END-INFO-DIR-ENTRY
 
 	  <p>
 	    The source packaging tools manage the changes between the
-	    original and Debianised source using <prgn>diff</prgn> and
+	    original and Debian source using <prgn>diff</prgn> and
 	    <prgn>patch</prgn>.  Turning the original source tree as
-	    included in the <file>.orig.tar.gz</file> into the debianised
-	    source must not involve any changes which cannot be
+	    included in the <file>.orig.tar.gz</file> into the Debian
+	    package source must not involve any changes which cannot be
 	    handled by these tools.  Problematic changes which cause
 	    <prgn>dpkg-source</prgn> to halt with an error when
 	    building the source package are:

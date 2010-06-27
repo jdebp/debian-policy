@@ -1,4 +1,4 @@
-debian-policy (3.8.5.0) UNRELEASED; urgency=low
+debian-policy (3.9.0.0) UNRELEASED; urgency=low
 
   [ Colin Watson ]
   * Fix path to changelog.Debian.gz in footnote on documentation symlinks.
@@ -27,6 +27,11 @@ debian-policy (3.8.5.0) UNRELEASED; urgency=low
     Closes: #582495
 
   [ Russ Allbery ]
+  * Policy: Overhaul Breaks, Conflicts, Provides, and Replaces
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Steve Langasek <vorlon@debian.org>
+    Seconded: Raphael Hertzog <hertzog@debian.org>
+    Closes: #578854
   * Policy: Support for architecture wildcards
     Wording: Manoj Srivastava <srivasta@debian.org>
     Wording: Russ Allbery <rra@debian.org>
@@ -78,6 +83,11 @@ debian-policy (3.8.5.0) UNRELEASED; urgency=low
     Seconded: Emilio Pozuelo Monfort <pochu@debian.org>
     Seconded: Andrew McMillan <andrew@morphoss.com>
     Closes: #575639
+  * Debconf: Add SETTITLE, like title but uses a template
+    Wording: Frans Pop <elendil@planet.nl>
+    Seconded: Russ Allbery <rra@debian.org>
+    Seconded: Ben Pfaff <blp@cs.stanford.edu>
+    Closes: #560411
   * Perl Policy: Change perlapi provides to use an ABI version
     Wording: Niko Tyni <ntyni@debian.org>
     Seconded: Russ Allbery <rra@debian.org>
@@ -119,6 +129,9 @@ debian-policy (3.8.5.0) UNRELEASED; urgency=low
     for different debian/rules targets and add a footnote to the
     description of the build-arch and build-indep targets explaining why
     this split does not currently work as desired.  (Closes: #328951)
+  * Avoid "Debianised" or "Debianized" in favor of just "Debian" or
+    "Debian package" as appropriate.  Patch from Ben Finney.
+    (Closes: #586163)
 
  -- Bill Allombert <ballombe@debian.org>  Mon, 31 May 2010 20:00:28 +0200
 
