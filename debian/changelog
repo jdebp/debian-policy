@@ -2,6 +2,8 @@ debian-policy (3.9.0.1) UNRELEASED; urgency=low
 
   * Set the version of the Perl Policy to match the version of the Policy
     package.
+  * Explain the Perl module package naming policy more explicitly and
+    provide some examples.  (Closes: #175202)
 
  -- Russ Allbery <rra@debian.org>  Mon, 28 Jun 2010 09:34:54 -0700
 

@@ -298,10 +298,17 @@ make install
 	<heading>Module Package Names</heading>
 	<p>
 	  Perl module packages should be named for the primary module
-	  provided.  The naming convention for module <tt>Foo::Bar</tt>
-	  is <package>libfoo-bar-perl</package>.  Packages which include
-	  multiple modules may additionally include provides for those
-	  modules using the same convention.
+	  provided.  The naming convention is to lowercase the Perl module
+	  name, prepend, <tt>lib</tt>, change all occurrences
+	  of <tt>::</tt> to <tt>-</tt>, and append <tt>-perl</tt>.  For
+	  example:
+	  <example>
+Foo::Bar        libfoo-bar-perl
+Foo::Bar::Baz   libfoo-bar-baz-perl
+Foo::BarBaz     libfoo-barbaz-perl
+	  </example>
+	  Packages which include multiple modules may additionally include
+	  provides for the additional modules using the same convention.
 	</p>
       </sect>
 
