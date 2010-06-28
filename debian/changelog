@@ -1,4 +1,4 @@
-debian-policy (3.9.0.0) UNRELEASED; urgency=low
+debian-policy (3.9.0.0) unstable; urgency=low
 
   [ Colin Watson ]
   * Fix path to changelog.Debian.gz in footnote on documentation symlinks.
@@ -139,7 +139,7 @@ debian-policy (3.9.0.0) UNRELEASED; urgency=low
     "Debian package" as appropriate.  Patch from Ben Finney.
     (Closes: #586163)
 
- -- Bill Allombert <ballombe@debian.org>  Mon, 31 May 2010 20:00:28 +0200
+ -- Russ Allbery <rra@debian.org>  Sun, 27 Jun 2010 21:40:52 -0700
 
 debian-policy (3.8.4.0) unstable; urgency=low
 
