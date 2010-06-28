@@ -1,4 +1,8 @@
-<!doctype debiandoc system>
+<!doctype debiandoc system [
+<!-- include version information so we don't have to hard code it
+     within the document -->
+<!entity % versiondata SYSTEM "version.ent"> %versiondata;
+]>
 
 <debiandoc>
   <book>
@@ -14,7 +18,7 @@
 	<name>The Debian Policy mailing list</name>
 	<email>debian-policy@lists.debian.org</email>
       </author>
-      <version>version 1.20</version>
+      <version>version &version;, &date;</version>
 
       <abstract>
 	This document describes the packaging of Perl within the Debian
