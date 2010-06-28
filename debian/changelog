@@ -138,6 +138,7 @@ debian-policy (3.9.0.0) unstable; urgency=low
   * Avoid "Debianised" or "Debianized" in favor of just "Debian" or
     "Debian package" as appropriate.  Patch from Ben Finney.
     (Closes: #586163)
+  * Switch to source format 3.0 (native).
 
  -- Russ Allbery <rra@debian.org>  Sun, 27 Jun 2010 21:40:52 -0700
 
