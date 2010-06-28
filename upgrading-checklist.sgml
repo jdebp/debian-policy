@@ -53,6 +53,13 @@ Release Jun 2010.
   and <tt>Checksums-Sha256</tt> fields in <file>*.dsc</file>
   and <file>*.changes</file> files.
   </item>
+<tag>5.5, 5.6.16</tag>
+  <item>The <tt>Format</tt> field of <file>.changes</file> files is now
+  1.8.  The <tt>Format</tt> field syntax for source
+  package <file>.dsc</file> files allows a subtype in parentheses, and it
+  is used for a different purpose than the <tt>Format</tt> field
+  for <file>.changes</file> files.
+  </item>
 <tag>5.6.2</tag>
   <item>The syntax of the <tt>Maintainer</tt> field is now must rather
   than should.

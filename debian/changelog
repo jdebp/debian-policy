@@ -83,6 +83,12 @@ debian-policy (3.9.0.0) UNRELEASED; urgency=low
     Seconded: Emilio Pozuelo Monfort <pochu@debian.org>
     Seconded: Andrew McMillan <andrew@morphoss.com>
     Closes: #575639
+  * Policy: Update Format control field documentation
+    Wording: Russ Allbery <rra@debian.org>
+    Wording: Charles Plessy <plessy@debian.org>
+    Seconded: Charles Plessy <plessy@debian.org>
+    Seconded: Emilio Pozuelo Monfort <pochu27@gmail.com>
+    Closes: #547272
   * Debconf: Add SETTITLE, like title but uses a template
     Wording: Frans Pop <elendil@planet.nl>
     Seconded: Russ Allbery <rra@debian.org>
