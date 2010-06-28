@@ -37,7 +37,7 @@ picking your way through this list.
 <sect> Version 3.9.0.0
 <p>
 
-Release Jun 2010.
+Released June, 2010.
 
 </p><p><taglist>
 <tag>4.4, 5.6.15</tag>
@@ -92,7 +92,7 @@ Release Jun 2010.
   </item>
 <tag>7.5</tag>
   <item>Use <tt>Conflicts</tt> with <tt>Provides</tt> if only one provider
-  of a virtual facility can ge installed at a time.
+  of a virtual facility can be installed at a time.
   </item>
 <tag>8.4</tag>
   <item>All shared library development files are no longer required to be
