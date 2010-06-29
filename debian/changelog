@@ -10,6 +10,10 @@ debian-policy (3.9.1.0) UNRELEASED; urgency=low
     package.
   * Explain the Perl module package naming policy more explicitly and
     provide some examples.  (Closes: #175202)
+  * Add Pre-Depends and Build-Depends-Indep to the relationships not
+    allowed from main to contrib or non-free and mention that such
+    relationships are okay if the non-free package is only an
+    alternative.  Thanks, Raphael Geissert.  (Closes: #587279)
 
  -- Russ Allbery <rra@debian.org>  Mon, 28 Jun 2010 09:34:54 -0700
 

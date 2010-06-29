@@ -476,9 +476,11 @@
 	      <item>
 		  must not require a package outside of <em>main</em>
 		  for compilation or execution (thus, the package must
-		  not declare a "Depends", "Recommends", or
-		  "Build-Depends" relationship on a non-<em>main</em>
-		  package),
+		  not declare a <tt>Pre-Depends</tt>, <tt>Depends</tt>,
+		  <tt>Recommends</tt>, <tt>Build-Depends</tt>,
+		  or <tt>Build-Depends-Indep</tt> relationship on a
+		  non-<em>main</em> package unless a package
+		  in <em>main</em> is listed as an alternative),
 	      </item>
 	      <item>
 		  must not be so buggy that we refuse to support them,
