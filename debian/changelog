@@ -1,5 +1,11 @@
-debian-policy (3.9.0.1) UNRELEASED; urgency=low
+debian-policy (3.9.1.0) UNRELEASED; urgency=low
 
+  * Policy: Include GPL version 1 in common-licenses
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: gregor herrmann <gregoa@debian.org>
+    Seconded: Damyan Ivanov <dmn@debian.org>
+    Seconded: Giacomo A. Catenazzi <cate@debian.org>
+    Closes: #436105
   * Set the version of the Perl Policy to match the version of the Policy
     package.
   * Explain the Perl module package naming policy more explicitly and
