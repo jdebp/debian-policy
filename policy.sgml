@@ -2,6 +2,8 @@
 <!-- include version information so we don't have to hard code it
      within the document -->
 <!entity % versiondata SYSTEM "version.ent"> %versiondata;
+<!-- current Debian changes file format -->
+<!entity changesversion "1.8">
 ]>
 <debiandoc>
 
@@ -474,9 +476,11 @@
 	      <item>
 		  must not require a package outside of <em>main</em>
 		  for compilation or execution (thus, the package must
-		  not declare a "Depends", "Recommends", or
-		  "Build-Depends" relationship on a non-<em>main</em>
-		  package),
+		  not declare a <tt>Pre-Depends</tt>, <tt>Depends</tt>,
+		  <tt>Recommends</tt>, <tt>Build-Depends</tt>,
+		  or <tt>Build-Depends-Indep</tt> relationship on a
+		  non-<em>main</em> package unless a package
+		  in <em>main</em> is listed as an alternative),
 	      </item>
 	      <item>
 		  must not be so buggy that we refuse to support them,
@@ -2497,7 +2501,7 @@ Package: libc6
 	  These fields are used by <prgn>dpkg-gencontrol</prgn> to
 	  generate control files for binary packages (see below), by
 	  <prgn>dpkg-genchanges</prgn> to generate the
-	  <tt>.changes</tt> file to accompany the upload, and by
+	  <file>.changes</file> file to accompany the upload, and by
 	  <prgn>dpkg-source</prgn> when it creates the
 	  <file>.dsc</file> source control file as part of a source
 	  archive. Many fields are permitted to span multiple lines in
@@ -2531,7 +2535,8 @@ Package: libc6
 
 	<p>
 	  The <file>DEBIAN/control</file> file contains the most vital
-	  (and version-dependent) information about a binary package.
+	  (and version-dependent) information about a binary package.  It
+	  consists of a single paragraph.
 	</p>
 
 	<p>
@@ -2558,10 +2563,9 @@ Package: libc6
 	<heading>Debian source control files -- <tt>.dsc</tt></heading>
 
 	<p>
-	  This file contains a series of fields, identified and
-	  separated just like the fields in the control file of
-	  a binary package.  The fields are listed below; their
-	  syntax is described above, in <ref id="pkg-controlfields">.
+	  This file consists of a single paragraph, possibly surrounded by
+	  a PGP signature. The fields of that paragraph are listed below.
+	  Their syntax is described above, in <ref id="pkg-controlfields">.
 
 	<list compact="compact">
 	  <item><qref id="f-Format"><tt>Format</tt></qref> (mandatory)</item>
@@ -2595,12 +2599,19 @@ Package: libc6
 	<heading>Debian changes files -- <file>.changes</file></heading>
 
 	<p>
-	  The .changes files are used by the Debian archive maintenance
-	  software to process updates to packages. They contain one
-	  paragraph which contains information from the
-	  <tt>debian/control</tt> file and other data about the
-	  source package gathered via <tt>debian/changelog</tt>
-	  and <tt>debian/rules</tt>.
+	  The <file>.changes</file> files are used by the Debian archive
+	  maintenance software to process updates to packages. They
+	  consist of a single paragraph, possibly surrounded by a PGP
+	  signature. That paragraph contains information from the
+	  <file>debian/control</file> file and other data about the
+	  source package gathered via <file>debian/changelog</file>
+	  and <file>debian/rules</file>.
+	</p>
+
+	<p>
+	  <file>.changes</file> files have a format version that is
+	  incremented whenever the documented fields or their meaning
+	  change.  This document describes format &changesversion;.
 	</p>
 
 	<p>
@@ -3259,12 +3270,30 @@ Package: libc6
 	  <heading><tt>Format</tt></heading>
 
 	  <p>
-	    This field specifies a format revision for the file.
-	    The most current format described in the Policy Manual
-	    is version <strong>1.5</strong>.  The syntax of the
-	    format value is the same as that of a package version
-	    number except that no epoch or Debian revision is allowed
-	    - see <ref id="f-Version">.
+	    In <qref id="debianchangesfiles"><file>.changes</file></qref>
+	    files, this field declares the format version of that file.
+	    The syntax of the field value is the same as that of
+	    a <qref id="f-Version">package version number</qref> except
+	    that no epoch or Debian revision is allowed.  The format
+	    described in this document is <tt>&changesversion;</tt>.
+	  </p>
+
+	  <p>
+	    In <qref id="debiansourcecontrolfiles"><file>.dsc</file>
+	    Debian source control</qref> files, this field declares the
+	    format of the source package.  The field value is used by
+	    programs acting on a source package to interpret the list of
+	    files in the source package and determine how to unpack it.
+	    The syntax of the field value is a numeric major revision, a
+	    period, a numeric minor revision, and then an optional subtype
+	    after whitespace, which if specified is an alphanumeric word
+	    in parentheses.  The subtype is optional in the syntax but may
+	    be mandatory for particular source format revisions.
+	    <footnote>
+	      The source formats currently supported by the Debian archive
+	      software are <tt>1.0</tt>, <tt>3.0 (native)</tt>,
+	      and <tt>3.0 (quilt)</tt>.
+	    </footnote>
 	  </p>
 	</sect1>
 
@@ -3525,7 +3554,6 @@ Checksums-Sha256:
 	    must match the list of files in the <tt>Files</tt> field.
 	  </p>
 	</sect1>
-
       </sect>
 
       <sect>
@@ -9383,14 +9411,15 @@ END-INFO-DIR-ENTRY
 
 	<p>
 	  Packages distributed under the Apache license (version 2.0), the
-	  Artistic license, the GNU GPL (version 2 or 3), the GNU LGPL
-	  (versions 2, 2.1, or 3), and the GNU FDL (versions 1.2 or 1.3)
-	  should refer to the corresponding files
+	  Artistic license, the GNU GPL (versions 1, 2, or 3), the GNU
+	  LGPL (versions 2, 2.1, or 3), and the GNU FDL (versions 1.2 or
+	  1.3) should refer to the corresponding files
 	  under <file>/usr/share/common-licenses</file>,<footnote>
 	    <p>
 	      In particular,
               <file>/usr/share/common-licenses/Apache-2.0</file>,
               <file>/usr/share/common-licenses/Artistic</file>,
+              <file>/usr/share/common-licenses/GPL-1</file>,
               <file>/usr/share/common-licenses/GPL-2</file>,
               <file>/usr/share/common-licenses/GPL-3</file>,
               <file>/usr/share/common-licenses/LGPL-2</file>,

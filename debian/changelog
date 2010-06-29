@@ -1,4 +1,23 @@
-debian-policy (3.9.0.0) UNRELEASED; urgency=low
+debian-policy (3.9.1.0) UNRELEASED; urgency=low
+
+  * Policy: Include GPL version 1 in common-licenses
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: gregor herrmann <gregoa@debian.org>
+    Seconded: Damyan Ivanov <dmn@debian.org>
+    Seconded: Giacomo A. Catenazzi <cate@debian.org>
+    Closes: #436105
+  * Set the version of the Perl Policy to match the version of the Policy
+    package.
+  * Explain the Perl module package naming policy more explicitly and
+    provide some examples.  (Closes: #175202)
+  * Add Pre-Depends and Build-Depends-Indep to the relationships not
+    allowed from main to contrib or non-free and mention that such
+    relationships are okay if the non-free package is only an
+    alternative.  Thanks, Raphael Geissert.  (Closes: #587279)
+
+ -- Russ Allbery <rra@debian.org>  Mon, 28 Jun 2010 09:34:54 -0700
+
+debian-policy (3.9.0.0) unstable; urgency=low
 
   [ Colin Watson ]
   * Fix path to changelog.Debian.gz in footnote on documentation symlinks.
@@ -83,6 +102,12 @@ debian-policy (3.9.0.0) UNRELEASED; urgency=low
     Seconded: Emilio Pozuelo Monfort <pochu@debian.org>
     Seconded: Andrew McMillan <andrew@morphoss.com>
     Closes: #575639
+  * Policy: Update Format control field documentation
+    Wording: Russ Allbery <rra@debian.org>
+    Wording: Charles Plessy <plessy@debian.org>
+    Seconded: Charles Plessy <plessy@debian.org>
+    Seconded: Emilio Pozuelo Monfort <pochu27@gmail.com>
+    Closes: #547272
   * Debconf: Add SETTITLE, like title but uses a template
     Wording: Frans Pop <elendil@planet.nl>
     Seconded: Russ Allbery <rra@debian.org>
@@ -132,8 +157,9 @@ debian-policy (3.9.0.0) UNRELEASED; urgency=low
   * Avoid "Debianised" or "Debianized" in favor of just "Debian" or
     "Debian package" as appropriate.  Patch from Ben Finney.
     (Closes: #586163)
+  * Switch to source format 3.0 (native).
 
- -- Bill Allombert <ballombe@debian.org>  Mon, 31 May 2010 20:00:28 +0200
+ -- Russ Allbery <rra@debian.org>  Sun, 27 Jun 2010 21:40:52 -0700
 
 debian-policy (3.8.4.0) unstable; urgency=low
 

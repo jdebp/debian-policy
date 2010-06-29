@@ -34,10 +34,23 @@ picking your way through this list.
 
 <chapt> The checklist
 
-<sect> Version 3.8.5.0
+<sect> Version 3.9.1.0
 <p>
 
-Release Jun 2010.
+Not yet released.
+
+</p><p><taglist>
+<tag>12.5</tag>
+  <item>The GPL version 1 is now included in common-licenses and should be
+  referenced from there instead of included in the <file>copyright</file>
+  file.
+  </item>
+</taglist></p>
+
+<sect> Version 3.9.0.0
+<p>
+
+Released June, 2010.
 
 </p><p><taglist>
 <tag>4.4, 5.6.15</tag>
@@ -52,6 +65,13 @@ Release Jun 2010.
   <item>Document and recommend the <tt>Checksums-Sha1</tt>
   and <tt>Checksums-Sha256</tt> fields in <file>*.dsc</file>
   and <file>*.changes</file> files.
+  </item>
+<tag>5.5, 5.6.16</tag>
+  <item>The <tt>Format</tt> field of <file>.changes</file> files is now
+  1.8.  The <tt>Format</tt> field syntax for source
+  package <file>.dsc</file> files allows a subtype in parentheses, and it
+  is used for a different purpose than the <tt>Format</tt> field
+  for <file>.changes</file> files.
   </item>
 <tag>5.6.2</tag>
   <item>The syntax of the <tt>Maintainer</tt> field is now must rather
@@ -85,7 +105,7 @@ Release Jun 2010.
   </item>
 <tag>7.5</tag>
   <item>Use <tt>Conflicts</tt> with <tt>Provides</tt> if only one provider
-  of a virtual facility can ge installed at a time.
+  of a virtual facility can be installed at a time.
   </item>
 <tag>8.4</tag>
   <item>All shared library development files are no longer required to be
