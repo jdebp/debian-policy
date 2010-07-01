@@ -1216,9 +1216,9 @@
 	<p>
 	  You should not use <prgn>dpkg-divert</prgn> on a file belonging
 	  to another package without consulting the maintainer of that
-	  package first.  Package maintainer scripts must provide
-	  the <tt>--package</tt> flag to <prgn>dpkg-divert</prgn> and must
-	  not use <tt>--local</tt>.
+	  package first.  When adding or removing diversions, package
+	  maintainer scripts must provide the <tt>--package</tt> flag
+	  to <prgn>dpkg-divert</prgn> and must not use <tt>--local</tt>.
 	</p>
 
 	<p>
