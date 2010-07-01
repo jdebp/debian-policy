@@ -5470,8 +5470,13 @@ Replaces: mail-transport-agent
 	      <p><file>debian/shlibs.local</file></p>
 
 	      <p>
-		This lists overrides for this package.  Its use is
-		described below (see <ref id="shlibslocal">).
+		This lists overrides for this package.  This file should
+		normally not be used, but may be needed temporarily in
+		unusual situations to work around bugs in other packages,
+		or in unusual cases where the normally declared dependency
+		information in the installed <file>shlibs</file> file for
+		a library cannot be used.  The contents of this file
+		override information obtained from any other source.
 	      </p>
 	    </item>
 
@@ -5574,13 +5579,6 @@ dpkg-shlibdeps debian/tmp/usr/bin/* debian/tmp/usr/sbin/* \
 	  <prgn>dpkg-gencontrol</prgn>.  You will need to place a
 	  <tt>${shlibs:Depends}</tt> variable in the <tt>Depends</tt>
 	  field in the control file for this to work.
-	</p>
-
-	<p>
-	  If <prgn>dpkg-shlibdeps</prgn> doesn't complain, you're
-	  done.  If it does complain you might need to create your own
-	  <file>debian/shlibs.local</file> file, as explained below (see
-	  <ref id="shlibslocal">).
 	</p>
 
 	<p>
@@ -5730,74 +5728,7 @@ install -m644 debian/shlibs.<var>package</var> debian/<var>package</var>/DEBIAN/
 	  packages.
 	</p>
       </sect1>
-
-      <sect1 id="shlibslocal">
-	<heading>Writing the <file>debian/shlibs.local</file> file</heading>
-
-	<p>
-	  This file is intended only as a <em>temporary</em> fix if
-	  your binaries or libraries depend on a library whose package
-	  does not yet provide a correct <file>shlibs</file> file.
-	</p>
-
-	<p>
-	  We will assume that you are trying to package a binary
-	  <tt>foo</tt>.  When you try running
-	  <prgn>dpkg-shlibdeps</prgn> you get the following error
-	  message (<tt>-O</tt> displays the dependency information on
-	  <tt>stdout</tt> instead of writing it to
-	  <tt>debian/substvars</tt>, and the lines have been wrapped
-	  for ease of reading):
-	  <example compact="compact">
-$ dpkg-shlibdeps -O debian/tmp/usr/bin/foo
-dpkg-shlibdeps: warning: unable to find dependency
-  information for shared library libbar (soname 1,
-  path /usr/lib/libbar.so.1, dependency field Depends)
-shlibs:Depends=libc6 (>= 2.2.2-2)
-	  </example>
-	  You can then run <prgn>ldd</prgn> on the binary to find the
-	  full location of the library concerned:
-	  <example compact="compact">
-$ ldd foo
-libbar.so.1 => /usr/lib/libbar.so.1 (0x4001e000)
-libc.so.6 => /lib/libc.so.6 (0x40032000)
-/lib/ld-linux.so.2 => /lib/ld-linux.so.2 (0x40000000)
-	  </example>
-	  So the <prgn>foo</prgn> binary depends on the
-	  <prgn>libbar</prgn> shared library, but no package seems to
-	  provide a <file>*.shlibs</file> file handling
-	  <file>libbar.so.1</file> in <file>/var/lib/dpkg/info/</file>.  Let's
-	  determine the package responsible:
-	  <example compact="compact">
-$ dpkg -S /usr/lib/libbar.so.1
-bar1: /usr/lib/libbar.so.1
-$ dpkg -s bar1 | grep Version
-Version: 1.0-1
-	  </example>
-	  This tells us that the <tt>bar1</tt> package, version 1.0-1,
-	  is the one we are using.  Now we can file a bug against the
-	  <tt>bar1</tt> package and create our own
-	  <file>debian/shlibs.local</file> to locally fix the problem.
-	  Including the following line into your
-	  <file>debian/shlibs.local</file> file:
-	  <example compact="compact">
-libbar 1 bar1 (>= 1.0-1)
-	  </example>
-	  should allow the package build to work.
-	</p>
-
-	<p>
-	  As soon as the maintainer of <tt>bar1</tt> provides a
-	  correct <file>shlibs</file> file, you should remove this line
-	  from your <file>debian/shlibs.local</file> file.  (You should
-	  probably also then have a versioned <tt>Build-Depends</tt>
-	  on <tt>bar1</tt> to help ensure that others do not have the
-	  same problem building your package.)
-	</p>
-      </sect1>
-
       </sect>
-
     </chapt>
 
 
