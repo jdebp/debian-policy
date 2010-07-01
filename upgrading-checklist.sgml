@@ -40,6 +40,15 @@ picking your way through this list.
 Not yet released.
 
 </p><p><taglist>
+<tag>10.2</tag>
+  <item>Libtool <file>.la</file> files should not be installed for public
+  libraries.  If they're required (for <tt>libltdl</tt>, for instance),
+  the <tt>dependency_libs</tt> setting should be emptied.  Library
+  packages historically including <file>.la</file> files must continue to
+  include them (with <tt>dependency_libs</tt> emptied) until all libraries
+  that depend on that library have removed or emptied
+  their <file>.la</file> files.
+  </item>
 <tag>12.5</tag>
   <item>The GPL version 1 is now included in common-licenses and should be
   referenced from there instead of included in the <file>copyright</file>
