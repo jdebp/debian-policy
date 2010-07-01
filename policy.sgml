@@ -7371,40 +7371,58 @@ strip --strip-unneeded <var>your-lib</var>
 	</p>
 
 	<p>
-	  An ever increasing number of packages are using
-	  <prgn>libtool</prgn> to do their linking.  The latest GNU
-	  libtools (>= 1.3a) can take advantage of the metadata in the
-	  installed <prgn>libtool</prgn> archive files (<file>*.la</file>
-	  files).  The main advantage of <prgn>libtool</prgn>'s
-	  <file>.la</file> files is that it allows <prgn>libtool</prgn> to
-	  store and subsequently access metadata with respect to the
-	  libraries it builds.  <prgn>libtool</prgn> will search for
-	  those files, which contain a lot of useful information about
-	  a library (such as library dependency information for static
-	  linking).  Also, they're <em>essential</em> for programs
-	  using <tt>libltdl</tt>.<footnote>
-	      Although <prgn>libtool</prgn> is fully capable of
-	      linking against shared libraries which don't have
-	      <tt>.la</tt> files, as it is a mere shell script it can
-	      add considerably to the build time of a
-	      <prgn>libtool</prgn>-using package if that shell script
-	      has to derive all this information from first principles
-	      for each library every time it is linked.  With the
-	      advent of <prgn>libtool</prgn> version 1.4 (and to a
-	      lesser extent <prgn>libtool</prgn> version 1.3), the
-	      <file>.la</file> files also store information about
-	      inter-library dependencies which cannot necessarily be
-	      derived after the <file>.la</file> file is deleted.
+	  Packages that use <prgn>libtool</prgn> to create and install
+	  their shared libraries install a file containing additional
+	  metadata (ending in <file>.la</file>) alongside the library.
+	  For public libraries intended for use by other packages, these
+	  files normally should not be included in the Debian package,
+	  since the information they include is not necessary to link with
+	  the shared library on Debian and can add unnecessary additional
+	  dependencies to other programs or libraries.<footnote>
+	    These files store, among other things, all libraries on which
+	    that shared library depends.  Unfortunately, if
+	    the <file>.la</file> file is present and contains that
+	    dependency information, using <prgn>libtool</prgn> when
+	    linking against that library will cause the resulting program
+	    or library to be linked against those dependencies as well,
+	    even if this is unnecessary.  This can create unneeded
+	    dependencies on shared library packages that would otherwise
+	    be hidden behind the library ABI, and can make library
+	    transitions to new SONAMEs unnecessarily complicated and
+	    difficult to manage.
 	  </footnote>
+	  If the <file>.la</file> file is required for that library (if,
+	  for instance, it's loaded via <tt>libltdl</tt> in a way that
+	  requires that meta-information), the <tt>dependency_libs</tt>
+	  setting in the <file>.la</file> file should normally be set to
+	  the empty string.  If the shared library development package has
+	  historically included the <file>.la</file>, it must be retained
+	  in the development package (with <tt>dependency_libs</tt>
+	  emptied) until all libraries that depend on it have removed or
+	  emptied <tt>dependency_libs</tt> in their <file>.la</file>
+	  files to prevent linking with those other libraries
+	  using <prgn>libtool</prgn> from failing.
 	</p>
 
 	<p>
-	  Packages that use <prgn>libtool</prgn> to create shared
-	  libraries should include the <file>.la</file> files in the
-	  <tt>-dev</tt> package, unless the package relies on
-	  <tt>libtool</tt>'s <tt>libltdl</tt> library, in which case
-	  the <tt>.la</tt> files must go in the run-time library
+	  If the <file>.la</file> must be included, it should be included
+	  in the development (<tt>-dev</tt>) package, unless the library
+	  will be loaded by <prgn>libtool</prgn>'s <tt>libltdl</tt>
+	  library.  If it is intended for use with <tt>libltdl</tt>,
+	  the <file>.la</file> files must go in the run-time library
 	  package.
+	</p>
+
+	<p>
+	  These requirements for handling of <file>.la</file> files do not
+	  apply to loadable modules or libraries not installed in
+	  directories searched by default by the dynamic linker.  Packages
+	  installing loadable modules will frequently need to install
+	  the <file>.la</file> files alongside the modules so that they
+	  can be loaded by <tt>libltdl</tt>.  <tt>dependency_libs</tt>
+	  does not need to be modified for libraries or modules that are
+	  not installed in directories searched by the dynamic linker by
+	  default and not intended for use by other packages.
 	</p>
 
 	<p>
