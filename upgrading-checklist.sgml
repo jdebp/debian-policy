@@ -40,6 +40,19 @@ picking your way through this list.
 Not yet released.
 
 </p><p><taglist>
+<tag>3.9</tag>
+  <item>Maintainer scripts must pass <tt>--package</tt>
+  to <prgn>dpkg-divert</prgn> when creating or removing diversions and
+  must not use <tt>--local</tt>.
+  </item>
+<tag>8.6.1, 8.6.2, 8.6.5</tag>
+  <item>Packages should normally not include a <file>shlibs.local</file>
+  file since we now have complete <file>shlibs</file> coverage.
+  </item>
+<tag>8.6.3</tag>
+  <item>The SONAME of a library may instead be of the
+  form <tt><var>name</var>-<var>major-version</var>.so</tt>.
+  </item>
 <tag>10.2</tag>
   <item>Libtool <file>.la</file> files should not be installed for public
   libraries.  If they're required (for <tt>libltdl</tt>, for instance),
