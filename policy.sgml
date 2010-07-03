@@ -886,23 +886,38 @@
 
       </sect>
 
-      <sect>
+      <sect id="maintainer">
 	<heading>The maintainer of a package</heading>
 
 	<p>
-	  Every package must have a Debian maintainer (the
-	  maintainer may be one person or a group of people
-	  reachable from a common email address, such as a mailing
-	  list).  The maintainer is responsible for ensuring that
-	  the package is placed in the appropriate distributions.
+	  Every package must have a Debian maintainer.  The maintainer may
+	  be one person or a group of people reachable from a common email
+	  address, such as a mailing list.  The maintainer is responsible
+	  for maintaining the Debian packaging files, evaluating and
+	  responding appropriately to reported bugs, uploading new
+	  versions of the package, ensuring that the package is placed in
+	  the appropriate archive area and included in Debian releases as
+	  appropriate for the stability and utility of the package, and
+	  requesting removal of the package from the Debian distribution
+	  if it is no longer useful or maintainable.
 	</p>
 
 	<p>
-	  The maintainer must be specified in the
-	  <tt>Maintainer</tt> control field with their correct name
-	  and a working email address.  If one person maintains
-	  several packages, they should try to avoid having
-	  different forms of their name and email address in
+	  The maintainer must be specified in the <tt>Maintainer</tt>
+	  control field with their correct name and a working email
+	  address.  The email address given in the <tt>Maintainer</tt>
+	  control field must accept mail from those role accounts in
+	  Debian used to send automated mails regarding the package.  This
+	  includes non-spam mail from the bug-tracking system, all mail
+	  from the Debian archive maintenance software, and other role
+	  accounts or automated processes that are commonly agreed on by
+	  the project.<footnote>
+	    A sample implementation of such a whitelist written for the
+	    Mailman mailing list management software is used for mailing
+	    lists hosted by alioth.debian.org.
+	  </footnote>
+	  If one person or team maintains several packages, they should
+	  use the same form of their name and email address in
 	  the <tt>Maintainer</tt> fields of those packages.
 	</p>
 
@@ -912,15 +927,22 @@
 	</p>
 
 	<p>
-	  If the maintainer of a package quits from the Debian
-	  project, "Debian QA Group"
-	  <email>packages@qa.debian.org</email> takes over the
-	  maintainer-ship of the package until someone else
-	  volunteers for that task. These packages are called
-	  <em>orphaned packages</em>.<footnote>
-		The detailed procedure for doing this gracefully can
-		be found in the Debian Developer's Reference,
-		see <ref id="related">.
+	  If the maintainer of the package is a team of people with a
+	  shared email address, the <tt>Uploaders</tt> control field must
+	  be present and must contain at least one human with their
+	  personal email address.  See <ref id="f-Uploaders"> for the
+	  syntax of that field.
+	</p>
+
+	<p>
+	  If the maintainer of a package no longer has time or desire to
+	  maintain a package, it is orphaned.  The maintainer then becomes
+	  <tt>Debian QA Group &lt;packages@qa.debian.org&gt;</tt>.  These
+	  packages are considered maintained by the Debian project as a
+	  whole until someone else volunteers to take over maintenance.
+	  <footnote>
+	    The detailed procedure for doing this gracefully can be found
+	    in the Debian Developer's Reference, see <ref id="related">.
 	  </footnote>
 	</p>
       </sect>
@@ -2698,20 +2720,32 @@ Package: libc6
 	    putting the name in round brackets and moving it to the
 	    end, and bringing the email address forward).
 	  </p>
+
+	  <p>
+	    See <ref id="maintainer"> for additional requirements and
+	    information about package maintainers.
+	  </p>
 	</sect1>
 
 	<sect1 id="f-Uploaders">
           <heading><tt>Uploaders</tt></heading>
 
 	  <p>
-	    List of the names and email addresses of co-maintainers of
-	    the package, if any. If the package has other maintainers
-	    beside the one named in the
-	    <qref id="f-Maintainer">Maintainer field</qref>, their names
-	    and email addresses should be listed here. The format of each
-	    entry is the same as that of the Maintainer field, and
-	    multiple entries must be comma separated.  This is an optional
-	    field.
+	    List of the names and email addresses of co-maintainers of the
+	    package, if any. If the package has other maintainers beside
+	    the one named in the <qref id="f-Maintainer">Maintainer
+	    field</qref>, their names and email addresses should be listed
+	    here. The format of each entry is the same as that of the
+	    Maintainer field, and multiple entries must be comma
+	    separated.
+	  </p>
+
+	  <p>
+	    This is normally an optional field, but if
+	    the <tt>Maintainer</tt> control field names a group of people
+	    and a shared email address, the <tt>Uploaders</tt> field must
+	    be present and must contain at least one human with their
+	    personal email address.
 	  </p>
 
 	  <p>
