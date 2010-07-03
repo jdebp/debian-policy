@@ -11,6 +11,11 @@ debian-policy (3.9.1.0) UNRELEASED; urgency=low
     Seconded: Julien Cristau <jcristau@debian.org>
     Seconded: Cyril Brulebois <kibi@debian.org>
     Closes: #561413
+  * Policy: Require dpkg-divert --package when adding/removing diversions
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Raphaël Hertzog <hertzog@debian.org>
+    Seconded: Raphael Geissert <geissert@debian.org>
+    Closes: #218897
   * Set the version of the Perl Policy to match the version of the Policy
     package.
   * Explain the Perl module package naming policy more explicitly and
