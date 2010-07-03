@@ -7427,7 +7427,19 @@ fname () {
 </example>
 	      must be supported and must set the value of <tt>c</tt> to
 	      <tt>delta</tt>.
-            </item>
+	    </item>
+	    <item>The XSI extension to <prgn>kill</prgn> allowing <tt>kill
+	      -<var>signal</var></tt>, where <var>signal</var> is either
+	      the name of a signal or one of the numeric signals listed in
+	      the XSI extension (0, 1, 2, 3, 6, 9, 14, and 15), must be
+	      supported.
+	    </item>
+	    <item>The XSI extension to <prgn>trap</prgn> allowing numeric
+	      symbols must be supported.  However, only the signal numbers
+	      listed in the extension, which are the same as
+	      for <prgn>kill</prgn> above, plus SIGPIPE (13) must be
+	      supported.
+	    </item>
 	  </list>
 	  If a shell script requires non-SUSv3 features from the shell
 	  interpreter other than those listed above, the appropriate shell
