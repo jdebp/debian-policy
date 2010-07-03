@@ -7868,11 +7868,13 @@ ln -fs ../sbin/sendmail debian/tmp/usr/bin/runq
 	</p>
 
 	<p>
-	  Log files must be rotated occasionally so that they don't
-	  grow indefinitely; the best way to do this is to drop a log
-	  rotation configuration file into the directory
-	  <file>/etc/logrotate.d</file> and use the facilities provided by
-	  logrotate.<footnote>
+	  Log files must be rotated occasionally so that they don't grow
+	  indefinitely.  The best way to do this is to install a log
+	  rotation configuration file in the
+	  directory <file>/etc/logrotate.d</file>, normally
+	  named <file>/etc/logrotate.d/<var>package</var></file>, and use
+	  the facilities provided by <prgn>logrotate</prgn>.
+	  <footnote>
 	    <p>
 	      The traditional approach to log files has been to set up
 	      <em>ad hoc</em> log rotation schemes using simple shell
@@ -7897,25 +7899,28 @@ ln -fs ../sbin/sendmail debian/tmp/usr/bin/runq
 	    section="8">):
 	  <example compact="compact">
 /var/log/foo/*.log {
-rotate 12
-weekly
-compress
-postrotate
-/etc/init.d/foo force-reload
-endscript
+    rotate 12
+    weekly
+    compress
+    missingok
+    postrotate
+        /etc/init.d/foo force-reload
+    endscript
 }
 	  </example>
 	  This rotates all files under <file>/var/log/foo</file>, saves 12
 	  compressed generations, and forces the daemon to reload its
-	  configuration information after the log rotation.
+	  configuration information after the log rotation.  It skips this
+	  log rotation (via <tt>missingok</tt>) if no such log file is
+	  present, which avoids errors if the package is removed but not
+	  purged.
 	</p>
 
 	<p>
-	  Log files should be removed when the package is
-	  purged (but not when it is only removed).  This should be
-	  done by the <prgn>postrm</prgn> script when it is called
-	  with the argument <tt>purge</tt> (see <ref
-	  id="removedetails">).
+	  Log files should be removed when the package is purged (but not
+	  when it is only removed).  This should be done by
+	  the <prgn>postrm</prgn> script when it is called with the
+	  argument <tt>purge</tt> (see <ref id="removedetails">).
 	</p>
       </sect>
 
