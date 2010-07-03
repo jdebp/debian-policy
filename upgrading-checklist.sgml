@@ -40,6 +40,11 @@ picking your way through this list.
 Not yet released.
 
 </p><p><taglist>
+<tag>3.9</tag>
+  <item>Maintainer scripts must pass <tt>--package</tt>
+  to <prgn>dpkg-divert</prgn> when creating or removing diversions and
+  must not use <tt>--local</tt>.
+  </item>
 <tag>10.2</tag>
   <item>Libtool <file>.la</file> files should not be installed for public
   libraries.  If they're required (for <tt>libltdl</tt>, for instance),
