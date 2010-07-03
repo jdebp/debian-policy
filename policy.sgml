@@ -5477,8 +5477,8 @@ Replaces: mail-transport-agent
 		unusual situations to work around bugs in other packages,
 		or in unusual cases where the normally declared dependency
 		information in the installed <file>shlibs</file> file for
-		a library cannot be used.  The contents of this file
-		override information obtained from any other source.
+		a library cannot be used.  This file overrides information
+		obtained from any other source.
 	      </p>
 	    </item>
 
