@@ -11,6 +11,21 @@ debian-policy (3.9.1.0) UNRELEASED; urgency=low
     Seconded: Julien Cristau <jcristau@debian.org>
     Seconded: Cyril Brulebois <kibi@debian.org>
     Closes: #561413
+  * Policy: Require dpkg-divert --package when adding/removing diversions
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Raphaël Hertzog <hertzog@debian.org>
+    Seconded: Raphael Geissert <geissert@debian.org>
+    Closes: #218897
+  * Policy: Remove encouragement to create shlibs.local
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Julien Cristau <jcristau@debian.org>
+    Seconded: Jakub Wilk <jwilk@debian.org>
+    Seconded: Cyril Brulebois <kibi@debian.org>
+  * Policy: Document alternate SONAME format with version before .so
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Julien Cristau <jcristau@debian.org>
+    Seconded: Raphaël Hertzog <hertzog@debian.org>
+    Closes: #509932
   * Set the version of the Perl Policy to match the version of the Policy
     package.
   * Explain the Perl module package naming policy more explicitly and
@@ -19,6 +34,9 @@ debian-policy (3.9.1.0) UNRELEASED; urgency=low
     allowed from main to contrib or non-free and mention that such
     relationships are okay if the non-free package is only an
     alternative.  Thanks, Raphael Geissert.  (Closes: #587279)
+  * Revise the footnote discussing shlibs creation to not talk about the
+    switch to objdump as if it were a new innovation and to explicitly
+    mention the NEEDED attribute as the source of dependency information.
 
  -- Russ Allbery <rra@debian.org>  Mon, 28 Jun 2010 09:34:54 -0700
 
