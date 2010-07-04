@@ -7904,7 +7904,7 @@ ln -fs ../sbin/sendmail debian/tmp/usr/bin/runq
     compress
     missingok
     postrotate
-        /etc/init.d/foo force-reload
+        invoke-rc.d foo force-reload
     endscript
 }
 	  </example>
