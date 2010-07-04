@@ -806,8 +806,8 @@
 
       <p>
 	A <tt>.deb</tt> package contains two sets of files: a set of files
-	to installed on the system when the package is installed, and a
-	set of files that provide additional metadata about the package or
+	to install on the system when the package is installed, and a set
+	of files that provide additional metadata about the package or
 	which are executed when the package is installed or removed.  This
 	second set of files is called <em>control information files</em>.
 	Among those files are the package maintainer scripts
@@ -821,7 +821,7 @@
       </p>
 
       <p>
-	There is an unfortunately collision of terminology here between
+	There is unfortunately a collision of terminology here between
 	control information files and files in the Debian control file
 	format.  Throughout this document, a <em>control file</em> refers
 	to a file in the Debian control file format.  These files are
