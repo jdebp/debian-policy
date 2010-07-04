@@ -804,6 +804,35 @@
 	in the <tt>.deb</tt> file format.
       </p>
 
+      <p>
+	A <tt>.deb</tt> package contains two sets of files: a set of files
+	to installed on the system when the package is installed, and a
+	set of files that provide additional metadata about the package or
+	which are executed when the package is installed or removed.  This
+	second set of files is called <em>control information files</em>.
+	Among those files are the package maintainer scripts
+	and <file>control</file>, the <qref id="binarycontrolfiles">binary
+	package control file</qref> that contains the control fields for
+	the package.  Other control information files
+	include <qref id="sharedlibs-shlibdeps">the <file>shlibs</file>
+	file</qref> used to store shared library dependency information
+	and the <file>conffiles</file> file that lists the package's
+	configuration files (described in <ref id="config-files">).
+      </p>
+
+      <p>
+	There is an unfortunately collision of terminology here between
+	control information files and files in the Debian control file
+	format.  Throughout this document, a <em>control file</em> refers
+	to a file in the Debian control file format.  These files are
+	documented in <ref id="controlfields">.  Only files referred to
+	specifically as <em>control information files</em> are the files
+	included in the control information file member of
+	the <file>.deb</file> file format used by binary packages.  Most
+	control information files are not in the Debian control file
+	format.
+      </p>
+
       <sect>
 	<heading>The package name</heading>
 
@@ -929,9 +958,9 @@
 	<heading>The description of a package</heading>
 
 	<p>
-	  Every Debian package must have an extended description
-	  stored in the appropriate field of the control record.
-	  The technical information about the format of the
+	  Every Debian package must have a <tt>Description</tt> control
+	  field which contains a synopsis and extended description of the
+	  package.  Technical information about the format of the
 	  <tt>Description</tt> field is in <ref id="f-Description">.
 	</p>
 
@@ -1143,7 +1172,7 @@
 	  must be available and usable on the system at all times, even
 	  when packages are in an unconfigured (but unpacked) state.
 	  Packages are tagged <tt>essential</tt> for a system using the
-	  <tt>Essential</tt> control file field.  The format of the
+	  <tt>Essential</tt> control field.  The format of the
 	  <tt>Essential</tt> control field is described in <ref
 	  id="f-Essential">.
 	</p>
@@ -1263,17 +1292,16 @@
 
 	  <p>
 	    Packages which use the Debian Configuration Management
-	    Specification may contain an additional
-	    <prgn>config</prgn> script and a <tt>templates</tt>
-	    file in their control archive<footnote>
-		The control.tar.gz inside the .deb.
-		See <manref name="deb" section="5">.
-	    </footnote>.
-	    The <prgn>config</prgn> script might be run before the
-	    <prgn>preinst</prgn> script, and before the package is unpacked
-	    or any of its dependencies or pre-dependencies are satisfied.
-	    Therefore it must work using only the tools present in
-	    <em>essential</em> packages.<footnote>
+	    Specification may contain the additional control information
+	    files <file>config</file>
+	    and <file>templates</file>.  <file>config</file> is an
+	    additional maintainer script used for package configuration,
+	    and <file>templates</file> contains templates used for user
+	    prompting.  The <prgn>config</prgn> script might be run before
+	    the <prgn>preinst</prgn> script and before the package is
+	    unpacked or any of its dependencies or pre-dependencies are
+	    satisfied.  Therefore it must work using only the tools
+	    present in <em>essential</em> packages.<footnote>
 		  <package>Debconf</package> or another tool that
 		  implements the Debian Configuration Management
 		  Specification will also be installed, and any
@@ -2200,7 +2228,7 @@ endif
 	<p>
 	  When <prgn>dpkg-gencontrol</prgn>,
 	  <prgn>dpkg-genchanges</prgn> and <prgn>dpkg-source</prgn>
-	  generate control files they perform variable substitutions
+	  generate control files, they perform variable substitutions
 	  on their output just before writing it.  Variable
 	  substitutions have the form <tt>${<var>variable</var>}</tt>.
 	  The optional file <file>debian/substvars</file> contains
@@ -2226,12 +2254,12 @@ endif
         <heading>Optional upstream source location: <file>debian/watch</file></heading>
 
         <p>
-          This is an optional, recommended control file for the
-          <tt>uscan</tt> utility which defines how to automatically
-          scan ftp or http sites for newly available updates of the
-          package. This is used by <url id="
-          http://dehs.alioth.debian.org/"> and other Debian QA tools
-          to help with quality control and maintenance of the
+          This is an optional, recommended configuration file for the
+          <tt>uscan</tt> utility which defines how to automatically scan
+          ftp or http sites for newly available updates of the
+          package. This is used
+          by <url id="http://dehs.alioth.debian.org/"> and other Debian QA
+          tools to help with quality control and maintenance of the
           distribution as a whole.
         </p>
 
@@ -3618,12 +3646,11 @@ Checksums-Sha256:
 	</p>
 
 	<p>
-	  These scripts are the files <prgn>preinst</prgn>,
-	  <prgn>postinst</prgn>, <prgn>prerm</prgn> and
-	  <prgn>postrm</prgn> in the control area of the package.
-	  They must be proper executable files; if they are scripts
-	  (which is recommended), they must start with the usual
-	  <tt>#!</tt> convention.  They should be readable and
+	  These scripts are the control information
+	  files <prgn>preinst</prgn>, <prgn>postinst</prgn>, <prgn>prerm</prgn>
+	  and <prgn>postrm</prgn>.  They must be proper executable files;
+	  if they are scripts (which is recommended), they must start with
+	  the usual <tt>#!</tt> convention.  They should be readable and
 	  executable by anyone, and must not be world-writable.
 	</p>
 
@@ -3638,12 +3665,12 @@ Checksums-Sha256:
 	  they exit with a zero status if everything went well.
 	</p>
 
-        <p>
-          Additionally, packages interacting with users using
-          <tt>debconf</tt> in the <prgn>postinst</prgn> script should
-          install a <prgn>config</prgn> script  in the control area,
-          see <ref id="maintscriptprompt"> for details.
-        </p>
+	<p>
+	  Additionally, packages interacting with users
+	  using <prgn>debconf</prgn> in the <prgn>postinst</prgn> script
+	  should install a <prgn>config</prgn> script as a control
+	  information file.  See <ref id="maintscriptprompt"> for details.
+	</p>
 
 	<p>
 	  When a package is upgraded a combination of the scripts from
@@ -4319,7 +4346,7 @@ Checksums-Sha256:
           In the <tt>Depends</tt>, <tt>Recommends</tt>,
           <tt>Suggests</tt>, <tt>Pre-Depends</tt>,
           <tt>Build-Depends</tt> and <tt>Build-Depends-Indep</tt>
-          control file fields of the package, which declare
+          control fields of the package, which declare
           dependencies on other packages, the package names listed may
           also include lists of alternative package names, separated
           by vertical bar (pipe) symbols <tt>|</tt>.  In such a case,
@@ -4457,7 +4484,7 @@ Build-Depends: foo [linux-any], bar [any-i386], baz [!linux-any]
         <p>
           This is done using the <tt>Depends</tt>, <tt>Pre-Depends</tt>,
           <tt>Recommends</tt>, <tt>Suggests</tt>, <tt>Enhances</tt>,
-          <tt>Breaks</tt> and <tt>Conflicts</tt> control file fields.
+          <tt>Breaks</tt> and <tt>Conflicts</tt> control fields.
           <tt>Breaks</tt> is described in <ref id="breaks">, and
           <tt>Conflicts</tt> is described in <ref id="conflicts">.  The
           rest are described below.
@@ -4806,11 +4833,10 @@ Build-Depends: foo [linux-any], bar [any-i386], baz [!linux-any]
 
 	<p>
 	  A <em>virtual package</em> is one which appears in the
-	  <tt>Provides</tt> control file field of another package.
-	  The effect is as if the package(s) which provide a
-	  particular virtual package name had been listed by name
-	  everywhere the virtual package name appears. (See also <ref
-	    id="virtual_pkg">)
+	  <tt>Provides</tt> control field of another package.  The effect
+	  is as if the package(s) which provide a particular virtual
+	  package name had been listed by name everywhere the virtual
+	  package name appears. (See also <ref id="virtual_pkg">)
 	</p>
 
 	<p>
@@ -4878,9 +4904,9 @@ Provides: bar
 
 	<p>
           Packages can declare in their control file that they should
-          overwrite files in certain other packages, or completely
-          replace other packages. The <tt>Replaces</tt> control file
-          field has these two distinct purposes.
+          overwrite files in certain other packages, or completely replace
+          other packages. The <tt>Replaces</tt> control field has these
+          two distinct purposes.
 	</p>
 
 	<sect1><heading>Overwriting files in other packages</heading>
@@ -5007,7 +5033,7 @@ Replaces: mail-transport-agent
         <p>
           This is done using the <tt>Build-Depends</tt>,
           <tt>Build-Depends-Indep</tt>, <tt>Build-Conflicts</tt> and
-          <tt>Build-Conflicts-Indep</tt> control file fields.
+          <tt>Build-Conflicts-Indep</tt> control fields.
         </p>
 
         <p>
@@ -5498,10 +5524,10 @@ Replaces: mail-transport-agent
 	      <p>
 		When packages are being built,
 		any <file>debian/shlibs</file> files are copied into the
-		control file area of the temporary build directory and
-		given the name <file>shlibs</file>.  These files give
-		details of any shared libraries included in the same
-		package.<footnote>
+		control information file area of the temporary build
+		directory and given the name <file>shlibs</file>.  These
+		files give details of any shared libraries included in the
+		same package.<footnote>
 		  An example may help here.  Let us say that the source
 		  package <tt>foo</tt> generates two binary
 		  packages, <tt>libfoo2</tt> and <tt>foo-runtime</tt>.
@@ -5702,7 +5728,8 @@ udeb: libz 1 zlib1g-udeb (>= 1:1.1.3)
 	  It is usual to call this file <file>debian/shlibs</file> (but if
 	  you have multiple binary packages, you might want to call it
 	  <file>debian/shlibs.<var>package</var></file> instead).  Then
-	  let <file>debian/rules</file> install it in the control area:
+	  let <file>debian/rules</file> install it in the control
+	  information file area:
 	  <example compact="compact">
 install -m644 debian/shlibs debian/tmp/DEBIAN
 	  </example>
@@ -5711,9 +5738,9 @@ install -m644 debian/shlibs debian/tmp/DEBIAN
 install -m644 debian/shlibs.<var>package</var> debian/<var>package</var>/DEBIAN/shlibs
 	  </example>
 	  An alternative way of doing this is to create the
-	  <file>shlibs</file> file in the control area directly from
-	  <file>debian/rules</file> without using a <file>debian/shlibs</file>
-	  file at all,<footnote>
+	  <file>shlibs</file> file in the control information file area
+	  directly from <file>debian/rules</file> without using
+	  a <file>debian/shlibs</file> file at all,<footnote>
 	    This is what <prgn>dh_makeshlibs</prgn> in
 	    the <package>debhelper</package> suite does. If your package
 	    also has a udeb that provides a shared
@@ -8458,8 +8485,7 @@ http://localhost/doc/<var>package</var>/<var>filename</var>
 	  this so programs should not fail if <prgn>newaliases</prgn>
 	  cannot be found.  Note that because of this, all MTA
 	  packages must have <tt>Provides</tt>, <tt>Conflicts</tt> and
-	  <tt>Replaces: mail-transport-agent</tt> control file
-	  fields.
+	  <tt>Replaces: mail-transport-agent</tt> control fields.
 	</p>
 
 	<p>
@@ -8568,8 +8594,9 @@ name ["<var>syshostname</var>"]:
 	  <p>
 	    Packages that provide an X server that, directly or
 	    indirectly, communicates with real input and display
-	    hardware should declare in their control data that they
-	    provide the virtual package <tt>xserver</tt>.<footnote>
+	    hardware should declare in their <tt>Provides</tt> control
+	    field that they provide the virtual
+	    package <tt>xserver</tt>.<footnote>
 		This implements current practice, and provides an
 		actual policy for usage of the <tt>xserver</tt>
 		virtual package which appears in the virtual packages
@@ -8587,10 +8614,10 @@ name ["<var>syshostname</var>"]:
 
 	  <p>
 	    Packages that provide a terminal emulator for the X Window
-	    System which meet the criteria listed below should declare
-	    in their control data that they provide the virtual
-	    package <tt>x-terminal-emulator</tt>.  They should also
-	    register themselves as an alternative for
+	    System which meet the criteria listed below should declare in
+	    their <tt>Provides</tt> control field that they provide the
+	    virtual package <tt>x-terminal-emulator</tt>.  They should
+	    also register themselves as an alternative for
 	    <file>/usr/bin/x-terminal-emulator</file>, with a priority of
 	    20.
 	  </p>
@@ -8633,9 +8660,9 @@ name ["<var>syshostname</var>"]:
 
 	  <p>
 	    Packages that provide a window manager should declare in
-	    their control data that they provide the virtual package
-	    <tt>x-window-manager</tt>.  They should also register
-	    themselves as an alternative for
+	    their <tt>Provides</tt> control field that they provide the
+	    virtual package <tt>x-window-manager</tt>.  They should also
+	    register themselves as an alternative for
 	    <file>/usr/bin/x-window-manager</file>, with a priority
 	    calculated as follows:
 	    <list compact="compact">
@@ -8808,8 +8835,8 @@ name ["<var>syshostname</var>"]:
 
 	      <item>
 		  Font packages must declare a dependency on
-		  <tt>xfonts-utils</tt> in their control
-		  data.
+		  <tt>xfonts-utils</tt> in their <tt>Depends</tt>
+		  or <tt>Pre-Depends</tt> control field.
 	      </item>
 
 	      <item>
@@ -9677,13 +9704,13 @@ END-INFO-DIR-ENTRY
 
 	<p>
 	  It is possible to put other files in the package control
-	  area, but this is not generally a good idea (though they
-	  will largely be ignored).
+	  information file area, but this is not generally a good idea
+	  (though they will largely be ignored).
 	</p>
 
 	<p>
-	  Here is a brief list of the control info files supported by
-	  <prgn>dpkg</prgn> and a summary of what they're used for.
+	  Here is a brief list of the control information files supported
+	  by <prgn>dpkg</prgn> and a summary of what they're used for.
 	</p>
 
 	<p>
@@ -10554,7 +10581,7 @@ END-INFO-DIR-ENTRY
 	      <tag><tt>Package_Revision</tt></tag>
 	      <item>
 		  The Debian revision part of the package version was
-		  at one point in a separate control file field.  This
+		  at one point in a separate control field.  This
 		  field went through several names.
 	      </item>
 
@@ -10611,7 +10638,7 @@ END-INFO-DIR-ENTRY
 	</heading>
 
 	<p>
-	  A package may contain a control area file called
+	  A package may contain a control information file called
 	  <tt>conffiles</tt>.  This file should be a list of filenames
 	  of configuration files needing automatic handling, separated
 	  by newlines.  The filenames should be absolute pathnames,
