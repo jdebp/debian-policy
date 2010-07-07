@@ -7944,11 +7944,10 @@ ln -fs ../sbin/sendmail debian/tmp/usr/bin/runq
 }
 	  </example>
 	  This rotates all files under <file>/var/log/foo</file>, saves 12
-	  compressed generations, and forces the daemon to reload its
-	  configuration information after the log rotation.  It skips this
-	  log rotation (via <tt>missingok</tt>) if no such log file is
-	  present, which avoids errors if the package is removed but not
-	  purged.
+	  compressed generations, and tells the daemon to reopen its log
+	  files after the log rotation.  It skips this log rotation
+	  (via <tt>missingok</tt>) if no such log file is present, which
+	  avoids errors if the package is removed but not purged.
 	</p>
 
 	<p>
