@@ -45,6 +45,11 @@ Not yet released.
   to <prgn>dpkg-divert</prgn> when creating or removing diversions and
   must not use <tt>--local</tt>.
   </item>
+<tag>7.1</tag>
+  <item>Architecture restrictions and wildcards are also allowed in binary
+  package relationships provided that the binary package is not
+  architecture-independent.
+  </item>
 <tag>8.6.1, 8.6.2, 8.6.5</tag>
   <item>Packages should normally not include a <file>shlibs.local</file>
   file since we now have complete <file>shlibs</file> coverage.
