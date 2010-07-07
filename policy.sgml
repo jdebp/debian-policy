@@ -890,8 +890,8 @@
 	<heading>The maintainer of a package</heading>
 
 	<p>
-	  Every package must have a Debian maintainer.  The maintainer may
-	  be one person or a group of people reachable from a common email
+	  Every package must have a maintainer.  The maintainer may be one
+	  person or a group of people reachable from a common email
 	  address, such as a mailing list.  The maintainer is responsible
 	  for maintaining the Debian packaging files, evaluating and
 	  responding appropriately to reported bugs, uploading new
