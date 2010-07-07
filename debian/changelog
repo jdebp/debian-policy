@@ -26,6 +26,11 @@ debian-policy (3.9.1.0) UNRELEASED; urgency=low
     Seconded: Julien Cristau <jcristau@debian.org>
     Seconded: Raphaël Hertzog <hertzog@debian.org>
     Closes: #509932
+  * Policy: Architecture wildcards also allowed in binary relationships
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Guillem Jover <guillem@debian.org>
+    Seconded: Raphaël Hertzog <hertzog@debian.org>
+    Closes: #400322
   * Set the version of the Perl Policy to match the version of the Policy
     package.
   * Explain the Perl module package naming policy more explicitly and
