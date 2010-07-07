@@ -7952,10 +7952,11 @@ ln -fs ../sbin/sendmail debian/tmp/usr/bin/runq
 	</p>
 
 	<p>
-	  Log files should be removed when the package is purged (but not
-	  when it is only removed).  This should be done by
-	  the <prgn>postrm</prgn> script when it is called with the
-	  argument <tt>purge</tt> (see <ref id="removedetails">).
+	  Log files should be removed when the package is
+	  purged (but not when it is only removed).  This should be
+	  done by the <prgn>postrm</prgn> script when it is called
+	  with the argument <tt>purge</tt> (see <ref
+	  id="removedetails">).
 	</p>
       </sect>
 
