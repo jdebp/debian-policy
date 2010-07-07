@@ -4373,21 +4373,24 @@ Depends: libc6 (>= 2.2.1), exim | mail-transport-agent
 	</p>
 
         <p>
-          All fields that specify build-time relationships
+	  Relationships may be restricted to a certain set of
+	  architectures.  This is indicated in brackets after each
+	  individual package name and the optional version specification.
+	  The brackets enclose a list of Debian architecture names
+	  separated by whitespace.  Exclamation marks may be prepended to
+	  each of the names.  (It is not permitted for some names to be
+	  prepended with exclamation marks while others aren't.)
+	</p>
+
+	<p>
+	  For build relationship fields
 	  (<tt>Build-Depends</tt>, <tt>Build-Depends-Indep</tt>,
-	  <tt>Build-Conflicts</tt> and <tt>Build-Conflicts-Indep</tt>)
-	  may be restricted to a certain set of architectures.  This
-	  is indicated in brackets after each individual package name and
-	  the optional version specification.  The brackets enclose a
-	  list of Debian architecture names separated by whitespace.
-	  Exclamation marks may be prepended to each of the names.
-	  (It is not permitted for some names to be prepended with
-	  exclamation marks while others aren't.) If the current Debian
-	  host architecture is not in this list and there are no
-	  exclamation marks in the list, or it is in the list with a
-	  prepended exclamation mark, the package name and the
-	  associated version specification are ignored completely for
-	  the purposes of defining the relationships.
+	  <tt>Build-Conflicts</tt> and <tt>Build-Conflicts-Indep</tt>), if
+	  the current Debian host architecture is not in this list and
+	  there are no exclamation marks in the list, or it is in the list
+	  with a prepended exclamation mark, the package name and the
+	  associated version specification are ignored completely for the
+	  purposes of defining the relationships.
 	</p>
 
 	<p>
@@ -4404,6 +4407,29 @@ Build-Depends: kernel-headers-2.2.10 [!hurd-i386],
 	</p>
 
 	<p>
+	  For binary relationship fields, the architecture restriction
+	  syntax is only supported in the source package control
+	  file <file>debian/control</file>.  When the corresponding binary
+	  package control file is generated, the relationship will either
+	  be omitted or included without the architecture restriction
+	  based on the architecture of the binary package.  This means
+	  that architecture restrictions must not be used in binary
+	  relationship fields for architecture-independent packages
+	  (<tt>Architecture: all</tt>).
+	</p>
+
+	<p>
+	  For example:
+	  <example compact="compact">
+Depends: foo [i386], bar [amd64]
+	  </example>
+	  becomes <tt>Depends: foo</tt> when the package is built on
+	  the <tt>i386</tt> architecture, <tt>Depends: bar</tt> when the
+	  package is built on the <tt>amd64</tt> architecture, and omitted
+	  entirely in binary packages built on all other architectures.
+	</p>
+
+	<p>
 	  If the architecture-restricted dependency is part of a set of
 	  alternatives using <tt>|</tt>, that alternative is ignored
 	  completely on architectures that do not match the restriction.
@@ -4417,11 +4443,11 @@ Build-Depends: foo [!i386] | bar [!amd64]
 	</p>
 
         <p>
-	  All fields that specify build-time relationships may also be
-	  restricted to a certain set of architectures using architecture
-	  wildcards.  The syntax for declaring such restrictions is the
-	  same as declaring restrictions using a certain set of
-	  architectures without architecture wildcards.  For example:
+	  Relationships may also be restricted to a certain set of
+	  architectures using architecture wildcards.  The syntax for
+	  declaring such restrictions is the same as declaring
+	  restrictions using a certain set of architectures without
+	  architecture wildcards.  For example:
           <example compact="compact">
 Build-Depends: foo [linux-any], bar [any-i386], baz [!linux-any]
           </example>
