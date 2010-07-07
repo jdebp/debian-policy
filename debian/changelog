@@ -31,6 +31,11 @@ debian-policy (3.9.1.0) UNRELEASED; urgency=low
     Seconded: Guillem Jover <guillem@debian.org>
     Seconded: Raphaël Hertzog <hertzog@debian.org>
     Closes: #400322
+  * Policy: Say Conflicts should not be used unless necessary
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Guillem Jover <guillem@debian.org>
+    Seconded: Jakub Wilk <jwilk@debian.org>
+    Closes: #402721
   * Set the version of the Perl Policy to match the version of the Policy
     package.
   * Explain the Perl module package naming policy more explicitly and
