@@ -7930,7 +7930,7 @@ ln -fs ../sbin/sendmail debian/tmp/usr/bin/runq
     compress
     missingok
     postrotate
-        invoke-rc.d foo force-reload
+        [ -f /var/run/foo.pid ] && kill -s HUP `cat /var/run/foo.pid`
     endscript
 }
 	  </example>
