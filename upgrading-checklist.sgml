@@ -50,6 +50,11 @@ Not yet released.
   package relationships provided that the binary package is not
   architecture-independent.
   </item>
+<tag>7.4</tag>
+  <item><tt>Conflicts</tt> and <tt>Breaks</tt> should only be used when
+  there are file conflicts or one package breaks the other, not just
+  because two packages provide similar functionality but don't interfere.
+  </item>
 <tag>8.6.1, 8.6.2, 8.6.5</tag>
   <item>Packages should normally not include a <file>shlibs.local</file>
   file since we now have complete <file>shlibs</file> coverage.
