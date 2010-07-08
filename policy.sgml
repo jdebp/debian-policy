@@ -7939,7 +7939,7 @@ ln -fs ../sbin/sendmail debian/tmp/usr/bin/runq
     compress
     missingok
     postrotate
-        [ -f /var/run/foo.pid ] && kill -s HUP `cat /var/run/foo.pid`
+        start-stop-daemon -K -p /var/run/foo.pid -s HUP -x /usr/sbin/foo -q
     endscript
 }
 	  </example>
