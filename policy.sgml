@@ -895,11 +895,12 @@
 	  address, such as a mailing list.  The maintainer is responsible
 	  for maintaining the Debian packaging files, evaluating and
 	  responding appropriately to reported bugs, uploading new
-	  versions of the package, ensuring that the package is placed in
-	  the appropriate archive area and included in Debian releases as
-	  appropriate for the stability and utility of the package, and
-	  requesting removal of the package from the Debian distribution
-	  if it is no longer useful or maintainable.
+	  versions of the package (either directly or through a sponsor),
+	  ensuring that the package is placed in the appropriate archive
+	  area and included in Debian releases as appropriate for the
+	  stability and utility of the package, and requesting removal of
+	  the package from the Debian distribution if it is no longer
+	  useful or maintainable.
 	</p>
 
 	<p>
