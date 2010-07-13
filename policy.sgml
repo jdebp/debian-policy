@@ -5116,44 +5116,39 @@ Replaces: mail-transport-agent
       </p>
 
       <p>
-	A shared library must be uniquely identified by an <tt>SONAME</tt>
-	attribute stored in its dynamic section.  When a binary is linked
-	against a shared library, the <tt>SONAME</tt> of the shared
-	library is recorded in the binary's <tt>NEEDED</tt> section so
-	that the dynamic linker knows that library must be loaded at
-	runtime.  The full name of the shared library (which usually
-	contains additional version information not needed in
-	the <tt>SONAME</tt>) is therefore not referenced directly.
-	Instead, the shared library is loaded by its <tt>SONAME</tt>,
-	which exists on the file system as a symlink pointing to the full
-	name of the shared library.<footnote>
-	  Some unusual libraries have an <tt>SONAME</tt> which matches the
-	  full library name, but normally there is a minor revision that
-	  changes even though the ABI has not changed in a
-	  backward-incompatible way.  The <tt>SONAME</tt> only changes
-	  when binaries linked with the earlier version of the shared
-	  library may no longer work.  See <ref id="sharedlibs-runtime">
-	  for more information.
-	</footnote>
-	This symlink is updated and its location cached
-	by <prgn>ldconfig</prgn>, but must also be created by the
+	A shared library is identified by the <tt>SONAME</tt> attribute
+	stored in its dynamic section.  When a binary is linked against a
+	shared library, the <tt>SONAME</tt> of the shared library is
+	recorded in the binary's <tt>NEEDED</tt> section so that the
+	dynamic linker knows that library must be loaded at runtime.  The
+	shared library file's full name (which usually contains additional
+	version information not needed in the <tt>SONAME</tt>) is
+	therefore normally not referenced directly.  Instead, the shared
+	library is loaded by its <tt>SONAME</tt>, which exists on the file
+	system as a symlink pointing to the full name of the shared
+	library.  This symlink must be provided by the
 	package.  <ref id="sharedlibs-runtime"> describes how to do this.
+	<footnote>
+	  This is a convention of shared library versioning, but not a
+	  requirement.  Some libraries use the <tt>SONAME</tt> as the full
+	  library file name instead and therefore do not need a symlink.
+	  Most, however, encode additional information about
+	  backwards-compatible revisions as a minor version number in the
+	  file name.  The <tt>SONAME</tt> itself only changes when
+	  binaries linked with the earlier version of the shared library
+	  may no longer work, but the filename may change with each
+	  release of the library.  See <ref id="sharedlibs-runtime"> for
+	  more information.
+	</footnote>
       </p>
 
       <p>
 	When linking a binary or another shared library against a shared
 	library, the <tt>SONAME</tt> for that shared library is not yet
-	known.  Instead, the shared library is found by library name
-	with <tt>.so</tt> appended.  This file exists on the file system
-	as a symlink pointing to the shared library.<footnote>
-	  Some shared libraries have no version information in
-	  their <tt>SONAME</tt> and therefore need no symlink since the
-	  file found when linking is the same as the library name.  This
-	  is highly unusual, however, and means the shared library cannot
-	  be versioned.  It is used only for very special situations where
-	  the shared library provides a tiny set of symbols and must not
-	  be versioned for some reason.
-	</footnote>
+	known.  Instead, the shared library is found by looking for a file
+	matching the library name with <tt>.so</tt> appended.  This file
+	exists on the file system as a symlink pointing to the shared
+	library.
       </p>
 
       <p>
@@ -5235,7 +5230,8 @@ Replaces: mail-transport-agent
 	  dependencies on the newer shared library by binaries that use
 	  the new interfaces is handled via
 	  the <qref id="sharedlibs-shlibdeps"><tt>shilbs</tt>
-	  system</qref>.
+	  system</qref> or via symbols files (see
+	  <manref name="deb-symbols" section="5">).
 	</p>
 
       <p>
