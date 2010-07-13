@@ -937,14 +937,13 @@
 
 	<p>
 	  If the maintainer of a package no longer has time or desire to
-	  maintain a package, it is orphaned.  The maintainer then becomes
-	  <tt>Debian QA Group &lt;packages@qa.debian.org&gt;</tt>.  These
-	  packages are considered maintained by the Debian project as a
-	  whole until someone else volunteers to take over maintenance.
-	  <footnote>
-	    The detailed procedure for doing this gracefully can be found
-	    in the Debian Developer's Reference, see <ref id="related">.
-	  </footnote>
+	  maintain a package, it will be orphaned according to the
+	  procedure described in the Debian Developer's Reference
+	  (see <ref id="related">).  The maintainer then
+	  becomes <tt>Debian QA Group &lt;packages@qa.debian.org&gt;</tt>.
+	  These packages are considered maintained by the Debian project
+	  as a whole until someone else volunteers to take over
+	  maintenance.
 	</p>
       </sect>
 
@@ -2733,7 +2732,7 @@ Package: libc6
 
 	  <p>
 	    List of the names and email addresses of co-maintainers of the
-	    package, if any. If the package has other maintainers beside
+	    package, if any. If the package has other maintainers besides
 	    the one named in the <qref id="f-Maintainer">Maintainer
 	    field</qref>, their names and email addresses should be listed
 	    here. The format of each entry is the same as that of the
