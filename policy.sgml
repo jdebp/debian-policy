@@ -4814,6 +4814,15 @@ Build-Depends: foo [linux-any], bar [any-i386], baz [!linux-any]
 	</p>
 
 	<p>
+	  Neither <tt>Breaks</tt> nor <tt>Conflicts</tt> should be used
+	  unless two packages cannot be installed at the same time or
+	  installing them both causes one of them to be broken or
+	  unusable.  Having similar functionality or performing the same
+	  tasks as another package is not sufficient reason to
+	  declare <tt>Breaks</tt> or <tt>Conflicts</tt> with that package.
+	</p>
+
+	<p>
 	  A <tt>Conflicts</tt> entry may have an "earlier than" version
 	  clause if the reason for the conflict is corrected in a later
 	  version of one of the packages.  However, normally the presence
