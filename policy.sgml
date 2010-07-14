@@ -5229,7 +5229,7 @@ Replaces: mail-transport-agent
 	  linked against the old shared library.  Correct versioning of
 	  dependencies on the newer shared library by binaries that use
 	  the new interfaces is handled via
-	  the <qref id="sharedlibs-shlibdeps"><tt>shilbs</tt>
+	  the <qref id="sharedlibs-shlibdeps"><tt>shlibs</tt>
 	  system</qref> or via symbols files (see
 	  <manref name="deb-symbols" section="5">).
 	</p>
