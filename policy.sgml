@@ -7465,7 +7465,8 @@ fname () {
 	      -<var>signal</var></tt>, where <var>signal</var> is either
 	      the name of a signal or one of the numeric signals listed in
 	      the XSI extension (0, 1, 2, 3, 6, 9, 14, and 15), must be
-	      supported.
+	      supported if <prgn>kill</prgn> is implemented as a shell
+	      built-in.
 	    </item>
 	    <item>The XSI extension to <prgn>trap</prgn> allowing numeric
 	      signals must be supported.  In addition to the signal
