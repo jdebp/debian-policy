@@ -7268,10 +7268,10 @@ INSTALL = install -s # (or use strip on the files in debian/tmp)
           for C files) will need to be compiled twice, for the normal
           case. 
         </p>
+
 	<p>
-	  You must specify the gcc option <tt>-D_REENTRANT</tt>
-	  when building a library (either static or shared) to make
-	  the library compatible with LinuxThreads.
+	  Libraries should be built with threading support and to be
+	  thread-safe if the library supports this.
 	</p>
 
         <p>
