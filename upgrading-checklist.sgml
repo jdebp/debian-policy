@@ -72,6 +72,12 @@ Not yet released.
   that depend on that library have removed or emptied
   their <file>.la</file> files.
   </item>
+<tag>10.2</tag>
+  <item>Libraries no longer need to be built with <tt>-D_REENTRANT</tt>,
+  which was an obsolete LinuxThreads requirement.  Instead, say explicitly
+  that libraries should be built with threading support and to be
+  thread-safe if the library supports this.
+  </item>
 <tag>12.5</tag>
   <item>The GPL version 1 is now included in common-licenses and should be
   referenced from there instead of included in the <file>copyright</file>
