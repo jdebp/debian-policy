@@ -36,6 +36,11 @@ debian-policy (3.9.1.0) UNRELEASED; urgency=low
     Seconded: Guillem Jover <guillem@debian.org>
     Seconded: Jakub Wilk <jwilk@debian.org>
     Closes: #402721
+  * Policy: Remove obsolete _REENTRANT, require thread-safe libraries
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Kurt Roeckx <kurt@roeckx.be>
+    Seconded: Giacomo A. Catenazzi <cate@debian.org>
+    Closes: #475101
   * Set the version of the Perl Policy to match the version of the Policy
     package.
   * Explain the Perl module package naming policy more explicitly and
