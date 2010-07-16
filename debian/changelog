@@ -41,6 +41,11 @@ debian-policy (3.9.1.0) UNRELEASED; urgency=low
     Seconded: Kurt Roeckx <kurt@roeckx.be>
     Seconded: Giacomo A. Catenazzi <cate@debian.org>
     Closes: #475101
+  * Policy: Allow subdirectories of /usr/lib/cgi-bin to be used
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Andrew McMillan <andrew@morphoss.com>
+    Seconded: Charles Plessy <plessy@debian.org>
+    Closes: #104373
   * Set the version of the Perl Policy to match the version of the Policy
     package.
   * Explain the Perl module package naming policy more explicitly and
