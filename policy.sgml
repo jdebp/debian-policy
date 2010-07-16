@@ -8343,11 +8343,13 @@ done
 		<example compact="compact">
 /usr/lib/cgi-bin/<var>cgi-bin-name</var>
 		</example>
-		and should be referred to as
+		or a subdirectory of that directory, and should be
+		referred to as
 		<example compact="compact">
 http://localhost/cgi-bin/<var>cgi-bin-name</var>
 		</example>
-
+		(possibly with a subdirectory name
+		before <var>cgi-bin-name</var>).
 	    </item>
 
 	    <item>
