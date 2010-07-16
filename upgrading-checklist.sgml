@@ -78,6 +78,11 @@ Not yet released.
   that libraries should be built with threading support and to be
   thread-safe if the library supports this.
   </item>
+<tag>11.5</tag>
+  <item>Cgi-bin executable files may be installed in subdirectories
+  of <file>/usr/lib/cgi-bin</file> and web servers should serve out
+  executables in those subdirectories.
+  </item>
 <tag>12.5</tag>
   <item>The GPL version 1 is now included in common-licenses and should be
   referenced from there instead of included in the <file>copyright</file>
