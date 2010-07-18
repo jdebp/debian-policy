@@ -46,6 +46,12 @@ debian-policy (3.9.1.0) UNRELEASED; urgency=low
     Seconded: Andrew McMillan <andrew@morphoss.com>
     Seconded: Charles Plessy <plessy@debian.org>
     Closes: #104373
+  * Policy: More specific requirements around date-based versions
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Julien Cristau <jcristau@debian.org>
+    Seconded: Cyril Brulebois <kibi@debian.org>
+    Seconded: Steve Langasek <vorlon@debian.org>
+    Closes: #186102
   * Set the version of the Perl Policy to match the version of the Policy
     package.
   * Explain the Perl module package naming policy more explicitly and
