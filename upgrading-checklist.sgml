@@ -40,6 +40,11 @@ picking your way through this list.
 Not yet released.
 
 </p><p><taglist>
+<tag>3.2.1</tag>
+  <item>Date-based version components should be given as the four-digit
+  year, two-digit month, and then two-digit day, but may have embedded
+  punctuation.
+  </item>
 <tag>3.9</tag>
   <item>Maintainer scripts must pass <tt>--package</tt>
   to <prgn>dpkg-divert</prgn> when creating or removing diversions and
