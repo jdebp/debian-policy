@@ -46,6 +46,12 @@ debian-policy (3.9.1.0) UNRELEASED; urgency=low
     Seconded: Andrew McMillan <andrew@morphoss.com>
     Seconded: Charles Plessy <plessy@debian.org>
     Closes: #104373
+  * Policy: More specific requirements around date-based versions
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Julien Cristau <jcristau@debian.org>
+    Seconded: Cyril Brulebois <kibi@debian.org>
+    Seconded: Steve Langasek <vorlon@debian.org>
+    Closes: #186102
   * Set the version of the Perl Policy to match the version of the Policy
     package.
   * Explain the Perl module package naming policy more explicitly and
@@ -54,6 +60,7 @@ debian-policy (3.9.1.0) UNRELEASED; urgency=low
     switch to objdump as if it were a new innovation and to explicitly
     mention the NEEDED attribute as the source of dependency information.
   * Fix typo in upgrading-checklist.  (Closes: #588750)
+  * Fix formatting error in footnote to 7.7.  (Closes: #589362)
 
  -- Russ Allbery <rra@debian.org>  Mon, 28 Jun 2010 09:34:54 -0700
 
