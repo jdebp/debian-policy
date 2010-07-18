@@ -878,36 +878,30 @@
 
 	  <p>
 	    In general, Debian packages should use the same version
-	    numbers as the upstream sources.
-	  </p>
-
-	  <p>
-	    However, in some cases where the upstream version number is
-	    based on a date (e.g., a development "snapshot" release) the
-	    package management system cannot handle these version
-	    numbers without epochs. For example, dpkg will consider
-	    "96May01" to be greater than "96Dec24".
+	    numbers as the upstream sources.  However, upstream version
+	    numbers based on some date formats (sometimes used for
+	    development or "snapshot" releases) will not be ordered
+	    correctly by the package management software.  For
+	    example, <prng>dpkg</prng> will consider "96May01" to be
+	    greater than "96Dec24".
 	  </p>
 
 	  <p>
 	    To prevent having to use epochs for every new upstream
-	    version, the date based portion of the version number
-	    should be changed to the following format in such cases:
-	    "19960501", "19961224". It is up to the maintainer whether
-	    they want to bother the upstream maintainer to change
-	    the version numbers upstream, too.
+	    version, the date-based portion of any upstream version number
+	    should be given in a way that sorts correctly: four-digit year
+	    first, followed by a two-digit numeric month, followed by a
+	    two-digit numeric date, possibly with punctuation between the
+	    components.
 	  </p>
 
 	  <p>
-	    Note that other version formats based on dates which are
-	    parsed correctly by the package management system should
-	    <em>not</em> be changed.
-	  </p>
-
-	  <p>
-	    Native Debian packages (i.e., packages which have been
-	    written especially for Debian) whose version numbers include
-	    dates should always use the "YYYYMMDD" format.
+	    Native Debian packages (i.e., packages which have been written
+	    especially for Debian) whose version numbers include dates
+	    should also follow these rules.  If punctuation is desired
+	    between the date components, remember that hyphen (<tt>-</tt>)
+	    cannot be used in native package versions.  Period
+	    (<tt>.</tt>) is normally a good choice.
 	  </p>
 	</sect1>
 
@@ -5081,7 +5075,7 @@ Replaces: mail-transport-agent
 	    <p>
 	      There is no Build-Depends-Arch; this role is essentially
 	      met with Build-Depends.  Anyone building the
-	      <tt>build-indep</tt> and binary-indep<tt></tt> targets is
+	      <tt>build-indep</tt> and <tt>binary-indep</tt> targets is
 	      assumed to be building the whole package, and therefore
 	      installation of all build dependencies is required.
 	    </p>
