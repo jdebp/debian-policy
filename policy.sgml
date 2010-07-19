@@ -958,7 +958,7 @@
 
 	<p>
 	  If the maintainer of a package no longer has time or desire to
-	  maintain a package, it will be orphaned according to the
+	  maintain a package, it should be orphaned according to the
 	  procedure described in the Debian Developer's Reference
 	  (see <ref id="related">).  The maintainer then
 	  becomes <tt>Debian QA Group &lt;packages@qa.debian.org&gt;</tt>.
