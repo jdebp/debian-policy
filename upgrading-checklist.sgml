@@ -60,6 +60,12 @@ Not yet released.
   there are file conflicts or one package breaks the other, not just
   because two packages provide similar functionality but don't interfere.
   </item>
+<tag>8.1</tag>
+  <item>The SONAME of a library should change whenever the ABI of the
+  library changes in a way that isn't backward-compatible.  It should not
+  change if the library ABI changes are backward-compatible.  Discourage
+  bundling shared libraries together in one package.
+  </item>
 <tag>8.6.1, 8.6.2, 8.6.5</tag>
   <item>Packages should normally not include a <file>shlibs.local</file>
   file since we now have complete <file>shlibs</file> coverage.

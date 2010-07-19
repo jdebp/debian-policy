@@ -58,6 +58,11 @@ debian-policy (3.9.1.0) UNRELEASED; urgency=low
     Seconded: Jakub Wilk <jwilk@debian.org>
     Seconded: Emilio Pozuelo Monfort <pochu@debian.org>
     Closes: #184064
+  * Policy: More explicit requirements around library SONAMEs
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Raphaël Hertzog <hertzog@debian.org>
+    Seconded: Emilio Pozuelo Monfort <pochu27@gmail.com>
+    Closes: #509933
   * Set the version of the Perl Policy to match the version of the Policy
     package.
   * Explain the Perl module package naming policy more explicitly and
