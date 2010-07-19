@@ -853,7 +853,7 @@
 	    numbers based on some date formats (sometimes used for
 	    development or "snapshot" releases) will not be ordered
 	    correctly by the package management software.  For
-	    example, <prng>dpkg</prng> will consider "96May01" to be
+	    example, <prgn>dpkg</prgn> will consider "96May01" to be
 	    greater than "96Dec24".
 	  </p>
 
@@ -8307,10 +8307,14 @@ done
 
 	<p>
 	  These two files are managed through the <prgn>dpkg</prgn>
-	  "alternatives" mechanism.  Thus every package providing an
-	  editor or pager must call the
-	  <prgn>update-alternatives</prgn> script to register these
-	  programs.
+	  "alternatives" mechanism.  Every package providing an editor or
+	  pager must call the <prgn>update-alternatives</prgn> script to
+	  register as an alternative for <file>/usr/bin/editor</file>
+	  or <file>/usr/bin/pager</file> as appropriate.  The alternative
+	  should have a slave alternative
+	  for <file>/usr/share/man/man1/editor.1.gz</file>
+	  or <file>/usr/share/man/man1/pager.1.gz</file> pointing to the
+	  corresponding manual page.
 	</p>
 
 	<p>
@@ -8655,7 +8659,9 @@ name ["<var>syshostname</var>"]:
 	    package <tt>x-terminal-emulator</tt>.  They should also
 	    register themselves as an alternative for
 	    <file>/usr/bin/x-terminal-emulator</file>, with a priority of
-	    20.
+	    20.  That alternative should have a slave alternative
+	    for <file>/usr/share/man/man1/x-terminal-emulator.1.gz</file>
+	    pointing to the corresponding manual page.
 	  </p>
 
 	  <p>
@@ -8732,6 +8738,9 @@ name ["<var>syshostname</var>"]:
 		  configuration, add 10 points; otherwise add none.
 	      </item>
 	    </list>
+	    That alternative should have a slave alternative
+	    for <file>/usr/share/man/man1/x-window-manager.1.gz</file>
+	    pointing to the corresponding manual page.
 	  </p>
 	</sect1>
 
