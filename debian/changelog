@@ -65,6 +65,11 @@ debian-policy (3.9.1.0) UNRELEASED; urgency=low
   * Revise the footnote discussing shlibs creation to not talk about the
     switch to objdump as if it were a new innovation and to explicitly
     mention the NEEDED attribute as the source of dependency information.
+  * Introduce "control information file" to refer to the contents of the
+    Debian package control.tar.gz, following the dpkg documentation.  Use
+    that terminology consistently, and change possibly confusing
+    references to fields in control files to use "control field"
+    uniformly.
   * Fix typo in upgrading-checklist.  (Closes: #588750)
   * Fix formatting error in footnote to 7.7.  (Closes: #589362)
 
