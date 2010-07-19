@@ -83,6 +83,12 @@ Not yet released.
   that libraries should be built with threading support and to be
   thread-safe if the library supports this.
   </item>
+<tag>11.4, 11.8.3, 11.8.4</tag>
+  <item>Packages providing alternatives for <prgn>editor</prgn>,
+  <prgn>pager</prgn>, <prgn>x-terminal-emulator</prgn>, or
+  <prgn>x-window-manager</prgn> should also provide a slave alternative
+  for the corresponding manual page.
+  </item>
 <tag>11.5</tag>
   <item>Cgi-bin executable files may be installed in subdirectories
   of <file>/usr/lib/cgi-bin</file> and web servers should serve out
