@@ -2218,16 +2218,16 @@ endif
 	<heading>Variable substitutions: <file>debian/substvars</file></heading>
 
 	<p>
-	  When <prgn>dpkg-gencontrol</prgn>,
-	  <prgn>dpkg-genchanges</prgn> and <prgn>dpkg-source</prgn>
-	  generate control files, they perform variable substitutions
-	  on their output just before writing it.  Variable
+	  When <prgn>dpkg-gencontrol</prgn>
+	  generates <qref id="binarycontrolfiles">binary package control
+	  files</qref> (<file>DEBIAN/control</file>), it performs variable
+	  substitutions on its output just before writing it.  Variable
 	  substitutions have the form <tt>${<var>variable</var>}</tt>.
 	  The optional file <file>debian/substvars</file> contains
 	  variable substitutions to be used; variables can also be set
 	  directly from <file>debian/rules</file> using the <tt>-V</tt>
-	  option to the source packaging commands, and certain
-	  predefined variables are also available.
+	  option to the source packaging commands, and certain predefined
+	  variables are also available.
 	</p>
 
 	<p>
