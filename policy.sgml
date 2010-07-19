@@ -8014,6 +8014,12 @@ endscript
           </footnote>
 	</p>
 
+	<p>
+	  Control information files should be owned by <tt>root:root</tt>
+	  and either mode 644 (for most files) or mode 755 (for
+	  executables such as <qref id="maintscripts">maintainer
+	  scripts</qref>).
+	</p>
 
 	<p>
 	  Setuid and setgid executables should be mode 4755 or 2755
