@@ -853,7 +853,7 @@
 	    numbers based on some date formats (sometimes used for
 	    development or "snapshot" releases) will not be ordered
 	    correctly by the package management software.  For
-	    example, <prng>dpkg</prng> will consider "96May01" to be
+	    example, <prgn>dpkg</prgn> will consider "96May01" to be
 	    greater than "96Dec24".
 	  </p>
 
