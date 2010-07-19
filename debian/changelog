@@ -63,6 +63,11 @@ debian-policy (3.9.1.0) UNRELEASED; urgency=low
     Seconded: Raphaël Hertzog <hertzog@debian.org>
     Seconded: Emilio Pozuelo Monfort <pochu27@gmail.com>
     Closes: #509933
+  * Policy: Only dpkg-gencontrol supports variable substitutions
+    Wording: Charles Plessy <plessy@debian.org>
+    Seconded: Emilio Pozuelo Monfort <pochu@debian.org>
+    Seconded: Guillem Jover <guillem@debian.org>
+    Closes: #589609
   * Set the version of the Perl Policy to match the version of the Policy
     package.
   * Explain the Perl module package naming policy more explicitly and
