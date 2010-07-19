@@ -50,6 +50,11 @@ Not yet released.
   to <prgn>dpkg-divert</prgn> when creating or removing diversions and
   must not use <tt>--local</tt>.
   </item>
+<tag>4.10</tag>
+  <item>Only <prgn>dpkg-gencontrol</prgn> supports variable substitution.
+  <prgn>dpkg-genchanges</prgn> (for <file>*.changes</file>)
+  and <prgn>dpkg-source</prgn> (for <file>*.dsc</file>) do not.
+  </item>
 <tag>7.1</tag>
   <item>Architecture restrictions and wildcards are also allowed in binary
   package relationships provided that the binary package is not
