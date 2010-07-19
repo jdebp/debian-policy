@@ -5124,54 +5124,133 @@ Replaces: mail-transport-agent
       </p>
 
       <p>
-	Packages involving shared libraries should be split up into
-	several binary packages. This section mostly deals with how
-	this separation is to be accomplished; rules for files within
-	the shared library packages are in <ref id="libraries"> instead.
+	This section deals only with public shared libraries: shared
+	libraries that are placed in directories searched by the dynamic
+	linker by default or which are intended to be linked against
+	normally and possibly used by other, independent packages.  Shared
+	libraries that are internal to a particular package or that are
+	only loaded as dynamic modules are not covered by this section and
+	are not subject to its requirements.
+      </p>
+
+      <p>
+	A shared library is identified by the <tt>SONAME</tt> attribute
+	stored in its dynamic section.  When a binary is linked against a
+	shared library, the <tt>SONAME</tt> of the shared library is
+	recorded in the binary's <tt>NEEDED</tt> section so that the
+	dynamic linker knows that library must be loaded at runtime.  The
+	shared library file's full name (which usually contains additional
+	version information not needed in the <tt>SONAME</tt>) is
+	therefore normally not referenced directly.  Instead, the shared
+	library is loaded by its <tt>SONAME</tt>, which exists on the file
+	system as a symlink pointing to the full name of the shared
+	library.  This symlink must be provided by the
+	package.  <ref id="sharedlibs-runtime"> describes how to do this.
+	<footnote>
+	  This is a convention of shared library versioning, but not a
+	  requirement.  Some libraries use the <tt>SONAME</tt> as the full
+	  library file name instead and therefore do not need a symlink.
+	  Most, however, encode additional information about
+	  backwards-compatible revisions as a minor version number in the
+	  file name.  The <tt>SONAME</tt> itself only changes when
+	  binaries linked with the earlier version of the shared library
+	  may no longer work, but the filename may change with each
+	  release of the library.  See <ref id="sharedlibs-runtime"> for
+	  more information.
+	</footnote>
+      </p>
+
+      <p>
+	When linking a binary or another shared library against a shared
+	library, the <tt>SONAME</tt> for that shared library is not yet
+	known.  Instead, the shared library is found by looking for a file
+	matching the library name with <tt>.so</tt> appended.  This file
+	exists on the file system as a symlink pointing to the shared
+	library.
+      </p>
+
+      <p>
+	Shared libraries are normally split into several binary packages.
+	The <tt>SONAME</tt> symlink is installed by the runtime shared
+	library package, and the bare <tt>.so</tt> symlink is installed in
+	the development package since it's only used when linking binaries
+	or shared libraries.  However, there are some exceptions for
+	unusual shared libraries or for shared libraries that are also
+	loaded as dynamic modules by other programs.
+      </p>
+
+      <p>
+	This section is primarily concerned with how the separation of
+	shared libraries into multiple packages should be done and how
+	dependencies on and between shared library binary packages are
+	managed in Debian.  <ref id="libraries"> should be read in
+	conjunction with this section and contains additional rules for
+	the files contained in the shared library packages.
       </p>
 
       <sect id="sharedlibs-runtime">
 	<heading>Run-time shared libraries</heading>
 
-      <p>
-	The run-time shared library needs to be placed in a package
-        whose name changes whenever the shared object version
-        changes.<footnote>
-            <p>
-              Since it is common place to install several versions of a
-              package that just provides shared libraries, it is a
-              good idea that the library package should not
-              contain any extraneous non-versioned files, unless they
-              happen to be in versioned directories.</p>
-          </footnote>
-          The most common mechanism is to place it in a package
-        called
-        <package><var>libraryname</var><var>soversion</var></package>,
-        where <file><var>soversion</var></file> is the version number
-        in the soname of the shared library<footnote>
-	      The soname is the shared object name: it's the thing
-	      that has to match exactly between building an executable
-	      and running it for the dynamic linker to be able run the
-	      program.  For example, if the soname of the library is
-	      <file>libfoo.so.6</file>, the library package would be
-	      called <file>libfoo6</file>.
-	  </footnote>.
-	Alternatively, if it would be confusing to directly append
-	<var>soversion</var> to <var>libraryname</var> (e.g. because
-	<var>libraryname</var> itself ends in a number), you may use
-	<package><var>libraryname</var>-<var>soversion</var></package> and
-	<package><var>libraryname</var>-<var>soversion</var>-dev</package>
-	instead.
-      </p>
+	<p>
+	  The run-time shared library must be placed in a package
+	  whose name changes whenever the <tt>SONAME</tt> of the shared
+	  library changes.  This allows several versions of the shared
+	  library to be installed at the same time, allowing installation
+	  of the new version of the shared library without immediately
+	  breaking binaries that depend on the old version.  Normally, the
+	  run-time shared library and its <tt>SONAME</tt> symlink should
+	  be placed in a package named
+	  <package><var>libraryname</var><var>soversion</var></package>,
+	  where <var>soversion</var> is the version number in
+	  the <tt>SONAME</tt> of the shared library.
+	  See <ref id="shlibs"> for detailed information on how to
+	  determine this version.  Alternatively, if it would be confusing
+	  to directly append <var>soversion</var>
+	  to <var>libraryname</var> (if, for example, <var>libraryname</var>
+	  itself ends in a number), you should use
+	  <package><var>libraryname</var>-<var>soversion</var></package>
+	  instead.
+	</p>
 
-      <p>
-	If you have several shared libraries built from the same
-	source tree you may lump them all together into a single
-	shared library package, provided that you change all of
-	their sonames at once (so that you don't get filename
-	clashes if you try to install different versions of the
-	combined shared libraries package).
-      </p>
+	<p>
+	  If you have several shared libraries built from the same source
+	  tree, you may lump them all together into a single shared
+	  library package provided that all of their <tt>SONAME</tt>s will
+	  always change together.  Be aware that this is not normally the
+	  case, and if the <tt>SONAME</tt>s do not change together,
+	  upgrading such a merged shared library package will be
+	  unnecessarily difficult because of file conflicts with the old
+	  version of the package.  When in doubt, always split shared
+	  library packages so that each binary package installs a single
+	  shared library.
+	</p>
+
+	<p>
+	  Every time the shared library ABI changes in a way that may
+	  break binaries linked against older versions of the shared
+	  library, the <tt>SONAME</tt> of the library and the
+	  corresponding name for the binary package containing the runtime
+	  shared library should change.  Normally, this means
+	  the <tt>SONAME</tt> should change any time an interface is
+	  removed from the shared library or the signature of an interface
+	  (the number of parameters or the types of parameters that it
+	  takes, for example) is changed.  This practice is vital to
+	  allowing clean upgrades from older versions of the package and
+	  clean transitions between the old ABI and new ABI without having
+	  to upgrade every affected package simultaneously.
+	</p>
+
+	<p>
+	  The <tt>SONAME</tt> and binary package name need not, and indeed
+	  normally should not, change if new interfaces are added but none
+	  are removed or changed, since this will not break binaries
+	  linked against the old shared library.  Correct versioning of
+	  dependencies on the newer shared library by binaries that use
+	  the new interfaces is handled via
+	  the <qref id="sharedlibs-shlibdeps"><tt>shlibs</tt>
+	  system</qref> or via symbols files (see
+	  <manref name="deb-symbols" section="5">).
+	</p>
 
       <p>
 	The package should install the shared libraries under
@@ -5192,10 +5271,11 @@ Replaces: mail-transport-agent
       </p>
 
       <p>
-	The run-time library package should include the symbolic link that
-	<prgn>ldconfig</prgn> would create for the shared libraries.
-	For example, the <package>libgdbm3</package> package should include
-	a symbolic link from <file>/usr/lib/libgdbm.so.3</file> to
+	The run-time library package should include the symbolic link for
+	the <tt>SONAME</tt> that <prgn>ldconfig</prgn> would create for
+	the shared libraries.  For example,
+	the <package>libgdbm3</package> package should include a symbolic
+	link from <file>/usr/lib/libgdbm.so.3</file> to
 	<file>libgdbm.so.3.0.0</file>.  This is needed so that the dynamic
 	linker (for example <prgn>ld.so</prgn> or
 	<prgn>ld-linux.so.*</prgn>) can find the library between the
