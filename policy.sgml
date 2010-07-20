@@ -3758,111 +3758,166 @@ Checksums-Sha256:
 	</heading>
 
 	<p>
-	  <list compact="compact">
-	    <item>
-	      <var>new-preinst</var> <tt>install</tt>
-	    </item>
-	    <item>
-	      <var>new-preinst</var> <tt>install</tt> <var>old-version</var>
-	    </item>
-	    <item>
-		<var>new-preinst</var> <tt>upgrade</tt> <var>old-version</var>
-	    </item>
-	    <item>
-		<var>old-preinst</var> <tt>abort-upgrade</tt>
-		<var>new-version</var>
-	    </item>
-	  </list>
-
-	<p>
-	  <list compact="compact">
-	    <item>
-		<var>postinst</var> <tt>configure</tt>
-		<var>most-recently-configured-version</var>
-	    </item>
-	    <item>
-		<var>old-postinst</var> <tt>abort-upgrade</tt>
-		<var>new-version</var>
-	    </item>
-	    <item>
-		<var>conflictor's-postinst</var> <tt>abort-remove</tt>
-		<tt>in-favour</tt> <var>package</var>
-		<var>new-version</var>
-	    </item>
-	    <item>
-		<var>postinst</var> <tt>abort-remove</tt>
-	    </item>
-	    <item>
-		<var>deconfigured's-postinst</var>
-		<tt>abort-deconfigure</tt> <tt>in-favour</tt>
-		<var>failed-install-package</var> <var>version</var>
-		[<tt>removing</tt> <var>conflicting-package</var>
-		<var>version</var>]
-	    </item>
-	  </list>
-
-	<p>
-	  <list compact="compact">
-	    <item>
-		<var>prerm</var> <tt>remove</tt>
-	    </item>
-	    <item>
-		<var>old-prerm</var> <tt>upgrade</tt>
-		<var>new-version</var>
-	    </item>
-	    <item>
-		<var>new-prerm</var> <tt>failed-upgrade</tt>
-		<var>old-version</var>
-	    </item>
-	    <item>
-		<var>conflictor's-prerm</var> <tt>remove</tt>
-		<tt>in-favour</tt> <var>package</var>
-		<var>new-version</var>
-	    </item>
-	    <item>
-		<var>deconfigured's-prerm</var> <tt>deconfigure</tt>
-		<tt>in-favour</tt> <var>package-being-installed</var>
-		<var>version</var> [<tt>removing</tt>
-		<var>conflicting-package</var>
-		<var>version</var>]
-	    </item>
-	  </list>
-
-	<p>
-	  <list compact="compact">
-	    <item>
-		<var>postrm</var> <tt>remove</tt>
-	    </item>
-	    <item>
-		<var>postrm</var> <tt>purge</tt>
-	    </item>
-	    <item>
-		<var>old-postrm</var> <tt>upgrade</tt>
-		<var>new-version</var>
-	    </item>
-	    <item>
-		<var>new-postrm</var> <tt>failed-upgrade</tt>
-		<var>old-version</var>
-	    </item>
-	    <item>
-		<var>new-postrm</var> <tt>abort-install</tt>
-	    </item>
-	    <item>
-		<var>new-postrm</var> <tt>abort-install</tt>
-		<var>old-version</var>
-	    </item>
-	    <item>
-		<var>new-postrm</var> <tt>abort-upgrade</tt>
-		<var>old-version</var>
-	    </item>
-	    <item>
-		<var>disappearer's-postrm</var> <tt>disappear</tt>
-		<var>overwriter</var>
-		<var>overwriter-version</var>
-	    </item>
-	  </list>
+	  What follows is a summary of all the ways in which maintainer
+	  scripts may be called along with what facilities those scripts
+	  may rely on being available at that time.  Script names
+	  preceeded by <var>new-</var> are the scripts from the new
+	  version of a package being installed or upgraded.  Script names
+	  preceeded by <var>old-</var> are the scripts from the old
+	  version of a package that is being upgraded to a new version.
 	</p>
 
+	<p>
+	  The <prgn>preinst</prgn> script may be called in the following
+	  ways:
+	  <taglist>
+	    <tag><var>new-preinst</var> <tt>install</tt></tag>
+	    <tag><var>new-preinst</var> <tt>install</tt>
+	      <var>old-version</var></tag>
+	    <tag><var>new-preinst</var> <tt>upgrade</tt>
+	      <var>old-version</var></tag>
+	    <item>
+	      Only essential packages and pre-dependencies
+	      (<tt>Pre-Depends</tt>) may be assumed to be available.
+	      Pre-dependencies will either be configured or will be
+	      "Unpacked" or "Half-Configured" but previously had been
+	      configured and was never removed.  The package will not yet
+	      be unpacked, so the <prgn>preinst</prgn> script cannot rely
+	      on any files included in its package.
+	    </item>
+
+	    <tag><var>old-preinst</var> <tt>abort-upgrade</tt>
+	      <var>new-version</var></tag>
+	    <item>
+	      Called during error handling of an upgrade that failed after
+	      unpacking the new package because the
+	      old <prgn>postrm</prgn> failed during the upgrade action.
+	      Depending on the severity and nature of the error, the
+	      package's dependencies, including pre-dependencies, may be
+	      only "Half-Installed" or "Unpacked" and are not necessarily
+	      configured, and the files for the old package may not yet be
+	      unpacked.
+	    </item>
+	  </taglist>
+	</p>
+
+	<p>
+	  The <prgn>postinst</prgn> script may be called in the following
+	  ways:
+	  <taglist>
+	    <tag><var>postinst</var> <tt>configure</tt>
+	      <var>most-recently-configured-version</var></tag>
+	    <item>
+	      The files contained in the package will be unpacked.  All
+	      package dependencies will at least be unpacked.  If there
+	      are no circular dependencies involved, all package
+	      dependencies will be configured.
+	    </item>
+
+	    <tag><var>old-postinst</var> <tt>abort-upgrade</tt>
+	      <var>new-version</var></tag>
+	    <tag><var>conflictor's-postinst</var> <tt>abort-remove</tt>
+	      <tt>in-favour</tt> <var>package</var>
+	      <var>new-version</var></tag>
+	    <tag><var>postinst</var> <tt>abort-remove</tt></tag>
+	    <tag><var>deconfigured's-postinst</var>
+	      <tt>abort-deconfigure</tt> <tt>in-favour</tt>
+	      <var>failed-install-package</var> <var>version</var>
+	      [<tt>removing</tt> <var>conflicting-package</var>
+	      <var>version</var>]</tag>
+	    <item>
+	      The files contained in the package will be unpacked.  All
+	      package dependencies will at least be "Half-Installed" and
+	      will have previously been configured and not removed.
+	      However, depending on the nature and severity of the error,
+	      dependencies may not be configured or even fully unpacked.
+	    </item>
+	  </taglist>
+	</p>
+
+	<p>
+	  The <prgn>prerm</prgn> script may be called in the following
+	  ways:
+	  <taglist>
+	    <tag><var>prerm</var> <tt>remove</tt></tag>
+	    <tag><var>old-prerm</var>
+	      <tt>upgrade</tt><var>new-version</var></tag>
+	    <tag><var>conflictor's-prerm</var> <tt>remove</tt>
+	      <tt>in-favour</tt> <var>package</var>
+	      <var>new-version</var></tag>
+	    <tag><var>deconfigured's-prerm</var> <tt>deconfigure</tt>
+	      <tt>in-favour</tt> <var>package-being-installed</var>
+	      <var>version</var> [<tt>removing</tt>
+	      <var>conflicting-package</var> <var>version</var>]</tag>
+	    <item>
+	      The package whose <prgn>prerm</prgn> is being called will be
+	      at least "Half-Installed".  All package dependencies will at
+	      least be "Half-Installed" and will have previously been
+	      configured and not removed.  If there was no error, all
+	      dependencies will at least be unpacked, but these actions
+	      may be called in various error states where dependencies are
+	      only "Half-Installed".
+	    </item>
+
+	    <tag><var>new-prerm</var> <tt>failed-upgrade</tt>
+	      <var>old-version</var></tag>
+	    <item>
+	      Called during error handling when <tt>prerm upgrade</tt>
+	      fails.  The new package will not yet be unpacked.  Since
+	      this is the first action taken during a package upgrade,
+	      only essential packages and pre-dependencies may be relied
+	      on.  Pre-dependencies will either be configured or will be
+	      "Unpacked" or "Half-Configured" but previously had been
+	      configured and was never removed.
+	    </item>
+	  </taglist>
+	</p>
+
+	<p>
+	  The <prgn>postrm</prgn> script may be called in the following
+	  ways:
+	  <taglist>
+	    <tag><var>postrm</var> <tt>remove</tt></tag>
+	    <tag><var>postrm</var> <tt>purge</tt></tag>
+	    <tag><var>old-postrm</var> <tt>upgrade</tt>
+	      <var>new-version</var></tag>
+	    <tag><var>disappearer's-postrm</var> <tt>disappear</tt>
+		<var>overwriter</var> <var>overwriter-version</var></tag>
+	    <item>
+	      The <prgn>postrm</prgn> script is called after the package's
+	      files have been removed.  The package
+	      whose <prgn>postrm</prgn> is being called may have
+	      previously been deconfigured and only be unpacked, at which
+	      point subsequent package changes do not consider its
+	      dependencies.  Therefore, all <prgn>postrm</prgn> actions
+	      may only rely on essential packages and cannot assume that
+	      the package's dependencies are available.
+	    </item>
+
+	    <tag><var>new-postrm</var> <tt>failed-upgrade</tt>
+	      <var>old-version</var></tag>
+	    <item>
+	      Called when the old <tt>postrm upgrade</tt> action fails.
+	      The new package will be unpacked, but only essential
+	      packages and pre-dependencies can be relied on.
+	      Pre-dependencies will either be configured or will be
+	      "Unpacked" or "Half-Configured" but previously had been
+	      configured and was never removed.
+	    </item>
+
+	    <tag><var>new-postrm</var> <tt>abort-install</tt></tag>
+	    <tag><var>new-postrm</var> <tt>abort-install</tt>
+	      <var>old-version</var></tag>
+	    <tag><var>new-postrm</var> <tt>abort-upgrade</tt>
+	      <var>old-version</var></tag>
+	    <item>
+	      Called before unpackaging the new package as part of the
+	      error handling of <prgn>preinst</prgn> failures.  May assume
+	      the same state as <prgn>preinst</prgn> can assume.
+	    </item>
+	  </taglist>
+	</p>
+      </sect>
 
       <sect id="unpackphase">
 	<heading>Details of unpack phase of installation or upgrade</heading>
@@ -4554,16 +4609,15 @@ Build-Depends: foo [linux-any], bar [any-i386], baz [!linux-any]
 	  broken at some point and the dependency requirements violated
 	  for at least one package.  Packages involved in circular
 	  dependencies may not be able to rely on their dependencies being
-	  configured when being configured or removed depending on which
-	  side of the break of the circular dependency loop they happen to
-	  be on.  If one of the packages in the loop has no
-	  <prgn>postinst</prgn> script, then the cycle will be broken at
-	  that package; this ensures that all <prgn>postinst</prgn>
-	  scripts are run with their dependencies properly configured if
-	  this is possible.  Otherwise the breaking point is arbitrary.
-	  Packages should therefore avoid circular dependencies where
-	  possible, particularly if they have <prgn>postinst</prgn>
-	  scripts.
+	  configured when being configured depending on which side of the
+	  break of the circular dependency loop they happen to be on.  If
+	  one of the packages in the loop has no <prgn>postinst</prgn>
+	  script, then the cycle will be broken at that package; this
+	  ensures that all <prgn>postinst</prgn> scripts are run with
+	  their dependencies properly configured if this is possible.
+	  Otherwise the breaking point is arbitrary.  Packages should
+	  therefore avoid circular dependencies where possible,
+	  particularly if they have <prgn>postinst</prgn> scripts.
 	</p>
 
 	<p>
@@ -4588,19 +4642,16 @@ Build-Depends: foo [linux-any], bar [any-i386], baz [!linux-any]
 
 	      <p>
 		The <tt>Depends</tt> field should also be used if the
-		<prgn>postinst</prgn>, <prgn>prerm</prgn> or
-		<prgn>postrm</prgn> scripts require the package to be
-		present in order to run.  (If both packages are involved
-		in a dependency loop, this might not work as expected; see
-		the explanation a few paragraphs back.)  In the case of
-		<prgn>postinst</prgn> and <prgn>postrm</prgn>, the
+		<prgn>postinst</prgn> or <prgn>prerm</prgn> scripts
+		require the package to be unpacked or configured in order
+		to run.  In the case of <prgn>postinst</prgn>, the
 		depended-on packages will be unpacked and configured
-		first.  (Note, however, that the <prgn>postrm</prgn>
-		cannot rely on any non-essential packages to be present
-		during the <tt>purge</tt> phase.)  In the case of
-		<prgn>prerm</prgn>, the depended-on package will at least
-		be unpacked (it might be configured too, but you can't
-		rely on this unless you use <tt>Pre-Depends</tt>).
+		first.  (If both packages are involved in a dependency
+		loop, this might not work as expected; see the explanation
+		a few paragraphs back.)  In the case
+		of <prgn>prerm</prgn>, the package dependencies will be at
+		least unpacked or "Half-Installed".
+	      </p>
 	    </item>
 
 	    <tag><tt>Recommends</tt></tag>
@@ -4659,11 +4710,11 @@ Build-Depends: foo [linux-any], bar [any-i386], baz [!linux-any]
 	      </p>
 
 	      <p>
-		When the package declaring a pre-dependency is about
-		to be <em>configured</em>, the pre-dependency will be
-		treated as a normal <tt>Depends</tt>, that is, it will
-		be considered satisfied only if the depended-on
-		package has been correctly configured.  However, unlike
+		When the package declaring a pre-dependency is about to
+		be <em>configured</em>, the pre-dependency will be treated
+		as a normal <tt>Depends</tt>.  It will be considered
+		satisfied only if the depended-on package has been
+		correctly configured.  However, unlike
 		with <tt>Depends</tt>, <tt>Pre-Depends</tt> does not
 		permit circular dependencies to be broken.  If a circular
 		dependency is encountered while attempting to honor
