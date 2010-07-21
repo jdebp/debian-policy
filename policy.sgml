@@ -1080,9 +1080,9 @@
 
 	<p>
 	  Sometimes, a package requires another package to be unpacked
-	  <em>and</em> configured before it can be unpacked. In this
-	  case, you must specify a <tt>Pre-Depends</tt> entry for
-	  the package.
+	  <em>and</em> configured before it can be unpacked.  In this
+	  case, the dependent package must specify this dependency in
+	  the <tt>Pre-Depends</tt> control field.
 	</p>
 
 	<p>
@@ -3760,11 +3760,12 @@ Checksums-Sha256:
 	<p>
 	  What follows is a summary of all the ways in which maintainer
 	  scripts may be called along with what facilities those scripts
-	  may rely on being available at that time.  Script names
-	  preceeded by <var>new-</var> are the scripts from the new
-	  version of a package being installed or upgraded.  Script names
-	  preceeded by <var>old-</var> are the scripts from the old
-	  version of a package that is being upgraded to a new version.
+	  may rely on being available at that time.  Script names preceded
+	  by <var>new-</var> are the scripts from the new version of a
+	  package being installed, upgraded to, or downgraded to.  Script
+	  names preceded by <var>old-</var> are the scripts from the old
+	  version of a package that is being upgraded from or downgraded
+	  from.
 	</p>
 
 	<p>
@@ -3777,26 +3778,29 @@ Checksums-Sha256:
 	    <tag><var>new-preinst</var> <tt>upgrade</tt>
 	      <var>old-version</var></tag>
 	    <item>
-	      Only essential packages and pre-dependencies
-	      (<tt>Pre-Depends</tt>) may be assumed to be available.
-	      Pre-dependencies will either be configured or will be
-	      "Unpacked" or "Half-Configured" but previously had been
-	      configured and was never removed.  The package will not yet
-	      be unpacked, so the <prgn>preinst</prgn> script cannot rely
-	      on any files included in its package.
+	      The package will not yet be unpacked, so
+	      the <prgn>preinst</prgn> script cannot rely on any files
+	      included in its package.  Only essential packages and
+	      pre-dependencies (<tt>Pre-Depends</tt>) may be assumed to be
+	      available.  Pre-dependencies will be at least unpacked.
+	      They may be only unpacked or "Half-Configured", not
+	      completely configured, but only if a previous version of the
+	      pre-dependency was completely configured and the
+	      pre-dependency had not been removed since then.
 	    </item>
 
 	    <tag><var>old-preinst</var> <tt>abort-upgrade</tt>
 	      <var>new-version</var></tag>
 	    <item>
 	      Called during error handling of an upgrade that failed after
-	      unpacking the new package because the
-	      old <prgn>postrm</prgn> failed during the upgrade action.
-	      Depending on the severity and nature of the error, the
-	      package's dependencies, including pre-dependencies, may be
-	      only "Half-Installed" or "Unpacked" and are not necessarily
-	      configured, and the files for the old package may not yet be
-	      unpacked.
+	      unpacking the new package because the <tt>postrm
+	      upgrade</tt> action failed.  The unpacked files may be
+	      partly from the new version or partly missing, so the script
+	      cannot not rely on files included in the package.  Package
+	      dependencies may not be available.  Pre-dependencies will be
+	      at least unpacked following the same rules as above, except
+	      they may be only "Half-Installed" if an upgrade of the
+	      pre-dependency failed.
 	    </item>
 	  </taglist>
 	</p>
@@ -3829,8 +3833,15 @@ Checksums-Sha256:
 	      The files contained in the package will be unpacked.  All
 	      package dependencies will at least be "Half-Installed" and
 	      will have previously been configured and not removed.
-	      However, depending on the nature and severity of the error,
-	      dependencies may not be configured or even fully unpacked.
+	      However, dependencies may not be configured or even fully
+	      unpacked in some error situations.<footnote>
+		For example, suppose packages foo and bar are installed
+		with foo depending on bar.  If an upgrade of bar were
+		started and then aborted, and then an attempt to remove
+		foo failed because its <prgn>prerm</prgn> script failed,
+		foo's <tt>postinst abort-remove</tt> would be called with
+		bar only "Half-Installed".
+	      </footnote>
 	    </item>
 	  </taglist>
 	</p>
@@ -3856,19 +3867,15 @@ Checksums-Sha256:
 	      configured and not removed.  If there was no error, all
 	      dependencies will at least be unpacked, but these actions
 	      may be called in various error states where dependencies are
-	      only "Half-Installed".
+	      only "Half-Installed" due to a partial upgrade.
 	    </item>
 
 	    <tag><var>new-prerm</var> <tt>failed-upgrade</tt>
 	      <var>old-version</var></tag>
 	    <item>
 	      Called during error handling when <tt>prerm upgrade</tt>
-	      fails.  The new package will not yet be unpacked.  Since
-	      this is the first action taken during a package upgrade,
-	      only essential packages and pre-dependencies may be relied
-	      on.  Pre-dependencies will either be configured or will be
-	      "Unpacked" or "Half-Configured" but previously had been
-	      configured and was never removed.
+	      fails.  The new package will not yet be unpacked, and all
+	      the same constraints as for <tt>preinst upgrade</tt> apply.
 	    </item>
 	  </taglist>
 	</p>
@@ -3885,7 +3892,7 @@ Checksums-Sha256:
 		<var>overwriter</var> <var>overwriter-version</var></tag>
 	    <item>
 	      The <prgn>postrm</prgn> script is called after the package's
-	      files have been removed.  The package
+	      files have been removed or replaced.  The package
 	      whose <prgn>postrm</prgn> is being called may have
 	      previously been deconfigured and only be unpacked, at which
 	      point subsequent package changes do not consider its
@@ -4595,11 +4602,13 @@ Build-Depends: foo [linux-any], bar [any-i386], baz [!linux-any]
 	</p>
 
 	<p>
-	  Since <tt>Depends</tt> only places requirements on the
-	  configuration step, packages in an installation run are usually
-	  all unpacked first and all configured later.  This makes it
-	  easier to satisfy all dependencies when multiple packages are
-	  being upgraded.
+	  Since <tt>Depends</tt> only places requirements on the order in
+	  which packages are configured, packages in an installation run
+	  are usually all unpacked first and all configured later.  This
+	  allows multiple packages to be upgraded in one unpack and
+	  configure step even if some packages being upgraded have
+	  versioned dependencies on the upgraded versions of other
+	  packages involved in the installation run.
 	</p>
 
 	<p>
@@ -4643,14 +4652,15 @@ Build-Depends: foo [linux-any], bar [any-i386], baz [!linux-any]
 	      <p>
 		The <tt>Depends</tt> field should also be used if the
 		<prgn>postinst</prgn> or <prgn>prerm</prgn> scripts
-		require the package to be unpacked or configured in order
-		to run.  In the case of <prgn>postinst</prgn>, the
-		depended-on packages will be unpacked and configured
-		first.  (If both packages are involved in a dependency
-		loop, this might not work as expected; see the explanation
-		a few paragraphs back.)  In the case
-		of <prgn>prerm</prgn>, the package dependencies will be at
-		least unpacked or "Half-Installed".
+		require the depended-on package to be unpacked or
+		configured in order to run.  In the case of <tt>postinst
+		configure</tt>, the depended-on packages will be unpacked
+		and configured first.  (If both packages are involved in a
+		dependency loop, this might not work as expected; see the
+		explanation a few paragraphs back.)  In the case
+		of <prgn>prerm</prgn> or other <prgn>postinst</prgn>
+		actions, the package dependencies will be at least
+		unpacked or "Half-Installed".
 	      </p>
 	    </item>
 
@@ -4808,13 +4818,13 @@ Build-Depends: foo [linux-any], bar [any-i386], baz [!linux-any]
 	<heading>Conflicting binary packages - <tt>Conflicts</tt></heading>
 
 	<p>
-          When one binary package declares a conflict with another
-	  using a <tt>Conflicts</tt> field, <prgn>dpkg</prgn> will
-	  refuse to allow them to be unpacked on the system at the
-	  same time.  This is a stronger restriction than <tt>Breaks</tt>,
-	  which just prevents both packages from being configured at the
-	  same time.  Conflicting packages cannot be unpacked on the
-	  system at the same time.
+          When one binary package declares a conflict with another using
+	  a <tt>Conflicts</tt> field, <prgn>dpkg</prgn> will refuse to
+	  allow them to be unpacked on the system at the same time.  This
+	  is a stronger restriction than <tt>Breaks</tt>, which only
+	  prevents both packages from being configured at the same time.
+	  Conflicting packages cannot be unpacked on the system at the
+	  same time.
 	</p>
 
 	<p>
