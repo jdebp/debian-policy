@@ -1079,9 +1079,9 @@
 	</p>
 
 	<p>
-	  Sometimes, a package requires another package to be unpacked
-	  <em>and</em> configured before it can be unpacked.  In this
-	  case, the dependent package must specify this dependency in
+	  Sometimes, unpacking one package requires that another package
+	  be first unpacked <em>and</em> configured.  In this case, the
+	  dependent package must specify this dependency in
 	  the <tt>Pre-Depends</tt> control field.
 	</p>
 
