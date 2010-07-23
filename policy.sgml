@@ -1636,7 +1636,15 @@
 	  The maintainer name and email address used in the changelog
 	  should be the details of the person uploading <em>this</em>
 	  version.  They are <em>not</em> necessarily those of the
-	  usual package maintainer.  The information here will be
+	  usual package maintainer<footnote>
+	    If the developer uploading the package is not one of the usual
+	    maintainers of the package (as listed in the
+	    <qref id="f-Maintainer"><tt>Maintainer</tt></qref> or
+	    <qref id="f-Uploaders"><tt>Uploaders</tt></qref> control fields of
+	    the package), the first line of the changelog is conventionally used
+	    to explain why a non-maintainer is uploading the package.  The
+	    Debian Developer's Reference (see <ref id="related">) documents the
+	    conventions used.</footnote>.  The information here will be
 	  copied to the <tt>Changed-By</tt> field in the
 	  <tt>.changes</tt> file (see <ref id="f-Changed-By">),
 	  and then later used to send an acknowledgement when the
