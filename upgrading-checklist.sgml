@@ -98,6 +98,13 @@ Not yet released.
   that libraries should be built with threading support and to be
   thread-safe if the library supports this.
   </item>
+<tag>10.4</tag>
+  <item><file>/bin/sh</file> scripts may assume that <prgn>kill</prgn>
+  supports an argument of <tt>-<var>signal</var></tt>,
+  that <prgn>kill</prgn> and <prgn>trap</prgn> support the numeric signals
+  listed in the XSI extension, and that signal 13 (SIGPIPE) can be trapped
+  with <prgn>trap</prgn>.
+  </item>
 <tag>10.8</tag>
   <item>Recommend <file>/etc/logrotate.d/<var>package</var></file> for
   logrotate rules.

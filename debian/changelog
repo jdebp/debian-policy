@@ -78,6 +78,11 @@ debian-policy (3.9.1.0) UNRELEASED; urgency=low
     Seconded: Guillem Jover <guillem@debian.org>
     Seconded: Thijs Kinkhorst <thijs@debian.org>
     Closes: #445203
+  * Policy: Allow /bin/sh scripts to rely on XSI for kill and trap
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Giacomo A. Catenazzi <cate@debian.org>
+    Seconded: Raphael Geissert <geissert@debian.org>
+    Closes: #477240
   * Set the version of the Perl Policy to match the version of the Policy
     package.
   * Explain the Perl module package naming policy more explicitly and
