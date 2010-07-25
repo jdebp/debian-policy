@@ -7640,7 +7640,19 @@ fname () {
 </example>
 	      must be supported and must set the value of <tt>c</tt> to
 	      <tt>delta</tt>.
-            </item>
+	    </item>
+	    <item>The XSI extension to <prgn>kill</prgn> allowing <tt>kill
+	      -<var>signal</var></tt>, where <var>signal</var> is either
+	      the name of a signal or one of the numeric signals listed in
+	      the XSI extension (0, 1, 2, 3, 6, 9, 14, and 15), must be
+	      supported if <prgn>kill</prgn> is implemented as a shell
+	      built-in.
+	    </item>
+	    <item>The XSI extension to <prgn>trap</prgn> allowing numeric
+	      signals must be supported.  In addition to the signal
+	      numbers listed in the extension, which are the same as for
+	      <prgn>kill<prgn> above, 13 (SIGPIPE) must be allowed.
+	    </item>
 	  </list>
 	  If a shell script requires non-SUSv3 features from the shell
 	  interpreter other than those listed above, the appropriate shell
@@ -8081,11 +8093,13 @@ ln -fs ../sbin/sendmail debian/tmp/usr/bin/runq
 	</p>
 
 	<p>
-	  Log files must be rotated occasionally so that they don't
-	  grow indefinitely; the best way to do this is to drop a log
-	  rotation configuration file into the directory
-	  <file>/etc/logrotate.d</file> and use the facilities provided by
-	  logrotate.<footnote>
+	  Log files must be rotated occasionally so that they don't grow
+	  indefinitely.  The best way to do this is to install a log
+	  rotation configuration file in the
+	  directory <file>/etc/logrotate.d</file>, normally
+	  named <file>/etc/logrotate.d/<var>package</var></file>, and use
+	  the facilities provided by <prgn>logrotate</prgn>.
+	  <footnote>
 	    <p>
 	      The traditional approach to log files has been to set up
 	      <em>ad hoc</em> log rotation schemes using simple shell
@@ -8110,17 +8124,20 @@ ln -fs ../sbin/sendmail debian/tmp/usr/bin/runq
 	    section="8">):
 	  <example compact="compact">
 /var/log/foo/*.log {
-rotate 12
-weekly
-compress
-postrotate
-/etc/init.d/foo force-reload
-endscript
+    rotate 12
+    weekly
+    compress
+    missingok
+    postrotate
+        start-stop-daemon -K -p /var/run/foo.pid -s HUP -x /usr/sbin/foo -q
+    endscript
 }
 	  </example>
 	  This rotates all files under <file>/var/log/foo</file>, saves 12
-	  compressed generations, and forces the daemon to reload its
-	  configuration information after the log rotation.
+	  compressed generations, and tells the daemon to reopen its log
+	  files after the log rotation.  It skips this log rotation
+	  (via <tt>missingok</tt>) if no such log file is present, which
+	  avoids errors if the package is removed but not purged.
 	</p>
 
 	<p>
@@ -8173,6 +8190,12 @@ endscript
           </footnote>
 	</p>
 
+	<p>
+	  Control information files should be owned by <tt>root:root</tt>
+	  and either mode 644 (for most files) or mode 755 (for
+	  executables such as <qref id="maintscripts">maintainer
+	  scripts</qref>).
+	</p>
 
 	<p>
 	  Setuid and setgid executables should be mode 4755 or 2755
