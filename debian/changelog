@@ -68,6 +68,11 @@ debian-policy (3.9.1.0) UNRELEASED; urgency=low
     Seconded: Emilio Pozuelo Monfort <pochu@debian.org>
     Seconded: Guillem Jover <guillem@debian.org>
     Closes: #589609
+  * Policy: Ada Library Information files must be read-only
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Emilio Pozuelo Monfort <pochu@debian.org>
+    Seconded: Ludovic Brenta <ludovic@ludovic-brenta.org>
+    Closes: #232448
   * Set the version of the Perl Policy to match the version of the Policy
     package.
   * Explain the Perl module package naming policy more explicitly and
