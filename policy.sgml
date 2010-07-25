@@ -5566,6 +5566,14 @@ Replaces: mail-transport-agent
 	(<prgn>ld</prgn>) when compiling packages, as it will only look for
 	<file>libgdbm.so</file> when compiling dynamically.
       </p>
+
+      <p>
+	If the package provides Ada Library Information
+	(<file>*.ali</file>) files for use with GNAT, these files must be
+	installed read-only (mode 0444) so that GNAT will not attempt to
+	recompile them.  This overrides the normal file mode requirements
+	given in <ref id="permissions-owners">.
+      </p>
       </sect>
 
       <sect id="sharedlibs-intradeps">
@@ -8124,7 +8132,7 @@ endscript
 	</p>
       </sect>
 
-      <sect>
+      <sect id="permissions-owners">
 	<heading>Permissions and owners</heading>
 
 	<p>

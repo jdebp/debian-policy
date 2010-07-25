@@ -71,6 +71,10 @@ Not yet released.
   change if the library ABI changes are backward-compatible.  Discourage
   bundling shared libraries together in one package.
   </item>
+<tag>8.4</tag>
+  <item>Ada Library Information (<file>*.ali</file>) files must be
+  installed read-only.
+  </item>
 <tag>8.6.1, 8.6.2, 8.6.5</tag>
   <item>Packages should normally not include a <file>shlibs.local</file>
   file since we now have complete <file>shlibs</file> coverage.
