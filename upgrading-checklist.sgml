@@ -98,6 +98,10 @@ Not yet released.
   that libraries should be built with threading support and to be
   thread-safe if the library supports this.
   </item>
+<tag>10.8</tag>
+  <item>Recommend <file>/etc/logrotate.d/<var>package</var></file> for
+  logrotate rules.
+  </item>
 <tag>11.4, 11.8.3, 11.8.4</tag>
   <item>Packages providing alternatives for <prgn>editor</prgn>,
   <prgn>pager</prgn>, <prgn>x-terminal-emulator</prgn>, or
