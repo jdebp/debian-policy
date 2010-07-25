@@ -73,6 +73,11 @@ debian-policy (3.9.1.0) UNRELEASED; urgency=low
     Seconded: Emilio Pozuelo Monfort <pochu@debian.org>
     Seconded: Ludovic Brenta <ludovic@ludovic-brenta.org>
     Closes: #232448
+  * Policy: Recommend /etc/logrotate.d/package for logrotate rules
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Guillem Jover <guillem@debian.org>
+    Seconded: Thijs Kinkhorst <thijs@debian.org>
+    Closes: #445203
   * Set the version of the Perl Policy to match the version of the Policy
     package.
   * Explain the Perl module package naming policy more explicitly and
