@@ -100,6 +100,9 @@ debian-policy (3.9.1.0) UNRELEASED; urgency=low
     that terminology consistently, and change possibly confusing
     references to fields in control files to use "control field"
     uniformly.
+  * Document that the first line of the changelog entry is conventionally
+    an explanation for the upload if the uploader is not the regular
+    maintainer.  Patch from Charles Plessy.  (Closes: #589605)
   * Fix typo in upgrading-checklist.  (Closes: #588750)
   * Fix formatting error in footnote to 7.7.  (Closes: #589362)
 
