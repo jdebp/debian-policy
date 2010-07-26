@@ -105,6 +105,7 @@ debian-policy (3.9.1.0) unstable; urgency=low
     maintainer.  Patch from Charles Plessy.  (Closes: #589605)
   * Fix typo in upgrading-checklist.  (Closes: #588750)
   * Fix formatting error in footnote to 7.7.  (Closes: #589362)
+  * Remove ancient Conflicts and Replaces.
 
  -- Russ Allbery <rra@debian.org>  Sun, 25 Jul 2010 19:38:21 -0700
 

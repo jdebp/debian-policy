@@ -11,8 +11,6 @@ Vcs-Git: git://git.debian.org/git/dbnpolicy/policy.git
 Package: debian-policy
 Architecture: all
 Suggests: doc-base
-Conflicts: dpkg-dev (<< 1.4.0.9), doc-base (<< 0.6), packaging-manual
-Replaces: packaging-manual
 Description: Debian Policy Manual and related documents
  This package contains:
     - Debian Policy Manual
