@@ -3809,7 +3809,11 @@ Checksums-Sha256:
 	      dependencies may not be available.  Pre-dependencies will be
 	      at least unpacked following the same rules as above, except
 	      they may be only "Half-Installed" if an upgrade of the
-	      pre-dependency failed.
+	      pre-dependency failed.<footnote>
+		This can happen if the new version of the package no
+		longer pre-depends on a package that had been partially
+		upgraded.
+	      </footnote>
 	    </item>
 	  </taglist>
 	</p>
@@ -4613,11 +4617,19 @@ Build-Depends: foo [linux-any], bar [any-i386], baz [!linux-any]
 	<p>
 	  Since <tt>Depends</tt> only places requirements on the order in
 	  which packages are configured, packages in an installation run
-	  are usually all unpacked first and all configured later.  This
-	  allows multiple packages to be upgraded in one unpack and
-	  configure step even if some packages being upgraded have
-	  versioned dependencies on the upgraded versions of other
-	  packages involved in the installation run.
+	  are usually all unpacked first and all configured later.
+	  <footnote>
+	    This approach makes dependency resolution easier.  If two
+	    packages A and B are being upgraded, the installed package A
+	    depends on exactly the installed package B, and the new
+	    package A depends on exactly the new package B (a common
+	    situation when upgrading shared libraries and their
+	    corresponding development packages), satisfying the
+	    dependencies at every stage of the upgrade would be
+	    impossible.  This relaxed restriction means that both new
+	    packages can be unpacked together and then configured in their
+	    dependency order.
+	  </footnote>
 	</p>
 
 	<p>
@@ -4668,8 +4680,9 @@ Build-Depends: foo [linux-any], bar [any-i386], baz [!linux-any]
 		dependency loop, this might not work as expected; see the
 		explanation a few paragraphs back.)  In the case
 		of <prgn>prerm</prgn> or other <prgn>postinst</prgn>
-		actions, the package dependencies will be at least
-		unpacked or "Half-Installed".
+		actions, the package dependencies will normally be at
+		least unpacked, but they may be only "Half-Installed" if a
+		previous upgrade of the dependency failed.
 	      </p>
 	    </item>
 
@@ -4830,10 +4843,10 @@ Build-Depends: foo [linux-any], bar [any-i386], baz [!linux-any]
           When one binary package declares a conflict with another using
 	  a <tt>Conflicts</tt> field, <prgn>dpkg</prgn> will refuse to
 	  allow them to be unpacked on the system at the same time.  This
-	  is a stronger restriction than <tt>Breaks</tt>, which only
-	  prevents both packages from being configured at the same time.
-	  Conflicting packages cannot be unpacked on the system at the
-	  same time.
+	  is a stronger restriction than <tt>Breaks</tt>, which prevents
+	  the broken package from being configured while the breaking
+	  package is in the "Unpacked" state but allows both packages to
+	  be unpacked at the same time.
 	</p>
 
 	<p>
@@ -4887,7 +4900,7 @@ Build-Depends: foo [linux-any], bar [any-i386], baz [!linux-any]
 	    <item>when two packages provide the same file and will
 	      continue to do so,</item>
 	    <item>in conjunction with <tt>Provides</tt> when only one
-	      package providing a given virtual facility may be installed
+	      package providing a given virtual facility may be unpacked
 	      at a time (see <ref id="virtual">),</item>
 	    <item>in other cases where one must prevent simultaneous
 	      installation of two packages for reasons that are ongoing
