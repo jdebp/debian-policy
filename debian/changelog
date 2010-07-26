@@ -1,4 +1,4 @@
-debian-policy (3.9.1.0) UNRELEASED; urgency=low
+debian-policy (3.9.1.0) unstable; urgency=low
 
   * Policy: Include GPL version 1 in common-licenses
     Wording: Russ Allbery <rra@debian.org>
@@ -106,7 +106,7 @@ debian-policy (3.9.1.0) UNRELEASED; urgency=low
   * Fix typo in upgrading-checklist.  (Closes: #588750)
   * Fix formatting error in footnote to 7.7.  (Closes: #589362)
 
- -- Russ Allbery <rra@debian.org>  Mon, 28 Jun 2010 09:34:54 -0700
+ -- Russ Allbery <rra@debian.org>  Sun, 25 Jul 2010 19:38:21 -0700
 
 debian-policy (3.9.0.0) unstable; urgency=low
 
