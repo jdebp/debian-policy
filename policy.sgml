@@ -7589,7 +7589,7 @@ fname () {
 	    <item>The XSI extension to <prgn>trap</prgn> allowing numeric
 	      signals must be supported.  In addition to the signal
 	      numbers listed in the extension, which are the same as for
-	      <prgn>kill<prgn> above, 13 (SIGPIPE) must be allowed.
+	      <prgn>kill</prgn> above, 13 (SIGPIPE) must be allowed.
 	    </item>
 	  </list>
 	  If a shell script requires non-SUSv3 features from the shell
