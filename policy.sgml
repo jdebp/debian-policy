@@ -3805,7 +3805,7 @@ Checksums-Sha256:
 	      unpacking the new package because the <tt>postrm
 	      upgrade</tt> action failed.  The unpacked files may be
 	      partly from the new version or partly missing, so the script
-	      cannot not rely on files included in the package.  Package
+	      cannot rely on files included in the package.  Package
 	      dependencies may not be available.  Pre-dependencies will be
 	      at least unpacked following the same rules as above, except
 	      they may be only "Half-Installed" if an upgrade of the
@@ -3931,7 +3931,7 @@ Checksums-Sha256:
 	    <tag><var>new-postrm</var> <tt>abort-upgrade</tt>
 	      <var>old-version</var></tag>
 	    <item>
-	      Called before unpackaging the new package as part of the
+	      Called before unpacking the new package as part of the
 	      error handling of <prgn>preinst</prgn> failures.  May assume
 	      the same state as <prgn>preinst</prgn> can assume.
 	    </item>
@@ -4789,7 +4789,7 @@ Build-Depends: foo [linux-any], bar [any-i386], baz [!linux-any]
 	<p>
 	  When one binary package declares that it breaks another,
 	  <prgn>dpkg</prgn> will refuse to allow the package which
-	  declares <tt>Breaks</tt> be unpacked unless the broken
+	  declares <tt>Breaks</tt> to be unpacked unless the broken
 	  package is deconfigured first, and it will refuse to
 	  allow the broken package to be reconfigured.
 	</p>
