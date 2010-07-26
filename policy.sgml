@@ -911,10 +911,11 @@
 	<heading>The maintainer of a package</heading>
 
 	<p>
-	  Every package must have a maintainer.  The maintainer may be one
-	  person or a group of people reachable from a common email
-	  address, such as a mailing list.  The maintainer is responsible
-	  for maintaining the Debian packaging files, evaluating and
+	  Every package must have a maintainer, except for orphaned
+	  packages as described below.  The maintainer may be one person
+	  or a group of people reachable from a common email address, such
+	  as a mailing list.  The maintainer is responsible for
+	  maintaining the Debian packaging files, evaluating and
 	  responding appropriately to reported bugs, uploading new
 	  versions of the package (either directly or through a sponsor),
 	  ensuring that the package is placed in the appropriate archive
@@ -957,14 +958,16 @@
 	</p>
 
 	<p>
-	  If the maintainer of a package no longer has time or desire to
-	  maintain a package, it should be orphaned according to the
-	  procedure described in the Debian Developer's Reference
-	  (see <ref id="related">).  The maintainer then
-	  becomes <tt>Debian QA Group &lt;packages@qa.debian.org&gt;</tt>.
+	  An orphaned package is one with no current maintainer.  Orphaned
+	  packages should have their <tt>Maintainer</tt> control field set
+	  to <tt>Debian QA Group &lt;packages@qa.debian.org&gt;</tt>.
 	  These packages are considered maintained by the Debian project
 	  as a whole until someone else volunteers to take over
-	  maintenance.
+	  maintenance.<footnote>
+	    The detailed procedure for gracefully orphaning a package can
+	    be found in the Debian Developer's Reference
+	    (see <ref id="related">).
+	  </footnote>
 	</p>
       </sect>
 
