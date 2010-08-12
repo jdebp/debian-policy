@@ -1,3 +1,13 @@
+debian-policy (3.9.2.0) UNRELEASED; urgency=low
+
+  * Policy: Require human Maintainer or Uploader, clarify Maintainer
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Charles Plessy <plessy@debian.org>
+    Seconded: Raphaël Hertzog <hertzog@debian.org>
+    Closes: #459868
+
+ -- Russ Allbery <rra@debian.org>  Thu, 12 Aug 2010 10:47:47 -0700
+
 debian-policy (3.9.1.0) unstable; urgency=low
 
   * Policy: Include GPL version 1 in common-licenses
