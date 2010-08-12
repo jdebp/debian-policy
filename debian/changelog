@@ -4,7 +4,12 @@ debian-policy (3.9.2.0) UNRELEASED; urgency=low
     Wording: Russ Allbery <rra@debian.org>
     Seconded: Charles Plessy <plessy@debian.org>
     Seconded: Raphaël Hertzog <hertzog@debian.org>
-    Closes: #459868
+    Closes: #459868, #581011
+  * Be more verbose in defining the build architecture and the host
+    architecture and consistently refer to architecture rather than
+    machine.  (Closes: #591857)
+  * Correct the name of the Filesystem Hierarchy Standard in the package
+    description.  Patch from Christoph Anton Mitterer.  (Closes: #590696)
 
  -- Russ Allbery <rra@debian.org>  Thu, 12 Aug 2010 10:47:47 -0700
 

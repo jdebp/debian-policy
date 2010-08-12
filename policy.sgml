@@ -2084,14 +2084,21 @@
 
 	<p>
 	  The architectures we build on and build for are determined
-	  by <prgn>make</prgn> variables using the utility
-	  <qref id="pkg-dpkg-architecture"><prgn>dpkg-architecture</prgn></qref>.
-	  You can determine the
-	  Debian architecture and the GNU style architecture
-	  specification string for the build machine (the machine type
-	  we are building on) as well as for the host machine (the
-	  machine type we are building for).  Here is a list of
-	  supported <prgn>make</prgn> variables:
+	  by <prgn>make</prgn> variables using the
+	  utility <qref id="pkg-dpkg-architecture"><prgn>dpkg-architecture</prgn></qref>.
+	  You can determine the Debian architecture and the GNU style
+	  architecture specification string for the build architecture as
+	  well as for the host architecture.  The build architecture is
+	  the architecture on which <file>debian/rules</file> is run and
+	  the package build is performed.  The host architecture is the
+	  architecture on which the resulting package will be installed
+	  and run.  These are normally the same, but may be different in
+	  the case of cross-compilation (building packages for one
+	  architecture on machines of a different architecture).
+	</p>
+
+	<p>
+	  Here is a list of supported <prgn>make</prgn> variables:
 	  <list compact="compact">
 	    <item>
 		<tt>DEB_*_ARCH</tt> (the Debian architecture)
@@ -2115,8 +2122,8 @@
 		<tt>DEB_*_GNU_TYPE</tt>)
 	  </list>
 	  where <tt>*</tt> is either <tt>BUILD</tt> for specification of
-	  the build machine or <tt>HOST</tt> for specification of the
-	  host machine.
+	  the build architecture or <tt>HOST</tt> for specification of the
+	  host architecture.
 	</p>
 
 	<p>
