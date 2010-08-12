@@ -4,7 +4,7 @@ debian-policy (3.9.2.0) UNRELEASED; urgency=low
     Wording: Russ Allbery <rra@debian.org>
     Seconded: Charles Plessy <plessy@debian.org>
     Seconded: Raphaël Hertzog <hertzog@debian.org>
-    Closes: #459868
+    Closes: #459868, #581011
   * Correct the name of the Filesystem Hierarchy Standard in the package
     description.  Patch from Christoph Anton Mitterer.  (Closes: #590696)
 
