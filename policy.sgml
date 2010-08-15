@@ -1106,7 +1106,7 @@
 	<p>
 	  Sometimes, unpacking one package requires that another package
 	  be first unpacked <em>and</em> configured.  In this case, the
-	  dependent package must specify this dependency in
+	  depending package must specify this dependency in
 	  the <tt>Pre-Depends</tt> control field.
 	</p>
 
@@ -3835,11 +3835,11 @@ Checksums-Sha256:
 	      the <prgn>preinst</prgn> script cannot rely on any files
 	      included in its package.  Only essential packages and
 	      pre-dependencies (<tt>Pre-Depends</tt>) may be assumed to be
-	      available.  Pre-dependencies will be at least unpacked.
-	      They may be only unpacked or "Half-Configured", not
-	      completely configured, but only if a previous version of the
-	      pre-dependency was completely configured and the
-	      pre-dependency had not been removed since then.
+	      available.  Pre-dependencies will have been configured at
+	      least once, but at the time the <prgn>preinst</prgn> is
+	      called they may only be in an unpacked or "Half-Configured"
+	      state if a previous version of the pre-dependency was
+	      completely configured and has not been removed since then.
 	    </item>
 
 	    <tag><var>old-preinst</var> <tt>abort-upgrade</tt>
@@ -3872,7 +3872,9 @@ Checksums-Sha256:
 	      The files contained in the package will be unpacked.  All
 	      package dependencies will at least be unpacked.  If there
 	      are no circular dependencies involved, all package
-	      dependencies will be configured.
+	      dependencies will be configured.  For behavior in the case
+	      of circular dependencies, see the discussion
+	      in <ref id="binarydeps">.
 	    </item>
 
 	    <tag><var>old-postinst</var> <tt>abort-upgrade</tt>
@@ -3899,6 +3901,13 @@ Checksums-Sha256:
 		foo's <tt>postinst abort-remove</tt> would be called with
 		bar only "Half-Installed".
 	      </footnote>
+	      The <prgn>postinst</prgn> should still attempt any actions
+	      for which its dependencies are required, since they will
+	      normally be available, but consider the correct error
+	      handling approach if those actions fail.  Aborting
+	      the <prgn>postinst</prgn> action if commands or facilities
+	      from the package dependencies are not available is often the
+	      best approach.
 	    </item>
 	  </taglist>
 	</p>
@@ -3954,8 +3963,22 @@ Checksums-Sha256:
 	      previously been deconfigured and only be unpacked, at which
 	      point subsequent package changes do not consider its
 	      dependencies.  Therefore, all <prgn>postrm</prgn> actions
-	      may only rely on essential packages and cannot assume that
-	      the package's dependencies are available.
+	      may only rely on essential packages and must gracefully skip
+	      any actions that require the package's dependencies if those
+	      dependencies are unavailable.<footnote>
+		This is often done by checking whether the command or
+	        facility the <prgn>postrm</prgn> intends to call is
+	        available before calling it.  For example:
+<example>
+if [ "$1" = purge ] && [ -e /usr/share/debconf/confmodule ]; then
+        . /usr/share/debconf/confmodule
+        db_purge
+fi
+</example>
+		in <prgn>postrm</prgn> purges the <prgn>debconf</prgn>
+		configuration for the package
+		if <package>debconf</package> is installed.
+	      </foonote>
 	    </item>
 
 	    <tag><var>new-postrm</var> <tt>failed-upgrade</tt>
@@ -4683,15 +4706,16 @@ Build-Depends: foo [linux-any], bar [any-i386], baz [!linux-any]
 	  broken at some point and the dependency requirements violated
 	  for at least one package.  Packages involved in circular
 	  dependencies may not be able to rely on their dependencies being
-	  configured when being configured depending on which side of the
-	  break of the circular dependency loop they happen to be on.  If
-	  one of the packages in the loop has no <prgn>postinst</prgn>
-	  script, then the cycle will be broken at that package; this
-	  ensures that all <prgn>postinst</prgn> scripts are run with
-	  their dependencies properly configured if this is possible.
-	  Otherwise the breaking point is arbitrary.  Packages should
-	  therefore avoid circular dependencies where possible,
-	  particularly if they have <prgn>postinst</prgn> scripts.
+	  configured before they themselves are configured, depending on
+	  which side of the break of the circular dependency loop they
+	  happen to be on.  If one of the packages in the loop has
+	  no <prgn>postinst</prgn> script, then the cycle will be broken
+	  at that package; this ensures that all <prgn>postinst</prgn>
+	  scripts are run with their dependencies properly configured if
+	  this is possible.  Otherwise the breaking point is arbitrary.
+	  Packages should therefore avoid circular dependencies where
+	  possible, particularly if they have <prgn>postinst</prgn>
+	  scripts.
 	</p>
 
 	<p>
@@ -4718,15 +4742,23 @@ Build-Depends: foo [linux-any], bar [any-i386], baz [!linux-any]
 		The <tt>Depends</tt> field should also be used if the
 		<prgn>postinst</prgn> or <prgn>prerm</prgn> scripts
 		require the depended-on package to be unpacked or
-		configured in order to run.  In the case of <tt>postinst
-		configure</tt>, the depended-on packages will be unpacked
-		and configured first.  (If both packages are involved in a
-		dependency loop, this might not work as expected; see the
-		explanation a few paragraphs back.)  In the case
-		of <prgn>prerm</prgn> or other <prgn>postinst</prgn>
-		actions, the package dependencies will normally be at
-		least unpacked, but they may be only "Half-Installed" if a
-		previous upgrade of the dependency failed.
+		configured in order to run, or if the dependend-on package
+		is desirable for cleanup done by <prgn>postrm</prgn>.  In
+		the case of <tt>postinst configure</tt>, the depended-on
+		packages will be unpacked and configured first.  (If both
+		packages are involved in a dependency loop, this might not
+		work as expected; see the explanation a few paragraphs
+		back.)  In the case of <prgn>prerm</prgn> or
+		other <prgn>postinst</prgn> actions, the package
+		dependencies will normally be at least unpacked, but they
+		may be only "Half-Installed" if a previous upgrade of the
+		dependency failed.  In the case of <prgn>postrm</prgn>,
+		there are no guarantees, but the depended-on package is
+		more likely to be available if the package declares a
+		dependency (particularly for <tt>postrm remove</tt>).
+		The <prgn>postrm</prgn> script must cleanly skip actions
+		that require a dependency if that dependency isn't
+		available.
 	      </p>
 	    </item>
 
