@@ -1827,22 +1827,25 @@
 	</p>
 
 	<p>
+	  The following targets are required and must be implemented
+	  by <file>debian/rules</file>: <tt>clean</tt>, <tt>binary</tt>,
+	  <tt>binary-arch</tt>, <tt>binary-indep</tt>, and <tt>build</tt>.
+	  These are the targets called by <prgn>dpkg-buildpackage</prgn>.
+	</p>
+
+	<p>
 	  Since an interactive <file>debian/rules</file> script makes it
-	  impossible to auto-compile that package and also makes it
-	  hard for other people to reproduce the same binary
-	  package, all <em>required targets</em> must be
-	  non-interactive. At a minimum, required targets are the
-	  ones called by <prgn>dpkg-buildpackage</prgn>, namely,
-	  <em>clean</em>, <em>binary</em>, <em>binary-arch</em>,
-	  <em>binary-indep</em>, and <em>build</em>. It also follows
-	  that any target that these targets depend on must also be
+	  impossible to auto-compile that package and also makes it hard
+	  for other people to reproduce the same binary package, all
+	  required targets must be non-interactive.  It also follows that
+	  any target that these targets depend on must also be
 	  non-interactive.
 	</p>
 
 	<p>
-	  The targets are as follows (required unless stated otherwise):
+	  The targets are as follows:
 	  <taglist>
-	    <tag><tt>build</tt></tag>
+	    <tag><tt>build</tt> (required)</tag>
 	    <item>
 	      <p>
 		The <tt>build</tt> target should perform all the
@@ -1953,8 +1956,8 @@
 	      </p>
 	    </item>
 
-	    <tag><tt>binary</tt>, <tt>binary-arch</tt>,
-	      <tt>binary-indep</tt>
+	    <tag><tt>binary</tt> (required), <tt>binary-arch</tt>
+	      (required), <tt>binary-indep</tt> (required)
 	    </tag>
 	    <item>
 	      <p>
@@ -2002,7 +2005,7 @@
 	      </p>
 	    </item>
 
-	    <tag><tt>clean</tt></tag>
+	    <tag><tt>clean</tt> (required)</tag>
 	    <item>
 	      <p>
 		This must undo any effects that the <tt>build</tt>

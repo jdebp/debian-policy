@@ -10,6 +10,11 @@ debian-policy (3.9.2.0) UNRELEASED; urgency=low
     machine.  (Closes: #591857)
   * Correct the name of the Filesystem Hierarchy Standard in the package
     description.  Patch from Christoph Anton Mitterer.  (Closes: #590696)
+  * Use the word "implemented" to describe required targets in
+    debian/rules, which is clearer about allowing wildcard rules.  List
+    the required rules in their own paragraph rather than with the
+    paragraph discussing non-interactivity, and explicitly mark all rules
+    as either required or optional.  (Closes: #536790)
 
  -- Russ Allbery <rra@debian.org>  Thu, 12 Aug 2010 10:47:47 -0700
 
