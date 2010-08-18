@@ -4742,23 +4742,28 @@ Build-Depends: foo [linux-any], bar [any-i386], baz [!linux-any]
 		The <tt>Depends</tt> field should also be used if the
 		<prgn>postinst</prgn> or <prgn>prerm</prgn> scripts
 		require the depended-on package to be unpacked or
-		configured in order to run, or if the dependend-on package
-		is desirable for cleanup done by <prgn>postrm</prgn>.  In
-		the case of <tt>postinst configure</tt>, the depended-on
-		packages will be unpacked and configured first.  (If both
-		packages are involved in a dependency loop, this might not
-		work as expected; see the explanation a few paragraphs
-		back.)  In the case of <prgn>prerm</prgn> or
-		other <prgn>postinst</prgn> actions, the package
-		dependencies will normally be at least unpacked, but they
-		may be only "Half-Installed" if a previous upgrade of the
-		dependency failed.  In the case of <prgn>postrm</prgn>,
-		there are no guarantees, but the depended-on package is
-		more likely to be available if the package declares a
-		dependency (particularly for <tt>postrm remove</tt>).
-		The <prgn>postrm</prgn> script must cleanly skip actions
-		that require a dependency if that dependency isn't
-		available.
+		configured in order to run.  In the case of <tt>postinst
+		configure</tt>, the depended-on packages will be unpacked
+		and configured first.  (If both packages are involved in a
+		dependency loop, this might not work as expected; see the
+		explanation a few paragraphs back.)  In the case
+		of <prgn>prerm</prgn> or other <prgn>postinst</prgn>
+		actions, the package dependencies will normally be at
+		least unpacked, but they may be only "Half-Installed" if a
+		previous upgrade of the dependency failed.
+	      </p>
+
+	      <p>
+		Finally, the <tt>Depends</tt> field should be used if the
+		depended-on package is needed by the <prgn>postrm</prgn>
+		script to fully clean up after the package removal.  There
+		is no guarantee that package dependencies will be
+		available when <prgn>postrm</prgn> is run, but the
+		depended-on package is more likely to be available if the
+		package declares a dependency (particularly in the case
+		of <tt>postrm remove</tt>).  The <prgn>postrm</prgn>
+		script must gracefully skip actions that require a
+		dependency if that dependency isn't available.
 	      </p>
 	    </item>
 
