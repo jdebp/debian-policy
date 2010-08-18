@@ -123,6 +123,7 @@ News and Mail
  imap-server             an IMAP mail server
  mail-reader             a mail user agent (e.g. Pine, Elm, mailx, &c)
  mail-transport-agent    a mail transport agent (e.g. Smail, Sendmail, &c)
+ mailx                   a /usr/bin/mailx binary (*)
  news-reader             a news reader (e.g. trn, tin, &c)
  news-transport-system   a local news system (e.g. INN, C News or B News)
  pgp                     a version of PGP (International or US)
