@@ -7950,22 +7950,6 @@ ln -fs ../sbin/sendmail debian/tmp/usr/bin/runq
 	  <heading>Sharing configuration files</heading>
 
 	  <p>
-	    Packages which specify the same file as a
-	    <tt>conffile</tt> must be tagged as <em>conflicting</em>
-	    with each other.  (This is an instance of the general rule
-	    about not sharing files.  Note that neither alternatives
-	    nor diversions are likely to be appropriate in this case;
-	    in particular, <prgn>dpkg</prgn> does not handle diverted
-	    <tt>conffile</tt>s well.)
-	  </p>
-
-	  <p>
-	    The maintainer scripts must not alter a <tt>conffile</tt>
-	    of <em>any</em> package, including the one the scripts
-	    belong to.
-	  </p>
-
-	  <p>
 	    If two or more packages use the same configuration file
 	    and it is reasonable for both to be installed at the same
 	    time, one of these packages must be defined as
@@ -8013,6 +7997,34 @@ ln -fs ../sbin/sendmail debian/tmp/usr/bin/runq
 	    provides the basic infrastructure for the other packages
 	    and which manages the shared configuration files.  (The
 	    <tt>sgml-base</tt> package is a good example.)
+	  </p>
+
+	  <p>
+	    If the configuration file cannot be shared as described above,
+	    the packages must be marked as conflicting with each other.
+	    Two packages that specify the same file as
+	    a <tt>conffile</tt> must conflict.  This is an instance of the
+	    general rule about not sharing files.  Neither alternatives
+	    nor diversions are likely to be appropriate in this case; in
+	    particular, <prgn>dpkg</prgn> does not handle diverted
+	    <tt>conffile</tt>s well.
+	  </p>
+
+	  <p>
+	    A package that declares the same <tt>conffile</tt> as another,
+	    conflicting package may see left-over configuration files from
+	    that other package.  If a user removes (without purging) one
+	    of the packages and installs the other, the new package will
+	    take over the <tt>conffile</tt> from the old package.  If the
+	    file was modified by the user, it will be treated the same as
+	    any other locally modified <tt>conffile</tt> during an
+	    upgrade.
+	  </p>
+
+	  <p>
+	    The maintainer scripts must not alter a <tt>conffile</tt>
+	    of <em>any</em> package, including the one the scripts
+	    belong to.
 	  </p>
 	</sect1>
 
