@@ -8011,14 +8011,14 @@ ln -fs ../sbin/sendmail debian/tmp/usr/bin/runq
 	  </p>
 
 	  <p>
-	    A package that declares the same <tt>conffile</tt> as another,
-	    conflicting package may see left-over configuration files from
-	    that other package.  If a user removes (without purging) one
-	    of the packages and installs the other, the new package will
-	    take over the <tt>conffile</tt> from the old package.  If the
-	    file was modified by the user, it will be treated the same as
-	    any other locally modified <tt>conffile</tt> during an
-	    upgrade.
+	    When two packages both declare the same <tt>conffile</tt>, they
+	    may see left-over configuration files from each other even
+	    though they conflict with each other.  If a user removes
+	    (without purging) one of the packages and installs the other,
+	    the new package will take over the <tt>conffile</tt> from the
+	    old package.  If the file was modified by the user, it will be
+	    treated the same as any other locally
+	    modified <tt>conffile</tt> during an upgrade.
 	  </p>
 
 	  <p>
