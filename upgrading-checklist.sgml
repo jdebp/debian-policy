@@ -46,6 +46,11 @@ Unreleased.
   at least one human with their personal email address
   in <tt>Uploaders</tt> if the maintainer is a shared email address.
   </item>
+<tag>virtual</tag>
+  <item><tt>mailx</tt> added as a virtual package provided by packages
+  that install <prgn>/usr/bin/mailx</prgn> and implement at least the
+  POSIX-required interface.
+  </item>
 </taglist></p>
 
 <sect> Version 3.9.1.0

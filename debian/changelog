@@ -5,6 +5,11 @@ debian-policy (3.9.2.0) UNRELEASED; urgency=low
     Seconded: Charles Plessy <plessy@debian.org>
     Seconded: Raphaël Hertzog <hertzog@debian.org>
     Closes: #459868, #581011
+  * Virtual: Added mailx as a new virtual package
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Raphaël Hertzog <hertzog@debian.org>
+    Seconded: Giacomo A. Catenazzi <cate@debian.org>
+    Closes: #488214
   * Be more verbose in defining the build architecture and the host
     architecture and consistently refer to architecture rather than
     machine.  (Closes: #591857)
