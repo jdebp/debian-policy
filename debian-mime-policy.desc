@@ -2,7 +2,7 @@ Document: debian-mime-policy
 Title: Debian MIME Policy Manual
 Author: The Debian Policy Mailing list
 Abstract: This manual describes the policy requirements for the MIME
- system in the Debian GNU/Linux distribution, describing the rules
+ system in the Debian distribution, describing the rules
  regulating the registration of programs that can handle MIME
  content.
 Section: Debian

@@ -2,7 +2,7 @@ Document: debian-menu-policy
 Title: Debian Menu Policy Manual
 Author: The Debian Policy Mailing list
 Abstract: This manual describes the policy requirements for the Menu
- system in the Debian GNU/Linux distribution, describing the
+ system in the Debian distribution, describing the
  hierarchical structure of the menu sections.
 Section: Debian
 
