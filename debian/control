@@ -8,8 +8,8 @@ Uploaders: Manoj Srivastava <srivasta@debian.org>,
  Bill Allombert <ballombe@debian.org>
 Standards-Version: 3.9.0
 Build-Depends: bsdmainutils, debiandoc-sgml (>= 1.1.47), docbook-dsssl,
- docbook-xml, groff, jade, links | elinks, pstoedit, sgml-data, texlive,
- texlive-latex-extra, tidy
+ docbook-xml, emacs23, groff, jade, links | elinks, pstoedit, sgml-data,
+ texlive, texlive-latex-extra, tidy
 Vcs-Browser: http://git.debian.org/?p=dbnpolicy/policy.git
 Vcs-Git: git://git.debian.org/git/dbnpolicy/policy.git
 

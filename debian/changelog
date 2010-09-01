@@ -25,6 +25,10 @@ debian-policy (3.9.2.0) UNRELEASED; urgency=low
     -Indep in a package that builds only architecture-independent binary
     packages), wrap it, and remove version restrictions that are older
     than the version in oldstable.
+  * Add emacs23 to the build dependencies and remove the files generated
+    from org source from the revision control repository.  Build and clean
+    files from org source unconditionally.  Add Process.{txt,html} to the
+    list of files generated from org source.  (Closes: #594274)
 
  -- Russ Allbery <rra@debian.org>  Thu, 12 Aug 2010 10:47:47 -0700
 
