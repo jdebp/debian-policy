@@ -20,6 +20,9 @@ debian-policy (3.9.2.0) UNRELEASED; urgency=low
     the required rules in their own paragraph rather than with the
     paragraph discussing non-interactivity, and explicitly mark all rules
     as either required or optional.  (Closes: #536790)
+  * Change all non-historical references to Debian GNU/Linux to simply
+    Debian since Debian now includes FreeBSD-based architectures.  Patch
+    from Guillem Jover.  (Closes: #594656)
   * Wrap Uploaders in debian/control.
   * Move Build-Depends-Indep to Build-Depends (there's no reason to use
     -Indep in a package that builds only architecture-independent binary

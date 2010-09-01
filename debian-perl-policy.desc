@@ -2,7 +2,7 @@ Document: debian-perl-policy
 Title: Debian Perl Policy Manual
 Author: The Debian Policy Mailing list
 Abstract: This manual describes the policy requirements for the Perl
- system in the Debian GNU/Linux distribution, describing the rules
+ system in the Debian distribution, describing the rules
  regulating the building and installation of packages providing and
  using Perl and Perl modules.
 Section: Debian
