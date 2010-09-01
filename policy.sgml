@@ -15,7 +15,7 @@
 
       <abstract>
 	This manual describes the policy requirements for the Debian
-	GNU/Linux distribution.  This includes the structure and
+	distribution.  This includes the structure and
 	contents of the Debian archive and several design issues of
 	the operating system, as well as technical requirements that
 	each package must satisfy to be included in the distribution.
@@ -50,7 +50,7 @@
 
 	<p>
 	  A copy of the GNU General Public License is available as
-	  <file>/usr/share/common-licenses/GPL</file> in the Debian GNU/Linux
+	  <file>/usr/share/common-licenses/GPL</file> in the Debian
 	  distribution or on the World Wide Web at
 	  <url id="http://www.gnu.org/copyleft/gpl.html"
 	       name="the GNU General Public Licence">. You can also
@@ -68,7 +68,7 @@
 	<heading>Scope</heading>
 	<p>
 	  This manual describes the policy requirements for the Debian
-	  GNU/Linux distribution. This includes the structure and
+	  distribution. This includes the structure and
 	  contents of the Debian archive and several design issues of the
 	  operating system, as well as technical requirements that
 	  each package must satisfy to be included in the
@@ -314,7 +314,7 @@
       <heading>The Debian Archive</heading>
 
       <p>
-	The Debian GNU/Linux system is maintained and distributed as a
+	The Debian system is maintained and distributed as a
 	collection of <em>packages</em>. Since there are so many of
 	them (currently well over 15000), they are split into
 	<em>sections</em> and given <em>priorities</em> to simplify
@@ -348,8 +348,7 @@
       </p>
 
       <p>
-	The <em>main</em> archive area forms the <em>Debian GNU/Linux
-	distribution</em>.
+	The <em>main</em> archive area forms the <em>Debian distribution</em>.
       </p>
 
       <p>
@@ -796,7 +795,7 @@
       <heading>Binary packages</heading>
 
       <p>
-	The Debian GNU/Linux distribution is based on the Debian
+	The Debian distribution is based on the Debian
 	package management system, called <prgn>dpkg</prgn>. Thus,
 	all packages in the Debian distribution must be provided
 	in the <tt>.deb</tt> file format.
@@ -1168,7 +1167,7 @@
 
 	<p>
 	  The <tt>base system</tt> is a minimum subset of the Debian
-	  GNU/Linux system that is installed before everything else
+	  system that is installed before everything else
 	  on a new system. Only very few packages are allowed to form
 	  part of the base system, in order to keep the required disk
 	  usage very small.
@@ -9683,8 +9682,7 @@ END-INFO-DIR-ENTRY
 	<p>
 	  Packages in the <em>contrib</em> or <em>non-free</em> archive
 	  areas should state in the copyright file that the package is not
-	  part of the Debian GNU/Linux distribution and briefly explain
-	  why.
+	  part of the Debian distribution and briefly explain why.
 	</p>
 
 	<p>
@@ -9855,9 +9853,8 @@ END-INFO-DIR-ENTRY
 	<prgn>dpkg</prgn> is a suite of programs for creating binary
 	package files and installing and removing them on Unix
 	systems.<footnote>
-	    <prgn>dpkg</prgn> is targeted primarily at Debian
-	    GNU/Linux, but may work on or be ported to other
-	    systems.
+	    <prgn>dpkg</prgn> is targeted primarily at Debian, but may
+	    work on or be ported to other systems.
 	</footnote>
       </p>
 

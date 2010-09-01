@@ -31,7 +31,7 @@
 
       <abstract>
 	This manual describes the policy requirements for the Menu
-	system used in the Debian GNU/Linux distribution. This
+	system used in the Debian distribution. This
 	document is part of the policy package for Debian.
       </abstract>
 
@@ -54,7 +54,7 @@
 	</p>
 	<p>
 	  A copy of the GNU General Public License is available as
-	  <tt>/usr/doc/copyright/GPL</tt> in the Debian GNU/Linux
+	  <tt>/usr/doc/copyright/GPL</tt> in the Debian
 	  distribution or on the World Wide Web at 
 	  <url id="http://www.gnu.org/copyleft/gpl.html"
 	  name="The GNU General Public Licence">. You can also obtain it by writing to the

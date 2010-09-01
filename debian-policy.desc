@@ -2,7 +2,7 @@ Document: debian-policy
 Title: Debian Policy Manual
 Author: The Debian Policy Mailing list
 Abstract: This manual describes the policy requirements for the Debian
- GNU/Linux distribution. This includes the structure and contents of
+ distribution. This includes the structure and contents of
  the Debian archive, several design issues of the operating system, as
  well as technical requirements that each package must satisfy to be
  included in the distribution.

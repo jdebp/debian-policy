@@ -5,7 +5,7 @@
 ]>
 <debiandoc>
   <!--
-  Debian GNU/Linux Menu Sub-Policy Manual.
+  Debian Menu Sub-Policy Manual.
   Copyright (C)1999 ;
 
   released under the terms of the GNU General Public License, version
@@ -32,7 +32,7 @@
 
       <abstract>
 	This manual describes the policy requirements for the MIME support
-	system used in the Debian GNU/Linux distribution. This
+	system used in the Debian distribution. This
 	document is part of the policy package for Debian. The policy
 	package itself is maintained by a group of maintainers that
 	have no editorial powers. At the moment, the list of
@@ -69,7 +69,7 @@
 	<p>
 	  A copy of the GNU General Public License is available as
 	  <tt>/usr/share/common-licenses/GPL</tt> in the Debian
-	  GNU/Linux distribution or on the World Wide Web at <url
+	  distribution or on the World Wide Web at <url
 	  id="http://www.gnu.org/copyleft/gpl.html" name="The GNU
 	  General Public Licence">. You can also obtain it by writing
 	  to the Free Software Foundation, Inc., 51 Franklin St, Fifth
