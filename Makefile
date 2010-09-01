@@ -5,7 +5,6 @@ menu-policy.sgml: version.ent
 mime-policy.sgml: version.ent
 perl-policy.sgml: version.ent
 
-ifneq (,$(strip $(HAVE_ORG_EMACS)))
 %.txt: %.org
 	$(EMACS) --batch -Q -l ./README-css.el -l org -l org-ascii --visit $^ \
           --funcall org-export-as-ascii >/dev/null 2>&1
@@ -14,7 +13,6 @@ ifneq (,$(strip $(HAVE_ORG_EMACS)))
 %.html: %.org
 	$(EMACS) --batch -Q -l ./README-css.el -l org --visit $^ \
           --funcall org-export-as-html-batch >/dev/null 2>&1
-endif
 
 %.validate: %
 	nsgmls -wall -gues $<
