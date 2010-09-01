@@ -20,6 +20,7 @@ debian-policy (3.9.2.0) UNRELEASED; urgency=low
     the required rules in their own paragraph rather than with the
     paragraph discussing non-interactivity, and explicitly mark all rules
     as either required or optional.  (Closes: #536790)
+  * Wrap Uploaders in debian/control.
 
  -- Russ Allbery <rra@debian.org>  Thu, 12 Aug 2010 10:47:47 -0700
 
