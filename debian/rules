@@ -21,14 +21,8 @@ package := $(shell grep Source debian/control | sed 's/^Source: //')
 date	:= $(shell date +"%Y-%m-%d")
 version := $(shell awk -F '[()]' '/^$(package)/{ print $$2; exit }' debian/changelog)
 
-# either /usr/bin/emacs-snampshot or /usr/bin/emacs23
-EMACS:=$(shell if [ -x /usr/bin/emacs-snapshot ]; then \
-                 echo /usr/bin/emacs-snapshot;         \
-               elif [ -x /usr/bin/emacs23 ]; then      \
-                 echo /usr/bin/emacs23;                \
-               fi)
-HAVE_ORG_EMACS:=$(strip $(EMACS))
-
+# Currently, emacs23 is required (xemacs is not sufficient).
+EMACS   := emacs23
 
 # Location of the source dir
 SRCTOP	  := $(CURDIR)
@@ -60,6 +54,8 @@ POLICY_FILES = $(SGML_FILES:=.sgml) $(SGML_FILES:=.txt.gz) \
                policy.ps.gz policy.pdf.gz README.txt README.html \
                Process.txt Process.html
 
+FILES_FROM_ORG := Process.html Process.txt README.txt README.html
+
 # policy.{pdf,ps,tpt,txt} are generated files
 FILES_TO_CLEAN  = debian/files debian/buildinfo  debian/substvars \
 		  debian/postinst debian/prerm \
@@ -69,9 +65,8 @@ FILES_TO_CLEAN  = debian/files debian/buildinfo  debian/substvars \
 		  policy.pdf.gz policy.ps.gz \
 		  debconf_specification.xml.tar.gz \
 		  policy.pdf policy.ps policy.txt policy. \
-		  body.tmp head.tmp policy.tpt
-
-FILES_FROM_ORG := README.txt README.html
+		  body.tmp head.tmp policy.tpt \
+		  $(FILES_FROM_ORG)
 
 STAMPS_TO_CLEAN := stamp-policy stamp-build
 DIRS_TO_CLEAN   := debian/tmp fhs $(SGML_FILES:=.html)
@@ -83,16 +78,13 @@ make_directory  := install -p -d	-o root -g root	 -m  755
 
 
 all build: stamp-build
-stamp-build: version.ent $(sanitycheck) README.txt README.html \
-              Process.txt Process.html
+stamp-build: version.ent $(sanitycheck)
 	$(MAKE) $(SGML_FILES:=.sgml.validate) \
 		$(SGML_FILES:=.html.tar.gz) \
                 $(SGML_FILES:=-1.html) \
 		$(SGML_FILES:=.txt.gz) \
 		policy.ps.gz policy.pdf.gz
-ifneq (,$(strip $(HAVE_ORG_EMACS)))
 	$(MAKE) $(FILES_FROM_ORG)
-endif
 	$(MAKE) -C debconf_spec all
 	touch stamp-build
 
