@@ -5,6 +5,11 @@ debian-policy (3.9.2.0) UNRELEASED; urgency=low
     Seconded: Charles Plessy <plessy@debian.org>
     Seconded: Raphaël Hertzog <hertzog@debian.org>
     Closes: #459868, #581011
+  * Policy: Add an FHS exception on GNU/Hurd for /hurd and /servers
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Andrew McMillan <andrew@morphoss.com>
+    Seconded: Guillem Jover <guillem@debian.org>
+    Closes: #594658
   * Virtual: Added mailx as a new virtual package
     Wording: Russ Allbery <rra@debian.org>
     Seconded: Raphaël Hertzog <hertzog@debian.org>

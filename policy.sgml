@@ -6039,9 +6039,21 @@ install -m644 debian/shlibs.<var>package</var> debian/<var>package</var>/DEBIAN/
                   to get access to kernel information.</footnote>
                 </p>
               </item>
+	      <item>
+		<p>
+		  On GNU/Hurd systems, the following additional
+		  directories are allowed in the root
+		  filesystem: <file>/hurd</file>
+		  and <file>/servers</file>.<footnote>
+		    These directories are used to store translators and as
+		    a set of standard names for mount points,
+		    respectively.
+		  </footnote>
+		</p>
+	      </item>
             </enumlist>
-
           </p>
+
           <p>
             The version of this document referred here can be
 	    found in the <tt>debian-policy</tt> package or on <url
