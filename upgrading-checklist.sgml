@@ -46,6 +46,9 @@ Unreleased.
   at least one human with their personal email address
   in <tt>Uploaders</tt> if the maintainer is a shared email address.
   </item>
+<tag>5.6.25</tag>
+  <item>Document the <tt>DM-Upload-Allowed</tt> field.
+  </item>
 <tag>9.1.1</tag>
   <item>GNU/Hurd systems are allowed <file>/hurd</file>
   and <file>/servers</file> directories in the root filesystem.

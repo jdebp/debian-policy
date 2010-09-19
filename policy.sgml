@@ -2535,6 +2535,7 @@ Package: libc6
 	    <item><qref id="f-Source"><tt>Source</tt></qref> (mandatory)</item>
 	    <item><qref id="f-Maintainer"><tt>Maintainer</tt></qref> (mandatory)</item>
 	    <item><qref id="f-Uploaders"><tt>Uploaders</tt></qref></item>
+	    <item><qref id="f-DM-Upload-Allowed"<tt>DM-Upload-Allowed</tt></qref></item>
 	    <item><qref id="f-Section"><tt>Section</tt></qref> (recommended)</item>
 	    <item><qref id="f-Priority"><tt>Priority</tt></qref> (recommended)</item>
 	    <item><qref id="sourcebinarydeps"><tt>Build-Depends</tt> et al</qref></item>
@@ -2640,6 +2641,7 @@ Package: libc6
 	  <item><qref id="f-Version"><tt>Version</tt></qref> (mandatory)</item>
 	  <item><qref id="f-Maintainer"><tt>Maintainer</tt></qref> (mandatory)</item>
 	  <item><qref id="f-Uploaders"><tt>Uploaders</tt></qref></item>
+	  <item><qref id="f-DM-Upload-Allowed"<tt>DM-Upload-Allowed</tt></qref></item>
 	  <item><qref id="f-Homepage"><tt>Homepage</tt></qref></item>
 	  <item><qref id="f-Standards-Version"><tt>Standards-Version</tt></qref> (recommended)</item>
 	  <item><qref id="sourcebinarydeps"><tt>Build-Depends</tt> et al</qref></item>
@@ -3629,6 +3631,21 @@ Checksums-Sha256:
 	    the <file>.changes</file> file, these fields should list all
 	    files being uploaded.  The list of files in these fields
 	    must match the list of files in the <tt>Files</tt> field.
+	  </p>
+	</sect1>
+
+	<sect1 id="f-DM-Upload-Allowed">
+	  <heading><tt>DM-Upload-Allowed</tt></heading>
+
+	  <p>
+	    The most recent version of a package uploaded to unstable or
+	    experimental must include the field <tt>DM-Upload-Allowed:
+	    yes</tt> in the source section of its source control file for
+	    the Debian archive to accept uploads signed with a key in the
+	    Debian Maintainer keyring.  See the General
+	    Resolution <url id="http://www.debian.org/vote/2007/vote_003"
+	    name="Endorse the concept of Debian Maintainers"> for more
+	    details.
 	  </p>
 	</sect1>
       </sect>

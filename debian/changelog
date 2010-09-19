@@ -10,6 +10,11 @@ debian-policy (3.9.2.0) UNRELEASED; urgency=low
     Seconded: Andrew McMillan <andrew@morphoss.com>
     Seconded: Guillem Jover <guillem@debian.org>
     Closes: #594658
+  * Policy: Document DM-Upload-Allowed
+    Wording: Charles Plessy <plessy@debian.org>
+    Seconded: Andrew McMillan <andrew@morphoss.com>
+    Seconded: Russ Allbery <rra@debian.org>
+    Closes: #588014
   * Virtual: Added mailx as a new virtual package
     Wording: Russ Allbery <rra@debian.org>
     Seconded: Raphaël Hertzog <hertzog@debian.org>
