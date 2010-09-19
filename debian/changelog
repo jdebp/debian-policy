@@ -34,6 +34,9 @@ debian-policy (3.9.2.0) UNRELEASED; urgency=low
     to remove the libc5 compatibility directories and mention the
     multiarch triplet directories.  Based on a patch by Charles Plessy.
     (Closes: #597074)
+  * Add introductory paragraphs for each archive area explaining briefly
+    the purpose of that archive area.  Based on a proposal by CJ
+    Fearnley.  (Closes: #594542)
   * Change all non-historical references to Debian GNU/Linux to simply
     Debian since Debian now includes FreeBSD-based architectures.  Patch
     from Guillem Jover.  (Closes: #594656)

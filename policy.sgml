@@ -465,6 +465,20 @@
 	  <heading>The main archive area</heading>
 
 	  <p>
+	    The <em>main</em> archive area comprises the Debian
+	    distribution.  Only the packages in this area are considered
+	    part of the distribution.  None of the packages in
+	    the <em>main</em> archive area require software outside of
+	    that area to function.  Anyone may use, share, modify and
+	    redistribute the packages in this archive area
+	    freely<footnote>
+	      See <url id="http://www.debian.org/intro/free"
+		       name="What Does Free Mean?"> for
+	      more about what we mean by free software.
+	    </footnote>.
+	  </p>
+
+	  <p>
 	    Every package in <em>main</em> must comply with the DFSG
 	    (Debian Free Software Guidelines).
 	  </p>
@@ -496,6 +510,13 @@
 	  <heading>The contrib archive area</heading>
 
 	  <p>
+	    The <em>contrib</em> archive area contains supplemental
+	    packages intended to work with the Debian distribution, but
+	    which require software outside of the distribution to either
+	    build or function.
+	  </p>
+
+	  <p>
 	    Every package in <em>contrib</em> must comply with the DFSG.
 	  </p>
 
@@ -512,7 +533,6 @@
 	      </item>
 	    </list>
 	  </p>
-
 
 	  <p>
 	    Examples of packages which would be included in
@@ -534,6 +554,15 @@
 
 	<sect1 id="non-free">
 	  <heading>The non-free archive area</heading>
+
+	  <p>
+	    The <em>non-free</em> archive area contains supplemental
+	    packages intended to work with the Debian distribution that do
+	    not comply with the DFSG or have other problems that make
+	    their distribution problematic.  They may not comply with all
+	    of the policy requirements in this manual due to restrictions
+	    on modifications or other limitations.
+	  </p>
 
 	  <p>
 	    Packages must be placed in <em>non-free</em> if they are
