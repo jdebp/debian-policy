@@ -5365,12 +5365,9 @@ Replaces: mail-transport-agent
 	  library directories of the dynamic linker (which are currently
 	  <file>/usr/lib</file> and <file>/lib</file>) or a directory that is
 	  listed in <file>/etc/ld.so.conf</file><footnote>
-	    These are currently
-	    <list compact="compact">
-	      <item>/usr/local/lib</item>
-	      <item>/usr/lib/libc5-compat</item>
-	      <item>/lib/libc5-compat</item>
-	    </list>
+	    These are currently <file>/usr/local/lib</file> plus
+	    directories under <file>/lib</file> and <file>/usr/lib</file>
+	    matching the multiarch triplet for the system architecture.
 	  </footnote>
 	  must use <prgn>ldconfig</prgn> to update the shared library
 	  system.

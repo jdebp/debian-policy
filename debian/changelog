@@ -25,6 +25,10 @@ debian-policy (3.9.2.0) UNRELEASED; urgency=low
     the required rules in their own paragraph rather than with the
     paragraph discussing non-interactivity, and explicitly mark all rules
     as either required or optional.  (Closes: #536790)
+  * Update the ldconfig footnote listing the /etc/ld.so.conf directories
+    to remove the libc5 compatibility directories and mention the
+    multiarch triplet directories.  Based on a patch by Charles Plessy.
+    (Closes: #597074)
   * Change all non-historical references to Debian GNU/Linux to simply
     Debian since Debian now includes FreeBSD-based architectures.  Patch
     from Guillem Jover.  (Closes: #594656)
