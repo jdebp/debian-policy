@@ -40,6 +40,7 @@ debian-policy (3.9.2.0) UNRELEASED; urgency=low
   * Change all non-historical references to Debian GNU/Linux to simply
     Debian since Debian now includes FreeBSD-based architectures.  Patch
     from Guillem Jover.  (Closes: #594656)
+  * Update the list of Policy maintainers.
   * Wrap Uploaders in debian/control.
   * Move Build-Depends-Indep to Build-Depends (there's no reason to use
     -Indep in a package that builds only architecture-independent binary

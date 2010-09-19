@@ -218,12 +218,13 @@
           The actual editing is done by a group of maintainers that have
           no editorial powers. These are the current maintainers:
 
-          <enumlist>
-            <item>Julian Gilbey</item>
-            <item>Branden Robinson</item>
-            <item>Josip Rodin</item>
-            <item>Manoj Srivastava</item>
-          </enumlist>
+	  <enumlist>
+	    <item>Russ Allbery</item>
+	    <item>Bill Allombert</item>
+	    <item>Andrew McMillan</item>
+	    <item>Manoj Srivastava</item>
+	    <item>Colin Watson</item>
+	  </enumlist>
         </p>
 
 	<p>
