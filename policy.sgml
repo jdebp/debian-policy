@@ -9357,13 +9357,13 @@ name ["<var>syshostname</var>"]:
           maintainer of the package is allowed to write this bug report
           themselves, if they so desire).  Do not close the bug report
           until a proper man page is available.<footnote>
-              It is not very hard to write a man page. See the
+	      It is not very hard to write a man page. See the
 	      <url id="http://www.schweikhardt.net/man_page_howto.html"
 		name="Man-Page-HOWTO">,
-	      <manref name="man" section="7">, the examples
-              created by <prgn>debmake</prgn> or <prgn>dh_make</prgn>,
-	      the helper program <prgn>help2man</prgn>, or the
-              directory <file>/usr/share/doc/man-db/examples</file>.
+	      <manref name="man" section="7">, the examples created
+	      by <prgn>dh_make</prgn>, the helper
+	      program <prgn>help2man</prgn>, or the
+	      directory <file>/usr/share/doc/man-db/examples</file>.
           </footnote>
 	</p>
 
@@ -9834,13 +9834,10 @@ END-INFO-DIR-ENTRY
       </p>
 
       <p>
-	The Debian version of the FSF's GNU hello program is provided
-	as an example for people wishing to create Debian
-	packages. The Debian <prgn>debmake</prgn> package is
-	recommended as a very helpful tool in creating and maintaining
-	Debian packages. However, while the tools and examples are
-	helpful, they do not replace the need to read and follow the
-	Policy and Programmer's Manual.</p>
+	The Debian version of the FSF's GNU hello program is provided as
+	an example for people wishing to create Debian packages. However,
+	while the examples are helpful, they do not replace the need to
+	read and follow the Policy and Programmer's Manual.</p>
     </appendix>
 
     <appendix id="pkg-binarypkg">
