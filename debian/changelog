@@ -5,6 +5,11 @@ debian-policy (3.9.2.0) UNRELEASED; urgency=low
     Seconded: Charles Plessy <plessy@debian.org>
     Seconded: Raphaël Hertzog <hertzog@debian.org>
     Closes: #459868, #581011
+  * Policy: Add an FHS exception on GNU/Hurd for /hurd and /servers
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Andrew McMillan <andrew@morphoss.com>
+    Seconded: Guillem Jover <guillem@debian.org>
+    Closes: #594658
   * Virtual: Added mailx as a new virtual package
     Wording: Russ Allbery <rra@debian.org>
     Seconded: Raphaël Hertzog <hertzog@debian.org>
@@ -20,6 +25,10 @@ debian-policy (3.9.2.0) UNRELEASED; urgency=low
     the required rules in their own paragraph rather than with the
     paragraph discussing non-interactivity, and explicitly mark all rules
     as either required or optional.  (Closes: #536790)
+  * Update the ldconfig footnote listing the /etc/ld.so.conf directories
+    to remove the libc5 compatibility directories and mention the
+    multiarch triplet directories.  Based on a patch by Charles Plessy.
+    (Closes: #597074)
   * Change all non-historical references to Debian GNU/Linux to simply
     Debian since Debian now includes FreeBSD-based architectures.  Patch
     from Guillem Jover.  (Closes: #594656)

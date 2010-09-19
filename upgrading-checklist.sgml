@@ -46,6 +46,10 @@ Unreleased.
   at least one human with their personal email address
   in <tt>Uploaders</tt> if the maintainer is a shared email address.
   </item>
+<tag>9.1.1</tag>
+  <item>GNU/Hurd systems are allowed <file>/hurd</file>
+  and <file>/servers</file> directories in the root filesystem.
+  </item>
 <tag>virtual</tag>
   <item><tt>mailx</tt> added as a virtual package provided by packages
   that install <prgn>/usr/bin/mailx</prgn> and implement at least the

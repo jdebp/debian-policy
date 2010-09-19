@@ -5365,12 +5365,9 @@ Replaces: mail-transport-agent
 	  library directories of the dynamic linker (which are currently
 	  <file>/usr/lib</file> and <file>/lib</file>) or a directory that is
 	  listed in <file>/etc/ld.so.conf</file><footnote>
-	    These are currently
-	    <list compact="compact">
-	      <item>/usr/local/lib</item>
-	      <item>/usr/lib/libc5-compat</item>
-	      <item>/lib/libc5-compat</item>
-	    </list>
+	    These are currently <file>/usr/local/lib</file> plus
+	    directories under <file>/lib</file> and <file>/usr/lib</file>
+	    matching the multiarch triplet for the system architecture.
 	  </footnote>
 	  must use <prgn>ldconfig</prgn> to update the shared library
 	  system.
@@ -6039,9 +6036,21 @@ install -m644 debian/shlibs.<var>package</var> debian/<var>package</var>/DEBIAN/
                   to get access to kernel information.</footnote>
                 </p>
               </item>
+	      <item>
+		<p>
+		  On GNU/Hurd systems, the following additional
+		  directories are allowed in the root
+		  filesystem: <file>/hurd</file>
+		  and <file>/servers</file>.<footnote>
+		    These directories are used to store translators and as
+		    a set of standard names for mount points,
+		    respectively.
+		  </footnote>
+		</p>
+	      </item>
             </enumlist>
-
           </p>
+
           <p>
             The version of this document referred here can be
 	    found in the <tt>debian-policy</tt> package or on <url
