@@ -218,12 +218,13 @@
           The actual editing is done by a group of maintainers that have
           no editorial powers. These are the current maintainers:
 
-          <enumlist>
-            <item>Julian Gilbey</item>
-            <item>Branden Robinson</item>
-            <item>Josip Rodin</item>
-            <item>Manoj Srivastava</item>
-          </enumlist>
+	  <enumlist>
+	    <item>Russ Allbery</item>
+	    <item>Bill Allombert</item>
+	    <item>Andrew McMillan</item>
+	    <item>Manoj Srivastava</item>
+	    <item>Colin Watson</item>
+	  </enumlist>
         </p>
 
 	<p>
@@ -465,6 +466,20 @@
 	  <heading>The main archive area</heading>
 
 	  <p>
+	    The <em>main</em> archive area comprises the Debian
+	    distribution.  Only the packages in this area are considered
+	    part of the distribution.  None of the packages in
+	    the <em>main</em> archive area require software outside of
+	    that area to function.  Anyone may use, share, modify and
+	    redistribute the packages in this archive area
+	    freely<footnote>
+	      See <url id="http://www.debian.org/intro/free"
+		       name="What Does Free Mean?"> for
+	      more about what we mean by free software.
+	    </footnote>.
+	  </p>
+
+	  <p>
 	    Every package in <em>main</em> must comply with the DFSG
 	    (Debian Free Software Guidelines).
 	  </p>
@@ -496,6 +511,13 @@
 	  <heading>The contrib archive area</heading>
 
 	  <p>
+	    The <em>contrib</em> archive area contains supplemental
+	    packages intended to work with the Debian distribution, but
+	    which require software outside of the distribution to either
+	    build or function.
+	  </p>
+
+	  <p>
 	    Every package in <em>contrib</em> must comply with the DFSG.
 	  </p>
 
@@ -512,7 +534,6 @@
 	      </item>
 	    </list>
 	  </p>
-
 
 	  <p>
 	    Examples of packages which would be included in
@@ -534,6 +555,15 @@
 
 	<sect1 id="non-free">
 	  <heading>The non-free archive area</heading>
+
+	  <p>
+	    The <em>non-free</em> archive area contains supplemental
+	    packages intended to work with the Debian distribution that do
+	    not comply with the DFSG or have other problems that make
+	    their distribution problematic.  They may not comply with all
+	    of the policy requirements in this manual due to restrictions
+	    on modifications or other limitations.
+	  </p>
 
 	  <p>
 	    Packages must be placed in <em>non-free</em> if they are
@@ -9448,13 +9478,13 @@ name ["<var>syshostname</var>"]:
           maintainer of the package is allowed to write this bug report
           themselves, if they so desire).  Do not close the bug report
           until a proper man page is available.<footnote>
-              It is not very hard to write a man page. See the
+	      It is not very hard to write a man page. See the
 	      <url id="http://www.schweikhardt.net/man_page_howto.html"
 		name="Man-Page-HOWTO">,
-	      <manref name="man" section="7">, the examples
-              created by <prgn>debmake</prgn> or <prgn>dh_make</prgn>,
-	      the helper program <prgn>help2man</prgn>, or the
-              directory <file>/usr/share/doc/man-db/examples</file>.
+	      <manref name="man" section="7">, the examples created
+	      by <prgn>dh_make</prgn>, the helper
+	      program <prgn>help2man</prgn>, or the
+	      directory <file>/usr/share/doc/man-db/examples</file>.
           </footnote>
 	</p>
 
@@ -9925,13 +9955,10 @@ END-INFO-DIR-ENTRY
       </p>
 
       <p>
-	The Debian version of the FSF's GNU hello program is provided
-	as an example for people wishing to create Debian
-	packages. The Debian <prgn>debmake</prgn> package is
-	recommended as a very helpful tool in creating and maintaining
-	Debian packages. However, while the tools and examples are
-	helpful, they do not replace the need to read and follow the
-	Policy and Programmer's Manual.</p>
+	The Debian version of the FSF's GNU hello program is provided as
+	an example for people wishing to create Debian packages. However,
+	while the examples are helpful, they do not replace the need to
+	read and follow the Policy and Programmer's Manual.</p>
     </appendix>
 
     <appendix id="pkg-binarypkg">
