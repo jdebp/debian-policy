@@ -2805,11 +2805,13 @@ Package: libc6
 
 	  <p>
 	    The most recent version of a package uploaded to unstable or
-	    experimental must include the field "DM-Upload-Allowed: yes" in the
-	    source section of its source control file for the Debian archive to
-	    accept uploads signed with a key in the Debian Maintainer keyring.
-	    See the General Resolution <url id="http://www.debian.org/vote/2007/vote_003"
-	    name="Endorse the concept of Debian Maintainers"> for more details.
+	    experimental must include the field <tt>DM-Upload-Allowed:
+	    yes</tt> in the source section of its source control file for
+	    the Debian archive to accept uploads signed with a key in the
+	    Debian Maintainer keyring.  See the General
+	    Resolution <url id="http://www.debian.org/vote/2007/vote_003"
+	    name="Endorse the concept of Debian Maintainers"> for more
+	    details.
 	  </p>
 	</sect1>
 
