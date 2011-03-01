@@ -1090,7 +1090,7 @@
 
       </sect>
 
-      <sect>
+      <sect id="dependencies">
 	<heading>Dependencies</heading>
 
 	<p>
@@ -4774,6 +4774,13 @@ Build-Depends: foo [linux-any], bar [any-i386], baz [!linux-any]
 		package.  It is best to avoid this situation if
 		possible.
 	      </p>
+
+	      <p>
+		You should not specify a <tt>Pre-Depends</tt> entry for a
+		package before this has been discussed on the
+		<tt>debian-devel</tt> mailing list and a consensus about
+		doing that has been reached.
+		See <ref id="dependencies">.
 	    </item>
 	  </taglist>
 	</p>
