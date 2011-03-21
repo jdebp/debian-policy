@@ -6027,13 +6027,13 @@ install -m644 debian/shlibs.<var>package</var> debian/<var>package</var>/DEBIAN/
                   <file>/lib/<var>triplet</var></file> and
                   <file>/usr/lib/<var>triplet</var></file>, where
                   <tt><var>triplet</var></tt> is the value returned by
-                  <tt>dpkg-architecture -qDEB_HOST_GNU_TYPE</tt> for the
+                  <tt>dpkg-architecture -qDEB_HOST_MULTIARCH</tt> for the
                   architecture of the package.  Packages may <em>not</em>
                   install files to any <var>triplet</var> path other
                   than the one matching the architecture of that package;
                   for instance, an <tt>Architecture: amd64</tt> package
                   containing 32-bit x86 libraries may not install these
-                  libraries to <file>/usr/lib/i486-linux-gnu</file>.
+                  libraries to <file>/usr/lib/i386-linux-gnu</file>.
                   <footnote>
                     This is necessary in order to reserve the directories for
                     use in cross-installation of library packages from other
