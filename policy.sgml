@@ -8940,9 +8940,9 @@ name ["<var>syshostname</var>"]:
 
               <item>
                   If the window manager complies with <url
-		    id="http://www.freedesktop.org/Standards/wm-spec"
+		    id="http://www.freedesktop.org/wiki/Specifications/wm-spec"
 		    name="The Window Manager Specification Project">,
-                  written by the <url id="http://www.freedesktop.org/"
+                  written by the <url id="http://www.freedesktop.org/wiki/"
 		    name="Free Desktop Group">, add 40 points.
               </item>
 

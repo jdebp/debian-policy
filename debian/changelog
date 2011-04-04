@@ -56,6 +56,8 @@ debian-policy (3.9.2.0) UNRELEASED; urgency=low
     from org source from the revision control repository.  Build and clean
     files from org source unconditionally.  Add Process.{txt,html} to the
     list of files generated from org source.  (Closes: #594274)
+  * Fix URLs under www.freedesktop.org to avoid permanent redirects.
+    Thanks, David Prévot.  (Closes: #606869)
 
  -- Russ Allbery <rra@debian.org>  Thu, 12 Aug 2010 10:47:47 -0700
 
