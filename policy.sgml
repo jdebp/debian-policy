@@ -4027,7 +4027,7 @@ fi
 		in <prgn>postrm</prgn> purges the <prgn>debconf</prgn>
 		configuration for the package
 		if <package>debconf</package> is installed.
-	      </foonote>
+	      </footnote>
 	    </item>
 
 	    <tag><var>new-postrm</var> <tt>failed-upgrade</tt>
