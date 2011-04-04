@@ -40,6 +40,11 @@ picking your way through this list.
 Unreleased.
 
 </p><p><taglist>
+<tag>*</tag>
+  <item>Multiple clarifications throughout Policy where "installed" was
+  used and the more precise terms "unpacked" or "configured" were
+  intended.
+  </item>
 <tag>3.3</tag>
   <item>Clarify the duties of a maintainer, require that the maintainer
   address accept mail from Debian role accounts and the BTS, and require
@@ -48,6 +53,25 @@ Unreleased.
   </item>
 <tag>5.6.25</tag>
   <item>Document the <tt>DM-Upload-Allowed</tt> field.
+  </item>
+<tag>6.5</tag>
+  <item>Document the system state maintainer scripts can rely upon during
+  each possible invocation.  In several less-common cases, this is
+  stricter than Policy had previously documented.  Packages with complex
+  maintainer scripts should be reviewed in light of this new
+  documentation.
+  </item>
+<tag>7.2</tag>
+  <item>Better document the impact on system state when maintainer scripts
+  that are part of a circular dependency are run.  Circular dependencies
+  are now a should not.
+  </item>
+<tag>7.2</tag>
+  <item>Document the system state when <prgn>postinst</prgn>
+  and <prgn>prerm</prgn> scripts are run, and better document the special
+  case of dependency state for <prgn>postrm</prgn>
+  scripts.  <prgn>postrm</prgn> scripts are required to gracefully skip
+  actions if their dependencies are not available.
   </item>
 <tag>9.1.1</tag>
   <item>GNU/Hurd systems are allowed <file>/hurd</file>

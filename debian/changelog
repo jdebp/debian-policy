@@ -20,6 +20,11 @@ debian-policy (3.9.2.0) UNRELEASED; urgency=low
     Seconded: Aurelien Jarno <aurelien@aurel32.net>
     Seconded: Raphael Hertzog <hertzog@debian.org>
     Closes: #619186
+  * Policy: Significant additions to maintainer script documentation
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Steve Langasek <vorlon@debian.org>
+    Seconded: Raphaël Hertzog <hertzog@debian.org>
+    Closes: #504880
   * Virtual: Added mailx as a new virtual package
     Wording: Russ Allbery <rra@debian.org>
     Seconded: Raphaël Hertzog <hertzog@debian.org>
