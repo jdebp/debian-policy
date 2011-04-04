@@ -58,6 +58,9 @@ debian-policy (3.9.2.0) UNRELEASED; urgency=low
     list of files generated from org source.  (Closes: #594274)
   * Fix URLs under www.freedesktop.org to avoid permanent redirects.
     Thanks, David Prévot.  (Closes: #606869)
+  * Add a cross-reference to the Pre-Depends requirement in 3.5 to section
+    7.2 where Pre-Depends is defined.  Thanks, Mattias Ellert and Jonathan
+    Nieder.  (Closes: #599944)
 
  -- Russ Allbery <rra@debian.org>  Thu, 12 Aug 2010 10:47:47 -0700
 
