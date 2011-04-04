@@ -15,6 +15,11 @@ debian-policy (3.9.2.0) UNRELEASED; urgency=low
     Seconded: Andrew McMillan <andrew@morphoss.com>
     Seconded: Russ Allbery <rra@debian.org>
     Closes: #588014
+  * Policy: Update multiarch FHS exception for i386 naming
+    Wording: Steve Langasek <vorlon@debian.org>
+    Seconded: Aurelien Jarno <aurelien@aurel32.net>
+    Seconded: Raphael Hertzog <hertzog@debian.org>
+    Closes: #619186
   * Virtual: Added mailx as a new virtual package
     Wording: Russ Allbery <rra@debian.org>
     Seconded: Raphaël Hertzog <hertzog@debian.org>
