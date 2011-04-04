@@ -1090,7 +1090,7 @@
 
       </sect>
 
-      <sect>
+      <sect id="dependencies">
 	<heading>Dependencies</heading>
 
 	<p>
@@ -1133,10 +1133,10 @@
 	</p>
 
 	<p>
-	  Sometimes, a package requires another package to be installed
-	  <em>and</em> configured before it can be installed. In this
-	  case, you must specify a <tt>Pre-Depends</tt> entry for
-	  the package.
+	  Sometimes, unpacking one package requires that another package
+	  be first unpacked <em>and</em> configured.  In this case, the
+	  depending package must specify this dependency in
+	  the <tt>Pre-Depends</tt> control field.
 	</p>
 
 	<p>
@@ -2565,7 +2565,7 @@ Package: libc6
 	    <item><qref id="f-Source"><tt>Source</tt></qref> (mandatory)</item>
 	    <item><qref id="f-Maintainer"><tt>Maintainer</tt></qref> (mandatory)</item>
 	    <item><qref id="f-Uploaders"><tt>Uploaders</tt></qref></item>
-	    <item><qref id="f-DM-Upload-Allowed"<tt>DM-Upload-Allowed</tt></qref></item>
+	    <item><qref id="f-DM-Upload-Allowed"><tt>DM-Upload-Allowed</tt></qref></item>
 	    <item><qref id="f-Section"><tt>Section</tt></qref> (recommended)</item>
 	    <item><qref id="f-Priority"><tt>Priority</tt></qref> (recommended)</item>
 	    <item><qref id="sourcebinarydeps"><tt>Build-Depends</tt> et al</qref></item>
@@ -2671,7 +2671,7 @@ Package: libc6
 	  <item><qref id="f-Version"><tt>Version</tt></qref> (mandatory)</item>
 	  <item><qref id="f-Maintainer"><tt>Maintainer</tt></qref> (mandatory)</item>
 	  <item><qref id="f-Uploaders"><tt>Uploaders</tt></qref></item>
-	  <item><qref id="f-DM-Upload-Allowed"<tt>DM-Upload-Allowed</tt></qref></item>
+	  <item><qref id="f-DM-Upload-Allowed"><tt>DM-Upload-Allowed</tt></qref></item>
 	  <item><qref id="f-Homepage"><tt>Homepage</tt></qref></item>
 	  <item><qref id="f-Standards-Version"><tt>Standards-Version</tt></qref> (recommended)</item>
 	  <item><qref id="sourcebinarydeps"><tt>Build-Depends</tt> et al</qref></item>
@@ -3776,7 +3776,7 @@ Checksums-Sha256:
 
 	<p>
 	  Broadly speaking the <prgn>preinst</prgn> is called before
-	  (a particular version of) a package is installed, and the
+	  (a particular version of) a package is unpacked, and the
 	  <prgn>postinst</prgn> afterwards; the <prgn>prerm</prgn>
 	  before (a version of) a package is removed and the
 	  <prgn>postrm</prgn> afterwards.
@@ -3860,111 +3860,200 @@ Checksums-Sha256:
 	</heading>
 
 	<p>
-	  <list compact="compact">
-	    <item>
-	      <var>new-preinst</var> <tt>install</tt>
-	    </item>
-	    <item>
-	      <var>new-preinst</var> <tt>install</tt> <var>old-version</var>
-	    </item>
-	    <item>
-		<var>new-preinst</var> <tt>upgrade</tt> <var>old-version</var>
-	    </item>
-	    <item>
-		<var>old-preinst</var> <tt>abort-upgrade</tt>
-		<var>new-version</var>
-	    </item>
-	  </list>
-
-	<p>
-	  <list compact="compact">
-	    <item>
-		<var>postinst</var> <tt>configure</tt>
-		<var>most-recently-configured-version</var>
-	    </item>
-	    <item>
-		<var>old-postinst</var> <tt>abort-upgrade</tt>
-		<var>new-version</var>
-	    </item>
-	    <item>
-		<var>conflictor's-postinst</var> <tt>abort-remove</tt>
-		<tt>in-favour</tt> <var>package</var>
-		<var>new-version</var>
-	    </item>
-	    <item>
-		<var>postinst</var> <tt>abort-remove</tt>
-	    </item>
-	    <item>
-		<var>deconfigured's-postinst</var>
-		<tt>abort-deconfigure</tt> <tt>in-favour</tt>
-		<var>failed-install-package</var> <var>version</var>
-		[<tt>removing</tt> <var>conflicting-package</var>
-		<var>version</var>]
-	    </item>
-	  </list>
-
-	<p>
-	  <list compact="compact">
-	    <item>
-		<var>prerm</var> <tt>remove</tt>
-	    </item>
-	    <item>
-		<var>old-prerm</var> <tt>upgrade</tt>
-		<var>new-version</var>
-	    </item>
-	    <item>
-		<var>new-prerm</var> <tt>failed-upgrade</tt>
-		<var>old-version</var>
-	    </item>
-	    <item>
-		<var>conflictor's-prerm</var> <tt>remove</tt>
-		<tt>in-favour</tt> <var>package</var>
-		<var>new-version</var>
-	    </item>
-	    <item>
-		<var>deconfigured's-prerm</var> <tt>deconfigure</tt>
-		<tt>in-favour</tt> <var>package-being-installed</var>
-		<var>version</var> [<tt>removing</tt>
-		<var>conflicting-package</var>
-		<var>version</var>]
-	    </item>
-	  </list>
-
-	<p>
-	  <list compact="compact">
-	    <item>
-		<var>postrm</var> <tt>remove</tt>
-	    </item>
-	    <item>
-		<var>postrm</var> <tt>purge</tt>
-	    </item>
-	    <item>
-		<var>old-postrm</var> <tt>upgrade</tt>
-		<var>new-version</var>
-	    </item>
-	    <item>
-		<var>new-postrm</var> <tt>failed-upgrade</tt>
-		<var>old-version</var>
-	    </item>
-	    <item>
-		<var>new-postrm</var> <tt>abort-install</tt>
-	    </item>
-	    <item>
-		<var>new-postrm</var> <tt>abort-install</tt>
-		<var>old-version</var>
-	    </item>
-	    <item>
-		<var>new-postrm</var> <tt>abort-upgrade</tt>
-		<var>old-version</var>
-	    </item>
-	    <item>
-		<var>disappearer's-postrm</var> <tt>disappear</tt>
-		<var>overwriter</var>
-		<var>overwriter-version</var>
-	    </item>
-	  </list>
+	  What follows is a summary of all the ways in which maintainer
+	  scripts may be called along with what facilities those scripts
+	  may rely on being available at that time.  Script names preceded
+	  by <var>new-</var> are the scripts from the new version of a
+	  package being installed, upgraded to, or downgraded to.  Script
+	  names preceded by <var>old-</var> are the scripts from the old
+	  version of a package that is being upgraded from or downgraded
+	  from.
 	</p>
 
+	<p>
+	  The <prgn>preinst</prgn> script may be called in the following
+	  ways:
+	  <taglist>
+	    <tag><var>new-preinst</var> <tt>install</tt></tag>
+	    <tag><var>new-preinst</var> <tt>install</tt>
+	      <var>old-version</var></tag>
+	    <tag><var>new-preinst</var> <tt>upgrade</tt>
+	      <var>old-version</var></tag>
+	    <item>
+	      The package will not yet be unpacked, so
+	      the <prgn>preinst</prgn> script cannot rely on any files
+	      included in its package.  Only essential packages and
+	      pre-dependencies (<tt>Pre-Depends</tt>) may be assumed to be
+	      available.  Pre-dependencies will have been configured at
+	      least once, but at the time the <prgn>preinst</prgn> is
+	      called they may only be in an unpacked or "Half-Configured"
+	      state if a previous version of the pre-dependency was
+	      completely configured and has not been removed since then.
+	    </item>
+
+	    <tag><var>old-preinst</var> <tt>abort-upgrade</tt>
+	      <var>new-version</var></tag>
+	    <item>
+	      Called during error handling of an upgrade that failed after
+	      unpacking the new package because the <tt>postrm
+	      upgrade</tt> action failed.  The unpacked files may be
+	      partly from the new version or partly missing, so the script
+	      cannot rely on files included in the package.  Package
+	      dependencies may not be available.  Pre-dependencies will be
+	      at least unpacked following the same rules as above, except
+	      they may be only "Half-Installed" if an upgrade of the
+	      pre-dependency failed.<footnote>
+		This can happen if the new version of the package no
+		longer pre-depends on a package that had been partially
+		upgraded.
+	      </footnote>
+	    </item>
+	  </taglist>
+	</p>
+
+	<p>
+	  The <prgn>postinst</prgn> script may be called in the following
+	  ways:
+	  <taglist>
+	    <tag><var>postinst</var> <tt>configure</tt>
+	      <var>most-recently-configured-version</var></tag>
+	    <item>
+	      The files contained in the package will be unpacked.  All
+	      package dependencies will at least be unpacked.  If there
+	      are no circular dependencies involved, all package
+	      dependencies will be configured.  For behavior in the case
+	      of circular dependencies, see the discussion
+	      in <ref id="binarydeps">.
+	    </item>
+
+	    <tag><var>old-postinst</var> <tt>abort-upgrade</tt>
+	      <var>new-version</var></tag>
+	    <tag><var>conflictor's-postinst</var> <tt>abort-remove</tt>
+	      <tt>in-favour</tt> <var>package</var>
+	      <var>new-version</var></tag>
+	    <tag><var>postinst</var> <tt>abort-remove</tt></tag>
+	    <tag><var>deconfigured's-postinst</var>
+	      <tt>abort-deconfigure</tt> <tt>in-favour</tt>
+	      <var>failed-install-package</var> <var>version</var>
+	      [<tt>removing</tt> <var>conflicting-package</var>
+	      <var>version</var>]</tag>
+	    <item>
+	      The files contained in the package will be unpacked.  All
+	      package dependencies will at least be "Half-Installed" and
+	      will have previously been configured and not removed.
+	      However, dependencies may not be configured or even fully
+	      unpacked in some error situations.<footnote>
+		For example, suppose packages foo and bar are installed
+		with foo depending on bar.  If an upgrade of bar were
+		started and then aborted, and then an attempt to remove
+		foo failed because its <prgn>prerm</prgn> script failed,
+		foo's <tt>postinst abort-remove</tt> would be called with
+		bar only "Half-Installed".
+	      </footnote>
+	      The <prgn>postinst</prgn> should still attempt any actions
+	      for which its dependencies are required, since they will
+	      normally be available, but consider the correct error
+	      handling approach if those actions fail.  Aborting
+	      the <prgn>postinst</prgn> action if commands or facilities
+	      from the package dependencies are not available is often the
+	      best approach.
+	    </item>
+	  </taglist>
+	</p>
+
+	<p>
+	  The <prgn>prerm</prgn> script may be called in the following
+	  ways:
+	  <taglist>
+	    <tag><var>prerm</var> <tt>remove</tt></tag>
+	    <tag><var>old-prerm</var>
+	      <tt>upgrade</tt><var>new-version</var></tag>
+	    <tag><var>conflictor's-prerm</var> <tt>remove</tt>
+	      <tt>in-favour</tt> <var>package</var>
+	      <var>new-version</var></tag>
+	    <tag><var>deconfigured's-prerm</var> <tt>deconfigure</tt>
+	      <tt>in-favour</tt> <var>package-being-installed</var>
+	      <var>version</var> [<tt>removing</tt>
+	      <var>conflicting-package</var> <var>version</var>]</tag>
+	    <item>
+	      The package whose <prgn>prerm</prgn> is being called will be
+	      at least "Half-Installed".  All package dependencies will at
+	      least be "Half-Installed" and will have previously been
+	      configured and not removed.  If there was no error, all
+	      dependencies will at least be unpacked, but these actions
+	      may be called in various error states where dependencies are
+	      only "Half-Installed" due to a partial upgrade.
+	    </item>
+
+	    <tag><var>new-prerm</var> <tt>failed-upgrade</tt>
+	      <var>old-version</var></tag>
+	    <item>
+	      Called during error handling when <tt>prerm upgrade</tt>
+	      fails.  The new package will not yet be unpacked, and all
+	      the same constraints as for <tt>preinst upgrade</tt> apply.
+	    </item>
+	  </taglist>
+	</p>
+
+	<p>
+	  The <prgn>postrm</prgn> script may be called in the following
+	  ways:
+	  <taglist>
+	    <tag><var>postrm</var> <tt>remove</tt></tag>
+	    <tag><var>postrm</var> <tt>purge</tt></tag>
+	    <tag><var>old-postrm</var> <tt>upgrade</tt>
+	      <var>new-version</var></tag>
+	    <tag><var>disappearer's-postrm</var> <tt>disappear</tt>
+		<var>overwriter</var> <var>overwriter-version</var></tag>
+	    <item>
+	      The <prgn>postrm</prgn> script is called after the package's
+	      files have been removed or replaced.  The package
+	      whose <prgn>postrm</prgn> is being called may have
+	      previously been deconfigured and only be unpacked, at which
+	      point subsequent package changes do not consider its
+	      dependencies.  Therefore, all <prgn>postrm</prgn> actions
+	      may only rely on essential packages and must gracefully skip
+	      any actions that require the package's dependencies if those
+	      dependencies are unavailable.<footnote>
+		This is often done by checking whether the command or
+	        facility the <prgn>postrm</prgn> intends to call is
+	        available before calling it.  For example:
+<example>
+if [ "$1" = purge ] && [ -e /usr/share/debconf/confmodule ]; then
+        . /usr/share/debconf/confmodule
+        db_purge
+fi
+</example>
+		in <prgn>postrm</prgn> purges the <prgn>debconf</prgn>
+		configuration for the package
+		if <package>debconf</package> is installed.
+	      </footnote>
+	    </item>
+
+	    <tag><var>new-postrm</var> <tt>failed-upgrade</tt>
+	      <var>old-version</var></tag>
+	    <item>
+	      Called when the old <tt>postrm upgrade</tt> action fails.
+	      The new package will be unpacked, but only essential
+	      packages and pre-dependencies can be relied on.
+	      Pre-dependencies will either be configured or will be
+	      "Unpacked" or "Half-Configured" but previously had been
+	      configured and was never removed.
+	    </item>
+
+	    <tag><var>new-postrm</var> <tt>abort-install</tt></tag>
+	    <tag><var>new-postrm</var> <tt>abort-install</tt>
+	      <var>old-version</var></tag>
+	    <tag><var>new-postrm</var> <tt>abort-upgrade</tt>
+	      <var>old-version</var></tag>
+	    <item>
+	      Called before unpacking the new package as part of the
+	      error handling of <prgn>preinst</prgn> failures.  May assume
+	      the same state as <prgn>preinst</prgn> can assume.
+	    </item>
+	  </taglist>
+	</p>
+      </sect>
 
       <sect id="unpackphase">
 	<heading>Details of unpack phase of installation or upgrade</heading>
@@ -4166,7 +4255,7 @@ Checksums-Sha256:
 		behavior which, though deterministic, is hard for the
 		system administrator to understand.  It can easily
 		lead to "missing" programs if, for example, a package
-		is installed which overwrites a file from another
+		is unpacked which overwrites a file from another
 		package, and is then removed again.<footnote>
 		    Part of the problem is due to what is arguably a
 		    bug in <prgn>dpkg</prgn>.
@@ -4302,7 +4391,7 @@ Checksums-Sha256:
 		If there was a conflicting package we go and do the
 		removal actions (described below), starting with the
 		removal of the conflicting package's files (any that
-		are also in the package being installed have already
+		are also in the package being unpacked have already
 		been removed from the conflicting package's file list,
 		and so do not get removed now).
 	    </item>
@@ -4642,31 +4731,40 @@ Build-Depends: foo [linux-any], bar [any-i386], baz [!linux-any]
 	</p>
 
 	<p>
-	  For this reason packages in an installation run are usually
-	  all unpacked first and all configured later; this gives
-	  later versions of packages with dependencies on later
-	  versions of other packages the opportunity to have their
-	  dependencies satisfied.
+	  Since <tt>Depends</tt> only places requirements on the order in
+	  which packages are configured, packages in an installation run
+	  are usually all unpacked first and all configured later.
+	  <footnote>
+	    This approach makes dependency resolution easier.  If two
+	    packages A and B are being upgraded, the installed package A
+	    depends on exactly the installed package B, and the new
+	    package A depends on exactly the new package B (a common
+	    situation when upgrading shared libraries and their
+	    corresponding development packages), satisfying the
+	    dependencies at every stage of the upgrade would be
+	    impossible.  This relaxed restriction means that both new
+	    packages can be unpacked together and then configured in their
+	    dependency order.
+	  </footnote>
 	</p>
 
-        <p>
-          In case of circular dependencies, since installation or
-          removal order honoring the dependency order can't be
-          established, dependency loops are broken at some point
-          (based on rules below), and some packages may not be able to
-          rely on their dependencies being present when being
-          installed or removed, depending on which side of the break
-          of the circular dependency loop they happen to be on.  If one
-          of the packages in the loop has no postinst script, then the
-          cycle will be broken at that package, so as to ensure that
-          all postinst scripts run with the dependencies properly
-          configured if this is possible. Otherwise the breaking point
-          is arbitrary.
-        </p>
-
 	<p>
-	  The <tt>Depends</tt> field thus allows package maintainers
-	  to impose an order in which packages should be configured.
+	  If there is a circular dependency among packages being installed
+	  or removed, installation or removal order honoring the
+	  dependency order is impossible, requiring the dependency loop be
+	  broken at some point and the dependency requirements violated
+	  for at least one package.  Packages involved in circular
+	  dependencies may not be able to rely on their dependencies being
+	  configured before they themselves are configured, depending on
+	  which side of the break of the circular dependency loop they
+	  happen to be on.  If one of the packages in the loop has
+	  no <prgn>postinst</prgn> script, then the cycle will be broken
+	  at that package; this ensures that all <prgn>postinst</prgn>
+	  scripts are run with their dependencies properly configured if
+	  this is possible.  Otherwise the breaking point is arbitrary.
+	  Packages should therefore avoid circular dependencies where
+	  possible, particularly if they have <prgn>postinst</prgn>
+	  scripts.
 	</p>
 
 	<p>
@@ -4678,7 +4776,8 @@ Build-Depends: foo [linux-any], bar [any-i386], baz [!linux-any]
 		This declares an absolute dependency.  A package will
 		not be configured unless all of the packages listed in
 		its <tt>Depends</tt> field have been correctly
-		configured.
+		configured (unless there is a circular dependency as
+		described above).
 	      </p>
 
 	      <p>
@@ -4690,12 +4789,31 @@ Build-Depends: foo [linux-any], bar [any-i386], baz [!linux-any]
 
 	      <p>
 		The <tt>Depends</tt> field should also be used if the
-		<prgn>postinst</prgn>, <prgn>prerm</prgn> or
-		<prgn>postrm</prgn> scripts require the package to be
-		present in order to run.  Note, however, that the
-		<prgn>postrm</prgn> cannot rely on any non-essential
-		packages to be present during the <tt>purge</tt>
-		phase.
+		<prgn>postinst</prgn> or <prgn>prerm</prgn> scripts
+		require the depended-on package to be unpacked or
+		configured in order to run.  In the case of <tt>postinst
+		configure</tt>, the depended-on packages will be unpacked
+		and configured first.  (If both packages are involved in a
+		dependency loop, this might not work as expected; see the
+		explanation a few paragraphs back.)  In the case
+		of <prgn>prerm</prgn> or other <prgn>postinst</prgn>
+		actions, the package dependencies will normally be at
+		least unpacked, but they may be only "Half-Installed" if a
+		previous upgrade of the dependency failed.
+	      </p>
+
+	      <p>
+		Finally, the <tt>Depends</tt> field should be used if the
+		depended-on package is needed by the <prgn>postrm</prgn>
+		script to fully clean up after the package removal.  There
+		is no guarantee that package dependencies will be
+		available when <prgn>postrm</prgn> is run, but the
+		depended-on package is more likely to be available if the
+		package declares a dependency (particularly in the case
+		of <tt>postrm remove</tt>).  The <prgn>postrm</prgn>
+		script must gracefully skip actions that require a
+		dependency if that dependency isn't available.
+	      </p>
 	    </item>
 
 	    <tag><tt>Recommends</tt></tag>
@@ -4754,11 +4872,21 @@ Build-Depends: foo [linux-any], bar [any-i386], baz [!linux-any]
 	      </p>
 
 	      <p>
-		When the package declaring a pre-dependency is about
-		to be <em>configured</em>, the pre-dependency will be
-		treated as a normal <tt>Depends</tt>, that is, it will
-		be considered satisfied only if the depended-on
-		package has been correctly configured.
+		When the package declaring a pre-dependency is about to
+		be <em>configured</em>, the pre-dependency will be treated
+		as a normal <tt>Depends</tt>.  It will be considered
+		satisfied only if the depended-on package has been
+		correctly configured.  However, unlike
+		with <tt>Depends</tt>, <tt>Pre-Depends</tt> does not
+		permit circular dependencies to be broken.  If a circular
+		dependency is encountered while attempting to honor
+		<tt>Pre-Depends</tt>, the installation will be aborted.
+	      </p>
+
+	      <p>
+		<tt>Pre-Depends</tt> are also required if the
+		<prgn>preinst</prgn> script depends on the named package.
+		It is best to avoid this situation if possible.
 	      </p>
 
 	      <p>
@@ -4769,10 +4897,10 @@ Build-Depends: foo [linux-any], bar [any-i386], baz [!linux-any]
 	      </p>
 
 	      <p>
-		<tt>Pre-Depends</tt> are also required if the
-		<prgn>preinst</prgn> script depends on the named
-		package.  It is best to avoid this situation if
-		possible.
+		You should not specify a <tt>Pre-Depends</tt> entry for a
+		package before this has been discussed on the
+		<tt>debian-devel</tt> mailing list and a consensus about
+		doing that has been reached.  See <ref id="dependencies">.
 	      </p>
 	    </item>
 	  </taglist>
@@ -4798,7 +4926,7 @@ Build-Depends: foo [linux-any], bar [any-i386], baz [!linux-any]
 	<p>
 	  When one binary package declares that it breaks another,
 	  <prgn>dpkg</prgn> will refuse to allow the package which
-	  declares <tt>Breaks</tt> be installed unless the broken
+	  declares <tt>Breaks</tt> to be unpacked unless the broken
 	  package is deconfigured first, and it will refuse to
 	  allow the broken package to be reconfigured.
 	</p>
@@ -4849,18 +4977,18 @@ Build-Depends: foo [linux-any], bar [any-i386], baz [!linux-any]
 	<heading>Conflicting binary packages - <tt>Conflicts</tt></heading>
 
 	<p>
-          When one binary package declares a conflict with another
-	  using a <tt>Conflicts</tt> field, <prgn>dpkg</prgn> will
-	  refuse to allow them to be installed on the system at the
-	  same time.  This is a stronger restriction than <tt>Breaks</tt>,
-	  which just prevents both packages from being configured at the
-	  same time.  Conflicting packages cannot be unpacked on the
-	  system at the same time.
+          When one binary package declares a conflict with another using
+	  a <tt>Conflicts</tt> field, <prgn>dpkg</prgn> will refuse to
+	  allow them to be unpacked on the system at the same time.  This
+	  is a stronger restriction than <tt>Breaks</tt>, which prevents
+	  the broken package from being configured while the breaking
+	  package is in the "Unpacked" state but allows both packages to
+	  be unpacked at the same time.
 	</p>
 
 	<p>
-	  If one package is to be installed, the other must be removed
-	  first.  If the package being installed is marked as replacing
+	  If one package is to be unpacked, the other must be removed
+	  first.  If the package being unpacked is marked as replacing
 	  (see <ref id="replaces">, but note that <tt>Breaks</tt> should
 	  normally be used in this case) the one on the system, or the one
 	  on the system is marked as deselected, or both packages are
@@ -4909,7 +5037,7 @@ Build-Depends: foo [linux-any], bar [any-i386], baz [!linux-any]
 	    <item>when two packages provide the same file and will
 	      continue to do so,</item>
 	    <item>in conjunction with <tt>Provides</tt> when only one
-	      package providing a given virtual facility may be installed
+	      package providing a given virtual facility may be unpacked
 	      at a time (see <ref id="virtual">),</item>
 	    <item>in other cases where one must prevent simultaneous
 	      installation of two packages for reasons that are ongoing
@@ -5141,7 +5269,7 @@ Provides: mail-transport-agent
 Conflicts: mail-transport-agent
 Replaces: mail-transport-agent
 	    </example>
-	    ensuring that only one MTA can be installed at any one
+	    ensuring that only one MTA can be unpacked at any one
 	    time.  See <ref id="virtual"> for more information about this
 	    example.
 	</sect1>
@@ -5437,7 +5565,7 @@ Replaces: mail-transport-agent
          <footnote>
 	    <p>
 	      During install or upgrade, the preinst is called before
-	      the new files are installed, so calling "ldconfig" is
+	      the new files are unpacked, so calling "ldconfig" is
 	      pointless.  The preinst of an existing package can also be
 	      called if an upgrade fails.  However, this happens during
 	      the critical time when a shared libs may exist on-disk
@@ -5582,7 +5710,7 @@ Replaces: mail-transport-agent
 	<ref id="conflicts">) to ensure that the user only installs one
 	development version at a time (as different development versions are
 	likely to have the same header files in them, which would cause a
-	filename clash if both were installed).
+	filename clash if both were unpacked).
       </p>
 
       <p>
@@ -6027,13 +6155,13 @@ install -m644 debian/shlibs.<var>package</var> debian/<var>package</var>/DEBIAN/
                   <file>/lib/<var>triplet</var></file> and
                   <file>/usr/lib/<var>triplet</var></file>, where
                   <tt><var>triplet</var></tt> is the value returned by
-                  <tt>dpkg-architecture -qDEB_HOST_GNU_TYPE</tt> for the
+                  <tt>dpkg-architecture -qDEB_HOST_MULTIARCH</tt> for the
                   architecture of the package.  Packages may <em>not</em>
                   install files to any <var>triplet</var> path other
                   than the one matching the architecture of that package;
                   for instance, an <tt>Architecture: amd64</tt> package
                   containing 32-bit x86 libraries may not install these
-                  libraries to <file>/usr/lib/i486-linux-gnu</file>.
+                  libraries to <file>/usr/lib/i386-linux-gnu</file>.
                   <footnote>
                     This is necessary in order to reserve the directories for
                     use in cross-installation of library packages from other
@@ -8952,9 +9080,9 @@ name ["<var>syshostname</var>"]:
 
               <item>
                   If the window manager complies with <url
-		    id="http://www.freedesktop.org/Standards/wm-spec"
+		    id="http://www.freedesktop.org/wiki/Specifications/wm-spec"
 		    name="The Window Manager Specification Project">,
-                  written by the <url id="http://www.freedesktop.org/"
+                  written by the <url id="http://www.freedesktop.org/wiki/"
 		    name="Free Desktop Group">, add 40 points.
               </item>
 
@@ -9923,7 +10051,7 @@ END-INFO-DIR-ENTRY
 	<p>
 	  The <prgn>DEBIAN</prgn> directory will not appear in the
 	  file system archive of the package, and so won't be installed
-	  by <prgn>dpkg</prgn> when the package is installed.
+	  by <prgn>dpkg</prgn> when the package is unpacked.
 	</p>
 
 	<p>

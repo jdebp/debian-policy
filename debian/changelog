@@ -15,6 +15,16 @@ debian-policy (3.9.2.0) UNRELEASED; urgency=low
     Seconded: Andrew McMillan <andrew@morphoss.com>
     Seconded: Russ Allbery <rra@debian.org>
     Closes: #588014
+  * Policy: Update multiarch FHS exception for i386 naming
+    Wording: Steve Langasek <vorlon@debian.org>
+    Seconded: Aurelien Jarno <aurelien@aurel32.net>
+    Seconded: Raphael Hertzog <hertzog@debian.org>
+    Closes: #619186
+  * Policy: Significant additions to maintainer script documentation
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Steve Langasek <vorlon@debian.org>
+    Seconded: Raphaël Hertzog <hertzog@debian.org>
+    Closes: #504880
   * Virtual: Added mailx as a new virtual package
     Wording: Russ Allbery <rra@debian.org>
     Seconded: Raphaël Hertzog <hertzog@debian.org>
@@ -51,6 +61,11 @@ debian-policy (3.9.2.0) UNRELEASED; urgency=low
     from org source from the revision control repository.  Build and clean
     files from org source unconditionally.  Add Process.{txt,html} to the
     list of files generated from org source.  (Closes: #594274)
+  * Fix URLs under www.freedesktop.org to avoid permanent redirects.
+    Thanks, David Prévot.  (Closes: #606869)
+  * Add a cross-reference to the Pre-Depends requirement in 3.5 to section
+    7.2 where Pre-Depends is defined.  Thanks, Mattias Ellert and Jonathan
+    Nieder.  (Closes: #599944)
 
  -- Russ Allbery <rra@debian.org>  Thu, 12 Aug 2010 10:47:47 -0700
 
