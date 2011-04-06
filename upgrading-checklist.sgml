@@ -46,31 +46,31 @@ Unreleased.
   intended.
   </item>
 <tag>3.3</tag>
-  <item>Clarify the duties of a maintainer, require that the maintainer
-  address accept mail from Debian role accounts and the BTS, and require
-  at least one human with their personal email address
-  in <tt>Uploaders</tt> if the maintainer is a shared email address.
+  <item>The maintainer address must accept mail from Debian role accounts
+  and the BTS.  At least one human must be listed with their personal
+  email address in <tt>Uploaders</tt> if the maintainer is a shared email
+  address.  The duties of a maintainer are also clearer.
   </item>
 <tag>5.6.25</tag>
-  <item>Document the <tt>DM-Upload-Allowed</tt> field.
+  <item>The <tt>DM-Upload-Allowed</tt> field is now documented.
   </item>
 <tag>6.5</tag>
-  <item>Document the system state maintainer scripts can rely upon during
-  each possible invocation.  In several less-common cases, this is
-  stricter than Policy had previously documented.  Packages with complex
-  maintainer scripts should be reviewed in light of this new
+  <item>The system state maintainer scripts can rely upon during each
+  possible invocation is now documented.  In several less-common cases,
+  this is stricter than Policy had previously documented.  Packages with
+  complex maintainer scripts should be reviewed in light of this new
   documentation.
   </item>
 <tag>7.2</tag>
-  <item>Better document the impact on system state when maintainer scripts
-  that are part of a circular dependency are run.  Circular dependencies
-  are now a should not.
+  <item>The impact on system state when maintainer scripts that are part
+  of a circular dependency are run is now documented.  Circular
+  dependencies are now a should not.
   </item>
 <tag>7.2</tag>
-  <item>Document the system state when <prgn>postinst</prgn>
-  and <prgn>prerm</prgn> scripts are run, and better document the special
-  case of dependency state for <prgn>postrm</prgn>
-  scripts.  <prgn>postrm</prgn> scripts are required to gracefully skip
+  <item>The system state when <prgn>postinst</prgn> and <prgn>prerm</prgn>
+  scripts are run is now documented, and the documentation of the special
+  case of dependency state for <prgn>postrm</prgn> scripts has been
+  improved.  <prgn>postrm</prgn> scripts are required to gracefully skip
   actions if their dependencies are not available.
   </item>
 <tag>9.1.1</tag>
@@ -78,8 +78,8 @@ Unreleased.
   and <file>/servers</file> directories in the root filesystem.
   </item>
 <tag>virtual</tag>
-  <item><tt>mailx</tt> added as a virtual package provided by packages
-  that install <prgn>/usr/bin/mailx</prgn> and implement at least the
+  <item><tt>mailx</tt> is now a virtual package provided by packages that
+  install <prgn>/usr/bin/mailx</prgn> and implement at least the
   POSIX-required interface.
   </item>
 <tag>9.1.1</tag>
@@ -163,8 +163,8 @@ Released July, 2010.
   with <prgn>trap</prgn>.
   </item>
 <tag>10.8</tag>
-  <item>Recommend <file>/etc/logrotate.d/<var>package</var></file> for
-  logrotate rules.
+  <item>Use of <file>/etc/logrotate.d/<var>package</var></file> for
+  logrotate rules is now recommended.
   </item>
 <tag>10.9</tag>
   <item>Control information files should be owned by <tt>root:root</tt>
@@ -203,9 +203,9 @@ Released June, 2010.
   particular field name.
   </item>
 <tag>5.4, 5.5, 5.6.24</tag>
-  <item>Document and recommend the <tt>Checksums-Sha1</tt>
-  and <tt>Checksums-Sha256</tt> fields in <file>*.dsc</file>
-  and <file>*.changes</file> files.
+  <item>The <tt>Checksums-Sha1</tt> and <tt>Checksums-Sha256</tt> fields
+  in <file>*.dsc</file> and <file>*.changes</file> files are now
+  documented and recommended.
   </item>
 <tag>5.5, 5.6.16</tag>
   <item>The <tt>Format</tt> field of <file>.changes</file> files is now
@@ -269,9 +269,9 @@ Released June, 2010.
   common-licenses for the time being.
   </item>
 <tag>debconf</tag>
-  <item>Add <tt>SETTITLE</tt> (which has been supported for some time).
-  Like <tt>TITLE</tt> but takes a template instead of a string to allow
-  translation.
+  <item><tt>SETTITLE</tt> is now documented (it has been supported for
+  some time).  <tt>SETTITLE</tt> is like <tt>TITLE</tt> but takes a
+  template instead of a string to allow translation.
   </item>
 <tag>perl</tag>
   <item><package>perl-base</package> now
@@ -299,8 +299,8 @@ Release Jan 2010.
   <file>/usr/lib/triplet</file> directories.
   </item>
 <tag>10.6</tag>
-  <item>Explicitly state that packages may not contain named pipes and
-  should instead create them in postinst and remove them in prerm or postrm.
+  <item>Packages may not contain named pipes and should instead create
+  them in postinst and remove them in prerm or postrm.
   </item>
 <tag>9.1.1</tag>
   <item><file>/sys</file> and <file>/selinux</file> directories are explicitly
@@ -314,8 +314,8 @@ Released Aug 2009.
 
 </p><p><taglist>
 <tag>4.9</tag>
-  <item>Add DEB_*_ARCH_CPU and DEB_*_ARCH_OS variables and
-  recommend them over GNU-style variables for that information.
+  <item>DEB_*_ARCH_CPU and DEB_*_ARCH_OS variables are now documented and
+  recommended over GNU-style variables for that information.
   </item>
 <tag>5.6.8</tag>
   <item>Source package Architecture fields may contain <em/all/ in
@@ -330,19 +330,20 @@ Released Aug 2009.
   <item>The Binary field may span multiple lines.
   </item>
 <tag>10.2</tag>
-  <item>Remove the permission for shared library packages to
-  install libraries in a non-standard location and modify <file/ld.so.conf/.
-  Packages should either be installed in a standard library directory
-  or packages using them should be built with RPATH.
+  <item>Shared library packages are no longer allowed to install libraries
+  in a non-standard location and modify <file/ld.so.conf/.  Packages
+  should either be installed in a standard library directory or packages
+  using them should be built with RPATH.
   </item>
 <tag>11.8.7</tag>
-  <item>Clarify installation directories for X programs and
-  remove the requirement to pre-depend on x11-common before installing
-  into <file>/usr/include/X11</file> and <file>/usr/lib/X11</file>.
+  <item>Installation directories for X programs have been clarified.
+  Packages are no longer required to pre-depend on x11-common before
+  installing into <file>/usr/include/X11</file>
+  and <file>/usr/lib/X11</file>.
   </item>
 <tag>12.1</tag>
-  <item>Remove the requirement that all characters in a manual
-  page be representable in the legacy encoding for that language.
+  <item>Manual pages are no longer required to contain only characters
+  representable in the legacy encoding for that language.
   </item>
 <tag>12.1</tag>
   <item>Localized man pages should either be kept up-to-date with
@@ -418,12 +419,12 @@ Released  Mar 2009.
   <item>Changelog files must be encoded in UTF-8.                
   </item>
 <tag>4.4</tag>
-  <item>Tighten some format requirements for changelog files from a should
-  to a must.                                               
+  <item>Some format requirements for changelog files are now "must"
+  instead of "should."
   </item>
 <tag>4.4.1</tag>
-  <item>Remove alternative changelog formats.  Debian only supports one
-  changelog format for the Debian Archive.                 
+  <item>Alternative changelog formats have been removed.  Debian only
+  supports one changelog format for the Debian Archive.
   </item>
 <tag>4.9.1</tag>
   <item>New nocheck option for DEB_BUILD_OPTIONS indicating any build-time
@@ -433,8 +434,8 @@ Released  Mar 2009.
   <item>All control files must be encoded in UTF-8.              
   </item>
 <tag>5.2</tag>
-  <item>debian/control allows comment lines starting with # with no
-  preceding whitespace.                                    
+  <item><file>debian/control</file> allows comment lines starting with #
+  with no preceding whitespace.
   </item>
 <tag>9.3</tag>
   <item>Init scripts ending in .sh are not handled specially.  They are not
