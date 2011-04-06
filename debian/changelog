@@ -71,6 +71,11 @@ debian-policy (3.9.2.0) UNRELEASED; urgency=low
   * Add a cross-reference to the Pre-Depends requirement in 3.5 to section
     7.2 where Pre-Depends is defined.  Thanks, Mattias Ellert and Jonathan
     Nieder.  (Closes: #599944)
+  * Include the new (optional) copyright format that was drafted as DEP-5.
+    This is not yet a final version; that's expected to come in the
+    3.9.3.0 release.  Thanks to all the DEP-5 contributors and to Lars
+    Wirzenius and Charles Plessy for the integration into the Policy
+    package.  (Closes: #609160)
 
  -- Russ Allbery <rra@debian.org>  Thu, 12 Aug 2010 10:47:47 -0700
 
