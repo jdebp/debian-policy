@@ -33,7 +33,7 @@ LIBDIR	  := $(TMPTOP)/usr/share/doc-base
 sanitycheck := debian/rules policy.sgml
 
 SGML_FILES := policy menu-policy mime-policy perl-policy upgrading-checklist
-DESC_FILES := debian-policy debian-menu-policy debian-perl-policy \
+DESC_FILES := copyright-format debian-policy debian-menu-policy debian-perl-policy \
               debian-mime-policy debconf-spec fhs
 
 # While we have two versions of the FHS installed in the source package,
@@ -49,6 +49,8 @@ FHS_NEW_FILES    :=
 POLICY_FILES = $(SGML_FILES:=.sgml) $(SGML_FILES:=.txt.gz) \
 	       virtual-package-names-list.txt \
 	       libc6-migration.txt version.ent \
+               copyright-format/copyright-format.html \
+               copyright-format/copyright-format.txt.gz \
                debconf_spec/debconf_specification.html \
                debconf_spec/debconf_specification.txt.gz \
                policy.ps.gz policy.pdf.gz README.txt README.html \
@@ -57,7 +59,8 @@ POLICY_FILES = $(SGML_FILES:=.sgml) $(SGML_FILES:=.txt.gz) \
 FILES_FROM_ORG := Process.html Process.txt README.txt README.html
 
 # policy.{pdf,ps,tpt,txt} are generated files
-FILES_TO_CLEAN  = debian/files debian/buildinfo  debian/substvars \
+FILES_TO_CLEAN  = copyright-format.xml.tar.gz \
+                  debian/files debian/buildinfo  debian/substvars \
 		  debian/postinst debian/prerm \
 		  version.ent \
 		  $(SGML_FILES:=.txt.gz) $(SGML_FILES:=.html.tar.gz) \
@@ -85,6 +88,7 @@ stamp-build: version.ent $(sanitycheck)
 		$(SGML_FILES:=.txt.gz) \
 		policy.ps.gz policy.pdf.gz
 	$(MAKE) $(FILES_FROM_ORG)
+	$(MAKE) -C copyright-format all
 	$(MAKE) -C debconf_spec all
 	touch stamp-build
 
@@ -96,6 +100,7 @@ version.ent: debian/changelog
 
 clean: $(sanitycheck)
 # Undoes the effect of `make -f debian/rules build'.
+	$(MAKE) -C copyright-format clean
 	$(MAKE) -C debconf_spec clean
 	rm -f  $(FILES_TO_CLEAN) $(STAMPS_TO_CLEAN)
 	rm -rf $(DIRS_TO_CLEAN)
@@ -136,6 +141,10 @@ stamp-policy:  build $(sanitycheck)
 	#$(install_file)    $(FHS_NEW_FILES)	     $(DOCDIR)/fhs/
 	$(install_file)	    $(FHS_FILES)	     $(DOCDIR)/fhs/
 	$(install_file)	    debian/copyright	     $(DOCDIR)/
+	GZIP=-9 cd copyright-format && \
+	  tar -zcf ../copyright-format.xml.tar.gz *
+	$(install_file)	    copyright-format.xml.tar.gz $(DOCDIR)/
+	@set -ex; \
 	GZIP=-9 cd debconf_spec && \
 	  tar -zcf ../debconf_specification.xml.tar.gz *
 	$(install_file)	    debconf_specification.xml.tar.gz $(DOCDIR)/
