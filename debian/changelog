@@ -25,6 +25,11 @@ debian-policy (3.9.2.0) UNRELEASED; urgency=low
     Seconded: Steve Langasek <vorlon@debian.org>
     Seconded: Raphaël Hertzog <hertzog@debian.org>
     Closes: #504880
+  * Policy: Clarify format of Debian control fields
+    Wording: Charles Plessy <plessy@debian.org>
+    Seconded: Russ Allbery <rra@debian.org>
+    Seconded: Julien Cristau <jcristau@debian.org>
+    Closes: #501930, #593909
   * Virtual: Added mailx as a new virtual package
     Wording: Russ Allbery <rra@debian.org>
     Seconded: Raphaël Hertzog <hertzog@debian.org>

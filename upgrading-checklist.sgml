@@ -51,6 +51,19 @@ Unreleased.
   email address in <tt>Uploaders</tt> if the maintainer is a shared email
   address.  The duties of a maintainer are also clearer.
   </item>
+<tag>5</tag>
+  <item>All control fields are now classified as simple, folded, or
+  multiline, which governs whether their values must be a single line or
+  may be continued across multiple lines and whether line breaks are
+  significant.
+  </item>
+<tag>5.1</tag>
+  <item>Parsers are allowed to accept paragraph separation lines
+  containing whitespace, but control files should use completely empty
+  lines.  Ordering of paragraphs is significant.  Field names must be
+  composed of printable ASCII characters except colon and must not begin
+  with #.
+  </item>
 <tag>5.6.25</tag>
   <item>The <tt>DM-Upload-Allowed</tt> field is now documented.
   </item>
