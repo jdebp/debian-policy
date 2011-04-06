@@ -36,7 +36,7 @@
       </para>
     </abstract>
   </articleinfo>
-  
+
   <section id="introduction">
     <title>Introduction</title>
     <para>
@@ -54,7 +54,7 @@
       <filename>debian/copyright</filename>.
     </para>
   </section>
-  
+
   <section id="rationale">
     <title>Rationale</title>
     <para>
@@ -104,7 +104,7 @@
       Lars Wirzenius.
     </para>
   </section>
-  
+
   <section id="file-syntax">
     <title>File syntax</title>
     <para>
@@ -126,7 +126,7 @@
       There are four kinds values for fields.  Each field specifies which kind
       is allowed.
     </para>
-    
+
     <section id="single-line">
       <title>Single-line values</title>
       <para>
@@ -136,7 +136,7 @@
         that is used.
       </para>
     </section>
-    
+
     <section id="white-space-lists">
       <title>White space separated lists</title>
       <para>
@@ -146,7 +146,7 @@
         <varname>Files</varname>field has a list of filename patterns.
       </para>
     </section>
-    
+
     <section id="line-based-lists">
       <title>Line based lists</title>
       <para>
@@ -155,7 +155,7 @@
         line.
       </para>
     </section>
-    
+
     <section id="formatted-text">
       <title>Text formatted like package long descriptions</title>
       <para>
@@ -169,7 +169,7 @@
       </para>
     </section>
   </section>
-  
+
   <section id="paragraphs">
     <title>Paragraphs</title>
     <para>
@@ -180,7 +180,7 @@
       license</link> paragraph.  This is similar to source and binary package
       paragraphs in <filename>debian/control</filename> files.
     </para>
-    
+
     <section id="header-paragraph">
       <title>Header paragraph (Once)</title>
       <section id="format-header-field">
@@ -190,14 +190,14 @@
           <literal>http://www.debian.org/doc/copyright-format/1.0</literal>
         </para>
       </section>
-      
+
       <section id="upstream-name-header-field">
         <title><varname>Upstream-Name</varname></title>
         <para>
           Optional single line: the name upstream uses for the software
         </para>
       </section>
-      
+
       <section id="upstream-contact-header-field">
         <title><varname>Upstream-Contact</varname></title>
         <para>
@@ -206,7 +206,7 @@
           usually be written as a list of RFC5322 addresses or URIs.
         </para>
       </section>
-      
+
       <section id="source-header-field">
         <title><varname>Source</varname></title>
         <para>
@@ -220,7 +220,7 @@
           in this field.
         </para>
       </section>
-      
+
       <section id="disclaimer-header-field">
         <title><varname>Disclaimer</varname></title>
         <para>
@@ -229,7 +229,7 @@
           url="http://www.debian.org/doc/debian-policy/ch-docs#s-copyrightfile">12.5</ulink>)
         </para>
       </section>
-      
+
       <section id="comment-header-field">
         <title><varname>Comment</varname></title>
         <para>
@@ -241,7 +241,7 @@
           version is not.
         </para>
       </section>
-      
+
       <section id="license-header-field">
         <title><varname>License</varname></title>
         <para>
@@ -253,7 +253,7 @@
           linkend="files-paragraph">Files paragraph</link> section.
         </para>
       </section>
-      
+
       <section id="copyright-header-field">
         <title><varname>Copyright</varname></title>
         <para>
@@ -277,7 +277,7 @@
           sense.
         </para>
       </section>
-      
+
       <section id="example-header-paragraph">
         <title>Example header paragraph</title>
 <programlisting>Format: &lt;VERSIONED_FORMAT_URL&gt;
@@ -286,7 +286,7 @@ Upstream-Contact: John Doe &lt;john.doe@example.com&gt;
 Source: http://www.example.com/software/project</programlisting>
       </section>
     </section>
-     
+
     <section id="files-paragraph">
       <title>Files paragraph (Repeatable)</title>
       <para>
@@ -295,7 +295,7 @@ Source: http://www.example.com/software/project</programlisting>
         which applies to all files and lists all applicable copyrights and
         licenses.
       </para>
-       
+
       <section id="files-files-field">
         <title><varname>Files</varname></title>
         <para>
@@ -366,7 +366,7 @@ Source: http://www.example.com/software/project</programlisting>
         paragraphs.
       </para>
       </section>
-         
+
       <section id="copyright-files-field">
         <title><varname>Copyright</varname></title>
         <para>
@@ -431,7 +431,7 @@ Copyright 2009, 2010 Angela Watts</programlisting>
           notices with the binary package.
         </para>
       </section>
-          
+
       <section id="comment-files-field">
         <title><varname>Comment</varname></title>
         <para>
@@ -439,7 +439,7 @@ Copyright 2009, 2010 Angela Watts</programlisting>
           <varname>Comment</varname></link> field in the header paragraph.
         </para>
       </section>
-      
+
       <section id="example-files-paragraph">
         <title>Example files paragraphs</title>
 <programlisting>Files: *
@@ -467,7 +467,7 @@ License: GPL-2+</programlisting>
         </para>
       </section>
     </section>
-    
+
     <section id="stand-alone-license-paragraph">
       <title>Standalone License Paragraph (Optional, Repeatable)</title>
       <para>
@@ -492,7 +492,7 @@ License: GPL-2
 License: LGPL-2.1
  LICENSE TEXT]</programlisting>
       </example>
-      
+
       <example>
         <title>recurrent license</title>
 <programlisting>Files: src/js/editline/*
@@ -512,7 +512,7 @@ License: MPL-1.1
 
   <section id="license-specification">
     <title>License specification</title>
-    
+
     <section id="license-short-name">
       <title>Short name</title>
       <para>
@@ -523,7 +523,7 @@ License: MPL-1.1
         <varname>License</varname> field.
       </para>
       <para>
-        These short names have the specified meanings across all uses of this 
+        These short names have the specified meanings across all uses of this
         file format, and <emphasis>must not</emphasis> be used to refer to any
         other licenses.  Parsers may thus rely on these short names referring to
         the same licenses wherever they occur, without needing to parse or
@@ -582,7 +582,7 @@ License: MPL-1.1
                 Apache
               </entry>
               <entry>
-                Apache license 
+                Apache license
                 <ulink url="http://spdx.org/licenses/ASL-1.0">1.0</ulink>,
                 <ulink url="http://spdx.org/licenses/ASL-2.0">2.0</ulink>.
               </entry>
@@ -592,7 +592,7 @@ License: MPL-1.1
                 Artistic
               </entry>
               <entry>
-                Artistic license 
+                Artistic license
                 <ulink url="http://spdx.org/licenses/Artistic-1.0">1.0</ulink>,
                 <ulink url="http://spdx.org/licenses/Artistic-2.0">2.0</ulink>.
               </entry>
@@ -933,7 +933,7 @@ so, delete this exception statement from your version. If you delete
 this exception statement from all source files in the program, then
 also delete it here.</programlisting>
         </para>
-        
+
         <section id="public-domain">
           <title>Public domain</title>
           <para>
@@ -962,7 +962,7 @@ also delete it here.</programlisting>
         </para>
       </section>
     </section>
-    
+
     <section id="license-syntax">
       <title>Syntax</title>
       <para>
@@ -1011,12 +1011,12 @@ also delete it here.</programlisting>
  version.
  .
  In addition, as a special exception, the author of this
- program gives permission to link the code of its 
+ program gives permission to link the code of its
  release with the OpenSSL project's "OpenSSL" library (or
  with modified versions of it that use the same license as
  the "OpenSSL" library), and distribute the linked
- executables. You must obey the GNU General Public 
- License in all respects for all of the code used other 
+ executables. You must obey the GNU General Public
+ License in all respects for all of the code used other
  than "OpenSSL".  If you modify this file, you may extend
  this exception to your version of the file, but you are
  not obligated to do so.  If you do not wish to do so,
@@ -1170,7 +1170,7 @@ License: GPL-2+
       </para>
     </example>
   </section>
-  
+
   <section id="appendix">
     <title>
       Appendix: Note about the use of this format in Debian
