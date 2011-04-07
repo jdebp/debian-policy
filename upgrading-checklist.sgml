@@ -37,7 +37,7 @@ picking your way through this list.
 <sect> Version 3.9.2.0
 <p>
 
-Unreleased.
+Released April, 2010.
 
 </p><p><taglist>
 <tag>*</tag>
@@ -90,17 +90,17 @@ Unreleased.
   <item>GNU/Hurd systems are allowed <file>/hurd</file>
   and <file>/servers</file> directories in the root filesystem.
   </item>
+<tag>9.1.1</tag>
+  <item>Packages installing to architecture-specific subdirectories of
+  <file>/usl/lib</file> must use the value returned by
+  <prgn>dpkg-architecture -qDEB_HOST_MULTIARCH</prgn>, not by
+  <prgn>dpkg-architecture -qDEB_HOST_GNU_TYPE</prgn>; this is a path change
+  on i386 architectures and a no-op for other architectures.
+  </item>
 <tag>virtual</tag>
   <item><tt>mailx</tt> is now a virtual package provided by packages that
   install <prgn>/usr/bin/mailx</prgn> and implement at least the
   POSIX-required interface.
-  </item>
-<tag>9.1.1</tag>
-  <item>Packages installing to architecture-specific subdirectories of
-  <file>/url/lib</file> must use the value returned by
-  <prgn>dpkg-architecture -qDEB_HOST_MULTIARCH</prgn>, not by
-  <prgn>dpkg-architecture -qDEB_HOST_GNU_TYPE</prgn>; this is a path change
-  on i386 architectures and a no-op for other architectures.
   </item>
 </taglist></p>
 
