@@ -92,7 +92,7 @@ Released April, 2010.
   </item>
 <tag>9.1.1</tag>
   <item>Packages installing to architecture-specific subdirectories of
-  <file>/url/lib</file> must use the value returned by
+  <file>/usl/lib</file> must use the value returned by
   <prgn>dpkg-architecture -qDEB_HOST_MULTIARCH</prgn>, not by
   <prgn>dpkg-architecture -qDEB_HOST_GNU_TYPE</prgn>; this is a path change
   on i386 architectures and a no-op for other architectures.

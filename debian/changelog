@@ -2,6 +2,7 @@ debian-policy (3.9.2.1) UNRELEASED; urgency=low
 
   * Add the release date of 3.9.2.0 to upgrading-checklist.
   * Fix ordering of the last entries in the 3.9.2.0 upgrading-checklist.
+  * Fix typo in upgrading-checklist entry for multiarch paths.
 
  -- Russ Allbery <rra@debian.org>  Wed, 06 Apr 2011 23:04:37 -0700
 
