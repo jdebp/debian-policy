@@ -9370,41 +9370,6 @@ name ["<var>syshostname</var>"]:
 	    policy (such as for <ref id="appdefaults">).
 	  </p>
 	</sect1>
-
-	<sect1>
-	  <heading>The OSF/Motif and OpenMotif libraries</heading>
-
-	  <p>
-	    <em>Programs that require the non-DFSG-compliant OSF/Motif or
-	      OpenMotif libraries</em><footnote>
-		OSF/Motif and OpenMotif are collectively referred to as
-		"Motif" in this policy document.
-	    </footnote>
-	    should be compiled against and tested with LessTif (a free
-	    re-implementation of Motif) instead.  If the maintainer
-	    judges that the program or programs do not work
-	    sufficiently well with LessTif to be distributed and
-	    supported, but do so when compiled against Motif, then two
-	    versions of the package should be created; one linked
-	    statically against Motif and with <tt>-smotif</tt>
-	    appended to the package name, and one linked dynamically
-	    against Motif and with <tt>-dmotif</tt> appended to the
-	    package name.
-	  </p>
-
-	  <p>
-	    Both Motif-linked versions are dependent
-	    upon non-DFSG-compliant software and thus cannot be
-	    uploaded to the <em>main</em> distribution; if the
-	    software is itself DFSG-compliant it may be uploaded to
-	    the <em>contrib</em> distribution.  While known existing
-	    versions of Motif permit unlimited redistribution of
-	    binaries linked against the library (whether statically or
-	    dynamically), it is the package maintainer's
-	    responsibility to determine whether this is permitted by
-	    the license of the copy of Motif in their possession.
-	  </p>
-	</sect1>
       </sect>
 
       <sect id="perl">

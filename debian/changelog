@@ -1,11 +1,20 @@
-debian-policy (3.9.2.1) UNRELEASED; urgency=low
+debian-policy (3.9.3.0) UNRELEASED; urgency=low
 
+  [ Russ Allbery ]
   * Add the release date of 3.9.2.0 to upgrading-checklist.
   * Fix ordering of the last entries in the 3.9.2.0 upgrading-checklist.
   * Fix typo in upgrading-checklist entry for multiarch paths.  Thanks,
     Michael Dorrington.
 
- -- Russ Allbery <rra@debian.org>  Wed, 06 Apr 2011 23:04:37 -0700
+  [ Bill Allombert ]
+  * Retire legacy Motif policy (11.8.8)
+    Proposed by: Justin B Rye.
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Jakub Wilk <jwilk@debian.org>
+    Seconded: Steve Langasek <vorlon@debian.org>
+    Seconded: Charles Plessy <plessy@debian.org>
+
+ -- Bill Allombert <ballombe@debian.org>  Sun, 08 May 2011 20:31:54 +0200
 
 debian-policy (3.9.2.0) unstable; urgency=low
 
