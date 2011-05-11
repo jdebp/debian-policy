@@ -4,7 +4,7 @@ debian-policy (3.9.3.0) UNRELEASED; urgency=low
   * Add the release date of 3.9.2.0 to upgrading-checklist.
   * Fix ordering of the last entries in the 3.9.2.0 upgrading-checklist.
   * Fix typo in upgrading-checklist entry for multiarch paths.  Thanks,
-    Michael Dorrington.
+    Michael Dorrington. Closes: #626408
 
   [ Bill Allombert ]
   * Retire legacy Motif policy (11.8.8). Closes: #621479
