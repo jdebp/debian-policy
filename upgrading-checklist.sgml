@@ -45,6 +45,11 @@ Unreleased.
   now contain the value <tt>any all</tt> for source packages building both
   architecture-independent and architecture-dependent packages.
   </item>
+<tag>11.8</tag>
+  <item>The Policy rules around Motif libraries were just a special case
+  of normal rules for non-free dependencies and were largely obsolete, so
+  they have been removed.
+  </item>
 </taglist></p>
 
 <sect> Version 3.9.2.0

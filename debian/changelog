@@ -13,12 +13,13 @@ debian-policy (3.9.3.0) UNRELEASED; urgency=low
     Michael Dorrington. Closes: #626408
 
   [ Bill Allombert ]
-  * Retire legacy Motif policy (11.8.8). Closes: #621479
-    Proposed by: Justin B Rye.
+  * Policy: Retire legacy Motif policy (11.8.8)
+    Proposed by: Justin B Rye
     Wording: Russ Allbery <rra@debian.org>
     Seconded: Jakub Wilk <jwilk@debian.org>
     Seconded: Steve Langasek <vorlon@debian.org>
     Seconded: Charles Plessy <plessy@debian.org>
+    Closes: #621479
 
  -- Bill Allombert <ballombe@debian.org>  Sun, 08 May 2011 20:31:54 +0200
 
