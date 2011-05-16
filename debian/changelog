@@ -7,6 +7,9 @@ debian-policy (3.9.3.0) UNRELEASED; urgency=low
     Seconded: Charles Plessy <plessy@debian.org>
     Seconded: Guillem Jover <guillem@debian.org>
     Closes: #626779
+  * Consistently use "Debian source control file" for *.dsc files and
+    "Source package control file" for debian/control files.  Patch from
+    Charles Plessy.  (Closes: #626796)
   * Add the release date of 3.9.2.0 to upgrading-checklist.
   * Fix ordering of the last entries in the 3.9.2.0 upgrading-checklist.
   * Fix typo in upgrading-checklist entry for multiarch paths.  Thanks,
