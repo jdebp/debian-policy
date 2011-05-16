@@ -2975,10 +2975,14 @@ Package: libc6
 
 	  <p>
 	    In the source package control file <file>.dsc</file>, this
-	    field may contain either the architecture
-	    wildcard <tt>any</tt> or a list of architectures and
-	    architecture wildcards separated by spaces. If a list is
-	    given, it may include (or consist solely of) the special
+	    field contains a list of architectures and architecture
+	    wildcards separated by spaces. When the list contains the
+	    architecture wildcard <tt>any</tt>, the only other value
+	    allowed in the list is <tt>all</tt>.
+	  </p>
+
+	  <p>
+	    The list may include (or consist solely of) the special
 	    value <tt>all</tt>.  In other words, in <file>.dsc</file>
 	    files unlike the <file>debian/control</file>, <tt>all</tt> may
 	    occur in combination with specific architectures.
@@ -2989,19 +2993,23 @@ Package: libc6
 	  </p>
 
 	  <p>
-	    Specifying <tt>any</tt> indicates that the source package
+	    Specifying only <tt>any</tt> indicates that the source package
 	    isn't dependent on any particular architecture and should
 	    compile fine on any one. The produced binary package(s)
-	    will either be specific to whatever the current build
-	    architecture is or will be architecture-independent.
+	    will be specific to whatever the current build architecture is.
 	  </p>
 
 	  <p>
 	    Specifying only <tt>all</tt> indicates that the source package
-	    will only build architecture-independent packages.  If this is
-	    the case, <tt>all</tt> must be used rather than <tt>any</tt>;
-	    <tt>any</tt> implies that the source package will build at
-	    least one architecture-dependent package.
+	    will only build architecture-independent packages.
+	  </p>
+
+	  <p>
+	    Specifying <tt>any all</tt> indicates that the source package
+	    isn't dependent on any particular architecture. The set of
+	    produced binary packages will include at least one
+	    architecture-dependant package and one architecture-independent
+	    package.
 	  </p>
 
 	  <p>
@@ -11272,4 +11280,4 @@ END-INFO-DIR-ENTRY
 <!-- Local variables: -->
 <!-- indent-tabs-mode: t -->
 <!-- End: -->
-<!-- vim:set ai et sts=2 sw=2 tw=76: -->
+<!-- vim:set ai sts=2 sw=2 tw=76: -->
