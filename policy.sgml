@@ -4627,6 +4627,7 @@ Depends: libc6 (>= 2.2.1), exim | mail-transport-agent
 	  architectures.  This is indicated in brackets after each
 	  individual package name and the optional version specification.
 	  The brackets enclose a list of Debian architecture names
+	  in the format described in <ref id="arch-spec">,
 	  separated by whitespace.  Exclamation marks may be prepended to
 	  each of the names.  (It is not permitted for some names to be
 	  prepended with exclamation marks while others aren't.)
@@ -4694,7 +4695,8 @@ Build-Depends: foo [!i386] | bar [!amd64]
 
         <p>
 	  Relationships may also be restricted to a certain set of
-	  architectures using architecture wildcards.  The syntax for
+	  architectures using architecture wildcards in the format
+	  described in <ref id="arch-wildcard-spec">.  The syntax for
 	  declaring such restrictions is the same as declaring
 	  restrictions using a certain set of architectures without
 	  architecture wildcards.  For example:

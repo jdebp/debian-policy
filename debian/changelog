@@ -16,6 +16,8 @@ debian-policy (3.9.3.0) UNRELEASED; urgency=low
     Michael Dorrington. Closes: #626408
 
   [ Bill Allombert ]
+  * Policy: Link relationship fields (7.1) to architecture specification strings (11.1)
+    Patch from Charles Plessy in #628174.
   * Policy: Retire legacy Motif policy (11.8.8)
     Proposed by: Justin B Rye
     Wording: Russ Allbery <rra@debian.org>
@@ -27,7 +29,7 @@ debian-policy (3.9.3.0) UNRELEASED; urgency=low
     Reported by Thomas Preud'homme, patch by Charles Plessy.
     Closes: #623050
 
- -- Bill Allombert <ballombe@debian.org>  Sat, 28 May 2011 20:17:08 +0200
+ -- Bill Allombert <ballombe@debian.org>  Sat, 28 May 2011 22:39:06 +0200
 
 debian-policy (3.9.2.0) unstable; urgency=low
 
