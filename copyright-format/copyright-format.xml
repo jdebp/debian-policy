@@ -742,7 +742,8 @@ License: MPL-1.1
               </entry>
               <entry>
                 The Eiffel Forum License
-                <ulink url="http://spdx.org/licenses/EPL-1.0">1.0</ulink>.
+                <ulink url="http://spdx.org/licenses/EFL-1.0">1.0</ulink>,
+                <ulink url="http://spdx.org/licenses/EFL-2.0">2.0</ulink>.
               </entry>
             </row>
             <row>

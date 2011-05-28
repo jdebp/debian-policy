@@ -23,8 +23,11 @@ debian-policy (3.9.3.0) UNRELEASED; urgency=low
     Seconded: Steve Langasek <vorlon@debian.org>
     Seconded: Charles Plessy <plessy@debian.org>
     Closes: #621479
+  * copyright-format: Fix URL for the Eiffel Forum License.
+    Reported by Thomas Preud'homme, patch by Charles Plessy.
+    Closes: #623050
 
- -- Bill Allombert <ballombe@debian.org>  Sun, 08 May 2011 20:31:54 +0200
+ -- Bill Allombert <ballombe@debian.org>  Sat, 28 May 2011 20:17:08 +0200
 
 debian-policy (3.9.2.0) unstable; urgency=low
 
