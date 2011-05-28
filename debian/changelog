@@ -30,8 +30,13 @@ debian-policy (3.9.3.0) UNRELEASED; urgency=low
     Closes: #623050
   * copyright-format: Update SPDX link to point to the SPDX license registry.
     Patch by Charles Plessy.  Closes: #628540
+  * Policy: Clarify that 'machine-extractable' referer the copyright files (12.5)
+    Wording:  Charles Plessy <plessy@debian.org>
+    Seconded: Bill Allombert <ballombe@debian.org>
+    Seconded: Jakub Wilk <jwilk@debian.org>
+    Closes: #617516
 
- -- Bill Allombert <ballombe@debian.org>  Mon, 30 May 2011 15:42:21 +0200
+ -- Bill Allombert <ballombe@debian.org>  Mon, 06 Jun 2011 19:51:39 +0200
 
 debian-policy (3.9.2.0) unstable; urgency=low
 

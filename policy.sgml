@@ -9765,8 +9765,8 @@ END-INFO-DIR-ENTRY
 	  <file>/usr/share/doc/<var>package</var></file> may be a symbolic
 	  link to another directory in <file>/usr/share/doc</file> only if
 	  the two packages both come from the same source and the
-	  first package Depends on the second.  These rules are
-	  important because copyrights must be extractable by
+	  first package Depends on the second.  These rules are important
+	  because <file>copyright</file> files must be extractable by
 	  mechanical means.
 	</p>
 
