@@ -558,8 +558,7 @@ License: MPL-1.1
       </para>
       <para>
         Currently, the full text of the licenses is only available in the <ulink
-        url="http://spdx.org/wiki/working-version-license-list">working version
-        of the SPDX license list</ulink>.
+        url="http://spdx.org/licenses">SPDX Open Source License Registry</ulink>.
       </para>
       <informaltable>
         <tgroup cols="2">

@@ -28,8 +28,10 @@ debian-policy (3.9.3.0) UNRELEASED; urgency=low
   * copyright-format: Fix URL for the Eiffel Forum License.
     Reported by Thomas Preud'homme, patch by Charles Plessy.
     Closes: #623050
+  * copyright-format: Update SPDX link to point to the SPDX license registry.
+    Patch by Charles Plessy.  Closes: #628540
 
- -- Bill Allombert <ballombe@debian.org>  Sat, 28 May 2011 22:39:06 +0200
+ -- Bill Allombert <ballombe@debian.org>  Mon, 30 May 2011 15:42:21 +0200
 
 debian-policy (3.9.2.0) unstable; urgency=low
 
