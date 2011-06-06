@@ -35,8 +35,14 @@ debian-policy (3.9.3.0) UNRELEASED; urgency=low
     Seconded: Bill Allombert <ballombe@debian.org>
     Seconded: Jakub Wilk <jwilk@debian.org>
     Closes: #617516
+  * Perl policy: Document major version upgrade trigger
+    Wording: Dominic Hargreaves <dom@debian.org>
+    Seconded: Russ Allbery <rra@debian.org>
+    Seconded: Niko Tyni <ntyni@debian.org>
+    Seconded: Gregor Herrmann <gregoa@debian.org>
+    Closes: #619275
 
- -- Bill Allombert <ballombe@debian.org>  Mon, 06 Jun 2011 19:51:39 +0200
+ -- Bill Allombert <ballombe@debian.org>  Wed, 08 Jun 2011 23:01:20 +0200
 
 debian-policy (3.9.2.0) unstable; urgency=low
 

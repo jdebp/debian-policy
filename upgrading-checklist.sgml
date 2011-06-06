@@ -50,6 +50,10 @@ Unreleased.
   of normal rules for non-free dependencies and were largely obsolete, so
   they have been removed.
   </item>
+<tag>perl</tag>
+  <item> Packages may declare an interest in the <var>perl-major-upgrade</var> 
+  trigger to be notified of major upgrades of perl.
+  </item>
 </taglist></p>
 
 <sect> Version 3.9.2.0
