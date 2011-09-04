@@ -2543,7 +2543,7 @@ Package: libc6
 	      lines.  The first line of the value, the part on the same line as
 	      the field name, often has special significance or may have to be
 	      empty.  Other lines are added following the same syntax as the
-	      continuation lines the folded fields.  Whitespace, including newlines,
+	      continuation lines of the folded fields.  Whitespace, including newlines,
 	      is significant in the values of multiline fields.
 	    </item>
 	  </taglist>
