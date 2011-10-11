@@ -16,7 +16,8 @@ debian-policy (3.9.3.0) UNRELEASED; urgency=low
     Michael Dorrington. Closes: #626408
 
   [ Bill Allombert ]
-  * Policy: Link relationship fields (7.1) to architecture specification strings (11.1)
+  * Policy: Link relationship fields (7.1) to architecture specification
+    strings (11.1).
     Patch from Charles Plessy in #628174.
   * Policy: Retire legacy Motif policy (11.8.8)
     Proposed by: Justin B Rye
@@ -30,7 +31,8 @@ debian-policy (3.9.3.0) UNRELEASED; urgency=low
     Closes: #623050
   * copyright-format: Update SPDX link to point to the SPDX license registry.
     Patch by Charles Plessy.  Closes: #628540
-  * Policy: Clarify that 'machine-extractable' referer the copyright files (12.5)
+  * Policy: Clarify that 'machine-extractable' referer the copyright
+    files (12.5)
     Wording:  Charles Plessy <plessy@debian.org>
     Seconded: Bill Allombert <ballombe@debian.org>
     Seconded: Jakub Wilk <jwilk@debian.org>
@@ -46,7 +48,7 @@ debian-policy (3.9.3.0) UNRELEASED; urgency=low
     Seconded: Niko Tyni <ntyni@debian.org>
     Seconded: Gregor Herrmann <gregoa@debian.org>
     Closes: #619275
-  * Virtual: change ttf-japanese-{mincho, gothic} to 
+  * Virtual: change ttf-japanese-{mincho, gothic} to
     fonts-japanese-{mincho, gothic}.
     Proposed by: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
     Seconded: Charles Plessy <plessy@debian.org>
