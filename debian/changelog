@@ -46,8 +46,14 @@ debian-policy (3.9.3.0) UNRELEASED; urgency=low
     Seconded: Niko Tyni <ntyni@debian.org>
     Seconded: Gregor Herrmann <gregoa@debian.org>
     Closes: #619275
+  * Virtual: change ttf-japanese-{mincho, gothic} to 
+    fonts-japanese-{mincho, gothic}.
+    Proposed by: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
+    Seconded: Charles Plessy <plessy@debian.org>
+    Seconded: Bill Allombert <ballombe@debian.org>
+    Closes: #644230
 
- -- Bill Allombert <ballombe@debian.org>  Thu, 08 Sep 2011 17:05:25 +0200
+ -- Bill Allombert <ballombe@debian.org>  Tue, 11 Oct 2011 10:39:15 +0200
 
 debian-policy (3.9.2.0) unstable; urgency=low
 

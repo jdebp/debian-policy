@@ -54,6 +54,10 @@ Unreleased.
   <item> Packages may declare an interest in the <var>perl-major-upgrade</var> 
   trigger to be notified of major upgrades of perl.
   </item>
+<tag>virtual</tag>
+  <item><tt>ttf-japanese-{mincho, gothic}</tt> is renamed to 
+        <tt>fonts-japanese-{mincho, gothic}</tt>.
+  </item>
 </taglist></p>
 
 <sect> Version 3.9.2.0
