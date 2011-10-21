@@ -1,4 +1,4 @@
-Document: copyright-format
+Document: copyright-format-1.0
 Title: Machine-readable debian/copyright file
 Author: The Debian Project
 Abstract: Standard, machine-readable format for debian/copyright files within
@@ -7,8 +7,8 @@ Abstract: Standard, machine-readable format for debian/copyright files within
 Section: Debian
 
 Format: text
-Files: /usr/share/doc/debian-policy/copyright-format.txt.gz
+Files: /usr/share/doc/debian-policy/copyright-format-1.0.txt.gz
 
 Format: HTML
-Index: /usr/share/doc/debian-policy/copyright-format.html
-Files: /usr/share/doc/debian-policy/copyright-format.html
+Index: /usr/share/doc/debian-policy/copyright-format-1.0.html
+Files: /usr/share/doc/debian-policy/copyright-format-1.0.html

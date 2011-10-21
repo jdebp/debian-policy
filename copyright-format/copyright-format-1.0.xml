@@ -5,7 +5,7 @@
 <!DOCTYPE article PUBLIC '-//OASIS//DTD DocBook XML V4.5//EN'
     'http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd'>
 
-<article class="specification" status="draft" lang="en" id="copyright-format">
+<article class="specification" lang="en" id="copyright-format-1.0">
   <articleinfo>
     <title>
       Machine-readable <filename>debian/copyright</filename> file

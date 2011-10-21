@@ -33,7 +33,7 @@ LIBDIR	  := $(TMPTOP)/usr/share/doc-base
 sanitycheck := debian/rules policy.sgml
 
 SGML_FILES := policy menu-policy perl-policy upgrading-checklist
-DESC_FILES := copyright-format debian-policy debian-menu-policy \
+DESC_FILES := copyright-format-1.0 debian-policy debian-menu-policy \
 	      debian-perl-policy debconf-spec fhs
 
 # While we have two versions of the FHS installed in the source package,
@@ -49,8 +49,8 @@ FHS_NEW_FILES    :=
 POLICY_FILES = $(SGML_FILES:=.sgml) $(SGML_FILES:=.txt.gz) \
 	       virtual-package-names-list.txt \
 	       libc6-migration.txt version.ent \
-               copyright-format/copyright-format.html \
-               copyright-format/copyright-format.txt.gz \
+               copyright-format/copyright-format-1.0.html \
+               copyright-format/copyright-format-1.0.txt.gz \
                debconf_spec/debconf_specification.html \
                debconf_spec/debconf_specification.txt.gz \
                policy.ps.gz policy.pdf.gz README.txt README.html \
@@ -59,7 +59,7 @@ POLICY_FILES = $(SGML_FILES:=.sgml) $(SGML_FILES:=.txt.gz) \
 FILES_FROM_ORG := Process.html Process.txt README.txt README.html
 
 # policy.{pdf,ps,tpt,txt} are generated files
-FILES_TO_CLEAN  = copyright-format.xml.tar.gz \
+FILES_TO_CLEAN  = copyright-format-1.0.xml.tar.gz \
                   debian/files debian/buildinfo  debian/substvars \
 		  debian/postinst debian/prerm \
 		  version.ent \
@@ -143,8 +143,8 @@ stamp-policy:  build $(sanitycheck)
 	$(install_file)	    $(FHS_FILES)	     $(DOCDIR)/fhs/
 	$(install_file)	    debian/copyright	     $(DOCDIR)/
 	GZIP=-9 cd copyright-format && \
-	  tar -zcf ../copyright-format.xml.tar.gz *
-	$(install_file)	    copyright-format.xml.tar.gz $(DOCDIR)/
+	  tar -zcf ../copyright-format-1.0.xml.tar.gz *
+	$(install_file)	    copyright-format-1.0.xml.tar.gz $(DOCDIR)/
 	@set -ex; \
 	GZIP=-9 cd debconf_spec && \
 	  tar -zcf ../debconf_specification.xml.tar.gz *
