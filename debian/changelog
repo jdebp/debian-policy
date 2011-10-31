@@ -14,6 +14,7 @@ debian-policy (3.9.3.0) UNRELEASED; urgency=low
   * Fix ordering of the last entries in the 3.9.2.0 upgrading-checklist.
   * Fix typo in upgrading-checklist entry for multiarch paths.  Thanks,
     Michael Dorrington. Closes: #626408
+  * Add AGPL-3 to tools/license-count.
 
   [ Bill Allombert ]
   * Policy: Link relationship fields (7.1) to architecture specification
