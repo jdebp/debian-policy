@@ -3302,6 +3302,7 @@ Package: libc6
 	      Those starting with a single space are part of a paragraph.
 	      Successive lines of this form will be word-wrapped when
 	      displayed. The leading space will usually be stripped off.
+	      The line must contain at least one non-whitespace character.
 	    </item>
 
 	    <item>
@@ -3312,7 +3313,8 @@ Package: libc6
 	      will be allowed to trail off to the right. None, one or two
 	      initial spaces may be deleted, but the number of spaces
 	      deleted from each line will be the same (so that you can have
-	      indenting work correctly, for example).
+	      indenting work correctly, for example).  The line must
+	      contain at least one non-whitespace character.
 	    </item>
 
 	    <item>
