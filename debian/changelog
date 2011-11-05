@@ -18,6 +18,7 @@ debian-policy (3.9.3.0) UNRELEASED; urgency=low
   * Fix typo in upgrading-checklist entry for multiarch paths.  Thanks,
     Michael Dorrington. Closes: #626408
   * Add AGPL-3 to tools/license-count.
+  * Add build-arch and build-indep targets to debian/rules.
 
   [ Bill Allombert ]
   * Policy: Link relationship fields (7.1) to architecture specification
