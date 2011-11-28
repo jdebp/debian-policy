@@ -46,7 +46,7 @@ Unreleased.
   architecture-independent and architecture-dependent packages.
   </item>
 <tag>9.10</tag>
-  <item>Packages using doc-base d not need to call install-docs anymore.
+  <item>Packages using doc-base do not need to call install-docs anymore.
   </item>
 <tag>11.8</tag>
   <item>The Policy rules around Motif libraries were just a special case
