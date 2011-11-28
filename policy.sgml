@@ -7498,9 +7498,8 @@ exec /usr/lib/foo/foo "$@"
 	  package that provides online documentation (other than just
 	  manual pages) to register these documents with
 	  <package>doc-base</package> by installing a
-	  <package>doc-base</package> control file via the
-	  <prgn/install-docs/ script at installation time and
-	  de-register the manuals again when the package is removed.
+	  <package>doc-base</package> control file in
+	  <file>/usr/share/doc-base/</file>.
 	</p> 
 	<p>
 	  Please refer to the documentation that comes with the
