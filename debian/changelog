@@ -47,6 +47,13 @@ debian-policy (3.9.3.0) UNRELEASED; urgency=low
     Seconded: Charles Plessy <plessy@debian.org>
     Seconded: Jakub Wilk <jwilk@debian.org>
     Closes: #640735
+  * copyright-format: Clarify specification of multiple license exception:
+    Wording: Steve Langasek <vorlon@debian.org>
+    Seconded: Craig Small <csmall@debian.org>
+    Seconded: Gregor Herrmann <gregoa@debian.org>
+    Seconded: Jakub Wilk <jwilk@debian.org>
+    Seconded: Jonas Smedegaard <dr@jones.dk>
+    Closes: #633797
   * Perl policy: Document major version upgrade trigger
     Wording: Dominic Hargreaves <dom@debian.org>
     Seconded: Russ Allbery <rra@debian.org>

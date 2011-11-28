@@ -885,10 +885,22 @@ License: MPL-1.1
         matches.
       </para>
       <para>
-        Exceptions and clarifications are signaled in plain text, by appending
+        An exception or clarification to a license is signaled in plain text, by appending
         <literal>with <varname><replaceable>keywords</replaceable></varname>
         exception</literal> to the short name.  This document provides a list of
-        keywords that refer to the most frequent exceptions.
+        keywords that must be used when referring to the most frequent
+        exceptions.  When exceptions other than these are in effect that modify
+        a common license by granting additional permissions, you may use an
+        arbitrary keyword not taken from the below list of keywords.  When a
+        license differs from a common license because of added restrictions
+        rather than because of added permissions, a distinct short name should
+        be used instead of <literal>with
+        <varname><replaceable>keywords</replaceable></varname>exception</literal>.
+      </para>
+      <para>
+        Only one exception may be specified for each license within a given
+        license specification.  If more than one exception applies to a single
+        license, an arbitrary short name must be used instead.
       </para>
       <para>
         The GPL <literal>Font</literal> exception refers to the text added to the
