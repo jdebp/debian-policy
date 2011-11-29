@@ -488,7 +488,7 @@ License: GPL-2
  [LICENSE TEXT]
 
 License: LGPL-2.1
- LICENSE TEXT]</programlisting>
+ [LICENSE TEXT]</programlisting>
       </example>
 
       <example>
@@ -1102,7 +1102,7 @@ License: GPL-2+
 
 Files: debian/*
 Copyright: Copyright 1998 Jane Smith <jsmith@example.net>
-License:
+License: GPL-2+
  [LICENSE TEXT]]]></programlisting>
       </para>
     </example>
@@ -1128,7 +1128,7 @@ License: PSF-2
 
 Files: debian/*
 Copyright: 2008, Dan Developer <dan@debian.example.com>
-License:
+License: permissive
  Copying and distribution of this package, with or without
  modification, are permitted in any medium without royalty
  provided the copyright notice and this notice are

@@ -47,6 +47,10 @@ debian-policy (3.9.3.0) UNRELEASED; urgency=low
     Seconded: Charles Plessy <plessy@debian.org>
     Seconded: Jakub Wilk <jwilk@debian.org>
     Closes: #640735
+  * copyright-format: Fix syntax of examples.
+    Proposed by: Charles Plessy <plessy@debian.org>
+    Wording: Jonathan Nieder <jrnieder@gmail.com>
+    Closes: #649674
   * copyright-format: Clarify specification of multiple license exception:
     Wording: Steve Langasek <vorlon@debian.org>
     Seconded: Craig Small <csmall@debian.org>
