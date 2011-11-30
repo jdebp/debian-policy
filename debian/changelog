@@ -58,6 +58,11 @@ debian-policy (3.9.3.0) UNRELEASED; urgency=low
     Seconded: Jakub Wilk <jwilk@debian.org>
     Seconded: Jonas Smedegaard <dr@jones.dk>
     Closes: #633797
+  * copyright-format: Specify URL on www.debian.org
+    Wording: Charles Plessy <plessy@debian.org>
+    Seconded: David Prévot <taffit@debian.org>
+    Seconded: Gregor Herrmann <gregoa@debian.org>
+    Closes: #640737
   * Perl policy: Document major version upgrade trigger
     Wording: Dominic Hargreaves <dom@debian.org>
     Seconded: Russ Allbery <rra@debian.org>
