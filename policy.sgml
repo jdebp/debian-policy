@@ -6336,12 +6336,11 @@ install -m644 debian/shlibs.<var>package</var> debian/<var>package</var>/DEBIAN/
 	    For example, the <tt>emacsen-common</tt> package could
 	    contain something like
 	    <example compact="compact">
-if [ ! -e /usr/local/share/emacs ]
-then
-  if mkdir /usr/local/share/emacs 2>/dev/null
-  then
-    chown root:staff /usr/local/share/emacs
-    chmod 2775 /usr/local/share/emacs
+if [ ! -e /usr/local/share/emacs ]; then
+  if mkdir /usr/local/share/emacs 2>/dev/null; then
+    if chown root:staff /usr/local/share/emacs; then
+      chmod 2775 /usr/local/share/emacs || true
+    fi
   fi
 fi
 	    </example>
