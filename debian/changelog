@@ -21,6 +21,9 @@ debian-policy (3.9.3.0) UNRELEASED; urgency=low
   * Clarify that Perl Policy 2.4 is for packages built from the perl
     source package and the manual page extensions are different for
     separate module packages.  Thanks, Steve Langasek.  (Closes: #643690)
+  * Say that packages in main may also not recommend packages in non-free,
+    bringing the main text in line with the list of fields and in line
+    with the long-standing release goal.  (Closes: #646166)
   * Add the release date of 3.9.2.0 to upgrading-checklist.
   * Fix ordering of the last entries in the 3.9.2.0 upgrading-checklist.
   * Fix typo in upgrading-checklist entry for multiarch paths.  Thanks,

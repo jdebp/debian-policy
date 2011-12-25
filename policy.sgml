@@ -488,9 +488,9 @@
 	    In addition, the packages in <em>main</em>
 	    <list compact="compact">
 	      <item>
-		  must not require a package outside of <em>main</em>
-		  for compilation or execution (thus, the package must
-		  not declare a "Depends", "Recommends", or
+		  must not require or recommend a package outside
+		  of <em>main</em> for compilation or execution (thus, the
+		  package must not declare a "Depends", "Recommends", or
 		  "Build-Depends" relationship on a non-<em>main</em>
 		  package),
 	      </item>
