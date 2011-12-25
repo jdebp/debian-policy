@@ -57,8 +57,13 @@ Unreleased.
   of normal rules for non-free dependencies and were largely obsolete, so
   they have been removed.
   </item>
+<tag>12.5</tag>
+  <item><file>debian/copyright</file> is no longer required to list the
+  Debian maintainers involved in the creation of the package (although
+  note that the requirement to list copyright information is unchanged).
+  </item>
 <tag>perl</tag>
-  <item> Packages may declare an interest in the <var>perl-major-upgrade</var> 
+  <item>Packages may declare an interest in the <var>perl-major-upgrade</var> 
   trigger to be notified of major upgrades of perl.
   </item>
 <tag>virtual</tag>

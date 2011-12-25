@@ -7,6 +7,12 @@ debian-policy (3.9.3.0) UNRELEASED; urgency=low
     Seconded: Charles Plessy <plessy@debian.org>
     Seconded: Guillem Jover <guillem@debian.org>
     Closes: #626779
+  * Policy: Initial Debian maintainers need not be listed in copyright
+    Wording: Charles Plessy <plessy@debian.org>
+    Seconded: Russ Allbery <rra@debian.org>
+    Seconded: Raphaël Hertzog <hertzog@debian.org>
+    Seconded: Andrew McMillan <andrew@morphoss.com>
+    Closes: #593533
   * Consistently use "Debian source control file" for *.dsc files and
     "Source package control file" for debian/control files.  Patch from
     Charles Plessy.  (Closes: #626796)
