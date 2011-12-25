@@ -15,6 +15,9 @@ debian-policy (3.9.3.0) UNRELEASED; urgency=low
     (Closes: #627490)
   * Fix the example of creating a /usr/local subdirectory to not fail if
     the chown or chmod fail.  Thanks, Joey Hess.  (Closes: #617315)
+  * Clarify the requirements for symlinks from inside one top-level
+    directory to another and add examples and a rationale.  Thanks,
+    Carsten Hey.  (Closes: #626338)
   * Add the release date of 3.9.2.0 to upgrading-checklist.
   * Fix ordering of the last entries in the 3.9.2.0 upgrading-checklist.
   * Fix typo in upgrading-checklist entry for multiarch paths.  Thanks,

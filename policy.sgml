@@ -7917,11 +7917,23 @@ fname () {
 	<heading>Symbolic links</heading>
 
 	<p>
-	  In general, symbolic links within a top-level directory
-	  should be relative, and symbolic links pointing from one
-	  top-level directory into another should be absolute. (A
-	  top-level directory is a sub-directory of the root
-	  directory <file>/</file>.)
+	  In general, symbolic links within a top-level directory should
+	  be relative, and symbolic links pointing from one top-level
+	  directory to or into another should be absolute. (A top-level
+	  directory is a sub-directory of the root
+	  directory <file>/</file>.)  For example, a symbolic link
+	  from <file>/usr/lib/foo</file> to <file>/usr/share/bar</file>
+	  should be relative (<file>../share/bar</file>), but a symbolic
+	  link from <file>/var/run</file> to <file>/run</file> should be
+	  absolute.<footnote>
+	    This is necessary to allow top-level directories to be
+	    symlinks.  If linking <file>/var/run</file>
+	    to <file>/run</file> were done with the relative symbolic
+	    link <file>../run</file>, but <file>/var</file> were a
+	    symbolic link to <file>/srv/disk1</file>, the symbolic link
+	    would point to <file>/srv/run</file> rather than the intended
+	    target.
+	  </footnote>
 	</p>
 
 	<p>
