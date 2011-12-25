@@ -40,6 +40,10 @@ picking your way through this list.
 Unreleased.
 
 </p><p><taglist>
+<tag>2.4</tag>
+  <item>New archive sections <em>education</em>, <em>introspection</em>,
+  and <em>metapackages</em> added.
+  </item>
 <tag>5.6.8</tag>
   <item>The <tt>Architecture</tt> field in <file>*.dsc</file> files may
   now contain the value <tt>any all</tt> for source packages building both
