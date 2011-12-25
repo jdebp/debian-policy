@@ -7923,8 +7923,8 @@ fname () {
 	  directory is a sub-directory of the root
 	  directory <file>/</file>.)  For example, a symbolic link
 	  from <file>/usr/lib/foo</file> to <file>/usr/share/bar</file>
-	  should be relative (<file>../bar</file>), but a symbolic link
-	  from <file>/var/run</file> to <file>/run</file> should be
+	  should be relative (<file>../share/bar</file>), but a symbolic
+	  link from <file>/var/run</file> to <file>/run</file> should be
 	  absolute.<footnote>
 	    This is necessary to allow top-level directories to be
 	    symlinks.  If linking <file>/var/run</file>
