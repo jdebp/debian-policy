@@ -7231,6 +7231,8 @@ Reloading <var>description</var> configuration...done.
         </p>
 
 	<sect1 id="cron-files">
+	  <heading>Cron job file names</heading>
+
 	  <p>
 	    The file name of a cron job file should normally match the
 	    name of the package from which it comes.
