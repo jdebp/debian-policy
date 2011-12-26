@@ -13,6 +13,13 @@ debian-policy (3.9.3.0) UNRELEASED; urgency=low
     Seconded: Raphaël Hertzog <hertzog@debian.org>
     Seconded: Andrew McMillan <andrew@morphoss.com>
     Closes: #593533
+  * Policy: Document cron job file naming restrictions
+    Wording: Karl E. Jorgensen <karl@jorgensen.org.uk>
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Russ Allbery <rra@debian.org>
+    Seconded: Dominic Hargreaves <dom@earth.li>
+    Seconded: Javier Fernández-Sanguino Peña <jfs@computer.org>
+    Closes: #609162
   * Consistently use "Debian source control file" for *.dsc files and
     "Source package control file" for debian/control files.  Patch from
     Charles Plessy.  (Closes: #626796)

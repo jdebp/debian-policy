@@ -49,6 +49,13 @@ Unreleased.
   now contain the value <tt>any all</tt> for source packages building both
   architecture-independent and architecture-dependent packages.
   </item>
+<tag>9.5</tag>
+  <item>Cron job file names must not contain <tt>.</tt> or <tt>+</tt> or
+  they will be ignored by cron.  They should replace those characters
+  with <tt>_</tt>.  If a package provides multiple cron job files in the
+  same directory, they should each start with the package name (possibly
+  modified as above), <tt>-</tt>, and then some suitable prefix.
+  </item>
 <tag>9.10</tag>
   <item>Packages using doc-base do not need to call install-docs anymore.
   </item>
