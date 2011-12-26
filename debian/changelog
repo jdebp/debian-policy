@@ -25,6 +25,12 @@ debian-policy (3.9.3.0) UNRELEASED; urgency=low
     Seconded: Cyril Brulebois <kibi@debian.org>
     Seconded: Raphaël Hertzog <hertzog@debian.org>
     Closes: #23712
+  * MIME Policy: Retire this document and merge it with Policy
+    Wording: Ben Finney <ben+debian@benfinney.id.au>
+    Seconded: Russ Allbery <rra@debian.org>
+    Seconded: Raphaël Hertzog <hertzog@debian.org>
+    Seconded: Andrew McMillan <andrew@morphoss.com>
+    Closes: #89038
   * Consistently use "Debian source control file" for *.dsc files and
     "Source package control file" for debian/control files.  Patch from
     Charles Plessy.  (Closes: #626796)

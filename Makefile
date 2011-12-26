@@ -2,7 +2,6 @@ include debian/rules
 
 policy.sgml: version.ent
 menu-policy.sgml: version.ent
-mime-policy.sgml: version.ent
 perl-policy.sgml: version.ent
 
 %.txt: %.org

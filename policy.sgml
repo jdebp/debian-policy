@@ -258,7 +258,6 @@
 	    <item><ref id="fhs"></item>
 	    <item><ref id="virtual_pkg"></item>
 	    <item><ref id="menus"></item>
-	    <item><ref id="mime"></item>
 	    <item><ref id="perl"></item>
 	    <item><ref id="maintscriptprompt"></item>
 	    <item><ref id="emacs"></item>
@@ -7301,7 +7300,7 @@ Reloading <var>description</var> configuration...done.
 	  MIME (Multipurpose Internet Mail Extensions, RFCs 2045-2049)
 	  is a mechanism for encoding files and data streams and
 	  providing meta-information about them, in particular their
-	  type (e.g.  audio or video) and format (e.g. PNG, HTML,
+	  type (e.g. audio or video) and format (e.g. PNG, HTML,
 	  MP3).
 	</p>
 
@@ -7318,11 +7317,25 @@ Reloading <var>description</var> configuration...done.
 	</p>
 
 	<p>
-	  The MIME support policy can be found in the <tt>mime-policy</tt>
-	  files in the <tt>debian-policy</tt> package.
-	  It is also available from the Debian web mirrors at
-          <tt><url name="/doc/packaging-manuals/mime-policy/"
-		id="http://www.debian.org/doc/packaging-manuals/mime-policy/"></tt>.
+	  The <package>mime-support</package> package provides the
+	  <prgn>update-mime</prgn> program which allows packages to
+	  register programs that can show, compose, edit or print
+	  MIME types.
+	</p>
+
+	<p>
+	  Packages containing such programs must register them
+	  with <prgn>update-mime</prgn> as documented in <manref
+	  name="update-mime" section="8">. They should <em>not</em> depend
+	  on, recommend, or suggest <prgn>mime-support</prgn>. Instead,
+	  they should just put something like the following in the
+	  <tt>postinst</tt> and <tt>postrm</tt> scripts:
+
+	  <example>
+  if [ -x /usr/sbin/update-mime ]; then
+      update-mime
+  fi
+	  </example>
 	</p>
 
       </sect>

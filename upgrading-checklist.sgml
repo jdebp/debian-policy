@@ -73,6 +73,10 @@ Unreleased.
   Debian maintainers involved in the creation of the package (although
   note that the requirement to list copyright information is unchanged).
   </item>
+<tag>mime</tag>
+  <item>Retire this separate document and merge its (short) contents into
+  Policy section 9.7.  There are no changes to the requirements.
+  </item>
 <tag>perl</tag>
   <item>Packages may declare an interest in the <var>perl-major-upgrade</var> 
   trigger to be notified of major upgrades of perl.
