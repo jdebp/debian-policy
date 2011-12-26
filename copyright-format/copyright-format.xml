@@ -30,9 +30,7 @@
         standard, machine-readable format for
         <filename>debian/copyright</filename> files within packages and
         facilitate automated checking and reporting of licenses for packages and
-        sets of packages. The DEP drivers were Steve Langasek
-        <email>vorlon@debian.org</email> and Lars Wirzenius
-        <email>liw@liw.fi</email>.
+        sets of packages.
       </para>
     </abstract>
   </articleinfo>
@@ -143,7 +141,7 @@
         A white space separated list means that the field value may be on one
         line or many, but values in the list are separated by one or more white
         space characters (including space, TAB, and newline).  For example, the
-        <varname>Files</varname>field has a list of filename patterns.
+        <varname>Files</varname> field has a list of filename patterns.
       </para>
     </section>
 
@@ -187,7 +185,7 @@
         <title><varname>Format</varname></title>
         <para>
           Required single line: URI of the format specification, such as:
-          <literal>http://www.debian.org/doc/copyright-format/1.0</literal>
+          <literal>http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/</literal>
         </para>
       </section>
 
@@ -273,14 +271,14 @@
           package, for instance when a work combines a permissive and a copyleft
           license, or to document a <emphasis>compilation copyright</emphasis>
           and license.  It is possible to use only <varname>License</varname> in
-          the header paragraph, but <varname>Copyright</varname>alone makes no
+          the header paragraph, but <varname>Copyright</varname> alone makes no
           sense.
         </para>
       </section>
 
       <section id="example-header-paragraph">
         <title>Example header paragraph</title>
-<programlisting>Format: &lt;VERSIONED_FORMAT_URL&gt;
+<programlisting>Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: SOFTware
 Upstream-Contact: John Doe &lt;john.doe@example.com&gt;
 Source: http://www.example.com/software/project</programlisting>
@@ -490,7 +488,7 @@ License: GPL-2
  [LICENSE TEXT]
 
 License: LGPL-2.1
- LICENSE TEXT]</programlisting>
+ [LICENSE TEXT]</programlisting>
       </example>
 
       <example>
@@ -558,8 +556,7 @@ License: MPL-1.1
       </para>
       <para>
         Currently, the full text of the licenses is only available in the <ulink
-        url="http://spdx.org/wiki/working-version-license-list">working version
-        of the SPDX license list</ulink>.
+        url="http://spdx.org/licenses">SPDX Open Source License Registry</ulink>.
       </para>
       <informaltable>
         <tgroup cols="2">
@@ -583,8 +580,8 @@ License: MPL-1.1
               </entry>
               <entry>
                 Apache license
-                <ulink url="http://spdx.org/licenses/ASL-1.0">1.0</ulink>,
-                <ulink url="http://spdx.org/licenses/ASL-2.0">2.0</ulink>.
+                <ulink url="http://spdx.org/licenses/Apache-1.0">1.0</ulink>,
+                <ulink url="http://spdx.org/licenses/Apache-2.0">2.0</ulink>.
               </entry>
             </row>
             <row>
@@ -713,9 +710,8 @@ License: MPL-1.1
                 CC0
               </entry>
               <entry>
-                Creative Commons <ulink
-                url="http://creativecommons.org/license/zero/">Universal
-                waiver</ulink>.
+                Creative Commons Zero 1.0 Universal
+                <ulink url="http://spdx.org/licenses/CC0-1.0">1.0</ulink>.
               </entry>
             </row>
             <row>
@@ -723,8 +719,8 @@ License: MPL-1.1
                 CDDL
               </entry>
               <entry>
-                <ulink url="http://spdx.org/licenses/CDDL">Common Development
-                and Distribution License</ulink>.
+                Common Development and Distribution License
+                <ulink url="http://spdx.org/licenses/CDDL-1.0">1.0</ulink>.
               </entry>
             </row>
             <row>
@@ -742,7 +738,8 @@ License: MPL-1.1
               </entry>
               <entry>
                 The Eiffel Forum License
-                <ulink url="http://spdx.org/licenses/EPL-1.0">1.0</ulink>.
+                <ulink url="http://spdx.org/licenses/EFL-1.0">1.0</ulink>,
+                <ulink url="http://spdx.org/licenses/EFL-2.0">2.0</ulink>.
               </entry>
             </row>
             <row>
@@ -774,7 +771,6 @@ License: MPL-1.1
                 <ulink url="http://spdx.org/licenses/LGPL-2.1">2.1</ulink>,
                 <ulink url="http://spdx.org/licenses/LGPL-3.0">3.0</ulink>, or
                 GNU Library General Public License
-                <ulink url="http://spdx.org/licenses/LGPL-1.0">1.0</ulink>,
                 <ulink url="http://spdx.org/licenses/LGPL-2.0">2.0</ulink>.
               </entry>
             </row>
@@ -783,8 +779,8 @@ License: MPL-1.1
                 GFDL
               </entry>
               <entry>
-                <ulink url="http://spdx.org/licenses/FDL-1.0">GNU Free
-                Documentation License</ulink>.
+                GNU Free Documentation License 1.0, or
+                <ulink url="http://spdx.org/licenses/GFDL-1.1">1.1</ulink>.
               </entry>
             </row>
             <row>
@@ -829,12 +825,13 @@ License: MPL-1.1
             </row>
             <row>
               <entry>
-                Python-CNRI
+                Python
               </entry>
               <entry>
-                <ulink url="http://spdx.org/licenses/Python-CNRI">Python
-                license</ulink>.
+                Python license
+                <ulink url="http://spdx.org/licenses/Python-2.0">2.0</ulink>.
               </entry>
+              <!-- See https://fossbazaar.org/pipermail/spdx-legal/2011-February/000010.html -->
             </row>
             <row>
               <entry>
@@ -871,8 +868,8 @@ License: MPL-1.1
                 Zope
               </entry>
               <entry>
-                Zope Public License
-                  <ulink url="http://spdx.org/licenses/ZPL-1.0">1.0</ulink>,
+                Zope Public License 1.0,
+                  <ulink url="http://spdx.org/licenses/ZPL-1.1">1.1</ulink>,
                   <ulink url="http://spdx.org/licenses/ZPL-2.0">2.0</ulink>,
                   <ulink url="http://spdx.org/licenses/ZPL-2.1">2.1</ulink>.
               </entry>
@@ -887,10 +884,22 @@ License: MPL-1.1
         matches.
       </para>
       <para>
-        Exceptions and clarifications are signaled in plain text, by appending
+        An exception or clarification to a license is signaled in plain text, by appending
         <literal>with <varname><replaceable>keywords</replaceable></varname>
         exception</literal> to the short name.  This document provides a list of
-        keywords that refer to the most frequent exceptions.
+        keywords that must be used when referring to the most frequent
+        exceptions.  When exceptions other than these are in effect that modify
+        a common license by granting additional permissions, you may use an
+        arbitrary keyword not taken from the below list of keywords.  When a
+        license differs from a common license because of added restrictions
+        rather than because of added permissions, a distinct short name should
+        be used instead of <literal>with
+        <varname><replaceable>keywords</replaceable></varname>exception</literal>.
+      </para>
+      <para>
+        Only one exception may be specified for each license within a given
+        license specification.  If more than one exception applies to a single
+        license, an arbitrary short name must be used instead.
       </para>
       <para>
         The GPL <literal>Font</literal> exception refers to the text added to the
@@ -1062,7 +1071,7 @@ also delete it here.</programlisting>
         A possible <filename>debian/copyright</filename> file for the program
         <quote>X Solitaire</quote> distributed in the Debian source package
         <literal>xsol</literal>:
-<programlisting><![CDATA[Format: <VERSIONED_FORMAT_URL>
+<programlisting><![CDATA[Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: X Solitaire
 Source: ftp://ftp.example.com/pub/games
 
@@ -1092,7 +1101,7 @@ License: GPL-2+
 
 Files: debian/*
 Copyright: Copyright 1998 Jane Smith <jsmith@example.net>
-License:
+License: GPL-2+
  [LICENSE TEXT]]]></programlisting>
       </para>
     </example>
@@ -1103,7 +1112,7 @@ License:
         A possible <filename>debian/copyright</filename> file for the program
         <quote>Planet Venus</quote>, distributed in the Debian source
         package <literal>planet-venus</literal>:
-<programlisting><![CDATA[Format: <VERSIONED_FORMAT_URL>
+<programlisting><![CDATA[Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: Planet Venus
 Upstream-Contact: John Doe <jdoe@example.com>
 Source: http://www.example.com/code/venus
@@ -1118,7 +1127,7 @@ License: PSF-2
 
 Files: debian/*
 Copyright: 2008, Dan Developer <dan@debian.example.com>
-License:
+License: permissive
  Copying and distribution of this package, with or without
  modification, are permitted in any medium without royalty
  provided the copyright notice and this notice are
@@ -1171,27 +1180,4 @@ License: GPL-2+
     </example>
   </section>
 
-  <section id="appendix">
-    <title>
-      Appendix: Note about the use of this format in Debian
-    </title>
-    <para>
-      The Debian Policy (§<ulink
-      url="http://www.debian.org/doc/debian-policy/ch-docs#s-copyrightfile">12.5</ulink>)
-      demands that each package is accompanied by a file,
-      <filename>debian/copyright</filename> in source packages and
-      <filename>/usr/share/doc/package/copyright</filename> in binary packages,
-      that contains a verbatim copy of its copyright and distribution license.
-      In addition, it requires that copyrights must be extractable by mechanical
-      means.  This proposal for machine-readable copyright and license summary
-      files has been crafted for Debian's use, but it is our hope that other
-      software distributions, as well as upstream developers will adopt it, so
-      that review efforts can be easily reproduced and shared.
-    </para>
-    <para>
-      The copyright of the Debian packaging and the history of package
-      maintainers is simply indicated in a <literal>Files: debian/*</literal>
-      paragraph.
-    </para>
-  </section>
 </article>

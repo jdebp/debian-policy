@@ -197,8 +197,8 @@
 	  package.
 	</p>
 	<p>
-	  Manual pages distributed with Perl packages must be installed
-	  into the standard directories:
+	  Manual pages distributed with packages built from the perl
+	  source package must be installed into the standard directories:
 	  <taglist>
 	    <tag>Programs</tag>
 	    <item>
@@ -217,6 +217,8 @@
 	      </p>
 	    </item>
 	  </taglist>
+	  The extensions used for manual pages distributed with module
+	  packages are different.  See <ref id="vendor_dirs">.
 	</p>
       </sect>
     </chapt>
@@ -460,6 +462,26 @@ perl -MExtUtils::Embed -e ldopts
 	  <var>core</var> modules from the <package>perl</package>
 	  package must depend upon it explicitly.
 	</p>
+      </sect>
+
+      <sect id="perl_upgrades">
+        <heading>Perl Package Upgrades</heading>
+        <p>
+          Starting from <package>perl</package> 5.12.3-2, a dpkg trigger
+          named <var>perl-major-upgrade</var> will be triggered by the
+          postinst of the <package>perl</package> package during major
+          upgrades. Some examples of things which constitute a major upgrade
+          are an upgrade which would change the value of versioned
+          directories in <tt>@INC</tt>, or one which changes <tt>abiname</tt>.
+          Any package may declare an interest in the trigger, especially
+          packages including long-running daemons which would stop working
+          until restart.
+        </p>
+        <p>
+          It is suggested that such packages include an appropriate section
+          in their postinst to handle the trigger by restarting relevant
+          daemons or notifying users of further action.
+        </p>
       </sect>
     </chapt>
 

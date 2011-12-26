@@ -34,10 +34,55 @@ picking your way through this list.
 
 <chapt> The checklist
 
-<sect> Version 3.9.2.0
+<sect id="3.9.3.0"> Version 3.9.3.0
 <p>
 
-Released April, 2010.
+Unreleased.
+
+</p><p><taglist>
+<tag>2.4</tag>
+  <item>New archive sections <em>education</em>, <em>introspection</em>,
+  and <em>metapackages</em> added.
+  </item>
+<tag>5.6.8</tag>
+  <item>The <tt>Architecture</tt> field in <file>*.dsc</file> files may
+  now contain the value <tt>any all</tt> for source packages building both
+  architecture-independent and architecture-dependent packages.
+  </item>
+<tag>9.5</tag>
+  <item>Cron job file names must not contain <tt>.</tt> or <tt>+</tt> or
+  they will be ignored by cron.  They should replace those characters
+  with <tt>_</tt>.  If a package provides multiple cron job files in the
+  same directory, they should each start with the package name (possibly
+  modified as above), <tt>-</tt>, and then some suitable prefix.
+  </item>
+<tag>9.10</tag>
+  <item>Packages using doc-base do not need to call install-docs anymore.
+  </item>
+<tag>11.8</tag>
+  <item>The Policy rules around Motif libraries were just a special case
+  of normal rules for non-free dependencies and were largely obsolete, so
+  they have been removed.
+  </item>
+<tag>12.5</tag>
+  <item><file>debian/copyright</file> is no longer required to list the
+  Debian maintainers involved in the creation of the package (although
+  note that the requirement to list copyright information is unchanged).
+  </item>
+<tag>perl</tag>
+  <item>Packages may declare an interest in the <var>perl-major-upgrade</var> 
+  trigger to be notified of major upgrades of perl.
+  </item>
+<tag>virtual</tag>
+  <item><tt>ttf-japanese-{mincho, gothic}</tt> is renamed to 
+        <tt>fonts-japanese-{mincho, gothic}</tt>.
+  </item>
+</taglist></p>
+
+<sect id="3.9.2.0"> Version 3.9.2.0
+<p>
+
+Released April, 2011.
 
 </p><p><taglist>
 <tag>*</tag>
@@ -104,7 +149,7 @@ Released April, 2010.
   </item>
 </taglist></p>
 
-<sect> Version 3.9.1.0
+<sect id="3.9.1.0"> Version 3.9.1.0
 <p>
 
 Released July, 2010.
@@ -201,7 +246,7 @@ Released July, 2010.
   </item>
 </taglist></p>
 
-<sect> Version 3.9.0.0
+<sect id="3.9.0.0"> Version 3.9.0.0
 <p>
 
 Released June, 2010.
@@ -300,7 +345,7 @@ Released June, 2010.
   </item>
 </taglist></p>
 
-<sect> Version 3.8.4.0
+<sect id="3.8.4.0"> Version 3.8.4.0
 <p>
 
 Release Jan 2010.
@@ -321,7 +366,7 @@ Release Jan 2010.
   </item>
 </taglist></p>
 
-<sect> Version 3.8.3.0
+<sect id="3.8.3.0"> Version 3.8.3.0
 <p>
 Released Aug 2009.
 
@@ -377,7 +422,7 @@ Released Aug 2009.
   </item>
 </taglist></p>
 
-<sect> Version 3.8.2.0
+<sect id="3.8.2.0"> Version 3.8.2.0
 <p>
 
 Released Jun 2009.
@@ -417,7 +462,7 @@ Released Jun 2009.
   </item>
 </taglist></p>
 
-<sect> Version 3.8.1.0
+<sect id="3.8.1.0"> Version 3.8.1.0
 <p>
 
 Released  Mar 2009.
@@ -475,7 +520,7 @@ Released  Mar 2009.
   </item>
 </taglist></p>
 
-<sect> Version 3.8.0.0
+<sect id="3.8.0.0"> Version 3.8.0.0
 <p>
 
 Released  Jun 2008.
@@ -554,7 +599,7 @@ Released  Jun 2008.
 <item>Underscore (_) is allowed in debconf template names.     
 </taglist></p>
 
-<sect> Version 3.7.3.0
+<sect id="3.7.3.0"> Version 3.7.3.0
 <p>
 
 Released  Dec 2007.
@@ -596,7 +641,7 @@ Released  Dec 2007.
   be referenced rather than quoted in debian/copyright.
 </taglist></p>
 
-<sect> Version 3.7.2.2
+<sect id="3.7.2.2"> Version 3.7.2.2
 <p>
 
 Released  Oct 2006.
@@ -606,7 +651,7 @@ Released  Oct 2006.
     should to a must)</item>   
 </taglist></p>
 
-<sect> Version 3.7.2.0
+<sect id="3.7.2.0"> Version 3.7.2.0
 <p>
 
 Released  Apr 2006.
@@ -615,7 +660,7 @@ Released  Apr 2006.
 <tag>11.5</tag> <item>Revert the cgi-lib change. </item>
 </taglist></p>
 
-<sect> Version 3.7.1.0
+<sect id="3.7.1.0"> Version 3.7.1.0
 <p>
 
 Released  Apr 2006.
@@ -635,7 +680,7 @@ Released  Apr 2006.
   they do so, they must pre-depend on <tt>x11-common (&gt;= 1:7.0.0)</tt>
 </taglist></p>
 
-<sect> Version 3.7.0.0
+<sect id="3.7.0.0"> Version 3.7.0.0
 <p>
 
 Released  Apr 2006.
@@ -676,7 +721,7 @@ Released  Apr 2006.
   is gone.
 </taglist></p>
 
-<sect> Version 3.6.2.0
+<sect id="3.6.2.0"> Version 3.6.2.0
 <p>
 
 Released  2005
@@ -696,7 +741,7 @@ Released  2005
 </item>
 </taglist></p>
 
-<sect> Version 3.6.1.0
+<sect id="3.6.1.0"> Version 3.6.1.0
 <p>
 
 Released  Aug 2003.
@@ -707,7 +752,7 @@ Released  Aug 2003.
   user prompts are now deprecated.
 </taglist></p>
 
-<sect> Version 3.6.0
+<sect id="3.6.0.0"> Version 3.6.0
 <p>
 
 Released  Jul 2003.
@@ -751,7 +796,7 @@ Released  Jul 2003.
   target.
 </taglist></p>
 
-<sect> Version 3.5.10
+<sect id="3.5.10.0"> Version 3.5.10
 <p>
 
 Released  May 2003.
@@ -766,7 +811,7 @@ Released  May 2003.
   Project may add 40 points for ranking in the alternatives
 </taglist></p>
 
-<sect> Version 3.5.9.0
+<sect id="3.5.9.0"> Version 3.5.9.0
 <p>
 
 Released  Mar 2003.
@@ -788,7 +833,7 @@ Released  Mar 2003.
   (rather than <file>/usr/share/doc/package/examples</file>).
 </taglist></p>
 
-<sect> Version 3.5.8.0
+<sect id="3.5.8.0"> Version 3.5.8.0
 <p>
 
 Released  Nov 2002.
@@ -812,7 +857,7 @@ Released  Nov 2002.
   are still a bug.
 </taglist></p>
 
-<sect> Version 3.5.7.0
+<sect id="3.5.7.0"> Version 3.5.7.0
 <p>
 
 Released  Aug 2002.
@@ -851,7 +896,7 @@ Added the last note in 3.5.6 upgrading checklist item regarding build
 rules, please see below
 </em></p>
 
-<sect> Version 3.5.6.0
+<sect id="3.5.6.0"> Version 3.5.6.0
 <p>
 
 Released  Jul 2001.
@@ -876,7 +921,7 @@ Released  Jul 2001.
   there is a new Build-Depend-Indep semantic.
 </taglist></p>
 
-<sect> Version 3.5.5.0
+<sect id="3.5.5.0"> Version 3.5.5.0
 <p>
 
 Released  May 2001.
@@ -930,7 +975,7 @@ Released  May 2001.
   </taglist></item>
 </taglist></p>
 
-<sect> Version 3.5.4.0
+<sect id="3.5.4.0"> Version 3.5.4.0
 <p> Released  Apr 2001.
 
 </p><p><taglist>
@@ -947,7 +992,7 @@ Released  May 2001.
 </item>
 </taglist></p>
 
-<sect> Version 3.5.3.0
+<sect id="3.5.3.0"> Version 3.5.3.0
 <p> Released Apr 2001
 
 </p><p><taglist>
@@ -963,7 +1008,7 @@ Released  May 2001.
 </item>
 </taglist></p>
 
-<sect> Version 3.5.2.0
+<sect id="3.5.2.0"> Version 3.5.2.0
 
 <p> Released Feb 2001.
 
@@ -975,7 +1020,7 @@ Released  May 2001.
 </item>
 </taglist></p>
 
-<sect> Version 3.5.1.0
+<sect id="3.5.1.0"> Version 3.5.1.0
 
 <p> Released Feb 2001.
 
@@ -986,7 +1031,7 @@ Released  May 2001.
 </item>
 </taglist></p>
 
-<sect> Version 3.5.0.0
+<sect id="3.5.0.0"> Version 3.5.0.0
 
 <p> Released Jan 2001.
 
@@ -997,7 +1042,7 @@ Released  May 2001.
 </item>
 </taglist></p>
 
-<sect> Version 3.2.1.1
+<sect id="3.2.1.1"> Version 3.2.1.1
 
 <p> Released Jan 2001.
 
@@ -1019,7 +1064,7 @@ Released  May 2001.
 </item>
 </taglist></p>
 
-<sect> Version 3.2.1.0
+<sect id="3.2.1.0"> Version 3.2.1.0
 
 <p> Released Aug 00.
 
@@ -1031,7 +1076,7 @@ Released  May 2001.
 </item>
 </taglist></p>
 
-<sect> Version 3.2.0.0
+<sect id="3.2.0.0"> Version 3.2.0.0
 
 <p> Released Aug 00.
 
@@ -1082,7 +1127,7 @@ Released  May 2001.
 </item>
 </taglist></p>
 
-<sect> Version 3.1.1.0
+<sect id="3.1.1.0"> Version 3.1.1.0
 
 <p> Released Nov 1999.
 
@@ -1093,7 +1138,7 @@ Released  May 2001.
 </item>
 </taglist></p>
 
-<sect> Version 3.1.0.0
+<sect id="3.1.0.0"> Version 3.1.0.0
 
 <p> Released Oct 1999.
 
@@ -1148,7 +1193,7 @@ Released  May 2001.
 </item>
 </taglist></p>
 
-<sect> Version 3.0.1.0
+<sect id="3.0.1.0"> Version 3.0.1.0
 
 <p> Released Jul 1999.
 
@@ -1160,7 +1205,7 @@ Released  May 2001.
 </item>
 </taglist></p>
 
-<sect> Version 3.0.0.0
+<sect id="3.0.0.0"> Version 3.0.0.0
 
 <p> Released Jun 1999.
 
@@ -1205,7 +1250,7 @@ Released  May 2001.
    Please note that section numbers below this point may not be up to date
 </em></p>
 
-<sect> Version 2.5.0.0
+<sect id="2.5.0.0"> Version 2.5.0.0
 
 <p> Released Oct 1998.
 
@@ -1244,7 +1289,7 @@ Policy Manual:
   </item>
 </list></p>
 
-<sect> Version 2.4.1.0
+<sect id="2.4.1.0"> Version 2.4.1.0
 
 <p> Released Apr 1998.
 </p>
@@ -1271,7 +1316,7 @@ Policy Manual:
 </item>
 </list></p>
 
-<sect> Version 2.4.0.0
+<sect id="2.4.0.0"> Version 2.4.0.0
 
 <p> Released Jan 1998
 
@@ -1347,7 +1392,7 @@ Policy Manual:
   </item>
 </taglist></p>
 
-<sect> Version 2.3.0.1, 2.3.0.0
+<sect id="2.3.0.0"> Version 2.3.0.1, 2.3.0.0
 
 <p> Released Sep 1997.
 
@@ -1364,7 +1409,7 @@ Policy Manual:
 <item>MUAs and MTAs have to use liblockfile</item>
 </list></p>
 
-<sect> Version 2.2.0.0
+<sect id="2.2.0.0"> Version 2.2.0.0
 
 <p> Released July 1997.
 
@@ -1391,7 +1436,7 @@ Policy Manual:
 <item>app-defaults files may not be conffiles</item>
 </list></p>
 
-<sect> Version 2.1.3.2, 2.1.3.1, 2.1.3.0
+<sect id="2.1.3.0"> Version 2.1.3.2, 2.1.3.1, 2.1.3.0
 
 <p> Released Mar 1997.
 
@@ -1409,7 +1454,7 @@ Policy Manual:
 </item>
 </list></p>
 
-<sect> Version 2.1.2.2, 2.1.2.1, 2.1.2.0
+<sect id="2.1.2.0"> Version 2.1.2.2, 2.1.2.1, 2.1.2.0
 
 <p> Released Nov 1996.
 
@@ -1417,7 +1462,7 @@ Policy Manual:
 <item>Some changes WRT shared libraries
 </list></p>
 
-<sect> Version 2.1.1.0
+<sect id="2.1.1.0"> Version 2.1.1.0
 
 <p> Released Sep 1996.
 
@@ -1430,7 +1475,7 @@ without consultation </item>
 <item>Shared libraries must be installed stripped </item>
 </list></p>
 
-<sect> Version 2.1.0.0
+<sect id="2.1.0.0"> Version 2.1.0.0
 
 <p> Released Aug 1996.
 

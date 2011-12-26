@@ -27,6 +27,7 @@ our @RULES = (
     [qr,/usr/share/common-licenses/GPL,            => 'GPL (any)'],
     [qr,/usr/share/common-licenses/LGPL,           => 'LGPL (any)'],
 
+    [qr,(?m)^License:.*AGPL-3,                     => 'AGPL 3'],
     [qr,(?m)^License:.*Artistic(?!-),              => 'Artistic'],
     [qr,(?m)^License:.*Artistic-2,                 => 'Artistic 2.0'],
     [qr,(?m)^License:.*CC-BY-3.0,                  => 'CC-BY 3.0'],
@@ -38,6 +39,7 @@ our @RULES = (
     [qr,(?m)^License:.*Perl,                       => 'Artistic'],
     [qr,(?m)^License:.*Perl,                       => 'GPL 1'],
 
+    [qr,GNU AFFERO GENERAL PUBLIC LICENSE\s+Version 3, => 'AGPL 3'],
     [qr,(?i)The Artistic License 2\.0,             => 'Artistic 2.0'],
     [qr,COMMON DEVELOPMENT AND DISTRIBUTION LICENSE \(CDDL\), => 'CDDL'],
     [qr,CONTRAT DE LICENCE DE LOGICIEL LIBRE CeCILL(?!-), => 'CeCILL'],

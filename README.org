@@ -138,7 +138,7 @@ published at [[http://www.debian.org/doc/]].
 
 In addition to the main technical manual, the team currently also maintains:
 
-+ [[http://www.debian.org/doc/packaging-manuals/copyright-format/1.0][Machine-readable debian/copyright format]]
++ [[http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/][Machine-readable debian/copyright format]]
 + [[http://www.debian.org/doc/packaging-manuals/menu-policy/][Debian Menu sub-policy]]
 + [[http://www.debian.org/doc/packaging-manuals/perl-policy/][Debian Perl Policy]]
 + [[http://www.debian.org/doc/packaging-manuals/mime-policy/][Debian MIME support sub-policy]]

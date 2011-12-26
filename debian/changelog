@@ -1,11 +1,121 @@
-debian-policy (3.9.2.1) UNRELEASED; urgency=low
+debian-policy (3.9.3.0) UNRELEASED; urgency=low
 
+  [ Russ Allbery ]
+  * Policy: Improve Architecture field in source package
+    Wording: Raphaël Hertzog <hertzog@debian.org>
+    Seconded: Russ Allbery <rra@debian.org>
+    Seconded: Charles Plessy <plessy@debian.org>
+    Seconded: Guillem Jover <guillem@debian.org>
+    Closes: #626779
+  * Policy: Initial Debian maintainers need not be listed in copyright
+    Wording: Charles Plessy <plessy@debian.org>
+    Seconded: Russ Allbery <rra@debian.org>
+    Seconded: Raphaël Hertzog <hertzog@debian.org>
+    Seconded: Andrew McMillan <andrew@morphoss.com>
+    Closes: #593533
+  * Policy: Document cron job file naming restrictions
+    Wording: Karl E. Jorgensen <karl@jorgensen.org.uk>
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Russ Allbery <rra@debian.org>
+    Seconded: Dominic Hargreaves <dom@earth.li>
+    Seconded: Javier Fernández-Sanguino Peña <jfs@computer.org>
+    Closes: #609162
+  * Consistently use "Debian source control file" for *.dsc files and
+    "Source package control file" for debian/control files.  Patch from
+    Charles Plessy.  (Closes: #626796)
+  * Clarify that continuation lines of the Description control field must
+    contain at least one non-whitespace character.  Thanks, Guillem Jover.
+    (Closes: #627490)
+  * Fix the example of creating a /usr/local subdirectory to not fail if
+    the chown or chmod fail.  Thanks, Joey Hess.  (Closes: #617315)
+  * Clarify the requirements for symlinks from inside one top-level
+    directory to another and add examples and a rationale.  Thanks,
+    Carsten Hey.  (Closes: #626338)
+  * Clarify that Perl Policy 2.4 is for packages built from the perl
+    source package and the manual page extensions are different for
+    separate module packages.  Thanks, Steve Langasek.  (Closes: #643690)
+  * Say that packages in main may also not recommend packages in non-free,
+    bringing the main text in line with the list of fields and in line
+    with the long-standing release goal.  (Closes: #646166)
+  * Resynchronize the archive section list with ftp-master, adding
+    education, introspection, and metapackages.  Patch from Charles
+    Plessy.  (Closes: #651020)
   * Add the release date of 3.9.2.0 to upgrading-checklist.
   * Fix ordering of the last entries in the 3.9.2.0 upgrading-checklist.
   * Fix typo in upgrading-checklist entry for multiarch paths.  Thanks,
-    Michael Dorrington.
+    Michael Dorrington.  (Closes: #626408)
+  * Add id tags for each version entry in upgrading-checklist so that,
+    when eventually published somewhere, other Debian web sites can link
+    to specific entries.  Patch from Charles Plessy.
+  * Add AGPL-3 to tools/license-count.
+  * Add build-arch and build-indep targets to debian/rules.
 
- -- Russ Allbery <rra@debian.org>  Wed, 06 Apr 2011 23:04:37 -0700
+  [ Bill Allombert ]
+  * Policy: Link relationship fields (7.1) to architecture specification
+    strings (11.1).
+    Patch from Charles Plessy in #628174.
+  * Policy: Retire legacy Motif policy (11.8.8)
+    Proposed by: Justin B Rye
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Jakub Wilk <jwilk@debian.org>
+    Seconded: Steve Langasek <vorlon@debian.org>
+    Seconded: Charles Plessy <plessy@debian.org>
+    Closes: #621479
+  * copyright-format: Fix URL for the Eiffel Forum License.
+    Reported by Thomas Preud'homme, patch by Charles Plessy.
+    Closes: #623050
+  * copyright-format: Update SPDX link to point to the SPDX license registry.
+    Patch by Charles Plessy.  Closes: #628540
+  * copyright-format: Correct or add links to SPDX.
+    Wording: Charles Plessy <plessy@debian.org>
+    Seconded: Gregor Herrmann <gregoa@debian.org>
+    Closes: #641071
+  * Policy: Clarify that 'machine-extractable' referer the copyright
+    files (12.5)
+    Wording:  Charles Plessy <plessy@debian.org>
+    Seconded: Bill Allombert <ballombe@debian.org>
+    Seconded: Jakub Wilk <jwilk@debian.org>
+    Closes: #617516
+  * copyright-format: remove drivers from abstract and useless appendix
+    Wording: Lars Wirzenius <liw@liw.fi>
+    Seconded: Charles Plessy <plessy@debian.org>
+    Seconded: Jakub Wilk <jwilk@debian.org>
+    Closes: #640735
+  * copyright-format: Fix syntax of examples.
+    Proposed by: Charles Plessy <plessy@debian.org>
+    Wording: Jonathan Nieder <jrnieder@gmail.com>
+    Closes: #649674
+  * copyright-format: Clarify specification of multiple license exception:
+    Wording: Steve Langasek <vorlon@debian.org>
+    Seconded: Craig Small <csmall@debian.org>
+    Seconded: Gregor Herrmann <gregoa@debian.org>
+    Seconded: Jakub Wilk <jwilk@debian.org>
+    Seconded: Jonas Smedegaard <dr@jones.dk>
+    Closes: #633797
+  * copyright-format: Specify URL on www.debian.org
+    Wording: Charles Plessy <plessy@debian.org>
+    Seconded: David Prévot <taffit@debian.org>
+    Seconded: Gregor Herrmann <gregoa@debian.org>
+    Closes: #640737
+  * Perl policy: Document major version upgrade trigger
+    Wording: Dominic Hargreaves <dom@debian.org>
+    Seconded: Russ Allbery <rra@debian.org>
+    Seconded: Niko Tyni <ntyni@debian.org>
+    Seconded: Gregor Herrmann <gregoa@debian.org>
+    Closes: #619275
+  * Virtual: change ttf-japanese-{mincho, gothic} to
+    fonts-japanese-{mincho, gothic}.
+    Proposed by: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
+    Seconded: Charles Plessy <plessy@debian.org>
+    Seconded: Bill Allombert <ballombe@debian.org>
+    Closes: #644230
+  * Policy 9.10: No more recommend to call install-docs for doc-base.
+    Wording: Charles Plessy <plessy@debian.org>
+    Seconded: Robert Luberda <robert@debian.org>
+    Seconded: Raphael Hertzog <hertzog@debian.org>
+    Closes: #637614
+
+ -- Bill Allombert <ballombe@debian.org>  Wed, 30 Nov 2011 22:27:54 +0100
 
 debian-policy (3.9.2.0) unstable; urgency=low
 
