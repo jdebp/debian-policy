@@ -59,6 +59,10 @@ Unreleased.
 <tag>9.10</tag>
   <item>Packages using doc-base do not need to call install-docs anymore.
   </item>
+<tag>10.7.4</tag>
+  <item>Packages that declare the same <tt>conffile</tt> may see left-over
+  configuration files from each other even if they conflict.
+  </item>
 <tag>11.8</tag>
   <item>The Policy rules around Motif libraries were just a special case
   of normal rules for non-free dependencies and were largely obsolete, so

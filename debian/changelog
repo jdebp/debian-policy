@@ -20,6 +20,11 @@ debian-policy (3.9.3.0) UNRELEASED; urgency=low
     Seconded: Dominic Hargreaves <dom@earth.li>
     Seconded: Javier Fernández-Sanguino Peña <jfs@computer.org>
     Closes: #609162
+  * Policy: Document issues with conflicting packages sharing a conffile
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Cyril Brulebois <kibi@debian.org>
+    Seconded: Raphaël Hertzog <hertzog@debian.org>
+    Closes: #23712
   * Consistently use "Debian source control file" for *.dsc files and
     "Source package control file" for debian/control files.  Patch from
     Charles Plessy.  (Closes: #626796)
