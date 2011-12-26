@@ -36,7 +36,10 @@ debian-policy (3.9.3.0) UNRELEASED; urgency=low
   * Add the release date of 3.9.2.0 to upgrading-checklist.
   * Fix ordering of the last entries in the 3.9.2.0 upgrading-checklist.
   * Fix typo in upgrading-checklist entry for multiarch paths.  Thanks,
-    Michael Dorrington. Closes: #626408
+    Michael Dorrington.  (Closes: #626408)
+  * Add id tags for each version entry in upgrading-checklist so that,
+    when eventually published somewhere, other Debian web sites can link
+    to specific entries.  Patch from Charles Plessy.
   * Add AGPL-3 to tools/license-count.
   * Add build-arch and build-indep targets to debian/rules.
 
