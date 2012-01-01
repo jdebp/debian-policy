@@ -6266,16 +6266,12 @@ install -m644 debian/shlibs.<var>package</var> debian/<var>package</var>/DEBIAN/
 		</p>
 	      </item>
               <item>
-                <p>
-                  The following directories in the root filesystem are
-                  additionally allowed: <file>/sys</file>
-                  and <file>/selinux</file>.
-                  <footnote>
-                    The <file>/sys</file> and <file>/selinux</file>
-                    directories are mount points where
-                    virtual filesystems are mounted which provide access
-                    to kernel information.
-                  </footnote>
+		<p>
+		  The following directories in the root filesystem are
+		  additionally allowed: <file>/sys</file> and
+		  <file>/selinux</file>. <footnote>These directories
+		  are used as mount points to mount virtual filesystems
+		  to get access to kernel information.</footnote>
 		</p>
               </item>
 	      <item>
