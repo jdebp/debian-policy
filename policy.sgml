@@ -6246,33 +6246,37 @@ install -m644 debian/shlibs.<var>package</var> debian/<var>package</var>/DEBIAN/
                   symlinked there, is relaxed to a recommendation.
                 </p>
               </item>
+	      <item>
+		<p>
+		  The additional directory <file>/run</file> in the root
+		  file system is allowed.  <file>/run</file>
+		  replaces <file>/var/run</file>, and the
+		  subdirectory <file>/run/lock</file>
+		  replaces <file>/var/lock</file>, with
+		  the <file>/var</file> directories replaced by symlinks
+		  for backwards compatibility.  <file>/run</file>
+		  and <file>/run/lock</file> must follow all of the
+		  requirements in the FHS for <file>/var/run</file>
+		  and <file>/var/lock</file>, respectively, such as file
+		  naming conventions, file format requirements, or the
+		  requirement that files be cleared during the boot
+		  process.  Files and directories residing
+		  in <file>/run</file> should be stored on a temporary
+		  file system.
+		</p>
+	      </item>
               <item>
                 <p>
                   The following directories in the root filesystem are
-                  additionally allowed: <file>/run</file>,
-                  <footnote>
-                    The purpose of the /run hierarchy is storage of ephemeral
-                    system state, that is, state information that should
-                    not be preserved across a reboot.
-                    Files and directories residing in <file>/run</file>
-                    should be stored on a temporary filesystem.
-                    The <file>/run</file> directory is a
-                    replacement for <file>/var/run</file>; its
-                    subdirectory <file>/run/lock</file> is a replacement for
-                    <file>/var/lock</file>.
-                    /run/ and /run/lock/ have been introduced
-                    by most distributions and are on track to be 
-                    endorsed by the FHS.
-                    Additionally, the subdirectory <file>/run/shm</file>
-                    is a replacement for <file>/dev/shm</file>.
-                  </footnote>
-                  <file>/sys</file> and <file>/selinux</file>.
+                  additionally allowed: <file>/sys</file>
+                  and <file>/selinux</file>.
                   <footnote>
                     The <file>/sys</file> and <file>/selinux</file>
                     directories are mount points where
                     virtual filesystems are mounted which provide access
                     to kernel information.
                   </footnote>
+		</p>
               </item>
 	      <item>
 		<p>
@@ -6405,6 +6409,35 @@ rmdir /usr/local/share/emacs 2>/dev/null || true
 	    agents.  The use of the old
 	    location <file>/var/spool/mail</file> is deprecated, even
 	    though the spool may still be physically located there.
+	  </p>
+	</sect1>
+
+	<sect1 id="fhs-run">
+	  <heading><file>/run</file> and <file>/run/lock</file></heading>
+
+	  <p>
+	    The directory <file>/run</file> is cleared at boot, normally
+	    by being a mount point for a temporary file system.  Packages
+	    therefore must not assume that any files or directories
+	    under <file>/run</file> other than <file>/run/lock</file>
+	    exist unless the package has arranged to create those files or
+	    directories since the last reboot.  Normally, this is done by
+	    the package via an init script.  See <ref id="writing-init">
+	    for more information.
+	  </p>
+
+	  <p>
+	    Packages must not include files or directories
+	    under <file>/run</file>, or under the <file>/var/run</file>
+	    or <file>/var/lock</file> paths that are replaced with
+	    symlinks or bind mounts to <file>/run</file> for backwards
+	    compatibility.
+	  </p>
+
+	  <p>
+	    Packages should use <file>/run</file> in preference
+	    to <file>/var/run</file> and <file>/run/lock</file> in
+	    preference to <file>/var/lock</file>.
 	  </p>
 	</sect1>
       </sect>
@@ -6781,17 +6814,14 @@ test -f <var>program-executed-later-in-script</var> || exit 0
 	  </p>
 
 	  <p>
-            Files and directories under <file>/run</file>, including those
-            in directories <file>/var/run</file> and <file>/var/lock</file>
-            which are symlinks or bind mounts to subdirectories of
-            <file>/run</file>, are normally stored on a temporary
+            Files and directories under <file>/run</file>, including ones
+            referred to via the compatibility paths <file>/var/run</file>
+            and <file>/var/lock</file>, are normally stored on a temporary
             filesystem and are normally not persistent across a reboot.
-            Consequently, packages cannot assume that these files or
-            directories are present at system boot time.
-            Files and directories under <file>/run</file> must not be
-            included in packages; such files or directories
-            must be created dynamically, for example, in the
-            <file>init.d</file> script.
+            The <file>init.d</file> scripts must handle this correctly.
+            This will typically mean creating any required subdirectories
+            dynamically when the <file>init.d</file> script is run.
+            See <ref id="fhs-run"> for more information.
 	  </p>
 	</sect1>
 
