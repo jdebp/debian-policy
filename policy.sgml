@@ -6429,12 +6429,6 @@ rmdir /usr/local/share/emacs 2>/dev/null || true
 	    The latter paths will normally be symlinks or other
 	    redirections to <file>/run</file> for backwards compatibility.
 	  </p>
-
-	  <p>
-	    Packages should use <file>/run</file> in preference
-	    to <file>/var/run</file> and <file>/run/lock</file> in
-	    preference to <file>/var/lock</file>.
-	  </p>
 	</sect1>
       </sect>
 
