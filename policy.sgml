@@ -489,9 +489,9 @@
 	      <item>
 		  must not require or recommend a package outside
 		  of <em>main</em> for compilation or execution (thus, the
-		  package must not declare a "Depends", "Recommends", or
-		  "Build-Depends" relationship on a non-<em>main</em>
-		  package),
+		  package must not declare a "Pre-Depends", "Depends",
+		  "Recommends", "Build-Depends", or "Build-Depends-Indep"
+		  relationship on a non-<em>main</em> package),
 	      </item>
 	      <item>
 		  must not be so buggy that we refuse to support them,
