@@ -4628,7 +4628,7 @@ Depends: libc6 (>= 2.2.1), exim | mail-transport-agent
 	  Relationships may be restricted to a certain set of
 	  architectures.  This is indicated in brackets after each
 	  individual package name and the optional version specification.
-	  The brackets enclose a list of Debian architecture names
+	  The brackets enclose a non-empty list of Debian architecture names
 	  in the format described in <ref id="arch-spec">,
 	  separated by whitespace.  Exclamation marks may be prepended to
 	  each of the names.  (It is not permitted for some names to be
