@@ -2631,6 +2631,7 @@ Package: libc6
 	    <item><qref id="sourcebinarydeps"><tt>Build-Depends</tt> et al</qref></item>
 	    <item><qref id="f-Standards-Version"><tt>Standards-Version</tt></qref> (recommended)</item>
 	    <item><qref id="f-Homepage"><tt>Homepage</tt></qref></item>
+	    <item><qref id="f-VCS-fields"><tt>Vcs-Browser</tt>, <tt>Vcs-Git</tt>, et al.</qref></item>
 	  </list>
 	</p>
 
@@ -2725,6 +2726,7 @@ Package: libc6
 	  <item><qref id="f-Uploaders"><tt>Uploaders</tt></qref></item>
 	  <item><qref id="f-DM-Upload-Allowed"><tt>DM-Upload-Allowed</tt></qref></item>
 	  <item><qref id="f-Homepage"><tt>Homepage</tt></qref></item>
+	  <item><qref id="f-VCS-fields"><tt>Vcs-Browser</tt>, <tt>Vcs-Git</tt>, et al.</qref></item>
 	  <item><qref id="f-Standards-Version"><tt>Standards-Version</tt></qref> (recommended)</item>
 	  <item><qref id="sourcebinarydeps"><tt>Build-Depends</tt> et al</qref></item>
 	  <item><qref id="f-Checksums"><tt>Checksums-Sha1</tt>
@@ -3737,6 +3739,53 @@ Checksums-Sha256:
 	    Resolution <url id="http://www.debian.org/vote/2007/vote_003"
 	    name="Endorse the concept of Debian Maintainers"> for more
 	    details.
+	  </p>
+	</sect1>
+
+	<sect1 id="f-VCS-fields">
+	  <heading>Version Control System (VCS) fields</heading>
+
+	  <p>
+	    Debian source packages are increasingly developed using VCSs.  The
+	    purpose of the following fields is to indicate a publicly accessible
+	    repository where the Debian source package is developed.
+
+	    <taglist>
+	      <tag><tt>Vcs-Browser</tt></tag>
+	      <item>
+		<p>
+		  URL of a web interface for browsing the repository.
+		</p>
+	      </item>
+
+	      <tag>
+		<tt>Vcs-Arch</tt>, <tt>Vcs-Bzr</tt> (Bazaar), <tt>Vcs-Cvs</tt>,
+		<tt>Vcs-Darcs</tt>, <tt>Vcs-Git</tt>, <tt>Vcs-Hg</tt>
+		(Mercurial), <tt>Vcs-Mtn</tt> (Monotone), <tt>Vcs-Svn</tt>
+		(Subversion)
+	      </tag>
+	      <item>
+		<p>
+		  The field name identifies the VCS. The field's value uses the
+		  version control system's conventional syntax for describing
+		  repository locations and should be sufficient to locate the
+		  repository used for packaging. Ideally, it also locates the
+		  branch used for development of new versions of the Debian
+		  package.
+		</p>
+		<p>
+		  In the case of Git, the value consists of a URL, optionally
+		  followed by the word <tt>-b</tt> and the name of a branch in
+		  the indicated repository, following the syntax of the
+		  <tt>git clone</tt> command.  If no branch is specified, the
+		  packaging should be on the default branch.
+		</p>
+		<p>
+		  More than one different VCS may be specified for the same
+		  package.
+		</p>
+	      </item>
+	    </taglist>
 	  </p>
 	</sect1>
       </sect>
