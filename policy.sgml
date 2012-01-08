@@ -5803,7 +5803,7 @@ Replaces: mail-transport-agent
 	  installed on the system, all of the libraries needed are also
 	  installed.  These dependencies must be added to the binary
 	  package when it is built, since they may change based on which
-	  version of a shared library the binary or library was linnked
+	  version of a shared library the binary or library was linked
 	  with.  To allow these dependencies to be constructed, shared
 	  libraries must provide either a <file>symbols</file> file or
 	  a <file>shlibs</file> file, which provide information on the
