@@ -49,6 +49,25 @@ Unreleased.
   now contain the value <tt>any all</tt> for source packages building both
   architecture-independent and architecture-dependent packages.
   </item>
+<tag>7.1</tag>
+  <item>If a dependency is restricted to particular architectures, the
+  list of architectures must be non-empty.
+  </item>
+<tag>9.1.1</tag>
+  <item><file>/run</file> is allowed as an exception to the FHS and
+  replaces <file>/var/run</file>.  <file>/run/lock</file>
+  replaces <file>/var/lock</file>.  The FHS requirements for the older
+  directories apply to these directories as well.  Backward compatibility
+  links will be maintained and packages need not switch to
+  referencing <file>/run</file> directly yet.  Files in <file>/run</file>
+  should be stored in a temporary file system.
+  </item>
+<tag>9.1.4</tag>
+  <item>New section spelling out the requirements for packages that use
+  files in <file>/run</file>, <file>/var/run</file>,
+  or <file>/var/lock</file>.  This generalizes information previously only
+  in 9.3.2.
+  </item>
 <tag>9.5</tag>
   <item>Cron job file names must not contain <tt>.</tt> or <tt>+</tt> or
   they will be ignored by cron.  They should replace those characters

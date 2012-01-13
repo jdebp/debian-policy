@@ -25,6 +25,17 @@ debian-policy (3.9.3.0) UNRELEASED; urgency=low
     Seconded: Cyril Brulebois <kibi@debian.org>
     Seconded: Raphaël Hertzog <hertzog@debian.org>
     Closes: #23712
+  * Policy: Add /run FHS exception, clarify rules for /run and /var/run
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Steve Langasek <vorlon@debian.org>
+    Seconded: Roger Leigh <rleigh@codelibre.net>
+    Closes: #620870, #532120
+  * Policy: Architecture restrictions in a dependency must be non-empty
+    Wording: Stefano Zacchiroli <zack@debian.org>
+    Seconded: Russ Allbery <rra@debian.org>
+    Seconded: Julien Cristau <jcristau@debian.org>
+    Seconded: Colin Watson <cjwatson@debian.org>
+    Closes: #498300
   * MIME Policy: Retire this document and merge it with Policy
     Wording: Ben Finney <ben+debian@benfinney.id.au>
     Seconded: Russ Allbery <rra@debian.org>
@@ -51,6 +62,11 @@ debian-policy (3.9.3.0) UNRELEASED; urgency=low
   * Resynchronize the archive section list with ftp-master, adding
     education, introspection, and metapackages.  Patch from Charles
     Plessy.  (Closes: #651020)
+  * Clarify that packages in main may not declare Pre-Depends or
+    Build-Depends-Indep relationships outside of main either.  Partly
+    addresses #587279.
+  * Fix typo in the version numbers in the dpkg-divert examples.  Thanks,
+    Slavko.
   * Add the release date of 3.9.2.0 to upgrading-checklist.
   * Fix ordering of the last entries in the 3.9.2.0 upgrading-checklist.
   * Fix typo in upgrading-checklist entry for multiarch paths.  Thanks,
