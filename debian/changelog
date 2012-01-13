@@ -51,6 +51,11 @@ debian-policy (3.9.3.0) UNRELEASED; urgency=low
   * Resynchronize the archive section list with ftp-master, adding
     education, introspection, and metapackages.  Patch from Charles
     Plessy.  (Closes: #651020)
+  * Clarify that packages in main may not declare Pre-Depends or
+    Build-Depends-Indep relationships outside of main either.  Partly
+    addresses #587279.
+  * Fix typo in the version numbers in the dpkg-divert examples.  Thanks,
+    Slavko.
   * Add the release date of 3.9.2.0 to upgrading-checklist.
   * Fix ordering of the last entries in the 3.9.2.0 upgrading-checklist.
   * Fix typo in upgrading-checklist entry for multiarch paths.  Thanks,

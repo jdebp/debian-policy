@@ -489,9 +489,9 @@
 	      <item>
 		  must not require or recommend a package outside
 		  of <em>main</em> for compilation or execution (thus, the
-		  package must not declare a "Depends", "Recommends", or
-		  "Build-Depends" relationship on a non-<em>main</em>
-		  package),
+		  package must not declare a "Pre-Depends", "Depends",
+		  "Recommends", "Build-Depends", or "Build-Depends-Indep"
+		  relationship on a non-<em>main</em> package),
 	      </item>
 	      <item>
 		  must not be so buggy that we refuse to support them,
@@ -11369,7 +11369,7 @@ END-INFO-DIR-ENTRY
      dpkg-divert --package smailwrapper --remove --rename \
         --divert /usr/sbin/smail.real /usr/sbin/smail
   fi
-	</example> where <tt>1.02-2</tt> is the version at which the
+	</example> where <tt>1.0-2</tt> is the version at which the
 	diversion was first added to the package.  The postrm should not
 	remove the diversion on upgrades both because there's no reason to
 	remove the diversion only to immediately re-add it and since the
