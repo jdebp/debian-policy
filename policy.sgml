@@ -6246,6 +6246,25 @@ install -m644 debian/shlibs.<var>package</var> debian/<var>package</var>/DEBIAN/
                   symlinked there, is relaxed to a recommendation.
                 </p>
               </item>
+	      <item>
+		<p>
+		  The additional directory <file>/run</file> in the root
+		  file system is allowed.  <file>/run</file>
+		  replaces <file>/var/run</file>, and the
+		  subdirectory <file>/run/lock</file>
+		  replaces <file>/var/lock</file>, with
+		  the <file>/var</file> directories replaced by symlinks
+		  for backwards compatibility.  <file>/run</file>
+		  and <file>/run/lock</file> must follow all of the
+		  requirements in the FHS for <file>/var/run</file>
+		  and <file>/var/lock</file>, respectively, such as file
+		  naming conventions, file format requirements, or the
+		  requirement that files be cleared during the boot
+		  process.  Files and directories residing
+		  in <file>/run</file> should be stored on a temporary
+		  file system.
+		</p>
+	      </item>
               <item>
                 <p>
                   The following directories in the root filesystem are
@@ -6386,6 +6405,29 @@ rmdir /usr/local/share/emacs 2>/dev/null || true
 	    agents.  The use of the old
 	    location <file>/var/spool/mail</file> is deprecated, even
 	    though the spool may still be physically located there.
+	  </p>
+	</sect1>
+
+	<sect1 id="fhs-run">
+	  <heading><file>/run</file> and <file>/run/lock</file></heading>
+
+	  <p>
+	    The directory <file>/run</file> is cleared at boot, normally
+	    by being a mount point for a temporary file system.  Packages
+	    therefore must not assume that any files or directories
+	    under <file>/run</file> other than <file>/run/lock</file>
+	    exist unless the package has arranged to create those files or
+	    directories since the last reboot.  Normally, this is done by
+	    the package via an init script.  See <ref id="writing-init">
+	    for more information.
+	  </p>
+
+	  <p>
+	    Packages must not include files or directories
+	    under <file>/run</file>, or under the
+	    older <file>/var/run</file> and <file>/var/lock<file> paths.
+	    The latter paths will normally be symlinks or other
+	    redirections to <file>/run</file> for backwards compatibility.
 	  </p>
 	</sect1>
       </sect>
@@ -6762,15 +6804,14 @@ test -f <var>program-executed-later-in-script</var> || exit 0
 	  </p>
 
 	  <p>
-	    <file>/var/run</file> and <file>/var/lock</file> may be mounted
-	    as temporary filesystems<footnote>
-		For example, using the <tt>RAMRUN</tt> and <tt>RAMLOCK</tt>
-		options in <file>/etc/default/rcS</file>.
-	    </footnote>, so the <file>init.d</file> scripts must handle this
-	    correctly. This will typically amount to creating any required
-	    subdirectories dynamically when the <file>init.d</file> script
-	    is run, rather than including them in the package and relying on
-	    <prgn>dpkg</prgn> to create them.
+            Files and directories under <file>/run</file>, including ones
+            referred to via the compatibility paths <file>/var/run</file>
+            and <file>/var/lock</file>, are normally stored on a temporary
+            filesystem and are normally not persistent across a reboot.
+            The <file>init.d</file> scripts must handle this correctly.
+            This will typically mean creating any required subdirectories
+            dynamically when the <file>init.d</file> script is run.
+            See <ref id="fhs-run"> for more information.
 	  </p>
 	</sect1>
 
@@ -11328,7 +11369,7 @@ END-INFO-DIR-ENTRY
      dpkg-divert --package smailwrapper --remove --rename \
         --divert /usr/sbin/smail.real /usr/sbin/smail
   fi
-	</example> where <tt>1.02-2</tt> is the version at which the
+	</example> where <tt>1.0-2</tt> is the version at which the
 	diversion was first added to the package.  The postrm should not
 	remove the diversion on upgrades both because there's no reason to
 	remove the diversion only to immediately re-add it and since the
