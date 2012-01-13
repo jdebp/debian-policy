@@ -6061,10 +6061,10 @@ Replaces: mail-transport-agent
 	  <p>
 	    <example>
 <var>library-soname</var> <var>main-dependency-template</var>
-[ | <var>alternative-dependency-template</var> ]
-[ ... ]
-[ * <var>field-name</var>: <var>field-value</var> ]
-[ ... ]
+[| <var>alternative-dependency-template</var>]
+[...]
+[* <var>field-name</var>: <var>field-value</var>]
+[...]
  <var>symbol</var> <var>minimal-version</var>[ <var>id-of-dependency-template</var> ]
 	    </example>
 	  </p>
@@ -6169,7 +6169,7 @@ libz.so.1 zlib1g #MINVER#
 	      following <file>symbols</file> file:
 	      <example>
 libGL.so.1 libgl1
- | libgl1-mesa-glx #MINVER#
+| libgl1-mesa-glx #MINVER#
  publicGlSymbol@Base 6.3-1
  [...]
  implementationSpecificSymbol@Base 6.5.2-7 1
@@ -6208,10 +6208,8 @@ libGL.so.1 libgl1
 	    For our example, the <tt>zlib1g</tt> <file>symbols</file> file
 	    would contain:
 	    <example compact="compact">
- * Build-Depends-Package: zlib1g-dev
+* Build-Depends-Package: zlib1g-dev
 	    </example>
-	    (Don't forget the space before the <tt>*</tt> so that it will
-	    be parsed as part of the entry for that library.)
 	  </p>
 
 	  <p>
