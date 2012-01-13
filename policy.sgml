@@ -5996,16 +5996,7 @@ Replaces: mail-transport-agent
 	    libraries, put a call to <prgn>dpkg-shlibdeps</prgn> into
 	    your <file>debian/rules</file> file in the source package.
 	    List all of the compiled binaries, libraries, or loadable
-	    modules in your package.  If your source package builds only a
-	    single binary package that contains only compiled binaries and
-	    libraries (but no scripts) and is not multiarch, you can use a
-	    command such as:
-	    <example compact="compact">
-dpkg-shlibdeps debian/tmp/usr/bin/* debian/tmp/usr/sbin/* \
-  debian/tmp/usr/lib/*
-	    </example>
-	    but normally finding all of the binaries is more
-	    complex.<footnote>
+	    modules in your package.<footnote>
 	      The easiest way to do this is to use a package helper
 	      framework such as <tt>debhelper</tt>.  If you are
 	      using <tt>debhelper</tt>, the <prgn>dh_shlibdeps</prgn>
@@ -6029,7 +6020,10 @@ dpkg-shlibdeps debian/tmp/usr/bin/* debian/tmp/usr/sbin/* \
 	    binary package.<footnote>
 	      Again, <prgn>dh_shlibdeps</prgn>
 	      and <prgn>dh_gencontrol</prgn> will handle all of this for
-	      you if you're using <tt>debhelper</tt>.
+	      you if you're using <tt>debhelper</tt>, including generating
+	      separate <file>substvars</file> files for each binary
+	      package and calling <prgn>dpkg-gencontrol</prgn> with the
+	      appropriate flags.
 	    </footnote>
 	  </p>
 
@@ -6175,7 +6169,7 @@ libz.so.1 zlib1g #MINVER#
 	      following <file>symbols</file> file:
 	      <example>
 libGL.so.1 libgl1
-| libgl1-mesa-glx #MINVER#
+ | libgl1-mesa-glx #MINVER#
  publicGlSymbol@Base 6.3-1
  [...]
  implementationSpecificSymbol@Base 6.5.2-7 1
@@ -6216,7 +6210,8 @@ libGL.so.1 libgl1
 	    <example compact="compact">
  * Build-Depends-Package: zlib1g-dev
 	    </example>
-	    (Don't forget the leading space.)
+	    (Don't forget the space before the <tt>*</tt> so that it will
+	    be parsed as part of the entry for that library.)
 	  </p>
 
 	  <p>
@@ -6403,12 +6398,10 @@ int library_do_operation(enum library_op);
 		  directory"</p>
 
 		<p>
-		  When packages are being built,
-		  any <file>debian/shlibs</file> files are copied into the
-		  control information file area of the temporary build
-		  directory and given the name <file>shlibs</file>.  These
-		  files give details of any shared libraries included in
-		  the same package.
+		  These files are generated as part of the package build
+		  process and staged for inclusion as control files in the
+		  binary packages being built.  They provide details of
+		  any shared libraries included in the same package.
 		</p>
 	      </item>
 
@@ -6559,34 +6552,19 @@ udeb: libz 1 zlib1g-udeb (>= 1:1.2.3.3.dfsg-1)
 	  <heading>Providing a <file>shlibs</file> file</heading>
 
 	  <p>
-	    If your package provides a shared library, you need to create
-	    a <file>shlibs</file> file following the format described
-	    above.  It is usual to call this
-	    file <file>debian/shlibs</file> (but if you have multiple
-	    binary packages, you might want to call
-	    it <file>debian/<var>package</var>.shlibs</file> instead).
-	    Then let <file>debian/rules</file> install it in the control
-	    information file area:
-	    <example compact="compact">
-install -m644 debian/shlibs debian/tmp/DEBIAN
-	    </example>
-	    or, in the case of a multi-binary package:
-	    <example compact="compact">
-install -m644 debian/<var>package</var>.shlibs debian/<var>package</var>/DEBIAN/shlibs
-	    </example>
-	    An alternative way of doing this is to create
-	    the <file>shlibs</file> file in the control information file
-	    area directly from <file>debian/rules</file> without using
-	    a <file>debian/shlibs</file> file at all,<footnote>
+	    To provide a <file>shlibs</file> file for a shared library
+	    binary package, create a <file>shlibs</file> file following
+	    the format described above and place it in
+	    the <file>DEBIAN</file> directory for that package during the
+	    build.  It will then be included as a control file for that
+	    package<footnote>
 	      This is what <prgn>dh_makeshlibs</prgn> in
 	      the <package>debhelper</package> suite does. If your package
 	      also has a udeb that provides a shared
 	      library, <prgn>dh_makeshlibs</prgn> can automatically
 	      generate the <tt>udeb:</tt> lines if you specify the name of
 	      the udeb with the <tt>--add-udeb</tt> option.
-	    </footnote>
-	    since the <file>debian/shlibs</file> file itself is ignored by
-	    <prgn>dpkg-shlibdeps</prgn>.
+	    </footnote>.
 	  </p>
 
 	  <p>
