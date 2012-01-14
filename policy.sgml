@@ -6425,7 +6425,7 @@ rmdir /usr/local/share/emacs 2>/dev/null || true
 	  <p>
 	    Packages must not include files or directories
 	    under <file>/run</file>, or under the
-	    older <file>/var/run</file> and <file>/var/lock<file> paths.
+	    older <file>/var/run</file> and <file>/var/lock</file> paths.
 	    The latter paths will normally be symlinks or other
 	    redirections to <file>/run</file> for backwards compatibility.
 	  </p>
