@@ -163,9 +163,6 @@ Graphics and MultiMedia
 
 Java and virtual machines
 -------------------------
- java-compiler           a java compiler, for Java version 1
- java2-compiler          a java compiler, for Java version 2
- java-virtual-machine    a JAVA virtual machine
  java1-runtime           a Java runtime environment, Java version 1
  java2-runtime           a Java runtime environment, Java version 2
 

@@ -136,6 +136,11 @@ debian-policy (3.9.3.0) UNRELEASED; urgency=low
     Seconded: Charles Plessy <plessy@debian.org>
     Seconded: Bill Allombert <ballombe@debian.org>
     Closes: #644230
+  * Virtual: Retire java-compiler, java2-compiler, and java-virtual-machine.
+    Proposed by: Niels Thykier <niels@thykier.net>
+    Seconded: tony mancill <tmancill@debian.org>
+    Seconded: Bill Allombert <ballombe@debian.org>
+    Closes: #578421
   * Policy 9.10: No more recommend to call install-docs for doc-base.
     Wording: Charles Plessy <plessy@debian.org>
     Seconded: Robert Luberda <robert@debian.org>
