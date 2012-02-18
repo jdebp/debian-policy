@@ -7,6 +7,8 @@
 #
 # It expects one argument, which should be the root of the Lintian laboratory.
 
+use File::Find qw(find);
+
 our @RULES = (
     [qr,/usr/share/common-licenses/Apache-2.0,     => 'Apache 2.0'],
     [qr,/usr/share/common-licenses/Artistic,       => 'Artistic'],
@@ -59,19 +61,17 @@ our @RULES = (
     [qr,SIL OPEN FONT LICENSE Version 1\.0,        => 'SIL OFL 1.0'],
 );
 
-unless (@ARGV == 1) {
-    die "Usage: license-count <path-to-lintian-lab>\n";
-}
-my $lab = $ARGV[0];
-opendir (LAB, "$lab/binary") or die "$0: cannot open $lab/binary: $!\n";
 my ($package, %counts);
 my $n = 0;
-while (defined ($package = readdir LAB)) {
-    next if ($package =~ /^\./);
+
+sub check_package {
+    return unless (-d $_ && /_binary$/);
+    $File::Find::prune = 1;
+    return if (-d $_ && /_(source|udeb)$/);
     $n++;
     print "Checked $n packages\n" if (($n % 100) == 0);
     local $/;
-    open (COPYRIGHT, '<', "$lab/binary/$package/copyright") or next;
+    open (COPYRIGHT, '<', "$_/copyright") or return;
     my $copyright = <COPYRIGHT>;
     close COPYRIGHT;
     my %seen;
@@ -83,7 +83,12 @@ while (defined ($package = readdir LAB)) {
         }
     }
 }
-closedir LAB;
+
+unless (@ARGV == 1) {
+    die "Usage: license-count <path-to-lintian-lab>\n";
+}
+my $lab = $ARGV[0];
+find (\&check_package, "$lab/pool");
 my $length = 0;
 for my $name (keys %counts) {
     if (length ($name) > $length) {

@@ -75,6 +75,7 @@ debian-policy (3.9.3.0) UNRELEASED; urgency=low
     when eventually published somewhere, other Debian web sites can link
     to specific entries.  Patch from Charles Plessy.
   * Add AGPL-3 to tools/license-count.
+  * Update tools/license-count to work with the new Lintian lab layout.
   * Add build-arch and build-indep targets to debian/rules.
 
   [ Bill Allombert ]
