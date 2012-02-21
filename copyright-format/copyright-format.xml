@@ -1015,7 +1015,7 @@ Copyright 2009, 2010 Angela Watts</programlisting>
         matches.
       </para>
       <para>
-        An exception or clarification to a license is signaled in plain text,
+        An exception or clarification to a license is signalled in plain text,
         by appending <literal>with
         <varname><replaceable>keywords</replaceable></varname>
         exception</literal> to the short name.  This document provides a list
