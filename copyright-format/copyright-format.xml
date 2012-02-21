@@ -15,6 +15,7 @@
     <title>
       Machine-readable <filename>debian/copyright</filename> file.
     </title>
+    <subtitle>Version 1.0</subtitle>
     <legalnotice>
       <para>
         Copying and distribution of this file, with or without modification, are
@@ -42,8 +43,10 @@
       automatically extract licensing information.
     </para>
     <para>
-      This is not a proposal to change the policy in the short term.  In
-      particular, nothing in this proposal supersedes or modifies any of the
+      Use of this specification is optional.
+    </para>
+    <para>
+      Nothing in this proposal supersedes or modifies any of the
       requirements specified in Debian Policy regarding the appropriate detail
       or granularity to use when documenting copyright and license status in
       <filename>debian/copyright</filename>.
@@ -78,9 +81,9 @@
       no way to know how much of Debian should be stripped from such a system.
     </para>
     <para>
-      A user might want to have a way to avoid software with certain licenses
-      they have a problem with, even if the licenses are DFSG-free. For example,
-      the Affero GPL.
+      Even where licenses are DFSG-free and mutually compatible, users might want
+      a way to avoid software with certain licenses, for example if they have a
+      problem with the Affero GPL.
     </para>
   </section>
 
@@ -124,9 +127,8 @@
       paragraph</link>.
     </para>
     <para>
-      The value of each field is of one of the four types listed below.  The
-      definition for each field in this document indicates which type of
-      value it takes.
+      There are four types of fields.  The definition for each field in this
+      document indicates which type of value it takes.
     </para>
 
     <section id="single-line">
@@ -153,8 +155,8 @@
     <section id="line-based-lists">
       <title>Line-based lists</title>
       <para>
-        Another kind of list value has one value per line. For example,
-        <varname>Copyright</varname> can list many copyright statements, one per
+        This means that the field has one value per line. For example,
+        <varname>Upstream-Contact</varname> can list contact addresses, one per
         line.
       </para>
     </section>
@@ -186,7 +188,7 @@
     </para>
 
     <section id="header-paragraph">
-      <title>Header paragraph (Once)</title>
+      <title>Header paragraph (once)</title>
       <para>
         The following fields may be present in a header paragraph.
       </para>
@@ -258,12 +260,13 @@ Source: http://www.example.com/software/project</programlisting>
     </section>
 
      <section id="files-paragraph">
-      <title>Files paragraph (Repeatable)</title>
+      <title>Files paragraph (repeatable)</title>
       <para>
-        The declaration of copyright and license for files is done in one or
+        The declaration of copyright and license for files may consist of one or
         more paragraphs.  In the simplest case, a single paragraph can be used
-        which applies to all files and lists all applicable copyrights and
-        licenses.
+        which applies to the whole package.  Only the license and copyright
+        information required by the Debian archive is required to be listed
+        here.
       </para>
       <para>
         The following fields may be present in a Files paragraph.
@@ -277,7 +280,7 @@ Source: http://www.example.com/software/project</programlisting>
         </listitem>
         <listitem>
           <para>
-            <link linkend="license-field">Copyright</link>: required.
+            <link linkend="copyright-field">Copyright</link>: required.
           </para>
         </listitem>
         <listitem>
@@ -321,12 +324,14 @@ License: GPL-2+</programlisting>
     </section>
 
     <section id="stand-alone-license-paragraph">
-      <title>Stand-alone License Paragraph (Optional, Repeatable)</title>
+      <title>Stand-alone License Paragraph (optional, repeatable)</title>
       <para>
-        Where a set of files are dual (tri, etc) licensed, or when the same
-        license occurs multiple times, you can use a single-line
-        <varname>License</varname> field and stand-alone
-        <varname>License</varname> paragraphs to expand the license short names.
+        Stand-alone <varname>License</varname> paragraphs can be used to
+        provide the full license text for a given license once, instead of
+        repeating it in each <varname>Files</varname> paragraph that refers to
+        it.  The first line of the <varname>License</varname> field must be a
+        single license short name or a short name followed by a license
+        exception.
       </para>
       <para>
         The following fields may be present in a stand-alone License
@@ -413,7 +418,7 @@ License: MPL-1.1
     <section id="source-field">
       <title><varname>Source</varname></title>
       <para>
-        Formatted text, no synopsis: an explanation from where the upstream
+        Formatted text, no synopsis: an explanation of where the upstream
         source came from.  Typically this would be a URL, but it might be a
         free-form explanation.  The Debian Policy section <ulink
         url="http://www.debian.org/doc/debian-policy/ch-docs#s-copyrightfile">12.5</ulink>
@@ -466,12 +471,11 @@ License: MPL-1.1
         single copyright file.
       </para>
       <para>
-        Remaining lines: if left blank here, the file
-        <emphasis>must</emphasis> include a <link
+        If there are no remaining lines, then all of the short names
+        or short names followed by license exceptions making up the
+        first line must be described in <link
         linkend="stand-alone-license-paragraph">stand-alone License
-        paragraph</link> matching each license short
-        name listed on the first line.
-        Otherwise, this field should either
+        paragraphs</link>.  Otherwise, this field should either
         include the full text of the license(s) or include a pointer to the
         license file under <filename>/usr/share/common-licenses</filename>. 
         This field should include all text needed in order to fulfill both
@@ -508,8 +512,8 @@ License: MPL-1.1
 Copyright 2009 Angela Watts</programlisting>
         and file B has:
 <programlisting>Copyright 2010 Angela Watts</programlisting>
-        the <varname>Copyright</varname> field for a stanza covering both
-        file A and file B need contain only:
+        then the <varname>Copyright</varname> field for a paragraph covering both
+        file A and file B only needs to contain:
 <programlisting>Copyright 2008 John Smith
 Copyright 2009, 2010 Angela Watts</programlisting>
       </para>
@@ -588,8 +592,8 @@ Copyright 2009, 2010 Angela Watts</programlisting>
         paragraph that matches a particular file applies to it.
       </para>
       <para>
-        Exclusions are done by having multiple <varname>Files</varname>
-        paragraphs.
+        Exclusions are only supported by adding <varname>Files</varname>
+        paragraphs to override the previous match.
       </para>
     </section>
 
@@ -635,9 +639,9 @@ Copyright 2009, 2010 Angela Watts</programlisting>
         added, using a dash as a separator. If omitted, the lowest version
         number is implied. When the license grant permits using the terms of any
         later version of that license, the short name is finished with a plus
-        sign. For <link linkend="spdx">SPDX</link> compatibility, trailing
-        <emphasis>dot-zeroes</emphasis> are considered to be equal to plainer
-        version (e.g., <quote>2.0.0</quote> is considered equal to
+        sign. For <link linkend="spdx">SPDX</link> compatibility, versions with trailing
+        <emphasis>dot-zeroes</emphasis> are considered to be equivalent to
+        versions without (e.g., <quote>2.0.0</quote> is considered equal to
         <quote>2.0</quote> and <quote>2</quote>).
       </para>
       <para>
@@ -1077,22 +1081,23 @@ also delete it here.</programlisting>
         This is a dual-licensed GPL/Artistic work such as Perl:
 <programlisting>License: GPL-1+ or Artistic</programlisting>
         This is for a file that has both GPL and classic BSD code in it:
-<programlisting>License: GPL-2+ and BSD</programlisting>
-        For the most complex cases, the comma is used to disambiguate the
-        priority of <literal>or</literal>s and <literal>and</literal>s
-        <literal>and</literal> has the priority over <literal>or</literal>,
-        unless preceded by a comma. For instance:
+<programlisting>License: GPL-2+ and BSD-3-clause</programlisting>
+        For the most complex cases, a comma is used to disambiguate the
+        priority of <literal>or</literal>s and <literal>and</literal>s.
+        The conjunction <quote><literal>and</literal></quote> has priority over
+        <quote><literal>or</literal></quote> unless preceded by a comma. For
+        instance:
       </para>
       <simpara>
         <literal>A or B and C</literal> means <literal>A or (B and C)</literal>.
       </simpara>
       <simpara>
-        <literal>A or B, and C</literal> means <literal>(A or B), and
+        <literal>A or B, and C</literal> means <literal>(A or B) and
         C</literal>.
       </simpara>
       <para>
         This is for a file that has Perl code and classic BSD code in it:
-<programlisting>License: GPL-2+ or Artistic-2.0, and BSD</programlisting>
+<programlisting>License: GPL-2+ or Artistic-2.0, and BSD-3-clause</programlisting>
         A <literal>GPL-2+</literal> work with the <literal>OpenSSL</literal>
         exception is in effect a dual-licensed work that can be redistributed
         either under the <literal>GPL-2+</literal>, or under the
