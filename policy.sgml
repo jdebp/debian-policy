@@ -279,6 +279,14 @@
 	  <tt><url name="/doc/developers-reference/"
 		id="http://www.debian.org/doc/developers-reference/"></tt>.
 	</p>
+
+	<p>
+	  Finally, a <qref id="copyrightformat">specification for
+	  machine-readable copyright files</qref> is maintained as part of
+	  the <package>debian-policy</package> package using the same
+	  procedure as the other policy documents.  Use of this format is
+	  optional.
+	</p>
       </sect>
 
       <sect id="definitions">
@@ -9913,7 +9921,27 @@ END-INFO-DIR-ENTRY
 	  You should not use the copyright file as a general <file>README</file>
 	  file.  If your package has such a file it should be
 	  installed in <file>/usr/share/doc/<var>package</var>/README</file> or
-	  <file>README.Debian</file> or some other appropriate place.</p>
+	  <file>README.Debian</file> or some other appropriate place.
+	</p>
+
+	<sect1 id="copyrightformat">
+	  <heading>Machine-readable copyright information</heading>
+
+	  <p>
+	    A specification for a standard, machine-readable format
+	    for <file>debian/copyright</file> files is maintained as part
+	    of the <package>debian-policy</package> package.  This
+	    document may be found in the <file>copyright-format</file>
+	    files in the <package>debian-policy</package> package.  It is
+	    also available from the Debian web mirrors at
+	    <tt><url name="/doc/packaging-manuals/copyright-format/1.0/"
+		     id="http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/"></tt>.
+	  </p>
+
+	  <p>
+	    Use of this format is optional.
+	  </p>
+	</sect1>
       </sect>
 
       <sect>

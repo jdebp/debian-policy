@@ -92,6 +92,10 @@ Unreleased.
   Debian maintainers involved in the creation of the package (although
   note that the requirement to list copyright information is unchanged).
   </item>
+<tag>copyright-format</tag>
+  <item>Version 1.0 of the "Machine-readable <file>debian/copyright</file>
+  file" specification is included.
+  </item>
 <tag>mime</tag>
   <item>Retire this separate document and merge its (short) contents into
   Policy section 9.7.  There are no changes to the requirements.
