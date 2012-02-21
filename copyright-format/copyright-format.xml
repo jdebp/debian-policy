@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl"
-        href="http://docbook.sourceforge.net/release/xsl/current/html/docbook.xsl"?>
-
-<!-- Process this file with an XSLT processor, e.g. xsltproc:    -->
-<!-- `xsltproc \
-      -''-nonet \
-      1.0.xml'  -->
+    href="http://docbook.sourceforge.net/release/xsl/current/html/docbook.xsl"?>
 
 <!DOCTYPE article PUBLIC '-//OASIS//DTD DocBook XML V4.5//EN'
-                         'http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd'>
+    'http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd'>
 
 <article class="specification" status="draft" lang="en" id="copyright-format">
   <articleinfo>
@@ -18,9 +13,9 @@
     <subtitle>Version 1.0</subtitle>
     <legalnotice>
       <para>
-        Copying and distribution of this file, with or without modification, are
-        permitted in any medium without royalty provided the copyright notice
-        and this notice are preserved.
+        Copying and distribution of this file, with or without modification,
+        are permitted in any medium without royalty provided the copyright
+        notice and this notice are preserved.
       </para>
     </legalnotice>
     <abstract>
@@ -49,9 +44,9 @@
       Use of this specification is optional.
     </para>
     <para>
-      Nothing in this proposal supersedes or modifies any of the
-      requirements specified in Debian Policy regarding the appropriate detail
-      or granularity to use when documenting copyright and license status in
+      Nothing in this proposal supersedes or modifies any of the requirements
+      specified in Debian Policy regarding the appropriate detail or
+      granularity to use when documenting copyright and license status in
       <filename>debian/copyright</filename>.
     </para>
   </section>
@@ -246,15 +241,14 @@
         </listitem>
       </itemizedlist>
       <para>
-        The <varname>Copyright</varname> and <varname>License</varname>
-        fields in the <emphasis>header paragraph</emphasis> may complement
-        but do not replace the <emphasis>Files paragraphs</emphasis>.  They
-        can be used to summarise the copyright notices or redistribution terms
-        for the whole package, such as when a work combines a
-        permissive and a copyleft license and the combination requires
-        some clarification, or to document a
-        <emphasis>compilation copyright</emphasis> and license.  It is
-        possible to use only <varname>License</varname> in the header
+        The <varname>Copyright</varname> and <varname>License</varname> fields
+        in the <emphasis>header paragraph</emphasis> may complement but do not
+        replace the <emphasis>Files paragraphs</emphasis>.  They can be used
+        to summarise the copyright notices or redistribution terms for the
+        whole package, such as when a work combines a permissive and a
+        copyleft license and the combination requires some clarification, or
+        to document a <emphasis>compilation copyright</emphasis> and license.
+        It is possible to use only <varname>License</varname> in the header
         paragraph, but <varname>Copyright</varname> alone makes no sense.
       </para>
 
@@ -640,8 +634,8 @@ Copyright 2009, 2010 Angela Watts</programlisting>
       <para>
         These short names have the specified meanings across all uses of this
         file format, and <emphasis>must not</emphasis> be used to refer to any
-        other licenses.  Parsers may thus rely on these short names referring to
-        the same licenses wherever they occur, without needing to parse or
+        other licenses.  Parsers may thus rely on these short names referring
+        to the same licenses wherever they occur, without needing to parse or
         compare the full license text.
       </para>
       <para>
@@ -676,14 +670,15 @@ Copyright 2009, 2010 Angela Watts</programlisting>
         short name of <literal>GPL-1+</literal>.
       </para>
       <para>
-        For <link linkend="spdx">SPDX</link> compatibility, versions with trailing
-        <emphasis>dot-zeroes</emphasis> are considered to be equivalent to
-        versions without (e.g., <quote>2.0.0</quote> is considered equal to
-        <quote>2.0</quote> and <quote>2</quote>).
+        For <link linkend="spdx">SPDX</link> compatibility, versions with
+        trailing <emphasis>dot-zeroes</emphasis> are considered to be
+        equivalent to versions without (e.g., <quote>2.0.0</quote> is
+        considered equal to <quote>2.0</quote> and <quote>2</quote>).
       </para>
       <para>
-        Currently, the full text of the licenses is only available in the <ulink
-        url="http://spdx.org/licenses">SPDX Open Source License Registry</ulink>.
+        Currently, the full text of the licenses is only available in the
+        <ulink url="http://spdx.org/licenses">SPDX Open Source License
+        Registry</ulink>.
       </para>
       <informaltable>
         <tgroup cols="2">
@@ -825,7 +820,8 @@ Copyright 2009, 2010 Angela Watts</programlisting>
                 CC-BY-NC-ND
               </entry>
               <entry>
-                Creative Commons Attribution Non-Commercial No Derivatives license
+                Creative Commons Attribution Non-Commercial No Derivatives
+                license
                 <ulink url="http://spdx.org/licenses/CC-BY-NC-ND-1.0">1.0</ulink>,
                 <ulink url="http://spdx.org/licenses/CC-BY-NC-ND-2.0">2.0</ulink>,
                 <ulink url="http://spdx.org/licenses/CC-BY-NC-ND-2.5">2.5</ulink>,
@@ -838,9 +834,9 @@ Copyright 2009, 2010 Angela Watts</programlisting>
               </entry>
               <entry>
                 Creative Commons Zero
-                <ulink url="http://spdx.org/licenses/CC0-1.0">1.0
-                Universal</ulink>.  Omit <quote>Universal</quote> from the
-                license version when forming the short name.
+                <ulink url="http://spdx.org/licenses/CC0-1.0">1.0 Universal</ulink>.
+                Omit <quote>Universal</quote> from the license version when
+                forming the short name.
               </entry>
             </row>
             <row>
@@ -1019,16 +1015,17 @@ Copyright 2009, 2010 Angela Watts</programlisting>
         matches.
       </para>
       <para>
-        An exception or clarification to a license is signaled in plain text, by appending
-        <literal>with <varname><replaceable>keywords</replaceable></varname>
-        exception</literal> to the short name.  This document provides a list of
-        keywords that must be used when referring to the most frequent
-        exceptions.  When exceptions other than these are in effect that modify
-        a common license by granting additional permissions, you may use an
-        arbitrary keyword not taken from the below list of keywords.  When a
-        license differs from a common license because of added restrictions
-        rather than because of added permissions, a distinct short name should
-        be used instead of <literal>with
+        An exception or clarification to a license is signaled in plain text,
+        by appending <literal>with
+        <varname><replaceable>keywords</replaceable></varname>
+        exception</literal> to the short name.  This document provides a list
+        of keywords that must be used when referring to the most frequent
+        exceptions.  When exceptions other than these are in effect that
+        modify a common license by granting additional permissions, you may
+        use an arbitrary keyword not taken from the below list of keywords.
+        When a license differs from a common license because of added
+        restrictions rather than because of added permissions, a distinct
+        short name should be used instead of <literal>with
         <varname><replaceable>keywords</replaceable></varname>
         exception</literal>.
       </para>
@@ -1039,10 +1036,10 @@ Copyright 2009, 2010 Angela Watts</programlisting>
         multiple exceptions must be used instead.
       </para>
       <para>
-        The GPL <literal>Font</literal> exception refers to the text added to the
-        license notice of each file as specified at <ulink
-        url="http://www.gnu.org/licenses/gpl-faq#FontException">How does the GPL
-        apply to fonts</ulink>.  The precise text corresponding to this
+        The GPL <literal>Font</literal> exception refers to the text added to
+        the license notice of each file as specified at <ulink
+        url="http://www.gnu.org/licenses/gpl-faq#FontException">How does the
+        GPL apply to fonts</ulink>.  The precise text corresponding to this
         exception is:
 <programlisting>As a special exception, if you create a document which uses this font,
 and embed this font or unaltered portions of this font into the
@@ -1055,16 +1052,16 @@ obligated to do so. If you do not wish to do so, delete this exception
 statement from your version.</programlisting>
         </para>
         <para>
-          The GPL <literal>OpenSSL</literal> exception gives permission to link GPL-licensed
-code with the OpenSSL library, which contains GPL-incompatible clauses.
-For more information, see <ulink
-url="http://www.gnome.org/~markmc/openssl-and-the-gpl">The OpenSSL License and
-The GPL</ulink> by Mark
-McLoughlin and the message <ulink
-url="http://lists.debian.org/debian-legal/2004/05/msg00595.html">middleman
-software license conflicts with OpenSSL</ulink>
-by Mark McLoughlin on the <emphasis>debian-legal</emphasis> mailing list.  The text corresponding
-to this exception is:
+          The GPL <literal>OpenSSL</literal> exception gives permission to
+          link GPL-licensed code with the OpenSSL library, which contains
+          GPL-incompatible clauses.  For more information, see <ulink
+          url="http://www.gnome.org/~markmc/openssl-and-the-gpl">The OpenSSL
+          License and The GPL</ulink> by Mark McLoughlin and the message
+          <ulink
+          url="http://lists.debian.org/debian-legal/2004/05/msg00595.html">middleman
+          software license conflicts with OpenSSL</ulink> by Mark McLoughlin
+          on the <emphasis>debian-legal</emphasis> mailing list.  The text
+          corresponding to this exception is:
 <programlisting>In addition, as a special exception, the copyright holders give
 permission to link the code of portions of this program with the
 OpenSSL library under certain conditions as described in each
@@ -1116,9 +1113,9 @@ also delete it here.</programlisting>
       </para>
       <para>
         In case of multi-licensing, the license short names are separated by
-        <literal>or</literal> when the user can chose between different licenses,
-        and by <literal>and</literal> when use of the work must simultaneously
-        comply with the terms of multiple licenses.
+        <literal>or</literal> when the user can chose between different
+        licenses, and by <literal>and</literal> when use of the work must
+        simultaneously comply with the terms of multiple licenses.
       </para>
       <para>
         For instance, this is a simple, <quote>GPL version 2 or later</quote>
@@ -1147,10 +1144,10 @@ also delete it here.</programlisting>
         A <literal>GPL-2+</literal> work with the <literal>OpenSSL</literal>
         exception is in effect a dual-licensed work that can be redistributed
         either under the <literal>GPL-2+</literal>, or under the
-        <literal>GPL-2+</literal> with the <literal>OpenSSL</literal> exception.
-        It is thus expressed as <literal>GPL-2+ with OpenSSL
-        exception</literal>.  A possible <varname>License</varname> field
-        for such a license is:
+        <literal>GPL-2+</literal> with the <literal>OpenSSL</literal>
+        exception.  It is thus expressed as <literal>GPL-2+ with OpenSSL
+        exception</literal>.  A possible <varname>License</varname> field for
+        such a license is:
 <programlisting>License: GPL-2+ with OpenSSL exception
  This program is free software; you can redistribute it
  and/or modify it under the terms of the GNU General Public
