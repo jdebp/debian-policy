@@ -7,6 +7,9 @@ debian-policy (3.9.3.0) UNRELEASED; urgency=low
     examples, and to update the GFDL license versions.  Thanks, Steve
     Langasek, Charles Plessy, Justin B Rye, and Jonathan Nieder.
     (Closes: #658209, #648387)
+  * Publish the copyright format specification as copyright-format-1.0 so
+    that later versions can be added without removing previous versions of
+    the standard.  Patch from Charles Plessy.  (Closes: #646119)
   * Policy: Improve Architecture field in source package
     Wording: Raphaël Hertzog <hertzog@debian.org>
     Seconded: Russ Allbery <rra@debian.org>
