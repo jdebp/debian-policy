@@ -1,6 +1,12 @@
 debian-policy (3.9.3.0) UNRELEASED; urgency=low
 
   [ Russ Allbery ]
+  * Update the copyright format document to the version of DEP-5 from the
+    DEP web site and apply additional changes from subsequent discussion
+    in debian-devel and debian-project.  Revise for clarity, to add more
+    examples, and to update the GFDL license versions.  Thanks, Steve
+    Langasek, Charles Plessy, Justin B Rye, and Jonathan Nieder.
+    (Closes: #658209, #648387)
   * Policy: Improve Architecture field in source package
     Wording: Raphaël Hertzog <hertzog@debian.org>
     Seconded: Russ Allbery <rra@debian.org>
