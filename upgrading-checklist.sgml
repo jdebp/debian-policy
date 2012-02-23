@@ -73,7 +73,7 @@ Released February, 2012.
   they will be ignored by cron.  They should replace those characters
   with <tt>_</tt>.  If a package provides multiple cron job files in the
   same directory, they should each start with the package name (possibly
-  modified as above), <tt>-</tt>, and then some suitable prefix.
+  modified as above), <tt>-</tt>, and then some suitable suffix.
   </item>
 <tag>9.10</tag>
   <item>Packages using doc-base do not need to call install-docs anymore.
