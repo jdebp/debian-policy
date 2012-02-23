@@ -1,4 +1,4 @@
-debian-policy (3.9.3.0) UNRELEASED; urgency=low
+debian-policy (3.9.3.0) unstable; urgency=low
 
   [ Russ Allbery ]
   * Update the copyright format document to the version of DEP-5 from the
@@ -157,7 +157,7 @@ debian-policy (3.9.3.0) UNRELEASED; urgency=low
     Seconded: Raphael Hertzog <hertzog@debian.org>
     Closes: #637614
 
- -- Bill Allombert <ballombe@debian.org>  Wed, 30 Nov 2011 22:27:54 +0100
+ -- Russ Allbery <rra@debian.org>  Wed, 22 Feb 2012 19:40:36 -0800
 
 debian-policy (3.9.2.0) unstable; urgency=low
 
