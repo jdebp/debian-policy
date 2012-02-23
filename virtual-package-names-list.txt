@@ -324,3 +324,6 @@ Russ Allbery:
 Bill Allombert:
   22 Feb 2012 Rename ttf-japanese-gothic to fonts-japanese-gothic
               Rename ttf-japanese-mincho to fonts-japanese-mincho
+              Removed java-compiler
+              Removed java2-compiler
+              Removed java-virtual-machine
