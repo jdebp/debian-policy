@@ -127,12 +127,6 @@ stamp-policy:  build $(sanitycheck)
 	$(make_directory)	$(TMPTOP)/DEBIAN
 	$(make_directory)	$(DOCDIR)/fhs
 	$(make_directory)	$(LIBDIR)
-	# create a substvar to reference from debian/control so that
-	# we don't hardcode the policy compliance of the policy
-	# package.  I guess some might question this but I take it as
-	# a given that the debian-policy pkg must always comply with
-	# itself...
-	echo "debian-policy:Version=$(version)"	     > debian/substvars
 	$(install_file)	    $(POLICY_FILES)	     $(DOCDIR)/
 	$(install_file)	    debian/changelog	     $(DOCDIR)/
 	# Be more specific with file compression
