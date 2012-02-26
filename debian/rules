@@ -1,96 +1,87 @@
 #!/usr/bin/make -f
 
-ifdef ARCH
-  ha:=-a$(ARCH)
-endif
-
-# set the dpkg-architecture vars; but we don't use them, so we'll comment out
-export DEB_BUILD_ARCH      ?= $(shell dpkg-architecture $(ha) -qDEB_BUILD_ARCH)
-export DEB_BUILD_GNU_CPU   ?= $(shell dpkg-architecture $(ha) -qDEB_BUILD_GNU_CPU)
-export DEB_BUILD_GNU_SYSTEM?= $(shell dpkg-architecture $(ha) -qDEB_BUILD_GNU_SYSTEM)
-export DEB_BUILD_GNU_TYPE  ?= $(shell dpkg-architecture $(ha) -qDEB_BUILD_GNU_TYPE)
-export DEB_HOST_ARCH       ?= $(shell dpkg-architecture $(ha) -qDEB_HOST_ARCH)
-export DEB_HOST_GNU_CPU    ?= $(shell dpkg-architecture $(ha) -qDEB_HOST_GNU_CPU)
-export DEB_HOST_GNU_SYSTEM ?= $(shell dpkg-architecture $(ha) -qDEB_HOST_GNU_SYSTEM)
-export DEB_HOST_GNU_TYPE   ?= $(shell dpkg-architecture $(ha) -qDEB_HOST_GNU_TYPE)
-
-arch	:= $(shell dpkg --print-architecture)
-
-# Basic information
+# Basic package information.
 package := $(shell grep Source debian/control | sed 's/^Source: //')
 date	:= $(shell date +"%Y-%m-%d")
-version := $(shell awk -F '[()]' '/^$(package)/{ print $$2; exit }' debian/changelog)
+version := $(shell dpkg-parsechangelog | awk '/^Version:/ { print $$2; exit }')
 
 # Currently, emacs23 is required (xemacs is not sufficient).
 EMACS   := emacs23
 
-# Location of the source dir
-SRCTOP	  := $(CURDIR)
-TMPTOP	  := $(SRCTOP)/debian/tmp
-DOCDIR	  := $(TMPTOP)/usr/share/doc/$(package)
-LIBDIR	  := $(TMPTOP)/usr/share/doc-base
+# Location of the source and build directories.
+SRCTOP	:= $(CURDIR)
+TMPTOP	:= $(SRCTOP)/debian/tmp
+DOCDIR	:= $(TMPTOP)/usr/share/doc/$(package)
+LIBDIR	:= $(TMPTOP)/usr/share/doc-base
 
-sanitycheck := debian/rules policy.sgml
+# SGML source files in the top-level directory.  We do some common actions
+# with each of these: validate, build text, HTML, and one-page HTML output,
+# and generate a tarball of the source.
+SGML_FILES  := policy menu-policy perl-policy upgrading-checklist
 
-SGML_FILES := policy menu-policy perl-policy upgrading-checklist
-DESC_FILES := copyright-format-1.0 debian-policy debian-menu-policy \
-	      debian-perl-policy debconf-spec fhs
+# org-mode source files in the top-level directory.  We generate text and
+# HTML versions from these.
+ORG_FILES   := Process README
 
-# While we have two versions of the FHS installed in the source package,
-# we need to modify this to handle it.  This is the easiest way to do it.
-# FHS_ARCHIVE := $(wildcard fhs*.tar.gz)
-FHS_ARCHIVE  := fhs-2.3-source.tar.gz
-FHS_HTML     := fhs-2.3.html
-FHS_FILES    := fhs-2.3.ps.gz fhs-2.3.txt.gz fhs-2.3.pdf.gz
-FHS_NEW_ARCHIVE  := 
-FHS_NEW_HTML     := 
-FHS_NEW_FILES    := 
+# doc-base description files for the documents we include.
+DESC_FILES  := copyright-format-1.0 debian-policy debian-menu-policy \
+	       debian-perl-policy debconf-spec fhs
 
-POLICY_FILES = $(SGML_FILES:=.sgml) $(SGML_FILES:=.txt.gz) \
-	       virtual-package-names-list.txt \
-	       libc6-migration.txt version.ent \
-               copyright-format/copyright-format-1.0.html \
-               copyright-format/copyright-format-1.0.txt.gz \
-               debconf_spec/debconf_specification.html \
-               debconf_spec/debconf_specification.txt.gz \
-               policy.ps.gz policy.pdf.gz README.txt README.html \
-               Process.txt Process.html
+# Our local copy of the File Hierarchy Standard.  We don't build this from
+# source, but we do have a copy of the source in FHS_ARCHIVE.
+FHS_ARCHIVE := fhs-2.3-source.tar.gz
+FHS_FILES   := fhs-2.3.html fhs-2.3.ps.gz fhs-2.3.txt.gz fhs-2.3.pdf.gz
 
-FILES_FROM_ORG := Process.html Process.txt README.txt README.html
+# A list of the simple Policy files that we include in the documentation
+# directory of the generated package.  The tarballs of source are handled
+# separately, as are the directories of HTML output.
+POLICY_FILES := $(SGML_FILES:=.sgml) $(SGML_FILES:=.txt.gz)		\
+		$(SGML_FILES:=-1.html) version.ent			\
+		virtual-package-names-list.txt libc6-migration.txt	\
+		copyright-format/copyright-format-1.0.html		\
+		copyright-format/copyright-format-1.0.txt.gz		\
+		debconf_spec/debconf_specification.html			\
+		debconf_spec/debconf_specification.txt.gz		\
+		policy.ps.gz policy.pdf.gz README.txt README.html	\
+		Process.txt Process.html
 
-# policy.{pdf,ps,tpt,txt} are generated files
-FILES_TO_CLEAN  = copyright-format-1.0.xml.tar.gz \
-                  debian/files debian/buildinfo  debian/substvars \
-		  debian/postinst debian/prerm \
-		  version.ent \
-		  $(SGML_FILES:=.txt.gz) $(SGML_FILES:=.html.tar.gz) \
-                  $(SGML_FILES:=-1.html) \
-		  policy.pdf.gz policy.ps.gz \
-		  debconf_specification.xml.tar.gz \
-		  policy.pdf policy.ps policy.txt policy. \
-		  body.tmp head.tmp policy.tpt \
-		  $(FILES_FROM_ORG)
+# Used by the clean rules.  STAMPS_TO_CLEAN are the stamp files used to tell
+# make that a target has completed, and are removed first.  FILES_TO_CLEAN
+# are individual generated files to remove.  DIRS_TO_CLEAN are entire
+# directories to remove.
+STAMPS_TO_CLEAN := stamp-binary stamp-build
+DIRS_TO_CLEAN   := $(SGML_FILES:=.html) debian/tmp fhs
+FILES_TO_CLEAN	:= $(SGML_FILES:=.txt) $(SGML_FILES:=.txt.gz)		\
+		   $(SGML_FILES:=.html.tar.gz) $(SGML_FILES:=-1.html)	\
+		   $(ORG_FILES:=.html) $(ORG_FILES:=.txt)		\
+		   policy.pdf.gz policy.ps.gz				\
+		   policy.pdf policy.ps policy.tpt policy.txt		\
+		   version.ent						\
+		   copyright-format-1.0.xml.tar.gz			\
+		   debconf_specification.xml.tar.gz			\
+		   debian/files
 
-STAMPS_TO_CLEAN := stamp-policy stamp-build
-DIRS_TO_CLEAN   := debian/tmp fhs $(SGML_FILES:=.html)
-
-
-install_file    := install -p	-o root -g root	 -m  644
-install_program := install -p	-o root -g root	 -m  755
-make_directory  := install -p -d	-o root -g root	 -m  755
+# Install files and directories with the correct ownership and permissions.
+install := install -p -o root -g root -m 644
+mkdir   := install -d -o root -g root -m 755
 
 
 all build build-indep: stamp-build
 build-arch:
-stamp-build: version.ent $(sanitycheck)
+stamp-build: version.ent
 	$(MAKE) $(SGML_FILES:=.sgml.validate) \
 		$(SGML_FILES:=.html.tar.gz) \
                 $(SGML_FILES:=-1.html) \
 		$(SGML_FILES:=.txt.gz) \
 		policy.ps.gz policy.pdf.gz
-	$(MAKE) $(FILES_FROM_ORG)
+	$(MAKE) $(ORG_FILES:=.html) \
+		$(ORG_FILES:=.txt)
 	$(MAKE) -C copyright-format all
 	$(MAKE) -C debconf_spec all
+	GZIP=-9 cd copyright-format && \
+		tar -zcf ../copyright-format-1.0.xml.tar.gz *
+	GZIP=-9 cd debconf_spec && \
+		tar -zcf ../debconf_specification.xml.tar.gz *
 	touch stamp-build
 
 configure: version.ent
@@ -99,76 +90,68 @@ version.ent: debian/changelog
 	echo "<!entity version \"$(version)\">" >> $@
 	echo "<!entity date    \"$(date)\">"	>> $@
 
-clean: $(sanitycheck)
-# Undoes the effect of `make -f debian/rules build'.
+clean:
+	rm -f $(STAMPS_TO_CLEAN)
 	$(MAKE) -C copyright-format clean
 	$(MAKE) -C debconf_spec clean
-	rm -f  $(FILES_TO_CLEAN) $(STAMPS_TO_CLEAN)
+	rm -f $(FILES_TO_CLEAN)
 	rm -rf $(DIRS_TO_CLEAN)
-	rm -f core `find . \( -name '*.orig' -o -name '*.rej' -o \
-	  -name '*~' -o -name '*.bak' -o -name '#*#' -o \
-	  -name '.*.orig' -o -name '.*.rej' -o -name '.SUMS' -o \
+	rm -f core `find . \( -name '*.orig' -o -name '*.rej' -o	\
+	  -name '*~' -o -name '*.bak' -o -name '#*#' -o			\
+	  -name '.*.orig' -o -name '.*.rej' -o -name '.SUMS' -o		\
 	  -size 0 \) -print` TAGS
 
 
-binary:		binary-indep binary-arch
-binary-arch:	build $(sanitycheck)
-# There are no architecture-dependent files to be uploaded
-# generated by this package.  If there were any they would be
-# made here.
-
-binary-indep:	stamp-policy
-stamp-policy:  build $(sanitycheck)
-	@test $$(id | sed -e 's/(.*$$//' -e 's/^uid=//') || \
-		(echo need root priviledges; exit 1)
-#	This is unnecessary; commenting out
-#	test -f stamp-build	|| $(MAKE) -f	     debian/rules build
-	rm -rf			$(TMPTOP)
-	$(make_directory)	$(TMPTOP)/DEBIAN
-	$(make_directory)	$(DOCDIR)/fhs
-	$(make_directory)	$(LIBDIR)
-	$(install_file)	    $(POLICY_FILES)	     $(DOCDIR)/
-	$(install_file)	    debian/changelog	     $(DOCDIR)/
-	# Be more specific with file compression
-	gzip -f9	    $(DOCDIR)/*.txt $(DOCDIR)/*.sgml \
-				$(DOCDIR)/changelog
-# These are allready compressed
-	#$(install_file)    $(FHS_NEW_FILES)	     $(DOCDIR)/fhs/
-	$(install_file)	    $(FHS_FILES)	     $(DOCDIR)/fhs/
-	$(install_file)	    debian/copyright	     $(DOCDIR)/
-	GZIP=-9 cd copyright-format && \
-	  tar -zcf ../copyright-format-1.0.xml.tar.gz *
-	$(install_file)	    copyright-format-1.0.xml.tar.gz $(DOCDIR)/
-	@set -ex; \
-	GZIP=-9 cd debconf_spec && \
-	  tar -zcf ../debconf_specification.xml.tar.gz *
-	$(install_file)	    debconf_specification.xml.tar.gz $(DOCDIR)/
-	@set -ex; \
-	for file in $(DESC_FILES); do \
-	  $(install_file) $$file.desc $(LIBDIR)/$$file; \
+binary: binary-indep binary-arch
+binary-arch:
+binary-indep: stamp-binary
+stamp-binary: stamp-build
+	@test $$(id | sed -e 's/(.*$$//' -e 's/^uid=//') -eq 0 || \
+	    (echo 'You must run this as root (or use fakeroot)' >&2; exit 1)
+	rm -rf		$(TMPTOP)
+	$(mkdir)	$(TMPTOP)/DEBIAN
+	$(mkdir)	$(DOCDIR)/fhs
+	$(mkdir)	$(LIBDIR)
+#
+# Install simple files.
+#
+	$(install)	$(POLICY_FILES)		$(DOCDIR)/
+	$(install)	$(FHS_FILES)		$(DOCDIR)/fhs/
+	$(install)	debian/changelog	$(DOCDIR)/
+	$(install)	debian/copyright	$(DOCDIR)/
+#
+# Install DocBook XML source.
+#
+	$(install)	copyright-format-1.0.xml.tar.gz		$(DOCDIR)/
+	$(install)	debconf_specification.xml.tar.gz	$(DOCDIR)/
+#
+# Install generated HTML directories.
+#
+	@set -ex; for file in $(SGML_FILES); do			\
+		tar -C $(DOCDIR) -zxf $$file.html.tar.gz;	\
 	done
-	@set -ex; \
-	for file in $(SGML_FILES); do \
-	  tar -C $(DOCDIR) -zxf $$file.html.tar.gz; \
+#
+# Install doc-base files.
+#
+	@set -ex; for file in $(DESC_FILES); do			\
+		$(install) $$file.desc $(LIBDIR)/$$file;	\
 	done
-	for file in $(SGML_FILES); do \
-	  $(install_file) $${file}-1.html $(DOCDIR); \
-	done
-	$(install_file)     $(FHS_HTML)   $(DOCDIR)/fhs
-	@set -ex; \
-	cd debian/tmp; \
-	find . -path "./DEBIAN" -prune -o -type f -printf '%P\0' \
-           | xargs -r0 md5sum > DEBIAN/md5sums
-	dpkg-gencontrol	    -p$(package) -Pdebian/tmp -isp
-	chown		    -R root:root debian/tmp
-	chmod		    -R go=rX debian/tmp
-	dpkg		    --build debian/tmp ..
-	touch		    stamp-policy
+#
+# Compress files and build MD5 checksums.
+#
+	gzip -f9 $(DOCDIR)/*.txt $(DOCDIR)/*.sgml $(DOCDIR)/changelog
+	@set -ex; cd debian/tmp; \
+	find . -path './DEBIAN' -prune -o -type f -printf '%P\0' \
+		| xargs -r0 md5sum > DEBIAN/md5sums
+#
+# Build the package.
+#
+	dpkg-gencontrol -p$(package) -Pdebian/tmp -isp
+	chown -R root:root debian/tmp
+	chmod -R go=rX debian/tmp
+	dpkg --build debian/tmp ..
+	touch stamp-binary
 
 
-.PHONY: configure build build-arch build-indep binary binary-arch
-.PHONY: binary-indep clean checkroot
-
-#Local variables:
-#mode: makefile
-#End:
+.PHONY: all configure build build-arch build-indep binary binary-arch
+.PHONY: binary-indep clean
