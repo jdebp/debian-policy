@@ -6,6 +6,9 @@ debian-policy (3.9.3.1) UNRELEASED; urgency=low
     Also mention that the Files pattern syntax is the same as fnmatch(3)
     and GNU find -path without [] patterns.  Thanks, Jonathan Nieder and
     Ben Finney.
+  * Suggest checkbashisms from devscripts or the posh shell for checking
+    whether /bin/sh scripts are Policy-compliant rather than recommending
+    dash.  Thanks, Raphael Geissert.  (Closes: #490604)
   * Install the HTML version of upgrading-checklist in the policy.html
     directory as upgrading-checklist.html so that it can be deployed on
     www.debian.org in a way that will allow links to Policy sections to

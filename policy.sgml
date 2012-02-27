@@ -7968,10 +7968,12 @@ fname () {
 	<p>
 	  You may wish to restrict your script to SUSv3 features plus the
 	  above set when possible so that it may use <file>/bin/sh</file>
-	  as its interpreter. If your script works with <prgn>dash</prgn>
-	  (originally called <prgn>ash</prgn>), it probably complies with
-	  the above requirements, but if you are in doubt, use
-	  <file>/bin/bash</file>.
+	  as its interpreter.  Checking your script
+	  with <prgn>checkbashisms</prgn> from
+	  the <package>devscripts</package> package or running your script
+	  with <prgn>posh</prgn> may help uncover violations of the above
+	  requirements.  If in doubt whether a script complies with these
+	  requirements, use <file>/bin/bash</file>.
 	</p>
 
 	<p>
