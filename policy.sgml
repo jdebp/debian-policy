@@ -10482,10 +10482,10 @@ END-INFO-DIR-ENTRY
 		  the <prgn>PATH</prgn> if necessary, and pass its
 		  second and subsequent arguments to the command it
 		  calls.  If no <var>root-command</var> is supplied
-		  then <var>dpkg-buildpackage</var> will take no
-		  special action to gain root privilege, so that for
-		  most packages it will have to be invoked as root to
-		  start with.</p>
+		  then <var>dpkg-buildpackage</var> will use
+		  the <prgn>fakeroot</prgn> command, which is sufficient
+		  to build most packages without actually requiring root
+		  privileges.</p>
 	      </item>
 	      <tag><tt>-b</tt>, <tt>-B</tt></tag>
 	      <item>
