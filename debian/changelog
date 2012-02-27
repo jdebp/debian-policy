@@ -17,6 +17,8 @@ debian-policy (3.9.3.1) UNRELEASED; urgency=low
     (currently, at least) and that build should depend on whichever exist
     or perform the equivalent actions.  Thanks to Jonathan Nieder for some
     of the wording.  (Closes: #601839)
+  * Clearly state that "yes" is the only valid value of DM-Upload-Allowed
+    and rewrite its description to be less indirect.  (Closes: #622263)
   * Install the HTML version of upgrading-checklist in the policy.html
     directory as upgrading-checklist.html so that it can be deployed on
     www.debian.org in a way that will allow links to Policy sections to
