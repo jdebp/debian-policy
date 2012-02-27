@@ -6169,11 +6169,11 @@ install -m644 debian/shlibs.<var>package</var> debian/<var>package</var>/DEBIAN/
 	  <heading>File System Structure</heading>
 
 	  <p>
-	    The location of all installed files and directories must
-	    comply with the Filesystem Hierarchy Standard (FHS),
-	    version 2.3, with the exceptions noted below, and except
-	    where doing so would violate other terms of Debian
-	    Policy.  The following exceptions to the FHS apply:
+	    The location of all files and directories must comply with the
+	    Filesystem Hierarchy Standard (FHS), version 2.3, with the
+	    exceptions noted below, and except where doing so would
+	    violate other terms of Debian Policy.  The following
+	    exceptions to the FHS apply:
 
             <enumlist>
               <item>
