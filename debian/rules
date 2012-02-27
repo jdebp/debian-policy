@@ -131,6 +131,13 @@ stamp-binary: stamp-build
 		tar -C $(DOCDIR) -zxf $$file.html.tar.gz;	\
 	done
 #
+# Make upgrading-checklist-1.html a symlink to the copy in the policy.html
+# directory.  This is temporary until it becomes a proper appendix.
+#
+	rm -f $(DOCDIR)/upgrading-checklist-1.html
+	ln -s policy.html/upgrading-checklist.html \
+		$(DOCDIR)/upgrading-checklist-1.html
+#
 # Install doc-base files.
 #
 	@set -ex; for file in $(DESC_FILES); do			\

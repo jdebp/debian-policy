@@ -1,5 +1,9 @@
 debian-policy (3.9.3.1) UNRELEASED; urgency=low
 
+  * Install the HTML version of upgrading-checklist in the policy.html
+    directory as upgrading-checklist.html so that it can be deployed on
+    www.debian.org in a way that will allow links to Policy sections to
+    work easily.  Thanks, Charles Plessy.  (Closes: #639663)
   * Fix mistaken word choice (prefix instead of suffix) in the upgrading
     checklist entry for 3.9.3.0.
   * Add some missing entries to the virtual package names list changelog.

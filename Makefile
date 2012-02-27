@@ -45,6 +45,16 @@ perl-policy.sgml: version.ent
 %.pdf.gz: %.pdf
 	gzip -cf9 $< > $@
 
+# This is a temporary hack to fold the upgrading-checklist into the Policy
+# HTML directory so that it can be deployed alongside Policy on
+# www.debian.org in a way that lets the cross-document links work properly.
+# The correct solution is to make upgrading-checklist an appendix of Policy,
+# which will probably be done as part of a general conversion to DocBook.
+policy.html.tar.gz:: policy.html/upgrading-checklist.html
+policy.html/upgrading-checklist.html: upgrading-checklist-1.html \
+				      policy.html/index.html
+	cp -p $< $@
+
 # convenience aliases :)
 html: policy.html/index.html
 html-1: policy-1.html
