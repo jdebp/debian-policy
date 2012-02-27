@@ -7980,9 +7980,10 @@ fname () {
 	  as its interpreter.  Checking your script
 	  with <prgn>checkbashisms</prgn> from
 	  the <package>devscripts</package> package or running your script
-	  with <prgn>posh</prgn> may help uncover violations of the above
-	  requirements.  If in doubt whether a script complies with these
-	  requirements, use <file>/bin/bash</file>.
+	  with an alternate shell such as <prgn>posh</prgn> may help
+	  uncover violations of the above requirements.  If in doubt
+	  whether a script complies with these requirements,
+	  use <file>/bin/bash</file>.
 	</p>
 
 	<p>
