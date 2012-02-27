@@ -2704,7 +2704,7 @@ Package: libc6
 	<p>
 	  This file consists of a single paragraph, possibly surrounded by
 	  a PGP signature. The fields of that paragraph are listed below.
-	  Their syntax is described above, in <ref id="pkg-controlfields">.
+	  Their syntax is described above, in <ref id="controlsyntax">.
 
 	<list compact="compact">
 	  <item><qref id="f-Format"><tt>Format</tt></qref> (mandatory)</item>
