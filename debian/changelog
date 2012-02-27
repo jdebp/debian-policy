@@ -2,6 +2,10 @@ debian-policy (3.9.3.1) UNRELEASED; urgency=low
 
   * Fix cross-reference to control field syntax in Policy 5.4 (source
     package control files).  Thanks, Jakub Wilk.  (Closes: #661412)
+  * Additional wording improvements to copyright-format 1.0 for clarity.
+    Also mention that the Files pattern syntax is the same as fnmatch(3)
+    and GNU find -path without [] patterns.  Thanks, Jonathan Nieder and
+    Ben Finney.
   * Install the HTML version of upgrading-checklist in the policy.html
     directory as upgrading-checklist.html so that it can be deployed on
     www.debian.org in a way that will allow links to Policy sections to
