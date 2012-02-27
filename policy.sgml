@@ -1951,7 +1951,7 @@
 	    </tag>
 	    <item>
 	      <p>
-		A package may also provide both of the targets
+		A package may also provide one or both of the targets
 		<tt>build-arch</tt> and <tt>build-indep</tt>.
 		The <tt>build-arch</tt> target, if provided, should
 		perform all the configuration and compilation required for
@@ -1964,9 +1964,13 @@
 		architecture-independent binary packages (those packages
 		for which the body of the <tt>Architecture</tt> field
 		in <tt>debian/control</tt> is <tt>all</tt>).
-		The <tt>build</tt> target should depend on those of the
-		targets <tt>build-arch</tt> and <tt>build-indep</tt> that
-		are provided in the rules file.<footnote>
+	      </p>
+
+	      <p>
+		If <tt>build-arch</tt> or <tt>build-indep</tt> targets are
+		provided in the rules file, the <tt>build</tt> target
+		should either depend on those targets or take the same
+		actions as invoking those targets would perform.<footnote>
 		  The intent of this split is so that binary-only builds
 		  need not install the dependencies required for
 		  the <tt>build-indep</tt> target.  However, this is not
