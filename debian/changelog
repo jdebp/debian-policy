@@ -11,6 +11,8 @@ debian-policy (3.9.3.1) UNRELEASED; urgency=low
     dash.  Thanks, Raphael Geissert.  (Closes: #490604)
   * Remove the ambiguous word "installed" when requiring that the location
     of files and directories follow the FHS.  (Closes: #638060)
+  * Clarify the syntax of field names to make it clear that they may not
+    contain spaces.  Thanks, Charles Plessy.  (Closes: #647645)
   * Install the HTML version of upgrading-checklist in the policy.html
     directory as upgrading-checklist.html so that it can be deployed on
     www.debian.org in a way that will allow links to Policy sections to
