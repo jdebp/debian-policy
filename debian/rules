@@ -57,7 +57,7 @@ FILES_TO_CLEAN	:= $(SGML_FILES:=.txt) $(SGML_FILES:=.txt.gz)		\
 		   policy.pdf.gz policy.ps.gz				\
 		   policy.pdf policy.ps policy.tpt policy.txt		\
 		   version.ent						\
-		   copyright-format-1.0.xml.tar.gz			\
+		   copyright-format.xml.tar.gz				\
 		   debconf_specification.xml.tar.gz			\
 		   debian/files
 
@@ -79,7 +79,7 @@ stamp-build: version.ent
 	$(MAKE) -C copyright-format all
 	$(MAKE) -C debconf_spec all
 	GZIP=-9 cd copyright-format && \
-		tar -zcf ../copyright-format-1.0.xml.tar.gz *
+		tar -zcf ../copyright-format.xml.tar.gz *
 	GZIP=-9 cd debconf_spec && \
 		tar -zcf ../debconf_specification.xml.tar.gz *
 	touch stamp-build
@@ -122,7 +122,7 @@ stamp-binary: stamp-build
 #
 # Install DocBook XML source.
 #
-	$(install)	copyright-format-1.0.xml.tar.gz		$(DOCDIR)/
+	$(install)	copyright-format.xml.tar.gz		$(DOCDIR)/
 	$(install)	debconf_specification.xml.tar.gz	$(DOCDIR)/
 #
 # Install generated HTML directories.

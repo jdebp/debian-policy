@@ -4,6 +4,9 @@ debian-policy (3.9.3.1) UNRELEASED; urgency=low
     directory as upgrading-checklist.html so that it can be deployed on
     www.debian.org in a way that will allow links to Policy sections to
     work easily.  Thanks, Charles Plessy.  (Partly addresses #639663)
+  * Ship the copyright-format source as copyright-format.xml.tar.gz
+    without a version, since it will include all of the versions, not just
+    the current version.
   * Fix mistaken word choice (prefix instead of suffix) in the upgrading
     checklist entry for 3.9.3.0.
   * Add some missing entries to the virtual package names list changelog.
