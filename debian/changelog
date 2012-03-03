@@ -24,6 +24,11 @@ debian-policy (3.9.3.1) UNRELEASED; urgency=low
     Morris.  (Closes: #658009)
   * Fix the legal notice in copyright-format to not refer to a nonexistent
     copyright notice.
+  * Embed the Debian Policy version and build date in the debconf
+    specification and the copyright-format document.  We'll make
+    non-normative changes without updating other version numbers, and it's
+    good to know which version one is looking at.
+  * Fix some whitespace issues in the debconf specification articleinfo.
   * Install the HTML version of upgrading-checklist in the policy.html
     directory as upgrading-checklist.html so that it can be deployed on
     www.debian.org in a way that will allow links to Policy sections to

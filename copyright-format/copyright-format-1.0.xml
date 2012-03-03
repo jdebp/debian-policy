@@ -3,7 +3,9 @@
     href="http://docbook.sourceforge.net/release/xsl/current/html/docbook.xsl"?>
 
 <!DOCTYPE article PUBLIC '-//OASIS//DTD DocBook XML V4.5//EN'
-    'http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd'>
+    'http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd' [
+<!ENTITY % versiondata SYSTEM "version.xml"> %versiondata;
+]>
 
 <article class="specification" lang="en" id="copyright-format-1.0">
   <articleinfo>
@@ -11,6 +13,7 @@
       Machine-readable <filename>debian/copyright</filename> file
     </title>
     <subtitle>Version 1.0</subtitle>
+    <releaseinfo>Debian Policy &version;, &date;</releaseinfo>
     <legalnotice>
       <para>
         Copying and distribution of this file, with or without modification,

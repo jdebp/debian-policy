@@ -56,7 +56,8 @@ FILES_TO_CLEAN	:= $(SGML_FILES:=.txt) $(SGML_FILES:=.txt.gz)		\
 		   $(ORG_FILES:=.html) $(ORG_FILES:=.txt)		\
 		   policy.pdf.gz policy.ps.gz				\
 		   policy.pdf policy.ps policy.tpt policy.txt		\
-		   version.ent						\
+		   copyright-format/version.xml				\
+		   debconf_spec/include/version.xml version.ent		\
 		   copyright-format.xml.tar.gz				\
 		   debconf_specification.xml.tar.gz			\
 		   debian/files
@@ -68,7 +69,8 @@ mkdir   := install -d -o root -g root -m 755
 
 all build build-indep: stamp-build
 build-arch:
-stamp-build: version.ent
+stamp-build: version.ent copyright-format/version.xml \
+	     debconf_spec/include/version.xml
 	$(MAKE) $(SGML_FILES:=.sgml.validate) \
 		$(SGML_FILES:=.html.tar.gz) \
                 $(SGML_FILES:=-1.html) \
@@ -84,11 +86,25 @@ stamp-build: version.ent
 		tar -zcf ../debconf_specification.xml.tar.gz *
 	touch stamp-build
 
-configure: version.ent
+# Create the version files for inclusion in the various documents.  We want
+# to put the Policy version and date in each document, even if they
+# separately have their own versions.
+configure: version.ent copyright-format/version.xml \
+	   debconf_spec/include/version.xml
 version.ent: debian/changelog
 	rm -f $@
 	echo "<!entity version \"$(version)\">" >> $@
 	echo "<!entity date    \"$(date)\">"	>> $@
+copyright-format/version.xml: debian/changelog
+	rm -f $@
+	echo '<?xml version="1.0" standalone="no"?>' >  $@
+	echo '<!ENTITY version "$(version)">'        >> $@
+	echo '<!ENTITY date    "$(date)">'           >> $@
+debconf_spec/include/version.xml: debian/changelog
+	rm -f $@
+	echo '<?xml version="1.0" standalone="no"?>' >  $@
+	echo '<!ENTITY version "$(version)">'        >> $@
+	echo '<!ENTITY date    "$(date)">'           >> $@
 
 clean:
 	rm -f $(STAMPS_TO_CLEAN)
