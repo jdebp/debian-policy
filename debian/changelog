@@ -45,6 +45,10 @@ debian-policy (3.9.3.1) UNRELEASED; urgency=low
     references to old files no longer included, use a more standard
     layout and standardize variable names, and add comments for better
     maintainability.
+  * Convert debian/copyright to copyright-format 1.0, and in the process
+    add the license information for the documents other than Policy itself
+    and the FHS.  Note the implication of the GPL source code requirement
+    for distributing generated versions of the Policy documents.
 
  -- Russ Allbery <rra@debian.org>  Wed, 22 Feb 2012 20:07:42 -0800
 
