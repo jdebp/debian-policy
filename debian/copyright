@@ -1,20 +1,18 @@
 Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Source: The FHS documents were downloaded from <http://www.pathname.com/fhs/>
+Comment: Complete copyright notices for all contributors to the various
+ documents included in this package have not been comprehensively tracked.
+ A somewhat incomplete list of contributors can be found in the credited
+ contributors in debian/copyright, but it is likely that some are missing.
 
 Files: *
 Copyright: 1996, 1997, 1998, Ian Jackson and Christian Schwarz
   1999, Software in the Public Interest, Inc.
   1999-2012, many other Debian contributors
-Comment: Complete copyright notices for all contributors to the various
- documents included in this package have not been comprehensively tracked.
- A somewhat incomplete list of contributors can be found in the credited
- contributors in debian/copyright, but it is likely that some are missing.
 License: GPL-2+
 
 Files: copyright-format/*
 Copyright: 2007-2012, many Debian contributors
-Comment: Copyright notices for the contributors to this document are not
- comprehensively tracked.
 License: preserve-notice
  Copying and distribution of this file, with or without modification, are
  permitted in any medium without royalty provided this notice is
@@ -23,11 +21,6 @@ License: preserve-notice
 Files: debconf_spec/*
 Copyright: 1998, 1998, 2000, Wichert Akkerman and Joey Hess
   2000-2012, many other Debian contributors
-Comment: Complete copyright notices for all contributors to the
- configuration management specification have not been comprehensively
- tracked.  A somewhat incomplete list of contributors can be found in the
- credited contributors in debian/copyright, but it is likely that some are
- missing.
 License: BSD-3-clause
  Redistribution and use in source and binary forms, with or without
  modification, are permitted provided that the following conditions are
