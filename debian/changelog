@@ -1,4 +1,4 @@
-debian-policy (3.9.3.1) UNRELEASED; urgency=low
+debian-policy (3.9.3.1) unstable; urgency=low
 
   * Fix cross-reference to control field syntax in Policy 5.4 (source
     package control files).  Thanks, Jakub Wilk.  (Closes: #661412)
@@ -50,7 +50,7 @@ debian-policy (3.9.3.1) UNRELEASED; urgency=low
     and the FHS.  Note the implication of the GPL source code requirement
     for distributing generated versions of the Policy documents.
 
- -- Russ Allbery <rra@debian.org>  Wed, 22 Feb 2012 20:07:42 -0800
+ -- Russ Allbery <rra@debian.org>  Sun, 04 Mar 2012 14:49:24 -0800
 
 debian-policy (3.9.3.0) unstable; urgency=low
 
