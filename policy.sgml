@@ -5494,14 +5494,26 @@ Replaces: mail-transport-agent
 	  be placed in a package named
 	  <package><var>libraryname</var><var>soversion</var></package>,
 	  where <var>soversion</var> is the version number in
-	  the <tt>SONAME</tt> of the shared library.
-	  See <ref id="shlibs"> for detailed information on how to
-	  determine this version.  Alternatively, if it would be confusing
-	  to directly append <var>soversion</var>
-	  to <var>libraryname</var> (if, for example, <var>libraryname</var>
-	  itself ends in a number), you should use
+	  the <tt>SONAME</tt> of the shared library.  Alternatively, if it
+	  would be confusing to directly append <var>soversion</var>
+	  to <var>libraryname</var> (if, for
+	  example, <var>libraryname</var> itself ends in a number), you
+	  should use
 	  <package><var>libraryname</var>-<var>soversion</var></package>
 	  instead.
+	</p>
+
+	<p>
+	  To determine the <var>soversion</var>, look at
+	  the <tt>SONAME</tt> of the library, stored in the
+	  ELF <tt>SONAME</tt> attribute.  it is usually of the
+	  form <tt><var>name</var>.so.<var>major-version</var></tt> (for
+	  example, <tt>libz.so.1</tt>).  The version part is the part
+	  which comes after <tt>.so.</tt>, so in that example it
+	  is <tt>1</tt>.  The soname may instead be of the
+	  form <tt><var>name</var>-<var>major-version</var>.so</tt>, such
+	  as <tt>libdb-5.1.so</tt>, in which case the name would
+	  be <tt>libdb</tt> and the version would be <tt>5.1</tt>.
 	</p>
 
 	<p>
@@ -5539,9 +5551,8 @@ Replaces: mail-transport-agent
 	  linked against the old shared library.  Correct versioning of
 	  dependencies on the newer shared library by binaries that use
 	  the new interfaces is handled via
-	  the <qref id="sharedlibs-symbols"><tt>symbols</tt> system</qref>
-	  or the <qref id="sharedlibs-shlibdeps"><tt>shlibs</tt>
-	  system</qref>.
+	  the <qref id="sharedlibs-depends"><tt>symbols</tt>
+	  or <tt>shlibs</tt> system</qref>.
 	</p>
 
       <p>
@@ -5810,9 +5821,9 @@ Replaces: mail-transport-agent
 	</p>
       </sect>
 
-      <sect id="sharedlibs-symbols">
-	<heading>Dependencies between the library and other packages -
-	the <tt>symbols</tt> system</heading>
+      <sect id="sharedlibs-depends">
+	<heading>Dependencies between the library and other
+	  packages</heading>
 
 	<p>
 	  If a package contains a binary or library which links to a
@@ -5830,183 +5841,63 @@ Replaces: mail-transport-agent
 	</p>
 
 	<p>
-	  <file>shlibs</file> files were the original mechanism for
-	  handling library dependencies.  They are documented
-	  in <ref id="sharedlibs-shlibdeps">.  <file>symbols</file> files,
-	  documented in this section, are recommended for most packages,
-	  since they provide dependency information for each exported
-	  symbol and therefore generate more accurate dependencies for
-	  binaries that do not use symbols from newer versions of the
-	  shared library.  However, <file>shlibs</file> files must be used
-	  for udebs.  Packages which provide a <file>symbols</file> file
-	  are not required to provide a <file>shlibs</file> file.
+	  These two mechanisms differ in the degree of detail that they
+	  provide.  A <file>symbols</file> file documents every symbol
+	  that is part of the library ABI and, for each, the version of
+	  the package in which it was introduced.  This permits detailed
+	  analysis of the symbols used by a particular package and
+	  construction of an accurate dependency, but it requires the
+	  package maintainer to track more information about the shared
+	  library.  A <file>shlibs</file> file, in contrast, only
+	  documents the last time the library ABI changed in any way.  It
+	  only provides information about the library as a whole, not
+	  individual symbols.  When a package is built using a shared
+	  library with only a <file>shlibs</file> file, the generated
+	  dependency will require a version of the shared library equal to
+	  or newer than the version of the last ABI change.  This
+	  generates unnecessarily restrictive dependencies compared
+	  to <file>symbols</file> files if none of the symbols used by the
+	  package have changed.  This, in turn, may make upgrades
+	  needlessly complex and unnecessarily restrict use of the package
+	  on systems with older versions of the shared libraries.
 	</p>
 
 	<p>
-	  When a package that contains any shared libraries or compiled
-	  binaries is built, it must run <prgn>dpkg-shlibdeps</prgn> on
-	  each shared library and compiled binary to determine the
-	  libraries used and hence the dependencies needed by the
-	  package.<footnote>
-	    <prgn>dpkg-shlibdeps</prgn> will use a program
-	    like <prgn>objdump</prgn> or <prgn>readelf</prgn> to find the
-	    libraries and the symbols in those libraries directly needed
-	    by the binaries or shared libraries in the package.
-	  </footnote>
+	  <file>shlibs<file> files also have a flawed representation of
+	  library SONAMEs, making it difficult to use <file>shlibs</file>
+	  files in some unusual corner cases.
 	</p>
 
 	<p>
-	  We say that a binary <tt>foo</tt> <em>directly</em> uses a
-	  library <tt>libbar</tt> if it is explicitly linked with that
-	  library (that is, the library is listed in the
-	  ELF <tt>NEEDED</tt> attribute, caused by adding <tt>-lbar</tt>
-	  to the link line when the binary is created).  Other libraries
-	  that are needed by <tt>libbar</tt> are
-	  linked <em>indirectly</em> to <tt>foo</tt>, and the dynamic
-	  linker will load them automatically when it
-	  loads <tt>libbar</tt>.  A package should depend on the libraries
-	  it directly uses, but not the libraries it indirectly uses.  The
-	  dependencies for those libraries will automatically pull in the
-	  other libraries.  <prgn>dpkg-shlibdeps</prgn> will handle this
-	  logic automatically, but package maintainers need to be aware of
-	  this distinction between directly and indirectly using a library
-	  if they have to override its results for some reason.
-	  <footnote>
-	    A good example of where this helps is the following.  We could
-	    update <tt>libimlib</tt> with a new version that supports a
-	    new graphics format called dgf (but retaining the same major
-	    version number) and depends on <tt>libdgf</tt>.  If we
-	    used <prgn>ldd</prgn> to add dependencies for every library
-	    directly or indirectly linked with a binary, every package
-	    that uses <tt>libimlib</tt> would need to be recompiled so it
-	    would also depend on <tt>libdgf</tt> or it wouldn't run due to
-	    missing symbols.  Since dependencies are only added based on
-	    ELF <tt>NEEDED</tt> attribute, packages
-	    using <tt>libimlib</tt> can rely on <tt>libimlib</tt> itself
-	    having the dependency on <tt>libdgf</tt> and so they would not
-	    need rebuilding.
-	  </footnote>
+	  <file>symbols</file> files are therefore recommended for most
+	  shared library packages since they provide more accurate
+	  dependencies.  For most C libraries, the additional detail
+	  required by <file>symbols</file> files is not too difficult to
+	  maintain.  However, maintaining exhaustive symbols information
+	  for a C++ library can be quite onerous, so <file>shlibs</file>
+	  files may be more appropriate for most C++ libraries.  udebs
+	  must also use <file>shlibs</file>, since the udeb infrastructure
+	  does not use <file>symbols</file>.
 	</p>
-
-	<p>
-	  In the following sections, we will first describe where the
-	  various <file>symbols</file> files are to be found, then how to
-	  use <prgn>dpkg-shlibdeps</prgn>, and finally
-	  the <file>symbols</file> file format and how to create them if
-	  your package contains a shared library.
-	</p>
-
-	<sect1 id="symbols-paths">
-	  <heading>The <file>symbols</file> files present on the
-	    system</heading>
-
-	  <p>
-	    <file>symbols</file> files for a shared library are normally
-	    provided by the shared library package, but there are several
-	    override paths that are checked first in case that information
-	    is wrong or missing.  The following list gives them in the
-	    order in which they are read by <prgn>dpkg-shlibdeps</prgn>
-	    The first one that contains the required information is used.
-	    <list>
-	      <item>
-		<p><file>debian/*/DEBIAN/symbols</file></p>
-
-		<p>
-		  During the package build, if the package itself contains
-		  shared libraries with <file>symbols</file> files, they
-		  will be generated in these staging directories
-		  by <prgn>dpkg-gensymbols</prgn>.  <file>symbols</file>
-		  files found in the build tree take precedence
-		  over <file>symbols</file> files from other binary
-		  packages.
-		</p>
-
-		<p>
-		  These files must exist
-		  before <prgn>dpkg-shlibdeps</prgn> is run or the
-		  dependencies of binaries and libraries from a source
-		  package on other libraries from that same source package
-		  will not be correct.  In practice, this means
-		  that <prgn>dpkg-gensymbols</prgn> must be run
-		  before <prgn>dpkg-shlibdeps</prgn> during the package
-		  build.<footnote>
-		    An example may clarify.  Suppose the source
-		    package <tt>foo</tt> generates two binary
-		    packages, <tt>libfoo2</tt> and <tt>foo-runtime</tt>.
-		    When building the binary packages, the contents of the
-		    packages are staged in the
-		    directories <file>debian/libfoo2</file>
-		    and <file>debian/foo-runtime</file> respectively.
-		    (<file>debian/tmp</file> could be used instead of one
-		    of these.)  Since <tt>libfoo2</tt> provides
-		    the <tt>libfoo</tt> shared library, it will contain
-		    a <tt>symbols</tt> file, which will be installed
-		    in <file>debian/libfoo2/DEBIAN/symbols</file>,
-		    eventually to be included as a control file in that
-		    package.  When <prgn>dpkg-shlibdeps</prgn> is run on
-		    the
-		    executable <file>debian/foo-runtime/usr/bin/foo-prog</file>,
-		    it will examine
-		    the <file>debian/libfoo2/DEBIAN/symbols</file> file to
-		    determine whether <tt>foo-prog</tt>'s library
-		    dependencies are satisfied by any of the libraries
-		    provided by <tt>libfoo2</tt>.  Since those binaries
-		    were linked against the just-built shared library as
-		    part of the build process, the <file>symbols</file>
-		    file for the newly-built <tt>libfoo2</tt> must take
-		    precedence over a <file>symbols</file> file for any
-		    other <tt>libfoo2</tt> package already installed on
-		    the system.
-		  </footnote>
-		</p>
-	      </item>
-
-	      <item>
-		<p>
-		  <file>/etc/dpkg/symbols/<var>package</var>.symbols.<var>arch</var></file>
-		  and <file>/etc/dpkg/symbols/<var>package</var>.symbols</file>
-		</p>
-
-		<p>
-		  Per-system overrides of shared library dependencies.
-		  These files normally do not exist.  They are maintained
-		  by the local system administrator and must not be
-		  created by any Debian package.
-		</p>
-	      </item>
-
-	      <item>
-		<p><file>symbols</file> control files for packages
-		installed on the system</p>
-
-		<p>
-		  The <file>symbols</file> control files for all the
-		  packages currently installed on the system are searched
-		  last.  This will be the most common source of shared
-		  library dependency information.  These are normally
-		  found in <file>/var/lib/dpkg/info/*.symbols</file>, but
-		  packages should not rely on this and instead should
-		  use <tt>dpkg-query --control-path <var>package</var>
-		  symbols</tt> if for some reason these files need to be
-		  examined.
-		</p>
-	      </item>
-	    </list>
-	  </p>
-
-	  <p>
-	    Be aware that if a <file>debian/shlibs.local</file> exists in
-	    the source package, it will override any <file>symbols</file>
-	    files.  This is the only case where a <file>shlibs</file> is
-	    used despite <file>symbols</file> files being present.  See
-	    <ref id="shlibs-paths"> and <ref id="sharedlibs-shlibdeps">
-	    for more information.
-	  </p>
-	</sect1>
 
 	<sect1 id="dpkg-shlibdeps">
-	  <heading>How to use <prgn>dpkg-shlibdeps</prgn> and the
-	    <tt>symbols</tt> files</heading>
+	  <heading>Generating dependencies on shared libraries</heading>
+
+	  <p>
+	    When a package that contains any shared libraries or compiled
+	    binaries is built, it must run <prgn>dpkg-shlibdeps</prgn> on
+	    each shared library and compiled binary to determine the
+	    libraries used and hence the dependencies needed by the
+	    package.<footnote>
+	      <prgn>dpkg-shlibdeps</prgn> will use a program
+	      like <prgn>objdump</prgn> or <prgn>readelf</prgn> to find
+	      the libraries and the symbols in those libraries directly
+	      needed by the binaries or shared libraries in the package.
+	    </footnote>
+	    <prgn>dpkg-shlibdeps</prgn> will use the <file>symbols</file>
+	    or <file>shlibs</file> files installed by the shared libraries
+	    to generate dependency information.
+	  </p>
 
 	  <p>
 	    If your package contains any compiled binaries or shared
@@ -6015,11 +5906,25 @@ Replaces: mail-transport-agent
 	    List all of the compiled binaries, libraries, or loadable
 	    modules in your package.<footnote>
 	      The easiest way to do this is to use a package helper
-	      framework such as <tt>debhelper</tt>.  If you are
-	      using <tt>debhelper</tt>, the <prgn>dh_shlibdeps</prgn>
-	      program will do this work for you.  It will also correctly
-	      handle multi-binary packages.
+	      framework such as <package>debhelper</package>.  If you are
+	      using <package>debhelper</package>,
+	      the <prgn>dh_shlibdeps</prgn> program will do this work for
+	      you.  It will also correctly handle multi-binary packages.
 	    </footnote>
+	  </p>
+
+	  <p>
+	    If you are creating a udeb for use in the Debian Installer,
+	    you will need to specify that <prgn>dpkg-shlibdeps</prgn>
+	    should use the dependency line of type <tt>udeb</tt> by adding
+	    the <tt>-tudeb</tt> option<footnote>
+	      <prgn>dh_shlibdeps</prgn> from the <tt>debhelper</tt> suite
+	      will automatically add this option if it knows it is
+	      processing a udeb.
+	    </footnote>. If there is no dependency line of
+	    type <tt>udeb</tt> in the <file>shlibs</file>
+	    file, <prgn>dpkg-shlibdeps</prgn> will fall back to the
+	    regular dependency line.
 	  </p>
 
 	  <p>
@@ -6036,8 +5941,9 @@ Replaces: mail-transport-agent
 	    specify a different <file>substvars</file> file for each
 	    binary package.<footnote>
 	      Again, <prgn>dh_shlibdeps</prgn>
-	      and <prgn>dh_gencontrol</prgn> will handle all of this for
-	      you if you're using <tt>debhelper</tt>, including generating
+	      and <prgn>dh_gencontrol</prgn> will handle everything except
+	      the control file modification for you if you're
+	      using <package>debhelper</package>, including generating
 	      separate <file>substvars</file> files for each binary
 	      package and calling <prgn>dpkg-gencontrol</prgn> with the
 	      appropriate flags.
@@ -6048,269 +5954,129 @@ Replaces: mail-transport-agent
 	    For more details on <prgn>dpkg-shlibdeps</prgn>,
 	    see <manref name="dpkg-shlibdeps" section="1">.
 	  </p>
-	</sect1>
-
-	<sect1 id="symbols">
-	  <heading>The <file>symbols</file> File Format</heading>
 
 	  <p>
-	    The following documents the format of the <file>symbols</file>
-	    control file as included in binary packages.  These files are
-	    built from template <file>symbols</file> files in the source
-	    package by <prgn>dpkg-gensymbols</prgn>.  The template files
-	    support a richer syntax that
-	    allows <prgn>dpkg-gensymbols</prgn> to do some of the tedious
-	    work involved in maintaining <file>symbols</file> files, such
-	    as handling C++ symbols or optional symbols that may not exist
-	    on particular architectures.  When
-	    writing <file>symbols</file> files for a shared library
-	    package, refer to <manref name="dpkg-gensymbols" section="1">
-	    for the richer syntax.
-	  </p>
-
-	  <p>
-	    A <file>symbols</file> may contain one or more entries, one
-	    for each shared library contained in the package corresponding
-	    to that <file>symbols</file>.  Each entry has the following
-	    format:
-	  </p>
-
-	  <p>
-	    <example>
-<var>library-soname</var> <var>main-dependency-template</var>
-[| <var>alternative-dependency-template</var>]
-[...]
-[* <var>field-name</var>: <var>field-value</var>]
-[...]
- <var>symbol</var> <var>minimal-version</var>[ <var>id-of-dependency-template</var> ]
-	    </example>
-	  </p>
-
-	  <p>
-	    To explain this format, we'll use the the <tt>zlib1g</tt>
-	    package as an example, which (at the time of writing) installs
-	    the shared library <file>/usr/lib/libz.so.1.2.3.4</file>.
-	    Mandatory lines will be described first, followed by optional
-	    lines.
-	  </p>
-
-	  <p>
-	    <var>library-soname</var> must contain exactly the value of
-	    the ELF <tt>SONAME</tt> attribute of the shared library.  In
-	    our example, this is <tt>libz.so.1</tt>.<footnote>
-	      This can be determined by using the command
-	      <example compact="compact">
-readelf -d /usr/lib/libz.so.1.2.3.4 | grep SONAME
-	      </example>
+	    We say that a binary <tt>foo</tt> <em>directly</em> uses a
+	    library <tt>libbar</tt> if it is explicitly linked with that
+	    library (that is, the library is listed in the
+	    ELF <tt>NEEDED</tt> attribute, caused by adding <tt>-lbar</tt>
+	    to the link line when the binary is created).  Other libraries
+	    that are needed by <tt>libbar</tt> are
+	    linked <em>indirectly</em> to <tt>foo</tt>, and the dynamic
+	    linker will load them automatically when it
+	    loads <tt>libbar</tt>.  A package should depend on the
+	    libraries it directly uses, but not the libraries it
+	    indirectly uses.  The dependencies for the libraries used
+	    directly will automatically pull in the indirectly-used
+	    libraries.  <prgn>dpkg-shlibdeps</prgn> will handle this logic
+	    automatically, but package maintainers need to be aware of
+	    this distinction between directly and indirectly using a
+	    library if they have to override its results for some reason.
+	    <footnote>
+	      A good example of where this helps is the following.  We
+	      could update <tt>libimlib</tt> with a new version that
+	      supports a new revision of a graphics format called dgf (but
+	      retaining the same major version number) and depends on a
+	      new library package <package>libdgf4</package> instead of
+	      the older <package>libdgf3</package>.  If we
+	      used <prgn>ldd</prgn> to add dependencies for every library
+	      directly or indirectly linked with a binary, every package
+	      that uses <tt>libimlib</tt> would need to be recompiled so
+	      it would also depend on <package>libdgf4</package> in order
+	      to retire the older <package>libdgf3</package> package.
+	      Since dependencies are only added based on
+	      ELF <tt>NEEDED</tt> attribute, packages
+	      using <tt>libimlib</tt> can rely on <tt>libimlib</tt> itself
+	      having the dependency on an appropriate version
+	      of <tt>libdgf</tt> and do not need rebuilding.
 	    </footnote>
-	  </p>
-
-	  <p>
-	    <var>main-dependency-template</var> has the same syntax as a
-	    dependency field in a binary package control file, except that
-	    the string <tt>#MINVER#</tt> is replaced by a version
-	    restriction like <tt>(>= <var>version</var>)</tt> or by
-	    nothing if an unversioned dependency is deemed sufficient.
-	    The version restriction will be based on which symbols from
-	    the shared library are referenced and the version at which
-	    they were introduced (see below).  In nearly all
-	    cases, <var>main-dependency-template</var> will
-	    be <tt><var>package</var> #MINVER#</tt>,
-	    where <var>package</var> is the name of the binary package
-	    containing the shared library.  This adds a simple,
-	    possibly-versioned dependency on the shared library package.
-	    In some rare cases, such as when multiple packages provide the
-	    same shared library ABI, the dependency template may need to
-	    be more complex.
-	  </p>
-
-	  <p>
-	    In our example, the first line of
-	    the <tt>zlib1g</tt> <file>symbols</file> file would be:
-	    <example compact="compact">
-libz.so.1 zlib1g #MINVER#
-	    </example>
-	  </p>
-
-	  <p>
-	    Each public symbol exported by the shared library must have a
-	    corresponding symbol line, indented by one
-	    space.  <var>symbol</var> is the exported symbol (which, for
-	    C++, means the mangled symbol) followed by <tt>@</tt> and the
-	    symbol version, or the string <tt>Base</tt> if there is no
-	    symbol version.  <var>minimal-version</var> is the most recent
-	    version of the shared library that changed the behavior of
-	    that symbol, whether by adding it, changing its function
-	    signature (the parameters, their types, or the return type),
-	    or its behavior in a way that is visible to a
-	    caller.  <var>id-of-dependency-template</var> is an optional
-	    field that references
-	    an <var>alternative-dependency-template</var>; see below for a
-	    full description.
-	  </p>
-
-	  <p>
-	    For example, <tt>libz.so.1</tt> contains the
-	    symbols <tt>compress</tt>
-	    and <tt>compressBound</tt>.  <tt>compress</tt> has no symbol
-	    version and last changed its behavior in upstream
-	    version <tt>1:1.1.4</tt>.  <tt>compressBound</tt> has the
-	    symbol version <tt>ZLIB_1.2.0</tt>, was introduced in upstream
-	    version <tt>1:1.2.0</tt>, and has not changed its behavior.
-	    Its <file>symbols</file> file therefore contains the lines:
-	    <example compact="compact">
- compress@Base 1:1.1.4
- compressBound@ZLIB_1.2.0 1:1.2.0
-	    </example>
-	    Packages using only <tt>compress</tt> would then get a
-	    dependency of <tt>zlib1g (>= 1:1.1.4)</tt>, but packages
-	    using <tt>compressBound</tt> would get a dependency
-	    of <tt>zlib1g (>= 1:1.2.0)</tt>.
-	  </p>
-
-	  <p>
-	    One or more <var>alternative-dependency-template</var> lines
-	    may be provided.  These are used in cases where some symbols
-	    in the shared library should use one dependency template while
-	    others should use a different template.  The alternative
-	    dependency templates are used only if a symbol line contains
-	    the <var>id-of-dependency-template</var> field.  The first
-	    alternative dependency template is numbered 1, the second 2,
-	    and so forth.<footnote>
-	      An example of where this may be needed is with a library
-	      that implements the libGL interface.  All GL implementations
-	      provide the same set of base interfaces, and then may
-	      provide some additional interfaces only used by programs
-	      that require that specific GL implementation.  So, for
-	      example, libgl1-mesa-glx may use the
-	      following <file>symbols</file> file:
-	      <example>
-libGL.so.1 libgl1
-| libgl1-mesa-glx #MINVER#
- publicGlSymbol@Base 6.3-1
- [...]
- implementationSpecificSymbol@Base 6.5.2-7 1
- [...]
-	      </example>
-	      Binaries or shared libraries using
-	      only <tt>publicGlSymbol</tt> would depend only
-	      on <tt>libgl1</tt> (which may be provided by multiple
-	      packages), but ones
-	      using <tt>implementationSpecificSymbol</tt> would get a
-	      dependency on <tt>libgl1-mesa-glx (>= 6.5.2-7)</tt>
-	    </footnote>
-	  </p>
-
-	  <p>
-	    Finally, the entry for the library may contain one or more
-	    metadata fields.  Currently, the only
-	    supported <var>field-name</var>
-	    is <tt>Build-Depends-Package</tt>, whose value lists
-	    the <qref id="sharedlibs-dev">library development
-	    package</qref> on which packages using this shared library
-	    declare a build dependency.  If this field is
-	    present, <prgn>dpkg-shlibdeps</prgn> uses it to ensure that
-	    the resulting binary package dependency on the shared library
-	    is at least as strict as the source package dependency on the
-	    shared library development package.<footnote>
-	      This field should normally not be necessary, since if the
-	      behavior of any symbol has changed, the corresponding
-	      symbol <var>minimal-version</var> should have been
-	      increased.  But including it makes the <tt>symbols</tt>
-	      system more robust by tightening the dependency in cases
-	      where the package using the shared library specifically
-	      requires at least a particular version of the shared library
-	      development package for some reason.
-	    </footnote>
-	    For our example, the <tt>zlib1g</tt> <file>symbols</file> file
-	    would contain:
-	    <example compact="compact">
-* Build-Depends-Package: zlib1g-dev
-	    </example>
-	  </p>
-
-	  <p>
-	    Also see <manref name="deb-symbols" section="5">.
 	  </p>
 	</sect1>
 
-	<sect1 id="providing-symbols">
-	  <heading>Providing a <file>symbols</file> file</heading>
+	<sect1 id="sharedlibs-updates">
+	  <heading>Shared library ABI changes</heading>
 
 	  <p>
-	    If your package provides a shared library, you should arrange
-	    to include a <file>symbols</file> control file following the
-	    format described above in that package.  You must include
-	    either a <file>symbols</file> control file or
-	    a <file>shlibs</file> control file.
+	    Maintaining a shared library package using
+	    either <file>symbols</file> or <file>shlibs</file> files
+	    requires being aware of the exposed ABI of the shared library
+	    and any changes to it.  Both <file>symbols</file>
+	    and <file>shlibs</file> files record every change to the ABI
+	    of the shared library; <file>symbols</file> files do so per
+	    public symbol, whereas <file>shlibs</file> files record only
+	    the last change for the entire library.
 	  </p>
 
 	  <p>
-	    Normally, this is done by creating a <file>symbols</file> in
-	    the source package
-	    named <file>debian/<var>package</var>.symbols</file>
-	    or <file>debian/symbols</file>, possibly
-	    with <file>.<var>arch</var></file> appended if the symbols
-	    information varies by architecture.  This file may use the
-	    extended syntax documented
-	    in <manref name="dpkg-gensymbols" section="1">.  Then,
-	    call <prgn>dpkg-gensymbols</prgn> as part of the package build
-	    process.  It will create <file>symbols</file> files in the
-	    package staging area based on the binaries and libraries in
-	    the package staging area and the <file>symbols</file> files in
-	    the source package.<footnote>
-	      If you are
-	      using <tt>debhelper</tt>, <prgn>dh_makeshlibs</prgn> will
-	      take care of calling either <prgn>dpkg-gensymbols</prgn>
-	      or generating a <file>shlibs</file> file as appropriate.
-	    </footnote>
+	    There are two types of ABI changes: ones that are
+	    backward-compatible and ones that are not.  An ABI change is
+	    backward-compatible if any binary was linked with the previous
+	    version of the shared library will still work correctly with
+	    the new version of the shared library.  Adding new symbols to
+	    the shared library is a backward-compatible change.  Removing
+	    symbols from the shared library is not.  Changing the behavior
+	    of a symbol may or may not be backward-compatible depending on
+	    the change; for example, changing a function to accept a new
+	    enum constant not previously used by the library is generally
+	    backward-compatible, but changing the members of a struct that
+	    is passed into library functions is generally not unless the
+	    library takes special precautions to accept old versions of
+	    the data structure.
 	  </p>
 
 	  <p>
-	    Packages that provide <file>symbols</file> files must keep
-	    them up-to-date to ensure correct dependencies in packages
-	    that use the shared libraries.  This means updating
-	    the <file>symbols</file> file whenever a new public symbol is
-	    added, changing the <var>minimal-version</var> field whenever
-	    a symbol changes behavior or signature, and changing
-	    the <var>library-soname</var>
-	    and <var>main-dependency-template</var>, and probably all of
-	    the <var>minimal-version</var> fields, when the library
-	    changes <tt>SONAME</tt>.  Removing a public symbol from
-	    the <file>symbols</file> file because it's no longer provided
-	    by the library normally requires changing the <tt>SONAME</tt>
-	    of the library.  See <ref id="sharedlibs-runtime">.
+	    ABI changes that are not backward-compatible normally require
+	    changing the <tt>SONAME</tt> of the library and therefore the
+	    shared library package name, which forces rebuilding all
+	    packages using that shared library to update their
+	    dependencies and allow them to use the new version of the
+	    shared library.  For more information,
+	    see <ref id="sharedlibs-runtime">.  The remainder of this
+	    section will deal with backward-compatible changes.
 	  </p>
 
 	  <p>
-	    Special care should be taken in updating
-	    the <var>minimal-version</var> field when the behavior of a
-	    public symbol changes.  This is easy to neglect, since there
-	    is no automated method of determining such changes, but
-	    failing to update <var>minimal-version</var> in this case may
+	    Backward-compatible changes require either updating or
+	    recording the <var>minimal-version</var> for that symbol
+	    in <file>symbols</file> files or updating the version in
+	    the <var>dependencies</var> in <file>shlibs</file> files.  For
+	    more information on how to do this in the two formats, see
+	    <ref id="symbols"> and <ref id="shlibs">.  Below are general
+	    rules that apply to both files.
+	  </p>
+
+	  <p>
+	    The easy case is when a public symbol is added.  Simply add
+	    the version at which the symbol was introduced
+	    (for <file>symbols</file> files) or update the dependency
+	    version (for <file>shlibs</file>) files.  But special care
+	    should be taken to update dependency versions when the
+	    behavior of a public symbol changes.  This is easy to neglect,
+	    since there is no automated method of determining such
+	    changes, but failing to update versions in this case may
 	    result in binary packages with too-weak dependencies that will
 	    fail at runtime, possibly in ways that can cause security
 	    vulnerabilities.  If the package maintainer believes that a
 	    symbol behavior change may have occurred but isn't sure, it's
-	    safer to update the <var>minimal-version</var> of all possibly
-	    affected symbols to the current upstream version rather than
-	    leave them unmodified.  This may result in unnecessarily
-	    strict dependencies, but it ensures that packages whose
-	    dependencies are satisfied will work properly.
+	    safer to update the version rather than leave it unmodified.
+	    This may result in unnecessarily strict dependencies, but it
+	    ensures that packages whose dependencies are satisfied will
+	    work properly.
 	  </p>
 
 	  <p>
-	    A common example of when a change
-	    to <var>minimal-version</var> is required is a function that
-	    takes an enum or struct argument that controls what the
-	    function does.  For example:
+	    A common example of when a change to the is required is a
+	    function that takes an enum or struct argument that controls
+	    what the function does.  For example:
 	    <example>
-enum library_op { OP_FOO, OP_BAR };
-int library_do_operation(enum library_op);
+	      enum library_op { OP_FOO, OP_BAR };
+	      int library_do_operation(enum library_op);
 	    </example>
 	    If a new operation, <tt>OP_BAZ</tt>, is added,
 	    the <var>minimal-version</var>
-	    of <tt>library_do_operation</tt> must be increased to the
+	    of <tt>library_do_operation</tt> (for <file>symbols</file>
+	    files) or the version in the dependency for the shared library
+	    (for <file>shlibs</file> files) must be increased to the
 	    version at which <tt>OP_BAZ</tt> was introduced.  Otherwise, a
 	    binary built against the new version of the library (having
 	    detected at compile-time that the library
@@ -6321,275 +6087,589 @@ int library_do_operation(enum library_op);
 	  </p>
 
 	  <p>
-	    The <var>minimal-version</var> field normally should not
-	    contain the Debian revision of the package, since the library
-	    behavior is normally fixed for a particular upstream version
-	    and any Debian packaging of that upstream version will have
-	    the same behavior.  In the rare case that the library behavior
-	    was changed in a particular Debian revision,
-	    appending <tt>~</tt> to the end of
-	    the <var>minimal-version</var> that includes the Debian
-	    revision is recommended, since this allows backports of the
-	    shared library package using the normal backport versioning
-	    convention to satisfy the dependency.
-	  </p>
-	</sect1>
-      </sect>
-
-      <sect id="sharedlibs-shlibdeps">
-	<heading>Dependencies between the library and other packages -
-	the <tt>shlibs</tt> system</heading>
-
-	<p>
-	  The <tt>shlibs</tt> system is an alternative to
-	  the <tt>symbols</tt> system for declaring dependencies for
-	  shared libraries.  It predated the <tt>symbols</tt> system and
-	  is therefore frequently seen in older packages.  It is also
-	  required for udebs, which do not support <tt>symbols</tt>.
-	</p>
-
-	<p>
-	  <file>shlibs</file> files do not provide as detailed of
-	  information as <file>symbols</file> files.  They only provide
-	  information about the library as a whole, not individual
-	  symbols, and therefore have to force tighter dependencies since
-	  they have no way of relaxing dependencies for binaries and
-	  libraries that only use symbols whose behavior has not changed.
-	  Because of this, and because of some problems with
-	  how <file>shlibs</file> files represent the
-	  library <tt>SONAME</tt>, <file>symbols</file> files are
-	  recommended instead for any shared library package that isn't a
-	  udeb.
-	</p>
-
-	<p>
-	  In the following sections, we will first describe where the
-	  various <file>shlibs</file> files are to be found, then how to
-	  use <prgn>dpkg-shlibdeps</prgn>, and finally
-	  the <file>shlibs</file> file format and how to create them if
-	  your package contains a shared library.  Much of the information
-	  about <file>shlibs</file> files is the same as
-	  for <file>symbols</file> files, so only the differences will be
-	  mentioned.
-	</p>
-
-	<sect1 id="shlibs-paths">
-	  <heading>The <file>shlibs</file> files present on the
-	    system</heading>
-
-	  <p>
-	    There are several places where <tt>shlibs</tt> files are
-	    found.  The following list gives them in the order in which
-	    they are read by <prgn>dpkg-shlibdeps</prgn>.  (The first one
-	    which gives the required information is used.)
-	    <list>
-	      <item>
-		<p><file>debian/shlibs.local</file></p>
-
-		<p>
-		  This lists overrides for this package.  This file should
-		  normally not be used, but may be needed temporarily in
-		  unusual situations to work around bugs in other
-		  packages, or in unusual cases where the normally
-		  declared dependency information in the
-		  installed <file>shlibs</file> file for a library cannot
-		  be used.  This file overrides information obtained from
-		  any other source.
-		</p>
-	      </item>
-
-	      <item>
-		<p><file>/etc/dpkg/shlibs.override</file></p>
-
-		<p>
-		  This lists global overrides.  This list is normally
-		  empty.  It is maintained by the local system
-		  administrator.
-		</p>
-	      </item>
-
-	      <item>
-		<p><file>DEBIAN/shlibs</file> files in the "build
-		  directory"</p>
-
-		<p>
-		  These files are generated as part of the package build
-		  process and staged for inclusion as control files in the
-		  binary packages being built.  They provide details of
-		  any shared libraries included in the same package.
-		</p>
-	      </item>
-
-	      <item>
-		<p><file>shlibs</file> control files for packages
-		  installed on the system</p>
-
-		<p>
-		  The <file>shlibs</file> control files for all the
-		  packages currently installed on the system.  These are
-		  normally found
-		  in <file>/var/lib/dpkg/info/*.symbols</file>, but
-		  packages should not rely on this and instead should
-		  use <tt>dpkg-query --control-path <var>package</var>
-		  shlibs</tt> if for some reason these files need to be
-		  examined.
-		</p>
-	      </item>
-
-	      <item>
-		<p><file>/etc/dpkg/shlibs.default</file></p>
-
-		<p>
-		  This file lists any shared libraries whose packages have
-		  failed to provide correct <file>shlibs</file> files.  It
-		  was used when the <file>shlibs</file> setup was first
-		  introduced, but it is now normally empty.  It is
-		  maintained by the <tt>dpkg</tt> maintainer.
-		</p>
-	      </item>
-	    </list>
-	  </p>
-
-	  <p>
-	    If a <file>symbols</file> file for a shared library package
-	    is available, <prgn>dpkg-shlibdeps</prgn> will always use it
-	    in preference to a <file>shlibs</file>, with the exception
-	    of <file>debian/shlibs.local</file>.  The latter overrides any
-	    other <file>shlibs</file> or <file>symbols</file> files.
+	    Dependency versions in either <file>symbols</file>
+	    or <file>shlibs</file> files normally should not contain the
+	    Debian revision of the package, since the library behavior is
+	    normally fixed for a particular upstream version and any
+	    Debian packaging of that upstream version will have the same
+	    behavior.  In the rare case that the library behavior was
+	    changed in a particular Debian revision, appending <tt>~</tt>
+	    to the end of the version that includes the Debian revision is
+	    recommended, since this allows backports of the shared library
+	    package using the normal backport versioning convention to
+	    satisfy the dependency.
 	  </p>
 	</sect1>
 
-	<sect1>
-	  <heading>How to use <prgn>dpkg-shlibdeps</prgn> and the
-	    <file>shlibs</file> files</heading>
+	<sect1 id="sharedlibs-symbols">
+	  <heading>The <tt>symbols</tt> system</heading>
 
 	  <p>
-	    Use of <prgn>dpkg-shlibdeps</prgn> with <file>shlibs</file>
-	    files is generally the same as with <file>symbols</file>
-	    files.  See <ref id="dpkg-shlibdeps">.
+	    In the following sections, we will first describe where the
+	    various <file>symbols</file> files are to be found, then
+	    the <file>symbols</file> file format, and finally how to
+	    create <file>symbols</file> files if your package contains a
+	    shared library.
 	  </p>
 
-	  <p>
-	    If you are creating a udeb for use in the Debian Installer,
-	    you will need to specify that <prgn>dpkg-shlibdeps</prgn>
-	    should use the dependency line of type <tt>udeb</tt> by
-	    adding the <tt>-tudeb</tt> option<footnote>
-	      <prgn>dh_shlibdeps</prgn> from the <tt>debhelper</tt> suite
-	      will automatically add this option if it knows it is
-	      processing a udeb.
-	    </footnote>. If there is no dependency line of
-	    type <tt>udeb</tt> in the <file>shlibs</file>
-	    file, <prgn>dpkg-shlibdeps</prgn> will fall back to the
-	    regular dependency line.
-	  </p>
+	  <sect2 id="symbols-paths">
+	    <heading>The <file>symbols</file> files present on the
+	      system</heading>
+
+	    <p>
+	      <file>symbols</file> files for a shared library are normally
+	      provided by the shared library package, but there are
+	      several override paths that are checked first in case that
+	      information is wrong or missing.  The following list gives
+	      them in the order in which they are read
+	      by <prgn>dpkg-shlibdeps</prgn> The first one that contains
+	      the required information is used.
+	      <list>
+		<item>
+		  <p><file>debian/*/DEBIAN/symbols</file></p>
+
+		  <p>
+		    During the package build, if the package itself
+		    contains shared libraries with <file>symbols</file>
+		    files, they will be generated in these staging
+		    directories
+		    by <prgn>dpkg-gensymbols</prgn>.  <file>symbols</file>
+		    files found in the build tree take precedence
+		    over <file>symbols</file> files from other binary
+		    packages.
+		  </p>
+
+		  <p>
+		    These files must exist
+		    before <prgn>dpkg-shlibdeps</prgn> is run or the
+		    dependencies of binaries and libraries from a source
+		    package on other libraries from that same source
+		    package will not be correct.  In practice, this means
+		    that <prgn>dpkg-gensymbols</prgn> must be run
+		    before <prgn>dpkg-shlibdeps</prgn> during the package
+		    build.<footnote>
+		      An example may clarify.  Suppose the source
+		      package <tt>foo</tt> generates two binary
+		      packages, <tt>libfoo2</tt> and <tt>foo-runtime</tt>.
+		      When building the binary packages, the contents of
+		      the packages are staged in the
+		      directories <file>debian/libfoo2</file>
+		      and <file>debian/foo-runtime</file> respectively.
+		      (<file>debian/tmp</file> could be used instead of
+		      one of these.)  Since <tt>libfoo2</tt> provides
+		      the <tt>libfoo</tt> shared library, it will contain
+		      a <tt>symbols</tt> file, which will be installed
+		      in <file>debian/libfoo2/DEBIAN/symbols</file>,
+		      eventually to be included as a control file in that
+		      package.  When <prgn>dpkg-shlibdeps</prgn> is run on
+		      the
+		      executable <file>debian/foo-runtime/usr/bin/foo-prog</file>,
+		      it will examine
+		      the <file>debian/libfoo2/DEBIAN/symbols</file> file
+		      to determine whether <tt>foo-prog</tt>'s library
+		      dependencies are satisfied by any of the libraries
+		      provided by <tt>libfoo2</tt>.  Since those binaries
+		      were linked against the just-built shared library as
+		      part of the build process, the <file>symbols</file>
+		      file for the newly-built <tt>libfoo2</tt> must take
+		      precedence over a <file>symbols</file> file for any
+		      other <tt>libfoo2</tt> package already installed on
+		      the system.
+		    </footnote>
+		  </p>
+		</item>
+
+		<item>
+		  <p>
+		    <file>/etc/dpkg/symbols/<var>package</var>.symbols.<var>arch</var></file>
+		    and <file>/etc/dpkg/symbols/<var>package</var>.symbols</file>
+		  </p>
+
+		  <p>
+		    Per-system overrides of shared library dependencies.
+		    These files normally do not exist.  They are
+		    maintained by the local system administrator and must
+		    not be created by any Debian package.
+		  </p>
+		</item>
+
+		<item>
+		  <p><file>symbols</file> control files for packages
+		    installed on the system</p>
+
+		  <p>
+		    The <file>symbols</file> control files for all the
+		    packages currently installed on the system are
+		    searched last.  This will be the most common source of
+		    shared library dependency information.  These are
+		    normally found
+		    in <file>/var/lib/dpkg/info/*.symbols</file>, but
+		    packages should not rely on this and instead should
+		    use <tt>dpkg-query --control-path <var>package</var>
+		    symbols</tt> if for some reason these files need to be
+		    examined.
+		  </p>
+		</item>
+	      </list>
+	    </p>
+
+	    <p>
+	      Be aware that if a <file>debian/shlibs.local</file> exists
+	      in the source package, it will override
+	      any <file>symbols</file> files.  This is the only case where
+	      a <file>shlibs</file> is used despite <file>symbols</file>
+	      files being present.  See <ref id="shlibs-paths">
+	      and <ref id="sharedlibs-shlibdeps"> for more information.
+	    </p>
+	  </sect2>
+
+	  <sect2 id="symbols">
+	    <heading>The <file>symbols</file> File Format</heading>
+
+	    <p>
+	      The following documents the format of
+	      the <file>symbols</file> control file as included in binary
+	      packages.  These files are built from
+	      template <file>symbols</file> files in the source package
+	      by <prgn>dpkg-gensymbols</prgn>.  The template files support
+	      a richer syntax that allows <prgn>dpkg-gensymbols</prgn> to
+	      do some of the tedious work involved in
+	      maintaining <file>symbols</file> files, such as handling C++
+	      symbols or optional symbols that may not exist on particular
+	      architectures.  When writing <file>symbols</file> files for
+	      a shared library package, refer
+	      to <manref name="dpkg-gensymbols" section="1"> for the
+	      richer syntax.
+	    </p>
+
+	    <p>
+	      A <file>symbols</file> may contain one or more entries, one
+	      for each shared library contained in the package
+	      corresponding to that <file>symbols</file>.  Each entry has
+	      the following format:
+	    </p>
+
+	    <p>
+	      <example>
+		<var>library-soname</var> <var>main-dependency-template</var>
+		[| <var>alternative-dependency-template</var>]
+		[...]
+		[* <var>field-name</var>: <var>field-value</var>]
+		[...]
+		<var>symbol</var> <var>minimal-version</var>[ <var>id-of-dependency-template</var> ]
+	      </example>
+	    </p>
+
+	    <p>
+	      To explain this format, we'll use the the <tt>zlib1g</tt>
+	      package as an example, which (at the time of writing)
+	      installs the shared
+	      library <file>/usr/lib/libz.so.1.2.3.4</file>.  Mandatory
+	      lines will be described first, followed by optional lines.
+	    </p>
+
+	    <p>
+	      <var>library-soname</var> must contain exactly the value of
+	      the ELF <tt>SONAME</tt> attribute of the shared library.  In
+	      our example, this is <tt>libz.so.1</tt>.<footnote>
+		This can be determined by using the command
+		<example compact="compact">
+		  readelf -d /usr/lib/libz.so.1.2.3.4 | grep SONAME
+		</example>
+	      </footnote>
+	    </p>
+
+	    <p>
+	      <var>main-dependency-template</var> has the same syntax as a
+	      dependency field in a binary package control file, except
+	      that the string <tt>#MINVER#</tt> is replaced by a version
+	      restriction like <tt>(>= <var>version</var>)</tt> or by
+	      nothing if an unversioned dependency is deemed sufficient.
+	      The version restriction will be based on which symbols from
+	      the shared library are referenced and the version at which
+	      they were introduced (see below).  In nearly all
+	      cases, <var>main-dependency-template</var> will
+	      be <tt><var>package</var> #MINVER#</tt>,
+	      where <var>package</var> is the name of the binary package
+	      containing the shared library.  This adds a simple,
+	      possibly-versioned dependency on the shared library package.
+	      In some rare cases, such as when multiple packages provide
+	      the same shared library ABI, the dependency template may
+	      need to be more complex.
+	    </p>
+
+	    <p>
+	      In our example, the first line of
+	      the <tt>zlib1g</tt> <file>symbols</file> file would be:
+	      <example compact="compact">
+		libz.so.1 zlib1g #MINVER#
+	      </example>
+	    </p>
+
+	    <p>
+	      Each public symbol exported by the shared library must have
+	      a corresponding symbol line, indented by one
+	      space.  <var>symbol</var> is the exported symbol (which, for
+	      C++, means the mangled symbol) followed by <tt>@</tt> and
+	      the symbol version, or the string <tt>Base</tt> if there is
+	      no symbol version.  <var>minimal-version</var> is the most
+	      recent version of the shared library that changed the
+	      behavior of that symbol, whether by adding it, changing its
+	      function signature (the parameters, their types, or the
+	      return type), or its behavior in a way that is visible to a
+	      caller.  <var>id-of-dependency-template</var> is an optional
+	      field that references
+	      an <var>alternative-dependency-template</var>; see below for
+	      a full description.
+	    </p>
+
+	    <p>
+	      For example, <tt>libz.so.1</tt> contains the
+	      symbols <tt>compress</tt>
+	      and <tt>compressBound</tt>.  <tt>compress</tt> has no symbol
+	      version and last changed its behavior in upstream
+	      version <tt>1:1.1.4</tt>.  <tt>compressBound</tt> has the
+	      symbol version <tt>ZLIB_1.2.0</tt>, was introduced in
+	      upstream version <tt>1:1.2.0</tt>, and has not changed its
+	      behavior.  Its <file>symbols</file> file therefore contains
+	      the lines:
+	      <example compact="compact">
+		compress@Base 1:1.1.4
+		compressBound@ZLIB_1.2.0 1:1.2.0
+	      </example>
+	      Packages using only <tt>compress</tt> would then get a
+	      dependency of <tt>zlib1g (>= 1:1.1.4)</tt>, but packages
+	      using <tt>compressBound</tt> would get a dependency
+	      of <tt>zlib1g (>= 1:1.2.0)</tt>.
+	    </p>
+
+	    <p>
+	      One or more <var>alternative-dependency-template</var> lines
+	      may be provided.  These are used in cases where some symbols
+	      in the shared library should use one dependency template
+	      while others should use a different template.  The
+	      alternative dependency templates are used only if a symbol
+	      line contains the <var>id-of-dependency-template</var>
+	      field.  The first alternative dependency template is
+	      numbered 1, the second 2, and so forth.<footnote>
+		An example of where this may be needed is with a library
+		that implements the libGL interface.  All GL
+		implementations provide the same set of base interfaces,
+		and then may provide some additional interfaces only used
+		by programs that require that specific GL implementation.
+		So, for example, libgl1-mesa-glx may use the
+		following <file>symbols</file> file:
+		<example>
+		  libGL.so.1 libgl1
+		  | libgl1-mesa-glx #MINVER#
+		  publicGlSymbol@Base 6.3-1
+		  [...]
+		  implementationSpecificSymbol@Base 6.5.2-7 1
+		  [...]
+		</example>
+		Binaries or shared libraries using
+		only <tt>publicGlSymbol</tt> would depend only
+		on <tt>libgl1</tt> (which may be provided by multiple
+		packages), but ones
+		using <tt>implementationSpecificSymbol</tt> would get a
+		dependency on <tt>libgl1-mesa-glx (>= 6.5.2-7)</tt>
+	      </footnote>
+	    </p>
+
+	    <p>
+	      Finally, the entry for the library may contain one or more
+	      metadata fields.  Currently, the only
+	      supported <var>field-name</var>
+	      is <tt>Build-Depends-Package</tt>, whose value lists
+	      the <qref id="sharedlibs-dev">library development
+	      package</qref> on which packages using this shared library
+	      declare a build dependency.  If this field is
+	      present, <prgn>dpkg-shlibdeps</prgn> uses it to ensure that
+	      the resulting binary package dependency on the shared
+	      library is at least as strict as the source package
+	      dependency on the shared library development
+	      package.<footnote>
+		This field should normally not be necessary, since if the
+		behavior of any symbol has changed, the corresponding
+		symbol <var>minimal-version</var> should have been
+		increased.  But including it makes the <tt>symbols</tt>
+		system more robust by tightening the dependency in cases
+		where the package using the shared library specifically
+		requires at least a particular version of the shared
+		library development package for some reason.
+	      </footnote>
+	      For our example, the <tt>zlib1g</tt> <file>symbols</file>
+	      file would contain:
+	      <example compact="compact">
+		* Build-Depends-Package: zlib1g-dev
+	      </example>
+	    </p>
+
+	    <p>
+	      Also see <manref name="deb-symbols" section="5">.
+	    </p>
+	  </sect2>
+
+	  <sect2 id="providing-symbols">
+	    <heading>Providing a <file>symbols</file> file</heading>
+
+	    <p>
+	      If your package provides a shared library, you should
+	      arrange to include a <file>symbols</file> control file
+	      following the format described above in that package.  You
+	      must include either a <file>symbols</file> control file or
+	      a <file>shlibs</file> control file.
+	    </p>
+
+	    <p>
+	      Normally, this is done by creating a <file>symbols</file> in
+	      the source package
+	      named <file>debian/<var>package</var>.symbols</file>
+	      or <file>debian/symbols</file>, possibly
+	      with <file>.<var>arch</var></file> appended if the symbols
+	      information varies by architecture.  This file may use the
+	      extended syntax documented in <manref name="dpkg-gensymbols"
+	      section="1">.  Then, call <prgn>dpkg-gensymbols</prgn> as
+	      part of the package build process.  It will
+	      create <file>symbols</file> files in the package staging
+	      area based on the binaries and libraries in the package
+	      staging area and the <file>symbols</file> files in the
+	      source package.<footnote>
+		If you are
+		using <tt>debhelper</tt>, <prgn>dh_makeshlibs</prgn> will
+		take care of calling either <prgn>dpkg-gensymbols</prgn>
+		or generating a <file>shlibs</file> file as appropriate.
+	      </footnote>
+	    </p>
+
+	    <p>
+	      Packages that provide <file>symbols</file> files must keep
+	      them up-to-date to ensure correct dependencies in packages
+	      that use the shared libraries.  This means updating
+	      the <file>symbols</file> file whenever a new public symbol
+	      is added, changing the <var>minimal-version</var> field
+	      whenever a symbol changes behavior or signature in a
+	      backward-compatible way (see <ref id="sharedlibs-updates">),
+	      and changing the <var>library-soname</var>
+	      and <var>main-dependency-template</var>, and probably all of
+	      the <var>minimal-version</var> fields, when the library
+	      changes <tt>SONAME</tt>.  Removing a public symbol from
+	      the <file>symbols</file> file because it's no longer
+	      provided by the library normally requires changing
+	      the <tt>SONAME</tt> of the library.
+	      See <ref id="sharedlibs-runtime"> for more information
+	      on <tt>SONAME</tt>s.
+	    </p>
+	  </sect2>
 	</sect1>
 
-	<sect1 id="shlibs">
-	  <heading>The <file>shlibs</file> File Format</heading>
+	<sect1 id="sharedlibs-shlibdeps">
+	  <heading>The <tt>shlibs</tt> system</heading>
 
 	  <p>
-	    Each <file>shlibs</file> file has the same format.  Lines
-	    beginning with <tt>#</tt> are considered to be comments and
-	    are ignored.  Each line is of the form:
-	    <example compact="compact">
-[<var>type</var>: ]<var>library-name</var> <var>soname-version</var> <var>dependencies ...</var>
-	    </example>
+	    The <tt>shlibs</tt> system is an simpler alternative to
+	    the <tt>symbols</tt> system for declaring dependencies for
+	    shared libraries.  It may be more appropriate for C++
+	    libraries and other cases where tracking individual symbols is
+	    too difficult.  It predated the <tt>symbols</tt> system and is
+	    therefore frequently seen in older packages.  It is also
+	    required for udebs, which do not support <tt>symbols</tt>.
 	  </p>
 
 	  <p>
-	    We will explain this by reference to the example of the
-	    <tt>zlib1g</tt> package, which (at the time of writing)
-	    installs the shared
-	    library <file>/usr/lib/libz.so.1.2.3.4</file>.
+	    In the following sections, we will first describe where the
+	    various <file>shlibs</file> files are to be found, then how to
+	    use <prgn>dpkg-shlibdeps</prgn>, and finally
+	    the <file>shlibs</file> file format and how to create them.
 	  </p>
 
-	  <p>
-	    <var>type</var> is an optional element that indicates the type
-	    of package for which the line is valid. The only type
-	    currently in use is <tt>udeb</tt>.  The colon and space after
-	    the type are required.
-	  </p>
+	  <sect2 id="shlibs-paths">
+	    <heading>The <file>shlibs</file> files present on the
+	      system</heading>
 
-	  <p>
-	    <var>library-name</var> is the name of the shared library, in
-	    this case <tt>libz</tt>.  (This must match the name part of
-	    the soname, see below.)
-	  </p>
+	    <p>
+	      There are several places where <tt>shlibs</tt> files are
+	      found.  The following list gives them in the order in which
+	      they are read by <prgn>dpkg-shlibdeps</prgn>.  (The first
+	      one which gives the required information is used.)
+	      <list>
+		<item>
+		  <p><file>debian/shlibs.local</file></p>
 
-	  <p>
-	    <var>soname-version</var> is the version part of the
-	    ELF <tt>SONAME</tt> attribute of the library.
-	    The <tt>SONAME</tt> is the thing that must exactly match for
-	    the library to be recognized by the dynamic linker, and is
-	    usually of the
-	    form <tt><var>name</var>.so.<var>major-version</var></tt>, in
-	    our example, <tt>libz.so.1</tt>.
-	    The version part is the part which comes after
-	    <tt>.so.</tt>, so in our case, it is <tt>1</tt>.  The soname
-	    may instead be of the
-	    form <tt><var>name</var>-<var>major-version</var>.so</tt>,
-	    such as <tt>libdb-5.1.so</tt>, in which case the name would
-	    be <tt>libdb</tt> and the version would be <tt>5.1</tt>.
-	  </p>
+		  <p>
+		    This lists overrides for this package.  This file
+		    should normally not be used, but may be needed
+		    temporarily in unusual situations to work around bugs
+		    in other packages, or in unusual cases where the
+		    normally declared dependency information in the
+		    installed <file>shlibs</file> file for a library
+		    cannot be used.  This file overrides information
+		    obtained from any other source.
+		  </p>
+		</item>
 
-	  <p>
-	    <var>dependencies</var> has the same syntax as a dependency
-	    field in a binary package control file.  It should give
-	    details of which packages are required to satisfy a binary
-	    built against the version of the library contained in the
-	    package.  See <ref id="depsyntax"> for details.
-	  </p>
+		<item>
+		  <p><file>/etc/dpkg/shlibs.override</file></p>
 
-	  <p>
-	    In our example, if the last change to the <tt>zlib1g</tt>
-	    package that could change behavior for a client of that
-	    library was in version <tt>1:1.2.3.3.dfsg-1</tt>, then
-	    the <tt>shlibs</tt> entry for this library could say:
-	    <example compact="compact">
-libz 1 zlib1g (>= 1:1.2.3.3.dfsg-1)
-	    </example>
-	    This version restriction must be new enough that any binary
-	    built against the current version of the library will work
-	    with any version of the shared library that satisfies that
-	    dependency.
-	  </p>
+		  <p>
+		    This lists global overrides.  This list is normally
+		    empty.  It is maintained by the local system
+		    administrator.
+		  </p>
+		</item>
 
-	  <p>
-	    As zlib1g also provides a udeb containing the shared library,
-	    there would also be a second line:
-	    <example compact="compact">
-udeb: libz 1 zlib1g-udeb (>= 1:1.2.3.3.dfsg-1)
-	    </example>
-	  </p>
-	</sect1>
+		<item>
+		  <p><file>DEBIAN/shlibs</file> files in the "build
+		    directory"</p>
 
-	<sect1>
-	  <heading>Providing a <file>shlibs</file> file</heading>
+		  <p>
+		    These files are generated as part of the package build
+		    process and staged for inclusion as control files in
+		    the binary packages being built.  They provide details
+		    of any shared libraries included in the same package.
+		  </p>
+		</item>
 
-	  <p>
-	    To provide a <file>shlibs</file> file for a shared library
-	    binary package, create a <file>shlibs</file> file following
-	    the format described above and place it in
-	    the <file>DEBIAN</file> directory for that package during the
-	    build.  It will then be included as a control file for that
-	    package<footnote>
-	      This is what <prgn>dh_makeshlibs</prgn> in
-	      the <package>debhelper</package> suite does. If your package
-	      also has a udeb that provides a shared
-	      library, <prgn>dh_makeshlibs</prgn> can automatically
-	      generate the <tt>udeb:</tt> lines if you specify the name of
-	      the udeb with the <tt>--add-udeb</tt> option.
-	    </footnote>.
-	  </p>
+		<item>
+		  <p><file>shlibs</file> control files for packages
+		    installed on the system</p>
 
-	  <p>
-	    Since <prgn>dpkg-shlibdeps</prgn> reads
-	    the <file>DEBIAN/shlibs</file> files in all of the binary
-	    packages being built from this source package, all of
-	    the <file>DEBIAN/shlibs</file> files should be installed
-	    before <prgn>dpkg-shlibdeps</prgn> is called on any of the
-	    binary packages.
-	  </p>
+		  <p>
+		    The <file>shlibs</file> control files for all the
+		    packages currently installed on the system.  These are
+		    normally found
+		    in <file>/var/lib/dpkg/info/*.symbols</file>, but
+		    packages should not rely on this and instead should
+		    use <tt>dpkg-query --control-path <var>package</var>
+		    shlibs</tt> if for some reason these files need to be
+		    examined.
+		  </p>
+		</item>
+
+		<item>
+		  <p><file>/etc/dpkg/shlibs.default</file></p>
+
+		  <p>
+		    This file lists any shared libraries whose packages
+		    have failed to provide correct <file>shlibs</file>
+		    files.  It was used when the <file>shlibs</file> setup
+		    was first introduced, but it is now normally empty.
+		    It is maintained by the <tt>dpkg</tt> maintainer.
+		  </p>
+		</item>
+	      </list>
+	    </p>
+
+	    <p>
+	      If a <file>symbols</file> file for a shared library package
+	      is available, <prgn>dpkg-shlibdeps</prgn> will always use it
+	      in preference to a <file>shlibs</file>, with the exception
+	      of <file>debian/shlibs.local</file>.  The latter overrides
+	      any other <file>shlibs</file> or <file>symbols</file> files.
+	    </p>
+	  </sect2>
+
+	  <sect2 id="shlibs">
+	    <heading>The <file>shlibs</file> File Format</heading>
+
+	    <p>
+	      Each <file>shlibs</file> file has the same format.  Lines
+	      beginning with <tt>#</tt> are considered to be comments and
+	      are ignored.  Each line is of the form:
+	      <example compact="compact">
+		[<var>type</var>: ]<var>library-name</var> <var>soname-version</var> <var>dependencies ...</var>
+	      </example>
+	    </p>
+
+	    <p>
+	      We will explain this by reference to the example of the
+	      <tt>zlib1g</tt> package, which (at the time of writing)
+	      installs the shared
+	      library <file>/usr/lib/libz.so.1.2.3.4</file>.
+	    </p>
+
+	    <p>
+	      <var>type</var> is an optional element that indicates the
+	      type of package for which the line is valid. The only type
+	      currently in use is <tt>udeb</tt>.  The colon and space
+	      after the type are required.
+	    </p>
+
+	    <p>
+	      <var>library-name</var> is the name of the shared library,
+	      in this case <tt>libz</tt>.  (This must match the name part
+	      of the soname, see below.)
+	    </p>
+
+	    <p>
+	      <var>soname-version</var> is the version part of the
+	      ELF <tt>SONAME</tt> attribute of the library, determined the
+	      same way that the <var>soversion</var> component of the
+	      recommended shared library package name is determined.
+	      See <ref id="sharedlibs-runtime"> for the details.
+	    </p>
+
+	    <p>
+	      <var>dependencies</var> has the same syntax as a dependency
+	      field in a binary package control file.  It should give
+	      details of which packages are required to satisfy a binary
+	      built against the version of the library contained in the
+	      package.  See <ref id="depsyntax"> for details on the
+	      syntax, and <ref id="sharedlibs-updates"> for details on how
+	      to maintain the dependency version constraint.
+	    </p>
+
+	    <p>
+	      In our example, if the last change to the <tt>zlib1g</tt>
+	      package that could change behavior for a client of that
+	      library was in version <tt>1:1.2.3.3.dfsg-1</tt>, then
+	      the <tt>shlibs</tt> entry for this library could say:
+	      <example compact="compact">
+		libz 1 zlib1g (>= 1:1.2.3.3.dfsg-1)
+	      </example>
+	      This version restriction must be new enough that any binary
+	      built against the current version of the library will work
+	      with any version of the shared library that satisfies that
+	      dependency.
+	    </p>
+
+	    <p>
+	      As zlib1g also provides a udeb containing the shared
+	      library, there would also be a second line:
+	      <example compact="compact">
+		udeb: libz 1 zlib1g-udeb (>= 1:1.2.3.3.dfsg-1)
+	      </example>
+	    </p>
+	  </sect2>
+
+	  <sect2>
+	    <heading>Providing a <file>shlibs</file> file</heading>
+
+	    <p>
+	      To provide a <file>shlibs</file> file for a shared library
+	      binary package, create a <file>shlibs</file> file following
+	      the format described above and place it in
+	      the <file>DEBIAN</file> directory for that package during
+	      the build.  It will then be included as a control file for
+	      that package<footnote>
+		This is what <prgn>dh_makeshlibs</prgn> in
+		the <package>debhelper</package> suite does. If your
+		package also has a udeb that provides a shared
+		library, <prgn>dh_makeshlibs</prgn> can automatically
+		generate the <tt>udeb:</tt> lines if you specify the name
+		of the udeb with the <tt>--add-udeb</tt> option.
+	      </footnote>.
+	    </p>
+
+	    <p>
+	      Since <prgn>dpkg-shlibdeps</prgn> reads
+	      the <file>DEBIAN/shlibs</file> files in all of the binary
+	      packages being built from this source package, all of
+	      the <file>DEBIAN/shlibs</file> files should be installed
+	      before <prgn>dpkg-shlibdeps</prgn> is called on any of the
+	      binary packages.
+	    </p>
+	  </sect2>
 	</sect1>
       </sect>
     </chapt>
@@ -8188,7 +8268,7 @@ INSTALL = install -s # (or use strip on the files in debian/tmp)
           must be linked against all libraries that they use symbols from
           in the same way that binaries are.  This ensures the correct
           functioning of the <qref id="sharedlibs-symbols">symbols</qref>
-	  and <qref id="sharedlibs-shlibdeps">shlibs</qref>
+          and <qref id="sharedlibs-shlibdeps">shlibs</qref>
           systems and guarantees that all libraries can be safely opened
           with <tt>dlopen()</tt>.  Packagers may wish to use the gcc
           option <tt>-Wl,-z,defs</tt> when building a shared library.
