@@ -279,6 +279,14 @@
 	  <tt><url name="/doc/developers-reference/"
 		id="http://www.debian.org/doc/developers-reference/"></tt>.
 	</p>
+
+	<p>
+	  Finally, a <qref id="copyrightformat">specification for
+	  machine-readable copyright files</qref> is maintained as part of
+	  the <package>debian-policy</package> package using the same
+	  procedure as the other policy documents.  Use of this format is
+	  optional.
+	</p>
       </sect>
 
       <sect id="definitions">
@@ -1944,7 +1952,7 @@
 	    </tag>
 	    <item>
 	      <p>
-		A package may also provide both of the targets
+		A package may also provide one or both of the targets
 		<tt>build-arch</tt> and <tt>build-indep</tt>.
 		The <tt>build-arch</tt> target, if provided, should
 		perform all the configuration and compilation required for
@@ -1957,9 +1965,13 @@
 		architecture-independent binary packages (those packages
 		for which the body of the <tt>Architecture</tt> field
 		in <tt>debian/control</tt> is <tt>all</tt>).
-		The <tt>build</tt> target should depend on those of the
-		targets <tt>build-arch</tt> and <tt>build-indep</tt> that
-		are provided in the rules file.<footnote>
+	      </p>
+
+	      <p>
+		If <tt>build-arch</tt> or <tt>build-indep</tt> targets are
+		provided in the rules file, the <tt>build</tt> target
+		should either depend on those targets or take the same
+		actions as invoking those targets would perform.<footnote>
 		  The intent of this split is so that binary-only builds
 		  need not install the dependencies required for
 		  the <tt>build-indep</tt> target.  However, this is not
@@ -2492,18 +2504,21 @@ endif
 	</p>
 
 	<p>
-	  Each paragraph consists of a series of data fields; each
-	  field consists of the field name, followed by a colon and
-	  then the data/value associated with that field.  The field
-	  name is composed of printable ASCII characters (i.e.,
-	  characters that have values between 33 and 126, inclusive)
-	  except colon and must not with a begin with #.  The
-	  field ends at the end of the line or at the end of the
-	  last continuation line (see below).  Horizontal whitespace
-	  (spaces and tabs) may occur immediately before or after the
-	  value and is ignored there; it is conventional to put a
-	  single space after the colon.  For example, a field might
-	  be:
+	  Each paragraph consists of a series of data fields.  Each field
+	  consists of the field name followed by a colon and then the
+	  data/value associated with that field.  The field name is
+	  composed of US-ASCII characters excluding control characters,
+	  space, and colon (i.e., characters in the ranges 33-57 and
+	  59-126, inclusive).  Field names must not begin with the comment
+	  character, <tt>#</tt>.
+	</p>
+
+	<p>
+	  The field ends at the end of the line or at the end of the last
+	  continuation line (see below).  Horizontal whitespace (spaces
+	  and tabs) may occur immediately before or after the value and is
+	  ignored there; it is conventional to put a single space after
+	  the colon.  For example, a field might be:
 	  <example compact="compact">
 Package: libc6
 	  </example>
@@ -2697,7 +2712,7 @@ Package: libc6
 	<p>
 	  This file consists of a single paragraph, possibly surrounded by
 	  a PGP signature. The fields of that paragraph are listed below.
-	  Their syntax is described above, in <ref id="pkg-controlfields">.
+	  Their syntax is described above, in <ref id="controlsyntax">.
 
 	<list compact="compact">
 	  <item><qref id="f-Format"><tt>Format</tt></qref> (mandatory)</item>
@@ -3711,11 +3726,13 @@ Checksums-Sha256:
 	  <heading><tt>DM-Upload-Allowed</tt></heading>
 
 	  <p>
-	    The most recent version of a package uploaded to unstable or
-	    experimental must include the field <tt>DM-Upload-Allowed:
-	    yes</tt> in the source section of its source control file for
-	    the Debian archive to accept uploads signed with a key in the
-	    Debian Maintainer keyring.  See the General
+	    Indicates that Debian Maintainers may upload this package to
+	    the Debian archive.  The only valid value is <tt>yes</tt>.  If
+	    the field <tt>DM-Upload-Allowed: yes</tt> is present in the
+	    source section of the source control file of the most recent
+	    version of a package in unstable or experimental, the Debian
+	    archive will accept uploads of this package signed with a key
+	    in the Debian Maintainer keyring.  See the General
 	    Resolution <url id="http://www.debian.org/vote/2007/vote_003"
 	    name="Endorse the concept of Debian Maintainers"> for more
 	    details.
@@ -6588,11 +6605,11 @@ udeb: libz 1 zlib1g-udeb (>= 1:1.2.3.3.dfsg-1)
 	  <heading>File System Structure</heading>
 
 	  <p>
-	    The location of all installed files and directories must
-	    comply with the Filesystem Hierarchy Standard (FHS),
-	    version 2.3, with the exceptions noted below, and except
-	    where doing so would violate other terms of Debian
-	    Policy.  The following exceptions to the FHS apply:
+	    The location of all files and directories must comply with the
+	    Filesystem Hierarchy Standard (FHS), version 2.3, with the
+	    exceptions noted below, and except where doing so would
+	    violate other terms of Debian Policy.  The following
+	    exceptions to the FHS apply:
 
             <enumlist>
               <item>
@@ -6852,7 +6869,7 @@ rmdir /usr/local/share/emacs 2>/dev/null || true
 	  <p>
 	    Packages must not include files or directories
 	    under <file>/run</file>, or under the
-	    older <file>/var/run</file> and <file>/var/lock<file> paths.
+	    older <file>/var/run</file> and <file>/var/lock</file> paths.
 	    The latter paths will normally be symlinks or other
 	    redirections to <file>/run</file> for backwards compatibility.
 	  </p>
@@ -8388,10 +8405,13 @@ fname () {
 	<p>
 	  You may wish to restrict your script to SUSv3 features plus the
 	  above set when possible so that it may use <file>/bin/sh</file>
-	  as its interpreter. If your script works with <prgn>dash</prgn>
-	  (originally called <prgn>ash</prgn>), it probably complies with
-	  the above requirements, but if you are in doubt, use
-	  <file>/bin/bash</file>.
+	  as its interpreter.  Checking your script
+	  with <prgn>checkbashisms</prgn> from
+	  the <package>devscripts</package> package or running your script
+	  with an alternate shell such as <prgn>posh</prgn> may help
+	  uncover violations of the above requirements.  If in doubt
+	  whether a script complies with these requirements,
+	  use <file>/bin/bash</file>.
 	</p>
 
 	<p>
@@ -10341,7 +10361,27 @@ END-INFO-DIR-ENTRY
 	  You should not use the copyright file as a general <file>README</file>
 	  file.  If your package has such a file it should be
 	  installed in <file>/usr/share/doc/<var>package</var>/README</file> or
-	  <file>README.Debian</file> or some other appropriate place.</p>
+	  <file>README.Debian</file> or some other appropriate place.
+	</p>
+
+	<sect1 id="copyrightformat">
+	  <heading>Machine-readable copyright information</heading>
+
+	  <p>
+	    A specification for a standard, machine-readable format
+	    for <file>debian/copyright</file> files is maintained as part
+	    of the <package>debian-policy</package> package.  This
+	    document may be found in the <file>copyright-format</file>
+	    files in the <package>debian-policy</package> package.  It is
+	    also available from the Debian web mirrors at
+	    <tt><url name="/doc/packaging-manuals/copyright-format/1.0/"
+		     id="http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/"></tt>.
+	  </p>
+
+	  <p>
+	    Use of this format is optional.
+	  </p>
+	</sect1>
       </sect>
 
       <sect>
@@ -10871,10 +10911,10 @@ END-INFO-DIR-ENTRY
 		  the <prgn>PATH</prgn> if necessary, and pass its
 		  second and subsequent arguments to the command it
 		  calls.  If no <var>root-command</var> is supplied
-		  then <var>dpkg-buildpackage</var> will take no
-		  special action to gain root privilege, so that for
-		  most packages it will have to be invoked as root to
-		  start with.</p>
+		  then <var>dpkg-buildpackage</var> will use
+		  the <prgn>fakeroot</prgn> command, which is sufficient
+		  to build most packages without actually requiring root
+		  privileges.</p>
 	      </item>
 	      <tag><tt>-b</tt>, <tt>-B</tt></tag>
 	      <item>

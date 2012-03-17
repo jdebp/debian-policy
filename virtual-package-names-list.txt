@@ -1,7 +1,7 @@
 
               AUTHORITATIVE LIST OF VIRTUAL PACKAGE NAMES
 
-                               August 2010
+                              February 2012
 
 
 Below is an authoritative list of virtual package names currently
@@ -163,9 +163,6 @@ Graphics and MultiMedia
 
 Java and virtual machines
 -------------------------
- java-compiler           a java compiler, for Java version 1
- java2-compiler          a java compiler, for Java version 2
- java-virtual-machine    a JAVA virtual machine
  java1-runtime           a Java runtime environment, Java version 1
  java2-runtime           a Java runtime environment, Java version 2
 
@@ -323,3 +320,10 @@ Manoj Srivastava:
 
 Russ Allbery:
   27 Aug 2010 Added mailx
+
+Bill Allombert:
+  22 Feb 2012 Rename ttf-japanese-gothic to fonts-japanese-gothic
+              Rename ttf-japanese-mincho to fonts-japanese-mincho
+              Removed java-compiler
+              Removed java2-compiler
+              Removed java-virtual-machine

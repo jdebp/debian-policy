@@ -6,7 +6,7 @@
       <author> Bill Allombert <email/ballombe@debian.org/ </author>
       <author> Josip Rodin </author>
       <author> Julian Gilbey </author>
-      <author> Russ Allbery </author>
+      <author> Russ Allbery <email/rra@debian.org/ </author>
       <author> Manoj Srivastava <email/srivasta@debian.org/
 
 <chapt> About the checklist
@@ -37,7 +37,7 @@ picking your way through this list.
 <sect id="3.9.3.0"> Version 3.9.3.0
 <p>
 
-Unreleased.
+Released February, 2012.
 
 </p><p><taglist>
 <tag>2.4</tag>
@@ -73,7 +73,7 @@ Unreleased.
   they will be ignored by cron.  They should replace those characters
   with <tt>_</tt>.  If a package provides multiple cron job files in the
   same directory, they should each start with the package name (possibly
-  modified as above), <tt>-</tt>, and then some suitable prefix.
+  modified as above), <tt>-</tt>, and then some suitable suffix.
   </item>
 <tag>9.10</tag>
   <item>Packages using doc-base do not need to call install-docs anymore.
@@ -92,9 +92,14 @@ Unreleased.
   Debian maintainers involved in the creation of the package (although
   note that the requirement to list copyright information is unchanged).
   </item>
+<tag>copyright-format</tag>
+  <item>Version 1.0 of the "Machine-readable <file>debian/copyright</file>
+  file" specification is included.
+  </item>
 <tag>mime</tag>
-  <item>Retire this separate document and merge its (short) contents into
-  Policy section 9.7.  There are no changes to the requirements.
+  <item>This separate document has been retired and and its (short)
+  contents merged into Policy section 9.7.  There are no changes to the
+  requirements.
   </item>
 <tag>perl</tag>
   <item>Packages may declare an interest in the <var>perl-major-upgrade</var> 

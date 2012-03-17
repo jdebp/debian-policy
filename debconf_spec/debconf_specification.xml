@@ -5,54 +5,35 @@
 <!ENTITY command_list SYSTEM "include/commands.xml">
 <!ENTITY priority_table SYSTEM "include/priorities.xml">
 <!ENTITY type_table SYSTEM "include/types.xml">
+<!ENTITY % versiondata SYSTEM "include/version.xml"> %versiondata;
 ]>
 <article>
 
   <articleinfo>
     <title>Configuration management</title>
     <subtitle>Protocol version 2.1</subtitle>
-    <releaseinfo>Revision 7.1</releaseinfo>
+    <releaseinfo>Revision 7.1, Debian Policy &version;, &date;</releaseinfo>
     <author>
-      <firstname>
-        Wichert
-      </firstname>
-      <surname>
-        Akkerman
-      </surname>
+      <firstname>Wichert</firstname>
+      <surname>Akkerman</surname>
       <affiliation>
-        <orgname>
-	  The Debian Project
-	</orgname>
+        <orgname>The Debian Project</orgname>
 	<address><email>wakkerma@debian.org</email></address>
       </affiliation>
     </author>
     <author>
-      <firstname>
-        Joey
-      </firstname>
-      <surname>
-        Hess
-      </surname>
+      <firstname>Joey</firstname>
+      <surname>Hess</surname>
       <affiliation>
-        <orgname>
-	  The Debian Project
-	</orgname>
+        <orgname>The Debian Project</orgname>
 	<address><email>joeyh@debian.org</email></address>
       </affiliation>
     </author>
     <copyright>
-      <year>
-        1998
-      </year>
-      <year>
-        1999
-      </year>
-      <year>
-        2000
-      </year>
-      <holder>
-        Wichert Akkerman and Joey Hess
-      </holder>
+      <year>1998</year>
+      <year>1999</year>
+      <year>2000</year>
+      <holder>Wichert Akkerman and Joey Hess</holder>
     </copyright>
     <legalnotice>
       <para>

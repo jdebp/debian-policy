@@ -1,14 +1,17 @@
 /Process.html
 /README.html
-/body.tmp
-/copyright-format/copyright-format.html
+/copyright-format/copyright-format-1.0.html
+/copyright-format/version.xml
 /debconf_spec/debconf_specification.html
 /debconf_spec/debconf_specification.txt.gz
-/head.tmp
+/debconf_spec/include/version.xml
+/debian/files
+/debian/tmp/
 /menu-policy.html/
 /perl-policy.html/
 /policy.html/
 /stamp-build
+/stamp-binary
 /upgrading-checklist.html/
 /version.ent
 *-1.html
@@ -20,3 +23,4 @@
 *.tpt
 *.txt
 *.txt.gz
+*.xml.tar.gz
