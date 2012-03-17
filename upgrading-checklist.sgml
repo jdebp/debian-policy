@@ -34,6 +34,17 @@ picking your way through this list.
 
 <chapt> The checklist
 
+<sect id="3.9.4.0"> Version 3.9.4.0
+<p>
+
+Unreleased.
+
+</p><p><taglist>
+<tag>12.5</tag>
+  <item>All copyright files must be encoded in UTF-8.
+  </item>
+</taglist></p>
+
 <sect id="3.9.3.0"> Version 3.9.3.0
 <p>
 

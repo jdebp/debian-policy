@@ -9936,6 +9936,10 @@ END-INFO-DIR-ENTRY
 	  <file>README.Debian</file> or some other appropriate place.
 	</p>
 
+	<p>
+	  All copyright files must be encoded in UTF-8.
+	</p>
+
 	<sect1 id="copyrightformat">
 	  <heading>Machine-readable copyright information</heading>
 

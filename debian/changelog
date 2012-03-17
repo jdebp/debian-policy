@@ -1,3 +1,14 @@
+debian-policy (3.9.4.0) UNRELEASED; urgency=low
+
+  * Policy: Copyright files must be encoded in UTF-8
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Guillem Jover <guillem@debian.org>
+    Seconded: Salvatore Bonaccorso <carnil@debian.org>
+    Seconded: Simon McVittie <smcv@debian.org>
+    Closes: #661933
+
+ -- Russ Allbery <rra@debian.org>  Sat, 17 Mar 2012 16:30:33 -0700
+
 debian-policy (3.9.3.1) unstable; urgency=low
 
   * Fix cross-reference to control field syntax in Policy 5.4 (source
