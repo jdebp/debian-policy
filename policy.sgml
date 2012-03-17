@@ -5832,8 +5832,12 @@ Replaces: mail-transport-agent
 	  installed.  These dependencies must be added to the binary
 	  package when it is built, since they may change based on which
 	  version of a shared library the binary or library was linked
-	  with.  To allow these dependencies to be constructed, shared
-	  libraries must provide either a <file>symbols</file> file or
+	  with even if there are no changes to the source of the binary
+	  (for example, symbol versions change, macros become functions or
+	  vice versa, or the binary package may determine at compile-time
+	  whether new library interfaces are available and can be called).
+	  To allow these dependencies to be constructed, shared libraries
+	  must provide either a <file>symbols</file> file or
 	  a <file>shlibs</file> file, which provide information on the
 	  package dependencies required to ensure the presence of this
 	  library.  Any package which uses a shared library must use these
@@ -5894,23 +5898,22 @@ Replaces: mail-transport-agent
 	      the libraries and the symbols in those libraries directly
 	      needed by the binaries or shared libraries in the package.
 	    </footnote>
-	    <prgn>dpkg-shlibdeps</prgn> will use the <file>symbols</file>
-	    or <file>shlibs</file> files installed by the shared libraries
-	    to generate dependency information.
-	  </p>
-
-	  <p>
-	    If your package contains any compiled binaries or shared
-	    libraries, put a call to <prgn>dpkg-shlibdeps</prgn> into
+	    To do this, put a call to <prgn>dpkg-shlibdeps</prgn> into
 	    your <file>debian/rules</file> file in the source package.
 	    List all of the compiled binaries, libraries, or loadable
 	    modules in your package.<footnote>
-	      The easiest way to do this is to use a package helper
-	      framework such as <package>debhelper</package>.  If you are
+	      The easiest way to call <prgn>dpkg-shlibdeps</prgn>
+	      correctly is to use a package helper framework such
+	      as <package>debhelper</package>.  If you are
 	      using <package>debhelper</package>,
 	      the <prgn>dh_shlibdeps</prgn> program will do this work for
 	      you.  It will also correctly handle multi-binary packages.
 	    </footnote>
+	    <prgn>dpkg-shlibdeps</prgn> will use the <file>symbols</file>
+	    or <file>shlibs</file> files installed by the shared libraries
+	    to generate dependency information.  The package must then
+	    provide a substitution variable into which the discovered
+	    dependency information can be placed.
 	  </p>
 
 	  <p>
@@ -5928,25 +5931,26 @@ Replaces: mail-transport-agent
 	  </p>
 
 	  <p>
-	    This command puts the dependency information into
-	    the <file>debian/substvars</file> file, which is then used
-	    by <prgn>dpkg-gencontrol</prgn>.  You will need to place
-	    a <tt>${shlibs:Depends}</tt> variable in the <tt>Depends</tt>
-	    field in the control file of every binary package built by
-	    this source package that contains compiled binaries,
-	    libraries, or loadable modules.  If you have multiple binary
-	    packages, you will need to call <prgn>dpkg-shlibdeps</prgn> on
-	    each one which contains compiled libraries or binaries, using
-	    the <tt>-T</tt> option to the <tt>dpkg</tt> utilities to
-	    specify a different <file>substvars</file> file for each
-	    binary package.<footnote>
+	    <prgn>dpkg-shlibdeps</prgn> puts the dependency information
+	    into the <file>debian/substvars</file> file by default, which
+	    is then used by <prgn>dpkg-gencontrol</prgn>.  You will need
+	    to place a <tt>${shlibs:Depends}</tt> variable in
+	    the <tt>Depends</tt> field in the control file of every binary
+	    package built by this source package that contains compiled
+	    binaries, libraries, or loadable modules.  If you have
+	    multiple binary packages, you will need to
+	    call <prgn>dpkg-shlibdeps</prgn> on each one which contains
+	    compiled libraries or binaries, using the <tt>-T</tt> option
+	    to the <tt>dpkg</tt> utilities to specify a
+	    different <file>substvars</file> file for each binary
+	    package.<footnote>
 	      Again, <prgn>dh_shlibdeps</prgn>
 	      and <prgn>dh_gencontrol</prgn> will handle everything except
-	      the control file modification for you if you're
-	      using <package>debhelper</package>, including generating
-	      separate <file>substvars</file> files for each binary
-	      package and calling <prgn>dpkg-gencontrol</prgn> with the
-	      appropriate flags.
+	      the addition of the variable to the control file for you if
+	      you're using <package>debhelper</package>, including
+	      generating separate <file>substvars</file> files for each
+	      binary package and calling <prgn>dpkg-gencontrol</prgn> with
+	      the appropriate flags.
 	    </footnote>
 	  </p>
 
@@ -6132,8 +6136,8 @@ Replaces: mail-transport-agent
 		    During the package build, if the package itself
 		    contains shared libraries with <file>symbols</file>
 		    files, they will be generated in these staging
-		    directories
-		    by <prgn>dpkg-gensymbols</prgn>.  <file>symbols</file>
+		    directories by <prgn>dpkg-gensymbols</prgn>
+		    (see <ref id="providing-symbols">).  <file>symbols</file>
 		    files found in the build tree take precedence
 		    over <file>symbols</file> files from other binary
 		    packages.
@@ -11068,6 +11072,17 @@ END-INFO-DIR-ENTRY
 	    list of files in <file>debian/files</file>, for the benefit of
 	    (for example) a future invocation of
 	    <prgn>dpkg-genchanges</prgn>.</p>
+	</sect1>
+
+	<sect1 id="pkg-dpkg-shlibdeps">
+	  <heading>
+	    <prgn>dpkg-shlibdeps</prgn> - calculates shared library
+	    dependencies
+	  </heading>
+
+	  <p>
+	    See <manref name="dpkg-shlibdeps" section="1">.
+	  </p>
 	</sect1>
 
 	<sect1 id="pkg-dpkg-distaddfile">
