@@ -40,6 +40,9 @@ picking your way through this list.
 Unreleased.
 
 </p><p><taglist>
+<tag>7.1</tag>
+  <item>The deprecated relations &lt; and &gt; now must not be used.
+  </item>
 <tag>12.5</tag>
   <item>All copyright files must be encoded in UTF-8.
   </item>

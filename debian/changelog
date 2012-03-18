@@ -6,6 +6,11 @@ debian-policy (3.9.4.0) UNRELEASED; urgency=low
     Seconded: Salvatore Bonaccorso <carnil@debian.org>
     Seconded: Simon McVittie <smcv@debian.org>
     Closes: #661933
+  * Policy: Prohibit deprecated < and > relations
+    Wording: Jakub Wilk <jwilk@debian.org>
+    Seconded: Cyril Brulebois <kibi@debian.org>
+    Seconded: Russ Allbery <rra@debian.org>
+    Closes: #663918
 
  -- Russ Allbery <rra@debian.org>  Sat, 17 Mar 2012 16:30:33 -0700
 

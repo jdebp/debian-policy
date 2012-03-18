@@ -4607,13 +4607,13 @@ fi
 
 	<p>
 	  The relations allowed are <tt>&lt;&lt;</tt>, <tt>&lt;=</tt>,
-	  <tt>=</tt>, <tt>&gt;=</tt> and <tt>&gt;&gt;</tt> for
-	  strictly earlier, earlier or equal, exactly equal, later or
-	  equal and strictly later, respectively.  The deprecated
-	  forms <tt>&lt;</tt> and <tt>&gt;</tt> were used to mean
-	  earlier/later or equal, rather than strictly earlier/later,
-	  so they should not appear in new packages (though
-	  <prgn>dpkg</prgn> still supports them).
+	  <tt>=</tt>, <tt>&gt;=</tt> and <tt>&gt;&gt;</tt> for strictly
+	  earlier, earlier or equal, exactly equal, later or equal and
+	  strictly later, respectively.  The deprecated
+	  forms <tt>&lt;</tt> and <tt>&gt;</tt> were confusingly used to
+	  mean earlier/later or equal, rather than strictly earlier/later,
+	  and must not appear in new packages (though <prgn>dpkg</prgn>
+	  still supports them with a warning).
 	</p>
 
 	<p>
