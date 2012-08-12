@@ -16,6 +16,13 @@ debian-policy (3.9.4.0) UNRELEASED; urgency=low
     Seconded: Russ Allbery <rra@debian.org>
     Seconded: Ansgar Burchardt <ansgar@debian.org>
     Closes: #641153
+  * Policy: Document the Vcs-* fields
+    Wording: Charles Plessy <plessy@debian.org>
+    Wording: Jonathan Nieder <jrnieder@gmail.com>
+    Seconded: Russ Allbery <rra@debian.org>
+    Seconded: Charles Plessy <plessy@debian.org>
+    Seconded: Guillem Jover <guillem@debian.org>
+    Closes: #654958
 
  -- Russ Allbery <rra@debian.org>  Sat, 17 Mar 2012 16:30:33 -0700
 
