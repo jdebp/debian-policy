@@ -5646,7 +5646,7 @@ Built-Using: grub2 (= 1.99-9), loadlin (= 1.6e-1)
 	<p>
 	  To determine the <var>soversion</var>, look at
 	  the <tt>SONAME</tt> of the library, stored in the
-	  ELF <tt>SONAME</tt> attribute.  it is usually of the
+	  ELF <tt>SONAME</tt> attribute.  It is usually of the
 	  form <tt><var>name</var>.so.<var>major-version</var></tt> (for
 	  example, <tt>libz.so.1</tt>).  The version part is the part
 	  which comes after <tt>.so.</tt>, so in that example it
@@ -6238,9 +6238,9 @@ Built-Using: grub2 (= 1.99-9), loadlin (= 1.6e-1)
 	  </p>
 
 	  <p>
-	    A common example of when a change to the is required is a
-	    function that takes an enum or struct argument that controls
-	    what the function does.  For example:
+	    A common example of when a change to the dependency version
+	    is required is a function that takes an enum or struct
+	    argument that controls what the function does.  For example:
 	    <example>
 	      enum library_op { OP_FOO, OP_BAR };
 	      int library_do_operation(enum library_op);
@@ -6489,8 +6489,9 @@ Built-Using: grub2 (= 1.99-9), loadlin (= 1.6e-1)
 	      recent version of the shared library that changed the
 	      behavior of that symbol, whether by adding it, changing its
 	      function signature (the parameters, their types, or the
-	      return type), or its behavior in a way that is visible to a
-	      caller.  <var>id-of-dependency-template</var> is an optional
+	      return type), or changing its behavior in a way that is
+	      visible to a caller.
+	      <var>id-of-dependency-template</var> is an optional
 	      field that references
 	      an <var>alternative-dependency-template</var>; see below for
 	      a full description.
@@ -6795,10 +6796,10 @@ Built-Using: grub2 (= 1.99-9), loadlin (= 1.6e-1)
 	    <p>
 	      In our example, if the last change to the <tt>zlib1g</tt>
 	      package that could change behavior for a client of that
-	      library was in version <tt>1:1.2.3.3.dfsg-1</tt>, then
+	      library was in version <tt>1:1.2.3.3.dfsg-2</tt>, then
 	      the <tt>shlibs</tt> entry for this library could say:
 	      <example compact="compact">
-		libz 1 zlib1g (>= 1:1.2.3.3.dfsg-1)
+		libz 1 zlib1g (>= 1:1.2.3.3.dfsg-2~)
 	      </example>
 	      This version restriction must be new enough that any binary
 	      built against the current version of the library will work
@@ -6810,7 +6811,7 @@ Built-Using: grub2 (= 1.99-9), loadlin (= 1.6e-1)
 	      As zlib1g also provides a udeb containing the shared
 	      library, there would also be a second line:
 	      <example compact="compact">
-		udeb: libz 1 zlib1g-udeb (>= 1:1.2.3.3.dfsg-1)
+		udeb: libz 1 zlib1g-udeb (>= 1:1.2.3.3.dfsg-2~)
 	      </example>
 	    </p>
 	  </sect2>
