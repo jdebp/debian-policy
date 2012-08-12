@@ -6796,10 +6796,10 @@ Built-Using: grub2 (= 1.99-9), loadlin (= 1.6e-1)
 	    <p>
 	      In our example, if the last change to the <tt>zlib1g</tt>
 	      package that could change behavior for a client of that
-	      library was in version <tt>1:1.2.3.3.dfsg-2</tt>, then
+	      library was in version <tt>1:1.2.3.3.dfsg-1</tt>, then
 	      the <tt>shlibs</tt> entry for this library could say:
 	      <example compact="compact">
-		libz 1 zlib1g (>= 1:1.2.3.3.dfsg-2~)
+		libz 1 zlib1g (>= 1:1.2.3.3.dfsg)
 	      </example>
 	      This version restriction must be new enough that any binary
 	      built against the current version of the library will work
@@ -6811,7 +6811,7 @@ Built-Using: grub2 (= 1.99-9), loadlin (= 1.6e-1)
 	      As zlib1g also provides a udeb containing the shared
 	      library, there would also be a second line:
 	      <example compact="compact">
-		udeb: libz 1 zlib1g-udeb (>= 1:1.2.3.3.dfsg-2~)
+		udeb: libz 1 zlib1g-udeb (>= 1:1.2.3.3.dfsg)
 	      </example>
 	    </p>
 	  </sect2>
