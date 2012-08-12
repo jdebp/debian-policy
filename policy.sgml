@@ -5978,11 +5978,11 @@ Built-Using: grub2 (= 1.99-9), loadlin (= 1.6e-1)
 	  whether new library interfaces are available and can be called).
 	  To allow these dependencies to be constructed, shared libraries
 	  must provide either a <file>symbols</file> file or
-	  a <file>shlibs</file> file, which provides information on the
+	  a <file>shlibs</file> file.  These provide information on the
 	  package dependencies required to ensure the presence of
 	  interfaces provided by this library.  Any package with binaries
-	  or libraries linking to a shared library must use these files
-	  to determine the required dependencies when it is built.  Other
+	  or libraries linking to a shared library must use these files to
+	  determine the required dependencies when it is built.  Other
 	  packages which use a shared library (for example using
 	  <tt>dlopen()</tt>) should compute appropriate dependencies
 	  using these files at build time as well.
@@ -5990,21 +5990,25 @@ Built-Using: grub2 (= 1.99-9), loadlin (= 1.6e-1)
 
 	<p>
 	  The two mechanisms differ in the degree of detail that they
-	  provide.  A <file>symbols</file> file documents for each symbol
-	  exported by a library the minimal version of the package any
-	  binary using this symbol will need, which is typically the
-	  version of the package in which the symbol was introduced.
-	  This permits detailed analysis of the symbols used by a
+	  provide.  A <file>symbols</file> file documents, for each symbol
+	  exported by a library, the minimal version of the package any
+	  binary using this symbol will need.  This is typically the
+	  version of the package in which the symbol was introduced.  This
+	  information permits detailed analysis of the symbols used by a
 	  particular package and construction of an accurate dependency,
 	  but it requires the package maintainer to track more information
-	  about the shared library.  A <file>shlibs</file> file, in
-	  contrast, only documents the last time the library ABI changed
-	  in any way.  It only provides information about the library as a
-	  whole, not individual symbols.  When a package is built using a
-	  shared library with only a <file>shlibs</file> file, the generated
-	  dependency will require a version of the shared library equal to
-	  or newer than the version of the last ABI change.  This
-	  generates unnecessarily restrictive dependencies compared
+	  about the shared library.
+	</p>
+
+	<p>
+	  A <file>shlibs</file> file, in contrast, only documents the last
+	  time the library ABI changed in any way.  It only provides
+	  information about the library as a whole, not individual
+	  symbols.  When a package is built using a shared library with
+	  only a <file>shlibs</file> file, the generated dependency will
+	  require a version of the shared library equal to or newer than
+	  the version of the last ABI change.  This generates
+	  unnecessarily restrictive dependencies compared
 	  to <file>symbols</file> files if none of the symbols used by the
 	  package have changed.  This, in turn, may make upgrades
 	  needlessly complex and unnecessarily restrict use of the package
@@ -6012,12 +6016,15 @@ Built-Using: grub2 (= 1.99-9), loadlin (= 1.6e-1)
 	</p>
 
 	<p>
-	  <file>shlibs<file> files also have a flawed representation of
+	  <file>shlibs<file> files also only support a limited range of
 	  library SONAMEs, making it difficult to use <file>shlibs</file>
 	  files in some unusual corner cases.<footnote>
-	    libfooN.shlibs says 'libfoo N' instead of the actual SONAME,
-	    so if the SONAME doesn't match one of the two expected
-	    formats (libfoo-N.so or libfoo.so.N) it can't be represented.
+	    A <file>shlibs</file> file represents an SONAME as a library
+	    name and version number, such as <tt>libfoo VERSION</tt>,
+	    instead of recording the actual SONAME.  If the SONAME doesn't
+	    match one of the two expected formats
+	    (<tt>libfoo-VERSION.so</tt> or <tt>libfoo.so.VERSION</tt>), it
+	    cannot be represented.
 	  </footnote>
 	</p>
 
@@ -6029,8 +6036,9 @@ Built-Using: grub2 (= 1.99-9), loadlin (= 1.6e-1)
 	  maintain.  However, maintaining exhaustive symbols information
 	  for a C++ library can be quite onerous, so <file>shlibs</file>
 	  files may be more appropriate for most C++ libraries.  Libraries
-	  with a corresponding udeb must also provide <file>shlibs</file>,
-	  since the udeb infrastructure does not use <file>symbols</file>.
+	  with a corresponding udeb must also provide
+	  a <file>shlibs</file> file, since the udeb infrastructure does
+	  not use <file>symbols</file> files.
 	</p>
 
 	<sect1 id="dpkg-shlibdeps">
@@ -6089,10 +6097,10 @@ Built-Using: grub2 (= 1.99-9), loadlin (= 1.6e-1)
 	    binaries, libraries, or loadable modules.  If you have
 	    multiple binary packages, you will need to
 	    call <prgn>dpkg-shlibdeps</prgn> on each one which contains
-	    compiled libraries or binaries, for example using the
-	    <tt>-T</tt> option to the <tt>dpkg</tt> utilities to specify a
-	    different <file>substvars</file> file for each binary
-	    package.<footnote>
+	    compiled libraries or binaries.  For example, you could use
+	    the <tt>-T</tt> option to the <tt>dpkg</tt> utilities to
+	    specify a different <file>substvars</file> file for each
+	    binary package.<footnote>
 	      Again, <prgn>dh_shlibdeps</prgn>
 	      and <prgn>dh_gencontrol</prgn> will handle everything except
 	      the addition of the variable to the control file for you if
@@ -6166,7 +6174,18 @@ Built-Using: grub2 (= 1.99-9), loadlin (= 1.6e-1)
 	    backward-compatible if any reasonable program or library that
 	    was linked with the previous version of the shared library
 	    will still work correctly with the new version of the shared
-	    library.  Adding new symbols to the shared library is a
+	    library.<footnote>
+	      An example of an "unreasonable" program is one that uses
+	      library interfaces that are documented as internal and
+	      unsupported.  If the only programs or libraries affected by
+	      a change are "unreasonable" ones, other techniques, such as
+	      declaring <tt>Breaks</tt> relationships with affected
+	      packages or treating their usage of the library as bugs in
+	      those packages, may be appropriate instead of changing the
+	      SONAME.  However, the default approach is to change the
+	      SONAME for any change to the ABI that could break a program.
+	    </footnote>
+	    Adding new symbols to the shared library is a
 	    backward-compatible change.  Removing symbols from the shared
 	    library is not.  Changing the behavior of a symbol may or may
 	    not be backward-compatible depending on the change; for
