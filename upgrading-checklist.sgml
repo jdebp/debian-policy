@@ -43,6 +43,12 @@ Unreleased.
 <tag>7.1</tag>
   <item>The deprecated relations &lt; and &gt; now must not be used.
   </item>
+<tag>7.8</tag>
+  <item>New <tt>Built-Using</tt> field, which must be used to document the
+  source packages for any binaries that are incorporated into this package
+  at build time.  This is used to ensure that the archive meets license
+  requirements for providing source for all binaries.
+  </item>
 <tag>12.5</tag>
   <item>All copyright files must be encoded in UTF-8.
   </item>
