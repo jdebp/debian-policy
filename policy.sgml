@@ -1987,49 +1987,31 @@ zope.
 	      </p>
 	    </item>
 
-	    <tag><tt>build-arch</tt> (optional),
-		 <tt>build-indep</tt> (optional)
+	    <tag><tt>build-arch</tt> (required),
+		 <tt>build-indep</tt> (required)
 	    </tag>
 	    <item>
 	      <p>
-		A package may also provide one or both of the targets
-		<tt>build-arch</tt> and <tt>build-indep</tt>.
-		The <tt>build-arch</tt> target, if provided, should
+		The <tt>build-arch</tt> target must
 		perform all the configuration and compilation required for
 		producing all architecture-dependant binary packages
 		(those packages for which the body of the
 		<tt>Architecture</tt> field in <tt>debian/control</tt> is
 		not <tt>all</tt>).  Similarly, the <tt>build-indep</tt>
-		target, if provided, should perform all the configuration
+		target must perform all the configuration
 		and compilation required for producing all
 		architecture-independent binary packages (those packages
 		for which the body of the <tt>Architecture</tt> field
 		in <tt>debian/control</tt> is <tt>all</tt>).
-	      </p>
-
-	      <p>
-		If <tt>build-arch</tt> or <tt>build-indep</tt> targets are
-		provided in the rules file, the <tt>build</tt> target
+		The <tt>build</tt> target
 		should either depend on those targets or take the same
 		actions as invoking those targets would perform.<footnote>
-		  The intent of this split is so that binary-only builds
-		  need not install the dependencies required for
-		  the <tt>build-indep</tt> target.  However, this is not
-		  yet used in practice since <tt>dpkg-buildpackage
-		  -B</tt>, and therefore the autobuilders,
-		  invoke <tt>build</tt> rather than <tt>build-arch</tt>
-		  due to the difficulties in determining whether the
-		  optional <tt>build-arch</tt> target exists.
+		  This split allows binary-only builds to not install the
+		  dependencies required for the <tt>build-indep</tt>
+		  target and skip any resource-intensive build tasks that
+		  are only required when building architecture-independent
+		  binary packages.
 		</footnote>
-	      </p>
-
-	      <p>
-		If one or both of the targets <tt>build-arch</tt> and
-		<tt>build-indep</tt> are not provided, then invoking
-		<file>debian/rules</file> with one of the not-provided
-		targets as arguments should produce a exit status code
-		of 2.  Usually this is provided automatically by make
-		if the target is missing.
 	      </p>
 
 	      <p>
