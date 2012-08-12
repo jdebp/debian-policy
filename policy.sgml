@@ -5978,25 +5978,30 @@ Built-Using: grub2 (= 1.99-9), loadlin (= 1.6e-1)
 	  whether new library interfaces are available and can be called).
 	  To allow these dependencies to be constructed, shared libraries
 	  must provide either a <file>symbols</file> file or
-	  a <file>shlibs</file> file, which provide information on the
-	  package dependencies required to ensure the presence of this
-	  library.  Any package which uses a shared library must use these
-	  files to determine the required dependencies when it is built.
+	  a <file>shlibs</file> file, which provides information on the
+	  package dependencies required to ensure the presence of
+	  interfaces provided by this library.  Any package with binaries
+	  or libraries linking to a shared library must use these files
+	  to determine the required dependencies when it is built.  Other
+	  packages which use a shared library (for example using
+	  <tt>dlopen()</tt>) should compute appropriate dependencies
+	  using these files at build time as well.
 	</p>
 
 	<p>
-	  These two mechanisms differ in the degree of detail that they
-	  provide.  A <file>symbols</file> file documents every symbol
-	  that is part of the library ABI and, for each, the version of
-	  the package in which it was introduced.  This permits detailed
-	  analysis of the symbols used by a particular package and
-	  construction of an accurate dependency, but it requires the
-	  package maintainer to track more information about the shared
-	  library.  A <file>shlibs</file> file, in contrast, only
-	  documents the last time the library ABI changed in any way.  It
-	  only provides information about the library as a whole, not
-	  individual symbols.  When a package is built using a shared
-	  library with only a <file>shlibs</file> file, the generated
+	  The two mechanisms differ in the degree of detail that they
+	  provide.  A <file>symbols</file> file documents for each symbol
+	  exported by a library the minimal version of the package any
+	  binary using this symbol will need, which is typically the
+	  version of the package in which the symbol was introduced.
+	  This permits detailed analysis of the symbols used by a
+	  particular package and construction of an accurate dependency,
+	  but it requires the package maintainer to track more information
+	  about the shared library.  A <file>shlibs</file> file, in
+	  contrast, only documents the last time the library ABI changed
+	  in any way.  It only provides information about the library as a
+	  whole, not individual symbols.  When a package is built using a
+	  shared library with only a <file>shlibs</file> file, the generated
 	  dependency will require a version of the shared library equal to
 	  or newer than the version of the last ABI change.  This
 	  generates unnecessarily restrictive dependencies compared
@@ -6009,7 +6014,11 @@ Built-Using: grub2 (= 1.99-9), loadlin (= 1.6e-1)
 	<p>
 	  <file>shlibs<file> files also have a flawed representation of
 	  library SONAMEs, making it difficult to use <file>shlibs</file>
-	  files in some unusual corner cases.
+	  files in some unusual corner cases.<footnote>
+	    libfooN.shlibs says 'libfoo N' instead of the actual SONAME,
+	    so if the SONAME doesn't match one of the two expected
+	    formats (libfoo-N.so or libfoo.so.N) it can't be represented.
+	  </footnote>
 	</p>
 
 	<p>
@@ -6019,9 +6028,9 @@ Built-Using: grub2 (= 1.99-9), loadlin (= 1.6e-1)
 	  required by <file>symbols</file> files is not too difficult to
 	  maintain.  However, maintaining exhaustive symbols information
 	  for a C++ library can be quite onerous, so <file>shlibs</file>
-	  files may be more appropriate for most C++ libraries.  udebs
-	  must also use <file>shlibs</file>, since the udeb infrastructure
-	  does not use <file>symbols</file>.
+	  files may be more appropriate for most C++ libraries.  Libraries
+	  with a corresponding udeb must also provide <file>shlibs</file>,
+	  since the udeb infrastructure does not use <file>symbols</file>.
 	</p>
 
 	<sect1 id="dpkg-shlibdeps">
@@ -6080,8 +6089,8 @@ Built-Using: grub2 (= 1.99-9), loadlin (= 1.6e-1)
 	    binaries, libraries, or loadable modules.  If you have
 	    multiple binary packages, you will need to
 	    call <prgn>dpkg-shlibdeps</prgn> on each one which contains
-	    compiled libraries or binaries, using the <tt>-T</tt> option
-	    to the <tt>dpkg</tt> utilities to specify a
+	    compiled libraries or binaries, for example using the
+	    <tt>-T</tt> option to the <tt>dpkg</tt> utilities to specify a
 	    different <file>substvars</file> file for each binary
 	    package.<footnote>
 	      Again, <prgn>dh_shlibdeps</prgn>
@@ -6109,8 +6118,8 @@ Built-Using: grub2 (= 1.99-9), loadlin (= 1.6e-1)
 	    linked <em>indirectly</em> to <tt>foo</tt>, and the dynamic
 	    linker will load them automatically when it
 	    loads <tt>libbar</tt>.  A package should depend on the
-	    libraries it directly uses, but not the libraries it
-	    indirectly uses.  The dependencies for the libraries used
+	    libraries it directly uses, but not the libraries it only uses
+	    indirectly.  The dependencies for the libraries used
 	    directly will automatically pull in the indirectly-used
 	    libraries.  <prgn>dpkg-shlibdeps</prgn> will handle this logic
 	    automatically, but package maintainers need to be aware of
@@ -6154,14 +6163,15 @@ Built-Using: grub2 (= 1.99-9), loadlin (= 1.6e-1)
 	  <p>
 	    There are two types of ABI changes: ones that are
 	    backward-compatible and ones that are not.  An ABI change is
-	    backward-compatible if any binary was linked with the previous
-	    version of the shared library will still work correctly with
-	    the new version of the shared library.  Adding new symbols to
-	    the shared library is a backward-compatible change.  Removing
-	    symbols from the shared library is not.  Changing the behavior
-	    of a symbol may or may not be backward-compatible depending on
-	    the change; for example, changing a function to accept a new
-	    enum constant not previously used by the library is generally
+	    backward-compatible if any reasonable program or library that
+	    was linked with the previous version of the shared library
+	    will still work correctly with the new version of the shared
+	    library.  Adding new symbols to the shared library is a
+	    backward-compatible change.  Removing symbols from the shared
+	    library is not.  Changing the behavior of a symbol may or may
+	    not be backward-compatible depending on the change; for
+	    example, changing a function to accept a new enum constant not
+	    previously used by the library is generally
 	    backward-compatible, but changing the members of a struct that
 	    is passed into library functions is generally not unless the
 	    library takes special precautions to accept old versions of
@@ -6262,10 +6272,10 @@ Built-Using: grub2 (= 1.99-9), loadlin (= 1.6e-1)
 
 	    <p>
 	      <file>symbols</file> files for a shared library are normally
-	      provided by the shared library package, but there are
-	      several override paths that are checked first in case that
-	      information is wrong or missing.  The following list gives
-	      them in the order in which they are read
+	      provided by the shared library package as a control file,
+	      but there are several override paths that are checked first
+	      in case that information is wrong or missing.  The following
+	      list gives them in the order in which they are read
 	      by <prgn>dpkg-shlibdeps</prgn> The first one that contains
 	      the required information is used.
 	      <list>
@@ -6482,9 +6492,9 @@ Built-Using: grub2 (= 1.99-9), loadlin (= 1.6e-1)
 		compressBound@ZLIB_1.2.0 1:1.2.0
 	      </example>
 	      Packages using only <tt>compress</tt> would then get a
-	      dependency of <tt>zlib1g (>= 1:1.1.4)</tt>, but packages
+	      dependency on <tt>zlib1g (>= 1:1.1.4)</tt>, but packages
 	      using <tt>compressBound</tt> would get a dependency
-	      of <tt>zlib1g (>= 1:1.2.0)</tt>.
+	      on <tt>zlib1g (>= 1:1.2.0)</tt>.
 	    </p>
 
 	    <p>
