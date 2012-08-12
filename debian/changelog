@@ -1,3 +1,33 @@
+debian-policy (3.9.4.0) UNRELEASED; urgency=low
+
+  * Resynchronize the archive section list with ftp-master, adding tasks.
+    Patch from Charles Plessy.  (Closes: #670429)
+  * Policy: Copyright files must be encoded in UTF-8
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Guillem Jover <guillem@debian.org>
+    Seconded: Salvatore Bonaccorso <carnil@debian.org>
+    Seconded: Simon McVittie <smcv@debian.org>
+    Closes: #661933
+  * Policy: Prohibit deprecated < and > relations
+    Wording: Jakub Wilk <jwilk@debian.org>
+    Seconded: Cyril Brulebois <kibi@debian.org>
+    Seconded: Russ Allbery <rra@debian.org>
+    Closes: #663918
+  * Policy: Document the Built-Using field
+    Wording: Charles Plessy <plessy@debian.org>
+    Seconded: Russ Allbery <rra@debian.org>
+    Seconded: Ansgar Burchardt <ansgar@debian.org>
+    Closes: #641153
+  * Policy: Document the Vcs-* fields
+    Wording: Charles Plessy <plessy@debian.org>
+    Wording: Jonathan Nieder <jrnieder@gmail.com>
+    Seconded: Russ Allbery <rra@debian.org>
+    Seconded: Charles Plessy <plessy@debian.org>
+    Seconded: Guillem Jover <guillem@debian.org>
+    Closes: #654958
+
+ -- Russ Allbery <rra@debian.org>  Sat, 17 Mar 2012 16:30:33 -0700
+
 debian-policy (3.9.3.1) unstable; urgency=low
 
   * Fix cross-reference to control field syntax in Policy 5.4 (source

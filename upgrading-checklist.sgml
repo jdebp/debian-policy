@@ -34,6 +34,34 @@ picking your way through this list.
 
 <chapt> The checklist
 
+<sect id="3.9.4.0"> Version 3.9.4.0
+<p>
+
+Unreleased.
+
+</p><p><taglist>
+<tag>2.4</tag>
+  <item>New <em>tasks</em> archive section.
+  </item>
+<tag>5.6.26</tag>
+  <item>New section documenting the <tt>Vcs-*</tt> fields, which are
+  already in widespread use.  Note the mechanism for specifying the Git
+  branch used for packaging in the Vcs-Git field.
+  </item>
+<tag>7.1</tag>
+  <item>The deprecated relations &lt; and &gt; now must not be used.
+  </item>
+<tag>7.8</tag>
+  <item>New <tt>Built-Using</tt> field, which must be used to document the
+  source packages for any binaries that are incorporated into this package
+  at build time.  This is used to ensure that the archive meets license
+  requirements for providing source for all binaries.
+  </item>
+<tag>12.5</tag>
+  <item>All copyright files must be encoded in UTF-8.
+  </item>
+</taglist></p>
+
 <sect id="3.9.3.0"> Version 3.9.3.0
 <p>
 

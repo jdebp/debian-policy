@@ -714,21 +714,62 @@
 	<p>
 	  The Debian archive maintainers provide the authoritative
 	  list of sections.  At present, they are:
-	  <em>admin</em>, <em>cli-mono</em>, <em>comm</em>, <em>database</em>,
-	  <em>devel</em>, <em>debug</em>, <em>doc</em>, <em>editors</em>,
-	  <em>education</em>, <em>electronics</em>, <em>embedded</em>,
-	  <em>fonts</em>, <em>games</em>, <em>gnome</em>, <em>graphics</em>,
-	  <em>gnu-r</em>, <em>gnustep</em>, <em>hamradio</em>, <em>haskell</em>,
-	  <em>httpd</em>, <em>interpreters</em>, <em>introspection</em>,
-	  <em>java</em>, <em>kde</em>, <em>kernel</em>, <em>libs</em>,
-	  <em>libdevel</em>, <em>lisp</em>, <em>localization</em>,
-	  <em>mail</em>, <em>math</em>, <em>metapackages</em>, <em>misc</em>,
-	  <em>net</em>, <em>news</em>, <em>ocaml</em>, <em>oldlibs</em>,
-	  <em>otherosfs</em>, <em>perl</em>, <em>php</em>, <em>python</em>,
-	  <em>ruby</em>, <em>science</em>, <em>shells</em>, <em>sound</em>,
-	  <em>tex</em>, <em>text</em>, <em>utils</em>, <em>vcs</em>,
-	  <em>video</em>, <em>web</em>, <em>x11</em>, <em>xfce</em>,
-	  <em>zope</em>.  The additional section <em>debian-installer</em>
+admin,
+cli-mono,
+comm,
+database,
+debug,
+devel,
+doc,
+editors,
+education,
+electronics,
+embedded,
+fonts,
+games,
+gnome,
+gnu-r,
+gnustep,
+graphics,
+hamradio,
+haskell,
+httpd,
+interpreters,
+introspection,
+java,
+kde,
+kernel,
+libdevel,
+libs,
+lisp,
+localization,
+mail,
+math,
+metapackages,
+misc,
+net,
+news,
+ocaml,
+oldlibs,
+otherosfs,
+perl,
+php,
+python,
+ruby,
+science,
+shells,
+sound,
+tasks,
+tex,
+text,
+utils,
+vcs,
+video,
+web,
+x11,
+xfce,
+zope.
+	  The additional section <em>debian-installer</em>
 	  contains special packages used by the installer and is not used
 	  for normal Debian packages.
 	</p>
@@ -2632,6 +2673,7 @@ Package: libc6
 	    <item><qref id="sourcebinarydeps"><tt>Build-Depends</tt> et al</qref></item>
 	    <item><qref id="f-Standards-Version"><tt>Standards-Version</tt></qref> (recommended)</item>
 	    <item><qref id="f-Homepage"><tt>Homepage</tt></qref></item>
+	    <item><qref id="f-VCS-fields"><tt>Vcs-Browser</tt>, <tt>Vcs-Git</tt>, et al.</qref></item>
 	  </list>
 	</p>
 
@@ -2647,6 +2689,7 @@ Package: libc6
 	    <item><qref id="binarydeps"><tt>Depends</tt> et al</qref></item>
 	    <item><qref id="f-Description"><tt>Description</tt></qref> (mandatory)</item>
 	    <item><qref id="f-Homepage"><tt>Homepage</tt></qref></item>
+	    <item><qref id="built-using"><tt>Built-Using</tt></qref></item>
 	  </list>
 	</p>
 
@@ -2702,6 +2745,7 @@ Package: libc6
 	    <item><qref id="f-Maintainer"><tt>Maintainer</tt></qref> (mandatory)</item>
 	    <item><qref id="f-Description"><tt>Description</tt></qref> (mandatory)</item>
 	    <item><qref id="f-Homepage"><tt>Homepage</tt></qref></item>
+	    <item><qref id="built-using"><tt>Built-Using</tt></qref></item>
 	  </list>
 	</p>
       </sect>
@@ -2724,6 +2768,7 @@ Package: libc6
 	  <item><qref id="f-Uploaders"><tt>Uploaders</tt></qref></item>
 	  <item><qref id="f-DM-Upload-Allowed"><tt>DM-Upload-Allowed</tt></qref></item>
 	  <item><qref id="f-Homepage"><tt>Homepage</tt></qref></item>
+	  <item><qref id="f-VCS-fields"><tt>Vcs-Browser</tt>, <tt>Vcs-Git</tt>, et al.</qref></item>
 	  <item><qref id="f-Standards-Version"><tt>Standards-Version</tt></qref> (recommended)</item>
 	  <item><qref id="sourcebinarydeps"><tt>Build-Depends</tt> et al</qref></item>
 	  <item><qref id="f-Checksums"><tt>Checksums-Sha1</tt>
@@ -3738,6 +3783,53 @@ Checksums-Sha256:
 	    details.
 	  </p>
 	</sect1>
+
+	<sect1 id="f-VCS-fields">
+	  <heading>Version Control System (VCS) fields</heading>
+
+	  <p>
+	    Debian source packages are increasingly developed using VCSs.  The
+	    purpose of the following fields is to indicate a publicly accessible
+	    repository where the Debian source package is developed.
+
+	    <taglist>
+	      <tag><tt>Vcs-Browser</tt></tag>
+	      <item>
+		<p>
+		  URL of a web interface for browsing the repository.
+		</p>
+	      </item>
+
+	      <tag>
+		<tt>Vcs-Arch</tt>, <tt>Vcs-Bzr</tt> (Bazaar), <tt>Vcs-Cvs</tt>,
+		<tt>Vcs-Darcs</tt>, <tt>Vcs-Git</tt>, <tt>Vcs-Hg</tt>
+		(Mercurial), <tt>Vcs-Mtn</tt> (Monotone), <tt>Vcs-Svn</tt>
+		(Subversion)
+	      </tag>
+	      <item>
+		<p>
+		  The field name identifies the VCS. The field's value uses the
+		  version control system's conventional syntax for describing
+		  repository locations and should be sufficient to locate the
+		  repository used for packaging. Ideally, it also locates the
+		  branch used for development of new versions of the Debian
+		  package.
+		</p>
+		<p>
+		  In the case of Git, the value consists of a URL, optionally
+		  followed by the word <tt>-b</tt> and the name of a branch in
+		  the indicated repository, following the syntax of the
+		  <tt>git clone</tt> command.  If no branch is specified, the
+		  packaging should be on the default branch.
+		</p>
+		<p>
+		  More than one different VCS may be specified for the same
+		  package.
+		</p>
+	      </item>
+	    </taglist>
+	  </p>
+	</sect1>
       </sect>
 
       <sect>
@@ -4608,13 +4700,13 @@ fi
 
 	<p>
 	  The relations allowed are <tt>&lt;&lt;</tt>, <tt>&lt;=</tt>,
-	  <tt>=</tt>, <tt>&gt;=</tt> and <tt>&gt;&gt;</tt> for
-	  strictly earlier, earlier or equal, exactly equal, later or
-	  equal and strictly later, respectively.  The deprecated
-	  forms <tt>&lt;</tt> and <tt>&gt;</tt> were used to mean
-	  earlier/later or equal, rather than strictly earlier/later,
-	  so they should not appear in new packages (though
-	  <prgn>dpkg</prgn> still supports them).
+	  <tt>=</tt>, <tt>&gt;=</tt> and <tt>&gt;&gt;</tt> for strictly
+	  earlier, earlier or equal, exactly equal, later or equal and
+	  strictly later, respectively.  The deprecated
+	  forms <tt>&lt;</tt> and <tt>&gt;</tt> were confusingly used to
+	  mean earlier/later or equal, rather than strictly earlier/later,
+	  and must not appear in new packages (though <prgn>dpkg</prgn>
+	  still supports them with a warning).
 	</p>
 
 	<p>
@@ -4678,7 +4770,8 @@ Build-Depends: kernel-headers-2.2.10 [!hurd-i386],
 	</p>
 
 	<p>
-	  For binary relationship fields, the architecture restriction
+	  For binary relationship fields and the <tt>Built-Using</tt>
+	  field, the architecture restriction
 	  syntax is only supported in the source package control
 	  file <file>debian/control</file>.  When the corresponding binary
 	  package control file is generated, the relationship will either
@@ -5400,6 +5493,53 @@ Replaces: mail-transport-agent
 	      these targets are invoked.
 	    </item>
 	  </taglist>
+	</p>
+      </sect>
+
+      <sect id="built-using">
+	<heading>Additional source packages used to build the binary
+	  - <tt>Built-Using</tt>
+	</heading>
+
+	<p>
+	  Some binary packages incorporate parts of other packages when built
+	  but do not have to depend on those packages.  Examples include
+	  linking with static libraries or incorporating source code from
+	  another package during the build.  In this case, the source packages
+	  of those other packages are a required part of the complete source
+	  (the binary package is not reproducible without them).
+	</p>
+
+	<p>
+	  A <tt>Built-Using</tt> field must list the corresponding source
+	  package for any such binary package incorporated during the build
+	  <footnote>
+	    <tt>Build-Depends</tt> in the source package is not adequate since
+	    it (rightfully) does not document the exact version used in the
+	    build.
+	  </footnote>,
+	  including an "exactly equal" ("=") version relation on the version
+	  that was used to build that binary package<footnote>
+	    The archive software might reject packages that refer to
+	    non-existent sources.
+	  </footnote>.
+	</p>
+
+	<p>
+	  A package using the source code from the gcc-4.6-source
+	  binary package built from the gcc-4.6 source package would
+	  have this field in its control file:
+	  <example compact="compact">
+Built-Using: gcc-4.6 (= 4.6.0-11)
+	  </example>
+	</p>
+
+	<p>
+	  A package including binaries from grub2 and loadlin would
+	  have this field in its control file:
+	  <example compact="compact">
+Built-Using: grub2 (= 1.99-9), loadlin (= 1.6e-1)
+	  </example>
 	</p>
       </sect>
     </chapt>
@@ -10446,6 +10586,10 @@ END-INFO-DIR-ENTRY
 	  file.  If your package has such a file it should be
 	  installed in <file>/usr/share/doc/<var>package</var>/README</file> or
 	  <file>README.Debian</file> or some other appropriate place.
+	</p>
+
+	<p>
+	  All copyright files must be encoded in UTF-8.
 	</p>
 
 	<sect1 id="copyrightformat">
