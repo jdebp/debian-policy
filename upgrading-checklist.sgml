@@ -40,6 +40,9 @@ picking your way through this list.
 Unreleased.
 
 </p><p><taglist>
+<tag>2.4</tag>
+  <item>New <em>tasks</em> archive section.
+  </item>
 <tag>5.6.26</tag>
   <item>New section documenting the <tt>Vcs-*</tt> fields, which are
   already in widespread use.  Note the mechanism for specifying the Git

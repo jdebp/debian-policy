@@ -1,5 +1,7 @@
 debian-policy (3.9.4.0) UNRELEASED; urgency=low
 
+  * Resynchronize the archive section list with ftp-master, adding tasks.
+    Patch from Charles Plessy.  (Closes: #670429)
   * Policy: Copyright files must be encoded in UTF-8
     Wording: Russ Allbery <rra@debian.org>
     Seconded: Guillem Jover <guillem@debian.org>
