@@ -6016,7 +6016,7 @@ Built-Using: grub2 (= 1.99-9), loadlin (= 1.6e-1)
 	</p>
 
 	<p>
-	  <file>shlibs<file> files also only support a limited range of
+	  <file>shlibs</file> files also only support a limited range of
 	  library SONAMEs, making it difficult to use <file>shlibs</file>
 	  files in some unusual corner cases.<footnote>
 	    A <file>shlibs</file> file represents an SONAME as a library
