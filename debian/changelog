@@ -1,5 +1,9 @@
 debian-policy (3.9.4.0) UNRELEASED; urgency=low
 
+  * build-arch and build-indep are now mandatory targets in debian/rules,
+    implementing the Technical Committee ruling in #629385.  Wording
+    review by Jonathan Nieder, Jakub Wilk, and Roger Leigh.
+    (Closes: #374029)
   * Resynchronize the archive section list with ftp-master, adding tasks.
     Patch from Charles Plessy.  (Closes: #670429)
   * Policy: Copyright files must be encoded in UTF-8

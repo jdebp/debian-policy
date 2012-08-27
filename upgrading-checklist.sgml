@@ -43,6 +43,10 @@ Unreleased.
 <tag>2.4</tag>
   <item>New <em>tasks</em> archive section.
   </item>
+<tag>4.9</tag>
+  <item><tt>build-arch</tt> and <tt>build-indep</tt> are now mandatory
+  targets in <file>debian/rules</file>.
+  </item>
 <tag>5.6.26</tag>
   <item>New section documenting the <tt>Vcs-*</tt> fields, which are
   already in widespread use.  Note the mechanism for specifying the Git
