@@ -25,6 +25,17 @@ debian-policy (3.9.4.0) UNRELEASED; urgency=low
     Seconded: Charles Plessy <plessy@debian.org>
     Seconded: Guillem Jover <guillem@debian.org>
     Closes: #654958
+  * Policy: Document restrictions on the use of /run for wheezy
+    Wording: Roger Leigh <rleigh@debian.org>
+    Seconded: Charles Plessy <plessy@debian.org>
+    Seconded: Russ Allbery <rra@debian.org>
+    Closes: #676561
+  * Policy: Rewrite shared library dependency policy to document symbols
+    Wording: Russ Allbery <rra@debian.org>
+    Wording: Jonathan Nieder <jrnieder@gmail.com>
+    Seconded: Raphaël Hertzog <hertzog@debian.org>
+    Seconded: Julien Cristau <jcristau@debian.org>
+    Closes: #571776
 
  -- Russ Allbery <rra@debian.org>  Sat, 17 Mar 2012 16:30:33 -0700
 
