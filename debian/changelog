@@ -40,6 +40,11 @@ debian-policy (3.9.4.0) UNRELEASED; urgency=low
     Seconded: Raphaël Hertzog <hertzog@debian.org>
     Seconded: Julien Cristau <jcristau@debian.org>
     Closes: #571776
+  * Policy: Document generic and upstart-specific init system requirements
+    Wording: Steve Langasek <steve.langasek@canonical.com>
+    Seconded: Russ Allbery <rra@debian.org>
+    Seconded: Adam D. Barratt <adam@adam-barratt.org.uk>
+    Closes: #591791
 
  -- Russ Allbery <rra@debian.org>  Sat, 17 Mar 2012 16:30:33 -0700
 
