@@ -45,6 +45,11 @@ debian-policy (3.9.4.0) UNRELEASED; urgency=low
     Seconded: Russ Allbery <rra@debian.org>
     Seconded: Adam D. Barratt <adam@adam-barratt.org.uk>
     Closes: #591791
+  * Policy: Rely on triggers instead of calling update-mime
+    Wording: Charles Plessy <plessy@debian.org>
+    Seconded: Russ Allbery <rra@debian.org>
+    Seconded: Guillem Jover <guillem@debian.org>
+    Closes: #661816
 
  -- Russ Allbery <rra@debian.org>  Sat, 17 Mar 2012 16:30:33 -0700
 

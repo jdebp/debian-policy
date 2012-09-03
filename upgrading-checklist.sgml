@@ -74,6 +74,9 @@ Unreleased.
   is usable without a dependency on <tt>initscripts (>= 2.88dsf-13.3)</tt>
   until the stable release of Debian supports <file>/run</file>.
   </item>
+<tag>9.7</tag>
+  <item>Packages including MIME configuration can now rely on triggers and
+  do not need to call update-mime.</item>
 <tag>9.11</tag>
   <item>New section documenting general requirements for alternate init
   systems and specific requirements for integrating with upstart.
