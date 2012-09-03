@@ -8048,13 +8048,14 @@ Reloading <var>description</var> configuration...done.
 	<p>
 	  The <package>mime-support</package> package provides the
 	  <prgn>update-mime</prgn> program, which integrates these
-	  registrations in the <file>/etc/mailcap</file> file, using Dpkg
+	  registrations in the <file>/etc/mailcap</file> file, using dpkg
 	  triggers<footnote>
 	    Creating, modifying or removing a file in
 	    <file>/usr/lib/mime/packages/</file> using maintainer scripts will
 	    not activate the trigger.  In that case, it can be done by calling
-	    <tt>dpkg-trigger --no-await --by-package=&lt;me&gt; /usr/lib/mime/packages</tt>,
-	    where <tt>&lt;me&gt;</tt> is the name of the package.
+	    <tt>dpkg-trigger --no-await /usr/lib/mime/packages</tt> from
+	    the maintainer script after creating, modifying, or removing
+	    the file.
 	  </footnote>.
 	  Packages using this facility <em>should not</em> depend on,
 	  recommend, or suggest <prgn>mime-support</prgn>.
