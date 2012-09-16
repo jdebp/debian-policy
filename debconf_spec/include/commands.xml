@@ -41,6 +41,16 @@
 	  </entry>
         </row>
 	<row>
+	  <entry>escape</entry>
+	  <entry>
+	    The frontend expects commands sent to it to have backslashes and
+	    newlines quoted as <literal>\\</literal> and <literal>\n</literal>
+	    respectively and will in turn quote backslashes and newlines in its
+	    replies.  See <citerefentry><refentrytitle>debconf-escape</refentrytitle>
+	    <manvolnum>1</manvolnum></citerefentry>.
+	  </entry>
+	</row>
+	<row>
 	  <entry>multiselect</entry>
 	  <entry>
 	    The multiselect data type is supported. You do not need to

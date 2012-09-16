@@ -16,6 +16,11 @@ debian-policy (3.9.5.0) UNRELEASED; urgency=low
     Seconded: Guillem Jover <guillem@debian.org>
     Seconded: Ansgar Burchardt <ansgar@debian.org>
     Closes: #690293
+  * debconf_spec: Document the 'escape' capability.
+    Wording: Jonathan Nieder <jrnieder@gmail.com>
+    Seconded: Charles Plessy <plessy@debian.org>
+    Seconded: Russ Allbery <rra@debian.org>
+    Closes: #671355
   * Remove outdated mention of dselect documentation.
     Closes: #700574.  Thanks, Guillem Jover.
   * Update dak reference from old katie name.
