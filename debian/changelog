@@ -1,4 +1,4 @@
-debian-policy (3.9.4.0) UNRELEASED; urgency=low
+debian-policy (3.9.4.0) unstable; urgency=low
 
   * build-arch and build-indep are now mandatory targets in debian/rules,
     implementing the Technical Committee ruling in #629385.  Wording
@@ -51,7 +51,7 @@ debian-policy (3.9.4.0) UNRELEASED; urgency=low
     Seconded: Guillem Jover <guillem@debian.org>
     Closes: #661816
 
- -- Russ Allbery <rra@debian.org>  Sat, 17 Mar 2012 16:30:33 -0700
+ -- Russ Allbery <rra@debian.org>  Tue, 18 Sep 2012 21:35:36 -0700
 
 debian-policy (3.9.3.1) unstable; urgency=low
 
