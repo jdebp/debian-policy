@@ -6623,7 +6623,7 @@ Built-Using: grub2 (= 1.99-9), loadlin (= 1.6e-1)
 	  <heading>The <tt>shlibs</tt> system</heading>
 
 	  <p>
-	    The <tt>shlibs</tt> system is an simpler alternative to
+	    The <tt>shlibs</tt> system is a simpler alternative to
 	    the <tt>symbols</tt> system for declaring dependencies for
 	    shared libraries.  It may be more appropriate for C++
 	    libraries and other cases where tracking individual symbols is

@@ -1,3 +1,9 @@
+debian-policy (3.9.4.1) UNRELEASED; urgency=low
+
+  * Fix typo in 8.6.4.  Thanks, Raúl Benencia.  (Closes: #691352)
+
+ -- Russ Allbery <rra@debian.org>  Sat, 03 Nov 2012 15:32:46 -0700
+
 debian-policy (3.9.4.0) unstable; urgency=low
 
   * build-arch and build-indep are now mandatory targets in debian/rules,
