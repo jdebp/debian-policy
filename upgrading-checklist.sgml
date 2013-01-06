@@ -47,6 +47,13 @@ Unreleased.
 <tag>5.6.25, 5.8.1</tag>
   <item>The <tt>DM-Upload-Allowed</tt> field is obsolete.  Permissions
   are now granted via <em>dak-commands</em> files.
+<tag>5.6.27</tag>
+  <item>New section documenting the <tt>Package-List</tt> field in Debian
+  source control files.
+  </item>
+<tag>5.6.28</tag>
+  <item>New section documenting the <tt>Package-Type</tt> field in source
+  package control files.
   </item>
 </taglist></p>
 
