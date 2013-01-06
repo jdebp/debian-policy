@@ -2671,6 +2671,7 @@ Package: libc6
 	    <item><qref id="f-Description"><tt>Description</tt></qref> (mandatory)</item>
 	    <item><qref id="f-Homepage"><tt>Homepage</tt></qref></item>
 	    <item><qref id="built-using"><tt>Built-Using</tt></qref></item>
+	    <item><qref id="f-Package-Type"><tt>Package-Type</tt></qref></item>
 	  </list>
 	</p>
 
@@ -2751,6 +2752,7 @@ Package: libc6
 	  <item><qref id="f-VCS-fields"><tt>Vcs-Browser</tt>, <tt>Vcs-Git</tt>, et al.</qref></item>
 	  <item><qref id="f-Standards-Version"><tt>Standards-Version</tt></qref> (recommended)</item>
 	  <item><qref id="sourcebinarydeps"><tt>Build-Depends</tt> et al</qref></item>
+	  <item><qref id="f-Package-List"><tt>Package-List</tt></qref> (recommended)</item>
 	  <item><qref id="f-Checksums"><tt>Checksums-Sha1</tt>
 	      and <tt>Checksums-Sha256</tt></qref> (mandatory)</item>
 	  <item><qref id="f-Files"><tt>Files</tt></qref> (mandatory)</item>
@@ -3799,6 +3801,34 @@ Checksums-Sha256:
 		</p>
 	      </item>
 	    </taglist>
+	  </p>
+	</sect1>
+
+	<sect1 id="f-Package-List">
+	  <heading><tt>Package-List</tt></heading>
+
+	  <p>
+	    Multiline field listing all the packages that can be built from
+	    the source package, considering every architecture.  The first line
+	    of the field value is empty.  Each one of the next lines describes
+	    one binary package, by listing its name, type, section and priority
+	    separated by spaces.  Fifth and subsequent space-separated items
+	    may be present and parsers must allow them.  See the
+	    <qref id="f-Package-Type">Package-Type</qref> field for a list of
+	    package types.
+	  </p>
+	</sect1>
+
+	<sect1 id="f-Package-Type">
+	  <heading><tt>Package-Type</tt></heading>
+
+	  <p>
+	    Simple field containing a word indicating the type of package:
+	    <tt>deb</tt> for binary packages and <tt>udeb</tt> for micro binary
+	    packages.  Other types not defined here may be indicated.  In
+	    source package control files, the <tt>Package-Type</tt> field
+	    should be omitted instead of giving it a value of <tt>deb</tt>, as
+	    this value is assumed for paragraphs lacking this field.
 	  </p>
 	</sect1>
       </sect>
