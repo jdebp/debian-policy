@@ -44,6 +44,10 @@ Unreleased.
   <item><tt>Checksums-Sha1</tt> and <tt>Checksums-Sha256</tt> are now
   mandatory in <file>.dsc</file> files.
   </item>
+<tag>5.6.25, 5.8.1</tag>
+  <item>The <tt>DM-Upload-Allowed</tt> field is obsolete.  Permissions
+  are now granted via <em>dak-commands</em> files.
+  </item>
 </taglist></p>
 
 <sect id="3.9.4.0"> Version 3.9.4.0

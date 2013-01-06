@@ -1,5 +1,12 @@
 debian-policy (3.9.5.0) UNRELEASED; urgency=low
 
+  * Policy: DM-Upload-Allowed is now obsolete
+    Wording: Charles Plessy <plessy@debian.org>
+    Seconded: Russ Allbery <rra@debian.org>
+    Seconded: Ansgar Burchardt <ansgar@debian.org>
+    Seconded: Guillem Jover <guillem@debian.org>
+    Closes: #679326
+
   * Policy: Checksums-{Sha1,Sha256} are now mandatory
     Wording: Charles Plessy <plessy@debian.org>
     Seconded: Guillem Jover <guillem@debian.org>
