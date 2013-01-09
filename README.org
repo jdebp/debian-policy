@@ -105,36 +105,41 @@ delegation). All of the Policy team members do basically the same
 work: shepherd proposals, propose wording, and merge changes when
 consensus has been reached. The current delegates are:
 
-+ Russ Allbery
-+ Bill Allombert
-+ Andrew McMillan
-+ Manoj Srivastava
-+ Colin Watson (cjwatson) 
++ Andreas Barth (aba)
++ Bill Allombert (ballombe)
++ Charles Plessy (plessy)
++ Russ Allbery (rra)
 
-The special tasks of Policy delegates are:
+* Task description
 
-+ Commit access to the Git repository and uploads of the debian-policy
-  package itself, which makes them responsible for debian-policy as a
-  package in Debian and for making final decisions about when a new
-  version is released and what bits go into it.
-+ Rejecting proposals. Anyone can argue against a proposal, but only
-  Policy delegates can formally reject it.
-+ Counting seconds and weighing objections to proposals to determine
-  whether the proposal has sufficient support to be included.
+The Debian Policy team is responsible for maintaining and coordinating
+updates to the Debian Policy Manual and all the other policy documents
+released as part of the "debian-policy" package.
+
+The Debian Policy Editors:
+
++ Guide the work on the Debian Policy Manual and related documents as a
+  collaborative process where developers review and second or object to
+  proposals, usually on the debian-policy mailing list.
+
++ Count seconds and weight objections to proposals, to determine whether
+  they have reached sufficient consensus to be included, and accept
+  consensual proposals.
+
++ Reject or refer to the Technical Committee proposals that fail to
+  reach consensus.
+
++ Commit changes to the version control system repository used to
+  maintain the Debian Policy Manual and related documents.
+
++ Maintain the "debian-policy" package. As package maintainers, they
+  have the last word on package content, releases, bug reports, etc.
 
 Everything else can be done by anyone, or any DD (depending on the
 outcome of the discussion about seconding). We explicitly want any
 Debian DD to review and second or object to proposals. The more
 participation, the better. Many other people are active on the Policy
 mailing list without being project delegates.
-
-* Task description
-
-The Debian Policy team is responsible for maintaining and coordinating
-updates to the technical Policy manuals for the project. The primary
-output of the team is the Debian Policy Manual and the assorted
-subpolicies, released as the debian-policy Debian package and also
-published at [[http://www.debian.org/doc/]].
 
 In addition to the main technical manual, the team currently also maintains:
 
