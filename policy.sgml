@@ -11216,55 +11216,7 @@ END-INFO-DIR-ENTRY
 	  </heading>
 
 	  <p>
-	    <prgn>dpkg-buildpackage</prgn> is a script which invokes
-	    <prgn>dpkg-source</prgn>, the <file>debian/rules</file>
-	    targets <tt>clean</tt>, <tt>build</tt> and
-	    <tt>binary</tt>, <prgn>dpkg-genchanges</prgn> and
-	    <prgn>gpg</prgn> (or <prgn>pgp</prgn>) to build a signed
-	    source and binary package upload.
-	  </p>
-
-	  <p>
-	    It is usually invoked by hand from the top level of the
-	    built or unbuilt source directory.  It may be invoked with
-	    no arguments; useful arguments include:
-	    <taglist compact="compact">
-	      <tag><tt>-uc</tt>, <tt>-us</tt></tag>
-	      <item>
-		<p>
-		  Do not sign the <tt>.changes</tt> file or the
-		  source package <tt>.dsc</tt> file, respectively.</p>
-	      </item>
-	      <tag><tt>-p<var>sign-command</var></tt></tag>
-	      <item>
-		<p>
-		  Invoke <var>sign-command</var> instead of finding
-		  <tt>gpg</tt> or <tt>pgp</tt> on the <prgn>PATH</prgn>.
-		  <var>sign-command</var> must behave just like
-		  <prgn>gpg</prgn> or <tt>pgp</tt>.</p>
-	      </item>
-	      <tag><tt>-r<var>root-command</var></tt></tag>
-	      <item>
-		<p>
-		  When root privilege is required, invoke the command
-		  <var>root-command</var>.  <var>root-command</var>
-		  should invoke its first argument as a command, from
-		  the <prgn>PATH</prgn> if necessary, and pass its
-		  second and subsequent arguments to the command it
-		  calls.  If no <var>root-command</var> is supplied
-		  then <var>dpkg-buildpackage</var> will use
-		  the <prgn>fakeroot</prgn> command, which is sufficient
-		  to build most packages without actually requiring root
-		  privileges.</p>
-	      </item>
-	      <tag><tt>-b</tt>, <tt>-B</tt></tag>
-	      <item>
-		<p>
-		  Two types of binary-only build and upload - see
-		  <manref name="dpkg-source" section="1">.
-		</p>
-	      </item>
-	    </taglist>
+	    See <manref name="dpkg-buildpackage" section="1">.
 	  </p>
 	</sect1>
 
