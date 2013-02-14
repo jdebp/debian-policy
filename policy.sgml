@@ -10868,12 +10868,6 @@ END-INFO-DIR-ENTRY
 	they interact with packages.</p>
 
       <p>
-	It also documents the interaction between
-	<prgn>dselect</prgn>'s core and the access method scripts it
-	uses to actually install the selected packages, and describes
-	how to create a new access method.</p>
-
-      <p>
 	This manual does not go into detail about the options and
 	usage of the package building and installation tools.  It
 	should therefore be read in conjunction with those programs'
