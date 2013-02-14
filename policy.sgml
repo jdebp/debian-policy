@@ -10896,24 +10896,8 @@ END-INFO-DIR-ENTRY
       <heading>Binary packages (from old Packaging Manual)</heading>
 
       <p>
-	The binary package has two main sections.  The first part
-	consists of various control information files and scripts used
-	by <prgn>dpkg</prgn> when installing and removing.  See <ref
-	id="pkg-controlarea">.
+	See <manref name="deb" section="5"> and <ref id="pkg-controlarea">.
       </p>
-
-      <p>
-	The second part is an archive containing the files and
-	directories to be installed.
-      </p>
-
-      <p>
-	In the future binary packages may also contain other
-	components, such as checksums and digital signatures. The
-	format for the archive is described in full in the
-	<file>deb(5)</file> man page.
-      </p>
-
 
       <sect id="pkg-bincreating"><heading>Creating package files -
       <prgn>dpkg-deb</prgn>
