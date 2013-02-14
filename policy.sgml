@@ -10876,10 +10876,7 @@ END-INFO-DIR-ENTRY
 
       <p>
 	The utility programs which are provided with <prgn>dpkg</prgn>
-	for managing various system configuration and similar issues,
-	such as <prgn>update-rc.d</prgn> and
-	<prgn>install-info</prgn>, are not described in detail here -
-	please see their man pages.
+	not described in detail here, are documented in their man pages.
       </p>
 
       <p>
