@@ -6,12 +6,13 @@ debian-policy (3.9.5.0) UNRELEASED; urgency=low
     Seconded: Ansgar Burchardt <ansgar@debian.org>
     Seconded: Guillem Jover <guillem@debian.org>
     Closes: #679326
-
   * Policy: Checksums-{Sha1,Sha256} are now mandatory
     Wording: Charles Plessy <plessy@debian.org>
     Seconded: Guillem Jover <guillem@debian.org>
     Seconded: Ansgar Burchardt <ansgar@debian.org>
     Closes: #690293
+  * Update dak reference from old katie name.  Thanks, Guillem Jover.
+    Closes: #700536
   * Fix typo in 8.6.4.  Thanks, Raúl Benencia.  (Closes: #691352)
 
  -- Russ Allbery <rra@debian.org>  Sat, 03 Nov 2012 15:32:46 -0700
