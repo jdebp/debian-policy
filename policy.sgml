@@ -2153,7 +2153,7 @@ zope.
 	<p>
 	  The architectures we build on and build for are determined
 	  by <prgn>make</prgn> variables using the
-	  utility <qref id="pkg-dpkg-architecture"><prgn>dpkg-architecture</prgn></qref>.
+	  utility <prgn>dpkg-architecture</prgn>.
 	  You can determine the Debian architecture and the GNU style
 	  architecture specification string for the build architecture as
 	  well as for the host architecture.  The build architecture is
@@ -11388,22 +11388,9 @@ END-INFO-DIR-ENTRY
 	  </heading>
 
 	  <p>
-	    This program is usually called by package-independent
-	    automatic building scripts such as
-	    <prgn>dpkg-buildpackage</prgn>, but it may also be called
-	    by hand.
-	  </p>
-
-	  <p>
-	    It is usually called in the top level of a built source
-	    tree, and when invoked with no arguments will print out a
-	    straightforward <file>.changes</file> file based on the
-	    information in the source package's changelog and control
-	    file and the binary and source packages which should have
-	    been built.
+	    See <manref name="dpkg-genchanges" section="1">.
 	  </p>
 	</sect1>
-
 
 	<sect1 id="pkg-dpkg-parsechangelog">
           <heading>
@@ -11412,12 +11399,7 @@ END-INFO-DIR-ENTRY
 	  </heading>
 
 	  <p>
-	    This program is used internally by
-	    <prgn>dpkg-source</prgn> et al.  It may also occasionally
-	    be useful in <file>debian/rules</file> and elsewhere.  It
-	    parses a changelog, <file>debian/changelog</file> by default,
-	    and prints a control-file format representation of the
-	    information in it to standard output.
+	    See <manref name="dpkg-parsechangelog" section="1">.
 	  </p>
 	</sect1>
 
@@ -11428,10 +11410,7 @@ END-INFO-DIR-ENTRY
           </heading>
 
           <p>
-            This program can be used manually, but is also invoked by
-            <tt>dpkg-buildpackage</tt> or <file>debian/rules</file> to set
-            environment or make variables which specify the build and host
-            architecture for the package building process.
+	    See <manref name="dpkg-architecture" section="1">.
           </p>
         </sect1>
       </sect>
