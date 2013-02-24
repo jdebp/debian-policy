@@ -16,8 +16,10 @@ debian-policy (3.9.5.0) UNRELEASED; urgency=low
     Seconded: Guillem Jover <guillem@debian.org>
     Seconded: Ansgar Burchardt <ansgar@debian.org>
     Closes: #690293
-  * Update dak reference from old katie name.  Thanks, Guillem Jover.
-    Closes: #700536
+  * Remove outdated mention of dselect documentation.
+    Closes: #700574.  Thanks, Guillem Jover.
+  * Update dak reference from old katie name.
+    Closes: #700536.  Thanks, Guillem Jover.
   * Fix typo in 8.6.4.  Thanks, Raúl Benencia.  (Closes: #691352)
 
  -- Russ Allbery <rra@debian.org>  Sat, 03 Nov 2012 15:32:46 -0700
