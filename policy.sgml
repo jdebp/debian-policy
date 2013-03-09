@@ -158,6 +158,14 @@
 	  distributed in some other way or is intended for local use
 	  only.
 	</p>
+
+	<p>
+	  udebs (stripped-down binary packages used by the Debian Installer) do
+	  not comply with all of the requirements discussed here.  See the
+	  <url name="Debian Installer internals manual"
+	  id="http://d-i.alioth.debian.org/doc/internals/ch03.html"> for more
+	  information about them.
+	</p>
       </sect>
 
       <sect>

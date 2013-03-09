@@ -16,6 +16,13 @@ debian-policy (3.9.5.0) UNRELEASED; urgency=low
     Seconded: Guillem Jover <guillem@debian.org>
     Seconded: Ansgar Burchardt <ansgar@debian.org>
     Closes: #690293
+  * Policy: Requirements for udebs are not well documented yet
+    Wording: Russ Allbery <rra@debian.org>
+    Wording: Jonathan Nieder <jrnieder@gmail.com>
+    Seconded: Charles Plessy <plessy@debian.org>
+    Seconded: Cyril Brulebois <kibi@debian.org>
+    Seconded: Russ Allbery <rra@debian.org>
+    Closes: #698030
   * debconf_spec: Document the 'escape' capability.
     Wording: Jonathan Nieder <jrnieder@gmail.com>
     Seconded: Charles Plessy <plessy@debian.org>
