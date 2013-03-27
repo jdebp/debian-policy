@@ -6743,7 +6743,7 @@ Built-Using: grub2 (= 1.99-9), loadlin (= 1.6e-1)
 		    The <file>shlibs</file> control files for all the
 		    packages currently installed on the system.  These are
 		    normally found
-		    in <file>/var/lib/dpkg/info/*.symbols</file>, but
+		    in <file>/var/lib/dpkg/info/*.shlibs</file>, but
 		    packages should not rely on this and instead should
 		    use <tt>dpkg-query --control-path <var>package</var>
 		    shlibs</tt> if for some reason these files need to be
