@@ -34,6 +34,7 @@ debian-policy (3.9.5.0) UNRELEASED; urgency=low
   * Update dak reference from old katie name.
     Closes: #700536.  Thanks, Guillem Jover.
   * Fix typo in 8.6.4.  Thanks, Raúl Benencia.  (Closes: #691352)
+  * Fix typo in 8.6.4.1.  Thanks, Salvatore Bonaccorso <carnil@debian.org>.
 
  -- Russ Allbery <rra@debian.org>  Sat, 03 Nov 2012 15:32:46 -0700
 
