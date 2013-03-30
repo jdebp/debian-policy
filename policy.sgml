@@ -12047,6 +12047,11 @@ END-INFO-DIR-ENTRY
 	there is a time, after it has been diverted but before
 	<prgn>dpkg</prgn> has installed the new version, when the file
 	does not exist.</p>
+
+      <p>
+	Do not attempt to divert a conffile, as <prgn>dpkg</prgn> does not
+	handle it well.
+      </p>
     </appendix>
 
   </book>
