@@ -23,6 +23,11 @@ debian-policy (3.9.5.0) UNRELEASED; urgency=low
     Seconded: Cyril Brulebois <kibi@debian.org>
     Seconded: Russ Allbery <rra@debian.org>
     Closes: #698030
+  * Policy: install-info is run by a dpkg trigger.
+    Wording: Jonathan Nieder <jrnieder@gmail.com>
+    Seconded: Charles Plessy <plessy@debian.org>
+    Seconded: Russ Allbery <rra@debian.org>
+    Closes: #669915
   * debconf_spec: Document the 'escape' capability.
     Wording: Jonathan Nieder <jrnieder@gmail.com>
     Seconded: Charles Plessy <plessy@debian.org>

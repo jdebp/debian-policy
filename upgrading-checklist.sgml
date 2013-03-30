@@ -55,6 +55,11 @@ Unreleased.
   <item>New section documenting the <tt>Package-Type</tt> field in source
   package control files.
   </item>
+<tag>12.2</tag>
+  <item>Packages distributing Info documents should use
+  <package>install-info</package>'s trigger, and do not need anymore
+  to depend on <tt>dpkg (>= 1.15.4) | install-info</tt>.
+  </item>
 <tag>debconf</tag>
   <item>The <tt>escape</tt> capability is now documented.
   </item>
