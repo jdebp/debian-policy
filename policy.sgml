@@ -1916,7 +1916,8 @@ zope.
 	<p>
 	  The following targets are required and must be implemented
 	  by <file>debian/rules</file>: <tt>clean</tt>, <tt>binary</tt>,
-	  <tt>binary-arch</tt>, <tt>binary-indep</tt>, and <tt>build</tt>.
+	  <tt>binary-arch</tt>, <tt>binary-indep</tt>, <tt>build</tt>,
+	  <tt>build-arch</tt> and <tt>build-indep</tt>.
 	  These are the targets called by <prgn>dpkg-buildpackage</prgn>.
 	</p>
 

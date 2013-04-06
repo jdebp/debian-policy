@@ -42,6 +42,8 @@ debian-policy (3.9.5.0) UNRELEASED; urgency=low
   * Fix typo in 8.6.4.1.  Thanks, Salvatore Bonaccorso <carnil@debian.org>.
   * Added a warning in appendix G about diverting conffiles.
     Closes: #703022.  Thanks, Torsten Jerzembeck.
+  * List build-arch and build-indep with the other required targets in 4.9.
+    Closes: #704657.  Thanks, Philipp Hahn.
 
  -- Russ Allbery <rra@debian.org>  Sat, 03 Nov 2012 15:32:46 -0700
 
