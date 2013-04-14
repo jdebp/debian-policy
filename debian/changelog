@@ -33,6 +33,11 @@ debian-policy (3.9.5.0) UNRELEASED; urgency=low
     Seconded: Charles Plessy <plessy@debian.org>
     Seconded: Jonathan Nieder <jrnieder@gmail.com>
     Closes: #715804
+  * Policy: File names encoded in UTF-8. ASCII preferred and mandatory in PATH.
+    Wording: Charles Plessy <plessy@debian.org>
+    Seconded: Jonathan Nieder <jrnieder@gmail.com>
+    Seconded: Julian Gilbey <julian@d-and-j.net>
+    Closes: #701081
   * debconf_spec: Document the 'escape' capability.
     Wording: Jonathan Nieder <jrnieder@gmail.com>
     Seconded: Charles Plessy <plessy@debian.org>

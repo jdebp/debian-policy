@@ -55,6 +55,11 @@ Unreleased.
   <item>New section documenting the <tt>Package-Type</tt> field in source
   package control files.
   </item>
+<tag>10.10</tag>
+  <item>The name of the files and directories installed by binary packages
+  must be encoded in UTF-8 and should be restricted to ASCII when possible.
+  In the system PATH, they must be restricted to ASCII.
+  </item>
 <tag>11.5.2</tag>
   <item>Stop recommending to serve HTML documents from
   <file>/usr/share/doc/<var>package</var></file>.
