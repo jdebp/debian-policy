@@ -9473,6 +9473,23 @@ done
 	  </p>
 	</sect1>
       </sect>
+
+      <sec id="filenames">
+	<heading>File names</heading>
+
+        <p>
+	  The name of the files installed by binary packages in the system PATH
+	  (namely <tt>/bin</tt>, <tt>/sbin</tt>, <tt>/usr/bin</tt>,
+	  <tt>/usr/sbin</tt> and <tt>/usr/games</tt>) must be encoded in
+	  ASCII.
+	</p>
+
+	<p>
+	  The name of the files and directories installed by binary packages
+	  outside the system PATH must be encoded in UTF-8 and should be
+	  restricted to ASCII when it is possible to do so.
+	</p>
+      </sec>
     </chapt>
 
 
