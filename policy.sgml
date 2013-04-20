@@ -4370,7 +4370,7 @@ fi
 		  <item>
 		      Otherwise, if the package had some configuration
 		      files from a previous version installed (i.e., it
-		      is in the "configuration files only" state):
+		      is in the "Config-Files" state):
 		      <example compact="compact">
 <var>new-preinst</var> install <var>old-version</var>
 		      </example>
@@ -4395,7 +4395,7 @@ fi
                       If the error-unwind fails, the package is in a
                       "Half-Installed" phase, and requires a
                       reinstall. If the error unwind works, the
-                      package is in a not installed state.
+                      package is in the "Not-Installed" state.
 		  </item>
                 </enumlist>
 	    </item>
@@ -4533,7 +4533,7 @@ fi
 		  </item>
 		  <item>
 		      It is noted in the status database as being in a
-		      sane state, namely not installed (any conffiles
+		      sane state, namely "Not-Installed" (any conffiles
 		      it may have are ignored, rather than being
 		      removed by <prgn>dpkg</prgn>).  Note that
 		      disappearing packages do not have their prerm
@@ -4596,7 +4596,7 @@ fi
 	<p>
 	  No attempt is made to unwind after errors during
 	  configuration. If the configuration fails, the package is in
-	  a "Failed Config" state, and an error message is generated.
+	  a "Half-Configured" state, and an error message is generated.
 	</p>
 
 	<p>
@@ -5407,7 +5407,7 @@ Depends: foo-data (&gt;= 1.2-3)
 	    <prgn>dpkg</prgn> does not know of any files it still
 	    contains, it is considered to have "disappeared".  It will
 	    be marked as not wanted on the system (selected for
-	    removal) and not installed.  Any <tt>conffile</tt>s
+	    removal) and "Not-Installed".  Any <tt>conffile</tt>s
 	    details noted for the package will be ignored, as they
 	    will have been taken over by the overwriting package.  The
 	    package's <prgn>postrm</prgn> script will be run with a
