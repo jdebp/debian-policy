@@ -44,6 +44,8 @@ debian-policy (3.9.5.0) UNRELEASED; urgency=low
     Closes: #703022.  Thanks, Torsten Jerzembeck.
   * List build-arch and build-indep with the other required targets in 4.9.
     Closes: #704657.  Thanks, Philipp Hahn.
+  * Replaced non-standard names of dpkg states by normalised ones.
+    Closes: #705403
 
  -- Russ Allbery <rra@debian.org>  Sat, 03 Nov 2012 15:32:46 -0700
 
