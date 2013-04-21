@@ -1274,7 +1274,7 @@ zope.
 	<p>
 	  Essential is defined as the minimal set of functionality that
 	  must be available and usable on the system at all times, even
-	  when packages are in an unconfigured (but unpacked) state.
+	  when packages are in the "Unpacked" state.
 	  Packages are tagged <tt>essential</tt> for a system using the
 	  <tt>Essential</tt> control field.  The format of the
 	  <tt>Essential</tt> control field is described in <ref
@@ -1361,7 +1361,7 @@ zope.
 	  installed together.  If <prgn>update-alternatives</prgn>
 	  is not used, then each package must use
 	  <tt>Conflicts</tt> to ensure that other packages are
-	  de-installed.  (In this case, it may be appropriate to
+	  removed.  (In this case, it may be appropriate to
 	  specify a conflict against earlier versions of something
 	  that previously did not use
 	  <prgn>update-alternatives</prgn>; this is an exception to
@@ -4069,7 +4069,7 @@ Checksums-Sha256:
 	      pre-dependencies (<tt>Pre-Depends</tt>) may be assumed to be
 	      available.  Pre-dependencies will have been configured at
 	      least once, but at the time the <prgn>preinst</prgn> is
-	      called they may only be in an unpacked or "Half-Configured"
+	      called they may only be in an "Unpacked" or "Half-Configured"
 	      state if a previous version of the pre-dependency was
 	      completely configured and has not been removed since then.
 	    </item>
@@ -4083,7 +4083,7 @@ Checksums-Sha256:
 	      partly from the new version or partly missing, so the script
 	      cannot rely on files included in the package.  Package
 	      dependencies may not be available.  Pre-dependencies will be
-	      at least unpacked following the same rules as above, except
+	      at least "Unpacked" following the same rules as above, except
 	      they may be only "Half-Installed" if an upgrade of the
 	      pre-dependency failed.<footnote>
 		This can happen if the new version of the package no
@@ -4102,7 +4102,7 @@ Checksums-Sha256:
 	      <var>most-recently-configured-version</var></tag>
 	    <item>
 	      The files contained in the package will be unpacked.  All
-	      package dependencies will at least be unpacked.  If there
+	      package dependencies will at least be "Unpacked".  If there
 	      are no circular dependencies involved, all package
 	      dependencies will be configured.  For behavior in the case
 	      of circular dependencies, see the discussion
@@ -4126,7 +4126,7 @@ Checksums-Sha256:
 	      will have previously been configured and not removed.
 	      However, dependencies may not be configured or even fully
 	      unpacked in some error situations.<footnote>
-		For example, suppose packages foo and bar are installed
+		For example, suppose packages foo and bar are "Installed"
 		with foo depending on bar.  If an upgrade of bar were
 		started and then aborted, and then an attempt to remove
 		foo failed because its <prgn>prerm</prgn> script failed,
@@ -4163,7 +4163,7 @@ Checksums-Sha256:
 	      at least "Half-Installed".  All package dependencies will at
 	      least be "Half-Installed" and will have previously been
 	      configured and not removed.  If there was no error, all
-	      dependencies will at least be unpacked, but these actions
+	      dependencies will at least be "Unpacked", but these actions
 	      may be called in various error states where dependencies are
 	      only "Half-Installed" due to a partial upgrade.
 	    </item>
@@ -4192,7 +4192,7 @@ Checksums-Sha256:
 	      The <prgn>postrm</prgn> script is called after the package's
 	      files have been removed or replaced.  The package
 	      whose <prgn>postrm</prgn> is being called may have
-	      previously been deconfigured and only be unpacked, at which
+	      previously been deconfigured and only be "Unpacked", at which
 	      point subsequent package changes do not consider its
 	      dependencies.  Therefore, all <prgn>postrm</prgn> actions
 	      may only rely on essential packages and must gracefully skip
@@ -4255,7 +4255,7 @@ fi
 	    <item>
 		<enumlist>
 		  <item>
-		      If a version of the package is already installed, call
+		      If a version of the package is already "Installed", call
 		      <example compact="compact">
 <var>old-prerm</var> upgrade <var>new-version</var>
 		      </example>
@@ -4559,7 +4559,7 @@ fi
 	    <item>
 	      <p>
 		The new package's status is now sane, and recorded as
-		"unpacked".
+		"Unpacked".
 	      </p>
 
 	      <p>
@@ -4716,8 +4716,8 @@ fi
           dependencies on other packages, the package names listed may
           also include lists of alternative package names, separated
           by vertical bar (pipe) symbols <tt>|</tt>.  In such a case,
-          if any one of the alternative packages is installed, that
-          part of the dependency is considered to be satisfied.
+	  that part of the dependency can be satisfied by any one of
+	  the alternative packages.
 	</p>
 
 	<p>
@@ -5048,11 +5048,11 @@ Build-Depends: foo [linux-any], bar [any-i386], baz [!linux-any]
 		be <em>unpacked</em> the pre-dependency can be
 		satisfied if the depended-on package is either fully
 		configured, <em>or even if</em> the depended-on
-		package(s) are only unpacked or in the "Half-Configured"
+		package(s) are only in the "Unpacked" or the "Half-Configured"
 		state, provided that they have been configured
 		correctly at some point in the past (and not removed
 		or partially removed since).  In this case, both the
-		previously-configured and currently unpacked or
+		previously-configured and currently "Unpacked" or
 		"Half-Configured" versions must satisfy any version
 		clause in the <tt>Pre-Depends</tt> field.
 	      </p>
