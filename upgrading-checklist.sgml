@@ -55,6 +55,10 @@ Unreleased.
   <item>New section documenting the <tt>Package-Type</tt> field in source
   package control files.
   </item>
+<tag>11.5.2</tag>
+  <item>Stop recommending to serve HTML documents from
+  <file>/usr/share/doc/<var>package</var></file>.
+  </item>
 <tag>12.2</tag>
   <item>Packages distributing Info documents should use
   <package>install-info</package>'s trigger, and do not need anymore
