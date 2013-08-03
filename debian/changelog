@@ -38,6 +38,10 @@ debian-policy (3.9.5.0) UNRELEASED; urgency=low
     Seconded: Charles Plessy <plessy@debian.org>
     Seconded: Russ Allbery <rra@debian.org>
     Closes: #671355
+  * virtual-package-names-list: removed mp3-encoder.
+    Seconded: Jonathan Nieder <jrnieder@gmail.com>
+    Seconded: Charles Plessy <plessy@debian.org>
+    Closes: #668394
   * Clean outdated mentions of dpkg commands in appendix. Thanks, Guillem Jover
   * Remove outdated mention of dselect documentation.
     Closes: #700574.  Thanks, Guillem Jover.

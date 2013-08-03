@@ -153,7 +153,6 @@ Graphics and MultiMedia
                          of a sound card, with a tty interface
  x-audio-mixer           a utility to control the input and output levels
                          of a sound card, X Window System interface
- mp3-encoder             an MP3 encoder package
  mp3-decoder             an MP3 decoder package
  mpd-client              a client that can control the Music Player Daemon
  pdf-preview             a preprocessor that creates PDF output
@@ -327,3 +326,6 @@ Bill Allombert:
               Removed java-compiler
               Removed java2-compiler
               Removed java-virtual-machine
+
+Charles Plessy:
+  03 Aug 2013 Removed mp3-encoder
