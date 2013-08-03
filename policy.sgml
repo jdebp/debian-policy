@@ -8853,7 +8853,9 @@ ln -fs ../sbin/sendmail debian/tmp/usr/bin/runq
 	</p>
 
 	<p>
-	  A symbolic link pointing to a compressed file should always
+	  A symbolic link pointing to a compressed file (in the sense
+	  that it is meant to be uncompressed with <prgn>unzip</prgn>
+	  or <prgn>zless</prgn> etc.) should always
 	  have the same file extension as the referenced file. (For
 	  example, if a file <file>foo.gz</file> is referenced by a
 	  symbolic link, the filename of the link has to end with
