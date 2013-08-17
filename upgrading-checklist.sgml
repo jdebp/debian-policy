@@ -73,7 +73,7 @@ Unreleased.
   <item>The <tt>escape</tt> capability is now documented.
   </item>
 <tag>virtual</tag>
-  <item><tt>mp3-encoder</tt> is removed.</item>
+  <item><tt>mp3-decoder</tt> and <tt>mp3-encoder</tt> are removed.</item>
 </taglist></p>
 
 <sect id="3.9.4.0"> Version 3.9.4.0

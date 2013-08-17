@@ -153,7 +153,6 @@ Graphics and MultiMedia
                          of a sound card, with a tty interface
  x-audio-mixer           a utility to control the input and output levels
                          of a sound card, X Window System interface
- mp3-decoder             an MP3 decoder package
  mpd-client              a client that can control the Music Player Daemon
  pdf-preview             a preprocessor that creates PDF output
  pdf-viewer              anything that can display PDF files
@@ -329,3 +328,4 @@ Bill Allombert:
 
 Charles Plessy:
   03 Aug 2013 Removed mp3-encoder
+  17 Aug 2013 Removed mp3-decoder
