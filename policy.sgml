@@ -9474,7 +9474,7 @@ done
 	</sect1>
       </sect>
 
-      <sec id="filenames">
+      <sect id="filenames">
 	<heading>File names</heading>
 
         <p>
@@ -9489,7 +9489,7 @@ done
 	  outside the system PATH must be encoded in UTF-8 and should be
 	  restricted to ASCII when it is possible to do so.
 	</p>
-      </sec>
+      </sect>
     </chapt>
 
 
