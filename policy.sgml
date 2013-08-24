@@ -2759,6 +2759,7 @@ Package: libc6
 	  <item><qref id="f-Uploaders"><tt>Uploaders</tt></qref></item>
 	  <item><qref id="f-Homepage"><tt>Homepage</tt></qref></item>
 	  <item><qref id="f-VCS-fields"><tt>Vcs-Browser</tt>, <tt>Vcs-Git</tt>, et al.</qref></item>
+	  <item><qref id="f-Dgit"><tt>Dgit</tt></qref></item>
 	  <item><qref id="f-Standards-Version"><tt>Standards-Version</tt></qref> (recommended)</item>
 	  <item><qref id="sourcebinarydeps"><tt>Build-Depends</tt> et al</qref></item>
 	  <item><qref id="f-Package-List"><tt>Package-List</tt></qref> (recommended)</item>
@@ -3838,6 +3839,26 @@ Checksums-Sha256:
 	    source package control files, the <tt>Package-Type</tt> field
 	    should be omitted instead of giving it a value of <tt>deb</tt>, as
 	    this value is assumed for paragraphs lacking this field.
+	  </p>
+	</sect1>
+
+	<sect1 id="f-Dgit">
+	  <heading><tt>Dgit</tt></heading>
+
+	  <p>
+	    Folded field containing a single git commit hash, presented in
+	    full, followed optionally by whitespace and other data to be
+	    defined in future extensions.
+	  </p>
+
+	  <p>
+	    Declares that the source package corresponds exactly to a
+	    referenced commit in a Git repository available at the canonical
+	    location called <em>dgit-repos</em>, used by <prgn>dgit</prgn>, a
+	    bidirectional gateway between the Debian archive and Git.  The
+	    commit is reachable from at least one reference whose name matches
+	    <tt>refs/dgit/*</tt>.  See the manual page of <prgn>dgit</prgn> for
+	    further details.
 	  </p>
 	</sect1>
       </sect>
