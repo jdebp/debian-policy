@@ -38,6 +38,12 @@ debian-policy (3.9.5.0) UNRELEASED; urgency=low
     Seconded: Jonathan Nieder <jrnieder@gmail.com>
     Seconded: Julian Gilbey <julian@d-and-j.net>
     Closes: #701081
+  * Policy: Document the Dgit field for Debian Source Control files.
+    Wording: Ian Jackson <ijackson@chiark.greenend.org.uk>
+    Seconded: Charles Plessy <plessy@debian.org>
+    Seconded: Joey Hess <joeyh@debian.org>
+    Seconded: Dmitrijs Ledkovs <xnox@debian.org>
+    Closes: #720507
   * debconf_spec: Document the 'escape' capability.
     Wording: Jonathan Nieder <jrnieder@gmail.com>
     Seconded: Charles Plessy <plessy@debian.org>
