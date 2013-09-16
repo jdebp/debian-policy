@@ -59,6 +59,9 @@ Unreleased.
   <item>New section documenting the <tt>Dgit</tt> field in Debian
   source control files.
   </item>
+<tag>9.1.1.8</tag>
+  <item>The exception to the FHS for the <file>/selinux</file> was removed.
+  </item>
 <tag>10.10</tag>
   <item>The name of the files and directories installed by binary packages
   must be encoded in UTF-8 and should be restricted to ASCII when possible.

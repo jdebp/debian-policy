@@ -44,6 +44,11 @@ debian-policy (3.9.5.0) UNRELEASED; urgency=low
     Seconded: Joey Hess <joeyh@debian.org>
     Seconded: Dmitrijs Ledkovs <xnox@debian.org>
     Closes: #720507
+  * Policy: Remove the exception to the FHS for the /selinux directory.
+    Wording: Charles Plessy <plessy@debian.org>
+    Seconded: Steve Langasek <vorlon@debian.org>
+    Seconded: Julien Cristau <jcristau@debian.org>
+    Closes: #707183
   * debconf_spec: Document the 'escape' capability.
     Wording: Jonathan Nieder <jrnieder@gmail.com>
     Seconded: Charles Plessy <plessy@debian.org>

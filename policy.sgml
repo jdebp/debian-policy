@@ -7021,15 +7021,14 @@ Built-Using: grub2 (= 1.99-9), loadlin (= 1.6e-1)
 		  stable release of Debian supports <file>/run</file>.
 		</p>
 	      </item>
-              <item>
-                <p>
-                  The following directories in the root filesystem are
-                  additionally allowed: <file>/sys</file> and
-                  <file>/selinux</file>. <footnote>These directories
-                  are used as mount points to mount virtual filesystems
-                  to get access to kernel information.</footnote>
-                </p>
-              </item>
+	      <item>
+		<p>
+		  The <file>/sys</file> directory in the root filesystem is
+		  additionally allowed. <footnote>This directory is used as
+		    mount point to mount virtual filesystems to get access to
+		    kernel information.</footnote>
+		</p>
+	      </item>
 	      <item>
 		<p>
 		  On GNU/Hurd systems, the following additional
