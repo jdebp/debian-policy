@@ -40,6 +40,11 @@ picking your way through this list.
 Unreleased.
 
 </p><p><taglist>
+<tag>5.1</tag>
+  <item>Control data fields must not start with the hyphen character
+  (<tt>-</tt>), to avoid potential confusions when parsing clearsigned control
+  data files that were not properly unescaped.
+  </item>
 <tag>5.4, 5.6.24</tag>
   <item><tt>Checksums-Sha1</tt> and <tt>Checksums-Sha256</tt> are now
   mandatory in <file>.dsc</file> files.

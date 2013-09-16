@@ -54,6 +54,11 @@ debian-policy (3.9.5.0) UNRELEASED; urgency=low
     Seconded: Jonathan Nieder <jrnieder@gmail.com>
     Seconded: Charles Plessy <plessy@debian.org>
     Closes: #707077
+  * Policy: Control data fields must not start with a hyphen character.
+    Wording: Niels Thykier <niels@thykier.net>
+    Seconded: Russ Allbery <rra@debian.org>
+    Seconded: Guillem Jover <guillem@debian.org>
+    Closes: #706778
   * debconf_spec: Document the 'escape' capability.
     Wording: Jonathan Nieder <jrnieder@gmail.com>
     Seconded: Charles Plessy <plessy@debian.org>

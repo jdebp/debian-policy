@@ -2542,7 +2542,7 @@ endif
 	  composed of US-ASCII characters excluding control characters,
 	  space, and colon (i.e., characters in the ranges 33-57 and
 	  59-126, inclusive).  Field names must not begin with the comment
-	  character, <tt>#</tt>.
+	  character, <tt>#</tt>, nor with the hyphen character, <tt>-</tt>.
 	</p>
 
 	<p>
