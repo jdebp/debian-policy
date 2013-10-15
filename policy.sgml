@@ -9009,8 +9009,10 @@ ln -fs ../sbin/sendmail debian/tmp/usr/bin/runq
 		  package is purged.
 	      </item>
 	    </list>
-	    Obsolete configuration files without local changes may be
-	    removed by the package during upgrade.
+	    Obsolete configuration files without local changes should be
+	    removed by the package during upgrade.<footnote>
+	      The <prgn>dpkg-maintscript-helper</prgn> tool, available from the
+	      <package>dpkg</package> package, can help for this task.</footnote>
 	  </p>
 
 	  <p>

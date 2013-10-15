@@ -49,6 +49,11 @@ debian-policy (3.9.5.0) UNRELEASED; urgency=low
     Seconded: Steve Langasek <vorlon@debian.org>
     Seconded: Julien Cristau <jcristau@debian.org>
     Closes: #707183
+  * Policy: on upgrades, recommend removing obsolete unchanged conf. files.
+    Wording: Paul Wise <pabs@debian.org>
+    Seconded: Jonathan Nieder <jrnieder@gmail.com>
+    Seconded: Charles Plessy <plessy@debian.org>
+    Closes: #707077
   * debconf_spec: Document the 'escape' capability.
     Wording: Jonathan Nieder <jrnieder@gmail.com>
     Seconded: Charles Plessy <plessy@debian.org>

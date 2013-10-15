@@ -62,6 +62,12 @@ Unreleased.
 <tag>9.1.1.8</tag>
   <item>The exception to the FHS for the <file>/selinux</file> was removed.
   </item>
+<tag>10.7.3</tag>
+  <item>Packages should remove all obsolete configuration files without
+  local changes during upgrades.  The <prgn>dpkg-maintscript-helper</prgn>
+  tool, available from the <package>dpkg</package> package since
+  <em>Wheezy</em>, can help with this.
+  </item>
 <tag>10.10</tag>
   <item>The name of the files and directories installed by binary packages
   must be encoded in UTF-8 and should be restricted to ASCII when possible.
