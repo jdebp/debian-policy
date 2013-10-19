@@ -108,6 +108,7 @@ consensus has been reached. The current delegates are:
 + Andreas Barth (aba)
 + Bill Allombert (ballombe)
 + Charles Plessy (plessy)
++ Jonathan Nieder (jrnieder)
 + Russ Allbery (rra)
 
 * Task description

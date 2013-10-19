@@ -1,9 +1,10 @@
 Source: debian-policy
 Maintainer: Debian Policy List <debian-policy@lists.debian.org>
-Uploaders: Manoj Srivastava <srivasta@debian.org>,
-           Russ Allbery <rra@debian.org>,
-           Colin Watson <cjwatson@debian.org>,
-           Bill Allombert <ballombe@debian.org>
+Uploaders: Andreas Barth <aba@debian.org>,
+           Bill Allombert <ballombe@debian.org>,
+           Charles Plessy <plessy@debian.org>,
+           Jonathan Nieder <jrnieder@gmail.com>,
+           Russ Allbery <rra@debian.org>
 Section: doc
 Priority: optional
 Build-Depends: bsdmainutils,

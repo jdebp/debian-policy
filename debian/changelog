@@ -85,6 +85,7 @@ debian-policy (3.9.5.0) UNRELEASED; urgency=low
   * Clarify what is meant by "compressed" in section 10.5. (Closes: #676784)
   * Packaging: use the VCS URLs proposed by Lintian.
   * Packaging: normalised debian/control with the tool "config-model-edit".
+  * Packaging: refreshed the names of the Policy Editors.
 
  -- Russ Allbery <rra@debian.org>  Sat, 03 Nov 2012 15:32:46 -0700
 
