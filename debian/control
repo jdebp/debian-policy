@@ -1,15 +1,25 @@
 Source: debian-policy
-Section: doc
-Priority: optional
 Maintainer: Debian Policy List <debian-policy@lists.debian.org>
 Uploaders: Manoj Srivastava <srivasta@debian.org>,
- Russ Allbery <rra@debian.org>,
- Colin Watson <cjwatson@debian.org>,
- Bill Allombert <ballombe@debian.org>
+           Russ Allbery <rra@debian.org>,
+           Colin Watson <cjwatson@debian.org>,
+           Bill Allombert <ballombe@debian.org>
+Section: doc
+Priority: optional
+Build-Depends: bsdmainutils,
+               debiandoc-sgml (>= 1.1.47),
+               docbook-dsssl,
+               docbook-xml,
+               emacs23,
+               groff,
+               jade,
+               links | elinks,
+               pstoedit,
+               sgml-data,
+               texlive,
+               texlive-latex-extra,
+               tidy
 Standards-Version: 3.9.4
-Build-Depends: bsdmainutils, debiandoc-sgml (>= 1.1.47), docbook-dsssl,
- docbook-xml, emacs23, groff, jade, links | elinks, pstoedit, sgml-data,
- texlive, texlive-latex-extra, tidy
 Vcs-Browser: http://anonscm.debian.org/gitweb/?p=dbnpolicy/policy.git
 Vcs-Git: git://anonscm.debian.org/dbnpolicy/policy.git
 
