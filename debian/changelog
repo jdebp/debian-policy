@@ -83,6 +83,7 @@ debian-policy (3.9.5.0) UNRELEASED; urgency=low
   * Replaced non-standard names of dpkg states by normalised ones.
     Closes: #705403
   * Clarify what is meant by "compressed" in section 10.5. (Closes: #676784)
+  * Packaging: use the VCS URLs proposed by Lintian.
 
  -- Russ Allbery <rra@debian.org>  Sat, 03 Nov 2012 15:32:46 -0700
 

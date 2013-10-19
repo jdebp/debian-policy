@@ -10,8 +10,8 @@ Standards-Version: 3.9.4
 Build-Depends: bsdmainutils, debiandoc-sgml (>= 1.1.47), docbook-dsssl,
  docbook-xml, emacs23, groff, jade, links | elinks, pstoedit, sgml-data,
  texlive, texlive-latex-extra, tidy
-Vcs-Browser: http://git.debian.org/?p=dbnpolicy/policy.git
-Vcs-Git: git://git.debian.org/git/dbnpolicy/policy.git
+Vcs-Browser: http://anonscm.debian.org/gitweb/?p=dbnpolicy/policy.git
+Vcs-Git: git://anonscm.debian.org/dbnpolicy/policy.git
 
 Package: debian-policy
 Architecture: all

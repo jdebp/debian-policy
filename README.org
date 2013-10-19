@@ -37,8 +37,8 @@
 + Website:: http://www.debian.org/doc/devel-manuals#policy
 + Mailing list:: debian-policy@lists.debian.org lists
 + Source Code::
-  * git clone git://git.debian.org/git/dbnpolicy/policy.git
-  * Browser: http://git.debian.org/?p=dbnpolicy/policy.git 
+  * git clone git://anonscm.debian.org/dbnpolicy/policy.git
+  * Browser: http://anonscm.debian.org/gitweb/?p=dbnpolicy/policy.git 
 + Unix group:: dbnpolicy
 + Alioth Project:: http://alioth.debian.org/projects/dbnpolicy (exists
   to manage the repository but not otherwise used)
@@ -58,7 +58,7 @@ against the current Git master branch to the bug report, if you're not
 familiar with Git, the following commands are the basic process:
 
 #+BEGIN_SRC Sh
-git clone git://git.debian.org/git/dbnpolicy/policy.git
+git clone git://anonscm.debian.org/dbnpolicy/policy.git
 git checkout -b <local-branch-name>
 
 # edit files, but don't make changes to upgrading-checklist or debian/changelog
