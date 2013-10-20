@@ -20,7 +20,7 @@ Build-Depends: bsdmainutils,
                texlive,
                texlive-latex-extra,
                tidy
-Standards-Version: 3.9.4
+Standards-Version: 3.9.5
 Vcs-Browser: http://anonscm.debian.org/gitweb/?p=dbnpolicy/policy.git
 Vcs-Git: git://anonscm.debian.org/dbnpolicy/policy.git
 
