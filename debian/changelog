@@ -1,4 +1,4 @@
-debian-policy (3.9.5.0) UNRELEASED; urgency=low
+debian-policy (3.9.5.0) unstable; urgency=low
 
   * Policy: Document the Package-List field.
     Wording: Charles Plessy <plessy@debian.org>
@@ -87,7 +87,7 @@ debian-policy (3.9.5.0) UNRELEASED; urgency=low
   * Packaging: normalised debian/control with the tool "config-model-edit".
   * Packaging: refreshed the names of the Policy Editors.
 
- -- Russ Allbery <rra@debian.org>  Sat, 03 Nov 2012 15:32:46 -0700
+ -- Charles Plessy <plessy@debian.org>  Mon, 28 Oct 2013 09:40:48 +0900
 
 debian-policy (3.9.4.0) unstable; urgency=low
 
