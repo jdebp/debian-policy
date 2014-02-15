@@ -1,3 +1,16 @@
+debian-policy (3.9.6.0) UNRELEASED; urgency=medium
+
+  * Policy: Document the FreeDesktop menu entries and media type declarations.
+    The Debian menu is optionally supported.
+    Wording: Charles Plessy <plessy@debian.org>
+    Seconded: Lisandro Damián Nicanor Pérez Meyer <perezmeyer@gmail.com>
+    Seconded: Cyril Brulebois <kibi@debian.org> (for the menu entries)
+    Seconded: Russ Allbery <rra@debian.org>
+    Closes: #707851
+
+
+ -- Charles Plessy <plessy@debian.org>  Sat, 15 Feb 2014 11:11:24 +0900
+
 debian-policy (3.9.5.0) unstable; urgency=low
 
   * Policy: Document the Package-List field.
