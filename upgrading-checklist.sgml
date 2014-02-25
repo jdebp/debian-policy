@@ -34,28 +34,6 @@ picking your way through this list.
 
 <chapt> The checklist
 
-<sect id="3.9.6.0"> Version 3.9.6.0
-<p>
-
-Not yet released.
-
-</p><p><taglist>
-<tag>9.6</tag>
-  <item>The requirements for the <em>FreeDesktop menu entries</em> are now
-  documented, in particular regarding the icon size and format, when to display
-  the entry, and where to coordinate the integration of the entries in menus of
-  specific desktop systems. The Debian menu is optionally supported.
-  </item>
-<tag>9.7</tag>
-  <item>Packages already shipping <em>FreeDesktop menu entries</em> should use
-  them to associate applications with media types.  Only in the absence of
-  desktop entries, a file in <em>mailcap</em> format should be used.
-  Associations between media types and files should be done via upstream
-  databases, nevertheless it is also possible to register these associations
-  directly in Debian if needed.
-  </item>
-</taglist></p>
-
 <sect id="3.9.5.0"> Version 3.9.5.0
 <p>
 
@@ -115,6 +93,7 @@ Released October, 2013.
 <tag>virtual</tag>
   <item><tt>mp3-decoder</tt> and <tt>mp3-encoder</tt> are removed.</item>
 </taglist></p>
+
 <sect id="3.9.4.0"> Version 3.9.4.0
 <p>
 
