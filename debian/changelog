@@ -1,3 +1,10 @@
+debian-policy (3.9.6.0) unstable; urgency=low
+
+  * upgrading-checklist.sgml: remove spurious 'details in' leftover from
+    the HTML transition.  Closes: #740100. Thanks Jakub Wilk.
+
+ -- Bill Allombert <ballombe@debian.org>  Tue, 25 Feb 2014 20:56:59 +0100
+
 debian-policy (3.9.5.0) unstable; urgency=low
 
   * Policy: Document the Package-List field.

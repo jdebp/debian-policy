@@ -1127,7 +1127,6 @@ Released  May 2001.
 <item>The system-wide mail directory is now /var/mail, no longer
   /var/spool/mail.  Any packages accessing the mail spool should
   access it via /var/mail and include a suitable Depends field;
-  details in
 </item>
 <tag>11.9; perl-policy</tag>
 <item>The perl policy is now part of Debian policy
@@ -1228,7 +1227,7 @@ Released  May 2001.
 <tag>10.1</tag>
 <item>By default executables should not be built with the debugging
   option -g. Instead, it is recommended to support building the
-  package with debugging information optionally.  Details in
+  package with debugging information optionally.
 </item>
 <tag>12.8</tag>
 <item>Policy for packages where the upstream uses HTML changelog
