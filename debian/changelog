@@ -4,6 +4,11 @@ debian-policy (3.9.6.0) unstable; urgency=low
     the HTML transition.  Closes: #740100. Thanks Jakub Wilk.
   * Fix use of metasyntactic variable in [11.5.1] Web servers and applications
     Closes: #737730. Thanks Olivier Berger.
+  * Policy: Remove reference to DEHS (dead service)
+    Wording: David Prévot <taffit@debian.org>
+    Seconded: Julian Gilbey <julian@d-and-j.net>
+    Seconded: Charles Plessy <plessy@debian.org>
+    Closes: #731810
 
  -- Bill Allombert <ballombe@debian.org>  Thu, 27 Feb 2014 18:08:18 +0100
 
