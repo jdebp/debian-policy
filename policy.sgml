@@ -9698,15 +9698,16 @@ done
 		Cgi-bin executable files are installed in the
 		directory
 		<example compact="compact">
-/usr/lib/cgi-bin/<var>cgi-bin-name</var>
+/usr/lib/cgi-bin
 		</example>
-		or a subdirectory of that directory, and should be
-		referred to as
+		or a subdirectory of that directory, and the script
 		<example compact="compact">
-http://localhost/cgi-bin/<var>cgi-bin-name</var>
+/usr/lib/cgi-bin/.../<var>cgi-bin-name</var>
 		</example>
-		(possibly with a subdirectory name
-		before <var>cgi-bin-name</var>).
+		should be referred to as
+		<example compact="compact">
+http://localhost/cgi-bin/.../<var>cgi-bin-name</var>
+		</example>
 	    </item>
 
 	    <item>

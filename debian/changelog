@@ -2,8 +2,10 @@ debian-policy (3.9.6.0) unstable; urgency=low
 
   * upgrading-checklist.sgml: remove spurious 'details in' leftover from
     the HTML transition.  Closes: #740100. Thanks Jakub Wilk.
+  * Fix use of metasyntactic variable in [11.5.1] Web servers and applications
+    Closes: #737730. Thanks Olivier Berger.
 
- -- Bill Allombert <ballombe@debian.org>  Tue, 25 Feb 2014 20:56:59 +0100
+ -- Bill Allombert <ballombe@debian.org>  Thu, 27 Feb 2014 18:08:18 +0100
 
 debian-policy (3.9.5.0) unstable; urgency=low
 
