@@ -1746,11 +1746,14 @@ zope.
 
 	<p>
 	  The maintainer name and email address used in the changelog
-	  should be the details of the person uploading <em>this</em>
-	  version.  They are <em>not</em> necessarily those of the
-	  usual package maintainer.<footnote>
-	    If the developer uploading the package is not one of the usual
-	    maintainers of the package (as listed in
+	  should be the details of the person who prepared this release of
+	  the package.  They are <em>not</em> necessarily those of the
+	  uploader or usual package maintainer.<footnote>
+	    In the case of a sponsored upload, the uploader signs the
+	    files, but the changelog maintainer name and address are those
+	    of the person who prepared this release.  If the preparer of
+	    the release is not one of the usual maintainers of the package
+	    (as listed in
 	    the <qref id="f-Maintainer"><tt>Maintainer</tt></qref>
 	    or <qref id="f-Uploaders"><tt>Uploaders</tt></qref> control
 	    fields of the package), the first line of the changelog is
