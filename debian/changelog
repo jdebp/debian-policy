@@ -9,9 +9,16 @@ debian-policy (3.9.6.0) unstable; urgency=low
     Seconded: Julian Gilbey <julian@d-and-j.net>
     Seconded: Charles Plessy <plessy@debian.org>
     Closes: #731810
+  * Policy: Relax /usr/share FHS requirement for directories with mixed content.
+    Wording: Joey Hess <joeyh@debian.org>
+    Seconded: Russ Allbery <rra@debian.org>
+    Seconded: Julien Cristau <jcristau@debian.org>
+    Seconded: Jakub Wilk <jwilk@debian.org>
+    Seconded: Michael Biebl <biebl@debian.org>
+    Closes: #741304
   * Packaging: refreshed the names of the Policy Editors.
 
- -- Bill Allombert <ballombe@debian.org>  Thu, 27 Feb 2014 18:08:18 +0100
+ -- Bill Allombert <ballombe@debian.org>  Thu, 01 May 2014 22:14:14 +0200
 
 debian-policy (3.9.5.0) unstable; urgency=low
 

@@ -6919,6 +6919,20 @@ Built-Using: grub2 (= 1.99-9), loadlin (= 1.6e-1)
             <enumlist>
               <item>
                 <p>
+                The FHS requirement that architecture-independent
+                application-specific static files be located in
+                <file>/usr/share</file> is relaxed to a suggestion.
+
+                In particular, a subdirectory of <file>/usr/lib</file> may
+                be used by a package (or a collection of packages) to hold a
+                mixture of architecture-independent and
+                architecture-dependent files. However, when a directory is
+                entirely composed of architecture-independent files, it
+                should be located in <file>/usr/share</file>.
+                </p>
+              </item>
+              <item>
+                <p>
                   The optional rules related to user specific
                   configuration files for applications are stored in
                   the user's home directory are relaxed.  It is

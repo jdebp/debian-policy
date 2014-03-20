@@ -34,6 +34,20 @@ picking your way through this list.
 
 <chapt> The checklist
 
+<sect id="3.9.6.0"> Version 3.9.6.0
+<p>
+
+Released xxx, 2014.
+
+</p><p><taglist>
+<tag>9.1</tag>
+  <item> The FHS is relaxed to allow a subdirectory of <file>/usr/lib</file>
+  to hold a mixture of architecture-independent and architecture-dependent
+  files, though directories entirely composed of architecture-independent files
+  should be located in <file>/usr/share</file>.
+  </item>
+</taglist></p>
+
 <sect id="3.9.5.0"> Version 3.9.5.0
 <p>
 
