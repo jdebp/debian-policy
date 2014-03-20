@@ -59,6 +59,10 @@ Released xxx, 2014.
   <item> Binaries must not be statically linked with the GNU C library,
   see policy for exceptions.
   </item>
+<tag>4.4</tag>
+  <item> It is clarified that signature appearing in debian/changelog should be
+  the details of the person who prepared this release of the package.
+  </item>
 <tag>virtual</tag>
   <item><tt>java1-runtime</tt> and <tt>java2-runtime</tt> are removed,
   <tt>javaN-runtime</tt> and <tt>javaN-runtime-headless</tt> are added
