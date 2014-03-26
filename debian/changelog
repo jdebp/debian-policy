@@ -9,6 +9,7 @@ debian-policy (3.9.6.0) unstable; urgency=low
     Seconded: Julian Gilbey <julian@d-and-j.net>
     Seconded: Charles Plessy <plessy@debian.org>
     Closes: #731810
+  * Packaging: refreshed the names of the Policy Editors.
 
  -- Bill Allombert <ballombe@debian.org>  Thu, 27 Feb 2014 18:08:18 +0100
 
