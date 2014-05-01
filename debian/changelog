@@ -60,6 +60,11 @@ debian-policy (3.9.6.0) unstable; urgency=low
     Seconded: Andrew McMillan <andrew@morphoss.com>
     Seconded: Gregor Herrmann <gregoa@debian.org>
     Closes: #593611
+  * Policy: Change default web document root to /var/www/html
+    Wording: Bill Allombert <ballombe@debian.org>
+    Seconded: Arno Töll <arno@debian.org>
+    Seconded: Matthias Urlichs <matthias@urlichs.de>
+    Closes: #491547
   * virtual-package-names-list: Update java runtime list
     Wording: Emmanuel Bourg <ebourg@apache.org>
     Seconded: Tony Mancill <tmancill@debian.org>
@@ -79,7 +84,7 @@ debian-policy (3.9.6.0) unstable; urgency=low
     Seconded: Russ Allbery <rra@debian.org>
     Closes: #613143
 
- -- Bill Allombert <ballombe@debian.org>  Sat, 02 Aug 2014 22:04:19 +0200
+ -- Bill Allombert <ballombe@debian.org>  Thu, 07 Aug 2014 14:17:57 +0200
 
 debian-policy (3.9.5.0) unstable; urgency=low
 

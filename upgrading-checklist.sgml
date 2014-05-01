@@ -63,6 +63,9 @@ Released xxx, 2014.
   <item> It is clarified that signature appearing in debian/changelog should be
   the details of the person who prepared this release of the package.
   </item>
+<tag>11.5</tag>
+  <item> The default web document root is now <file>/var/www/html</file>
+  </item>
 <tag>virtual</tag>
   <item><tt>java1-runtime</tt> and <tt>java2-runtime</tt> are removed,
   <tt>javaN-runtime</tt> and <tt>javaN-runtime-headless</tt> are added

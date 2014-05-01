@@ -7056,6 +7056,11 @@ Built-Using: grub2 (= 1.99-9), loadlin (= 1.6e-1)
 		</p>
 	      </item>
 	      <item>
+                <p>
+                  The <file>/var/www</file> directory is additionally allowed. 
+                </p>
+	      </item>
+	      <item>
 		<p>
                   The requirement for <file>/usr/local/lib&lt;qual&gt;</file>
                   to exist if <file>/lib&lt;qual&gt;</file> or
@@ -9785,7 +9790,7 @@ http://localhost/cgi-bin/.../<var>cgi-bin-name</var>
 		<package>doc-base</package> package.  If access to the
 		web document root is unavoidable then use
 		<example compact="compact">
-/var/www
+/var/www/html
 		</example>
 		as the Document Root.  This might be just a symbolic
 		link to the location where the system administrator
