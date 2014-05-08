@@ -16,6 +16,13 @@ debian-policy (3.9.6.0) unstable; urgency=low
     Seconded: Jakub Wilk <jwilk@debian.org>
     Seconded: Michael Biebl <biebl@debian.org>
     Closes: #741304
+  * Policy: Drop FHS requirement that /usr/local/lib<qual> exist when /lib<qual>
+    or /usr/lib<qual> does.
+    Wording: Tollef Fog Heen <tfheen@err.no>
+    Seconded: Bill Allombert <ballombe@debian.org>
+    Seconded: Jonathan Nieder <jrnieder@gmail.com>
+    Seconded: Russ Allbery <rra@debian.org>
+    Closes: #613143
   * Packaging: refreshed the names of the Policy Editors.
 
  -- Bill Allombert <ballombe@debian.org>  Thu, 01 May 2014 22:14:14 +0200

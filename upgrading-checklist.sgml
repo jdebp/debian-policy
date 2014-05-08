@@ -46,6 +46,10 @@ Released xxx, 2014.
   files, though directories entirely composed of architecture-independent files
   should be located in <file>/usr/share</file>.
   </item>
+<tag>9.1</tag>
+  <item>The FHS requirement for <file>/usr/local/lib64</file> to exist
+  if <file>/lib64</file> or <file>/usr/lib64</file> exists is removed.
+  </item>
 </taglist></p>
 
 <sect id="3.9.5.0"> Version 3.9.5.0

@@ -7044,6 +7044,13 @@ Built-Using: grub2 (= 1.99-9), loadlin (= 1.6e-1)
 	      </item>
 	      <item>
 		<p>
+		  The requirement for <file>/usr/local/lib&lt;qual&gt;</file>
+		  to exist if <file>/lib&lt;qual&gt</file> or
+		  <file>/usr/lib&lt;qual&gt</file> exists is removed.
+		</p>
+	      </item>
+	      <item>
+		<p>
 		  On GNU/Hurd systems, the following additional
 		  directories are allowed in the root
 		  filesystem: <file>/hurd</file>
