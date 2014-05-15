@@ -168,9 +168,11 @@
 	      <p>
 		Modules included in the core Perl distribution.
 	        <example>
-/usr/lib/perl/<var>version</var>
-/usr/share/perl/<var>version</var>
+/usr/lib/perl/<var>shortversion</var>
+/usr/share/perl/<var>shortversion</var>
 	        </example>
+		Where <var>shortversion</var> indicates the current Perl major
+		version (for example <tt>5.18</tt>).
 	      </p>
 	    </item>
 	    <tag><var>site</var> (old)</tag>

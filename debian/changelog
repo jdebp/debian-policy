@@ -17,6 +17,11 @@ debian-policy (3.9.6.0) unstable; urgency=low
     Seconded: Jakub Wilk <jwilk@debian.org>
     Seconded: Michael Biebl <biebl@debian.org>
     Closes: #741304
+  * Perl Policy: @INC has /usr/lib/perl/5.18, not /usr/lib/perl/5.18.2
+    Wording: Niko Tyni <ntyni@debian.org>
+    Seconded: Russ Allbery <rra@debian.org>
+    Seconded: Bill Allombert <ballombe@debian.org>
+    Closes: #748480
   * Packaging: refreshed the names of the Policy Editors.
 
   [ Jonathan Nieder ]
