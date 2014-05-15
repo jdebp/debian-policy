@@ -146,21 +146,42 @@
 		Modules installed by the local administrator for the
 		current version of Perl (see <ref id="site">).
 	        <example>
-/usr/local/lib/perl/<var>version</var>
-/usr/local/share/perl/<var>version</var>
+$Config{sitearch}  (currently /usr/local/lib/perl/<var>version</var>)
+$Config{sitelib}   (currently /usr/local/share/perl/<var>version</var>)
 		</example>
 		Where <var>version</var> indicates the current Perl
 		version (<tt>$Config{version}</tt>).
 	      </p>
+	      <p>
+		These locations, particularly <tt>$Config{sitearch}</tt>,
+		may change if the binary interface between the
+		Perl interpreter and compiled modules has to be
+		changed in an incompatible way without a change in
+		<var>version</var>. While this will only be done as a
+		last resort, packages should use <tt>$Config{sitelib}</tt>
+		and <tt>$Config{sitearch}</tt>, not hardcode the current
+		locations.<footnote>Build systems based on
+		<tt>ExtUtils::MakeMaker</tt> and <tt>Module::Build</tt>
+		do this automatically.</footnote>
+	      <p>
 	    </item>
 	    <tag><var>vendor</var></tag>
 	    <item>
 	      <p>
 		Packaged modules (see <ref id="module_packages">).
 	        <example>
-/usr/lib/perl5
-/usr/share/perl5
+$Config{vendorarch} (currently /usr/lib/perl5)
+$Config{vendorlib}  (currently /usr/share/perl5)
 	        </example>
+		These locations, particularly
+		<tt>$Config{vendorarch}</tt>, may change if
+		necessary<footnote>For example, to include
+		the multiarch triplet</footnote>.  Packages
+		should use <tt>$Config{vendorlib}</tt> and
+		<tt>$Config{vendorarch}</tt>, not hardcode the current
+		locations.<footnote>Build systems based on
+		<tt>ExtUtils::MakeMaker</tt> and <tt>Module::Build</tt>
+		do this automatically.</footnote>
 	      </p>
 	    </item>
 	    <tag><var>core</var></tag>
@@ -168,11 +189,19 @@
 	      <p>
 		Modules included in the core Perl distribution.
 	        <example>
-/usr/lib/perl/<var>shortversion</var>
-/usr/share/perl/<var>shortversion</var>
+$Config{archlib} (currently /usr/lib/perl/<var>shortversion</var>)
+$Config{privlib} (currently /usr/share/perl/<var>shortversion</var>)
 	        </example>
 		Where <var>shortversion</var> indicates the current Perl major
 		version (for example <tt>5.18</tt>).
+	      </p>
+	      <p>
+		These locations should be considered internal to the <package>
+		perl</package> source package. If necessary, packages should use
+		<tt>$Config{archlib}</tt> and <tt>$Config{privlib}</tt> instead of
+		hardcoding the current locations.<footnote>Build systems based on
+		<tt>ExtUtils::MakeMaker</tt> and <tt>Module::Build</tt>
+		do this automatically.</footnote>
 	      </p>
 	    </item>
 	    <tag><var>site</var> (old)</tag>
