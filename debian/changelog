@@ -22,6 +22,11 @@ debian-policy (3.9.6.0) unstable; urgency=low
     Seconded: Russ Allbery <rra@debian.org>
     Seconded: Bill Allombert <ballombe@debian.org>
     Closes: #748480
+  * Perl Policy: Explain %Config earlier
+    Wording: Niko Tyni <ntyni@debian.org>
+    Seconded: Russ Allbery <rra@debian.org>
+    Seconded: Damyan Ivanov <dmn@debian.org>
+    Closes: #748479
   * Packaging: refreshed the names of the Policy Editors.
 
   [ Jonathan Nieder ]

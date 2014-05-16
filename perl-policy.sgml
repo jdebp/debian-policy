@@ -96,7 +96,8 @@
 	  <package>perlapi-<var>abiname</var></package> for all released
 	  package versions it is compatible with. The choice of
 	  <var>abiname</var> is arbitrary, but if it differs from
-	  <tt>$Config{version}</tt>, it must be specified in
+	  <tt>$Config{version}</tt><footnote>see the
+	  <tt>Config</tt> module</footnote>, it must be specified in
 	  <tt>$Config{debian_abi}</tt>.
 	</p>
       </sect>
@@ -149,8 +150,7 @@
 /usr/local/share/perl/<var>version</var>
 		</example>
 		Where <var>version</var> indicates the current Perl
-		version (<tt>$Config{version}</tt><footnote>see the
-		<tt>Config</tt> module</footnote>).
+		version (<tt>$Config{version}</tt>).
 	      </p>
 	    </item>
 	    <tag><var>vendor</var></tag>
