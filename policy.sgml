@@ -7044,10 +7044,13 @@ Built-Using: grub2 (= 1.99-9), loadlin (= 1.6e-1)
 	      </item>
 	      <item>
 		<p>
-		  The requirement for <file>/usr/local/lib&lt;qual&gt;</file>
-		  to exist if <file>/lib&lt;qual&gt</file> or
-		  <file>/usr/lib&lt;qual&gt</file> exists is removed.
-		</p>
+                  The requirement for <file>/usr/local/lib&lt;qual&gt;</file>
+                  to exist if <file>/lib&lt;qual&gt;</file> or
+                  <file>/usr/lib&lt;qual&gt;</file> exists (where 
+                  <file>lib&lt;qual&gt;</file> is a variant of
+                  <file>lib</file> such as <file>lib32</file> or
+                  <file>lib64</file>) is removed.
+                  </p>
 	      </item>
 	      <item>
 		<p>
