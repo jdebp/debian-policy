@@ -6977,6 +6977,17 @@ Built-Using: grub2 (= 1.99-9), loadlin (= 1.6e-1)
                   </footnote>
                 </p>
                 <p>
+                  The requirement for C and C++ headers files to be
+                  accessible through the search path
+                  <file>/usr/include/</file> is amended, permitting files to
+                  be accessible through the search path
+                  <file>/usr/include/<var>triplet</var></file> where
+                  <tt><var>triplet</var></tt> is as above.  <footnote>
+                    This is necessary for architecture-dependant headers
+                    file to coexist in a <tt>multiarch</tt> setup.
+                  </footnote>
+                </p>
+                <p>
                   Applications may also use a single subdirectory under
                   <file>/usr/lib/<var>triplet</var></file>.
                 </p>

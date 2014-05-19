@@ -27,6 +27,11 @@ debian-policy (3.9.6.0) unstable; urgency=low
     Seconded: Russ Allbery <rra@debian.org>
     Seconded: Damyan Ivanov <dmn@debian.org>
     Closes: #748479
+  * Policy: Grant an FHS exception for the multiarch headers directories
+    Wording Bill Allombert <ballombe@debian.org>
+    Seconded: Jonathan Nieder <jrnieder@gmail.com>
+    Seconded: Russ Allbery <rra@debian.org>
+    Closes: #742756
   * Packaging: refreshed the names of the Policy Editors.
 
   [ Jonathan Nieder ]
@@ -38,7 +43,7 @@ debian-policy (3.9.6.0) unstable; urgency=low
     Seconded: Russ Allbery <rra@debian.org>
     Closes: #613143
 
- -- Bill Allombert <ballombe@debian.org>  Sat, 17 May 2014 18:49:57 +0200
+ -- Bill Allombert <ballombe@debian.org>  Fri, 30 May 2014 11:55:39 +0200
 
 debian-policy (3.9.5.0) unstable; urgency=low
 
