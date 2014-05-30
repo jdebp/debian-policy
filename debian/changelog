@@ -27,6 +27,11 @@ debian-policy (3.9.6.0) unstable; urgency=low
     Seconded: Russ Allbery <rra@debian.org>
     Seconded: Damyan Ivanov <dmn@debian.org>
     Closes: #748479
+  * Perl Policy: @INC changes for multiarch
+    Wording: Niko Tyni <ntyni@debian.org>
+    Seconded: Russ Allbery <rra@debian.org>
+    Seconded: Damyan Ivanov <dmn@debian.org>
+    Closes: #748380
   * Policy: Grant an FHS exception for the multiarch headers directories
     Wording: Bill Allombert <ballombe@debian.org>
     Seconded: Jonathan Nieder <jrnieder@gmail.com>
