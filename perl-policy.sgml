@@ -388,14 +388,15 @@ $(MAKE) install DESTDIR=$(CURDIR)/debian/&lt;tmp&gt;
 	</sect1>
 
 	<sect1 id="binary_modules">
-	  <heading>Binary Modules</heading>
+	  <heading>Binary and Other Architecture Dependent Modules</heading>
 	  <p>
 	    Binary modules must specify a dependency on either
 	    <package>perl</package> or <package>perl-base</package> with
 	    a minimum version of the <package>perl</package> package
-	    used to build the module, and must additionally depend on
-	    the expansion of
-	    <package>perlapi-$Config{debian_abi}</package> using
+	    used to build the module. Additionally, all binary modules
+	    (regardless of their installation directory) and any other modules
+	    installed into <tt>$Config{vendorarch}</tt> must depend on the
+	    expansion of <package>perlapi-$Config{debian_abi}</package> using
 	    the <tt>Config</tt> module. If <tt>$Config{debian_abi}</tt>
 	    is empty or not set, <tt>$Config{version}</tt> must be used.
 	  </p>
