@@ -50,10 +50,14 @@ Released xxx, 2014.
   <item>The FHS requirement for <file>/usr/local/lib64</file> to exist
   if <file>/lib64</file> or <file>/usr/lib64</file> exists is removed.
   </item>
-<tag>9.1.1</tag>
+<tag>9.1</tag>
   <item> An FHS exception has been granted for multiarch include files,
   permitting header files to instead be installed to
   <file>/usr/include/triplet</file>.
+  </item>
+<tag>10.1</tag>
+  <item> Binaries must not be statically linked with the GNU C library,
+  see policy for exceptions.
   </item>
 </taglist></p>
 

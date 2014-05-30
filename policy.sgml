@@ -8466,7 +8466,17 @@ fi
 	  renamed.  If a consensus cannot be reached, <em>both</em>
 	  programs must be renamed.
 	</p>
-
+	<p>
+          Binary executables must not be statically linked with the GNU C
+          library, since this prevents the binary from benefiting from
+          fixes and improvements to the C library without being rebuilt
+          and complicates security updates.  This requirement may be
+          relaxed for binary executables whose intended purpose is to
+          diagnose and fix the system in situations where the GNU C
+          library may not be usable (such as system recovery shells or
+          utilities like ldconfig) or for binary executables where the
+          security benefits of static linking outweigh the drawbacks.
+	</p>
 	<p>
          By default, when a package is being built, any binaries
          created should include debugging information, as well as

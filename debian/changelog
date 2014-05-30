@@ -28,10 +28,15 @@ debian-policy (3.9.6.0) unstable; urgency=low
     Seconded: Damyan Ivanov <dmn@debian.org>
     Closes: #748479
   * Policy: Grant an FHS exception for the multiarch headers directories
-    Wording Bill Allombert <ballombe@debian.org>
+    Wording: Bill Allombert <ballombe@debian.org>
     Seconded: Jonathan Nieder <jrnieder@gmail.com>
     Seconded: Russ Allbery <rra@debian.org>
     Closes: #742756
+  * Policy: Discourage statically linked binaries
+    Wording: Russ Allbery <rra@debian.org>
+    Seconded: Bill Allombert <ballombe@debian.org>
+    Seconded: Jonathan Nieder <jrnieder@gmail.com>
+    Closes: #555980
   * Packaging: refreshed the names of the Policy Editors.
 
   [ Jonathan Nieder ]
