@@ -32,6 +32,13 @@ debian-policy (3.9.6.0) unstable; urgency=low
     Seconded: Russ Allbery <rra@debian.org>
     Seconded: Damyan Ivanov <dmn@debian.org>
     Closes: #748380
+  * Perl Policy: Packages using Perl vendorarch directory need a perlapi-*
+    dependency
+    Wording: Niko Tyni <ntyni@debian.org>
+    Seconded: Russ Allbery <rra@debian.org>
+    Seconded: Gregor Herrmann <gregoa@debian.org>
+    Seconded: Axel Beckert <abe@debian.org>
+    Closes: #750017
   * Policy: Grant an FHS exception for the multiarch headers directories
     Wording: Bill Allombert <ballombe@debian.org>
     Seconded: Jonathan Nieder <jrnieder@gmail.com>
@@ -53,7 +60,7 @@ debian-policy (3.9.6.0) unstable; urgency=low
     Seconded: Russ Allbery <rra@debian.org>
     Closes: #613143
 
- -- Bill Allombert <ballombe@debian.org>  Fri, 30 May 2014 11:55:39 +0200
+ -- Bill Allombert <ballombe@debian.org>  Fri, 13 Jun 2014 21:43:08 +0200
 
 debian-policy (3.9.5.0) unstable; urgency=low
 

@@ -62,6 +62,11 @@ Released xxx, 2014.
 <tag>perl</tag>
   <item> Perl package should use the <tt>%Config</tt> hash to locate module
          paths instead of hardcoding paths in <tt>@INC</tt>.
+  </item>
+<tag>perl</tag>
+  <item> Perl binary modules and any modules installed into
+         <tt>$Config{vendorarch}</tt> must depend on the relevant
+         <package>perlapi-*</package> package.
   </item> </taglist></p>
 <sect id="3.9.5.0"> Version 3.9.5.0
 <p>
