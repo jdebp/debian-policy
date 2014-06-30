@@ -60,7 +60,7 @@ Released xxx, 2014.
   see policy for exceptions.
   </item>
 <tag>perl</tag>
-  <item> Perl package should use the <tt>%Config</tt> hash to locate module
+  <item> Perl packages should use the <tt>%Config</tt> hash to locate module
          paths instead of hardcoding paths in <tt>@INC</tt>.
   </item>
 <tag>perl</tag>
