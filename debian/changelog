@@ -3,8 +3,10 @@ debian-policy (3.9.6.0) unstable; urgency=low
   [ Bill Allombert ]
   * upgrading-checklist.sgml: remove spurious 'details in' leftover from
     the HTML transition.  Closes: #740100. Thanks Jakub Wilk.
-  * Fix use of metasyntactic variable in [11.5.1] Web servers and applications
-    Closes: #737730. Thanks Olivier Berger.
+  * Policy: [11.5.1] Web servers: Fix use of metasyntactic variables and
+    applications Closes: #737730. Thanks Olivier Berger.
+  * Policy: [5.6.21] Files: Fix typo "by" -> be. Closes: #753353.
+    Thanks Benedikt Wildenhain.
   * Policy: Remove reference to DEHS (dead service)
     Wording: David Prévot <taffit@debian.org>
     Seconded: Julian Gilbey <julian@d-and-j.net>
