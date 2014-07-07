@@ -6,7 +6,7 @@ date	:= $(shell date +"%Y-%m-%d")
 version := $(shell dpkg-parsechangelog | awk '/^Version:/ { print $$2; exit }')
 
 # Currently, emacs23 is required (xemacs is not sufficient).
-EMACS   := emacs23
+EMACS   := emacs24
 
 # Location of the source and build directories.
 SRCTOP	:= $(CURDIR)
