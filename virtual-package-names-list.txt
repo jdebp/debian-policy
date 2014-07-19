@@ -161,8 +161,16 @@ Graphics and MultiMedia
 
 Java and virtual machines
 -------------------------
- java1-runtime           a Java runtime environment, Java version 1
- java2-runtime           a Java runtime environment, Java version 2
+ java5-runtime           a Java runtime environment, Java version 5
+ java6-runtime           a Java runtime environment, Java version 6
+ java7-runtime           a Java runtime environment, Java version 7
+ java8-runtime           a Java runtime environment, Java version 8
+ java9-runtime           a Java runtime environment, Java version 9
+ java5-runtime-headless  a non-graphical Java runtime environment, Java ver. 5
+ java6-runtime-headless  a non-graphical Java runtime environment, Java ver. 6
+ java7-runtime-headless  a non-graphical Java runtime environment, Java ver. 7
+ java8-runtime-headless  a non-graphical Java runtime environment, Java ver. 8
+ java9-runtime-headless  a non-graphical Java runtime environment, Java ver. 9
 
 Scheme and interpreters
 -------------------------
@@ -329,3 +337,7 @@ Bill Allombert:
 Charles Plessy:
   03 Aug 2013 Removed mp3-encoder
   17 Aug 2013 Removed mp3-decoder
+
+Bill Allombert:
+  16 Jul 2014 Added java{5,6,7,8,9}-runtime{,-headless}
+              Removed java1-runtime, java2-runtime

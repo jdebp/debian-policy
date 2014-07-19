@@ -6,6 +6,7 @@ debian-policy (3.9.6.0) unstable; urgency=low
   * debian/control:
     - Build-Depends emacs24-nox|emacs24 instead of emacs23. Closes: #753999
     Thanks Gabriele Giacone.
+  * Packaging: refreshed the names of the Policy Editors.
   * Policy: [11.5.1] Web servers: Fix use of metasyntactic variables and
     applications Closes: #737730. Thanks Olivier Berger.
   * Policy: [5.6.21] Files: Fix typo "by" -> be. Closes: #753353.
@@ -54,8 +55,11 @@ debian-policy (3.9.6.0) unstable; urgency=low
     Seconded: Bill Allombert <ballombe@debian.org>
     Seconded: Jonathan Nieder <jrnieder@gmail.com>
     Closes: #555980
-  * Packaging: refreshed the names of the Policy Editors.
-
+  * virtual-package-names-list: Update java runtime list
+    Wording: Emmanuel Bourg <ebourg@apache.org>
+    Seconded: Tony Mancill <tmancill@debian.org>
+    Seconded: Bill Allombert <ballombe@debian.org>
+    Closes: #754876
   [ Jonathan Nieder ]
   * Policy: Drop FHS requirement that /usr/local/lib<qual> exist when /lib<qual>
     or /usr/lib<qual> does.

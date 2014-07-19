@@ -59,6 +59,11 @@ Released xxx, 2014.
   <item> Binaries must not be statically linked with the GNU C library,
   see policy for exceptions.
   </item>
+<tag>virtual</tag>
+  <item><tt>java1-runtime</tt> and <tt>java2-runtime</tt> are removed,
+  <tt>javaN-runtime</tt> and <tt>javaN-runtime-headless</tt> are added
+  for all N between 5 and 9.
+  </item>
 <tag>perl</tag>
   <item> Perl packages should use the <tt>%Config</tt> hash to locate module
          paths instead of hardcoding paths in <tt>@INC</tt>.
@@ -68,6 +73,7 @@ Released xxx, 2014.
          <tt>$Config{vendorarch}</tt> must depend on the relevant
          <package>perlapi-*</package> package.
   </item> </taglist></p>
+
 <sect id="3.9.5.0"> Version 3.9.5.0
 <p>
 
