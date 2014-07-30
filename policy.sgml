@@ -6972,8 +6972,7 @@ Built-Using: grub2 (= 1.99-9), loadlin (= 1.6e-1)
                   <footnote>
                     This is necessary in order to reserve the directories for
                     use in cross-installation of library packages from other
-                    architectures, as part of the planned deployment of
-                    <tt>multiarch</tt>.
+                    architectures, as part of <tt>multiarch</tt>.
                   </footnote>
                 </p>
                 <p>
