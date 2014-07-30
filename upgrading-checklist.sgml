@@ -64,6 +64,9 @@ Released xxx, 2014.
   <tt>javaN-runtime</tt> and <tt>javaN-runtime-headless</tt> are added
   for all N between 5 and 9.
   </item>
+<tag>virtual</tag>
+  <item>Added <tt>httpd-wsgi</tt> for WSGI capable HTTP servers.
+  </item>
 <tag>perl</tag>
   <item> Perl packages should use the <tt>%Config</tt> hash to locate module
          paths instead of hardcoding paths in <tt>@INC</tt>.
