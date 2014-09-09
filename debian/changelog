@@ -4,8 +4,8 @@ debian-policy (3.9.6.0) unstable; urgency=low
   * upgrading-checklist.sgml: remove spurious 'details in' leftover from
     the HTML transition.  Closes: #740100. Thanks Jakub Wilk.
   * debian/control:
-    - Build-Depends emacs24-nox|emacs24 instead of emacs23. Closes: #753999
-    Thanks Gabriele Giacone.
+    - Build-Depends emacs-nox|emacs instead of emacs23. Closes: #753999
+    Thanks Gabriele Giacone and Rob Browning.
   * Packaging: refreshed the names of the Policy Editors.
   * Policy: [11.5.1] Web servers: Fix use of metasyntactic variables and
     applications Closes: #737730. Thanks Olivier Berger.
@@ -84,7 +84,7 @@ debian-policy (3.9.6.0) unstable; urgency=low
     Seconded: Russ Allbery <rra@debian.org>
     Closes: #613143
 
- -- Bill Allombert <ballombe@debian.org>  Thu, 07 Aug 2014 14:17:57 +0200
+ -- Bill Allombert <ballombe@debian.org>  Tue, 09 Sep 2014 14:18:15 +0200
 
 debian-policy (3.9.5.0) unstable; urgency=low
 
