@@ -84,7 +84,7 @@ debian-policy (3.9.6.0) unstable; urgency=low
     Seconded: Russ Allbery <rra@debian.org>
     Closes: #613143
 
- -- Bill Allombert <ballombe@debian.org>  Tue, 09 Sep 2014 14:18:15 +0200
+ -- Bill Allombert <ballombe@debian.org>  Wed, 17 Sep 2014 20:03:20 +0200
 
 debian-policy (3.9.5.0) unstable; urgency=low
 
